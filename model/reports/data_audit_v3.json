@@ -1,0 +1,70 @@
+{
+  "version": "audited-v3",
+  "status": "retrospective_development_only",
+  "new_test_starts_after_freeze": "2026-09-08",
+  "clean_game_count": 3152,
+  "primary_period_games": 2781,
+  "old_results_superseded": true,
+  "fpi_future_home_rows_in_previous_pipeline": {
+    "2022": 82,
+    "2023": 85,
+    "2024": 78,
+    "2025": 83
+  },
+  "synthetic_source_rows_excluded_by_season": {
+    "2019": 7,
+    "2020": 20,
+    "2021": 9,
+    "2022": 6,
+    "2023": 3,
+    "2024": 10,
+    "2025": 12
+  },
+  "fixed_threshold_diagnostics_not_selected_policies": [
+    {
+      "candidate": "public_full_hgb",
+      "threshold": 3.0,
+      "bets": 1348,
+      "roi": 0.006946317777178308,
+      "roi_95_low": -0.051441450571963074,
+      "roi_95_high": 0.06605110013679256
+    },
+    {
+      "candidate": "public_full_hgb",
+      "threshold": 6.0,
+      "bets": 466,
+      "roi": 0.06515801794771753,
+      "roi_95_low": -0.032320098369645944,
+      "roi_95_high": 0.16359770671281224
+    },
+    {
+      "candidate": "public_superensemble_v2",
+      "threshold": 3.0,
+      "bets": 83,
+      "roi": 0.1270536692223439,
+      "roi_95_low": -0.12406417112299464,
+      "roi_95_high": 0.3476240990467333
+    },
+    {
+      "candidate": "public_superensemble_v2",
+      "threshold": 6.0,
+      "bets": 0,
+      "roi": null,
+      "roi_95_low": null,
+      "roi_95_high": null
+    }
+  ],
+  "untouched_historical_holdout": false,
+  "unverified_inputs_excluded": [
+    "returning_production",
+    "team_talent"
+  ],
+  "known_limitations": [
+    "Closing-line archive has no executable prices or market timestamps",
+    "Weekly ratings/statistics are retrospective prior-outcome reconstructions",
+    "Underlying EPA transforms can be fitted retrospectively",
+    "No verified pregame publication time for weekly derived ratings/summaries",
+    "2024/2025 archive contains no integer totals; source semantics remain under audit",
+    "No high-confidence profitability demonstrated"
+  ]
+}

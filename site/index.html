@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="College football total projections, timestamped market comparisons, and openly tracked model evidence.">
+  <meta name="theme-color" content="#101e31">
+  <title>College Football Totals · Daily model board</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101e31'/%3E%3Cpath d='M7 23V15M16 23V7M25 23V11' stroke='%237bedb0' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#today">Skip to today's board</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="wordmark" href="./" aria-label="College Football Totals home"><span class="brand-mark" aria-hidden="true">∑</span><span>COLLEGE FOOTBALL <strong>TOTALS</strong></span></a>
+      <nav aria-label="Main navigation"><a href="#today">Daily board</a><a href="#evidence">Evidence</a><a href="#results">Results</a></nav>
+    </div>
+  </header>
+  <main>
+    <section class="page-intro" aria-labelledby="page-title">
+      <div><p class="eyebrow">PUBLIC DATA · PROSPECTIVE TRACKING</p><h1 id="page-title">The daily totals board.</h1><p class="intro-copy">Model projections, available prices, and the evidence behind them.</p></div>
+      <div class="edition"><p id="edition-date">Daily edition</p><span>Scheduled at 6:30 AM Eastern</span><a id="raw-data-link" href="data/board.json">Download board JSON <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <div class="status-banner loading" id="status-banner" role="status" aria-live="polite"><span class="status-dot" aria-hidden="true"></span><div><strong id="status-title">Loading the latest board</strong><p id="status-message">Checking the publication time and data status.</p></div><span id="updated-at" class="update-time"></span></div>
+
+    <section id="today" class="section-block" aria-labelledby="today-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / DAILY SELECTIONS</p><h2 id="today-title">Today's top picks <span id="pick-count" class="count">—</span></h2></div><span class="badge research-badge">Experimental · Paper tracking</span></div>
+      <p class="section-description">Ranked by conservative modeled expected value. An empty board is a valid decision. A modeled advantage has not yet established a profitable betting edge.</p>
+      <div id="today-picks" class="pick-grid"><div class="empty-state"><span class="empty-symbol" aria-hidden="true">—</span><h3>Checking today's slate</h3><p>Only current, pregame selections will appear here.</p></div></div>
+    </section>
+
+    <section class="section-block" aria-labelledby="upcoming-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / LOOKING AHEAD</p><h2 id="upcoming-title">Upcoming watchlist</h2></div><span id="upcoming-count" class="small-meta"></span></div>
+      <p class="section-description">Early prices can change before game day. These are future matchups, with the same experimental status as today's board.</p>
+      <div id="upcoming-picks" class="table-container"></div>
+    </section>
+
+    <section id="evidence" class="section-block" aria-labelledby="evidence-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / MODEL EVIDENCE</p><h2 id="evidence-title">Competing forecasts. One honest record.</h2></div><span id="model-version" class="small-meta"></span></div>
+      <div class="evidence-note"><span class="note-label">RESEARCH STATUS</span><p id="evidence-message">Positive expected value is a model estimate. Profitability needs a credible, time-ordered evaluation and an independent forward record.</p></div>
+      <div id="candidate-table" class="table-container"></div>
+      <div class="definition-grid"><p><strong>MAE / RMSE</strong>Prediction error in total points; lower is better. Compare candidates on the same games.</p><p><strong>ROI / 95% interval</strong>Estimated return per unit staked and its uncertainty. An interval spanning zero does not establish profitability.</p><p><strong>Brier score</strong>Probability error for the stated evaluation sample; lower is better. Calibration matters more than confidence.</p></div>
+      <div id="research-links" class="resource-links"></div>
+      <details class="forecast-details"><summary>Forward forecast evaluation <span id="forward-forecast-count"></span></summary><p class="section-description forward-description">First archived forecast per candidate and game, including abstentions. Prediction accuracy is measured even when no bet qualifies; this table does not infer betting returns.</p><div id="forward-forecast-table" class="table-container"></div></details>
+      <details class="forecast-details"><summary>Inspect all model forecasts <span id="forecast-count"></span></summary><div class="forecast-controls"><label for="candidate-filter">Candidate</label><select id="candidate-filter"><option value="all">All candidates</option></select></div><div id="forecast-table" class="table-container"></div></details>
+    </section>
+
+    <section id="results" class="section-block" aria-labelledby="results-title">
+      <div class="section-heading"><div><p class="eyebrow">04 / FORWARD RECORD</p><h2 id="results-title">The record starts before kickoff.</h2></div><a href="data/board.json" class="text-link">View published data <span aria-hidden="true">↗</span></a></div>
+      <p class="section-description">Forward paper results are separate from historical tests. Repeated daily publications do not create additional bets.</p>
+      <div id="performance-stats" class="stat-grid"></div>
+      <p id="performance-note" class="small-meta performance-note"></p>
+      <div id="results-table" class="table-container"></div>
+    </section>
+
+    <section class="section-block transparency" aria-labelledby="transparency-title">
+      <div><p class="eyebrow">05 / DATA & LIMITATIONS</p><h2 id="transparency-title">Know what is being measured.</h2><ul id="limitations-list"></ul></div>
+      <aside class="sources-panel"><h3>Public data sources</h3><ul id="sources-list"></ul><details><summary>Run diagnostics</summary><dl id="diagnostics-list"></dl></details></aside>
+    </section>
+  </main>
+  <footer><span>College Football Totals</span><p>Research projections and paper results. No bets are placed by this site.</p><a href="#page-title">Back to top ↑</a></footer>
+  <noscript><div class="noscript-notice">JavaScript is needed to display the board. <a href="data/board.json">Read the published data directly.</a></div></noscript>
+</body>
+</html>

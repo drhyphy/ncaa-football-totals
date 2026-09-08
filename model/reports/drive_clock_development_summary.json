@@ -1,0 +1,390 @@
+{
+  "artifact_version": "drive-clock-v1",
+  "evaluation_status": "reused_historical_development_only",
+  "design": {
+    "folds": [
+      2023,
+      2024,
+      2025
+    ],
+    "training": "expanding prior seasons starting 2019",
+    "candidate_count": 2,
+    "selection": "No threshold search; fixed 6-point and 3% EV diagnostic gate",
+    "ridge_alpha": 500.0,
+    "confidence": "2,000 whole season/week block bootstrap resamples; descriptive, not multiplicity-adjusted",
+    "historical_prices": "Resolved closing totals, assumed -110 both sides; not 06:30 AM executable prices"
+  },
+  "coverage": {
+    "team_game_rows": 11920,
+    "historical_games": 3152,
+    "history_qualified_games": 2615,
+    "evaluation_games": 2597
+  },
+  "metrics": {
+    "drive_clock_ridge": {
+      "games": 2597,
+      "mae": 12.49492738115344,
+      "rmse": 15.691365319687376,
+      "paired_mae_delta": -0.021822715111478947,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.07685572468100924,
+        0.039167320031314054
+      ],
+      "conditional_over_brier": 0.24967204932685574,
+      "conditional_over_log_loss": 0.6925013520389032,
+      "expected_pushes": 0.25616780743542916,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    "drive_clock_shrink": {
+      "games": 2597,
+      "mae": 12.492913919459454,
+      "rmse": 15.681644024430414,
+      "paired_mae_delta": -0.02383617680546766,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.06526954634255362,
+        0.02616007857785418
+      ],
+      "conditional_over_brier": 0.24958514154659933,
+      "conditional_over_log_loss": 0.6923302827124554,
+      "expected_pushes": 0.25498686624600375,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    "market_only": {
+      "games": 2597,
+      "mae": 12.516750096264921,
+      "rmse": 15.744347623662426,
+      "paired_mae_delta": 0.0,
+      "paired_mae_delta_week_bootstrap_95": [
+        0.0,
+        0.0
+      ],
+      "conditional_over_brier": 0.25,
+      "conditional_over_log_loss": 0.6931471805599452,
+      "expected_pushes": 0.25616780743542916,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    }
+  },
+  "by_season": [
+    {
+      "season": 2023,
+      "candidate": "market_only",
+      "training_games": 18,
+      "training_status": "insufficient_training_ridge_equals_market",
+      "games": 791,
+      "mae": 12.65613147914033,
+      "rmse": 15.756141820156673,
+      "paired_mae_delta": 0.0,
+      "paired_mae_delta_week_bootstrap_95": [
+        0.0,
+        0.0
+      ],
+      "conditional_over_brier": 0.25,
+      "conditional_over_log_loss": 0.6931471805599453,
+      "expected_pushes": 0.25616780743542916,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    {
+      "season": 2023,
+      "candidate": "drive_clock_shrink",
+      "training_games": 18,
+      "training_status": "insufficient_training_ridge_equals_market",
+      "games": 791,
+      "mae": 12.65403391702883,
+      "rmse": 15.712862072633673,
+      "paired_mae_delta": -0.0020975621114962544,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.0759656565054909,
+        0.0847104156515984
+      ],
+      "conditional_over_brier": 0.250675010452942,
+      "conditional_over_log_loss": 0.6945603092272747,
+      "expected_pushes": 0.25498686624600375,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    {
+      "season": 2023,
+      "candidate": "drive_clock_ridge",
+      "training_games": 18,
+      "training_status": "insufficient_training_ridge_equals_market",
+      "games": 791,
+      "mae": 12.65613147914033,
+      "rmse": 15.756141820156673,
+      "paired_mae_delta": 0.0,
+      "paired_mae_delta_week_bootstrap_95": [
+        0.0,
+        0.0
+      ],
+      "conditional_over_brier": 0.25,
+      "conditional_over_log_loss": 0.6931471805599453,
+      "expected_pushes": 0.25616780743542916,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    {
+      "season": 2024,
+      "candidate": "market_only",
+      "training_games": 809,
+      "training_status": "prospective_shadow_only",
+      "games": 884,
+      "mae": 12.497737556561086,
+      "rmse": 16.07219993839451,
+      "paired_mae_delta": 0.0,
+      "paired_mae_delta_week_bootstrap_95": [
+        0.0,
+        0.0
+      ],
+      "conditional_over_brier": 0.25,
+      "conditional_over_log_loss": 0.6931471805599454,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    {
+      "season": 2024,
+      "candidate": "drive_clock_shrink",
+      "training_games": 809,
+      "training_status": "prospective_shadow_only",
+      "games": 884,
+      "mae": 12.402532712566131,
+      "rmse": 15.932671255524145,
+      "paired_mae_delta": -0.09520484399495265,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.17615620198312906,
+        -0.00793707456747488
+      ],
+      "conditional_over_brier": 0.24712945166141298,
+      "conditional_over_log_loss": 0.6873711020206229,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    {
+      "season": 2024,
+      "candidate": "drive_clock_ridge",
+      "training_games": 809,
+      "training_status": "prospective_shadow_only",
+      "games": 884,
+      "mae": 12.414485963888282,
+      "rmse": 15.947869467139629,
+      "paired_mae_delta": -0.08325159267280573,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.1910101510306764,
+        0.007203245380881066
+      ],
+      "conditional_over_brier": 0.2478106151319403,
+      "conditional_over_log_loss": 0.6887535925560874,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    {
+      "season": 2025,
+      "candidate": "market_only",
+      "training_games": 1693,
+      "training_status": "prospective_shadow_only",
+      "games": 922,
+      "mae": 12.415401301518438,
+      "rmse": 15.413128612405712,
+      "paired_mae_delta": 0.0,
+      "paired_mae_delta_week_bootstrap_95": [
+        0.0,
+        0.0
+      ],
+      "conditional_over_brier": 0.25,
+      "conditional_over_log_loss": 0.6931471805599452,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    {
+      "season": 2025,
+      "candidate": "drive_clock_shrink",
+      "training_games": 1693,
+      "training_status": "prospective_shadow_only",
+      "games": 922,
+      "mae": 12.44134241058344,
+      "rmse": 15.409872291159925,
+      "paired_mae_delta": 0.02594110906500235,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.03348341773347488,
+        0.08913544228231934
+      ],
+      "conditional_over_brier": 0.2510046031014666,
+      "conditional_over_log_loss": 0.6951718930794377,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    {
+      "season": 2025,
+      "candidate": "drive_clock_ridge",
+      "training_games": 1693,
+      "training_status": "prospective_shadow_only",
+      "games": 922,
+      "mae": 12.433753597373371,
+      "rmse": 15.384739314277253,
+      "paired_mae_delta": 0.01835229585493431,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.10396861451137371,
+        0.15594498737377405
+      ],
+      "conditional_over_brier": 0.25117541033102936,
+      "conditional_over_log_loss": 0.695540580913811,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    }
+  ],
+  "fitted_period_metrics": {
+    "drive_clock_ridge": {
+      "games": 1806,
+      "mae": 12.424322485523527,
+      "rmse": 15.6629098552691,
+      "paired_mae_delta": -0.031380725993638336,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.10943620888090698,
+        0.04793661676260108
+      ],
+      "conditional_over_brier": 0.24952841201652506,
+      "conditional_over_log_loss": 0.692218489159532,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    "drive_clock_shrink": {
+      "games": 1806,
+      "mae": 12.422345858508523,
+      "rmse": 15.66795141568544,
+      "paired_mae_delta": -0.033357353008641184,
+      "paired_mae_delta_week_bootstrap_95": [
+        -0.08684404286106853,
+        0.023177717777618605
+      ],
+      "conditional_over_brier": 0.2491077958628136,
+      "conditional_over_log_loss": 0.6913535656730191,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    "market_only": {
+      "games": 1806,
+      "mae": 12.455703211517164,
+      "rmse": 15.739179165297731,
+      "paired_mae_delta": 0.0,
+      "paired_mae_delta_week_bootstrap_95": [
+        0.0,
+        0.0
+      ],
+      "conditional_over_brier": 0.25,
+      "conditional_over_log_loss": 0.6931471805599452,
+      "expected_pushes": 0.0,
+      "observed_pushes": 0,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 0.0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    }
+  },
+  "promotion": "Neither candidate is promoted by this analysis; record both prospectively with zero betting stake",
+  "limitations": [
+    "2019\u20132025 already informed earlier model development; these are not untouched tests.",
+    "Only 18 pre-2023 games have real totals and five prior drive-covered games for both teams; 2023 ridge stays at market, with fixed 16-point prior sigma.",
+    "No archived publication timestamps: six-hour game-availability proxy and retrospectively corrected public data.",
+    "Clock pace is game-state dependent; no snap-level neutral-score filter in this bounded candidate.",
+    "Offensive TD values approximate XP as seven; separate other-points form absorbs XP, return points and overtime.",
+    "Fixed weak priors and no field-position feature; sparse histories revert to market.",
+    "Week bootstrap intervals do not establish future profitability or adjust for earlier candidate searches."
+  ]
+}

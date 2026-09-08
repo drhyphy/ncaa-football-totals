@@ -1,0 +1,52 @@
+season: 2026
+historical_start_season: 2019
+historical_full_coverage_start: 2023
+home_field_points: 2.2
+rating_ensemble_game_weight: 0.35
+# Leading live specification: retain 75% of the historically fitted FPI
+# residual. The 50% and 100% variants remain research benchmarks.
+live_alpha_shrink: 0.75
+alpha_grid_step: 0.01
+min_books: 3
+min_probability_edge: 0.015
+min_ev: 0.04
+max_consensus_dispersion: 0.045
+fractional_kelly: 0.10
+max_bankroll_fraction: 0.005
+# Timing comparisons remain descriptive until a horizon has this many graded
+# model-qualified signals.  Price CLV, not ROI, selects a provisional winner.
+timing_min_graded_signals: 50
+# Totals-market controls.  Historical ROI uses -110 because the public archive
+# contains a resolved closing total but not book-level prices.
+totals_min_edge_points: 3.0
+totals_min_line_value_points: 1.0
+totals_min_ev: 0.03
+totals_max_line_dispersion: 2.0
+totals_min_team_history: 5
+totals_fractional_kelly: 0.10
+totals_max_bankroll_fraction: 0.005
+totals_student_df: 7
+totals_ridge_weight: 0.65
+totals_hgb_weight: 0.35
+allowed_books:
+  - betmgm
+  - betrivers
+  - draftkings
+  - fanduel
+  - caesars
+  - betonlineag
+  - lowvig
+  - bovada
+data_urls:
+  ratings: "https://cfbtxt.com/data/ratings_preseason_{season}.csv"
+  schedule: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_schedules/cfb_schedule_{season}.parquet"
+  betting: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_betting/betting_{season}.parquet"
+  power_index: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_power_index/power_index_{season}.parquet"
+  adv_team_gamelog: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_adv_team_gamelog/adv_team_gamelog_{season}.parquet"
+  drives: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_drives/drives_{season}.parquet"
+  fpi_weekly: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_fpi_weekly/cfb_fpi_weekly_{season}.parquet"
+  ratings_weekly: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_ratings_weekly/cfb_ratings_weekly_{season}.parquet"
+  summaries_weekly: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_team_summaries_weekly/cfb_team_summaries_weekly_{season}.parquet"
+  returning_production: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_returning_production/cfb_returning_production_{season}.parquet"
+  team_talent: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_team_talent/cfb_team_talent_{season}.parquet"
+  ratings_final: "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/cfb_ratings/cfb_ratings_{season}.parquet"

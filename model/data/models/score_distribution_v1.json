@@ -1,0 +1,71 @@
+{
+  "family": "normal",
+  "sigma": 15.702954943545102,
+  "training_games": 2781,
+  "training_max_season": 2025,
+  "integer_pushes": true,
+  "status": "retrospective_development_only",
+  "development_folds": [
+    {
+      "season": 2023,
+      "family": "normal",
+      "games": 879,
+      "nll": 4.1714620257608415,
+      "brier": 0.25009193532043017,
+      "coverage_80": 0.8191126279863481,
+      "coverage_95": 0.962457337883959,
+      "sigma": 16.37860678164711
+    },
+    {
+      "season": 2023,
+      "family": "student_t7",
+      "games": 879,
+      "nll": 4.177280954544107,
+      "brier": 0.24999946062314088,
+      "coverage_80": 0.7952218430034129,
+      "coverage_95": 0.9670079635949943,
+      "sigma": 16.37860678164711
+    },
+    {
+      "season": 2024,
+      "family": "normal",
+      "games": 956,
+      "nll": 4.187203037016466,
+      "brier": 0.24991669255924484,
+      "coverage_80": 0.797071129707113,
+      "coverage_95": 0.944560669456067,
+      "sigma": 15.892369238096627
+    },
+    {
+      "season": 2024,
+      "family": "student_t7",
+      "games": 956,
+      "nll": 4.184178288732247,
+      "brier": 0.24983549925963477,
+      "coverage_80": 0.7803347280334728,
+      "coverage_95": 0.9518828451882845,
+      "sigma": 15.892369238096627
+    },
+    {
+      "season": 2025,
+      "family": "normal",
+      "games": 946,
+      "nll": 4.157825443242708,
+      "brier": 0.25000053733471295,
+      "coverage_80": 0.7980972515856237,
+      "coverage_95": 0.9545454545454546,
+      "sigma": 15.916347646161551
+    },
+    {
+      "season": 2025,
+      "family": "student_t7",
+      "games": 946,
+      "nll": 4.170734348606541,
+      "brier": 0.250002057905029,
+      "coverage_80": 0.773784355179704,
+      "coverage_95": 0.9630021141649049,
+      "sigma": 15.916347646161551
+    }
+  ],
+  "selection": "Lowest 2023\u20132025 expanding-year score log loss; reused development data, not a new holdout."
+}

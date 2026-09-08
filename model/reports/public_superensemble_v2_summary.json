@@ -1,0 +1,1165 @@
+{
+  "artifact": {
+    "artifact_version": "ncaaf-public-superensemble-audited-v3",
+    "candidates": [
+      "public_fpi",
+      "public_fei_epa",
+      "public_summary",
+      "public_roster_prior",
+      "public_full_hgb",
+      "public_superensemble_v2"
+    ],
+    "created_at": "2026-09-08T22:43:18Z",
+    "distribution_sigma": 15.66202282452087,
+    "evaluation_status": "Retrospective development; previous holdout seasons have been inspected. No demonstrated executable-price edge.",
+    "excluded_sources": [
+      "Unverified annual returning production",
+      "Unverified annual team talent",
+      "Default-source synthetic odds"
+    ],
+    "families": [
+      "fpi",
+      "fei_epa",
+      "summary",
+      "roster_prior",
+      "full_hgb"
+    ],
+    "family_threshold_selection": {
+      "fei_epa": {
+        "abstain": true,
+        "candidates": [
+          {
+            "bets": 1590,
+            "blocks": 51,
+            "cluster_standard_error": 0.02840080407957095,
+            "critical_value": 2.935199468866699,
+            "roi": -0.005831903945111493,
+            "selection_score": -0.08919392899485531,
+            "threshold": 2.0
+          },
+          {
+            "bets": 1226,
+            "blocks": 51,
+            "cluster_standard_error": 0.03214725890671296,
+            "critical_value": 2.935199468866699,
+            "roi": -0.00808245588017202,
+            "selection_score": -0.10244107314867616,
+            "threshold": 3.0
+          },
+          {
+            "bets": 960,
+            "blocks": 50,
+            "cluster_standard_error": 0.03429743314673193,
+            "critical_value": 2.935199468866699,
+            "roi": -0.04545454545454544,
+            "selection_score": -0.14612435301032412,
+            "threshold": 4.0
+          },
+          {
+            "bets": 765,
+            "blocks": 47,
+            "cluster_standard_error": 0.04083691126780159,
+            "critical_value": 2.935199468866699,
+            "roi": -0.036720142602495544,
+            "selection_score": -0.1565846228659033,
+            "threshold": 5.0
+          },
+          {
+            "bets": 648,
+            "blocks": 39,
+            "cluster_standard_error": 0.04514841320914918,
+            "critical_value": 2.935199468866699,
+            "roi": -0.060185185185185175,
+            "selection_score": -0.19270478365685412,
+            "threshold": 6.0
+          }
+        ],
+        "selected": {
+          "bets": 0,
+          "roi": null,
+          "selection_score": 0.0,
+          "threshold": null
+        }
+      },
+      "fpi": {
+        "abstain": true,
+        "candidates": [
+          {
+            "bets": 1351,
+            "blocks": 50,
+            "cluster_standard_error": 0.029584879111400706,
+            "critical_value": 2.935199468866699,
+            "roi": -0.015073009891662744,
+            "selection_score": -0.1019105313459316,
+            "threshold": 2.0
+          },
+          {
+            "bets": 1047,
+            "blocks": 46,
+            "cluster_standard_error": 0.03333977015510106,
+            "critical_value": 2.935199468866699,
+            "roi": -0.015368585569158627,
+            "selection_score": -0.1132274612205491,
+            "threshold": 3.0
+          },
+          {
+            "bets": 813,
+            "blocks": 46,
+            "cluster_standard_error": 0.03746649267068073,
+            "critical_value": 2.935199468866699,
+            "roi": -0.037235826903723575,
+            "selection_score": -0.14720745629100374,
+            "threshold": 4.0
+          },
+          {
+            "bets": 675,
+            "blocks": 45,
+            "cluster_standard_error": 0.042249387722082345,
+            "critical_value": 2.935199468866699,
+            "roi": -0.05535353535353535,
+            "selection_score": -0.17936391575533467,
+            "threshold": 5.0
+          },
+          {
+            "bets": 576,
+            "blocks": 36,
+            "cluster_standard_error": 0.04672560036513041,
+            "critical_value": 2.935199468866699,
+            "roi": -0.062026515151515166,
+            "selection_score": -0.1991754725257236,
+            "threshold": 6.0
+          }
+        ],
+        "selected": {
+          "bets": 0,
+          "roi": null,
+          "selection_score": 0.0,
+          "threshold": null
+        }
+      },
+      "full_hgb": {
+        "abstain": true,
+        "candidates": [
+          {
+            "bets": 1825,
+            "blocks": 54,
+            "cluster_standard_error": 0.026451070187893364,
+            "critical_value": 2.935199468866699,
+            "roi": 0.001095890410958906,
+            "selection_score": -0.07654327675550147,
+            "threshold": 2.0
+          },
+          {
+            "bets": 1420,
+            "blocks": 53,
+            "cluster_standard_error": 0.029739460244077046,
+            "critical_value": 2.935199468866699,
+            "roi": 0.001600512163892441,
+            "selection_score": -0.08569073574890482,
+            "threshold": 3.0
+          },
+          {
+            "bets": 1054,
+            "blocks": 52,
+            "cluster_standard_error": 0.031628958979139886,
+            "critical_value": 2.935199468866699,
+            "roi": 0.032430567534931856,
+            "selection_score": -0.060406736061446156,
+            "threshold": 4.0
+          },
+          {
+            "bets": 730,
+            "blocks": 51,
+            "cluster_standard_error": 0.04121329231325818,
+            "critical_value": 2.935199468866699,
+            "roi": 0.06699875466998755,
+            "selection_score": -0.053970479038135885,
+            "threshold": 5.0
+          },
+          {
+            "bets": 501,
+            "blocks": 51,
+            "cluster_standard_error": 0.04649325249550506,
+            "critical_value": 2.935199468866699,
+            "roi": 0.05552531301034294,
+            "selection_score": -0.08094165702034883,
+            "threshold": 6.0
+          }
+        ],
+        "selected": {
+          "bets": 0,
+          "roi": null,
+          "selection_score": 0.0,
+          "threshold": null
+        }
+      },
+      "roster_prior": {
+        "abstain": true,
+        "candidates": [
+          {
+            "bets": 1619,
+            "blocks": 57,
+            "cluster_standard_error": 0.025835793924697974,
+            "critical_value": 2.935199468866699,
+            "roi": -0.018923016452355546,
+            "selection_score": -0.09475622505787852,
+            "threshold": 2.0
+          },
+          {
+            "bets": 1211,
+            "blocks": 57,
+            "cluster_standard_error": 0.029886238599455606,
+            "critical_value": 2.935199468866699,
+            "roi": -0.021019442984760904,
+            "selection_score": -0.10874151464830645,
+            "threshold": 3.0
+          },
+          {
+            "bets": 935,
+            "blocks": 55,
+            "cluster_standard_error": 0.027030174366123854,
+            "critical_value": 2.935199468866699,
+            "roi": -0.054642683519688866,
+            "selection_score": -0.13398163696250986,
+            "threshold": 4.0
+          },
+          {
+            "bets": 785,
+            "blocks": 42,
+            "cluster_standard_error": 0.03147742986334089,
+            "critical_value": 2.935199468866699,
+            "roi": -0.05396641574985522,
+            "selection_score": -0.14635895116602218,
+            "threshold": 5.0
+          },
+          {
+            "bets": 707,
+            "blocks": 31,
+            "cluster_standard_error": 0.033007415607053045,
+            "critical_value": 2.935199468866699,
+            "roi": -0.063006300630063,
+            "selection_score": -0.1598896493885475,
+            "threshold": 6.0
+          }
+        ],
+        "selected": {
+          "bets": 0,
+          "roi": null,
+          "selection_score": 0.0,
+          "threshold": null
+        }
+      },
+      "summary": {
+        "abstain": true,
+        "candidates": [
+          {
+            "bets": 1724,
+            "blocks": 53,
+            "cluster_standard_error": 0.0257028451270001,
+            "critical_value": 2.935199468866699,
+            "roi": -0.0532060746677916,
+            "selection_score": -0.12864905203292532,
+            "threshold": 2.0
+          },
+          {
+            "bets": 1406,
+            "blocks": 50,
+            "cluster_standard_error": 0.03001470104351223,
+            "critical_value": 2.935199468866699,
+            "roi": -0.049527996896417945,
+            "selection_score": -0.1376271314575278,
+            "threshold": 3.0
+          },
+          {
+            "bets": 1114,
+            "blocks": 49,
+            "cluster_standard_error": 0.029698929760420028,
+            "critical_value": 2.935199468866699,
+            "roi": -0.05573690223600457,
+            "selection_score": -0.14290918509469885,
+            "threshold": 4.0
+          },
+          {
+            "bets": 905,
+            "blocks": 47,
+            "cluster_standard_error": 0.034271159008846384,
+            "critical_value": 2.935199468866699,
+            "roi": -0.057056755399296825,
+            "selection_score": -0.15764944311950893,
+            "threshold": 5.0
+          },
+          {
+            "bets": 737,
+            "blocks": 46,
+            "cluster_standard_error": 0.03267753212885374,
+            "critical_value": 2.935199468866699,
+            "roi": -0.0907857407178981,
+            "selection_score": -0.1867008156663841,
+            "threshold": 6.0
+          }
+        ],
+        "selected": {
+          "bets": 0,
+          "roi": null,
+          "selection_score": 0.0,
+          "threshold": null
+        }
+      }
+    },
+    "model_path": "data/models/public_superensemble_v2.joblib",
+    "point_in_time_rule": "Weekly statistics through W-1; FPI must have a valid publication timestamp before kickoff/as-of and no out-of-sequence flag.",
+    "stacker": {
+      "intercept": 0.8912833617299231,
+      "optimizer_success": true,
+      "weights": {
+        "fei_epa": 0.0,
+        "fpi": 3.558168890001977e-15,
+        "full_hgb": 0.16263295010682235,
+        "roster_prior": 2.6371049712767233e-15,
+        "summary": 3.720817814305357e-14
+      }
+    },
+    "status": "shadow_forward_research",
+    "threshold_selection": {
+      "abstain": true,
+      "candidates": [
+        {
+          "bets": 574,
+          "blocks": 32,
+          "cluster_standard_error": 0.05188490693948305,
+          "critical_value": 2.935199468866699,
+          "roi": 0.034368070953436816,
+          "selection_score": -0.11792448033753193,
+          "threshold": 2.0
+        }
+      ],
+      "selected": {
+        "bets": 0,
+        "roi": null,
+        "selection_score": 0.0,
+        "threshold": null
+      }
+    },
+    "training_games": 2781,
+    "training_seasons": [
+      2023,
+      2024,
+      2025
+    ],
+    "unavailable_source": "Historical point-in-time SP+ was not available from configured no-key sources.",
+    "uncertainty_policy": "Season-week cluster uncertainty, one-sided Bonferroni 95% threshold gate across 30 choices, at least 100 bets and 8 weeks"
+  },
+  "metrics": [
+    {
+      "bets": 0,
+      "brier": 0.26916433309371957,
+      "candidate": "public_fei_epa",
+      "flat_roi": null,
+      "games": 2781,
+      "log_loss": 0.7386652118008495,
+      "mae": 13.278189728970688,
+      "market_neutral_brier": 0.25,
+      "profit_units": 0.0,
+      "rmse": 16.738074561933566,
+      "roi_95_high": null,
+      "roi_95_low": null,
+      "uncertainty_method": "season-week cluster bootstrap; 3000 resamples",
+      "win_rate_decided": null
+    },
+    {
+      "bets": 0,
+      "brier": 0.26786937940302796,
+      "candidate": "public_fpi",
+      "flat_roi": null,
+      "games": 2781,
+      "log_loss": 0.735854934885529,
+      "mae": 13.181890405761715,
+      "market_neutral_brier": 0.25,
+      "profit_units": 0.0,
+      "rmse": 16.66268599343672,
+      "roi_95_high": null,
+      "roi_95_low": null,
+      "uncertainty_method": "season-week cluster bootstrap; 3000 resamples",
+      "win_rate_decided": null
+    },
+    {
+      "bets": 0,
+      "brier": 0.2577511336232929,
+      "candidate": "public_full_hgb",
+      "flat_roi": null,
+      "games": 2781,
+      "log_loss": 0.7100166151319132,
+      "mae": 12.76998015271036,
+      "market_neutral_brier": 0.25,
+      "profit_units": 0.0,
+      "rmse": 15.984060530194878,
+      "roi_95_high": null,
+      "roi_95_low": null,
+      "uncertainty_method": "season-week cluster bootstrap; 3000 resamples",
+      "win_rate_decided": null
+    },
+    {
+      "bets": 0,
+      "brier": 0.27253916478655404,
+      "candidate": "public_roster_prior",
+      "flat_roi": null,
+      "games": 2781,
+      "log_loss": 0.7474681763387919,
+      "mae": 13.434956816182632,
+      "market_neutral_brier": 0.25,
+      "profit_units": 0.0,
+      "rmse": 16.932103857697975,
+      "roi_95_high": null,
+      "roi_95_low": null,
+      "uncertainty_method": "season-week cluster bootstrap; 3000 resamples",
+      "win_rate_decided": null
+    },
+    {
+      "bets": 0,
+      "brier": 0.2746915680088486,
+      "candidate": "public_summary",
+      "flat_roi": null,
+      "games": 2781,
+      "log_loss": 0.7510636203889229,
+      "mae": 13.439037527909166,
+      "market_neutral_brier": 0.25,
+      "profit_units": 0.0,
+      "rmse": 16.860058777167897,
+      "roi_95_high": null,
+      "roi_95_low": null,
+      "uncertainty_method": "season-week cluster bootstrap; 3000 resamples",
+      "win_rate_decided": null
+    },
+    {
+      "bets": 0,
+      "brier": 0.25090682924356283,
+      "candidate": "public_superensemble_v2",
+      "flat_roi": null,
+      "games": 2781,
+      "log_loss": 0.6949731980408607,
+      "mae": 12.49779130748864,
+      "market_neutral_brier": 0.25,
+      "profit_units": 0.0,
+      "rmse": 15.667839711618814,
+      "roi_95_high": null,
+      "roi_95_low": null,
+      "uncertainty_method": "season-week cluster bootstrap; 3000 resamples",
+      "win_rate_decided": null
+    }
+  ],
+  "outer_fold_audit": [
+    {
+      "base_oof_rows": 119,
+      "family_threshold_selection": {
+        "fei_epa": {
+          "abstain": true,
+          "candidates": [],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "fpi": {
+          "abstain": true,
+          "candidates": [],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "full_hgb": {
+          "abstain": true,
+          "candidates": [],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "roster_prior": {
+          "abstain": true,
+          "candidates": [],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "summary": {
+          "abstain": true,
+          "candidates": [],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        }
+      },
+      "nested_meta_rows": 0,
+      "stacker": {
+        "intercept": 0.9472881038928015,
+        "optimizer_success": true,
+        "weights": {
+          "fei_epa": 9.484277052181764e-12,
+          "fpi": 1.0145395818908441e-11,
+          "full_hgb": 1.5084848285986115e-11,
+          "roster_prior": 7.080268874732954e-12,
+          "summary": 1.2840456787163399e-11
+        }
+      },
+      "test_season": 2023,
+      "threshold_selection": {
+        "abstain": true,
+        "candidates": [],
+        "selected": {
+          "bets": 0,
+          "roi": null,
+          "selection_score": null,
+          "threshold": null
+        }
+      },
+      "training_games": 371
+    },
+    {
+      "base_oof_rows": 998,
+      "family_threshold_selection": {
+        "fei_epa": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 740,
+              "blocks": 21,
+              "cluster_standard_error": 0.04441472362179693,
+              "critical_value": 2.935199468866699,
+              "roi": -0.06093366093366093,
+              "selection_score": -0.19129973411822052,
+              "threshold": 2.0
+            },
+            {
+              "bets": 697,
+              "blocks": 21,
+              "cluster_standard_error": 0.04327596930394508,
+              "critical_value": 2.935199468866699,
+              "roi": -0.06599713055954089,
+              "selection_score": -0.19302073267517206,
+              "threshold": 3.0
+            },
+            {
+              "bets": 659,
+              "blocks": 21,
+              "cluster_standard_error": 0.04459057818940225,
+              "critical_value": 2.935199468866699,
+              "roi": -0.06718168023175611,
+              "selection_score": -0.19806392164974862,
+              "threshold": 4.0
+            },
+            {
+              "bets": 612,
+              "blocks": 18,
+              "cluster_standard_error": 0.047922258280926285,
+              "critical_value": 2.935199468866699,
+              "roi": -0.054812834224598934,
+              "selection_score": -0.19547422127766653,
+              "threshold": 5.0
+            },
+            {
+              "bets": 581,
+              "blocks": 17,
+              "cluster_standard_error": 0.049686455161058594,
+              "critical_value": 2.935199468866699,
+              "roi": -0.056955093099671415,
+              "selection_score": -0.20279474989827967,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "fpi": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 664,
+              "blocks": 22,
+              "cluster_standard_error": 0.04545816523313689,
+              "critical_value": 2.935199468866699,
+              "roi": -0.05695509309967141,
+              "selection_score": -0.19038387554762942,
+              "threshold": 2.0
+            },
+            {
+              "bets": 621,
+              "blocks": 18,
+              "cluster_standard_error": 0.04662973169587374,
+              "critical_value": 2.935199468866699,
+              "roi": -0.05314009661835749,
+              "selection_score": -0.19000766032548277,
+              "threshold": 3.0
+            },
+            {
+              "bets": 583,
+              "blocks": 18,
+              "cluster_standard_error": 0.04700195902721652,
+              "critical_value": 2.935199468866699,
+              "roi": -0.0765632309371589,
+              "selection_score": -0.21452335610953915,
+              "threshold": 4.0
+            },
+            {
+              "bets": 560,
+              "blocks": 17,
+              "cluster_standard_error": 0.05021742260178384,
+              "critical_value": 2.935199468866699,
+              "roi": -0.0625,
+              "selection_score": -0.20989815214861052,
+              "threshold": 5.0
+            },
+            {
+              "bets": 534,
+              "blocks": 15,
+              "cluster_standard_error": 0.05032266349758228,
+              "critical_value": 2.935199468866699,
+              "roi": -0.07048008171603677,
+              "selection_score": -0.21818713688609792,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "full_hgb": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 681,
+              "blocks": 22,
+              "cluster_standard_error": 0.047194148364978664,
+              "critical_value": 2.935199468866699,
+              "roi": -0.004805766920304358,
+              "selection_score": -0.14333000613480593,
+              "threshold": 2.0
+            },
+            {
+              "bets": 548,
+              "blocks": 22,
+              "cluster_standard_error": 0.0463027876961321,
+              "critical_value": 2.935199468866699,
+              "roi": -0.017584605175846046,
+              "selection_score": -0.15349252302858052,
+              "threshold": 3.0
+            },
+            {
+              "bets": 430,
+              "blocks": 21,
+              "cluster_standard_error": 0.048686248573531384,
+              "critical_value": 2.935199468866699,
+              "roi": 0.012262156448202957,
+              "selection_score": -0.13064169450593843,
+              "threshold": 4.0
+            },
+            {
+              "bets": 315,
+              "blocks": 21,
+              "cluster_standard_error": 0.054262892012055114,
+              "critical_value": 2.935199468866699,
+              "roi": 0.0303030303030303,
+              "selection_score": -0.12896938150992493,
+              "threshold": 5.0
+            },
+            {
+              "bets": 236,
+              "blocks": 21,
+              "cluster_standard_error": 0.05376131288163593,
+              "critical_value": 2.935199468866699,
+              "roi": 0.01117103235747304,
+              "selection_score": -0.14662914465828117,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "roster_prior": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 855,
+              "blocks": 25,
+              "cluster_standard_error": 0.03137902724833723,
+              "critical_value": 2.935199468866699,
+              "roi": -0.04657097288676235,
+              "selection_score": -0.13867467699963548,
+              "threshold": 2.0
+            },
+            {
+              "bets": 807,
+              "blocks": 25,
+              "cluster_standard_error": 0.03334829957195202,
+              "critical_value": 2.935199468866699,
+              "roi": -0.04900304156809733,
+              "selection_score": -0.14688695275929847,
+              "threshold": 3.0
+            },
+            {
+              "bets": 761,
+              "blocks": 25,
+              "cluster_standard_error": 0.030523305986018844,
+              "critical_value": 2.935199468866699,
+              "roi": -0.06176084099868594,
+              "selection_score": -0.15135283251690418,
+              "threshold": 4.0
+            },
+            {
+              "bets": 731,
+              "blocks": 21,
+              "cluster_standard_error": 0.032965341960908945,
+              "critical_value": 2.935199468866699,
+              "roi": -0.059818430543464744,
+              "selection_score": -0.1565782847581338,
+              "threshold": 5.0
+            },
+            {
+              "bets": 694,
+              "blocks": 20,
+              "cluster_standard_error": 0.03366692240093191,
+              "critical_value": 2.935199468866699,
+              "roi": -0.06471050563269583,
+              "selection_score": -0.16352963838228754,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "summary": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 753,
+              "blocks": 23,
+              "cluster_standard_error": 0.03863863131590963,
+              "critical_value": 2.935199468866699,
+              "roi": -0.10249909453096705,
+              "selection_score": -0.2159111846471612,
+              "threshold": 2.0
+            },
+            {
+              "bets": 709,
+              "blocks": 21,
+              "cluster_standard_error": 0.03680345821933269,
+              "critical_value": 2.935199468866699,
+              "roi": -0.11680984741633542,
+              "selection_score": -0.22483533843417847,
+              "threshold": 3.0
+            },
+            {
+              "bets": 672,
+              "blocks": 20,
+              "cluster_standard_error": 0.03515207176039733,
+              "critical_value": 2.935199468866699,
+              "roi": -0.11079545454545452,
+              "selection_score": -0.21397379690613685,
+              "threshold": 4.0
+            },
+            {
+              "bets": 629,
+              "blocks": 19,
+              "cluster_standard_error": 0.035449758788984445,
+              "critical_value": 2.935199468866699,
+              "roi": -0.11374476080358434,
+              "selection_score": -0.21779687397246408,
+              "threshold": 5.0
+            },
+            {
+              "bets": 591,
+              "blocks": 19,
+              "cluster_standard_error": 0.03362813921056426,
+              "critical_value": 2.935199468866699,
+              "roi": -0.13105676049838483,
+              "selection_score": -0.22976205684820847,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        }
+      },
+      "nested_meta_rows": 879,
+      "stacker": {
+        "intercept": 1.3221482692913011,
+        "optimizer_success": true,
+        "weights": {
+          "fei_epa": 2.1304095732339757e-13,
+          "fpi": 7.433620221161994e-14,
+          "full_hgb": 0.145541866607324,
+          "roster_prior": 0.0,
+          "summary": 0.0
+        }
+      },
+      "test_season": 2024,
+      "threshold_selection": {
+        "abstain": true,
+        "candidates": [],
+        "selected": {
+          "bets": 0,
+          "roi": null,
+          "selection_score": 0.0,
+          "threshold": null
+        }
+      },
+      "training_games": 1250
+    },
+    {
+      "base_oof_rows": 1954,
+      "family_threshold_selection": {
+        "fei_epa": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 1183,
+              "blocks": 36,
+              "cluster_standard_error": 0.03584006242612536,
+              "critical_value": 2.935199468866699,
+              "roi": 0.000537923614846692,
+              "selection_score": -0.1046598085824658,
+              "threshold": 2.0
+            },
+            {
+              "bets": 974,
+              "blocks": 36,
+              "cluster_standard_error": 0.03712692228592416,
+              "critical_value": 2.935199468866699,
+              "roi": -0.012133656897517262,
+              "selection_score": -0.12110857947181707,
+              "threshold": 3.0
+            },
+            {
+              "bets": 821,
+              "blocks": 35,
+              "cluster_standard_error": 0.03812455658054042,
+              "critical_value": 2.935199468866699,
+              "roi": -0.04196655962794818,
+              "selection_score": -0.15386973785392882,
+              "threshold": 4.0
+            },
+            {
+              "bets": 695,
+              "blocks": 32,
+              "cluster_standard_error": 0.04321178777498401,
+              "critical_value": 2.935199468866699,
+              "roi": -0.05232177894048398,
+              "selection_score": -0.17915699546639757,
+              "threshold": 5.0
+            },
+            {
+              "bets": 612,
+              "blocks": 29,
+              "cluster_standard_error": 0.046796957538831736,
+              "critical_value": 2.935199468866699,
+              "roi": -0.06417112299465241,
+              "selection_score": -0.2015295279072088,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "fpi": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 994,
+              "blocks": 36,
+              "cluster_standard_error": 0.03655011442466635,
+              "critical_value": 2.935199468866699,
+              "roi": -0.005121638924455818,
+              "selection_score": -0.11240351537075358,
+              "threshold": 2.0
+            },
+            {
+              "bets": 816,
+              "blocks": 32,
+              "cluster_standard_error": 0.04011383117168606,
+              "critical_value": 2.935199468866699,
+              "roi": -0.01036096256684492,
+              "selection_score": -0.12810305851618625,
+              "threshold": 3.0
+            },
+            {
+              "bets": 700,
+              "blocks": 32,
+              "cluster_standard_error": 0.04273964622580365,
+              "critical_value": 2.935199468866699,
+              "roi": -0.03181818181818182,
+              "selection_score": -0.15726756871971134,
+              "threshold": 4.0
+            },
+            {
+              "bets": 626,
+              "blocks": 31,
+              "cluster_standard_error": 0.045031221078996285,
+              "critical_value": 2.935199468866699,
+              "roi": -0.04545454545454545,
+              "selection_score": -0.17763016164803425,
+              "threshold": 5.0
+            },
+            {
+              "bets": 560,
+              "blocks": 26,
+              "cluster_standard_error": 0.047880183731312566,
+              "critical_value": 2.935199468866699,
+              "roi": -0.0625,
+              "selection_score": -0.2030378898573886,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "full_hgb": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 1253,
+              "blocks": 38,
+              "cluster_standard_error": 0.033989265141264505,
+              "critical_value": 2.935199468866699,
+              "roi": 0.019299136617572366,
+              "selection_score": -0.08046613637223662,
+              "threshold": 2.0
+            },
+            {
+              "bets": 985,
+              "blocks": 38,
+              "cluster_standard_error": 0.03485248705901628,
+              "critical_value": 2.935199468866699,
+              "roi": 0.01753576372865713,
+              "selection_score": -0.08476323777565095,
+              "threshold": 3.0
+            },
+            {
+              "bets": 724,
+              "blocks": 37,
+              "cluster_standard_error": 0.0374941633947112,
+              "critical_value": 2.935199468866699,
+              "roi": 0.04419889502762431,
+              "selection_score": -0.06585395345413324,
+              "threshold": 4.0
+            },
+            {
+              "bets": 512,
+              "blocks": 37,
+              "cluster_standard_error": 0.04603890946293801,
+              "critical_value": 2.935199468866699,
+              "roi": 0.06640624999999999,
+              "selection_score": -0.06872713260281772,
+              "threshold": 5.0
+            },
+            {
+              "bets": 358,
+              "blocks": 37,
+              "cluster_standard_error": 0.046476601068628526,
+              "critical_value": 2.935199468866699,
+              "roi": 0.039867953275774505,
+              "selection_score": -0.0965501414955934,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "roster_prior": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 1281,
+              "blocks": 41,
+              "cluster_standard_error": 0.029937408285865552,
+              "critical_value": 2.935199468866699,
+              "roi": -0.014903129657228011,
+              "selection_score": -0.1027753945571461,
+              "threshold": 2.0
+            },
+            {
+              "bets": 1048,
+              "blocks": 41,
+              "cluster_standard_error": 0.03261638014712625,
+              "critical_value": 2.935199468866699,
+              "roi": -0.023594725884802215,
+              "selection_score": -0.11933030756900154,
+              "threshold": 3.0
+            },
+            {
+              "bets": 869,
+              "blocks": 41,
+              "cluster_standard_error": 0.02838559187191635,
+              "critical_value": 2.935199468866699,
+              "roi": -0.05534051679045924,
+              "selection_score": -0.13865789097637501,
+              "threshold": 4.0
+            },
+            {
+              "bets": 768,
+              "blocks": 35,
+              "cluster_standard_error": 0.031756843842095456,
+              "critical_value": 2.935199468866699,
+              "roi": -0.0529119318181818,
+              "selection_score": -0.14612460299638308,
+              "threshold": 5.0
+            },
+            {
+              "bets": 704,
+              "blocks": 28,
+              "cluster_standard_error": 0.0331156194213998,
+              "critical_value": 2.935199468866699,
+              "roi": -0.06443698347107438,
+              "selection_score": -0.16163793200795884,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        },
+        "summary": {
+          "abstain": true,
+          "candidates": [
+            {
+              "bets": 1260,
+              "blocks": 38,
+              "cluster_standard_error": 0.03040979673009258,
+              "critical_value": 2.935199468866699,
+              "roi": -0.046969696969696974,
+              "selection_score": -0.136228516180209,
+              "threshold": 2.0
+            },
+            {
+              "bets": 1073,
+              "blocks": 35,
+              "cluster_standard_error": 0.035032903957356136,
+              "critical_value": 2.935199468866699,
+              "roi": -0.046344149792425654,
+              "selection_score": -0.14917271088091547,
+              "threshold": 3.0
+            },
+            {
+              "bets": 917,
+              "blocks": 34,
+              "cluster_standard_error": 0.03377432528246808,
+              "critical_value": 2.935199468866699,
+              "roi": -0.058986814712005536,
+              "selection_score": -0.15812119634243696,
+              "threshold": 4.0
+            },
+            {
+              "bets": 785,
+              "blocks": 33,
+              "cluster_standard_error": 0.03508537983946654,
+              "critical_value": 2.935199468866699,
+              "roi": -0.07342211928199188,
+              "selection_score": -0.17640470755178045,
+              "threshold": 5.0
+            },
+            {
+              "bets": 676,
+              "blocks": 32,
+              "cluster_standard_error": 0.033299743990633034,
+              "critical_value": 2.935199468866699,
+              "roi": -0.09911242603550297,
+              "selection_score": -0.1968538169102061,
+              "threshold": 6.0
+            }
+          ],
+          "selected": {
+            "bets": 0,
+            "roi": null,
+            "selection_score": 0.0,
+            "threshold": null
+          }
+        }
+      },
+      "nested_meta_rows": 1835,
+      "stacker": {
+        "intercept": 1.3345323831350266,
+        "optimizer_success": true,
+        "weights": {
+          "fei_epa": 0.02106338928354256,
+          "fpi": 0.0,
+          "full_hgb": 0.23214578560806795,
+          "roster_prior": 2.4477823991811662e-14,
+          "summary": 4.810353008997106e-13
+        }
+      },
+      "test_season": 2025,
+      "threshold_selection": {
+        "abstain": true,
+        "candidates": [
+          {
+            "bets": 177,
+            "blocks": 16,
+            "cluster_standard_error": 0.08689505742982546,
+            "critical_value": 2.935199468866699,
+            "roi": 0.16486902927580896,
+            "selection_score": -0.09018529713935605,
+            "threshold": 2.0
+          }
+        ],
+        "selected": {
+          "bets": 0,
+          "roi": null,
+          "selection_score": 0.0,
+          "threshold": null
+        }
+      },
+      "training_games": 2206
+    }
+  ],
+  "test_seasons": [
+    2023,
+    2024,
+    2025
+  ],
+  "walk_forward_games": 2781
+}

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ncaaf-totals-laboratory"
+version = "0.3.0"
+description = "Audited public-data NCAA football totals forecasts and prospective paper evaluation"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy",
+  "pandas",
+  "pyarrow",
+  "requests",
+  "scikit-learn",
+  "scipy",
+  "PyYAML",
+]
+
+[project.scripts]
+ncaaf-model = "ncaaf_model.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ncaaf_model*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
