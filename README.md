@@ -27,6 +27,8 @@ Historical and current statistics use the no-key SportsDataverse release archive
 
 No credential is committed. The original moneyline site and research directory are unchanged. Source responses and cached raw historical files are excluded from the public source checkout; compact model history seeds and frozen artifacts make daily runners independent of a local computer.
 
+The existing `ODDS_API_IO_KEY` is also supported and stored as an encrypted repository secret. It supplies market-specific update timestamps and exact decimal payouts. Its current selected-book access includes DraftKings and FanDuel only. Aggregator duplicates do not count as additional independent books. Thus current access cannot by itself clear the four-book main-pick requirement; no subscription or bookmaker selection was changed. Displayed American equivalents are rounded; the ledger grades the exact stored decimal payout.
+
 ## Run and reproduce
 
 Use Python 3.12 and the committed dependency lock:

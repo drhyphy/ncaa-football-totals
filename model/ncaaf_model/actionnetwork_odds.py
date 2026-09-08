@@ -91,6 +91,25 @@ def _teams(game: dict[str, Any]) -> dict[int, dict[str, Any]]:
     return result
 
 
+def _quote_timestamp(row: dict[str, Any]) -> str | None:
+    """Preserve only explicit quote updates, never league/fetch/creation times.
+
+    The observed public scoreboard has none of these fields. It must remain
+    timestamp-unverified until the source supplies a per-outcome update time.
+    """
+    for key in ("updated_at", "last_updated", "last_update", "updatedAt"):
+        value = row.get(key)
+        if not isinstance(value, str):
+            continue
+        try:
+            stamp = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        if stamp.tzinfo is not None:
+            return stamp.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+    return None
+
+
 def _outcomes(rows: Any, market: str, home: str, away: str) -> list[dict[str, Any]]:
     if not isinstance(rows, list):
         return []
@@ -123,7 +142,7 @@ def _outcomes(rows: Any, market: str, home: str, away: str) -> list[dict[str, An
             continue
         if not name:
             continue
-        outcome = {"name": name, "price": price}
+        outcome = {"name": name, "price": price, "last_update": _quote_timestamp(row)}
         if point is not None:
             outcome["point"] = point
         output.append(outcome)
@@ -157,7 +176,11 @@ def parse_scoreboard(payload: dict[str, Any], books: dict[int, tuple[str, str]],
             for market, action_key in (("h2h", "moneyline"), ("spreads", "spread"), ("totals", "total")):
                 outcomes = _outcomes(raw.get(action_key), market, home, away)
                 if outcomes:
-                    parsed.append({"key": market, "outcomes": outcomes})
+                    # The oldest side determines pair freshness. An absent side
+                    # timestamp cannot inherit the other side's or league time.
+                    updates = [outcome["last_update"] for outcome in outcomes]
+                    paired_update = min(updates) if all(updates) else None
+                    parsed.append({"key": market, "outcomes": outcomes, "last_update": paired_update})
             if parsed:
                 event["bookmakers"].append({"key": key, "title": title, "last_update": None, "markets": parsed})
         if event["bookmakers"]:

@@ -30,6 +30,7 @@ from .math import devig_pair
 from .sources import DataClient, ESPN_SCOREBOARD_URL, load_dotenv, merge_schedule_frames, parse_espn_scoreboard
 from .storage import atomic_write_bytes
 from .totals_scoring import attach_totals_schedule
+from .teams import normalize_team
 
 TZ = ZoneInfo("America/New_York")
 VERSION = "totals-v3-20260908"
@@ -40,6 +41,7 @@ SOURCES = [
     {"name": "ESPN college football", "url": "https://www.espn.com/college-football/scoreboard"},
     {"name": "The Odds API", "url": "https://the-odds-api.com/sports/ncaaf-odds.html"},
     {"name": "Action Network public odds", "url": "https://www.actionnetwork.com/ncaaf/odds"},
+    {"name": "Odds-API.io timestamped prices", "url": "https://docs.odds-api.io/guides/fetching-odds"},
 ]
 LIMITATIONS = [
     "No candidate has established high-confidence profitability. All positions are prospective paper research.",
@@ -166,6 +168,18 @@ def fetch_odds(settings, now: datetime) -> tuple[list, dict]:
             coverage.append("actionnetwork_public_ncaaf")
         except Exception as exc:
             failures["actionnetwork_public"] = safe_failure(exc)
+    io_diagnostics = {}
+    io_key = os.getenv("ODDS_API_IO_KEY", "").strip()
+    if io_key:
+        try:
+            from .odds_api_io import fetch_odds_api_io
+            io_events, io_diagnostics = fetch_odds_api_io(session, io_key, now,
+                allowed_books=settings.allowed_books, matchups=events or None, max_events=150, days_ahead=8)
+            if io_events:
+                events = merge_provider_events(events, io_events)
+                coverage.append("odds_api_io_selected_books")
+        except Exception as exc:
+            failures["odds_api_io"] = safe_failure(exc)
     if not events:
         raise RuntimeError("No live totals feed available; " + json.dumps(failures))
     # The same event can occur in both feed categories. Merge by actual matchup/time.
@@ -175,7 +189,34 @@ def fetch_odds(settings, now: datetime) -> tuple[list, dict]:
         if match not in unique or len(event.get("bookmakers", [])) > len(unique[match].get("bookmakers", [])):
             unique[match] = event
     return list(unique.values()), {"odds_coverage": coverage, "odds_failures": failures,
+                                 "odds_api_io": io_diagnostics,
                                  "fcs_feed_available": "americanfootball_ncaaf_fcs" in coverage}
+
+
+def merge_provider_events(existing: list, incoming: list) -> list:
+    """Keep one contribution per actual book, despite multiple aggregators."""
+    result = json.loads(json.dumps(existing))
+    def totals_updated(book):
+        values = [pd.to_datetime(m.get("last_update") or book.get("last_update"), utc=True, errors="coerce")
+                  for m in book.get("markets", []) if m.get("key") == "totals"]
+        values = [value for value in values if pd.notna(value)]
+        return max(values) if values else pd.Timestamp.min.tz_localize("UTC")
+    for event in incoming:
+        candidates = [row for row in result if normalize_team(row["home_team"]) == normalize_team(event["home_team"])
+            and normalize_team(row["away_team"]) == normalize_team(event["away_team"])
+            and abs(pd.to_datetime(row["commence_time"], utc=True) - pd.to_datetime(event["commence_time"], utc=True)) <= pd.Timedelta(hours=4)]
+        if len(candidates) != 1:
+            result.append(event)
+            continue
+        target = candidates[0]
+        books = {book["key"]: book for book in target.get("bookmakers", [])}
+        for book in event.get("bookmakers", []):
+            prior = books.get(book["key"])
+            if prior is None or totals_updated(book) > totals_updated(prior):
+                books[book["key"]] = book
+        target["bookmakers"] = list(books.values())
+        target["source"] = "+".join(sorted(set(str(target.get("source", "unknown")).split("+")) | {event.get("source", "unknown")}))
+    return result
 
 
 def quotes_from_events(events: list, settings, now: datetime) -> pd.DataFrame:
@@ -305,7 +346,8 @@ def score_games(games: pd.DataFrame, projections: dict, distribution: dict, now:
                     choices.append({"game_id": str(int(game.espn_game_id)) if pd.notna(game.get("espn_game_id")) else game.event_id,
                         "event_id": game.event_id, "away_team": game.away_team, "home_team": game.home_team,
                         "kickoff": game.commence_time, "candidate": candidate, "side": side,
-                        "line": quote["line"], "american_odds": int(price), "sportsbook": quote["book"],
+                        "line": quote["line"], "american_odds": int(round(price)),
+                        "decimal_odds": 1 + (price / 100 if price > 0 else 100 / abs(price)), "sportsbook": quote["book"],
                         "projected_total": projection, "consensus_total": consensus,
                         "win_probability": win, "push_probability": push, "expected_value": ev,
                         "robust_ev": robust, "quote_time": quote["quote_time"], "confidence": "experimental",
@@ -437,8 +479,8 @@ def grade_positions(positions: list, schedule: pd.DataFrame) -> list:
             won = actual > row["line"] if row["side"] == "over" else actual < row["line"]
             row["actual_total"] = actual
             row["result"] = "push" if actual == row["line"] else "win" if won else "loss"
-            row["profit_units"] = 0. if row["result"] == "push" else (
-                row["american_odds"] / 100 if row["american_odds"] > 0 else 100 / abs(row["american_odds"])) if won else -1.
+            payout = row.get("decimal_odds", 1 + (row["american_odds"] / 100 if row["american_odds"] > 0 else 100 / abs(row["american_odds"]))) - 1
+            row["profit_units"] = 0. if row["result"] == "push" else payout if won else -1.
         output.append(row)
     return output
 
@@ -516,6 +558,8 @@ def daily(settings=None, now: datetime | None = None) -> dict:
                            gzip.compress(json.dumps({"as_of": stamp(now), "events": events}, separators=(",", ":")).encode(), mtime=0))
         odds = quotes_from_events(events, settings, now)
         diagnostics["events_with_totals"] = len(odds)
+        diagnostics["fresh_total_quotes"] = sum(q["fresh"] for qs in odds.get("quotes", []) for q in qs)
+        diagnostics["fresh_sportsbooks"] = sorted({q["book"] for qs in odds.get("quotes", []) for q in qs if q["fresh"]})
         forecasts = []
         if not odds.empty:
             matched = attach_totals_schedule(odds, schedule)
@@ -530,6 +574,8 @@ def daily(settings=None, now: datetime | None = None) -> dict:
             board["today_picks" if day == board["date"] else "upcoming_picks"].append(row)
         snapshot = {"as_of": stamp(now), "model_version": VERSION, "events": events, "forecasts": forecasts,
                     "features": diagnostics.pop("feature_snapshot", {}),
+                    "code_hashes": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(__file__).parent.glob('*.py')},
+                    "git_commit": os.getenv("GITHUB_SHA"),
                     "model_hashes": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in settings.models_dir.glob('*') if p.is_file()}}
         encoded = json.dumps(clean_json(snapshot), allow_nan=False, separators=(",", ":")).encode()
         snapshot_path = settings.root / "data/runtime" / f"snapshot-{now:%Y%m%dT%H%M%SZ}.json.gz"
@@ -542,6 +588,8 @@ def daily(settings=None, now: datetime | None = None) -> dict:
         forecast_entries = record_forecasts(forecast_entries, forecasts, now)
         board.update(status="ok", forecasts=forecasts,
                      message=f"{len(board['today_picks'])} qualifying experimental pick(s) for today. No high-confidence profitable model is established.")
+        if len(diagnostics["fresh_sportsbooks"]) < 4:
+            board["message"] += f" Only {len(diagnostics['fresh_sportsbooks'])} sportsbooks have verified recent quotes; main picks require four including the execution book."
     except Exception as exc:
         board.update(status="unavailable", today_picks=[], upcoming_picks=[], forecasts=[])
         diagnostics.pop("feature_snapshot", None)

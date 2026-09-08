@@ -112,3 +112,22 @@ def test_forward_forecasts_track_abstentions_without_counting_bets():
     metrics = forecast_performance(grade_positions(entries, schedule))[0]
     assert metrics["games"] == 1 and metrics["brier"] >= 0 and metrics["log_loss"] >= 0
     assert metrics["pending"] == 0
+
+
+def test_same_book_from_two_aggregators_is_not_an_independent_opinion():
+    from ncaaf_model.runtime import merge_provider_events
+    old = event(None)
+    incoming = event("2026-09-08T10:25:00Z")
+    incoming[0]["id"] = "another-provider-id"
+    merged = merge_provider_events(old, incoming)
+    assert len(merged) == 1 and len(merged[0]["bookmakers"]) == 4
+    assert merged[0]["id"] == "e"
+    assert all(book["last_update"] == "2026-09-08T10:25:00Z" for book in merged[0]["bookmakers"])
+
+
+def test_decimal_payout_is_graded_without_display_rounding():
+    row = score(event("2026-09-08T10:25:00Z"))[0]
+    row.update(decimal_odds=1.92, american_odds=-109, line=40, side="over")
+    position = record_positions([], [row], NOW)
+    schedule = pd.DataFrame([{"game_id": 1, "status": "STATUS_FINAL", "home_score": 30, "away_score": 20}])
+    assert grade_positions(position, schedule)[0]["profit_units"] == pytest.approx(.92)
