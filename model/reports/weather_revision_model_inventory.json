@@ -1,0 +1,177 @@
+{
+  "active_policy_changed": false,
+  "archived_run_enumeration_complete": true,
+  "collection_profiles": {
+    "pilot": 2
+  },
+  "counts": {
+    "adjacent_six_hour_initialization_game_pairs": 0,
+    "archived_runs": 2,
+    "designated_games": 0,
+    "distinct_requested_initializations": 1,
+    "independently_audited_input_eligible": 0,
+    "independently_audited_runs": 2,
+    "manual_runs": 2,
+    "metadata_input_eligible": 0,
+    "movement_input_eligible": 0,
+    "movement_targets_inspected": 0,
+    "outcomes_inspected": 0,
+    "probability_input_eligible": 0,
+    "scheduled_runs": 0,
+    "source_receipt_verified_input_eligible": 0,
+    "unknown_trigger_runs": 0,
+    "verified_runs": 2
+  },
+  "decisions": [],
+  "design_sha256": "7dca4108bdb7ee3ec0272c94b6f3c17418bb90cbdfcd380a6469faa4801b9928",
+  "diagnostics": {
+    "adjacent_game_pair_metadata_unavailable": 40,
+    "adjacent_same_initialization_game_pairs": 46,
+    "same_initialization_changed_body_game_pairs": 46
+  },
+  "exclusion_counts": {},
+  "intended_scheduler_invocation_enumeration_available": false,
+  "labels_extracted": false,
+  "limitations": [
+    "First archived scheduled capture is observable; missing entire scheduler invocations cannot be inferred from this archive. No nominal slot is reconstructed.",
+    "Designations precede forecast/quote availability and cannot be replaced by later successful captures. An absent immediate predecessor is not replaced by an older successful row.",
+    "This inventory verifies metadata links, opaque response hashes and recorded Git sources. It does not independently reconstruct numeric weather or quote fields from raw bodies. Matching independent semantic audits are separately counted extra evidence, not a prerequisite for future source/receipt-verified inputs. A known audited manifest that changes is rejected.",
+    "Requested initialization and receipt timestamps do not independently certify model vintage, first publication, sportsbook acceptance or continuous offer availability.",
+    "Same-initialization body changes are response-provenance diagnostics. Counts describe overlapping game pairs, not independent weather revisions or football weeks.",
+    "Movement input coverage is not a completed movement-target dataset: no next-capture price change or final outcome was read or calculated.",
+    "Pilot and separately authorized season collection profiles retain their original windows and protocol identities; legacy archives without a profile are pilot. Neither collection changes the four active policies.",
+    "No training/test boundaries are frozen by this inventory. The design requires at least 60 distinct games and two completed weeks before experimental fitting, followed by separately registered evaluation. This operational minimum does not establish confidence, profitability or eligibility for promotion."
+  ],
+  "models_fitted": false,
+  "movement_target_availability_evaluated": false,
+  "no_network": true,
+  "numeric_weather_fields_accessed": false,
+  "original_receipt_envelopes_and_opaque_bodies_verified": 598,
+  "runs": [
+    {
+      "capture_completed_at": "2026-09-09T03:25:02.654702Z",
+      "capture_started_at": "2026-09-09T03:24:36.108097Z",
+      "cohort_sha256": "85a6df88774a86dbbd396f4fb4ba9714697e4a375a5b630b95f9a17efb6f2c21",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 0,
+        "mature_comparator_games": 0,
+        "paired_games": 57,
+        "paired_two_book_games": 37,
+        "total_requests": 307,
+        "two_book_games": 51,
+        "weather_available_games": 62
+      },
+      "git_commit": "2a73347d4d969d9e01c984249afbfa930287352f",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [
+          {
+            "path": "model/reports/weather_revision_capture_audit.json",
+            "sha256": "376e10bc2fdf4826b727c74b3bda994702646422cf2fa9535ca47a231279d3d0"
+          }
+        ],
+        "independently_audited": true,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6b44bdda76281c4d8ebbf5387ab736602b617da77b518de6e8581f405f50d728"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "f75f983d75e79c6726945ce8eefb83c6a9d6eefb48cd3f6c0d5c4c02cc1cad61"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "b180532c3d7d7fb73eea3aa84991ec3f934fef430d15874bb923cccfa9f0e42a",
+      "path": "model/data/runtime/weather_revisions/runs/local-20260909T032436108097Z-1.json",
+      "requested_run": "2026-09-08T18:00:00Z",
+      "run_attempt": "1",
+      "run_id": "local-20260909T032436108097Z",
+      "status": "partial",
+      "trigger": "manual_local"
+    },
+    {
+      "capture_completed_at": "2026-09-09T03:35:55.211136Z",
+      "capture_started_at": "2026-09-09T03:33:35.961981Z",
+      "cohort_sha256": "4a67ffd1d628de435e6f0e7a32cc69ffa2def6215dfb2b82742e81580ba2c1d4",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 16,
+        "mature_comparator_games": 0,
+        "paired_games": 44,
+        "paired_two_book_games": 27,
+        "total_requests": 291,
+        "two_book_games": 51,
+        "weather_available_games": 46
+      },
+      "git_commit": "a8fa0151e6d0d3209d7eee59d735bb9bae541f11",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [
+          {
+            "path": "model/reports/weather_revision_hosted_capture_audit.json",
+            "sha256": "218d1915093ea903929b64bc93ba3ba22016023e688efcda05f0eeea4d96264b"
+          }
+        ],
+        "independently_audited": true,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "f75f983d75e79c6726945ce8eefb83c6a9d6eefb48cd3f6c0d5c4c02cc1cad61"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "f69d4a2e473d0be1a88411830531d6077eebbac7e298bb328e3a07b16fcae2cb",
+      "path": "model/data/runtime/weather_revisions/runs/34307520971-1.json",
+      "requested_run": "2026-09-08T18:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34307520971",
+      "status": "partial",
+      "trigger": "workflow_dispatch"
+    }
+  ],
+  "schema_version": "weather-revision-model-inventory-v1",
+  "script_sha256": "35564d0fedaa05d932c1c8024d07c05518933c4a9e9f509d5887dac40a0babcf",
+  "unreadable_archives": []
+}

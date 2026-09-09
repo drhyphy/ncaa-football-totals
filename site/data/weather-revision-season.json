@@ -1,0 +1,47 @@
+{
+  "schema_version": "weather-revision-season-status-v1",
+  "generated_at": "2026-09-09T04:23:06.045913Z",
+  "phase": "scheduled",
+  "status": "scheduled",
+  "message": "The season collection has not started. No forecast revision performance has been evaluated.",
+  "schedule_utc": [
+    "01:17",
+    "07:17",
+    "13:17",
+    "19:17"
+  ],
+  "collection_only": true,
+  "performance_evaluated": false,
+  "active_policy_changed": false,
+  "archived_runs": 0,
+  "invalid_manifests": 0,
+  "partial_or_failed_runs": 0,
+  "latest": null,
+  "game_observation_totals": {
+    "cohort_games": 0,
+    "weather_available_games": 0,
+    "two_book_games": 0,
+    "paired_games": 0,
+    "failed_requests": 0,
+    "total_requests": null,
+    "paired_two_book_games": null
+  },
+  "last_workflow_attempt": null,
+  "counting_note": "Totals count repeated game observations across collection runs, not distinct games or bets.",
+  "pairing_note": "Paired games have weather and at least one same-book Over/Under quote pair. The two-book count independently counts games with both books; paired_two_book_games is their weather intersection when supplied.",
+  "timing_note": "Actual response receipt times are retained. Requested initialization and source contracts do not independently certify original model vintage or pre-receipt availability.",
+  "links": [
+    {
+      "name": "Public collection archives",
+      "url": "https://github.com/drhyphy/ncaa-football-totals/tree/main/model/data/runtime/weather_revisions"
+    },
+    {
+      "name": "Collection design and limitations",
+      "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_REVISION_SEASON_COLLECTION_PROTOCOL.md"
+    }
+  ],
+  "collection_profile": "season",
+  "season_start": "2026-09-16T03:00:00Z",
+  "season_end": "2027-02-01T03:00:00Z",
+  "expected_scheduled_slots": 552
+}

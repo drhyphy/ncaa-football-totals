@@ -22,6 +22,10 @@ from urllib.parse import urlsplit
 UTC = timezone.utc
 START = datetime(2026, 9, 9, 3, tzinfo=UTC)
 END = datetime(2026, 9, 16, 3, tzinfo=UTC)
+SEASON_END = datetime(2027, 2, 1, 3, tzinfo=UTC)
+PILOT_PROTOCOL = 'reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md'
+SEASON_PROTOCOL = 'reports/WEATHER_REVISION_SEASON_COLLECTION_PROTOCOL.md'
+SCHEDULED_UTC_SLOTS = ['01:17', '07:17', '13:17', '19:17']
 BOOKS = {'DraftKings': 'draftkings', 'FanDuel': 'fanduel'}
 VARS = ('temperature_2m', 'relative_humidity_2m', 'wind_speed_10m')
 CATALOG_SHA = 'eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7'
@@ -48,6 +52,33 @@ def digest(value):
 def close(a, b):
     assert isinstance(a, (int, float)) and not isinstance(a, bool) and math.isfinite(a)
     assert math.isclose(a, b, rel_tol=1e-10, abs_tol=1e-9), 'Numerical reconstruction mismatch'
+
+
+def collection_profile(manifest):
+    """Validate admission independently; never broaden legacy pilot dates."""
+    explicit = 'collection_profile' in manifest
+    name = manifest.get('collection_profile', 'pilot')
+    assert name in ('pilot', 'season'), 'Unknown collection profile'
+    begin, finish = (START, END) if name == 'pilot' else (END, SEASON_END)
+    protocol = PILOT_PROTOCOL if name == 'pilot' else SEASON_PROTOCOL
+    protocol_id = 'weather-revision-capture-pilot-v1' if name == 'pilot' else 'weather-revision-season-collection-v1'
+    window = {'start_inclusive': iso(begin), 'end_exclusive': iso(finish)}
+    fields = ('collection_protocol_id', 'collection_protocol_file', 'collection_window', 'scheduled_utc_slots')
+    if explicit:
+        assert manifest.get('collection_protocol_id') == protocol_id, 'Collection protocol identity mismatch'
+        assert manifest.get('collection_protocol_file') == protocol, 'Collection protocol file mismatch'
+        assert manifest.get('collection_window') == window, 'Collection window mismatch'
+        assert manifest.get('scheduled_utc_slots') == SCHEDULED_UTC_SLOTS, 'Collection scheduled slots mismatch'
+    else:
+        assert not any(k in manifest for k in fields), 'Partial collection profile metadata is not a legacy pilot'
+    required = {PILOT_PROTOCOL} | ({SEASON_PROTOCOL} if name == 'season' else set())
+    assert required <= manifest.get('provenance', {}).keys(), 'Required collection protocol provenance missing'
+    start, end = [stamp(manifest[k]) for k in ('capture_started_at', 'capture_completed_at')]
+    assert begin <= start < finish, 'Capture start outside declared collection window'
+    assert start <= end, 'Capture completion precedes start'
+    return {'collection_profile': name, 'legacy_pilot_profile': not explicit,
+            'collection_protocol_id': protocol_id, 'collection_protocol_file': protocol,
+            'collection_window': window, 'scheduled_utc_slots': list(SCHEDULED_UTC_SLOTS)}
 
 
 class Audit:
@@ -327,9 +358,9 @@ class Audit:
         body = path.read_bytes()
         manifest = json.loads(body)
         assert manifest['schema_version'] == 'weather-revision-capture-v1'
+        profile = collection_profile(manifest)
         provenance = self.provenance(manifest)
         start, end = [stamp(manifest[k]) for k in ('capture_started_at', 'capture_completed_at')]
-        assert START <= start < END and start <= end
         assert len(manifest['receipts']) == len(set(manifest['receipts']))
         receipts = [self.envelope(p)[0] for p in manifest['receipts']]
         assert all(start <= stamp(r['requested_at']) <= stamp(r['received_at']) <= end for r in receipts)
@@ -423,6 +454,7 @@ class Audit:
                 for quote in row['quotes']:
                     assert provider_to_game[quote['provider_event_id']] == row['game_id']
         return {'schema_version': 'weather-revision-independent-audit-v1', 'audit_passed': True,
+            **profile,
             'run_id': manifest['run_id'], 'run_attempt': manifest['run_attempt'], 'manifest_sha256': sha(body),
             'capture_status': manifest['status'], 'capture_started_at': manifest['capture_started_at'],
             'capture_completed_at': manifest['capture_completed_at'], 'counts_reconstructed': counts,
@@ -451,8 +483,8 @@ def main():
     output = args.output or args.root / 'reports/weather_revision_capture_audit.json'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
-    report = output.parent / 'WEATHER_REVISION_FIRST_CAPTURE_AUDIT.md'
-    report.write_text('# Independent pilot capture receipt audit\n\n'
+    report = output.with_suffix('.md') if args.output else output.parent / 'WEATHER_REVISION_FIRST_CAPTURE_AUDIT.md'
+    report.write_text(f"# Independent {result['collection_profile']} capture receipt audit\n\n"
         f"Run `{result['run_id']}` attempt `{result['run_attempt']}` passed the independent receipt audit. Capture status remains **{result['capture_status']}**.\n\n"
         f"Verified {result['current_capture_receipts']} current HTTP receipts, {result['counts_reconstructed']['weather_available_games']} explicit-run game measurements, "
         f"{result['normalized_quote_pairs_reconstructed']} same-book quote pairs and {result['weather_quote_links_reconstructed']} weather/quote links. "

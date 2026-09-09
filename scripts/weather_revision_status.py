@@ -19,6 +19,23 @@ CAPTURE_SCHEMA = "weather-revision-capture-v1"
 CAPTURE_STATUSES = {"ok", "partial", "failed", "no_games", "outside_pilot"}
 ARCHIVE_URL = "https://github.com/drhyphy/ncaa-football-totals/tree/main/model/data/runtime/weather_revisions"
 PLAN_URL = "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md"
+SEASON_START = PILOT_END
+SEASON_END = datetime(2027, 2, 1, 3, tzinfo=timezone.utc)
+SEASON_SCHEMA = "weather-revision-season-status-v1"
+SEASON_PUBLIC_PATH = Path("site/data/weather-revision-season.json")
+SEASON_PLAN_URL = "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_REVISION_SEASON_COLLECTION_PROTOCOL.md"
+
+
+def configuration(profile: str = "pilot") -> dict:
+    if profile == "pilot":
+        return {"start": PILOT_START, "end": PILOT_END, "schema": SCHEMA,
+                "path": PUBLIC_PATH, "outside": "outside_pilot", "plan": PLAN_URL,
+                "label": "seven-day collection pilot", "slots": 28}
+    if profile == "season":
+        return {"start": SEASON_START, "end": SEASON_END, "schema": SEASON_SCHEMA,
+                "path": SEASON_PUBLIC_PATH, "outside": "outside_season", "plan": SEASON_PLAN_URL,
+                "label": "season collection", "slots": 552}
+    raise ValueError("Unknown collection profile")
 
 
 def timestamp(value: object) -> datetime | None:
@@ -37,25 +54,26 @@ def iso(value: datetime) -> str:
     return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-def phase(now: datetime) -> str:
+def phase(now: datetime, profile: str = "pilot") -> str:
     iso(now)
-    return "scheduled" if now < PILOT_START else "active" if now < PILOT_END else "ended"
+    cfg = configuration(profile)
+    return "scheduled" if now < cfg["start"] else "active" if now < cfg["end"] else "ended"
 
 
-def read_public(root: Path) -> dict:
+def read_public(root: Path, profile: str = "pilot") -> dict:
     try:
-        data = json.loads((root / PUBLIC_PATH).read_text())
+        data = json.loads((root / configuration(profile)["path"]).read_text())
         return data if isinstance(data, dict) else {}
     except (OSError, ValueError):
         return {}
 
 
-def decision(root: Path, now: datetime) -> dict:
-    current_phase = phase(now)
-    previous = read_public(root)
+def decision(root: Path, now: datetime, profile: str = "pilot") -> dict:
+    current_phase = phase(now, profile)
+    previous = read_public(root, profile)
     # One final status transition after expiry, then no network or recurring commits.
     return {"collect": current_phase == "active", "publish": current_phase == "active" or
-            previous.get("schema_version") != SCHEMA or previous.get("phase") != current_phase}
+            previous.get("schema_version") != configuration(profile)["schema"] or previous.get("phase") != current_phase}
 
 
 def emit(name: str, value: bool) -> None:
@@ -70,24 +88,33 @@ def emit_text(name: str, value: str) -> None:
     print(line)
 
 
-def write_public(root: Path, value: dict) -> None:
-    path = root / PUBLIC_PATH
+def write_public(root: Path, value: dict, profile: str = "pilot") -> None:
+    path = root / configuration(profile)["path"]
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(".json.tmp")
     temporary.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
     temporary.replace(path)
 
 
-def manifest_summary(data: dict, body: bytes, now: datetime) -> dict:
+def manifest_summary(data: dict, body: bytes, now: datetime, profile: str = "pilot") -> dict:
     """Validate aggregate metadata without copying payloads, URLs or exception text."""
-    if not isinstance(data, dict) or data.get("schema_version") != CAPTURE_SCHEMA or data.get("status") not in CAPTURE_STATUSES:
+    cfg = configuration(profile)
+    statuses = {"ok", "partial", "failed", "no_games", cfg["outside"]}
+    if not isinstance(data, dict) or data.get("schema_version") != CAPTURE_SCHEMA or data.get("status") not in statuses:
         raise ValueError("Invalid capture manifest schema or status")
+    if data.get("collection_profile", "pilot") != profile:
+        raise ValueError("Capture belongs to another collection profile")
+    if profile == "season" and (data.get("collection_protocol_id") != "weather-revision-season-collection-v1" or
+            data.get("collection_protocol_file") != "reports/WEATHER_REVISION_SEASON_COLLECTION_PROTOCOL.md" or
+            data.get("collection_window") != {"start_inclusive": iso(SEASON_START), "end_exclusive": iso(SEASON_END)} or
+            data.get("scheduled_utc_slots") != SCHEDULE_UTC):
+        raise ValueError("Invalid fixed season collection contract")
     started = timestamp(data.get("capture_started_at"))
     completed = timestamp(data.get("capture_completed_at"))
     if started is None or completed is None or completed < started or (completed - now).total_seconds() > 300:
         raise ValueError("Invalid capture receipt times")
-    if data["status"] != "outside_pilot" and not PILOT_START <= started < PILOT_END:
-        raise ValueError("Capture start is outside the pilot")
+    if data["status"] != cfg["outside"] and not cfg["start"] <= started < cfg["end"]:
+        raise ValueError("Capture start is outside its collection window")
     counts = data.get("counts")
     if not isinstance(counts, dict) or any(type(counts.get(key)) is not int or counts[key] < 0 for key in COUNT_FIELDS):
         raise ValueError("Invalid capture counts")
@@ -102,7 +129,7 @@ def manifest_summary(data: dict, body: bytes, now: datetime) -> dict:
     if total is not None and (type(total) is not int or total < counts["failed_requests"]):
         raise ValueError("Invalid total request count")
     counts["total_requests"] = total
-    if data["status"] in {"no_games", "outside_pilot"} and any(counts[key] for key in COUNT_FIELDS[:4]):
+    if data["status"] in {"no_games", cfg["outside"]} and any(counts[key] for key in COUNT_FIELDS[:4]):
         raise ValueError("Non-collection status contains game observations")
     requested = timestamp(data.get("requested_run"))
     if data.get("requested_run") is not None and requested is None:
@@ -115,14 +142,20 @@ def manifest_summary(data: dict, body: bytes, now: datetime) -> dict:
 
 
 def build_status(root: Path, now: datetime, outcome: str = "skipped", attempt_started_at: datetime | None = None,
-                 expected_run_id: str | None = None, expected_run_attempt: str | None = None) -> tuple[dict, bool]:
-    current_phase = phase(now)
+                 expected_run_id: str | None = None, expected_run_attempt: str | None = None,
+                 profile: str = "pilot") -> tuple[dict, bool]:
+    cfg = configuration(profile)
+    current_phase = phase(now, profile)
     manifests, matching_attempts, invalid = [], [], 0
     for path in sorted((root / ARCHIVE_PATH / "runs").glob("*.json")):
         try:
             body = path.read_bytes()
             data = json.loads(body)
-            summary = manifest_summary(data, body, now)
+            # Shared archive, separate denominators. Filter before validation so
+            # a legitimate season row cannot invalidate the finished pilot.
+            if isinstance(data, dict) and data.get("collection_profile", "pilot") in {"pilot", "season"} and data.get("collection_profile", "pilot") != profile:
+                continue
+            summary = manifest_summary(data, body, now, profile)
             manifests.append(summary)
             if attempt_started_at is not None and timestamp(summary["capture_started_at"]) >= attempt_started_at and (
                 expected_run_id is None or str(data.get("run_id")) == expected_run_id) and (
@@ -142,23 +175,24 @@ def build_status(root: Path, now: datetime, outcome: str = "skipped", attempt_st
              (outcome == "success" and latest is None)))
     if current_phase == "scheduled":
         health = "scheduled"
-        message = "The seven-day collection pilot has not started. No forecast revision performance has been evaluated."
+        message = f"The {cfg['label']} has not started. No forecast revision performance has been evaluated."
     elif current_phase == "ended":
         health = "ended"
-        message = "The seven-day pilot window has ended. Automatic collection is stopped; archived inputs remain available for a separately specified future study."
+        message = ("The seven-day pilot window has ended. Automatic collection is stopped; archived inputs remain available for a separately specified future study."
+                   if profile == "pilot" else "The season collection window has ended. Automatic season collection is stopped; archives remain available for the separately specified research design.")
     elif failed:
         health = "attention"
         message = "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively."
     elif latest is None:
         health = "awaiting_first_capture"
-        message = "The pilot is active and awaiting its first archived collection. No new selections or profitability evidence are produced."
+        message = f"The {cfg['label']} is active and awaiting its first archived collection. No new selections or profitability evidence are produced."
     elif (now - timestamp(latest["capture_completed_at"])).total_seconds() > 8 * 3600:
         health = "stale"
         message = "No completed collection receipt in the past eight hours. Scheduled jobs can be delayed or missed."
     else:
         health = "current"
         message = "Collection receipts are current. These archives collect prospective research inputs; coverage does not establish a betting edge."
-    value = {"schema_version": SCHEMA, "generated_at": iso(now), "phase": current_phase,
+    value = {"schema_version": cfg["schema"], "generated_at": iso(now), "phase": current_phase,
              "status": health, "message": message, "pilot_start": iso(PILOT_START), "pilot_end": iso(PILOT_END),
              "schedule_utc": SCHEDULE_UTC, "collection_only": True, "performance_evaluated": False,
              "active_policy_changed": False, "archived_runs": len(manifests), "invalid_manifests": invalid,
@@ -169,11 +203,16 @@ def build_status(root: Path, now: datetime, outcome: str = "skipped", attempt_st
              "counting_note": "Totals count repeated game observations across collection runs, not distinct games or bets.",
              "pairing_note": "Paired games have weather and at least one same-book Over/Under quote pair. The two-book count independently counts games with both books; paired_two_book_games is their weather intersection when supplied.",
              "timing_note": "Actual response receipt times are retained. Requested initialization and source contracts do not independently certify original model vintage or pre-receipt availability.",
-             "links": [{"name": "Public collection archives", "url": ARCHIVE_URL}, {"name": "Collection design and limitations", "url": PLAN_URL}]}
+             "links": [{"name": "Public collection archives", "url": ARCHIVE_URL}, {"name": "Collection design and limitations", "url": cfg["plan"]}]}
+    if profile == "season":
+        value.pop("pilot_start")
+        value.pop("pilot_end")
+        value.update(collection_profile="season", season_start=iso(SEASON_START), season_end=iso(SEASON_END),
+                     expected_scheduled_slots=552)
     return value, failed
 
 
-def main() -> None:
+def main(profile: str = "pilot") -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["decision", "publish"])
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
@@ -184,7 +223,7 @@ def main() -> None:
     args = parser.parse_args()
     now = datetime.now(timezone.utc)
     if args.command == "decision":
-        values = decision(args.root, now)
+        values = decision(args.root, now, profile)
         for name, value in values.items():
             emit(name, value)
         emit_text("attempt_started_at", iso(now) if values["collect"] else "")
@@ -193,8 +232,8 @@ def main() -> None:
         if args.attempt_started_at and attempt is None:
             parser.error("attempt-started-at must be a timezone-aware timestamp")
         status, failed = build_status(args.root, now, args.collector_outcome, attempt,
-                                     args.expected_run_id or None, args.expected_run_attempt or None)
-        write_public(args.root, status)
+                                     args.expected_run_id or None, args.expected_run_attempt or None, profile)
+        write_public(args.root, status, profile)
         emit("collection_failed", failed)
 
 

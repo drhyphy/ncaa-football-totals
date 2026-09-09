@@ -76,6 +76,17 @@
     if (!data.latest) return {visible: true, label: "Active · awaiting capture", message: "The pilot is awaiting its first archived collection. It produces research inputs, not new betting selections."};
     return {visible: true, label: "Active · receipts current", message: "Forecast revisions and newly received prices are being archived for a separately specified future study. Coverage does not establish a betting edge."};
   }
+  function weatherSeasonHealth(data, now = new Date()) {
+    if (data?.schema_version !== "weather-revision-season-status-v1" || data.collection_profile !== "season" || data.collection_only !== true || data.performance_evaluated !== false || data.active_policy_changed !== false) return {visible: false};
+    const start = epoch(data.season_start), end = epoch(data.season_end), current = now.getTime();
+    if (start !== epoch("2026-09-16T03:00:00Z") || end !== epoch("2027-02-01T03:00:00Z")) return {visible: false};
+    if (current < start) return {visible: true, label: "Scheduled", message: "A separate season archive will continue after the pilot. The two forecast-revision models are implemented but have no fitted or validated edge yet."};
+    if (current >= end) return {visible: true, label: "Ended", message: "Season collection has ended. Archived observations remain available for evaluation; collection counts do not establish profitability."};
+    const age = current - epoch(data.generated_at), receiptAge = current - epoch(data.latest?.capture_completed_at);
+    if (data.status === "attention") return {visible: true, label: "Active · needs attention", message: "The latest season collection was incomplete or could not be validated. Missing observations remain explicit."};
+    if (!Number.isFinite(age) || age < -300000 || age > 8 * 3600000 || (data.latest && (!Number.isFinite(receiptAge) || receiptAge < -300000 || receiptAge > 8 * 3600000))) return {visible: true, label: "Active · receipts stale", message: "No recent validated season receipt is available. Scheduled jobs can be delayed or missed."};
+    return {visible: true, label: data.latest ? "Active · receipts current" : "Active · awaiting capture", message: "Original forecasts and subsequent prices are being collected for the revision-model study. Fitting readiness and evidence of profitability are separate."};
+  }
   function dedupeResults(rows) {
     const seen = new Set();
     return items(rows).slice().sort((a, b) => (epoch(a.recorded_at) || Infinity) - (epoch(b.recorded_at) || Infinity)).filter(row => {
@@ -368,6 +379,18 @@
       $("weather-revision-links").replaceChildren(link("Public status JSON", "data/weather-revisions.json"));
       items(weatherRevisions.links).filter(item => safeUrl(item.url)).forEach(item => $("weather-revision-links").append(link(`${item.name} ↗`, item.url)));
     }
+    let weatherSeason = null;
+    function renderWeatherSeason(now) {
+      const state = weatherSeasonHealth(weatherSeason, now);
+      $("weather-revision-season").hidden = !state.visible;
+      if (!state.visible) return;
+      $("weather-season-label").textContent = state.label;
+      $("weather-season-message").textContent = state.message;
+      const latest = weatherSeason.latest, counts = latest?.counts || {};
+      $("weather-season-counts").textContent = `${number(weatherSeason.archived_runs, 0)} season captures · ${number(weatherSeason.partial_or_failed_runs, 0)} partial or failed · ${number(weatherSeason.invalid_manifests, 0)} invalid manifests. ${latest ? `Latest receipt: ${dateLabel(latest.capture_completed_at)} · ${number(counts.paired_games, 0)} games with weather and later prices · ${number(counts.failed_requests, 0)} failed requests.` : "No season capture yet."} Repeated captures are not independent games or bets.`;
+      $("weather-season-links").replaceChildren(link("Public season status", "data/weather-revision-season.json"));
+      items(weatherSeason.links).filter(item => safeUrl(item.url)).forEach(item => $("weather-season-links").append(link(`${item.name} ↗`, item.url)));
+    }
     function render(data) {
       board = data;
       $("edition-date").textContent = new Intl.DateTimeFormat("en-US", {timeZone: ZONE, weekday: "long", month: "long", day: "numeric", year: "numeric"}).format(new Date());
@@ -377,7 +400,8 @@
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
     fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderCalibrationStudy(); renderOrdinaryStudy(); renderArchivedReplay();}}).catch(() => {});
     fetch(`data/weather-revisions.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherRevisions = data; renderWeatherRevisions(new Date());}).catch(() => {});
-    setInterval(() => { if (board) renderPicks(new Date()); if (weatherRevisions) renderWeatherRevisions(new Date()); }, 60000);
+    fetch(`data/weather-revision-season.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherSeason = data; renderWeatherSeason(new Date());}).catch(() => {});
+    setInterval(() => { if (board) renderPicks(new Date()); if (weatherRevisions) renderWeatherRevisions(new Date()); if (weatherSeason) renderWeatherSeason(new Date()); }, 60000);
   }
-  return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, weatherRevisionHealth, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
+  return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, weatherRevisionHealth, weatherSeasonHealth, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
 });
