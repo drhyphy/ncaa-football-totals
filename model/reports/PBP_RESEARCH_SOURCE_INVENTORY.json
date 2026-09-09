@@ -1,0 +1,403 @@
+{
+  "audit_path": "model/reports/PBP_RAW_ACQUISITION_AUDIT.json",
+  "audit_sha256": "052a1f8b1f2d1b3465b277fbbf5c7a7e86ce997db1f249789d1345630eedb3f9",
+  "created_at": "2026-09-09T05:49:50.619899+00:00",
+  "immutability": "Do not replace paths, hashes or original receipts. A changed selection requires a separately reviewed version; consumers must verify exact body/receipt hashes before reading.",
+  "limits": [
+    "Footer rows are PBP records, not validated games or unique plays. No row values, column statistics, outcomes or feature coverage were read.",
+    "Schema name/type presence does not validate completeness, identity matching, field orientation, ordering or clock semantics.",
+    "Potential kickoff/date column names checked are absent; a future point-in-time builder needs an independently verified schedule join.",
+    "Recorded local retrieval times and September 2026 source update times do not certify historical pregame availability or original publication.",
+    "Publisher EP/model-derived fields are not approved prior-only inputs; current EP training spans 2004-2025.",
+    "Source reconciliation does not select a model, change live policy, establish predictive advantage or grant redistribution rights."
+  ],
+  "original_acquisition_plan_path": "model/data/raw/pbp_research/espn/acquisition_plan.json",
+  "original_acquisition_plan_sha256": "281427a27bb062729ab9b21348b4038b4730231e3aea40ed49951527fc5d44d1",
+  "original_acquisition_run_path": "model/data/raw/pbp_research/espn/runs/0001.json",
+  "original_acquisition_run_sha256": "dc7ff06be33bf1401eb2ae4bd8670511d6f760132f5e448209f6b778ccbde5e7",
+  "original_acquisition_status": "partial",
+  "release_metadata": {
+    "body_path": "model/data/raw/pbp_research/metadata/github_espn_pbp_release_20260909.json",
+    "body_sha256": "768a7c93172a395bec7713b5e1196f82560769e0eb5f64e6c8246981e4c912cd",
+    "bytes": 126222,
+    "original_receipt": {
+      "body_path": "model/data/raw/pbp_research/metadata/github_espn_pbp_release_20260909.json",
+      "bytes": 126222,
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Wed, 09 Sep 2026 05:47:14 GMT",
+        "ETag": "W/\"445af6285d516be9eb74a344597bcbaf708244832ae24866d7dd99aed187ad86\"",
+        "Last-Modified": "Wed, 09 Sep 2026 00:44:15 GMT"
+      },
+      "received_at": "2026-09-09T05:47:14.197310+00:00",
+      "requested_at": "2026-09-09T05:47:13.849515+00:00",
+      "sha256": "768a7c93172a395bec7713b5e1196f82560769e0eb5f64e6c8246981e4c912cd",
+      "status": 200,
+      "url": "https://api.github.com/repos/sportsdataverse/sportsdataverse-data/releases/tags/espn_cfb_pbp"
+    },
+    "receipt_path": "model/data/raw/pbp_research/metadata/github_espn_pbp_release_20260909.receipt.json",
+    "receipt_sha256": "6aade9a95c7f9507f124f1bebaa13a0ac30f0909c4ea5520b440ea9d56ef0ab2",
+    "release_id": 101941082,
+    "release_updated_at": "2026-09-09T00:44:15Z",
+    "tag_name": "espn_cfb_pbp"
+  },
+  "schema_version": "pbp-research-source-inventory-v1",
+  "scope": "Source selection only; no feature/coverage/outcome analysis authorized by this inventory alone",
+  "selected_seasons": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "selection_status": "verified_exact_bytes_for_future_research_after_inventory_commit",
+  "source_acquisition_commit": "cdcba88fc6c5cad141e9ccf987ff2482a96a1f1f",
+  "source_reconciliation": {
+    "current_api_asset_id": 549505481,
+    "current_api_digest_matches_observed": true,
+    "explanation": "Current public asset metadata identifies the September 7 version; the feasibility report pin came from a cached listing of the September 1 version. This reconciles source version evidence without silently rewriting the frozen acquisition.",
+    "original_acquisition_status": "failed",
+    "original_error": "expected_sha256_mismatch",
+    "original_expected_sha256": "7889db9cc0c3d27651dfeb602a35e36f6b180c440bea253332b57649992f848e",
+    "original_observed_sha256": "aa037920e980acf17317747f2010a031b3b7e1013a44a7b15db18b1dd9df0e63",
+    "resolution": "Separate source inventory may select these exact retained bytes for future research after commit; original plan, pin, partial status, body path and failed receipt remain unchanged.",
+    "season": 2025
+  },
+  "sources": [
+    {
+      "acquisition_status": "complete",
+      "arrow_schema_field_count": 497,
+      "body_path": "model/data/raw/pbp_research/espn/play_by_play_2019.parquet",
+      "body_sha256": "ae58ee5fb3b4dcf2e7402d9151ce9875af16ba92882257871e59bdeb117e647b",
+      "bytes": 52072547,
+      "error": null,
+      "expected_sha256": null,
+      "footer_metadata_sha256": "a538eace8d4d85127033fb94e312b4c23e59d281755aa6cb785ad4f368d28bbb",
+      "footer_summary": {
+        "num_columns": 497,
+        "num_row_groups": 2,
+        "num_rows": 156908,
+        "row_groups": [
+          {
+            "index": 0,
+            "num_rows": 122880,
+            "total_byte_size": 109703350
+          },
+          {
+            "index": 1,
+            "num_rows": 34028,
+            "total_byte_size": 30934439
+          }
+        ]
+      },
+      "public_asset": {
+        "browser_download_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2019.parquet",
+        "content_type": "application/octet-stream",
+        "created_at": "2026-09-07T10:01:44Z",
+        "digest": "sha256:ae58ee5fb3b4dcf2e7402d9151ce9875af16ba92882257871e59bdeb117e647b",
+        "id": 548575149,
+        "name": "play_by_play_2019.parquet",
+        "size": 52072547,
+        "state": "uploaded",
+        "updated_at": "2026-09-07T10:01:46Z",
+        "url": "https://api.github.com/repos/sportsdataverse/sportsdataverse-data/releases/assets/548575149"
+      },
+      "receipt_path": "model/data/raw/pbp_research/espn/attempts/2019/0001.receipt.json",
+      "receipt_sha256": "cd07b49de20a44bd8ac74f55209936657ca4becbaad4cd1c5001fc6b54a75d3b",
+      "received_at": "2026-09-09T05:45:21.816376+00:00",
+      "request_path": "model/data/raw/pbp_research/espn/attempts/2019/0001.request.json",
+      "request_sha256": "14b5a06aa5c60b13e97c3f52951a5c60c0059a7957b0fb8ee0f024d2dc4c4267",
+      "requested_at": "2026-09-09T05:45:20.318231+00:00",
+      "schema_sha256": "6f879f17cdd9dbf492a66d305c760284cca61e71a7ead26cfcd35249c1262307",
+      "season": 2019,
+      "source_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2019.parquet"
+    },
+    {
+      "acquisition_status": "complete",
+      "arrow_schema_field_count": 496,
+      "body_path": "model/data/raw/pbp_research/espn/play_by_play_2020.parquet",
+      "body_sha256": "51455bdc8756ad499c7bf4271269d3b196e3f61121d31608b2e9cf84658feaaf",
+      "bytes": 33396809,
+      "error": null,
+      "expected_sha256": null,
+      "footer_metadata_sha256": "ad1006f7c20840175ce650cb555373d882c2be5d2fccc2bee68c66616ec13be4",
+      "footer_summary": {
+        "num_columns": 496,
+        "num_row_groups": 1,
+        "num_rows": 100433,
+        "row_groups": [
+          {
+            "index": 0,
+            "num_rows": 100433,
+            "total_byte_size": 89783315
+          }
+        ]
+      },
+      "public_asset": {
+        "browser_download_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2020.parquet",
+        "content_type": "application/octet-stream",
+        "created_at": "2026-09-07T10:24:42Z",
+        "digest": "sha256:51455bdc8756ad499c7bf4271269d3b196e3f61121d31608b2e9cf84658feaaf",
+        "id": 548604256,
+        "name": "play_by_play_2020.parquet",
+        "size": 33396809,
+        "state": "uploaded",
+        "updated_at": "2026-09-07T10:24:44Z",
+        "url": "https://api.github.com/repos/sportsdataverse/sportsdataverse-data/releases/assets/548604256"
+      },
+      "receipt_path": "model/data/raw/pbp_research/espn/attempts/2020/0001.receipt.json",
+      "receipt_sha256": "b6b231fa35a808935dd99322851c54dcc1ca01cd5b9547e9c64129de7991785c",
+      "received_at": "2026-09-09T05:45:22.576759+00:00",
+      "request_path": "model/data/raw/pbp_research/espn/attempts/2020/0001.request.json",
+      "request_sha256": "ab69b5849c64e1213918cfd5b1aae5c04059c056632b3290377397f05b84b6b6",
+      "requested_at": "2026-09-09T05:45:21.818154+00:00",
+      "schema_sha256": "9e19f360cba5cff8adc967dfeb26409ec055a46dd07c2aadbedf538f0f914d34",
+      "season": 2020,
+      "source_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2020.parquet"
+    },
+    {
+      "acquisition_status": "complete",
+      "arrow_schema_field_count": 497,
+      "body_path": "model/data/raw/pbp_research/espn/play_by_play_2021.parquet",
+      "body_sha256": "302f6e182b4653ae6c7d31f975c2c090e1804ed736ad35931cdbaa5d7dd26f7e",
+      "bytes": 49143293,
+      "error": null,
+      "expected_sha256": null,
+      "footer_metadata_sha256": "9030b839533251c2e4c309818b18955b816216626226dab68c0714b8410031ca",
+      "footer_summary": {
+        "num_columns": 497,
+        "num_row_groups": 2,
+        "num_rows": 147319,
+        "row_groups": [
+          {
+            "index": 0,
+            "num_rows": 122880,
+            "total_byte_size": 109116433
+          },
+          {
+            "index": 1,
+            "num_rows": 24439,
+            "total_byte_size": 22240783
+          }
+        ]
+      },
+      "public_asset": {
+        "browser_download_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2021.parquet",
+        "content_type": "application/octet-stream",
+        "created_at": "2026-09-07T21:12:18Z",
+        "digest": "sha256:302f6e182b4653ae6c7d31f975c2c090e1804ed736ad35931cdbaa5d7dd26f7e",
+        "id": 549385134,
+        "name": "play_by_play_2021.parquet",
+        "size": 49143293,
+        "state": "uploaded",
+        "updated_at": "2026-09-07T21:12:20Z",
+        "url": "https://api.github.com/repos/sportsdataverse/sportsdataverse-data/releases/assets/549385134"
+      },
+      "receipt_path": "model/data/raw/pbp_research/espn/attempts/2021/0001.receipt.json",
+      "receipt_sha256": "e73e6a94963e27c58174b1e0ed6fdf19c1b612e79c83fec86d5ed4eeb44c5627",
+      "received_at": "2026-09-09T05:45:23.774995+00:00",
+      "request_path": "model/data/raw/pbp_research/espn/attempts/2021/0001.request.json",
+      "request_sha256": "22d4f5177de71cc2797e8f9a96059a013c54076ca923e6eb5896344ec4d5eab0",
+      "requested_at": "2026-09-09T05:45:22.578946+00:00",
+      "schema_sha256": "79fe5748eea03396f1b0857c54de9a88190c8df67a953baf1fed26e91038b948",
+      "season": 2021,
+      "source_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2021.parquet"
+    },
+    {
+      "acquisition_status": "complete",
+      "arrow_schema_field_count": 497,
+      "body_path": "model/data/raw/pbp_research/espn/play_by_play_2022.parquet",
+      "body_sha256": "1e0271f3182271ee7f680e8fbeb05c7122952abda0f933be1be3987c51024a88",
+      "bytes": 49831930,
+      "error": null,
+      "expected_sha256": null,
+      "footer_metadata_sha256": "616566cb040a8fe8ddfddc4befdc226c7fdce71f006fe86efce5d8dd1d39b657",
+      "footer_summary": {
+        "num_columns": 497,
+        "num_row_groups": 2,
+        "num_rows": 149700,
+        "row_groups": [
+          {
+            "index": 0,
+            "num_rows": 122880,
+            "total_byte_size": 109060366
+          },
+          {
+            "index": 1,
+            "num_rows": 26820,
+            "total_byte_size": 24343305
+          }
+        ]
+      },
+      "public_asset": {
+        "browser_download_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2022.parquet",
+        "content_type": "application/octet-stream",
+        "created_at": "2026-09-07T21:40:08Z",
+        "digest": "sha256:1e0271f3182271ee7f680e8fbeb05c7122952abda0f933be1be3987c51024a88",
+        "id": 549415939,
+        "name": "play_by_play_2022.parquet",
+        "size": 49831930,
+        "state": "uploaded",
+        "updated_at": "2026-09-07T21:40:10Z",
+        "url": "https://api.github.com/repos/sportsdataverse/sportsdataverse-data/releases/assets/549415939"
+      },
+      "receipt_path": "model/data/raw/pbp_research/espn/attempts/2022/0001.receipt.json",
+      "receipt_sha256": "226a4a87027e214ec35cdb4f27ba887a1318ebf68fb4b0d29ac617ce98264989",
+      "received_at": "2026-09-09T05:45:24.953822+00:00",
+      "request_path": "model/data/raw/pbp_research/espn/attempts/2022/0001.request.json",
+      "request_sha256": "1336dd93ce7557178e98cd9ed0d689aeed0b0773e35bb66d0f7435550f757865",
+      "requested_at": "2026-09-09T05:45:23.776188+00:00",
+      "schema_sha256": "4780d3d9c5087a89143bcb060e543481d4178b5d86a906c4de3971ef4fc17124",
+      "season": 2022,
+      "source_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2022.parquet"
+    },
+    {
+      "acquisition_status": "complete",
+      "arrow_schema_field_count": 497,
+      "body_path": "model/data/raw/pbp_research/espn/play_by_play_2023.parquet",
+      "body_sha256": "fd0b04553ba3944e8acddc1088aba60692b7a555fb945de8381055c37a98799c",
+      "bytes": 50819931,
+      "error": null,
+      "expected_sha256": null,
+      "footer_metadata_sha256": "dca9946e415e1fa9673773b3c34ac2246c3f3045f97e2ca038188d5d7a175dbd",
+      "footer_summary": {
+        "num_columns": 497,
+        "num_row_groups": 2,
+        "num_rows": 153690,
+        "row_groups": [
+          {
+            "index": 0,
+            "num_rows": 122880,
+            "total_byte_size": 108181418
+          },
+          {
+            "index": 1,
+            "num_rows": 30810,
+            "total_byte_size": 27810531
+          }
+        ]
+      },
+      "public_asset": {
+        "browser_download_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2023.parquet",
+        "content_type": "application/octet-stream",
+        "created_at": "2026-09-07T22:08:35Z",
+        "digest": "sha256:fd0b04553ba3944e8acddc1088aba60692b7a555fb945de8381055c37a98799c",
+        "id": 549443635,
+        "name": "play_by_play_2023.parquet",
+        "size": 50819931,
+        "state": "uploaded",
+        "updated_at": "2026-09-07T22:08:37Z",
+        "url": "https://api.github.com/repos/sportsdataverse/sportsdataverse-data/releases/assets/549443635"
+      },
+      "receipt_path": "model/data/raw/pbp_research/espn/attempts/2023/0001.receipt.json",
+      "receipt_sha256": "81fa4f09b4d44073578c82a4fe9b10474900f822ee468cf76c8c9d4398d92103",
+      "received_at": "2026-09-09T05:45:26.205302+00:00",
+      "request_path": "model/data/raw/pbp_research/espn/attempts/2023/0001.request.json",
+      "request_sha256": "9238e5971da40d02b3676804cec1863ab1c87e35d2dc862a96a8d91efc31d041",
+      "requested_at": "2026-09-09T05:45:24.955020+00:00",
+      "schema_sha256": "b6f2e2c54c126add180670c91275411928894e21014db62252168486c805a322",
+      "season": 2023,
+      "source_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2023.parquet"
+    },
+    {
+      "acquisition_status": "complete",
+      "arrow_schema_field_count": 497,
+      "body_path": "model/data/raw/pbp_research/espn/play_by_play_2024.parquet",
+      "body_sha256": "25ae95cf175a59bbb362d5f8af3cb3e748b56635d084ebda69461c31b3c5e312",
+      "bytes": 55269115,
+      "error": null,
+      "expected_sha256": null,
+      "footer_metadata_sha256": "769295675207480b42ddfd52d20baf861b681bf0bdedc6609031c57625654c70",
+      "footer_summary": {
+        "num_columns": 497,
+        "num_row_groups": 2,
+        "num_rows": 163142,
+        "row_groups": [
+          {
+            "index": 0,
+            "num_rows": 122880,
+            "total_byte_size": 108584033
+          },
+          {
+            "index": 1,
+            "num_rows": 40262,
+            "total_byte_size": 35997624
+          }
+        ]
+      },
+      "public_asset": {
+        "browser_download_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2024.parquet",
+        "content_type": "application/octet-stream",
+        "created_at": "2026-09-07T22:37:13Z",
+        "digest": "sha256:25ae95cf175a59bbb362d5f8af3cb3e748b56635d084ebda69461c31b3c5e312",
+        "id": 549474561,
+        "name": "play_by_play_2024.parquet",
+        "size": 55269115,
+        "state": "uploaded",
+        "updated_at": "2026-09-07T22:37:16Z",
+        "url": "https://api.github.com/repos/sportsdataverse/sportsdataverse-data/releases/assets/549474561"
+      },
+      "receipt_path": "model/data/raw/pbp_research/espn/attempts/2024/0001.receipt.json",
+      "receipt_sha256": "710b7f69b60bcf9ec98c909f2caae940838e6e2ad84c0f23d2947f04329c5239",
+      "received_at": "2026-09-09T05:45:27.950723+00:00",
+      "request_path": "model/data/raw/pbp_research/espn/attempts/2024/0001.request.json",
+      "request_sha256": "3b39b09e58ae4f7d990d6b798b1a04824bdbd9d11377fc8c2fa3784a0eccba0b",
+      "requested_at": "2026-09-09T05:45:26.206816+00:00",
+      "schema_sha256": "b6f2e2c54c126add180670c91275411928894e21014db62252168486c805a322",
+      "season": 2024,
+      "source_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2024.parquet"
+    },
+    {
+      "acquisition_status": "failed",
+      "arrow_schema_field_count": 496,
+      "body_path": "model/data/raw/pbp_research/espn/partials/2025/0001.parquet",
+      "body_sha256": "aa037920e980acf17317747f2010a031b3b7e1013a44a7b15db18b1dd9df0e63",
+      "bytes": 59281459,
+      "error": "expected_sha256_mismatch",
+      "expected_sha256": "7889db9cc0c3d27651dfeb602a35e36f6b180c440bea253332b57649992f848e",
+      "footer_metadata_sha256": "6629352f2b426f7fb15bc28d2ce4508cf573aa70fcd0f7a13b19e222232ff144",
+      "footer_summary": {
+        "num_columns": 496,
+        "num_row_groups": 2,
+        "num_rows": 166053,
+        "row_groups": [
+          {
+            "index": 0,
+            "num_rows": 122880,
+            "total_byte_size": 114627457
+          },
+          {
+            "index": 1,
+            "num_rows": 43173,
+            "total_byte_size": 44887759
+          }
+        ]
+      },
+      "public_asset": {
+        "browser_download_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2025.parquet",
+        "content_type": "application/octet-stream",
+        "created_at": "2026-09-07T23:08:16Z",
+        "digest": "sha256:aa037920e980acf17317747f2010a031b3b7e1013a44a7b15db18b1dd9df0e63",
+        "id": 549505481,
+        "name": "play_by_play_2025.parquet",
+        "size": 59281459,
+        "state": "uploaded",
+        "updated_at": "2026-09-07T23:08:18Z",
+        "url": "https://api.github.com/repos/sportsdataverse/sportsdataverse-data/releases/assets/549505481"
+      },
+      "receipt_path": "model/data/raw/pbp_research/espn/attempts/2025/0001.receipt.json",
+      "receipt_sha256": "ec8ca51633a4d3c78442f272d3a0383c5c2314301550714f5a85e017a1547fc8",
+      "received_at": "2026-09-09T05:45:33.714800+00:00",
+      "request_path": "model/data/raw/pbp_research/espn/attempts/2025/0001.request.json",
+      "request_sha256": "d2df3325561679bed21deca06f3e04a93cba7b8929fa7a138ff917a9cc3c3de2",
+      "requested_at": "2026-09-09T05:45:27.953062+00:00",
+      "schema_sha256": "2363e7ab0476e572362c8f164496e27dc3ecf85f7654e412a226a692f3fc879d",
+      "season": 2025,
+      "source_url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/espn_cfb_pbp/play_by_play_2025.parquet"
+    }
+  ],
+  "total_bytes": 349815084,
+  "total_footer_rows": 1037245
+}
