@@ -1,0 +1,1198 @@
+{
+  "version": "pbp-state-residual-comparison-v2-local-order",
+  "checked_at": "2026-09-09T07:00:36.639176+00:00",
+  "git_commit": "96557bc2224cbdbe38dca0ac61f275de33931a7a",
+  "plan_sha256": "f3e1ac7380fc787013a9f39229a08f4566f9f3e7ed31916889d0bfb996791d7b",
+  "selection_sha256": "fc9af310b72710ce5785708559fded656e24ef9533531437f43835b6fc211f97",
+  "selected_on_2021_2024": "opponent_adjusted_ridge",
+  "selection_2021_2024": {
+    "pooled": {
+      "games": 3061,
+      "metrics": {
+        "market_only": {
+          "games": 3061,
+          "mse": 251.49346618752043,
+          "rmse": 15.858545525599768,
+          "mae": 12.516171185886964,
+          "mean_error": 0.6608951323097028
+        },
+        "opponent_adjusted_ridge": {
+          "games": 3061,
+          "mse": 250.42811685533022,
+          "rmse": 15.824920753524493,
+          "mae": 12.498978679028967,
+          "mean_error": 0.11222282054556082
+        },
+        "pbp_state_ridge": {
+          "games": 3061,
+          "mse": 250.81936576552337,
+          "rmse": 15.837277725844281,
+          "mae": 12.505055389934883,
+          "mean_error": 0.09697315165068277
+        }
+      },
+      "comparisons": [
+        {
+          "candidate": "pbp_state_ridge",
+          "reference": "market_only",
+          "games": 3061,
+          "week_blocks": 74,
+          "mse_difference": -0.6741004219970717,
+          "mae_difference": -0.011115795952081634,
+          "mse_interval_95": [
+            -2.400668995742889,
+            1.1352581881860588
+          ],
+          "mse_interval_99": [
+            -2.9099032092800767,
+            1.6980489324116539
+          ],
+          "mae_interval_95": [
+            -0.05962654647741348,
+            0.04082101249407093
+          ],
+          "draws": 10000,
+          "seed": 20260909
+        },
+        {
+          "candidate": "pbp_state_ridge",
+          "reference": "opponent_adjusted_ridge",
+          "games": 3061,
+          "week_blocks": 74,
+          "mse_difference": 0.3912489101931205,
+          "mae_difference": 0.006076710905914909,
+          "mse_interval_95": [
+            -0.18794292617246963,
+            0.9933662588889411
+          ],
+          "mse_interval_99": [
+            -0.3549097441973884,
+            1.2222523324844798
+          ],
+          "mae_interval_95": [
+            -0.010331645594106657,
+            0.02235281154113226
+          ],
+          "draws": 10000,
+          "seed": 20260909
+        }
+      ]
+    },
+    "by_season": {
+      "2021": {
+        "games": 734,
+        "metrics": {
+          "market_only": {
+            "games": 734,
+            "mse": 252.94550408719346,
+            "rmse": 15.904260563987043,
+            "mae": 12.452316076294277,
+            "mean_error": -0.7656675749318801
+          },
+          "opponent_adjusted_ridge": {
+            "games": 734,
+            "mse": 254.36310876144353,
+            "rmse": 15.948765117131908,
+            "mae": 12.476175304018078,
+            "mean_error": -1.4439793893091293
+          },
+          "pbp_state_ridge": {
+            "games": 734,
+            "mse": 255.83294770665864,
+            "rmse": 15.994778763917262,
+            "mae": 12.507731983680486,
+            "mean_error": -1.4721120351474972
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 734,
+            "week_blocks": 15,
+            "mse_difference": 2.8874436194651683,
+            "mae_difference": 0.055415907386207844,
+            "mse_interval_95": [
+              -0.6896984570142731,
+              6.937045798701485
+            ],
+            "mse_interval_99": [
+              -1.5965364689387196,
+              8.417260391817857
+            ],
+            "mae_interval_95": [
+              -0.0345812335731979,
+              0.15359731169970606
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 734,
+            "week_blocks": 15,
+            "mse_difference": 1.4698389452151106,
+            "mae_difference": 0.03155667966240705,
+            "mse_interval_95": [
+              -0.7613281554057894,
+              3.587814823782562
+            ],
+            "mse_interval_99": [
+              -1.4056283855111043,
+              4.270513813795537
+            ],
+            "mae_interval_95": [
+              -0.03251712919979974,
+              0.08872886713601404
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      },
+      "2022": {
+        "games": 734,
+        "metrics": {
+          "market_only": {
+            "games": 734,
+            "mse": 237.2735013623978,
+            "rmse": 15.403684668364184,
+            "mae": 12.048365122615804,
+            "mean_error": -0.01430517711171662
+          },
+          "opponent_adjusted_ridge": {
+            "games": 734,
+            "mse": 238.8872185439328,
+            "rmse": 15.45597679035307,
+            "mae": 12.077226887829578,
+            "mean_error": 0.011750487713867757
+          },
+          "pbp_state_ridge": {
+            "games": 734,
+            "mse": 238.92067712972445,
+            "rmse": 15.45705913586813,
+            "mae": 12.074951363472232,
+            "mean_error": -0.009997686671379133
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 734,
+            "week_blocks": 16,
+            "mse_difference": 1.6471757673266276,
+            "mae_difference": 0.026586240856426586,
+            "mse_interval_95": [
+              -1.725066605219826,
+              5.016603232858047
+            ],
+            "mse_interval_99": [
+              -2.5258194111576504,
+              6.15209839922212
+            ],
+            "mae_interval_95": [
+              -0.09856702130805887,
+              0.14983452450627918
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 734,
+            "week_blocks": 16,
+            "mse_difference": 0.03345858579168769,
+            "mae_difference": -0.0022755243573474426,
+            "mse_interval_95": [
+              -0.3130629494696632,
+              0.3860308134589636
+            ],
+            "mse_interval_99": [
+              -0.41754248587619974,
+              0.5015243311799371
+            ],
+            "mae_interval_95": [
+              -0.014021352094444892,
+              0.00820086900477525
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      },
+      "2023": {
+        "games": 795,
+        "metrics": {
+          "market_only": {
+            "games": 795,
+            "mse": 249.67704402515724,
+            "rmse": 15.801172235791787,
+            "mae": 12.722641509433963,
+            "mean_error": 1.5314465408805031
+          },
+          "opponent_adjusted_ridge": {
+            "games": 795,
+            "mse": 247.71035215611656,
+            "rmse": 15.738816733036717,
+            "mae": 12.68782946296101,
+            "mean_error": 1.4526932321987949
+          },
+          "pbp_state_ridge": {
+            "games": 795,
+            "mse": 247.6701350477565,
+            "rmse": 15.737539040388636,
+            "mae": 12.678996806145902,
+            "mean_error": 1.4448402490859718
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 795,
+            "week_blocks": 21,
+            "mse_difference": -2.0069089774007107,
+            "mae_difference": -0.04364470328806119,
+            "mse_interval_95": [
+              -3.9420975320684635,
+              0.0019528646780727892
+            ],
+            "mse_interval_99": [
+              -4.4742679454229615,
+              0.6770312144634835
+            ],
+            "mae_interval_95": [
+              -0.08259738154236608,
+              0.0053699756945120546
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 795,
+            "week_blocks": 21,
+            "mse_difference": -0.04021710836004682,
+            "mae_difference": -0.008832656815109804,
+            "mse_interval_95": [
+              -0.800049811020389,
+              0.6539560323767797
+            ],
+            "mse_interval_99": [
+              -1.0683503663892098,
+              0.8658695827860128
+            ],
+            "mae_interval_95": [
+              -0.029352310058245422,
+              0.009382010143213186
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      },
+      "2024": {
+        "games": 798,
+        "metrics": {
+          "market_only": {
+            "games": 798,
+            "mse": 265.046992481203,
+            "rmse": 16.28026389470401,
+            "mae": 12.799498746867167,
+            "mean_error": 1.7268170426065164
+          },
+          "opponent_adjusted_ridge": {
+            "games": 798,
+            "mse": 260.1315732931165,
+            "rmse": 16.128594895188996,
+            "mae": 12.719739479495601,
+            "mean_error": 0.3006001852917812
+          },
+          "pbp_state_ridge": {
+            "games": 798,
+            "mse": 260.2896749566358,
+            "rmse": 16.13349543516952,
+            "mae": 12.72491542718621,
+            "mean_error": 0.2958087155318895
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 798,
+            "week_blocks": 22,
+            "mse_difference": -4.757317524567229,
+            "mae_difference": -0.07458331968096102,
+            "mse_interval_95": [
+              -8.097084645078558,
+              -1.3986410918901515
+            ],
+            "mse_interval_99": [
+              -9.095386295560303,
+              -0.46090125770102885
+            ],
+            "mae_interval_95": [
+              -0.17927165881277773,
+              0.03506539286076454
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 798,
+            "week_blocks": 22,
+            "mse_difference": 0.15810166351928454,
+            "mae_difference": 0.005175947690606613,
+            "mse_interval_95": [
+              -0.20984501321108184,
+              0.4753463489603412
+            ],
+            "mse_interval_99": [
+              -0.3661435101965602,
+              0.5665418569323211
+            ],
+            "mae_interval_95": [
+              -0.0028660090542175546,
+              0.012536871928825057
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      }
+    },
+    "by_source": {
+      "cfbd_Bovada": {
+        "games": 15,
+        "metrics": {
+          "market_only": {
+            "games": 15,
+            "mse": 195.55,
+            "rmse": 13.983919336151793,
+            "mae": 11.366666666666667,
+            "mean_error": 2.5
+          },
+          "opponent_adjusted_ridge": {
+            "games": 15,
+            "mse": 192.01485237085907,
+            "rmse": 13.856942388956485,
+            "mae": 10.93755946398439,
+            "mean_error": 2.098037817371052
+          },
+          "pbp_state_ridge": {
+            "games": 15,
+            "mse": 191.81640435996036,
+            "rmse": 13.849779939044533,
+            "mae": 10.924966743910138,
+            "mean_error": 2.1332009368070795
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 15,
+            "week_blocks": 10,
+            "mse_difference": -3.733595640039639,
+            "mae_difference": -0.4416999227565294,
+            "mse_interval_95": [
+              -16.504558678487566,
+              6.04190038479471
+            ],
+            "mse_interval_99": [
+              -19.13027697509168,
+              8.30519780773006
+            ],
+            "mae_interval_95": [
+              -1.135720767681921,
+              0.053012827672691686
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 15,
+            "week_blocks": 10,
+            "mse_difference": -0.19844801089874617,
+            "mae_difference": -0.012592720074253331,
+            "mse_interval_95": [
+              -1.9385010214750784,
+              2.088057250892407
+            ],
+            "mse_interval_99": [
+              -2.3542121042456317,
+              2.675281578051557
+            ],
+            "mae_interval_95": [
+              -0.07242947954936,
+              0.05814817127880567
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      },
+      "cfbd_consensus": {
+        "games": 1484,
+        "metrics": {
+          "market_only": {
+            "games": 1484,
+            "mse": 246.80592991913747,
+            "rmse": 15.71005824047567,
+            "mae": 12.31132075471698,
+            "mean_error": -0.3935309973045822
+          },
+          "opponent_adjusted_ridge": {
+            "games": 1484,
+            "mse": 248.30800112007012,
+            "rmse": 15.757791759001961,
+            "mae": 12.341482965477107,
+            "mean_error": -0.703034527654722
+          },
+          "pbp_state_ridge": {
+            "games": 1484,
+            "mse": 249.07029180746792,
+            "rmse": 15.781960962043593,
+            "mae": 12.3565615563114,
+            "mean_error": -0.7288503732912482
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 1484,
+            "week_blocks": 34,
+            "mse_difference": 2.2643618883304875,
+            "mae_difference": 0.04524080159441968,
+            "mse_interval_95": [
+              -0.23807108880616398,
+              4.875526746521918
+            ],
+            "mse_interval_99": [
+              -0.8855823670677984,
+              5.8854553789353306
+            ],
+            "mae_interval_95": [
+              -0.03124626967474397,
+              0.12283024562534675
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 1484,
+            "week_blocks": 34,
+            "mse_difference": 0.762290687397842,
+            "mae_difference": 0.015078590834292513,
+            "mse_interval_95": [
+              -0.3445970582095536,
+              1.921941609135493
+            ],
+            "mse_interval_99": [
+              -0.725687206903166,
+              2.311693532551299
+            ],
+            "mae_interval_95": [
+              -0.01761995245222321,
+              0.046209207920779
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      },
+      "espn_nonlive_provider_40": {
+        "games": 13,
+        "metrics": {
+          "market_only": {
+            "games": 13,
+            "mse": 305.86538461538464,
+            "rmse": 17.489007536603804,
+            "mae": 11.961538461538462,
+            "mean_error": 5.346153846153846
+          },
+          "opponent_adjusted_ridge": {
+            "games": 13,
+            "mse": 300.69793026645897,
+            "rmse": 17.34064388269533,
+            "mae": 12.05310097918989,
+            "mean_error": 4.612774557940532
+          },
+          "pbp_state_ridge": {
+            "games": 13,
+            "mse": 301.289415567287,
+            "rmse": 17.357690386894422,
+            "mae": 11.934914723818439,
+            "mean_error": 4.763652584666893
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 13,
+            "week_blocks": 2,
+            "mse_difference": -4.575969048097666,
+            "mae_difference": -0.026623737720024875,
+            "mse_interval_95": [
+              -10.020222757297661,
+              1.7756602793023315
+            ],
+            "mse_interval_99": [
+              -10.020222757297661,
+              1.7756602793023315
+            ],
+            "mae_interval_95": [
+              -0.11763355868339076,
+              0.051384680248574455
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 13,
+            "week_blocks": 2,
+            "mse_difference": 0.5914853008279344,
+            "mae_difference": -0.11818625537145358,
+            "mse_interval_95": [
+              -1.0750563734602676,
+              2.5357839208308364
+            ],
+            "mse_interval_99": [
+              -1.0750563734602676,
+              2.5357839208308364
+            ],
+            "mae_interval_95": [
+              -0.15800166442287278,
+              -0.08405876189880855
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      },
+      "espn_nonlive_provider_52": {
+        "games": 1,
+        "metrics": {
+          "market_only": {
+            "games": 1,
+            "mse": 441.0,
+            "rmse": 21.0,
+            "mae": 21.0,
+            "mean_error": 21.0
+          },
+          "opponent_adjusted_ridge": {
+            "games": 1,
+            "mse": 380.92233112748323,
+            "rmse": 19.51723164609887,
+            "mae": 19.51723164609887,
+            "mean_error": 19.51723164609887
+          },
+          "pbp_state_ridge": {
+            "games": 1,
+            "mse": 380.48565884867145,
+            "rmse": 19.50604159866044,
+            "mae": 19.50604159866044,
+            "mean_error": 19.50604159866044
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 1,
+            "week_blocks": 1,
+            "mse_difference": -60.51434115132855,
+            "mae_difference": -1.4939584013395617,
+            "mse_interval_95": null,
+            "mse_interval_99": null,
+            "mae_interval_95": null,
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 1,
+            "week_blocks": 1,
+            "mse_difference": -0.43667227881178405,
+            "mae_difference": -0.01119004743843277,
+            "mse_interval_95": null,
+            "mse_interval_99": null,
+            "mae_interval_95": null,
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      },
+      "espn_nonlive_provider_58": {
+        "games": 1548,
+        "metrics": {
+          "market_only": {
+            "games": 1548,
+            "mse": 255.95025839793283,
+            "rmse": 15.998445499420649,
+            "mae": 12.722868217054264,
+            "mean_error": 1.601421188630491
+          },
+          "opponent_adjusted_ridge": {
+            "games": 1548,
+            "mse": 252.52013812779552,
+            "rmse": 15.890882232519235,
+            "mae": 12.664303668865834,
+            "mean_error": 0.8242011786625825
+          },
+          "pbp_state_ridge": {
+            "games": 1548,
+            "mse": 252.56025286780473,
+            "rmse": 15.892144376005547,
+            "mae": 12.662986282207758,
+            "mean_error": 0.8171945942606693
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 1548,
+            "week_blocks": 43,
+            "mse_difference": -3.390005530128092,
+            "mae_difference": -0.059881934846507015,
+            "mse_interval_95": [
+              -5.4854773180044685,
+              -1.3457373630246987
+            ],
+            "mse_interval_99": [
+              -6.211349593492017,
+              -0.7681390582999875
+            ],
+            "mae_interval_95": [
+              -0.11894784915433292,
+              0.002186672510517274
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 1548,
+            "week_blocks": 43,
+            "mse_difference": 0.04011474000922099,
+            "mae_difference": -0.0013173866580771466,
+            "mse_interval_95": [
+              -0.3920874048077141,
+              0.4396206804190602
+            ],
+            "mse_interval_99": [
+              -0.5534249523206521,
+              0.560461970658887
+            ],
+            "mae_interval_95": [
+              -0.013106896384870082,
+              0.009023376938627667
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      }
+    }
+  },
+  "reused_2025": {
+    "pooled": {
+      "games": 852,
+      "metrics": {
+        "market_only": {
+          "games": 852,
+          "mse": 239.8744131455399,
+          "rmse": 15.487879556141309,
+          "mae": 12.475352112676056,
+          "mean_error": 0.11737089201877934
+        },
+        "opponent_adjusted_ridge": {
+          "games": 852,
+          "mse": 240.9862323811409,
+          "rmse": 15.523731264781057,
+          "mae": 12.561475095288385,
+          "mean_error": -1.4131771921066636
+        },
+        "pbp_state_ridge": {
+          "games": 852,
+          "mse": 240.9426438375625,
+          "rmse": 15.522327268730114,
+          "mae": 12.559961600548188,
+          "mean_error": -1.3939557895468793
+        }
+      },
+      "comparisons": [
+        {
+          "candidate": "pbp_state_ridge",
+          "reference": "market_only",
+          "games": 852,
+          "week_blocks": 22,
+          "mse_difference": 1.0682306920226088,
+          "mae_difference": 0.08460948787213479,
+          "mse_interval_95": [
+            -2.8261064276294845,
+            5.529875299834403
+          ],
+          "mse_interval_99": [
+            -4.213577232086645,
+            6.7791177642713905
+          ],
+          "mae_interval_95": [
+            -0.03796140630628621,
+            0.21197461100046236
+          ],
+          "draws": 10000,
+          "seed": 20260909
+        },
+        {
+          "candidate": "pbp_state_ridge",
+          "reference": "opponent_adjusted_ridge",
+          "games": 852,
+          "week_blocks": 22,
+          "mse_difference": -0.04358854357837643,
+          "mae_difference": -0.0015134947401945207,
+          "mse_interval_95": [
+            -0.5415756059536772,
+            0.4150285904575499
+          ],
+          "mse_interval_99": [
+            -0.7067867976854604,
+            0.5597308007607644
+          ],
+          "mae_interval_95": [
+            -0.01604218099278954,
+            0.01335044629237489
+          ],
+          "draws": 10000,
+          "seed": 20260909
+        }
+      ]
+    },
+    "by_season": {
+      "2025": {
+        "games": 852,
+        "metrics": {
+          "market_only": {
+            "games": 852,
+            "mse": 239.8744131455399,
+            "rmse": 15.487879556141309,
+            "mae": 12.475352112676056,
+            "mean_error": 0.11737089201877934
+          },
+          "opponent_adjusted_ridge": {
+            "games": 852,
+            "mse": 240.9862323811409,
+            "rmse": 15.523731264781057,
+            "mae": 12.561475095288385,
+            "mean_error": -1.4131771921066636
+          },
+          "pbp_state_ridge": {
+            "games": 852,
+            "mse": 240.9426438375625,
+            "rmse": 15.522327268730114,
+            "mae": 12.559961600548188,
+            "mean_error": -1.3939557895468793
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 852,
+            "week_blocks": 22,
+            "mse_difference": 1.0682306920226088,
+            "mae_difference": 0.08460948787213479,
+            "mse_interval_95": [
+              -2.8261064276294845,
+              5.529875299834403
+            ],
+            "mse_interval_99": [
+              -4.213577232086645,
+              6.7791177642713905
+            ],
+            "mae_interval_95": [
+              -0.03796140630628621,
+              0.21197461100046236
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 852,
+            "week_blocks": 22,
+            "mse_difference": -0.04358854357837643,
+            "mae_difference": -0.0015134947401945207,
+            "mse_interval_95": [
+              -0.5415756059536772,
+              0.4150285904575499
+            ],
+            "mse_interval_99": [
+              -0.7067867976854604,
+              0.5597308007607644
+            ],
+            "mae_interval_95": [
+              -0.01604218099278954,
+              0.01335044629237489
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      }
+    },
+    "by_source": {
+      "espn_nonlive_provider_100": {
+        "games": 47,
+        "metrics": {
+          "market_only": {
+            "games": 47,
+            "mse": 341.73936170212767,
+            "rmse": 18.48619381327935,
+            "mae": 15.138297872340425,
+            "mean_error": -0.9680851063829787
+          },
+          "opponent_adjusted_ridge": {
+            "games": 47,
+            "mse": 341.3642962965971,
+            "rmse": 18.476046554839513,
+            "mae": 15.324685665346706,
+            "mean_error": -2.270819555457061
+          },
+          "pbp_state_ridge": {
+            "games": 47,
+            "mse": 338.64059912866145,
+            "rmse": 18.40219006337728,
+            "mae": 15.266912333221365,
+            "mean_error": -2.236615045525956
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 47,
+            "week_blocks": 6,
+            "mse_difference": -3.0987625734661743,
+            "mae_difference": 0.12861446088093503,
+            "mse_interval_95": [
+              -10.571463332315618,
+              5.454084926441492
+            ],
+            "mse_interval_99": [
+              -16.164894466747782,
+              12.677834790841537
+            ],
+            "mae_interval_95": [
+              -0.1056998372541121,
+              0.6592094631966909
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 47,
+            "week_blocks": 6,
+            "mse_difference": -2.7236971679356023,
+            "mae_difference": -0.057773332125347535,
+            "mse_interval_95": [
+              -4.107891437691254,
+              -1.0464038133028901
+            ],
+            "mse_interval_99": [
+              -4.299739437239873,
+              -0.6219052316205747
+            ],
+            "mae_interval_95": [
+              -0.08634831471985889,
+              -0.004445505679440616
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      },
+      "espn_nonlive_provider_58": {
+        "games": 805,
+        "metrics": {
+          "market_only": {
+            "games": 805,
+            "mse": 233.92701863354037,
+            "rmse": 15.294672884162654,
+            "mae": 12.319875776397515,
+            "mean_error": 0.18074534161490682
+          },
+          "opponent_adjusted_ridge": {
+            "games": 805,
+            "mse": 235.12564976744343,
+            "rmse": 15.333807412624022,
+            "mae": 12.400144788713552,
+            "mean_error": -1.3631036628178828
+          },
+          "pbp_state_ridge": {
+            "games": 805,
+            "mse": 235.23853961559772,
+            "rmse": 15.33748804777359,
+            "mae": 12.40191602982069,
+            "mean_error": -1.3447570503779145
+          }
+        },
+        "comparisons": [
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "market_only",
+            "games": 805,
+            "week_blocks": 16,
+            "mse_difference": 1.311520982057357,
+            "mae_difference": 0.08204025342317377,
+            "mse_interval_95": [
+              -2.728744258815324,
+              6.053525868817645
+            ],
+            "mse_interval_99": [
+              -3.7699187529567957,
+              7.599430426199601
+            ],
+            "mae_interval_95": [
+              -0.048111674614477205,
+              0.21706396598933383
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          },
+          {
+            "candidate": "pbp_state_ridge",
+            "reference": "opponent_adjusted_ridge",
+            "games": 805,
+            "week_blocks": 16,
+            "mse_difference": 0.1128898481542815,
+            "mae_difference": 0.0017712411071373944,
+            "mse_interval_95": [
+              -0.33212725093062456,
+              0.5524996373147603
+            ],
+            "mse_interval_99": [
+              -0.47947375396519554,
+              0.6901118798692742
+            ],
+            "mae_interval_95": [
+              -0.012366904912645988,
+              0.016159165066096052
+            ],
+            "draws": 10000,
+            "seed": 20260909
+          }
+        ]
+      }
+    }
+  },
+  "fits_2025": [
+    {
+      "season": 2025,
+      "baseline_fit": {
+        "test_season": 2025,
+        "training_games": 3566,
+        "training_seasons": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "test_games": 852,
+        "features": [
+          "adjusted_score_minus_market",
+          "adjusted_drive_minus_market",
+          "adjusted_clock_minus_market",
+          "adjusted_pass_yards",
+          "adjusted_rush_yards",
+          "adjusted_pass_share",
+          "market_total",
+          "abs_spread",
+          "week",
+          "clock_rule_2023",
+          "two_minute_rule_2024"
+        ],
+        "median": [
+          1.108724990132064,
+          2.0988416018794283,
+          1.8236248361867062,
+          13.936444293138102,
+          10.053051221743404,
+          0.49313962531828825,
+          53.5,
+          8.5,
+          8.0,
+          0.0,
+          0.0
+        ],
+        "center": [
+          0.9572600346609677,
+          1.9417825568238791,
+          1.6515132905435796,
+          13.951403140641126,
+          10.057052469448218,
+          0.49155468428904586,
+          53.94966348850252,
+          11.217190128996075,
+          7.655075715086932,
+          0.4467190128996074,
+          0.2237801458216489
+        ],
+        "scale": [
+          4.241671016374509,
+          4.3196083955016995,
+          4.34788455028804,
+          1.089470923171351,
+          1.0,
+          1.0,
+          7.907187615279319,
+          9.086501428002506,
+          4.068873651284458,
+          1.0,
+          1.0
+        ],
+        "coefficients": [
+          0.6424588422729759,
+          0.15728801330140804,
+          -0.3317971338319184,
+          -0.15925148747420972,
+          -0.14400495102365996,
+          0.3464366741066093,
+          0.12687972423596264,
+          -1.35894942041806,
+          0.17449910111507144,
+          0.43969437381289034,
+          0.8727860132662293,
+          0.20073834418995437
+        ],
+        "clipped_forecasts": 0
+      },
+      "added_feature_fit": {
+        "test_season": 2025,
+        "training_games": 3566,
+        "training_seasons": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "test_games": 852,
+        "features": [
+          "adjusted_score_minus_market",
+          "adjusted_drive_minus_market",
+          "adjusted_clock_minus_market",
+          "adjusted_pass_yards",
+          "adjusted_rush_yards",
+          "adjusted_pass_share",
+          "market_total",
+          "abs_spread",
+          "week",
+          "clock_rule_2023",
+          "two_minute_rule_2024",
+          "pbp_clock_rating",
+          "pbp_conversion_percentage_points"
+        ],
+        "median": [
+          1.108724990132064,
+          2.0988416018794283,
+          1.8236248361867062,
+          13.936444293138102,
+          10.053051221743404,
+          0.49313962531828825,
+          53.5,
+          8.5,
+          8.0,
+          0.0,
+          0.0,
+          0.28474356994827626,
+          -0.019848993948209503
+        ],
+        "center": [
+          0.9572600346609677,
+          1.9417825568238791,
+          1.6515132905435796,
+          13.951403140641126,
+          10.057052469448218,
+          0.49155468428904586,
+          53.94966348850252,
+          11.217190128996075,
+          7.655075715086932,
+          0.4467190128996074,
+          0.2237801458216489,
+          0.7003741584033673,
+          -0.00681788463788415
+        ],
+        "scale": [
+          4.241671016374509,
+          4.3196083955016995,
+          4.34788455028804,
+          1.089470923171351,
+          1.0,
+          1.0,
+          7.907187615279319,
+          9.086501428002506,
+          4.068873651284458,
+          1.0,
+          1.0,
+          5.0427760956599315,
+          1.5947217524768467
+        ],
+        "coefficients": [
+          0.6424588422729759,
+          0.144625083047143,
+          -0.349329282893241,
+          -0.12232448179179661,
+          -0.10281461039528711,
+          0.4190206210703042,
+          0.11132934910240556,
+          -1.3082659307982376,
+          0.15698118251697593,
+          0.4319864851793962,
+          0.8823672128213385,
+          0.20440629946202607,
+          0.20475487809833465,
+          -0.13152405414502674
+        ],
+        "clipped_forecasts": 0
+      },
+      "baseline_max_abs_replay_difference": 7.105427357601002e-15
+    }
+  ],
+  "prediction_file_2025": {
+    "path": "data/normalized/pbp_state_v2/2025.parquet",
+    "sha256": "b182581ab274ecfb5f85e5540a34f354c7562cef07d87bd183d708979cc9f8a8"
+  },
+  "no_2026_outcomes": true,
+  "live_policy_changes": false,
+  "credible_executable_edge_established": false,
+  "limitations": [
+    "Every historical year has already influenced this project; 2025 is reused development.",
+    "Week intervals do not correct the full search history or all shared-team dependence.",
+    "Archived source corrections and the kickoff-plus-six-hours proxy do not certify historical delivery.",
+    "Recorded game-clock consumption is not verified snap timing.",
+    "This experiment produces point forecasts, not EV, priced ROI or a probability artifact."
+  ]
+}
