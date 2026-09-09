@@ -1,0 +1,57 @@
+{
+  "execution_plan_revision": 2,
+  "correction": "Retain exact source checksum; remove incorrect Git-blob requirement for the intentionally local OOF archive.",
+  "new_shape_fits_or_scores_computed": false,
+  "original_attempt_records": [
+    {
+      "path": "data/normalized/score_shape_attempts_v1/20260909T073737391937Z-00c18e06f126/started.json",
+      "sha256": "175b1855022ccb9be80081d02e976950c760752a71c750a532d4de9d12f6e538",
+      "receipt": {
+        "stage": "freeze",
+        "started_at": "2026-09-09T07:37:37.392122+00:00",
+        "git_commit": "e51db9143dc487256e51a7d140815296f3abcd02",
+        "plan_sha256": null
+      }
+    },
+    {
+      "path": "data/normalized/score_shape_attempts_v1/20260909T073737391937Z-00c18e06f126/finished.json",
+      "sha256": "4797f9557179b8edc32dfb79b360f2017b979d3461d1fe906dddc198dc5e7ef9",
+      "receipt": {
+        "stage": "freeze",
+        "finished_at": "2026-09-09T07:37:37.433706+00:00",
+        "status": "succeeded",
+        "started_sha256": "175b1855022ccb9be80081d02e976950c760752a71c750a532d4de9d12f6e538",
+        "output_files_sha256": {
+          "reports/score_shape_research_plan.json": "3f24fe02312089db59560d41fca5ba97b5d75f77b64f0c872bd756717eaad3ad"
+        }
+      }
+    },
+    {
+      "path": "data/normalized/score_shape_attempts_v1/20260909T073818570549Z-9093495a090b/started.json",
+      "sha256": "af5cadc8543f7634014077bfc95108ffe35e2946af4554468f7bc77437596a7a",
+      "receipt": {
+        "stage": "select",
+        "started_at": "2026-09-09T07:38:18.570714+00:00",
+        "git_commit": "c3add673daf71ad183ee925d57fb2715a1af800e",
+        "plan_sha256": "3f24fe02312089db59560d41fca5ba97b5d75f77b64f0c872bd756717eaad3ad"
+      }
+    },
+    {
+      "path": "data/normalized/score_shape_attempts_v1/20260909T073818570549Z-9093495a090b/finished.json",
+      "sha256": "f1a67f128a7d041a4952cf1d9b62e2ae775061fa170afa768b33b977247bff14",
+      "receipt": {
+        "stage": "select",
+        "finished_at": "2026-09-09T07:38:18.734638+00:00",
+        "status": "failed",
+        "started_sha256": "af5cadc8543f7634014077bfc95108ffe35e2946af4554468f7bc77437596a7a",
+        "error_type": "CalledProcessError",
+        "error": "Command '['git', 'show', 'HEAD:model/reports/opponent_adjusted_predictions.csv']' returned non-zero exit status 128.",
+        "output_files_sha256": {
+          "reports/score_shape_research_plan.json": "3f24fe02312089db59560d41fca5ba97b5d75f77b64f0c872bd756717eaad3ad"
+        }
+      }
+    }
+  ],
+  "original_plan_sha256": "3f24fe02312089db59560d41fca5ba97b5d75f77b64f0c872bd756717eaad3ad",
+  "no_generated_forecast_or_selection_or_result_at_correction": true
+}

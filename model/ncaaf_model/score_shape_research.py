@@ -23,7 +23,7 @@ VERSION = 'repaired-moment-preserving-score-shape-v1'
 CONFIGS = ('market_normal', 'ridge_normal', 'market_score_shape')
 YEARS = (2022, 2023, 2024)
 PRIMARY = 'three_outcome_nll'
-PLAN = Path('reports/score_shape_research_plan.json')
+PLAN = Path('reports/score_shape_research_plan_v2.json')
 SPEC = Path('reports/SCORE_SHAPE_RESEARCH_PLAN.md')
 SELECTION = Path('reports/score_shape_selection.json')
 RESULTS = Path('reports/score_shape_results.json')
@@ -70,28 +70,31 @@ def freeze(root):
     modules = ('score_shape','score_shape_scoring','score_shape_research')
     tracked = [SPEC, Path('requirements-lock.txt'), Path('pyproject.toml'),
                Path('ncaaf_model/calibration_research.py'), Path('ncaaf_model/conditional_distribution.py'),
-               Path('ncaaf_model/opponent_model.py'), Path('reports/opponent_adjusted_predictions.csv'),
+               Path('ncaaf_model/opponent_model.py'), Path('reports/score_shape_research_plan.json'),
+               Path('reports/SCORE_SHAPE_SOURCE_CORRECTION.md'), Path('reports/SCORE_SHAPE_SOURCE_CORRECTION.json'),
                Path('reports/opponent_adjusted_development.json'), Path('reports/calibration_research_plan.json'),
                Path('reports/calibration_research_audit.json'), Path('reports/CALIBRATION_RESEARCH_AUDIT.md')]
     for name in modules:
         tracked.extend((Path('ncaaf_model')/(name+'.py'), Path('tests')/('test_'+name+'.py')))
     inputs = {str(path):sha(root/path) for path in tracked}
-    inputs[calibration.FEATURE_CACHE] = sha(root/calibration.FEATURE_CACHE)
     for path, expected in CORE_PINS.items():
+        inputs[path] = sha(root/path)
         if inputs[path] != expected:
             raise ValueError('Previously repaired source pin changed: '+path)
-    record = {'version':VERSION, 'frozen_at':now(), 'tracked_files':list(map(str,tracked)),
+    record = {'version':VERSION, 'execution_plan_revision':2, 'frozen_at':now(), 'tracked_files':list(map(str,tracked)),
               'source_files_sha256':inputs, 'libraries':{k:package_version(k) for k in LIBRARIES},
               'candidate_order':list(CONFIGS), 'selection_years':list(YEARS), 'later_check_year':2025,
               'warmup_year':2021, 'primary_metric':PRIMARY, 'new_shape_fits_or_scores_computed':False,
-              'all_historical_years_reused':True, 'no_2026_outcomes':True, 'live_policy_changes':False}
+              'all_historical_years_reused':True, 'no_2026_outcomes':True, 'live_policy_changes':False,
+              'source_bookkeeping_correction_before_fitting':True,
+              'prior_plan_sha256':sha(root/'reports/score_shape_research_plan.json')}
     write_new(root/PLAN,record)
     return {'status':'plan_frozen', 'plan_sha256':sha(root/PLAN), 'new_shape_fits_or_scores_computed':False}
 
 
 def read_plan(root):
     plan = json.loads((root/PLAN).read_text())
-    if (plan['version'] != VERSION or plan['candidate_order'] != list(CONFIGS)
+    if (plan['version'] != VERSION or plan.get('execution_plan_revision') != 2 or plan['candidate_order'] != list(CONFIGS)
             or plan['selection_years'] != list(YEARS) or plan['primary_metric'] != PRIMARY):
         raise ValueError('Fixed study configuration changed')
     for path, expected in plan['source_files_sha256'].items():

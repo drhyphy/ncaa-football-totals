@@ -135,7 +135,7 @@ def test_later_check_requires_committed_selection_before_data(tmp_path,monkeypat
 
 def test_plan_rejects_changed_bytes_before_commit_verification(tmp_path,monkeypatch):
     source=tmp_path/'source'; source.write_text('first')
-    plan={'version':study.VERSION,'candidate_order':list(study.CONFIGS),'selection_years':list(study.YEARS),
+    plan={'version':study.VERSION,'execution_plan_revision':2,'candidate_order':list(study.CONFIGS),'selection_years':list(study.YEARS),
           'primary_metric':study.PRIMARY,'source_files_sha256':{'source':study.sha(source)},
           'libraries':{},'tracked_files':[]}
     study.write_new(tmp_path/study.PLAN,plan)
@@ -164,3 +164,23 @@ def test_stage_failure_retains_original_attempt_receipts(tmp_path,monkeypatch):
     assert len(list((tmp_path/study.ATTEMPTS).iterdir()))==2
     assert (folders[0]/'started.json').read_bytes()==first
     assert json.loads((folders[0]/'finished.json').read_text())==terminal
+
+
+def test_hashed_local_source_is_verified_without_requiring_a_git_blob(tmp_path,monkeypatch):
+    local=tmp_path/'local_forecasts.csv'; local.write_text('synthetic,input\n1,2\n')
+    tracked=tmp_path/'code.py'; tracked.write_text('# synthetic source\n')
+    monkeypatch.setattr(study,'LIBRARIES',())
+    plan={'version':study.VERSION,'execution_plan_revision':2,'candidate_order':list(study.CONFIGS),
+          'selection_years':list(study.YEARS),'primary_metric':study.PRIMARY,
+          'source_files_sha256':{'local_forecasts.csv':study.sha(local),'code.py':study.sha(tracked)},
+          'libraries':{},'tracked_files':['code.py']}
+    study.write_new(tmp_path/study.PLAN,plan)
+    def check_tracked(root,paths):
+        assert paths==[study.PLAN,Path('code.py')]
+        return 'synthetic-head'
+    from pathlib import Path
+    monkeypatch.setattr(study,'committed',check_tracked)
+    assert study.read_plan(tmp_path)[1]=='synthetic-head'
+    local.write_text('changed local forecasts')
+    with pytest.raises(ValueError,match='Frozen input changed'):
+        study.read_plan(tmp_path)
