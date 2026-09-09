@@ -1,0 +1,323 @@
+{
+  "status": "passed",
+  "audited_at": "2026-09-09T02:48:21.752356+00:00",
+  "plan_sha256": "c74130cef9ec2ed994f3cb75f58fc354c9639323c06590eea43d6208bc82a150",
+  "prediction_file_sha256": "c9d1504b1c21a2db48072f1a4ca2fb33fbf0ad11a3f0e08aebae90bf15d28ca6",
+  "implementation": "No project module imports; manual train-only median/indicator preprocessing, centered ridge normal equations, separately constructed fixed HGB fits, independent week-multiplicity bootstrap.",
+  "replayed_fits": [
+    {
+      "candidate": "ordinary_ridge",
+      "test_year": 2021,
+      "training_max_year": 2020,
+      "training_games": 505,
+      "test_games": 734,
+      "maximum_forecast_error": 6.394884621840902e-14
+    },
+    {
+      "candidate": "ordinary_hgb",
+      "test_year": 2021,
+      "training_max_year": 2020,
+      "training_games": 505,
+      "test_games": 734,
+      "maximum_forecast_error": 0.0
+    },
+    {
+      "candidate": "ordinary_ridge",
+      "test_year": 2022,
+      "training_max_year": 2021,
+      "training_games": 1239,
+      "test_games": 734,
+      "maximum_forecast_error": 1.1368683772161603e-13
+    },
+    {
+      "candidate": "ordinary_hgb",
+      "test_year": 2022,
+      "training_max_year": 2021,
+      "training_games": 1239,
+      "test_games": 734,
+      "maximum_forecast_error": 0.0
+    },
+    {
+      "candidate": "ordinary_ridge",
+      "test_year": 2023,
+      "training_max_year": 2022,
+      "training_games": 1973,
+      "test_games": 795,
+      "maximum_forecast_error": 1.2079226507921703e-13
+    },
+    {
+      "candidate": "ordinary_hgb",
+      "test_year": 2023,
+      "training_max_year": 2022,
+      "training_games": 1973,
+      "test_games": 795,
+      "maximum_forecast_error": 0.0
+    },
+    {
+      "candidate": "ordinary_ridge",
+      "test_year": 2024,
+      "training_max_year": 2023,
+      "training_games": 2768,
+      "test_games": 798,
+      "maximum_forecast_error": 2.6290081223123707e-13
+    },
+    {
+      "candidate": "ordinary_hgb",
+      "test_year": 2024,
+      "training_max_year": 2023,
+      "training_games": 2768,
+      "test_games": 798,
+      "maximum_forecast_error": 0.0
+    },
+    {
+      "candidate": "ordinary_ridge",
+      "test_year": 2025,
+      "training_max_year": 2024,
+      "training_games": 3566,
+      "test_games": 852,
+      "maximum_forecast_error": 3.410605131648481e-13
+    },
+    {
+      "candidate": "ordinary_hgb",
+      "test_year": 2025,
+      "training_max_year": 2024,
+      "training_games": 3566,
+      "test_games": 852,
+      "maximum_forecast_error": 0.0
+    }
+  ],
+  "maximum_forecast_errors": {
+    "ordinary_ridge": 3.410605131648481e-13,
+    "ordinary_hgb": 0.0
+  },
+  "prediction_games": 3913,
+  "configuration_prediction_rows": 15652,
+  "summary_groups_checked": 20,
+  "paired_comparisons_checked": 80,
+  "selected_on_2021_2024": "opponent_adjusted_ridge",
+  "selection_2021_2024": {
+    "games": 3061,
+    "configurations": {
+      "market_only": {
+        "games": 3061,
+        "mse": 251.49346618752043,
+        "rmse": 15.858545525599768,
+        "mae": 12.516171185886964,
+        "mean_error": 0.6608951323097028
+      },
+      "opponent_adjusted_ridge": {
+        "games": 3061,
+        "mse": 250.4281168553303,
+        "rmse": 15.824920753524497,
+        "mae": 12.498978679028971,
+        "mean_error": 0.11222282054556082
+      },
+      "ordinary_ridge": {
+        "games": 3061,
+        "mse": 255.88277783042412,
+        "rmse": 15.996336387761547,
+        "mae": 12.665197643739479,
+        "mean_error": 0.6487230209856529
+      },
+      "ordinary_hgb": {
+        "games": 3061,
+        "mse": 259.8281004597786,
+        "rmse": 16.119184236796187,
+        "mae": 12.784489955863783,
+        "mean_error": -0.06621393350078776
+      }
+    },
+    "comparisons": [
+      {
+        "candidate": "ordinary_ridge",
+        "reference": "market_only",
+        "mse_difference": 4.389311642903678,
+        "mae_difference": 0.14902645785251376,
+        "weeks": 74,
+        "mse_difference_interval_95": [
+          0.9617484424307593,
+          7.895710712029102
+        ],
+        "mse_difference_interval_98_75": [
+          0.0669954475631604,
+          9.059818748192017
+        ],
+        "mae_difference_interval_95": [
+          0.0516226383286948,
+          0.24801239325627755
+        ]
+      },
+      {
+        "candidate": "ordinary_ridge",
+        "reference": "opponent_adjusted_ridge",
+        "mse_difference": 5.454660975093872,
+        "mae_difference": 0.16621896471051034,
+        "weeks": 74,
+        "mse_difference_interval_95": [
+          2.7003381644558218,
+          8.243431361513947
+        ],
+        "mse_difference_interval_98_75": [
+          1.9438168030248466,
+          9.084112367398479
+        ],
+        "mae_difference_interval_95": [
+          0.085490524684403,
+          0.2502312018245414
+        ]
+      },
+      {
+        "candidate": "ordinary_hgb",
+        "reference": "market_only",
+        "mse_difference": 8.334634272258198,
+        "mae_difference": 0.26831876997682086,
+        "weeks": 74,
+        "mse_difference_interval_95": [
+          3.9828309211437216,
+          12.850213172596467
+        ],
+        "mse_difference_interval_98_75": [
+          2.6541982931156882,
+          14.018341114943636
+        ],
+        "mae_difference_interval_95": [
+          0.14397740483896573,
+          0.39734728950899245
+        ]
+      },
+      {
+        "candidate": "ordinary_hgb",
+        "reference": "opponent_adjusted_ridge",
+        "mse_difference": 9.39998360444839,
+        "mae_difference": 0.2855112768348175,
+        "weeks": 74,
+        "mse_difference_interval_95": [
+          5.770394492711843,
+          13.144274265188749
+        ],
+        "mse_difference_interval_98_75": [
+          4.858144774652059,
+          14.056363516129823
+        ],
+        "mae_difference_interval_95": [
+          0.17374577442586722,
+          0.4015646105866002
+        ]
+      }
+    ]
+  },
+  "reused_2025": {
+    "games": 852,
+    "configurations": {
+      "market_only": {
+        "games": 852,
+        "mse": 239.8744131455399,
+        "rmse": 15.487879556141309,
+        "mae": 12.475352112676056,
+        "mean_error": 0.11737089201877934
+      },
+      "opponent_adjusted_ridge": {
+        "games": 852,
+        "mse": 240.98623238114092,
+        "rmse": 15.523731264781059,
+        "mae": 12.561475095288385,
+        "mean_error": -1.4131771921066636
+      },
+      "ordinary_ridge": {
+        "games": 852,
+        "mse": 242.07328386016178,
+        "rmse": 15.558704440285565,
+        "mae": 12.569058523256729,
+        "mean_error": -1.4359202843136831
+      },
+      "ordinary_hgb": {
+        "games": 852,
+        "mse": 246.94171854303588,
+        "rmse": 15.714379355960448,
+        "mae": 12.701780873872524,
+        "mean_error": -1.6118095660563982
+      }
+    },
+    "comparisons": [
+      {
+        "candidate": "ordinary_ridge",
+        "reference": "market_only",
+        "mse_difference": 2.198870714621837,
+        "mae_difference": 0.09370641058067186,
+        "weeks": 22,
+        "mse_difference_interval_95": [
+          -2.645658719207038,
+          7.590277906718474
+        ],
+        "mse_difference_interval_98_75": [
+          -3.7823216573794474,
+          9.282895735729838
+        ],
+        "mae_difference_interval_95": [
+          -0.0546616140922968,
+          0.24609801391842281
+        ]
+      },
+      {
+        "candidate": "ordinary_ridge",
+        "reference": "opponent_adjusted_ridge",
+        "mse_difference": 1.0870514790208556,
+        "mae_difference": 0.007583427968342594,
+        "weeks": 22,
+        "mse_difference_interval_95": [
+          -1.1715075267828667,
+          3.5019955889787897
+        ],
+        "mse_difference_interval_98_75": [
+          -1.6747648866527112,
+          4.205995705219356
+        ],
+        "mae_difference_interval_95": [
+          -0.0753869403766493,
+          0.0878191830552239
+        ]
+      },
+      {
+        "candidate": "ordinary_hgb",
+        "reference": "market_only",
+        "mse_difference": 7.067305397495971,
+        "mae_difference": 0.22642876119646807,
+        "weeks": 22,
+        "mse_difference_interval_95": [
+          0.8044746643924056,
+          12.79998590875682
+        ],
+        "mse_difference_interval_98_75": [
+          -1.2776350141829727,
+          14.252200192991646
+        ],
+        "mae_difference_interval_95": [
+          0.06305315066358028,
+          0.36886550932776346
+        ]
+      },
+      {
+        "candidate": "ordinary_hgb",
+        "reference": "opponent_adjusted_ridge",
+        "mse_difference": 5.95548616189499,
+        "mae_difference": 0.14030577858413879,
+        "weeks": 22,
+        "mse_difference_interval_95": [
+          1.809138570638149,
+          9.705537570666145
+        ],
+        "mse_difference_interval_98_75": [
+          0.4775211735013681,
+          10.677836183767504
+        ],
+        "mae_difference_interval_95": [
+          0.024008013762030673,
+          0.23874448007197277
+        ]
+      }
+    ]
+  },
+  "no_2026_outcomes": true,
+  "active_policy_changes": false,
+  "executable_edge_confirmed": false
+}

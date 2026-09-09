@@ -29,6 +29,11 @@ test('weather DOM separates development evidence from forward results and expire
   researchFixture.archived_2026_scoring_replay={version:'2026-priced-replay-v1',prospective_model_performance:false,exact_0630_replay:false,evaluated_at:'2026-09-09T01:22:40Z',cohorts:{connected_two_books:{snapshots:Array.from({length:14},(_,i)=>({source_sha256:`fixture-${i}`,observed_at:new Date(Date.parse('2026-08-20T13:00:00Z')+i*86400000).toISOString(),games:8})),positions:{opponent_adjusted_ridge:{bets:2,pending:2,wins:1,losses:1,pushes:0,roi:-.037037037,profit_units:-.074074074},opponent_adjusted_structural:{bets:11,pending:5,wins:5,losses:6,pushes:0,roi:-.1212995758,profit_units:-1.334295334}}}}};
   researchFixture.calibration_research={status:'reused_historical_development_only',configuration_count:6,selected_configuration:'opponent_adjusted_ridge:raw',all_ridge_variants_worse_than_raw_market_2025:true,roi_evaluated:false,credible_new_betting_edge:false,live_policy_changed:false,links:[{name:'All six configurations',url:'https://example.com/calibration'},{name:'Unsafe link',url:'javascript:alert(1)'}]};
   researchFixture.weather_shadow.original_noaa_2021_2023={...JSON.parse(fs.readFileSync(path.join(__dirname,'../../model/reports/noaa_weather_results.json'),'utf8')),combined_with_other_weather_studies:false,links:[{name:'Full NOAA results',url:'https://example.com/noaa'}]};
+  // Synthetic rendering fixture only; no real ordinary-study result is implied.
+  const ordinaryOrder=['market_only','opponent_adjusted_ridge','ordinary_ridge','ordinary_hgb'];
+  const ordinarySummary=(n,mses)=>({games:n,configurations:Object.fromEntries(ordinaryOrder.map((name,i)=>[name,{games:n,mse:mses[i],rmse:Math.sqrt(mses[i]),mae:10}]))});
+  const ordinarySelection=ordinarySummary(400,[200,195,190,205]), ordinaryCheck=ordinarySummary(100,[200,201,207,199]);
+  researchFixture.ordinary_model_research={status:'reused_development_point_prediction_study',configuration_count:4,predictor_count:58,live_policy_changes:false,roi_evaluated:false,probabilities_evaluated:false,credible_executable_edge_established:false,candidate_order:ordinaryOrder,selected_on_2021_2024:'ordinary_ridge',selection_2021_2024:ordinarySelection,reused_2025:ordinaryCheck,by_season:Object.fromEntries([2021,2022,2023,2024,2025].map(year=>[year,year===2025?ordinaryCheck:ordinarySummary(100,[200,195,190,205])])),by_market_source:{synthetic_source:{games:500}},feature_provenance:{counts:{games:5008}},links:[{name:'All four ordinary configurations',url:'https://example.com/ordinary'}]};
   const context={window:{document:doc},Date:ClockDate,Intl,URL,fetch:async url=>({ok:true,json:async()=>url.startsWith('data/research.json')?researchFixture:fixture}),setInterval:callback=>{tick=callback;}};
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context);
   await new Promise(resolve=>setImmediate(resolve));
@@ -64,6 +69,13 @@ test('weather DOM separates development evidence from forward results and expire
   assert.match(nodes.get('calibration-study-note').textContent,/All three ridge variants scored worse.*2025 market log loss/);
   assert.match(nodes.get('calibration-study-note').textContent,/no live candidate was added.*four-policy forward study is unchanged/);
   assert.equal(nodes.get('calibration-study-links').children.length,1);
+  assert.equal(nodes.get('ordinary-study').hidden,false);
+  assert.match(nodes.get('ordinary-study-note').textContent,/58 prior-game.*2021–2024 MSE chose Ordinary-stat ridge/);
+  assert.match(nodes.get('ordinary-study-note').textContent,/No probabilities, ROI test or live policy changes/);
+  for (const name of ['Market reference','Existing opponent-adjusted ridge','Ordinary-stat ridge','Ordinary-stat tree']) assert.ok(nodes.get('ordinary-study-table').textContent.includes(name));
+  assert.match(nodes.get('ordinary-study-table').textContent,/Selected using 2021–2024 only/);
+  for (const year of [2021,2022,2023,2024,2025]) assert.ok(nodes.get('ordinary-study-years').textContent.includes(String(year)));
+  assert.equal(nodes.get('ordinary-study-links').children.length,1);
   assert.equal(nodes.get('candidate-table').textContent,'Candidate evaluation metrics have not been published.');
   assert.match(nodes.get('performance-stats').textContent,/Settled paper bets0/);
   clock+=2*60*60*1000;tick();

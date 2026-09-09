@@ -288,6 +288,22 @@
       $("calibration-study-note").textContent = `Six fixed configurations tested probability scores on reused historical data. The 2022–2024 selection chose ${selected}.${comparison} No ROI test was run and no new edge was established; no live candidate was added, and the four-policy forward study is unchanged.`;
       items(study.links).forEach(report => { if (safeUrl(report.url)) $("calibration-study-links").append(link(`${report.name || "Calibration report"} ↗`, report.url)); });
     }
+    function renderOrdinaryStudy() {
+      const study = research?.ordinary_model_research;
+      const available = study?.status === "reused_development_point_prediction_study" && study?.configuration_count === 4 && study?.predictor_count === 58 && study?.live_policy_changes === false && study?.roi_evaluated === false && study?.probabilities_evaluated === false && study?.credible_executable_edge_established === false;
+      $("ordinary-study").hidden = !available;
+      for (const id of ["ordinary-study-note", "ordinary-study-coverage", "ordinary-study-table", "ordinary-study-years", "ordinary-study-sources", "ordinary-study-links"]) $(id).replaceChildren();
+      if (!available) return;
+      const names = {market_only:"Market reference",opponent_adjusted_ridge:"Existing opponent-adjusted ridge",ordinary_ridge:"Ordinary-stat ridge",ordinary_hgb:"Ordinary-stat tree"}, order = items(study.candidate_order);
+      const selection = study.selection_2021_2024 || {}, last = study.reused_2025 || {}, provenance = study.feature_provenance || {};
+      const outcome = study.new_models_higher_mse_than_both_references_in_both_periods ? " Both new models had higher MSE than both references in each period; this study did not justify replacing the current model." : "";
+      $("ordinary-study-note").textContent = `Two models using 58 prior-game and context predictors were compared with the market reference and existing ridge: four fixed configurations. Selection on 2021–2024 MSE chose ${names[study.selected_on_2021_2024] || titleCase(study.selected_on_2021_2024)}.${outcome} All four 2025 results remain a reused-development check. No probabilities, ROI test or live policy changes were produced.`;
+      $("ordinary-study-coverage").textContent = `${number(provenance.counts?.games, 0)} repaired feature rows · ${number(selection.games, 0)} common 2021–2024 selection games · ${number(last.games, 0)} common 2025 check games. Prior observations use a kickoff-plus-six-hours availability proxy and a weekly cutoff; original publication timing remains unverified.`;
+      table($("ordinary-study-table"), "All four fixed ordinary-stat configurations in both evaluation periods", ["Configuration", {label:"2021–24 MSE",numeric:true}, {label:"2025 MSE",numeric:true}, {label:"2025 RMSE",numeric:true}, {label:"2025 MAE",numeric:true}], order.map(name => {const a=selection.configurations?.[name] || {}, b=last.configurations?.[name] || {}; return [cell(names[name] || titleCase(name), name === study.selected_on_2021_2024 ? "Selected using 2021–2024 only" : null), cell(number(a.mse, 3), null, "numeric"), cell(number(b.mse, 3), null, "numeric"), cell(number(b.rmse, 3), null, "numeric"), cell(number(b.mae, 3), null, "numeric")];}));
+      table($("ordinary-study-years"), "Every annual ordinary-stat MSE comparison on identical games", ["Year", {label:"Games",numeric:true}, ...order.map(name=>({label:`${names[name] || titleCase(name)} MSE`,numeric:true}))], Object.entries(study.by_season || {}).sort(([a],[b])=>a.localeCompare(b)).map(([year,row])=>[cell(year),cell(number(row.games,0),null,"numeric"),...order.map(name=>cell(number(row.configurations?.[name]?.mse,3),null,"numeric"))]));
+      $("ordinary-study-sources").textContent = `All-period source counts: ${Object.entries(study.by_market_source || {}).map(([source,row])=>`${titleCase(source)} ${number(row.games,0)}`).join("; ")}. ${study.by_market_source_scope || "Source and era effects may be entangled."} Detailed scores for every source and period are linked below; no favorable source is selected.`;
+      items(study.links).forEach(report => { if (safeUrl(report.url)) $("ordinary-study-links").append(link(`${report.name || "Ordinary-stat report"} ↗`, report.url)); });
+    }
     function renderArchivedReplay() {
       const replay = research?.archived_2026_scoring_replay, cohorts = Object.entries(replay?.cohorts || {});
       const available = replay?.prospective_model_performance === false && replay?.exact_0630_replay === false && cohorts.length > 0;
@@ -331,11 +347,11 @@
     function render(data) {
       board = data;
       $("edition-date").textContent = new Intl.DateTimeFormat("en-US", {timeZone: ZONE, weekday: "long", month: "long", day: "numeric", year: "numeric"}).format(new Date());
-      renderPicks(new Date()); renderCandidates(); renderCalibrationStudy(); renderArchivedReplay(); renderPerformance(); renderTransparency();
+      renderPicks(new Date()); renderCandidates(); renderCalibrationStudy(); renderOrdinaryStudy(); renderArchivedReplay(); renderPerformance(); renderTransparency();
     }
     $("candidate-filter").addEventListener("change", renderForecasts);
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
-    fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderCalibrationStudy(); renderArchivedReplay();}}).catch(() => {});
+    fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderCalibrationStudy(); renderOrdinaryStudy(); renderArchivedReplay();}}).catch(() => {});
     setInterval(() => { if (board) renderPicks(new Date()); }, 60000);
   }
   return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};

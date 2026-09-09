@@ -234,6 +234,95 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'settlement'):
             PUBLISH.noaa_summary(result['pooled'])
 
+    def synthetic_ordinary_reports(self):
+        """Temporary invented unit-test numbers, never copied into public data."""
+        order = list(PUBLISH.ORDINARY_CONFIGURATIONS)
+        def summary(n, mses):
+            scores = {name: {'games': n, 'mse': mse, 'rmse': mse**.5, 'mae': mse**.5*.8, 'mean_error': 0.}
+                      for name, mse in zip(order, mses)}
+            return {'games': n, 'configurations': scores, 'comparisons': [
+                {'candidate': a, 'reference': b, 'games': n, 'calendar_week_blocks': 5,
+                 'mse_difference': scores[a]['mse']-scores[b]['mse'],
+                 'mae_difference': scores[a]['mae']-scores[b]['mae'],
+                 'mse_difference_interval_95': [-20., 20.], 'mse_difference_interval_98_75': [-30., 30.],
+                 'mae_difference_interval_95': [-2., 2.]}
+                for a, b in sorted(PUBLISH.ORDINARY_COMPARISONS)]}
+        protocol = self.reports/'ORDINARY_MODEL_RESEARCH_PLAN.md'
+        protocol.write_text('Synthetic test-only specification; not an experiment result.')
+        columns = [f'synthetic_feature_{i}' for i in range(58)]
+        plan = {'feature_columns': columns, 'candidate_order': order, 'selection_years': [2021, 2022, 2023, 2024],
+                'source_files_sha256': {'reports/ORDINARY_MODEL_RESEARCH_PLAN.md': hashlib.sha256(protocol.read_bytes()).hexdigest()},
+                'feature_manifest': {'counts': {'games': 5008}, 'feature_contract': {'availability_proxy': 'synthetic fixture'}}}
+        plan['plan_sha256'] = hashlib.sha256(json.dumps(plan, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        a, b = [200., 195., 190., 205.], [200., 201., 207., 199.]
+        selection, last = summary(400, a), summary(100, b)
+        result = {'version': 'synthetic-test-only', 'status': 'reused_development_point_prediction_study',
+                  'evaluated_at': '2026-09-09T00:00:00Z', 'plan_sha256': plan['plan_sha256'],
+                  'source_files_sha256': plan['source_files_sha256'], 'feature_columns': columns,
+                  'candidate_order': order, 'primary_metric': 'mse', 'no_2026_outcomes': True,
+                  'live_policy_changes': False, 'credible_executable_edge_established': False,
+                  'prediction_file_sha256': 'synthetic', 'selected_on_2021_2024': 'ordinary_ridge',
+                  'selection_2021_2024': selection, 'reused_2025': last,
+                  'by_season': {**{str(y): summary(100, a) for y in (2021, 2022, 2023, 2024)}, '2025': last},
+                  'by_market_source': {'synthetic_source': summary(500, [(4*x+y)/5 for x,y in zip(a,b)])},
+                  'by_market_source_scope': 'Synthetic fixture only',
+                  'by_period_and_market_source': {'selection_2021_2024': {'synthetic_source': selection}, 'reused_2025': {'synthetic_source': last}},
+                  'limitations': ['Synthetic unit-test data only']}
+        (self.reports/'ordinary_model_research_plan.json').write_text(json.dumps(plan))
+        (self.reports/'ordinary_model_research_results.json').write_text(json.dumps(result))
+        (self.reports/'ordinary_model_research_results.md').write_text('Synthetic unit-test report only.')
+        return result
+
+    def test_ordinary_hook_preserves_four_configs_and_pre2025_choice_without_live_addition(self):
+        original = self.synthetic_ordinary_reports()
+        bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])
+        study = bundle['ordinary_model_research']
+        self.assertEqual(study['selected_on_2021_2024'], 'ordinary_ridge')
+        self.assertEqual(study['selection_2021_2024'], original['selection_2021_2024'])
+        self.assertEqual(study['reused_2025'], original['reused_2025'])
+        self.assertEqual(len(study['candidate_order']), 4)
+        self.assertEqual(len(study['by_season']), 5)
+        self.assertFalse(study['live_policy_changes'])
+        self.assertFalse(study['probabilities_evaluated'])
+        self.assertFalse(study['roi_evaluated'])
+        self.assertNotIn('ordinary_ridge', bundle['reports'][PUBLISH.PRIMARY]['pooled'])
+
+    def test_ordinary_rejects_omitted_models_years_and_post2025_winner_substitution(self):
+        original = self.synthetic_ordinary_reports()
+        path = self.reports/'ordinary_model_research_results.json'
+        for mutation, expected in [('model', 'all four'), ('year', 'all five'), ('winner', 'pre-2025 MSE')]:
+            result = json.loads(json.dumps(original))
+            if mutation == 'model': del result['reused_2025']['configurations']['ordinary_ridge']
+            elif mutation == 'year': del result['by_season']['2023']
+            else: result['selected_on_2021_2024'] = 'ordinary_hgb'
+            path.write_text(json.dumps(result))
+            with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, expected):
+                PUBLISH.build_outputs(self.root)
+
+    def test_ordinary_rejects_stale_protocol_and_stays_absent_until_results_exist(self):
+        bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])
+        self.assertIsNone(bundle['ordinary_model_research'])
+        self.synthetic_ordinary_reports()
+        (self.reports/'ORDINARY_MODEL_RESEARCH_PLAN.md').write_text('A changed synthetic plan.')
+        with self.assertRaisesRegex(ValueError, 'source/protocol hashes are stale'):
+            PUBLISH.build_outputs(self.root)
+
+    def test_completed_ordinary_result_keeps_negative_comparison_and_all_configurations(self):
+        fixture = SCRIPTS.parent/'model/reports'
+        for name in ('ordinary_model_research_results.json', 'ordinary_model_research_results.md',
+                     'ordinary_model_research_plan.json', 'ORDINARY_MODEL_RESEARCH_PLAN.md'):
+            (self.reports/name).write_bytes((fixture/name).read_bytes())
+        bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])
+        study = bundle['ordinary_model_research']
+        self.assertTrue(study['new_models_higher_mse_than_both_references_in_both_periods'])
+        self.assertEqual(study['selected_on_2021_2024'], 'opponent_adjusted_ridge')
+        self.assertEqual(study['selection_2021_2024']['games'], 3061)
+        self.assertEqual(study['reused_2025']['games'], 852)
+        self.assertEqual(len(study['selection_2021_2024']['comparisons']), 4)
+        self.assertEqual(len(study['reused_2025']['configurations']), 4)
+        self.assertEqual(set(study['by_period_and_market_source']), {'selection_2021_2024', 'reused_2025'})
+        self.assertFalse(study['live_policy_changes'])
+
 
 if __name__ == '__main__':
     unittest.main()

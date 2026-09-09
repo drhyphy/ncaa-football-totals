@@ -30,6 +30,8 @@ LABELS = {
     "opponent_adjusted_ridge": "Opponent-adjusted ridge",
     "opponent_adjusted_structural": "Opponent-adjusted structural",
 }
+ORDINARY_CONFIGURATIONS = ('market_only', 'opponent_adjusted_ridge', 'ordinary_ridge', 'ordinary_hgb')
+ORDINARY_COMPARISONS = {(new, base) for new in ORDINARY_CONFIGURATIONS[2:] for base in ORDINARY_CONFIGURATIONS[:2]}
 
 
 def percent(value):
@@ -77,6 +79,30 @@ def noaa_summary(summary):
             'rule_minus_all_under_roi_99_paired_week_bootstrap', 'active_week_cluster_t',
             'leave_one_week_out_roi_range')
     return {key: summary[key] for key in keys}
+
+
+def ordinary_summary(summary, compact=False):
+    scores = summary['configurations']
+    if set(scores) != set(ORDINARY_CONFIGURATIONS):
+        raise ValueError('Ordinary study must retain all four configurations')
+    n = summary['games']
+    if type(n) is not int or n <= 0:
+        raise ValueError('Ordinary study requires a nonempty common game cohort')
+    for name, row in scores.items():
+        if row.get('games') != n or any(not isinstance(row.get(key), (int, float)) or not math.isfinite(row[key]) for key in ('mse', 'rmse', 'mae', 'mean_error')):
+            raise ValueError('Ordinary configurations must use the same finite-score cohort')
+        if row['mse'] < 0 or row['mae'] < 0 or row['rmse'] < 0 or not math.isclose(row['rmse']**2, row['mse'], abs_tol=1e-8):
+            raise ValueError('Ordinary MSE/RMSE metrics disagree')
+    comparisons = summary['comparisons']
+    if len(comparisons) != 4 or {(row['candidate'], row['reference']) for row in comparisons} != ORDINARY_COMPARISONS:
+        raise ValueError('Ordinary study must retain all four paired comparisons')
+    for row in comparisons:
+        if row['games'] != n or any(not math.isclose(row[key+'_difference'], scores[row['candidate']][key]-scores[row['reference']][key], abs_tol=1e-8) for key in ('mse', 'mae')):
+            raise ValueError('Ordinary paired comparisons differ from reported scores')
+    result = {'games': n, 'configurations': {name: scores[name] for name in ORDINARY_CONFIGURATIONS}}
+    if not compact:
+        result['comparisons'] = comparisons
+    return result
 
 
 def render_opponent_report(primary):
@@ -404,6 +430,66 @@ def build_outputs(root):
         if (reports / "CALIBRATION_RESEARCH_AUDIT.md").exists():
             read_bytes("CALIBRATION_RESEARCH_AUDIT.md")
             calibration["links"].append({"name": "Independent calibration audit", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/CALIBRATION_RESEARCH_AUDIT.md"})
+    ordinary = None
+    if (reports/'ordinary_model_research_results.json').exists():
+        result, plan = read('ordinary_model_research_results.json'), read('ordinary_model_research_plan.json')
+        read_bytes('ORDINARY_MODEL_RESEARCH_PLAN.md')
+        read_bytes('ordinary_model_research_results.md')
+        body = {key: value for key, value in plan.items() if key != 'plan_sha256'}
+        plan_hash = hashlib.sha256(json.dumps(body, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+        if plan.get('plan_sha256') != plan_hash or result.get('plan_sha256') != plan_hash:
+            raise ValueError('Ordinary result does not match its frozen plan')
+        if result.get('source_files_sha256') != plan.get('source_files_sha256') or plan.get('source_files_sha256', {}).get('reports/ORDINARY_MODEL_RESEARCH_PLAN.md') != inputs['model/reports/ORDINARY_MODEL_RESEARCH_PLAN.md']:
+            raise ValueError('Ordinary source/protocol hashes are stale')
+        if result.get('feature_columns') != plan.get('feature_columns') or len(plan.get('feature_columns', [])) != 58 or len(set(plan['feature_columns'])) != 58:
+            raise ValueError('Ordinary study changed its fixed 58-predictor contract')
+        if result.get('candidate_order') != list(ORDINARY_CONFIGURATIONS) or plan.get('candidate_order') != list(ORDINARY_CONFIGURATIONS) or result.get('primary_metric') != 'mse' or plan.get('selection_years') != [2021, 2022, 2023, 2024]:
+            raise ValueError('Ordinary study configuration or selection contract changed')
+        if result.get('status') != 'reused_development_point_prediction_study' or result.get('no_2026_outcomes') is not True or result.get('live_policy_changes') is not False or result.get('credible_executable_edge_established') is not False:
+            raise ValueError('Ordinary point-prediction study cannot become live betting evidence')
+        selection, last = ordinary_summary(result['selection_2021_2024']), ordinary_summary(result['reused_2025'])
+        selected = min(ORDINARY_CONFIGURATIONS, key=lambda name: selection['configurations'][name]['mse'])
+        if result.get('selected_on_2021_2024') != selected:
+            raise ValueError('Ordinary study selection must use pre-2025 MSE')
+        if set(result.get('by_season', {})) != {'2021', '2022', '2023', '2024', '2025'}:
+            raise ValueError('Ordinary publication must retain all five years')
+        years = {year: ordinary_summary(row, compact=True) for year, row in sorted(result['by_season'].items())}
+        sources = {source: ordinary_summary(row, compact=True) for source, row in sorted(result['by_market_source'].items())}
+        period_sources = {period: {source: ordinary_summary(row, compact=True) for source, row in sorted(rows.items())}
+                          for period, rows in result['by_period_and_market_source'].items()}
+        if set(period_sources) != {'selection_2021_2024', 'reused_2025'}:
+            raise ValueError('Ordinary source breakdown must retain both periods')
+        if sum(row['games'] for row in years.values()) != selection['games']+last['games'] or sum(row['games'] for row in sources.values()) != selection['games']+last['games']:
+            raise ValueError('Ordinary source/year coverage does not match scored periods')
+        for label, period in (('selection_2021_2024', selection), ('reused_2025', last)):
+            selected_years = [row for year, row in years.items() if (year == '2025') == (label == 'reused_2025')]
+            if sum(row['games'] for row in selected_years) != period['games'] or sum(row['games'] for row in period_sources[label].values()) != period['games']:
+                raise ValueError('Ordinary period coverage changed')
+        manifest = plan['feature_manifest']
+        ordinary = {'version': result['version'], 'status': result['status'], 'evaluated_at': result['evaluated_at'],
+            'plan_sha256': plan_hash, 'prediction_file_sha256': result['prediction_file_sha256'],
+            'configuration_count': 4, 'candidate_order': list(ORDINARY_CONFIGURATIONS), 'predictor_count': 58,
+            'primary_metric': 'mse', 'selected_on_2021_2024': selected,
+            'selection_2021_2024': selection, 'reused_2025': last, 'by_season': years,
+            'new_models_higher_mse_than_both_references_in_both_periods': all(
+                comparison['mse_difference'] > 0 for period in (selection, last) for comparison in period['comparisons']),
+            'by_market_source': sources, 'by_market_source_scope': result['by_market_source_scope'],
+            'by_period_and_market_source': period_sources,
+            'feature_provenance': {key: manifest.get(key) for key in ('version', 'feature_contract_sha256', 'feature_fingerprint', 'cache_data_fingerprint', 'cache_sha256', 'history_sha256', 'counts')},
+            'feature_contract': manifest['feature_contract'], 'no_2026_outcomes': True,
+            'live_policy_changes': False, 'probabilities_evaluated': False, 'roi_evaluated': False,
+            'credible_executable_edge_established': False, 'limitations': result['limitations'],
+            'links': [{'name': label, 'url': 'https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/'+filename}
+                      for label, filename in (('All four ordinary-stat configurations', 'ordinary_model_research_results.md'),
+                                              ('Annual/source scores and paired intervals', 'ordinary_model_research_results.json'),
+                                              ('Fixed ordinary-stat research plan', 'ORDINARY_MODEL_RESEARCH_PLAN.md'))]}
+        for filename, label in (('ORDINARY_MODEL_RESEARCH_AUDIT.md', 'Independent ordinary-stat study audit'),
+                                ('ORDINARY_MODEL_PREFIT_AUDIT.md', 'Independent audit before fitting'),
+                                ('ORDINARY_MODEL_RESULTS_AUDIT.md', 'Independent ordinary-stat results audit'),
+                                ('RICH_FEATURE_REUSE_AUDIT.md', 'Feature reuse and timing audit')):
+            if (reports/filename).exists():
+                read_bytes(filename)
+                ordinary['links'].append({'name': label, 'url': 'https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/'+filename})
     protocol = None
     protocol_path = reports / "PROSPECTIVE_EVALUATION_PROTOCOL.md"
     if protocol_path.exists():
@@ -432,6 +518,7 @@ def build_outputs(root):
         "weather_shadow": weather,
         "archived_2026_scoring_replay": archived_replay,
         "calibration_research": calibration,
+        "ordinary_model_research": ordinary,
         "prospective_evaluation_protocol": protocol,
         "limitations": [
             "All 2019–2025 periods have been reused in development; no untouched historical test is claimed.",

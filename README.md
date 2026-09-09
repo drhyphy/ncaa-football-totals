@@ -23,6 +23,10 @@ See [the primary-source audit](model/reports/espn_market_timing_audit.md), [oppo
 
 The [fixed six-configuration probability experiment](model/reports/calibration_research_results.md) did not justify replacing the current model: the 2022–2024 selection chose raw ridge, and every ridge variant scored worse than the raw market reference in the reused 2025 check. No ROI-based selection or new live candidate was introduced.
 
+The separate [58-predictor ordinary-statistics ridge/tree study](model/reports/ordinary_model_research_results.md) also did not justify a replacement. Selection on 2021–2024 MSE chose the existing opponent-adjusted ridge. Both new models had higher MSE than the market and existing ridge in the 3,061-game selection period and the 852-game reused 2025 check. All four configurations and annual/source comparisons are retained. No probabilities, ROI test or live policy changes were produced.
+
+A [weather-revision collection feasibility study](model/reports/WEATHER_REVISION_CAPTURE_FEASIBILITY.md) identifies the next data gap: original forecast runs paired with newly received prices during the week before kickoff. That separate archive is proposed, not implemented; it supplies no additional performance evidence yet.
+
 ## Prospective evaluation
 
 The [fixed evaluation protocol](model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md) covers September 9, 2026–January 31, 2027 games and sets February 8, 2027 as the evaluation date for the four current policies. Running results remain descriptive, with no interim promotion; historical results and reconstructed replays are excluded.

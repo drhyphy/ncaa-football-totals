@@ -2737,6 +2737,1053 @@
       }
     ]
   },
+  "ordinary_model_research": {
+    "version": "repaired-ordinary-stat-comparison-v1",
+    "status": "reused_development_point_prediction_study",
+    "evaluated_at": "2026-09-09T02:45:40.756310+00:00",
+    "plan_sha256": "c74130cef9ec2ed994f3cb75f58fc354c9639323c06590eea43d6208bc82a150",
+    "prediction_file_sha256": "c9d1504b1c21a2db48072f1a4ca2fb33fbf0ad11a3f0e08aebae90bf15d28ca6",
+    "configuration_count": 4,
+    "candidate_order": [
+      "market_only",
+      "opponent_adjusted_ridge",
+      "ordinary_ridge",
+      "ordinary_hgb"
+    ],
+    "predictor_count": 58,
+    "primary_metric": "mse",
+    "selected_on_2021_2024": "opponent_adjusted_ridge",
+    "selection_2021_2024": {
+      "games": 3061,
+      "configurations": {
+        "market_only": {
+          "games": 3061,
+          "mse": 251.49346618752043,
+          "rmse": 15.858545525599768,
+          "mae": 12.516171185886964,
+          "mean_error": 0.6608951323097028
+        },
+        "opponent_adjusted_ridge": {
+          "games": 3061,
+          "mse": 250.42811685533022,
+          "rmse": 15.824920753524493,
+          "mae": 12.498978679028971,
+          "mean_error": 0.11222282054556082
+        },
+        "ordinary_ridge": {
+          "games": 3061,
+          "mse": 255.8827778304241,
+          "rmse": 15.996336387761545,
+          "mae": 12.665197643739479,
+          "mean_error": 0.6487230209856529
+        },
+        "ordinary_hgb": {
+          "games": 3061,
+          "mse": 259.82810045977857,
+          "rmse": 16.119184236796183,
+          "mae": 12.784489955863783,
+          "mean_error": -0.06621393350078776
+        }
+      },
+      "comparisons": [
+        {
+          "candidate": "ordinary_ridge",
+          "reference": "market_only",
+          "games": 3061,
+          "calendar_week_blocks": 74,
+          "mse_difference": 4.389311642903678,
+          "mae_difference": 0.14902645785251376,
+          "mse_difference_interval_95": [
+            0.9617484424307597,
+            7.895710712029101
+          ],
+          "mse_difference_interval_98_75": [
+            0.06699544756316013,
+            9.059818748192015
+          ],
+          "mae_difference_interval_95": [
+            0.05162263832869481,
+            0.24801239325627752
+          ],
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909
+        },
+        {
+          "candidate": "ordinary_ridge",
+          "reference": "opponent_adjusted_ridge",
+          "games": 3061,
+          "calendar_week_blocks": 74,
+          "mse_difference": 5.454660975093872,
+          "mae_difference": 0.16621896471051034,
+          "mse_difference_interval_95": [
+            2.7003381644558204,
+            8.243431361513945
+          ],
+          "mse_difference_interval_98_75": [
+            1.943816803024847,
+            9.084112367398477
+          ],
+          "mae_difference_interval_95": [
+            0.08549052468440296,
+            0.2502312018245414
+          ],
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909
+        },
+        {
+          "candidate": "ordinary_hgb",
+          "reference": "market_only",
+          "games": 3061,
+          "calendar_week_blocks": 74,
+          "mse_difference": 8.334634272258198,
+          "mae_difference": 0.26831876997682086,
+          "mse_difference_interval_95": [
+            3.982830921143723,
+            12.850213172596467
+          ],
+          "mse_difference_interval_98_75": [
+            2.6541982931156873,
+            14.018341114943638
+          ],
+          "mae_difference_interval_95": [
+            0.14397740483896568,
+            0.3973472895089927
+          ],
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909
+        },
+        {
+          "candidate": "ordinary_hgb",
+          "reference": "opponent_adjusted_ridge",
+          "games": 3061,
+          "calendar_week_blocks": 74,
+          "mse_difference": 9.39998360444839,
+          "mae_difference": 0.2855112768348175,
+          "mse_difference_interval_95": [
+            5.7703944927118425,
+            13.14427426518875
+          ],
+          "mse_difference_interval_98_75": [
+            4.858144774652062,
+            14.056363516129824
+          ],
+          "mae_difference_interval_95": [
+            0.17374577442586717,
+            0.4015646105866001
+          ],
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909
+        }
+      ]
+    },
+    "reused_2025": {
+      "games": 852,
+      "configurations": {
+        "market_only": {
+          "games": 852,
+          "mse": 239.8744131455399,
+          "rmse": 15.487879556141309,
+          "mae": 12.475352112676056,
+          "mean_error": 0.11737089201877934
+        },
+        "opponent_adjusted_ridge": {
+          "games": 852,
+          "mse": 240.9862323811409,
+          "rmse": 15.523731264781057,
+          "mae": 12.561475095288385,
+          "mean_error": -1.4131771921066636
+        },
+        "ordinary_ridge": {
+          "games": 852,
+          "mse": 242.07328386016172,
+          "rmse": 15.558704440285563,
+          "mae": 12.569058523256729,
+          "mean_error": -1.4359202843136831
+        },
+        "ordinary_hgb": {
+          "games": 852,
+          "mse": 246.94171854303588,
+          "rmse": 15.714379355960448,
+          "mae": 12.701780873872524,
+          "mean_error": -1.6118095660563982
+        }
+      },
+      "comparisons": [
+        {
+          "candidate": "ordinary_ridge",
+          "reference": "market_only",
+          "games": 852,
+          "calendar_week_blocks": 22,
+          "mse_difference": 2.198870714621837,
+          "mae_difference": 0.09370641058067186,
+          "mse_difference_interval_95": [
+            -2.645658719207038,
+            7.590277906718476
+          ],
+          "mse_difference_interval_98_75": [
+            -3.782321657379448,
+            9.282895735729841
+          ],
+          "mae_difference_interval_95": [
+            -0.0546616140922968,
+            0.24609801391842287
+          ],
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909
+        },
+        {
+          "candidate": "ordinary_ridge",
+          "reference": "opponent_adjusted_ridge",
+          "games": 852,
+          "calendar_week_blocks": 22,
+          "mse_difference": 1.0870514790208556,
+          "mae_difference": 0.007583427968342594,
+          "mse_difference_interval_95": [
+            -1.1715075267828674,
+            3.501995588978789
+          ],
+          "mse_difference_interval_98_75": [
+            -1.6747648866527118,
+            4.2059957052193555
+          ],
+          "mae_difference_interval_95": [
+            -0.07538694037664931,
+            0.08781918305522395
+          ],
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909
+        },
+        {
+          "candidate": "ordinary_hgb",
+          "reference": "market_only",
+          "games": 852,
+          "calendar_week_blocks": 22,
+          "mse_difference": 7.067305397495971,
+          "mae_difference": 0.22642876119646807,
+          "mse_difference_interval_95": [
+            0.8044746643924037,
+            12.799985908756819
+          ],
+          "mse_difference_interval_98_75": [
+            -1.277635014182974,
+            14.25220019299164
+          ],
+          "mae_difference_interval_95": [
+            0.06305315066358026,
+            0.36886550932776346
+          ],
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909
+        },
+        {
+          "candidate": "ordinary_hgb",
+          "reference": "opponent_adjusted_ridge",
+          "games": 852,
+          "calendar_week_blocks": 22,
+          "mse_difference": 5.95548616189499,
+          "mae_difference": 0.14030577858413879,
+          "mse_difference_interval_95": [
+            1.809138570638149,
+            9.705537570666145
+          ],
+          "mse_difference_interval_98_75": [
+            0.477521173501368,
+            10.677836183767502
+          ],
+          "mae_difference_interval_95": [
+            0.024008013762030673,
+            0.2387444800719728
+          ],
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909
+        }
+      ]
+    },
+    "by_season": {
+      "2021": {
+        "games": 734,
+        "configurations": {
+          "market_only": {
+            "games": 734,
+            "mse": 252.94550408719346,
+            "rmse": 15.904260563987043,
+            "mae": 12.452316076294277,
+            "mean_error": -0.7656675749318801
+          },
+          "opponent_adjusted_ridge": {
+            "games": 734,
+            "mse": 254.36310876144353,
+            "rmse": 15.948765117131908,
+            "mae": 12.476175304018078,
+            "mean_error": -1.4439793893091293
+          },
+          "ordinary_ridge": {
+            "games": 734,
+            "mse": 264.9007242548631,
+            "rmse": 16.2757710801935,
+            "mae": 12.775169661565123,
+            "mean_error": -0.46959772714358355
+          },
+          "ordinary_hgb": {
+            "games": 734,
+            "mse": 275.5387774740938,
+            "rmse": 16.599360754983724,
+            "mae": 13.153786958619579,
+            "mean_error": -2.355537059802001
+          }
+        }
+      },
+      "2022": {
+        "games": 734,
+        "configurations": {
+          "market_only": {
+            "games": 734,
+            "mse": 237.2735013623978,
+            "rmse": 15.403684668364184,
+            "mae": 12.048365122615804,
+            "mean_error": -0.01430517711171662
+          },
+          "opponent_adjusted_ridge": {
+            "games": 734,
+            "mse": 238.8872185439328,
+            "rmse": 15.45597679035307,
+            "mae": 12.077226887829578,
+            "mean_error": 0.011750487713867622
+          },
+          "ordinary_ridge": {
+            "games": 734,
+            "mse": 246.3962116865281,
+            "rmse": 15.697012826857474,
+            "mae": 12.329942093371386,
+            "mean_error": 1.462474755244023
+          },
+          "ordinary_hgb": {
+            "games": 734,
+            "mse": 250.12513592753393,
+            "rmse": 15.815344951265967,
+            "mae": 12.371525527484032,
+            "mean_error": 0.7307818129967589
+          }
+        }
+      },
+      "2023": {
+        "games": 795,
+        "configurations": {
+          "market_only": {
+            "games": 795,
+            "mse": 249.67704402515724,
+            "rmse": 15.801172235791787,
+            "mae": 12.722641509433963,
+            "mean_error": 1.5314465408805031
+          },
+          "opponent_adjusted_ridge": {
+            "games": 795,
+            "mse": 247.71035215611656,
+            "rmse": 15.738816733036717,
+            "mae": 12.68782946296101,
+            "mean_error": 1.4526932321987946
+          },
+          "ordinary_ridge": {
+            "games": 795,
+            "mse": 250.25646329245183,
+            "rmse": 15.819496303373626,
+            "mae": 12.765766954781343,
+            "mean_error": 1.6490301564124346
+          },
+          "ordinary_hgb": {
+            "games": 795,
+            "mse": 248.55072675049635,
+            "rmse": 15.765491643158368,
+            "mae": 12.740696866255496,
+            "mean_error": 1.1219923594635552
+          }
+        }
+      },
+      "2024": {
+        "games": 798,
+        "configurations": {
+          "market_only": {
+            "games": 798,
+            "mse": 265.046992481203,
+            "rmse": 16.28026389470401,
+            "mae": 12.799498746867167,
+            "mean_error": 1.7268170426065164
+          },
+          "opponent_adjusted_ridge": {
+            "games": 798,
+            "mse": 260.1315732931165,
+            "rmse": 16.128594895188996,
+            "mae": 12.7197394794956,
+            "mean_error": 0.3006001852917812
+          },
+          "ordinary_ridge": {
+            "games": 798,
+            "mse": 261.9189769930423,
+            "rmse": 16.183911053668155,
+            "mae": 12.772222093122782,
+            "mean_error": -0.0676811350081759
+          },
+          "ordinary_hgb": {
+            "games": 798,
+            "mse": 265.5371870976729,
+            "rmse": 16.29531181345337,
+            "mae": 12.868283685997342,
+            "mean_error": 0.12268869039550082
+          }
+        }
+      },
+      "2025": {
+        "games": 852,
+        "configurations": {
+          "market_only": {
+            "games": 852,
+            "mse": 239.8744131455399,
+            "rmse": 15.487879556141309,
+            "mae": 12.475352112676056,
+            "mean_error": 0.11737089201877934
+          },
+          "opponent_adjusted_ridge": {
+            "games": 852,
+            "mse": 240.9862323811409,
+            "rmse": 15.523731264781057,
+            "mae": 12.561475095288385,
+            "mean_error": -1.4131771921066636
+          },
+          "ordinary_ridge": {
+            "games": 852,
+            "mse": 242.07328386016172,
+            "rmse": 15.558704440285563,
+            "mae": 12.569058523256729,
+            "mean_error": -1.4359202843136831
+          },
+          "ordinary_hgb": {
+            "games": 852,
+            "mse": 246.94171854303588,
+            "rmse": 15.714379355960448,
+            "mae": 12.701780873872524,
+            "mean_error": -1.6118095660563982
+          }
+        }
+      }
+    },
+    "new_models_higher_mse_than_both_references_in_both_periods": true,
+    "by_market_source": {
+      "cfbd_Bovada": {
+        "games": 15,
+        "configurations": {
+          "market_only": {
+            "games": 15,
+            "mse": 195.55,
+            "rmse": 13.983919336151793,
+            "mae": 11.366666666666667,
+            "mean_error": 2.5
+          },
+          "opponent_adjusted_ridge": {
+            "games": 15,
+            "mse": 192.01485237085905,
+            "rmse": 13.856942388956485,
+            "mae": 10.93755946398439,
+            "mean_error": 2.0980378173710514
+          },
+          "ordinary_ridge": {
+            "games": 15,
+            "mse": 194.3401343031459,
+            "rmse": 13.940593039865481,
+            "mae": 11.442785645842525,
+            "mean_error": 3.4116903032513504
+          },
+          "ordinary_hgb": {
+            "games": 15,
+            "mse": 246.13294140178638,
+            "rmse": 15.688624586042792,
+            "mae": 12.377122469292093,
+            "mean_error": 3.0246455235581777
+          }
+        }
+      },
+      "cfbd_consensus": {
+        "games": 1484,
+        "configurations": {
+          "market_only": {
+            "games": 1484,
+            "mse": 246.80592991913747,
+            "rmse": 15.71005824047567,
+            "mae": 12.31132075471698,
+            "mean_error": -0.3935309973045822
+          },
+          "opponent_adjusted_ridge": {
+            "games": 1484,
+            "mse": 248.30800112007012,
+            "rmse": 15.757791759001961,
+            "mae": 12.341482965477107,
+            "mean_error": -0.703034527654722
+          },
+          "ordinary_ridge": {
+            "games": 1484,
+            "mse": 257.5040304988365,
+            "rmse": 16.046932121088958,
+            "mae": 12.618336039319692,
+            "mean_error": 0.5132148766163885
+          },
+          "ordinary_hgb": {
+            "games": 1484,
+            "mse": 264.2362137266532,
+            "rmse": 16.255344158972864,
+            "mae": 12.817120405480992,
+            "mean_error": -0.7996883342501762
+          }
+        }
+      },
+      "espn_nonlive_provider_100": {
+        "games": 47,
+        "configurations": {
+          "market_only": {
+            "games": 47,
+            "mse": 341.73936170212767,
+            "rmse": 18.48619381327935,
+            "mae": 15.138297872340425,
+            "mean_error": -0.9680851063829787
+          },
+          "opponent_adjusted_ridge": {
+            "games": 47,
+            "mse": 341.3642962965971,
+            "rmse": 18.476046554839513,
+            "mae": 15.324685665346706,
+            "mean_error": -2.270819555457061
+          },
+          "ordinary_ridge": {
+            "games": 47,
+            "mse": 345.84325214488433,
+            "rmse": 18.596861351983144,
+            "mae": 15.280776193031793,
+            "mean_error": -2.604410441903645
+          },
+          "ordinary_hgb": {
+            "games": 47,
+            "mse": 347.08055161394276,
+            "rmse": 18.63009800333704,
+            "mae": 15.51524216945369,
+            "mean_error": -3.410863985176946
+          }
+        }
+      },
+      "espn_nonlive_provider_40": {
+        "games": 13,
+        "configurations": {
+          "market_only": {
+            "games": 13,
+            "mse": 305.86538461538464,
+            "rmse": 17.489007536603804,
+            "mae": 11.961538461538462,
+            "mean_error": 5.346153846153846
+          },
+          "opponent_adjusted_ridge": {
+            "games": 13,
+            "mse": 300.697930266459,
+            "rmse": 17.340643882695332,
+            "mae": 12.053100979189894,
+            "mean_error": 4.612774557940532
+          },
+          "ordinary_ridge": {
+            "games": 13,
+            "mse": 291.6455335988855,
+            "rmse": 17.077632552519844,
+            "mae": 11.983122245510097,
+            "mean_error": 4.423037878886334
+          },
+          "ordinary_hgb": {
+            "games": 13,
+            "mse": 261.89226246082563,
+            "rmse": 16.183085690338096,
+            "mae": 11.044276459299065,
+            "mean_error": 4.067947093865997
+          }
+        }
+      },
+      "espn_nonlive_provider_52": {
+        "games": 1,
+        "configurations": {
+          "market_only": {
+            "games": 1,
+            "mse": 441.0,
+            "rmse": 21.0,
+            "mae": 21.0,
+            "mean_error": 21.0
+          },
+          "opponent_adjusted_ridge": {
+            "games": 1,
+            "mse": 380.92233112748323,
+            "rmse": 19.51723164609887,
+            "mae": 19.51723164609887,
+            "mean_error": 19.51723164609887
+          },
+          "ordinary_ridge": {
+            "games": 1,
+            "mse": 348.1118482869715,
+            "rmse": 18.6577557140984,
+            "mae": 18.6577557140984,
+            "mean_error": 18.6577557140984
+          },
+          "ordinary_hgb": {
+            "games": 1,
+            "mse": 287.8474398180583,
+            "rmse": 16.96606730559732,
+            "mae": 16.96606730559732,
+            "mean_error": 16.96606730559732
+          }
+        }
+      },
+      "espn_nonlive_provider_58": {
+        "games": 2353,
+        "configurations": {
+          "market_only": {
+            "games": 2353,
+            "mse": 248.4157458563536,
+            "rmse": 15.76121016471621,
+            "mae": 12.584997875053123,
+            "mean_error": 1.1153846153846154
+          },
+          "opponent_adjusted_ridge": {
+            "games": 2353,
+            "mse": 246.56919757102398,
+            "rmse": 15.702522013072421,
+            "mae": 12.573930571321172,
+            "mean_error": 0.07588821759510499
+          },
+          "ordinary_ridge": {
+            "games": 2353,
+            "mse": 248.21861490738777,
+            "rmse": 15.754955249298163,
+            "mae": 12.616710818650656,
+            "mean_error": -0.001784574507358628
+          },
+          "ordinary_hgb": {
+            "games": 2353,
+            "mse": 250.7030988682553,
+            "rmse": 15.83360662856872,
+            "mae": 12.68985104012939,
+            "mean_error": -0.1462446101889559
+          }
+        }
+      }
+    },
+    "by_market_source_scope": "All 2021\u20132025 development folds; era and source effects may be entangled.",
+    "by_period_and_market_source": {
+      "selection_2021_2024": {
+        "cfbd_Bovada": {
+          "games": 15,
+          "configurations": {
+            "market_only": {
+              "games": 15,
+              "mse": 195.55,
+              "rmse": 13.983919336151793,
+              "mae": 11.366666666666667,
+              "mean_error": 2.5
+            },
+            "opponent_adjusted_ridge": {
+              "games": 15,
+              "mse": 192.01485237085905,
+              "rmse": 13.856942388956485,
+              "mae": 10.93755946398439,
+              "mean_error": 2.0980378173710514
+            },
+            "ordinary_ridge": {
+              "games": 15,
+              "mse": 194.3401343031459,
+              "rmse": 13.940593039865481,
+              "mae": 11.442785645842525,
+              "mean_error": 3.4116903032513504
+            },
+            "ordinary_hgb": {
+              "games": 15,
+              "mse": 246.13294140178638,
+              "rmse": 15.688624586042792,
+              "mae": 12.377122469292093,
+              "mean_error": 3.0246455235581777
+            }
+          }
+        },
+        "cfbd_consensus": {
+          "games": 1484,
+          "configurations": {
+            "market_only": {
+              "games": 1484,
+              "mse": 246.80592991913747,
+              "rmse": 15.71005824047567,
+              "mae": 12.31132075471698,
+              "mean_error": -0.3935309973045822
+            },
+            "opponent_adjusted_ridge": {
+              "games": 1484,
+              "mse": 248.30800112007012,
+              "rmse": 15.757791759001961,
+              "mae": 12.341482965477107,
+              "mean_error": -0.703034527654722
+            },
+            "ordinary_ridge": {
+              "games": 1484,
+              "mse": 257.5040304988365,
+              "rmse": 16.046932121088958,
+              "mae": 12.618336039319692,
+              "mean_error": 0.5132148766163885
+            },
+            "ordinary_hgb": {
+              "games": 1484,
+              "mse": 264.2362137266532,
+              "rmse": 16.255344158972864,
+              "mae": 12.817120405480992,
+              "mean_error": -0.7996883342501762
+            }
+          }
+        },
+        "espn_nonlive_provider_40": {
+          "games": 13,
+          "configurations": {
+            "market_only": {
+              "games": 13,
+              "mse": 305.86538461538464,
+              "rmse": 17.489007536603804,
+              "mae": 11.961538461538462,
+              "mean_error": 5.346153846153846
+            },
+            "opponent_adjusted_ridge": {
+              "games": 13,
+              "mse": 300.697930266459,
+              "rmse": 17.340643882695332,
+              "mae": 12.053100979189894,
+              "mean_error": 4.612774557940532
+            },
+            "ordinary_ridge": {
+              "games": 13,
+              "mse": 291.6455335988855,
+              "rmse": 17.077632552519844,
+              "mae": 11.983122245510097,
+              "mean_error": 4.423037878886334
+            },
+            "ordinary_hgb": {
+              "games": 13,
+              "mse": 261.89226246082563,
+              "rmse": 16.183085690338096,
+              "mae": 11.044276459299065,
+              "mean_error": 4.067947093865997
+            }
+          }
+        },
+        "espn_nonlive_provider_52": {
+          "games": 1,
+          "configurations": {
+            "market_only": {
+              "games": 1,
+              "mse": 441.0,
+              "rmse": 21.0,
+              "mae": 21.0,
+              "mean_error": 21.0
+            },
+            "opponent_adjusted_ridge": {
+              "games": 1,
+              "mse": 380.92233112748323,
+              "rmse": 19.51723164609887,
+              "mae": 19.51723164609887,
+              "mean_error": 19.51723164609887
+            },
+            "ordinary_ridge": {
+              "games": 1,
+              "mse": 348.1118482869715,
+              "rmse": 18.6577557140984,
+              "mae": 18.6577557140984,
+              "mean_error": 18.6577557140984
+            },
+            "ordinary_hgb": {
+              "games": 1,
+              "mse": 287.8474398180583,
+              "rmse": 16.96606730559732,
+              "mae": 16.96606730559732,
+              "mean_error": 16.96606730559732
+            }
+          }
+        },
+        "espn_nonlive_provider_58": {
+          "games": 1548,
+          "configurations": {
+            "market_only": {
+              "games": 1548,
+              "mse": 255.95025839793283,
+              "rmse": 15.998445499420649,
+              "mae": 12.722868217054264,
+              "mean_error": 1.601421188630491
+            },
+            "opponent_adjusted_ridge": {
+              "games": 1548,
+              "mse": 252.52013812779546,
+              "rmse": 15.890882232519234,
+              "mae": 12.664303668865834,
+              "mean_error": 0.8242011786625825
+            },
+            "ordinary_ridge": {
+              "games": 1548,
+              "mse": 254.56498441798132,
+              "rmse": 15.955092742381078,
+              "mae": 12.723823756810562,
+              "mean_error": 0.7085256380167775
+            },
+            "ordinary_hgb": {
+              "games": 1548,
+              "mse": 255.6995047572309,
+              "rmse": 15.990606766387288,
+              "mae": 12.76906884680193,
+              "mean_error": 0.5612645834639031
+            }
+          }
+        }
+      },
+      "reused_2025": {
+        "espn_nonlive_provider_100": {
+          "games": 47,
+          "configurations": {
+            "market_only": {
+              "games": 47,
+              "mse": 341.73936170212767,
+              "rmse": 18.48619381327935,
+              "mae": 15.138297872340425,
+              "mean_error": -0.9680851063829787
+            },
+            "opponent_adjusted_ridge": {
+              "games": 47,
+              "mse": 341.3642962965971,
+              "rmse": 18.476046554839513,
+              "mae": 15.324685665346706,
+              "mean_error": -2.270819555457061
+            },
+            "ordinary_ridge": {
+              "games": 47,
+              "mse": 345.84325214488433,
+              "rmse": 18.596861351983144,
+              "mae": 15.280776193031793,
+              "mean_error": -2.604410441903645
+            },
+            "ordinary_hgb": {
+              "games": 47,
+              "mse": 347.08055161394276,
+              "rmse": 18.63009800333704,
+              "mae": 15.51524216945369,
+              "mean_error": -3.410863985176946
+            }
+          }
+        },
+        "espn_nonlive_provider_58": {
+          "games": 805,
+          "configurations": {
+            "market_only": {
+              "games": 805,
+              "mse": 233.92701863354037,
+              "rmse": 15.294672884162654,
+              "mae": 12.319875776397515,
+              "mean_error": 0.18074534161490682
+            },
+            "opponent_adjusted_ridge": {
+              "games": 805,
+              "mse": 235.12564976744343,
+              "rmse": 15.333807412624022,
+              "mae": 12.400144788713552,
+              "mean_error": -1.3631036628178828
+            },
+            "ordinary_ridge": {
+              "games": 805,
+              "mse": 236.01466459384875,
+              "rmse": 15.36276878019873,
+              "mae": 12.41073463446241,
+              "mean_error": -1.3676978775972508
+            },
+            "ordinary_hgb": {
+              "games": 805,
+              "mse": 241.095103444486,
+              "rmse": 15.527237469829783,
+              "mae": 12.537516674006293,
+              "mean_error": -1.5067716061822796
+            }
+          }
+        }
+      }
+    },
+    "feature_provenance": {
+      "version": "ordinary-prior-statistics-58-v1",
+      "feature_contract_sha256": "2331e35429ea8eb7c1caaf499b9768e95a25efaff31877fb7be191cf639e2df8",
+      "feature_fingerprint": "ab25cda52c3fb2c23a7f14f6b959ef6d9272f9f5e701b90b0e6ccd8e8869acff",
+      "cache_data_fingerprint": "cf764f803b38ecfd",
+      "cache_sha256": "ec33e9add2cb5b84742a17e65c313ca225503f6edadba125fbf7eeb5a45bb73c",
+      "history_sha256": "a747dbaa90b28cd555e9e45024091f34ce5f105cabefee6fc6a67a8f3bde4a57",
+      "counts": {
+        "games": 5008,
+        "history_team_rows": 11926,
+        "history_games": 5963,
+        "by_season": {
+          "2020": 538,
+          "2021": 848,
+          "2022": 849,
+          "2023": 910,
+          "2024": 920,
+          "2025": 943
+        },
+        "market_sources": {
+          "cfbd_consensus": 2235,
+          "cfbd_William Hill (New Jersey)": 7,
+          "cfbd_Bovada": 24,
+          "espn_nonlive_provider_58": 2680,
+          "espn_nonlive_provider_40": 14,
+          "espn_nonlive_provider_52": 1,
+          "espn_nonlive_provider_100": 47
+        },
+        "games_with_minimum5_prior_games": 4418,
+        "adjusted_cache_matching_cutoff_games": 5008
+      }
+    },
+    "feature_contract": {
+      "version": "ordinary-prior-statistics-58-v1",
+      "features": [
+        "market_total",
+        "abs_spread",
+        "spread_total_interaction",
+        "home_implied_points",
+        "away_implied_points",
+        "week",
+        "neutral_site",
+        "clock_rule_2023",
+        "two_minute_rule_2024",
+        "spread_missing",
+        "home_prior_own_points_for",
+        "home_prior_own_ppd",
+        "home_prior_own_drives",
+        "home_prior_own_seconds_per_drive",
+        "home_prior_own_other_points",
+        "home_prior_own_yards_per_pass",
+        "home_prior_own_yards_per_rush",
+        "home_prior_own_passes_rate",
+        "home_prior_opp_points_for",
+        "home_prior_opp_ppd",
+        "home_prior_opp_drives",
+        "home_prior_opp_seconds_per_drive",
+        "home_prior_opp_other_points",
+        "home_prior_opp_yards_per_pass",
+        "home_prior_opp_yards_per_rush",
+        "home_prior_opp_passes_rate",
+        "away_prior_own_points_for",
+        "away_prior_own_ppd",
+        "away_prior_own_drives",
+        "away_prior_own_seconds_per_drive",
+        "away_prior_own_other_points",
+        "away_prior_own_yards_per_pass",
+        "away_prior_own_yards_per_rush",
+        "away_prior_own_passes_rate",
+        "away_prior_opp_points_for",
+        "away_prior_opp_ppd",
+        "away_prior_opp_drives",
+        "away_prior_opp_seconds_per_drive",
+        "away_prior_opp_other_points",
+        "away_prior_opp_yards_per_pass",
+        "away_prior_opp_yards_per_rush",
+        "away_prior_opp_passes_rate",
+        "home_rest_days_capped60",
+        "home_prior_game_count",
+        "home_season_prior_game_count",
+        "home_effective_game_count",
+        "home_complete_drive_game_count",
+        "away_rest_days_capped60",
+        "away_prior_game_count",
+        "away_season_prior_game_count",
+        "away_effective_game_count",
+        "away_complete_drive_game_count",
+        "adjusted_score_minus_market",
+        "adjusted_drive_minus_market",
+        "adjusted_clock_minus_market",
+        "adjusted_pass_yards",
+        "adjusted_rush_yards",
+        "adjusted_pass_share"
+      ],
+      "ordinary_predictors": 52,
+      "verified_adjusted_predictors": 6,
+      "metrics": [
+        "points_for",
+        "ppd",
+        "drives",
+        "seconds_per_drive",
+        "other_points",
+        "yards_per_pass",
+        "yards_per_rush",
+        "passes_rate"
+      ],
+      "opponent_definition": "Reciprocal opponent row from each completed prior game; not current-game opponent statistics",
+      "cutoff": "opponent_model.weekly_cutoff(game_date,as_of); available_at strictly before cutoff",
+      "availability_proxy": "completed game kickoff+6h; later source corrections remain possible",
+      "history_window_days": 1098,
+      "recency_weight": 0.92,
+      "season_weight": 0.65,
+      "recency_definition": "Newest-first game rank within each team and eligible query history; no dependence on query batch",
+      "shrink_effective_games": 4.0,
+      "shrink_target": "Unweighted finite-value league mean from same eligible cutoff/window; fixed defaults only if no league observations",
+      "empty_history_defaults": {
+        "points_for": 28.0,
+        "ppd": 2.25,
+        "drives": 11.5,
+        "seconds_per_drive": 150.0,
+        "other_points": 1.5,
+        "yards_per_pass": 7.0,
+        "yards_per_rush": 4.0,
+        "passes_rate": 0.5
+      },
+      "rest": "Known prior kickoff to query kickoff, capped60days; no prior game remains missing",
+      "missing_values": "Missing statistics excluded from each metric numerator/denominator; no global fit/imputation; explicit history and drive counts",
+      "adjusted_features": "Verified cache only at exact identity/cutoff; score/drive/clock deltas recomputed using repaired market total",
+      "postgame_fields": "actual_total retained only as target metadata; scores/winners/attendance/unshifted box scores never predictors",
+      "excluded_families": [
+        "EPA",
+        "FPI",
+        "publisher ratings",
+        "undated summaries",
+        "rosters",
+        "injuries",
+        "weather",
+        "future schedules/results"
+      ]
+    },
+    "no_2026_outcomes": true,
+    "live_policy_changes": false,
+    "probabilities_evaluated": false,
+    "roi_evaluated": false,
+    "credible_executable_edge_established": false,
+    "limitations": [
+      "All 2020\u20132025 outcomes have already been reused elsewhere in this project; this is neither prospective performance nor a pristine holdout.",
+      "Historical market sources establish pregame provider role, not exact morning quote timing, paired prices or accepted wagers.",
+      "Game statistics use a kickoff-plus-six-hours availability proxy and retrospective source revisions; cutoff checks do not certify historical publication.",
+      "Week intervals are descriptive. Four-comparison sensitivity does not account for the entire earlier search, shared-team cross-week dependence or regime changes.",
+      "No probabilities, EV filter, hypothetical ROI, live candidate or bankroll allocation is produced. A lower point-prediction loss alone cannot establish profitable betting."
+    ],
+    "links": [
+      {
+        "name": "All four ordinary-stat configurations",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ordinary_model_research_results.md"
+      },
+      {
+        "name": "Annual/source scores and paired intervals",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ordinary_model_research_results.json"
+      },
+      {
+        "name": "Fixed ordinary-stat research plan",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ORDINARY_MODEL_RESEARCH_PLAN.md"
+      },
+      {
+        "name": "Independent ordinary-stat study audit",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ORDINARY_MODEL_RESEARCH_AUDIT.md"
+      },
+      {
+        "name": "Independent audit before fitting",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ORDINARY_MODEL_PREFIT_AUDIT.md"
+      },
+      {
+        "name": "Feature reuse and timing audit",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/RICH_FEATURE_REUSE_AUDIT.md"
+      }
+    ]
+  },
   "prospective_evaluation_protocol": {
     "report": "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
     "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
@@ -2780,6 +3827,13 @@
     "model/reports/CALIBRATION_RESEARCH_PLAN.md": "9e6ac91344639c0afe50677fedf1a71d768454158d61d264244d4a12a9fd6d05",
     "model/reports/calibration_research_results.md": "2bcca27377593af765f60b61ca45af395cff42786aa138228ecf72c60c440c93",
     "model/reports/CALIBRATION_RESEARCH_AUDIT.md": "21aadeb56952d1cfe0ba32088f1c39fc3091d96fb07b1ebcad384234bf2bc6d0",
+    "model/reports/ordinary_model_research_results.json": "0b000eb47fcca7c1555eea9daf314b12e765f54a0be3fcea0fc94373cce433da",
+    "model/reports/ordinary_model_research_plan.json": "a57209fc3733428815d556254edc99fdc070544671d225b1a4948c920944c98f",
+    "model/reports/ORDINARY_MODEL_RESEARCH_PLAN.md": "969b53bfdbd88dae8dd89201e349013e8e8a6ece3b7d2d53bfc8bc6df1b07471",
+    "model/reports/ordinary_model_research_results.md": "445aba888c4b5a96b24ae6f8524ed8967e1ce7b59ae970d7ff7e8d11b57d0aca",
+    "model/reports/ORDINARY_MODEL_RESEARCH_AUDIT.md": "8c083eff447be11f18ad3b89dfd1265fb0337c950c9529dbeb6cbce45bdab738",
+    "model/reports/ORDINARY_MODEL_PREFIT_AUDIT.md": "1fcc3897ed3990f9ef2806a4d27388b89b5f9ce6a72760812ebc84888fe2a84d",
+    "model/reports/RICH_FEATURE_REUSE_AUDIT.md": "c9a8d90d56ca33b1a3b677ff8951bdffc5b156ef496b2abdf4ea9bbd3a199718",
     "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md": "f22f08b214e45c33de01d078abb987ee3cc5d59f7995023ad9ea73a0f67953fb"
   },
   "generator": "scripts/publish_research.py"
