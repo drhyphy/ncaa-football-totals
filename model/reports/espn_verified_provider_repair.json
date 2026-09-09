@@ -1,0 +1,793 @@
+{
+  "version": "espn-nonlive-provider-repair-v1",
+  "label": "pregame-provider archived line, close-time unverified",
+  "generated_at": "2026-09-09T00:26:18.816289+00:00",
+  "policy": [
+    [
+      "58",
+      "espn bet"
+    ],
+    [
+      "100",
+      "draftkings"
+    ],
+    [
+      "40",
+      "draftkings"
+    ],
+    [
+      "47",
+      "mgm"
+    ],
+    [
+      "45",
+      "caesars sportsbook (new jersey)"
+    ],
+    [
+      "52",
+      "caesars sportsbook (colorado)"
+    ],
+    [
+      "57",
+      "caesars sportsbook (tennessee)"
+    ],
+    [
+      "48",
+      "pointsbet"
+    ],
+    [
+      "41",
+      "sugarhouse"
+    ],
+    [
+      "53",
+      "titanbets"
+    ],
+    [
+      "36",
+      "unibet"
+    ]
+  ],
+  "input_games": 2781,
+  "verified_provider_games": 2742,
+  "excluded_games": 39,
+  "coverage": [
+    {
+      "season": 2023,
+      "original_games": 879,
+      "verified_provider_games": 879,
+      "excluded_games": 0,
+      "exclusion_reasons": {},
+      "changed_total_count": 10,
+      "mean_absolute_total_difference": 0.006257110352673493,
+      "integer_total_count": 5
+    },
+    {
+      "season": 2024,
+      "original_games": 956,
+      "verified_provider_games": 920,
+      "excluded_games": 36,
+      "exclusion_reasons": {
+        "live_provider_only": 36
+      },
+      "changed_total_count": 0,
+      "mean_absolute_total_difference": 0.0,
+      "integer_total_count": 0
+    },
+    {
+      "season": 2025,
+      "original_games": 946,
+      "verified_provider_games": 943,
+      "excluded_games": 3,
+      "exclusion_reasons": {
+        "no_approved_nonlive_total": 2,
+        "live_provider_only": 1
+      },
+      "changed_total_count": 0,
+      "mean_absolute_total_difference": 0.0,
+      "integer_total_count": 0
+    }
+  ],
+  "provider_counts": {
+    "ESPN BET": 2680,
+    "DraftKings": 61,
+    "Caesars Sportsbook (Colorado)": 1
+  },
+  "changed_totals": [
+    {
+      "game_id": 401520423,
+      "season": 2023,
+      "home_team": "Western Kentucky Hilltoppers",
+      "away_team": "Sam Houston Bearkats",
+      "original_archive_total": 53.0,
+      "market_total": 52.5,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401525553,
+      "season": 2023,
+      "home_team": "Pittsburgh Panthers",
+      "away_team": "Boston College Eagles",
+      "original_archive_total": 46.5,
+      "market_total": 45.5,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401525555,
+      "season": 2023,
+      "home_team": "Virginia Cavaliers",
+      "away_team": "Duke Blue Devils",
+      "original_archive_total": 46.0,
+      "market_total": 45.5,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401525556,
+      "season": 2023,
+      "home_team": "Florida State Seminoles",
+      "away_team": "North Alabama Lions",
+      "original_archive_total": 62.0,
+      "market_total": 61.5,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401525898,
+      "season": 2023,
+      "home_team": "Texas Tech Red Raiders",
+      "away_team": "UCF Knights",
+      "original_archive_total": 58.5,
+      "market_total": 59.0,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401531919,
+      "season": 2023,
+      "home_team": "Arkansas State Red Wolves",
+      "away_team": "Texas State Bobcats",
+      "original_archive_total": 60.0,
+      "market_total": 59.5,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401520435,
+      "season": 2023,
+      "home_team": "Michigan State Spartans",
+      "away_team": "Penn State Nittany Lions",
+      "original_archive_total": 43.0,
+      "market_total": 43.5,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401525562,
+      "season": 2023,
+      "home_team": "NC State Wolfpack",
+      "away_team": "North Carolina Tar Heels",
+      "original_archive_total": 55.5,
+      "market_total": 56.0,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401531435,
+      "season": 2023,
+      "home_team": "SMU Mustangs",
+      "away_team": "Navy Midshipmen",
+      "original_archive_total": 46.0,
+      "market_total": 45.5,
+      "provider_id": "40"
+    },
+    {
+      "game_id": 401531927,
+      "season": 2023,
+      "home_team": "Southern Miss Golden Eagles",
+      "away_team": "Troy Trojans",
+      "original_archive_total": 48.0,
+      "market_total": 48.5,
+      "provider_id": "40"
+    }
+  ],
+  "excluded": [
+    {
+      "game_id": 401628450,
+      "season": 2024,
+      "matchup": "Illinois State Redbirds at Iowa Hawkeyes",
+      "original_total": 41.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628450/competitions/401628450/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 41.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628454,
+      "season": 2024,
+      "matchup": "UTEP Miners at Nebraska Cornhuskers",
+      "original_total": 50.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628454/competitions/401628454/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 50.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628581,
+      "season": 2024,
+      "matchup": "North Carolina A&T Aggies at Wake Forest Demon Deacons",
+      "original_total": 59.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628581/competitions/401628581/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 59.5
+        }
+      ]
+    },
+    {
+      "game_id": 401634240,
+      "season": 2024,
+      "matchup": "Southern Illinois Salukis at BYU Cougars",
+      "original_total": 49.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401634240/competitions/401634240/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 49.5
+        }
+      ]
+    },
+    {
+      "game_id": 401634303,
+      "season": 2024,
+      "matchup": "Houston Christian Huskies at SMU Mustangs",
+      "original_total": 61.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401634303/competitions/401634303/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 61.5
+        }
+      ]
+    },
+    {
+      "game_id": 401634302,
+      "season": 2024,
+      "matchup": "Georgia State Panthers at Georgia Tech Yellow Jackets",
+      "original_total": 55.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401634302/competitions/401634302/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 55.5
+        }
+      ]
+    },
+    {
+      "game_id": 401636380,
+      "season": 2024,
+      "matchup": "Grambling Tigers at Louisiana Ragin' Cajuns",
+      "original_total": 58.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401636380/competitions/401636380/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 58.5
+        }
+      ]
+    },
+    {
+      "game_id": 401641023,
+      "season": 2024,
+      "matchup": "Tennessee Tech Golden Eagles at Middle Tennessee Blue Raiders",
+      "original_total": 52.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401641023/competitions/401641023/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 52.5
+        }
+      ]
+    },
+    {
+      "game_id": 401641007,
+      "season": 2024,
+      "matchup": "Nicholls Colonels at Louisiana Tech Bulldogs",
+      "original_total": 54.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401641007/competitions/401641007/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 54.5
+        }
+      ]
+    },
+    {
+      "game_id": 401641015,
+      "season": 2024,
+      "matchup": "Kennesaw State Owls at UTSA Roadrunners",
+      "original_total": 44.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401641015/competitions/401641015/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 44.5
+        }
+      ]
+    },
+    {
+      "game_id": 401643703,
+      "season": 2024,
+      "matchup": "Robert Morris Colonials at Utah State Aggies",
+      "original_total": 59.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401643703/competitions/401643703/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 59.5
+        }
+      ]
+    },
+    {
+      "game_id": 401643774,
+      "season": 2024,
+      "matchup": "James Madison Dukes at Charlotte 49ers",
+      "original_total": 47.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401643774/competitions/401643774/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 47.5
+        }
+      ]
+    },
+    {
+      "game_id": 401643776,
+      "season": 2024,
+      "matchup": "Lamar Cardinals at Texas State Bobcats",
+      "original_total": 61.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401643776/competitions/401643776/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 61.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628467,
+      "season": 2024,
+      "matchup": "Colorado Buffaloes at Nebraska Cornhuskers",
+      "original_total": 39.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628467/competitions/401628467/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 39.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628351,
+      "season": 2024,
+      "matchup": "UAB Blazers at Arkansas Razorbacks",
+      "original_total": 63.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628351/competitions/401628351/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 63.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628478,
+      "season": 2024,
+      "matchup": "Maryland Terrapins at Virginia Cavaliers",
+      "original_total": 42.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628478/competitions/401628478/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 42.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628483,
+      "season": 2024,
+      "matchup": "Oregon Ducks at Oregon State Beavers",
+      "original_total": 63.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628483/competitions/401628483/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 63.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628479,
+      "season": 2024,
+      "matchup": "Arkansas State Red Wolves at Michigan Wolverines",
+      "original_total": 39.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628479/competitions/401628479/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 39.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628484,
+      "season": 2024,
+      "matchup": "Washington State Cougars at Washington Huskies",
+      "original_total": 46.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628484/competitions/401628484/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 46.5
+        }
+      ]
+    },
+    {
+      "game_id": 401635544,
+      "season": 2024,
+      "matchup": "Ball State Cardinals at Miami Hurricanes",
+      "original_total": 62.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401635544/competitions/401635544/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 62.5
+        }
+      ]
+    },
+    {
+      "game_id": 401636868,
+      "season": 2024,
+      "matchup": "North Texas Mean Green at Texas Tech Red Raiders",
+      "original_total": 93.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401636868/competitions/401636868/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 93.5
+        }
+      ]
+    },
+    {
+      "game_id": 401636871,
+      "season": 2024,
+      "matchup": "BYU Cougars at Wyoming Cowboys",
+      "original_total": 49.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401636871/competitions/401636871/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 49.5
+        }
+      ]
+    },
+    {
+      "game_id": 401641040,
+      "season": 2024,
+      "matchup": "Hawai'i Rainbow Warriors at Sam Houston Bearkats",
+      "original_total": 48.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401641040/competitions/401641040/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 48.5
+        }
+      ]
+    },
+    {
+      "game_id": 401643789,
+      "season": 2024,
+      "matchup": "South Florida Bulls at Southern Miss Golden Eagles",
+      "original_total": 75.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401643789/competitions/401643789/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 75.5
+        }
+      ]
+    },
+    {
+      "game_id": 401645327,
+      "season": 2024,
+      "matchup": "Gardner-Webb Runnin' Bulldogs at Charlotte 49ers",
+      "original_total": 48.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401645327/competitions/401645327/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 48.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628365,
+      "season": 2024,
+      "matchup": "UCLA Bruins at LSU Tigers",
+      "original_total": 52.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628365/competitions/401628365/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 52.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628367,
+      "season": 2024,
+      "matchup": "Florida Gators at Mississippi State Bulldogs",
+      "original_total": 76.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628367/competitions/401628367/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 76.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628372,
+      "season": 2024,
+      "matchup": "Bowling Green Falcons at Texas A&M Aggies",
+      "original_total": 45.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628372/competitions/401628372/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 45.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628493,
+      "season": 2024,
+      "matchup": "Kent State Golden Flashes at Penn State Nittany Lions",
+      "original_total": 55.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628493/competitions/401628493/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 55.5
+        }
+      ]
+    },
+    {
+      "game_id": 401628491,
+      "season": 2024,
+      "matchup": "Northwestern Wildcats at Washington Huskies",
+      "original_total": 30.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628491/competitions/401628491/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 30.5
+        }
+      ]
+    },
+    {
+      "game_id": 401634183,
+      "season": 2024,
+      "matchup": "Missouri State Bears at UT Martin Skyhawks",
+      "original_total": 56.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401634183/competitions/401634183/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 56.5
+        }
+      ]
+    },
+    {
+      "game_id": 401635557,
+      "season": 2024,
+      "matchup": "TCU Horned Frogs at SMU Mustangs",
+      "original_total": 107.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401635557/competitions/401635557/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 107.5
+        }
+      ]
+    },
+    {
+      "game_id": 401636873,
+      "season": 2024,
+      "matchup": "Houston Cougars at Cincinnati Bearcats",
+      "original_total": 37.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401636873/competitions/401636873/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 37.5
+        }
+      ]
+    },
+    {
+      "game_id": 401637162,
+      "season": 2024,
+      "matchup": "Portland State Vikings at Boise State Broncos",
+      "original_total": 62.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401637162/competitions/401637162/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 62.5
+        }
+      ]
+    },
+    {
+      "game_id": 401643714,
+      "season": 2024,
+      "matchup": "San Jos\u00e9 State Spartans at Washington State Cougars",
+      "original_total": 84.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401643714/competitions/401643714/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 84.5
+        }
+      ]
+    },
+    {
+      "game_id": 401643790,
+      "season": 2024,
+      "matchup": "South Alabama Jaguars at App State Mountaineers",
+      "original_total": 55.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401643790/competitions/401643790/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 55.5
+        }
+      ]
+    },
+    {
+      "game_id": 401761589,
+      "season": 2025,
+      "matchup": "App State Mountaineers at Charlotte 49ers",
+      "original_total": 55.5,
+      "reason": "no_approved_nonlive_total",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401761589/competitions/401761589/odds?limit=100",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "total": null
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 45.5
+        }
+      ]
+    },
+    {
+      "game_id": 401767509,
+      "season": 2025,
+      "matchup": "North Dakota State Bison at The Citadel Bulldogs",
+      "original_total": 52.5,
+      "reason": "live_provider_only",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401767509/competitions/401767509/odds?limit=100",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 52.5
+        }
+      ]
+    },
+    {
+      "game_id": 401756945,
+      "season": 2025,
+      "matchup": "BYU Cougars at Texas Tech Red Raiders",
+      "original_total": 55.5,
+      "reason": "no_approved_nonlive_total",
+      "source_url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401756945/competitions/401756945/odds?limit=100",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "total": null
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "total": 34.5
+        }
+      ]
+    }
+  ],
+  "artifact": "data/raw/alternative/espn_verified_pregame_games.parquet",
+  "artifact_sha256": "f034e24b8e79ffc33e64d643a92e4b9876c7a1af62f9be7b79176abf6495fab4",
+  "limitations": [
+    "Role verified by fixed known non-live bookmaker IDs and exact names; provider59 and any live-named provider excluded.",
+    "No historical quote timestamps or evidence of an exact closing or06:30AM price. Observation time is the audit retrieval time.",
+    "Opening totals are never substituted. Selection uses provider role and availability, never outcomes or model performance.",
+    "Retained and excluded populations can differ. Compare clean-source evaluation to its own population; old contaminated results are not repaired retroactively."
+  ]
+}

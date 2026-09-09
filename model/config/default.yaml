@@ -7,6 +7,8 @@ rating_ensemble_game_weight: 0.35
 # residual. The 50% and 100% variants remain research benchmarks.
 live_alpha_shrink: 0.75
 alpha_grid_step: 0.01
+# Legacy model controls below are retained for reproducibility. The active v4
+# totals policy is in runtime.py and docs/PROSPECTIVE_PROTOCOL.md.
 min_books: 3
 min_probability_edge: 0.015
 min_ev: 0.04

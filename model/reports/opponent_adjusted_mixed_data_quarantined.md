@@ -1,0 +1,15 @@
+> **Quarantined:** The historical scalar odds input includes live-game lines. These results are invalid as a closing-line profitability test. Retained for audit only.
+
+# Opponent-adjusted development experiment
+
+All ratings train on prior completed game observations, including games without historical odds. No EPA or publisher ratings. Two fixed specifications; no tuning on the 2025 results. The whole 2019–2025 corpus has already been reused in this project.
+
+| Candidate | Games | MAE | MAE change vs market | Bets at assumed -110 | ROI | 95% week bootstrap |
+|---|---:|---:|---:|---:|---:|---|
+| market_only | 2472 | 12.593 | +0.000 | 0 | — | None |
+| opponent_adjusted_ridge | 2472 | 12.587 | -0.006 | 768 | 2.66% | [-0.03810132663454123, 0.08982133701974226] |
+| opponent_adjusted_structural | 2472 | 12.583 | -0.010 | 460 | 2.75% | [-0.06617660427807488, 0.11614481568582746] |
+
+Ratings use a shared league intercept, offensive team effect and opposing defense effect, partial pooling, recency decay and offseason decay. Separate regressions estimate scoring, points per drive, possession count/duration, pass/rush yards and passing share. A strongly regularized residual model combines these signals with the line, spread and known clock-rule eras.
+
+The fixed signal rule is modeled EV ≥3% at assumed -110 and at least five prior games. It does not impose a point threshold that a shrunk model cannot reach. These are research signals, not established profitable bets.

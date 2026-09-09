@@ -1,35 +1,29 @@
 # NCAA football totals laboratory
 
-Daily public-data forecasts, timestamped sportsbook comparisons, and a prospective paper ledger. GitHub Actions targets **6:30 AM America/New_York** each morning and publishes to GitHub Pages. Guarded 6:45 and 7:00 attempts recover failed refreshes or deployments. GitHub can delay scheduled jobs; the displayed timestamp records the actual run.
+Public-data NCAA totals forecasts, exact sportsbook-price comparisons, and an immutable prospective paper record. [Live dashboard](https://drhyphy.github.io/ncaa-football-totals/). GitHub Actions targets **6:30 AM America/New_York** daily, with guarded recovery attempts. Additional lightweight observations measure subsequent market movement.
 
-**No model has established high-confidence profitability.** This repository reports that result rather than presenting a selected backtest as a proven betting edge. The dashboard can correctly publish no picks.
+**The goal has not yet been achieved: high-confidence profitability is not established.** The project now separates a workable experimental betting strategy from the evidence needed to trust it.
 
-## What was developed
+## Version 4
 
-- A market probability model compares each offered line and price with at least **three other fresh sportsbooks**, using paired no-vig prices and a discrete final-score distribution. The execution book never helps establish its own edge.
-- Four pace and residual models and six corrected public-rating models remain competing forecasts.
-- Two new drive/clock models estimate regulation scoring opportunities, offensive TD/FG rates, opponent defense, elapsed clock, and offseason regression. They use identical historical and live feature construction.
-- Normal and Student-t distributions were compared on expanding-season score log loss. The discrete normal model was selected for the frozen prospective specification; both distributions enter stress testing. Integer totals include the probability of a refunded push.
+- Two opponent-adjusted candidates estimate scoring, efficiency and tempo from prior completed games. Offense and opposing defense are fitted separately, with recency decay and partial pooling. A residual model combines those predictions with the current market; a fixed structural blend provides a competing candidate.
+- A price-reference candidate and an exact two-book hedge scanner use the existing DraftKings/FanDuel feed. A better quote is distinguished from positive expected profit and from an all-score hedge floor.
+- Publication requires two actual books, at least 3% estimated EV and at least 1% EV under the specified stresses. The unreachable four-book/six-point constraints are removed. These are experimental selections, not claims of proven profitability.
+- Quote-change timestamps and receipts of current full-state odds are separate. Unchanged markets can be currently observed. An archived response cannot acquire a new receipt timestamp merely by being read again.
 
-The 2019–2025 archive is reused **retrospective development data**. Corrected 2023–2025 comparisons cover 2,781 games. The market MAE is 12.463; the corrected public ensemble is 12.498 and public boosted model is 12.770. On the drive models' common 2,597-game sample, market MAE is 12.517, drive shrink 12.493, and drive ridge 12.495. The small drive improvements have week-bootstrap intervals crossing zero. No public model passes the profitability confidence gate.
+## Historical-data correction
 
-Previous positive headline ROI was superseded after finding post-kickoff FPI revisions and synthetic default odds. See [the audit](model/docs/DATA_AUDIT.md), [model card](model/docs/TOTALS_MODEL_CARD.md), [drive study](model/reports/drive_clock_development.md), and [prospective protocol](docs/PROSPECTIVE_PROTOCOL.md).
+The deeper audit confirmed that the old ESPN scalar archive includes **live-game totals**. For example, SMU–TCU in 2024 used 107.5 from an explicitly live provider; the separate opening field was 57.5. Previous closing-line backtests are quarantined. The replacement sample uses public CFBD archives and verified pregame-provider ESPN records, excluding live-only records. Actual historical total-side prices and quote timestamps remain unavailable, so assumed -110 results are exploratory.
 
-## Daily decisions
+See [the primary-source audit](model/reports/espn_market_timing_audit.md), [opponent-model development](model/reports/opponent_adjusted_development.md), [the two-book audit](model/reports/TWO_BOOK_OPPORTUNITIES.md), and [the current protocol](docs/PROSPECTIVE_PROTOCOL.md). Earlier failed experiments remain available for audit; reused historical data are never called a pristine holdout.
 
-Main picks are experimental market comparisons, with a 60-minute quote-age limit, schedule match, three other independent fresh books, narrow peer disagreement, at least one point of line value, at least 3% modeled EV, and at least 1% EV after fixed adverse sensitivity assumptions. These sensitivity values are **not statistical confidence bounds**. Main picks use small paper exposure only; challengers have zero betting stake.
+## Prospective evaluation
 
-Snapshots preserve book quotes, exact model features, model hashes and predictions. The first qualifying candidate/game entry is locked; daily repeats cannot increase its bet count. Results include pushes, actual offered prices, and calendar-week bootstrap intervals. Morning snapshots are not labeled closing lines. There is no automatic real-money promotion and no wagering integration.
+Each version/candidate/game keeps its first qualifying selection and exact price. Predictions that abstain are also recorded. Grades account for integer pushes, overtime and score corrections. Calendar-week bootstrap intervals accompany sufficiently large return samples. The near-kickoff collector compares only later same-book observations strictly before kickoff, within 30 minutes; it does not manufacture an exact closing price.
 
-## Data and credentials
+There is no wagering integration. GitHub stores the existing `ODDS_API_IO_KEY` as an encrypted repository secret; no subscription or bookmaker selection was changed. Local runs may read the existing workspace `.env`. Public data, model artifacts and ledgers contain no credentials.
 
-Historical and current statistics use the no-key SportsDataverse release archive and ESPN public scoreboard. Timestamped current prices prefer an existing Odds API credential supplied as repository secret `ODDS_API_KEY`; both its FBS and separate FCS keys are requested. Public fallback sources preserve missing timestamps as missing. Missing or stale timestamps force abstention. The site reports partial source/coverage failures.
-
-No credential is committed. The original moneyline site and research directory are unchanged. Source responses and cached raw historical files are excluded from the public source checkout; compact model history seeds and frozen artifacts make daily runners independent of a local computer.
-
-The existing `ODDS_API_IO_KEY` is also supported and stored as an encrypted repository secret. It supplies market-specific update timestamps and exact decimal payouts. Its current selected-book access includes DraftKings and FanDuel only. Aggregator duplicates do not count as additional independent books. Thus current access cannot by itself clear the four-book main-pick requirement; no subscription or bookmaker selection was changed. Displayed American equivalents are rounded; the ledger grades the exact stored decimal payout.
-
-## Run and reproduce
+## Run
 
 Use Python 3.12 and the committed dependency lock:
 
@@ -38,17 +32,7 @@ python -m pip install -r model/requirements-lock.txt
 cd model
 python -m pytest tests -q
 python -m ncaaf_model.runtime daily
+python -m ncaaf_model.closing_collector
 ```
 
-To reproduce development studies, first fetch historical public sources, then rerun the frozen studies. This overwrites development artifacts; use a separate research branch and a new version before changing the prospective specification.
-
-```bash
-python -m ncaaf_model.cli totals-bootstrap
-python -m ncaaf_model.cli totals-backtest
-python -m ncaaf_model.cli totals-public-backtest
-python -m ncaaf_model.drive_model --root .
-```
-
-The historical SportsDataverse source is mutable, and earlier publication timestamps are not fully available. Archived source hashes in the audit identify the inspected files. This is not proof of executable historical morning returns.
-
-The static dashboard reads `site/data/board.json`. The workflow persists only public board data, compact immutable runtime snapshots, and the forward ledger. Failed ingestion publishes an explicit unavailable state before marking the workflow failed.
+Historical research additionally needs the documented raw public archives, which are cached locally and excluded from Git. The daily cloud runner uses compact committed history and fitted artifacts, refreshing current-season observations. Run model-development commands only in a research checkout; changing a published strategy requires a new version. Failed refreshes publish an explicit unavailable state. GitHub schedules can be delayed; the dashboard shows actual observation/publication times.

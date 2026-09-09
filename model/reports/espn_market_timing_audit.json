@@ -1,0 +1,737 @@
+{
+  "retrieved_at": "2026-09-09T00:07:07.548752+00:00",
+  "status": "confirmed_live_market_contamination",
+  "sample_design": "16games: four extreme2024totals, one ordinary2025game, one2023multiprovidercontrol, plus deterministic0/25/50/75/100percentile positions in week/game-ID sorted2024and2025real-source archives; not a random prevalence estimate.",
+  "upstream_parser": {
+    "url": "https://github.com/sportsdataverse/sportsdataverse-py/blob/main/sportsdataverse/cfb/cfb_pbp.py#L2570",
+    "sha256": "ae0128f887ff57ffba5c144fe11eedeb2679e9c4ff827d3c527d5e231bd4d060",
+    "behavior": "Prefers exact provider name ESPN BET; otherwise takes first item. Reads scalar spread and overUnder; does not require pregame provider, timestamp or open market."
+  },
+  "conclusion": "At least four inspected 2024 archived totals exactly match provider59 ESPN Bet - Live Odds current markets, with opening totals20\u201350 points lower. The existing core_odds_api provenance gate cannot certify pregame market timing. Old historical model results are contaminated development diagnostics, not valid closing-line backtests.",
+  "examples": [
+    {
+      "game_id": 401635557,
+      "season": 2024,
+      "matchup": "TCU Horned Frogs at SMU Mustangs",
+      "archived_total": 107.5,
+      "final_total": 108.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401635557/competitions/401635557/odds?limit=100",
+      "response_sha256": "bccdf376ca6794d6bf8d6561888891a50045b6fe25438ad95117d87048aab934",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 107.5,
+          "opening_total": "57.5",
+          "current_total": "107.5",
+          "scalar_spread": -28.5,
+          "over_odds": -275.0,
+          "under_odds": 185.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "59",
+        "name": "ESPN Bet - Live Odds",
+        "scalar_total": 107.5,
+        "opening_total": "57.5",
+        "current_total": "107.5",
+        "scalar_spread": -28.5,
+        "over_odds": -275.0,
+        "under_odds": 185.0
+      },
+      "selected_live_provider": true,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401524053,
+      "season": 2023,
+      "matchup": "USC Trojans at Oregon Ducks",
+      "archived_total": 78.5,
+      "final_total": 63.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401524053/competitions/401524053/odds?limit=100",
+      "response_sha256": "4ca7f0b119ad25c45dcac5c2b94748b66d733a8942b97d83a6f9dc1f326b9d8f",
+      "providers": [
+        {
+          "id": "52",
+          "name": "Caesars Sportsbook (Colorado)",
+          "scalar_total": 78.0,
+          "opening_total": "73.5",
+          "current_total": "78",
+          "scalar_spread": -16.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "45",
+          "name": "Caesars Sportsbook (New Jersey)",
+          "scalar_total": 78.0,
+          "opening_total": "73.5",
+          "current_total": "78",
+          "scalar_spread": -16.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "57",
+          "name": "Caesars Sportsbook (Tennessee)",
+          "scalar_total": 78.0,
+          "opening_total": "73.5",
+          "current_total": "78",
+          "scalar_spread": -16.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "40",
+          "name": "DraftKings",
+          "scalar_total": 77.5,
+          "opening_total": "74",
+          "current_total": "77.5",
+          "scalar_spread": -16.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 78.5,
+          "opening_total": "74.5",
+          "current_total": "78.5",
+          "scalar_spread": -16.5,
+          "over_odds": -105.0,
+          "under_odds": -115.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 64.5,
+          "opening_total": "78.5",
+          "current_total": "64.5",
+          "scalar_spread": -12.5,
+          "over_odds": 160.0,
+          "under_odds": -200.0
+        },
+        {
+          "id": "47",
+          "name": "MGM",
+          "scalar_total": 78.5,
+          "opening_total": "73.5",
+          "current_total": "78.5",
+          "scalar_spread": -16.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "48",
+          "name": "PointsBet",
+          "scalar_total": 78.0,
+          "opening_total": "73.5",
+          "current_total": "78",
+          "scalar_spread": -16.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "41",
+          "name": "SugarHouse",
+          "scalar_total": 77.5,
+          "opening_total": "73.5",
+          "current_total": "77.5",
+          "scalar_spread": -16.5,
+          "over_odds": -105.0,
+          "under_odds": -119.0
+        },
+        {
+          "id": "53",
+          "name": "Titanbets",
+          "scalar_total": 78.0,
+          "opening_total": "73.5",
+          "current_total": "78",
+          "scalar_spread": -16.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "36",
+          "name": "Unibet",
+          "scalar_total": 77.5,
+          "opening_total": "73.5",
+          "current_total": "77.5",
+          "scalar_spread": -16.5,
+          "over_odds": -106.0,
+          "under_odds": -120.0
+        },
+        {
+          "id": "1001",
+          "name": "accuscore",
+          "scalar_total": 78.0,
+          "opening_total": "73.5",
+          "current_total": "78",
+          "scalar_spread": -16.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 78.5,
+        "opening_total": "74.5",
+        "current_total": "78.5",
+        "scalar_spread": -16.5,
+        "over_odds": -105.0,
+        "under_odds": -115.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401628319,
+      "season": 2024,
+      "matchup": "Western Kentucky Hilltoppers at Alabama Crimson Tide",
+      "archived_total": 60.5,
+      "final_total": 63.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628319/competitions/401628319/odds?limit=100",
+      "response_sha256": "004883ab41c583ce6d0277bd60a6d9f1ccf8143e68193d658ba3256cb60552b1",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 60.5,
+          "opening_total": "60.5",
+          "current_total": "60.5",
+          "scalar_spread": -37.5,
+          "over_odds": -115.0,
+          "under_odds": -105.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 69.5,
+          "opening_total": "60.5",
+          "current_total": "69.5",
+          "scalar_spread": -54.5,
+          "over_odds": -115.0,
+          "under_odds": -115.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 60.5,
+        "opening_total": "60.5",
+        "current_total": "60.5",
+        "scalar_spread": -37.5,
+        "over_odds": -115.0,
+        "under_odds": -105.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401628367,
+      "season": 2024,
+      "matchup": "Florida Gators at Mississippi State Bulldogs",
+      "archived_total": 76.5,
+      "final_total": 73.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628367/competitions/401628367/odds?limit=100",
+      "response_sha256": "8675bbaf1784ddba9a9e6e567f17c971218b24e5abaefdcd5be2bd2d5bc714b0",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 76.5,
+          "opening_total": "56.5",
+          "current_total": "76.5",
+          "scalar_spread": 11.5,
+          "over_odds": -130.0,
+          "under_odds": 100.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "59",
+        "name": "ESPN Bet - Live Odds",
+        "scalar_total": 76.5,
+        "opening_total": "56.5",
+        "current_total": "76.5",
+        "scalar_spread": 11.5,
+        "over_odds": -130.0,
+        "under_odds": 100.0
+      },
+      "selected_live_provider": true,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401628479,
+      "season": 2024,
+      "matchup": "Arkansas State Red Wolves at Michigan Wolverines",
+      "archived_total": 39.5,
+      "final_total": 46.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628479/competitions/401628479/odds?limit=100",
+      "response_sha256": "886c24d52bcf28e375164de8103731e825025fd789c1e0ce6075c2014b460d84",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 39.5,
+          "opening_total": "46.5",
+          "current_total": "39.5",
+          "scalar_spread": -20.5,
+          "over_odds": 120.0,
+          "under_odds": -160.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "59",
+        "name": "ESPN Bet - Live Odds",
+        "scalar_total": 39.5,
+        "opening_total": "46.5",
+        "current_total": "39.5",
+        "scalar_spread": -20.5,
+        "over_odds": 120.0,
+        "under_odds": -160.0
+      },
+      "selected_live_provider": true,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401628516,
+      "season": 2024,
+      "matchup": "Penn State Nittany Lions at USC Trojans",
+      "archived_total": 51.5,
+      "final_total": 63.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401628516/competitions/401628516/odds?limit=100",
+      "response_sha256": "14fddc8dad163529b993d39a97bb2e91156c7b803462eeb904f8ff3fae2322f2",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 51.5,
+          "opening_total": "48.5",
+          "current_total": "51.5",
+          "scalar_spread": 3.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 59.5,
+          "opening_total": "48.5",
+          "current_total": "59.5",
+          "scalar_spread": -6.5,
+          "over_odds": -120.0,
+          "under_odds": -110.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 51.5,
+        "opening_total": "48.5",
+        "current_total": "51.5",
+        "scalar_spread": 3.5,
+        "over_odds": -110.0,
+        "under_odds": -110.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401635606,
+      "season": 2024,
+      "matchup": "Syracuse Orange at Boston College Eagles",
+      "archived_total": 51.5,
+      "final_total": 68.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401635606/competitions/401635606/odds?limit=100",
+      "response_sha256": "90cfc6a935f2c4a7c62dcee4ecb76d31abfac79ed4d91f42532aeab71c7b2241",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 51.5,
+          "opening_total": "53.5",
+          "current_total": "51.5",
+          "scalar_spread": -5.5,
+          "over_odds": -105.0,
+          "under_odds": -115.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 66.5,
+          "opening_total": "53.5",
+          "current_total": "66.5",
+          "scalar_spread": -12.5,
+          "over_odds": -125.0,
+          "under_odds": -105.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 51.5,
+        "opening_total": "53.5",
+        "current_total": "51.5",
+        "scalar_spread": -5.5,
+        "over_odds": -105.0,
+        "under_odds": -115.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401636868,
+      "season": 2024,
+      "matchup": "North Texas Mean Green at Texas Tech Red Raiders",
+      "archived_total": 93.5,
+      "final_total": 87.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401636868/competitions/401636868/odds?limit=100",
+      "response_sha256": "366f407dfc662ca0d464a0195ad1869a689f7a91ad1b9589256c84eecd17998b",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 93.5,
+          "opening_total": "68.5",
+          "current_total": "93.5",
+          "scalar_spread": -41.5,
+          "over_odds": 110.0,
+          "under_odds": -140.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "59",
+        "name": "ESPN Bet - Live Odds",
+        "scalar_total": 93.5,
+        "opening_total": "68.5",
+        "current_total": "93.5",
+        "scalar_spread": -41.5,
+        "over_odds": 110.0,
+        "under_odds": -140.0
+      },
+      "selected_live_provider": true,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401643714,
+      "season": 2024,
+      "matchup": "San Jos\u00e9 State Spartans at Washington State Cougars",
+      "archived_total": 84.5,
+      "final_total": 106.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401643714/competitions/401643714/odds?limit=100",
+      "response_sha256": "f2c3fb7bd89b72e61bfa9fb6c622e6aa313ce05abe7d27983a85dce75ca3a9f6",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 84.5,
+          "opening_total": "55.5",
+          "current_total": "84.5",
+          "scalar_spread": -6.5,
+          "over_odds": 110.0,
+          "under_odds": -140.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "59",
+        "name": "ESPN Bet - Live Odds",
+        "scalar_total": 84.5,
+        "opening_total": "55.5",
+        "current_total": "84.5",
+        "scalar_spread": -6.5,
+        "over_odds": 110.0,
+        "under_odds": -140.0
+      },
+      "selected_live_provider": true,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401729785,
+      "season": 2024,
+      "matchup": "Mercer Bears at North Dakota State Bison",
+      "archived_total": 52.5,
+      "final_total": 38.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401729785/competitions/401729785/odds?limit=100",
+      "response_sha256": "d80fd7cf08c8823cbfc0c557bad9cba029bd6b90f0258a2f339517da4a90fa05",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 52.5,
+          "opening_total": "53.5",
+          "current_total": "52.5",
+          "scalar_spread": -23.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 34.5,
+          "opening_total": "53.5",
+          "current_total": "34.5",
+          "scalar_spread": -26.5,
+          "over_odds": 105.0,
+          "under_odds": -135.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 52.5,
+        "opening_total": "53.5",
+        "current_total": "52.5",
+        "scalar_spread": -23.5,
+        "over_odds": -110.0,
+        "under_odds": -110.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401752665,
+      "season": 2025,
+      "matchup": "Alabama Crimson Tide at Florida State Seminoles",
+      "archived_total": 46.5,
+      "final_total": 48.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401752665/competitions/401752665/odds?limit=100",
+      "response_sha256": "0b3112aeca4eb31dc605e4fefbd8ef342eaa1091e89ef50aac833f69e60ed342",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 46.5,
+          "opening_total": "50.5",
+          "current_total": "46.5",
+          "scalar_spread": 13.5,
+          "over_odds": -120.0,
+          "under_odds": 100.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 50.5,
+          "opening_total": "50.5",
+          "current_total": "50.5",
+          "scalar_spread": -17.5,
+          "over_odds": -125.0,
+          "under_odds": -105.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 46.5,
+        "opening_total": "50.5",
+        "current_total": "46.5",
+        "scalar_spread": 13.5,
+        "over_odds": -120.0,
+        "under_odds": 100.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401752830,
+      "season": 2025,
+      "matchup": "Massachusetts Minutemen at Iowa Hawkeyes",
+      "archived_total": 44.5,
+      "final_total": 54.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401752830/competitions/401752830/odds?limit=100",
+      "response_sha256": "f3284ddc7ce1938d1e5bfbfb9d0c099400a22a27cd09b57fa026244f6563e6e8",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 44.5,
+          "opening_total": "43.5",
+          "current_total": "44.5",
+          "scalar_spread": -35.5,
+          "over_odds": -105.0,
+          "under_odds": -115.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 63.5,
+          "opening_total": "43.5",
+          "current_total": "63.5",
+          "scalar_spread": -49.5,
+          "over_odds": -115.0,
+          "under_odds": -105.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 44.5,
+        "opening_total": "43.5",
+        "current_total": "44.5",
+        "scalar_spread": -35.5,
+        "over_odds": -105.0,
+        "under_odds": -115.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401752869,
+      "season": 2025,
+      "matchup": "Iowa Hawkeyes at Wisconsin Badgers",
+      "archived_total": 37.5,
+      "final_total": 37.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401752869/competitions/401752869/odds?limit=100",
+      "response_sha256": "9c3e9b0b82466dd4896bd1a84a5e5d077652e7569f369efc6c4b864f8cb53bea",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 37.5,
+          "opening_total": "37.5",
+          "current_total": "37.5",
+          "scalar_spread": 4.5,
+          "over_odds": -115.0,
+          "under_odds": -105.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 37.5,
+          "opening_total": "37.5",
+          "current_total": "37.5",
+          "scalar_spread": 33.5,
+          "over_odds": -390.0,
+          "under_odds": 270.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 37.5,
+        "opening_total": "37.5",
+        "current_total": "37.5",
+        "scalar_spread": 4.5,
+        "over_odds": -115.0,
+        "under_odds": -105.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401756943,
+      "season": 2025,
+      "matchup": "Kansas Jayhawks at Arizona Wildcats",
+      "archived_total": 56.5,
+      "final_total": 44.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401756943/competitions/401756943/odds?limit=100",
+      "response_sha256": "2f2a6e9204d2c8e30664b425f4f246a407015f30d177ec665a47b756f5218dac",
+      "providers": [
+        {
+          "id": "58",
+          "name": "ESPN BET",
+          "scalar_total": 56.5,
+          "opening_total": "56.5",
+          "current_total": "56.5",
+          "scalar_spread": -6.5,
+          "over_odds": -110.0,
+          "under_odds": -110.0
+        },
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 43.5,
+          "opening_total": "56.5",
+          "current_total": "43.5",
+          "scalar_spread": -0.5,
+          "over_odds": -200.0,
+          "under_odds": 145.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "58",
+        "name": "ESPN BET",
+        "scalar_total": 56.5,
+        "opening_total": "56.5",
+        "current_total": "56.5",
+        "scalar_spread": -6.5,
+        "over_odds": -110.0,
+        "under_odds": -110.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401762521,
+      "season": 2025,
+      "matchup": "Army Black Knights at Navy Midshipmen",
+      "archived_total": 37.5,
+      "final_total": 33.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401762521/competitions/401762521/odds?limit=100",
+      "response_sha256": "e92e755d8e440f59494e9a11560409ddaa485c4bd292f18022bd61f6b0b08291",
+      "providers": [
+        {
+          "id": "100",
+          "name": "DraftKings",
+          "scalar_total": 37.5,
+          "opening_total": "38.5",
+          "current_total": "37.5",
+          "scalar_spread": -6.0,
+          "over_odds": -115.0,
+          "under_odds": -105.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "100",
+        "name": "DraftKings",
+        "scalar_total": 37.5,
+        "opening_total": "38.5",
+        "current_total": "37.5",
+        "scalar_spread": -6.0,
+        "over_odds": -115.0,
+        "under_odds": -105.0
+      },
+      "selected_live_provider": false,
+      "archive_matches_selected_scalar": true
+    },
+    {
+      "game_id": 401767509,
+      "season": 2025,
+      "matchup": "North Dakota State Bison at The Citadel Bulldogs",
+      "archived_total": 52.5,
+      "final_total": 38.0,
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/events/401767509/competitions/401767509/odds?limit=100",
+      "response_sha256": "22a5de7966d96cd58292c7bf15c1c537b466454269afbaec9828988faaa42a42",
+      "providers": [
+        {
+          "id": "59",
+          "name": "ESPN Bet - Live Odds",
+          "scalar_total": 52.5,
+          "opening_total": "52.5",
+          "current_total": "52.5",
+          "scalar_spread": 29.5,
+          "over_odds": 115.0,
+          "under_odds": -150.0
+        }
+      ],
+      "upstream_selected_provider": {
+        "id": "59",
+        "name": "ESPN Bet - Live Odds",
+        "scalar_total": 52.5,
+        "opening_total": "52.5",
+        "current_total": "52.5",
+        "scalar_spread": 29.5,
+        "over_odds": 115.0,
+        "under_odds": -150.0
+      },
+      "selected_live_provider": true,
+      "archive_matches_selected_scalar": true
+    }
+  ],
+  "recommendation": "Quarantine scalar archive for price-based backtests. Rebuild with independently sourced pregame/closing provider rows, preserving labels and timestamps; use opening totals only as separately named opening-line experiments. Do not infer prevalence from this purposive sample.",
+  "summary": {
+    "sample_games": 16,
+    "selected_live_provider": 6,
+    "archive_matches_selected_scalar": 16
+  }
+}

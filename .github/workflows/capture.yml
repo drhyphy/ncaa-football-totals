@@ -1,0 +1,47 @@
+name: Capture pregame market observations
+
+on:
+  schedule:
+    - cron: '7,37 0-1,10-23 * 1,8-12 *'
+      timezone: America/New_York
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# The daily runner and collector both update the append-only paper ledger.
+concurrency:
+  group: daily-totals-pages
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: model/requirements-lock.txt
+      - name: Install pinned dependencies
+        run: python -m pip install -r model/requirements-lock.txt
+      - name: Capture current public prices without fitting a model
+        working-directory: model
+        env:
+          ODDS_API_IO_KEY: ${{ secrets.ODDS_API_IO_KEY }}
+        run: python -m ncaaf_model.closing_collector
+      - name: Preserve public observations and near-kickoff comparisons
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- model/data/runtime model/ledger site/data/closing-summary.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive pregame market observations"
+            git push origin HEAD:main
+          fi

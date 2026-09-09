@@ -45,10 +45,24 @@
     const seen = new Set();
     return items(rows).slice().sort((a, b) => (epoch(a.recorded_at) || Infinity) - (epoch(b.recorded_at) || Infinity)).filter(row => {
       if (!row.game_id || !row.candidate) return false;
-      const key = `${row.candidate}:${row.game_id}`;
+      const key = `${row.model_version || "legacy"}:${row.candidate}:${row.game_id}`;
       if (seen.has(key)) return false;
       seen.add(key); return true;
     }).sort((a, b) => (epoch(b.kickoff) || 0) - (epoch(a.kickoff) || 0));
+  }
+  function currentHedges(board, now = new Date()) {
+    if (!health(board, now).usable) return [];
+    const scan = board.market_opportunities || {};
+    return items(scan.arbitrages).filter(row => row.both_recently_observed === true && epoch(row.kickoff) > now.getTime() &&
+      [row.over, row.under].every(quote => { const age = now.getTime() - epoch((quote || {}).observed_at); return Number.isFinite(age) && age >= -300000 && age <= 3600000; }));
+  }
+  function quoteLabel(pick) {
+    return pick.freshness_basis === "provider_full_state_receipt" ? "Provider observed" : "Market updated";
+  }
+  function evidenceState(board) {
+    const quarantined = board.historical_evidence_status === "quarantined_market_provenance";
+    const replacement = board.historical_evidence_status === "replacement_development_only";
+    return {hideMetrics: quarantined, replacement, showWarning: quarantined || board.prior_historical_evidence_quarantined === true};
   }
   function safeUrl(value) {
     if (typeof value !== "string") return null;
@@ -99,11 +113,12 @@
       game.append(heading, element("div", dateLabel(pick.kickoff), "kickoff"));
       const price = element("div", null, "pick-price"), selection = element("div", `${titleCase(pick.side)} ${number(pick.line)}`, "pick-selection");
       selection.append(element("small", odds(pick.american_odds)));
-      const ev = element("div", null, "pick-book"); ev.append(element("div", percent(pick.robust_ev, true), "pick-ev"), element("div", "Conservative modeled EV")); price.append(selection, ev);
+      const ev = element("div", null, "pick-book"); ev.append(element("div", percent(pick.robust_ev, true), "pick-ev"), element("div", "Stressed modeled EV")); price.append(selection, ev);
       const metrics = element("div", null, "pick-metrics");
       [["Projected total", number(pick.projected_total)], ["Consensus total", number(pick.consensus_total)], ["Win probability", percent(pick.win_probability)]].forEach(([label, value]) => {const dl = element("dl"); dl.append(element("dt", label), element("dd", value)); metrics.append(dl);});
       const bottom = element("div", null, "pick-bottom");
-      bottom.append(element("p", `${titleCase(pick.sportsbook)} · Quoted ${dateLabel(pick.quote_time)}`));
+      bottom.append(element("p", `${titleCase(pick.sportsbook)} · ${quoteLabel(pick)} ${dateLabel(pick.quote_time)}`));
+      if (pick.freshness_basis === "provider_full_state_receipt") bottom.append(element("p", pick.market_updated_at ? `Market last changed ${dateLabel(pick.market_updated_at)} · Price acceptance unconfirmed` : "Market change time unavailable · Price acceptance unconfirmed"));
       bottom.append(element("p", `Modeled EV ${percent(pick.expected_value, true)} · Push ${percent(pick.push_probability)} · Paper stake ${percent(pick.paper_stake_fraction)} of bankroll`));
       if (items(pick.flags).length) { const flags = element("div", null, "flags"); pick.flags.forEach(flag => flags.append(element("span", titleCase(flag), "flag"))); bottom.append(flags); }
       card.append(top, game, price, metrics, bottom); return card;
@@ -119,30 +134,48 @@
       else empty($("today-picks"), state.usable ? "No qualifying picks today" : "Selections paused", state.usable ? "No current pregame selection passes the publication rules. The model will continue to track future matchups and record its results." : state.message);
       $("upcoming-count").textContent = upcoming.length ? `${upcoming.length} future selections` : "";
       if (!upcoming.length) empty($("upcoming-picks"), "", state.usable ? "No future selections currently pass the publication rules." : "Watchlist paused until a current publication is available.", true);
-      else table($("upcoming-picks"), "Upcoming experimental selections", ["Matchup", "Selection", "Projection", "Win probability", "Conservative EV", "Quote"], upcoming.map(p => [
-        cell(`${p.away_team} at ${p.home_team}`, dateLabel(p.kickoff)), cell(`${titleCase(p.side)} ${number(p.line)} (${odds(p.american_odds)})`, titleCase(p.sportsbook)), cell(number(p.projected_total), titleCase(p.candidate)), cell(percent(p.win_probability), `Push ${percent(p.push_probability)}`), cell(percent(p.robust_ev, true), "Model estimate", finite(p.robust_ev) && p.robust_ev > 0 ? "positive" : ""), cell(dateLabel(p.quote_time), "Snapshot price")
+      else table($("upcoming-picks"), "Upcoming experimental selections", ["Matchup", "Selection", "Projection", "Win probability", "Stressed EV", "Quote"], upcoming.map(p => [
+        cell(`${p.away_team} at ${p.home_team}`, dateLabel(p.kickoff)), cell(`${titleCase(p.side)} ${number(p.line)} (${odds(p.american_odds)})`, titleCase(p.sportsbook)), cell(number(p.projected_total), titleCase(p.candidate)), cell(percent(p.win_probability), `Push ${percent(p.push_probability)}`), cell(percent(p.robust_ev, true), "Model estimate", finite(p.robust_ev) && p.robust_ev > 0 ? "positive" : ""), cell(dateLabel(p.quote_time), quoteLabel(p))
       ]));
+      renderMarketChecks(now);
+    }
+    function renderMarketChecks(now) {
+      const scan = board.market_opportunities || {}, rows = currentHedges(board, now);
+      $("market-checks-summary").textContent = scan.as_of ? `${number(scan.games_with_two_books, 0)} games with two books · ${number(scan.hedge_pairs_evaluated, 0)} pairs checked · ${dateLabel(scan.as_of)}` : "Cross-book scan has not been published.";
+      const columns = ["Matchup", "Over leg", "Under leg", "Quoted payoff range", "Execution"];
+      const mapped = row => [cell(row.matchup || "Matchup unavailable", dateLabel(row.kickoff)), cell(`${row.over?.book || "Unknown book"} · Over ${number(row.over?.line)}`, `${number(row.over?.decimal_odds, 3)} decimal · ${percent(row.over_stake_fraction)} stake`), cell(`${row.under?.book || "Unknown book"} · Under ${number(row.under?.line)}`, `${number(row.under?.decimal_odds, 3)} decimal · ${percent(row.under_stake_fraction)} stake`), cell(`${percent(row.worst_case_roi, true)} to ${percent(row.best_case_roi, true)}`, "Conditional mathematical scenario"), cell("Unconfirmed", "No bets placed")];
+      if (!rows.length) empty($("market-checks-table"), "", "No current positive-floor combination is available to display. Comparisons expire one hour after the quotes were observed.", true);
+      else table($("market-checks-table"), "Unconfirmed positive-floor quote combinations; execution and settlement assumptions apply", columns, rows.map(mapped));
+      const other = health(board, now).usable ? items(scan.hedges).filter(row => epoch(row.kickoff) > now.getTime()).slice(0,5) : [];
+      $("market-checks-details").hidden = other.length === 0;
+      if (other.length) table($("market-hedges-table"), "Other quoted hedge scenarios, which can lose money", columns, other.map(mapped));
+      else $("market-hedges-table").replaceChildren();
     }
     function renderCandidates() {
       const candidates = items(board.candidates);
+      const evidence = evidenceState(board), quarantined = evidence.hideMetrics;
+      $("historical-alert").hidden = !evidence.showWarning;
+      $("historical-alert-title").textContent = evidence.replacement ? "Earlier historical evidence remains quarantined" : "Historical evidence quarantined";
+      $("historical-alert-copy").textContent = evidence.replacement ? "The previous archive included in-play odds and its results remain withdrawn. The comparison below uses replacement pregame-provider data. Prices are assumed at −110 and exact closing times are unverified; profitability remains unproven." : "The previous market archive includes in-play odds. Historical model comparisons and betting returns are withdrawn pending clean pregame data. Current projections remain experimental.";
       $("model-version").textContent = board.model_version ? `Version ${board.model_version}` : "";
-      $("evidence-message").textContent = board.evidence_status === "research_only" ? "Research only. Historical performance and modeled EV do not establish a live betting edge. Candidate selection, price timing, and the independent forward record remain part of the evaluation." : "Profitability requires a credible, time-ordered evaluation and an independent forward record. Review the intervals and sample sizes below.";
-      if (!candidates.length) empty($("candidate-table"), "", "Candidate evaluation metrics have not been published.", true);
-      else table($("candidate-table"), "Historical candidate comparison", ["Candidate", {label: "Games", numeric: true}, {label: "MAE", numeric: true}, {label: "RMSE", numeric: true}, {label: "Bets", numeric: true}, {label: "ROI", numeric: true}, "95% ROI interval", {label: "Brier", numeric: true}], candidates.map(m => [
+      $("evidence-message").textContent = quarantined ? "Historical market provenance failed an audit: some archived totals are live in-game values. Earlier error scores and hypothetical ROI cannot establish a pregame edge and are withheld here. Forward records remain separate." : evidence.replacement ? "Replacement-data development results. These years have already been used in research; they are not an untouched test. The stated intervals are descriptive and do not account for all previous model searches. Review annual results and the independent forward record." : board.evidence_status === "research_only" ? "Research only. Historical performance and modeled EV do not establish a live betting edge. Candidate selection, price timing, and the independent forward record remain part of the evaluation." : "Profitability requires a credible, time-ordered evaluation and an independent forward record. Review the intervals and sample sizes below.";
+      if (quarantined) empty($("candidate-table"), "", "Historical metrics withheld: rebuilding the comparison against verified pregame market data. Prior reports remain available as quarantined research artifacts.", true);
+      else if (!candidates.length) empty($("candidate-table"), "", "Candidate evaluation metrics have not been published.", true);
+      else table($("candidate-table"), "Historical development candidate comparison", ["Candidate", {label: "Games", numeric: true}, {label: "MAE", numeric: true}, {label: "RMSE", numeric: true}, {label: "Signals", numeric: true}, {label: "ROI at −110", numeric: true}, "Descriptive 95% interval", {label: "Brier", numeric: true}], candidates.map(m => [
         cell(titleCase(m.candidate), m.status || "Evaluation status unavailable"), cell(number(m.games, 0), null, "numeric"), cell(number(m.mae, 2), null, "numeric"), cell(number(m.rmse, 2), null, "numeric"), cell(number(m.bets, 0), null, "numeric"), cell(percent(m.roi, true), null, "numeric"), cell(finite(m.roi_95_low) && finite(m.roi_95_high) ? `${percent(m.roi_95_low)} to ${percent(m.roi_95_high)}` : "Not estimated"), cell(number(m.brier, 3), null, "numeric")
       ]));
       const links = $("research-links"); links.replaceChildren();
       items(board.reports).forEach(report => { if (safeUrl(report.url)) links.append(link(`${report.name || "Research report"} ↗`, report.url)); });
       const forward = items(board.forecast_performance);
-      $("forward-forecast-count").textContent = `(${forward.length} candidates)`;
+      $("forward-forecast-count").textContent = `(${forward.length} candidate versions)`;
       if (!forward.length) empty($("forward-forecast-table"), "", "No forward forecast evaluation published yet.", true);
       else table($("forward-forecast-table"), "Forward forecast performance including abstentions", ["Candidate", {label:"Settled",numeric:true}, {label:"Pending",numeric:true}, {label:"MAE",numeric:true}, {label:"RMSE",numeric:true}, {label:"Brier",numeric:true}, {label:"Log loss",numeric:true}], forward.map(m => [
-        cell(titleCase(m.candidate), `${number(m.forecast_entries, 0)} forecasts · ${number(m.abstentions, 0)} abstentions`), cell(number(m.games, 0), null, "numeric"), cell(number(m.pending, 0), null, "numeric"), cell(number(m.mae, 2), null, "numeric"), cell(number(m.rmse, 2), null, "numeric"), cell(number(m.brier, 3), `${number(m.probability_scoring_games, 0)} scored`, "numeric"), cell(number(m.log_loss, 3), null, "numeric")
+        cell(titleCase(m.candidate), `${m.model_version || "Legacy version"} · ${number(m.forecast_entries, 0)} forecasts · ${number(m.abstentions, 0)} abstentions`), cell(number(m.games, 0), null, "numeric"), cell(number(m.pending, 0), null, "numeric"), cell(number(m.mae, 2), null, "numeric"), cell(number(m.rmse, 2), null, "numeric"), cell(number(m.brier, 3), `${number(m.probability_scoring_games, 0)} scored`, "numeric"), cell(number(m.log_loss, 3), null, "numeric")
       ]));
       const candidatesSeen = [...new Set(items(board.forecasts).map(row => row.candidate).filter(Boolean))].sort();
       $("candidate-filter").replaceChildren(element("option", "All candidates")); $("candidate-filter").firstChild.value = "all";
       candidatesSeen.forEach(candidate => { const option = element("option", titleCase(candidate)); option.value = candidate; $("candidate-filter").append(option); });
-      const primary = (board.performance || {}).candidate || "market_consensus_loo";
+      const primary = (board.performance || {}).candidate || "opponent_adjusted_ridge";
       if (candidatesSeen.includes(primary)) $("candidate-filter").value = primary;
       else if (candidatesSeen.length) $("candidate-filter").value = candidatesSeen[0];
       renderForecasts();
@@ -153,20 +186,20 @@
       $("forecast-count").textContent = `(${all.length})`;
       if (!rows.length) { empty($("forecast-table"), "", "No forecasts published for this selection.", true); return; }
       table($("forecast-table"), "All published forecasts; archived snapshots may be stale", ["Matchup", "Candidate", "Projection", "Market total", "Modeled EV", "Publication decision"], rows.map(row => [
-        cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(titleCase(row.candidate)), cell(number(row.projected_total)), cell(number(row.line), `${titleCase(row.side)} ${odds(row.american_odds)}`), cell(percent(row.expected_value, true)), cell(row.eligible ? "Qualified at publication" : "No selection", items(row.flags).map(titleCase).join(" · "))
+        cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(titleCase(row.candidate), row.probability_basis), cell(number(row.projected_total)), cell(number(row.line), `${titleCase(row.side)} ${odds(row.american_odds)}`), cell(percent(row.expected_value, true)), cell(row.eligible ? "Qualified at publication" : "No selection", items(row.flags).map(titleCase).join(" · "))
       ]));
     }
     function renderPerformance() {
       const p = board.performance || {}, settled = Number(p.wins || 0) + Number(p.losses || 0) + Number(p.pushes || 0);
       const stats = $("performance-stats"); stats.replaceChildren();
-      [["Settled paper bets", number(settled, 0), `${number(p.wins, 0)} W · ${number(p.losses, 0)} L · ${number(p.pushes, 0)} P`], ["Profit / loss", settled ? `${finite(p.profit_units) && p.profit_units > 0 ? "+" : ""}${number(p.profit_units, 2)} u` : "—", "At recorded prices"], ["Realized ROI", settled ? percent(p.roi, true) : "—", "Profit divided by total stake"], ["95% ROI interval", settled && finite(p.roi_95_low) && finite(p.roi_95_high) ? `${percent(p.roi_95_low)} / ${percent(p.roi_95_high)}` : "—", "Uncertainty in forward returns"]].forEach(([label, value, detail]) => {
+      [["Settled paper bets", number(settled, 0), `${number(p.wins, 0)} W · ${number(p.losses, 0)} L · ${number(p.pushes, 0)} P`], ["Profit / loss", settled ? `${finite(p.profit_units) && p.profit_units > 0 ? "+" : ""}${number(p.profit_units, 2)} u` : "—", "One unit per paper selection"], ["Realized ROI", settled ? percent(p.roi, true) : "—", "Return on flat one-unit stakes"], ["95% ROI interval", settled && finite(p.roi_95_low) && finite(p.roi_95_high) ? `${percent(p.roi_95_low)} / ${percent(p.roi_95_high)}` : "—", "Uncertainty in forward returns"]].forEach(([label, value, detail]) => {
         const node = element("div", null, "stat"); node.append(element("span", label, "stat-label"), element("span", value, "stat-value"), element("span", detail, "stat-detail")); stats.append(node);
       });
-      $("performance-note").textContent = `Primary candidate: ${titleCase(p.candidate || "market_consensus_loo")}. ${settled ? "Paper results use one recorded selection per candidate and game. Returns may differ from executable betting results." : "No settled forward record yet. A profitable live edge has not been demonstrated."}`;
+      $("performance-note").textContent = `Primary candidate: ${titleCase(p.candidate || "opponent_adjusted_ridge")} · ${p.model_version || board.model_version || "Version unavailable"}. ${settled ? "Paper results use one recorded selection per version, candidate and game. Returns may differ from executable betting results." : "No settled forward record yet. A profitable live edge has not been demonstrated."}`;
       const rows = dedupeResults(board.results);
       if (!rows.length) { empty($("results-table"), "", "No forward ledger rows have been published yet.", true); return; }
       table($("results-table"), "Deduplicated forward paper selections", ["Matchup", "Candidate", "Recorded selection", "Result", "Profit"], rows.map(row => [
-        cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(titleCase(row.candidate), row.recorded_at ? `Recorded ${dateLabel(row.recorded_at)}` : null), cell(`${titleCase(row.side)} ${number(row.line)} (${odds(row.american_odds)})`), cell(titleCase(row.result || "pending")), cell(finite(row.profit_units) ? `${row.profit_units > 0 ? "+" : ""}${number(row.profit_units, 2)} u` : "—", null, row.profit_units > 0 ? "positive" : row.profit_units < 0 ? "negative" : "")
+        cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(titleCase(row.candidate), `${row.model_version || "Legacy version"}${row.recorded_at ? ` · Recorded ${dateLabel(row.recorded_at)}` : ""}`), cell(`${titleCase(row.side)} ${number(row.line)} (${odds(row.american_odds)})`), cell(titleCase(row.result || "pending")), cell(finite(row.profit_units) ? `${row.profit_units > 0 ? "+" : ""}${number(row.profit_units, 2)} u` : "—", null, row.profit_units > 0 ? "positive" : row.profit_units < 0 ? "negative" : "")
       ]));
     }
     function renderTransparency() {
@@ -187,5 +220,5 @@
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
     setInterval(() => { if (board) renderPicks(new Date()); }, 60000);
   }
-  return {dateKey, health, currentPicks, dedupeResults, safeUrl, percent, number, start};
+  return {dateKey, health, currentPicks, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
 });

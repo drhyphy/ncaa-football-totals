@@ -46,6 +46,17 @@ def test_missing_timestamp_and_old_timestamp_are_never_replaced_by_fetch_time():
     assert parse_odds_api_io([raw], NOW)[0]["bookmakers"][0]["markets"][0]["last_update"] == "2026-09-01T00:00:00Z"
 
 
+def test_full_state_observation_is_separate_from_market_last_change():
+    raw = event()
+    raw["bookmakers"]["DraftKings"][0]["updatedAt"] = "2026-09-01T00:00:00Z"
+    market = parse_odds_api_io(raw, NOW, observed_at=NOW)[0]["bookmakers"][0]["markets"][0]
+    assert market["last_update"] == "2026-09-01T00:00:00Z"
+    assert market["observed_at"] == "2026-09-08T23:30:00Z"
+    assert market["observation_kind"] == "provider_full_state"
+    archived = parse_odds_api_io(raw, NOW)[0]["bookmakers"][0]["markets"][0]
+    assert archived["observed_at"] is None and archived["observation_kind"] is None
+
+
 def test_unpaired_invalid_partial_or_live_totals_do_not_enter_feed():
     raw = event()
     del raw["bookmakers"]["DraftKings"][0]["odds"][0]["under"]
@@ -87,6 +98,8 @@ def test_fetch_only_reads_existing_book_selection_and_batches_known_events():
     assert len(session.calls) == 3
     assert session.calls[-1][1]['bookmakers'] == 'DraftKings,FanDuel'
     assert session.calls[-1][1]['eventIds'] == '70898552'
+    assert result[0]['bookmakers'][0]['markets'][0]['observed_at'] is not None
+    assert result[0]['bookmakers'][0]['markets'][0]['last_update'] == '2026-09-08T23:15:26.112000Z'
 
 
 def test_network_errors_never_expose_key_bearing_urls():

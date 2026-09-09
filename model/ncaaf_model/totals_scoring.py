@@ -96,7 +96,7 @@ def attach_totals_schedule(odds: pd.DataFrame, schedule: pd.DataFrame) -> pd.Dat
     matched: list[dict[str, Any]] = []
     for _, event in odds.iterrows():
         kickoff = pd.to_datetime(event["commence_time"], utc=True)
-        window = schedule.loc[(schedule["scheduled_time"] - kickoff).abs().le(pd.Timedelta(hours=36))]
+        window = schedule.loc[(schedule["scheduled_time"] - kickoff).abs().le(pd.Timedelta(hours=4))]
         candidates = window.loc[
             window.apply(
                 lambda row: _teams_match(str(event["home_team"]), str(row["home_team"]))
@@ -116,6 +116,8 @@ def attach_totals_schedule(odds: pd.DataFrame, schedule: pd.DataFrame) -> pd.Dat
                     "season": int(game["season"]),
                     "neutral_site": bool(game["neutral_site"]),
                     "schedule_match": True,
+                    "schedule_status": game.get("status"),
+                    "canonical_kickoff": game["scheduled_time"].isoformat(),
                 }
             )
         else:
@@ -128,6 +130,8 @@ def attach_totals_schedule(odds: pd.DataFrame, schedule: pd.DataFrame) -> pd.Dat
                     "season": int(pd.to_numeric(schedule["season"], errors="coerce").dropna().max()),
                     "neutral_site": False,
                     "schedule_match": False,
+                    "schedule_status": None,
+                    "canonical_kickoff": None,
                 }
             )
         matched.append(record)

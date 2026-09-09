@@ -39,7 +39,7 @@ def event(quote_time=None):
 
 def games(payload):
     frame = quotes_from_events(payload, SimpleNamespace(allowed_books=("shop", "a", "b", "c")), NOW)
-    return frame.assign(schedule_match=True, espn_game_id=1, home_prior_games=15, away_prior_games=15)
+    return frame.assign(schedule_match=True, schedule_status="STATUS_SCHEDULED", canonical_kickoff=lambda x:x.commence_time, espn_game_id=1, home_prior_games=15, away_prior_games=15)
 
 
 def score(payload):
@@ -64,20 +64,22 @@ def test_market_timestamp_takes_precedence_and_reference_excludes_execution():
     assert row["consensus_total"] == pytest.approx(52.5, abs=.03)
 
 
-def test_three_total_books_are_insufficient_for_independent_reference():
+def test_two_distinct_books_are_sufficient_and_one_is_not():
     payload = event("2026-09-08T10:25:00Z")
-    payload[0]["bookmakers"].pop()
+    payload[0]["bookmakers"] = payload[0]["bookmakers"][:2]
+    assert score(payload)[0]["eligible"]
+    payload[0]["bookmakers"] = payload[0]["bookmakers"][:1]
     row = score(payload)[0]
     assert not row["eligible"]
-    assert "fewer_than_three_other_fresh_books" in row["flags"]
+    assert "no_other_current_sportsbook" in row["flags"]
 
 
 def test_duplicates_cannot_increase_reference_count():
     payload = event("2026-09-08T10:25:00Z")
-    payload[0]["bookmakers"] = payload[0]["bookmakers"][:2] * 3
+    payload[0]["bookmakers"] = payload[0]["bookmakers"][:1] * 3
     row = score(payload)[0]
     assert not row["eligible"]
-    assert len(row["reference_books"]) == 1
+    assert len(row["reference_books"]) == 0
 
 
 def test_first_entry_is_locked_and_grading_has_pushes():
@@ -92,12 +94,30 @@ def test_first_entry_is_locked_and_grading_has_pushes():
     graded = grade_positions([push], schedule)
     assert graded[0]["result"] == "push" and graded[0]["profit_units"] == 0
     assert graded[0]["clv"] is None
-    perf = performance(graded)
+    perf = performance(graded, row["candidate"])
     assert perf["bets"] == 1 and perf["pushes"] == 1 and perf["roi_95_low"] is None
 
 
 def test_exception_messages_cannot_leak_key():
     assert "secret" not in safe_failure(RuntimeError("https://example.com/?apiKey=secret"))
+
+
+def test_same_candidate_across_versions_keeps_separate_forward_results():
+    from ncaaf_model.runtime import VERSION, forecast_performance
+    row = score(event("2026-09-08T10:25:00Z"))[0]
+    current = {**row, "actual_total": 60, "result": "win", "profit_units": .9}
+    previous = {**current, "model_version": "previous", "result": "loss", "profit_units": -1., "actual_total": 30}
+    pending = {**row, "model_version": "previous", "result": "pending"}
+    entries = [previous, current, pending]
+    active = performance(entries, row["candidate"])
+    assert active["model_version"] == VERSION and active["bets"] == 1
+    assert active["wins"] == 1 and active["pending"] == 0
+    old = performance(entries, row["candidate"], "previous")
+    assert old["losses"] == 1 and old["pending"] == 1
+    groups = {m["model_version"]: m for m in forecast_performance(entries)}
+    assert groups[VERSION]["forecast_entries"] == 1
+    assert groups["previous"]["forecast_entries"] == 2
+    assert groups[VERSION]["games"] == groups["previous"]["games"] == 1
 
 
 def test_forward_forecasts_track_abstentions_without_counting_bets():
@@ -131,3 +151,42 @@ def test_decimal_payout_is_graded_without_display_rounding():
     position = record_positions([], [row], NOW)
     schedule = pd.DataFrame([{"game_id": 1, "status": "STATUS_FINAL", "home_score": 30, "away_score": 20}])
     assert grade_positions(position, schedule)[0]["profit_units"] == pytest.approx(.92)
+
+
+def test_unchanged_market_is_current_only_after_authoritative_full_state_receipt():
+    payload=event("2026-09-07T10:00:00Z")
+    for b in payload[0]["bookmakers"]:
+        b['source']='odds_api_io'
+        b['markets'][0].update(observed_at="2026-09-08T10:29:00Z",observation_kind='provider_full_state')
+    row=score(payload)[0]
+    assert row['eligible']
+    assert row['freshness_basis']=='provider_full_state_receipt'
+    assert row['market_updated_at']=='2026-09-07T10:00:00Z'
+    assert row['quote_time']=='2026-09-08T10:29:00Z'
+    for b in payload[0]["bookmakers"]:
+        b['source']='actionnetwork_public'
+    assert not score(payload)[0]['eligible']
+
+
+def test_receipt_time_does_not_refresh_an_old_archive_or_validate_future_market_updates():
+    payload=event("2026-09-07T10:00:00Z")
+    for b in payload[0]["bookmakers"]:
+        b['source']='odds_api_io'
+        b['markets'][0].update(observed_at="2026-09-08T10:20:00Z",observation_kind='provider_full_state')
+    assert not score(payload)[0]['eligible']
+    for b in payload[0]["bookmakers"]:
+        b['markets'][0].update(observed_at="2026-09-08T10:29:00Z",last_update="2026-09-08T12:00:00Z")
+    assert not score(payload)[0]['eligible']
+
+
+def test_statistical_candidate_can_qualify_below_six_point_adjustment():
+    payload=event("2026-09-08T10:25:00Z")
+    for b in payload[0]['bookmakers']:
+        for o in b['markets'][0]['outcomes']:
+            o['point']=50.5
+    output=score_games(games(payload),{'opponent_adjusted_ridge':[54.]},{'sigma':16,'family':'normal'},NOW)
+    row=next(r for r in output if r['candidate']=='opponent_adjusted_ridge')
+    assert row['eligible']
+    assert row['paper_stake_fraction'] > 0
+    assert row['confidence']=='experimental'
+    assert not row['execution_confirmed']

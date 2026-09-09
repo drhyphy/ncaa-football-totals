@@ -55,8 +55,10 @@ jobs:
         run: python -m pytest tests -q
       - name: Test publication and frontend safeguards
         run: |
-          python -m unittest discover -s scripts/tests -v
+          python -m pytest scripts/tests -q
           node --test site/tests/*.test.cjs
+      - name: Publish current research with provenance checks
+        run: python scripts/publish_research.py --root .
       - name: Check whether today's scheduled refresh already succeeded
         id: decision
         run: python scripts/schedule_state.py decision

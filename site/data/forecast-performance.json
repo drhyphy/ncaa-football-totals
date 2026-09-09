@@ -1,5 +1,6 @@
 [
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "drive_clock_ridge",
     "games": 0,
     "pending": 85,
@@ -15,6 +16,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "drive_clock_shrink",
     "games": 0,
     "pending": 85,
@@ -30,6 +32,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "market_consensus_loo",
     "games": 0,
     "pending": 85,
@@ -45,6 +48,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "market_residual_ensemble",
     "games": 0,
     "pending": 85,
@@ -60,6 +64,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "market_residual_hgb",
     "games": 0,
     "pending": 85,
@@ -75,6 +80,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "market_residual_ridge",
     "games": 0,
     "pending": 85,
@@ -90,6 +96,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "pace_efficiency",
     "games": 0,
     "pending": 85,
@@ -105,6 +112,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "public_fei_epa",
     "games": 0,
     "pending": 85,
@@ -120,6 +128,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "public_fpi",
     "games": 0,
     "pending": 85,
@@ -135,6 +144,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "public_full_hgb",
     "games": 0,
     "pending": 85,
@@ -150,6 +160,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "public_roster_prior",
     "games": 0,
     "pending": 85,
@@ -165,6 +176,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "public_summary",
     "games": 0,
     "pending": 85,
@@ -180,6 +192,7 @@
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   },
   {
+    "model_version": "totals-v3-20260908",
     "candidate": "public_superensemble_v2",
     "games": 0,
     "pending": 85,
@@ -191,6 +204,54 @@
     "pushes": 0,
     "forecast_entries": 85,
     "abstentions": 85,
+    "calibration_bins": [],
+    "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
+  },
+  {
+    "model_version": "totals-v4-20260908",
+    "candidate": "market_price_reference",
+    "games": 0,
+    "pending": 85,
+    "mae": null,
+    "rmse": null,
+    "brier": null,
+    "log_loss": null,
+    "probability_scoring_games": 0,
+    "pushes": 0,
+    "forecast_entries": 85,
+    "abstentions": 85,
+    "calibration_bins": [],
+    "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
+  },
+  {
+    "model_version": "totals-v4-20260908",
+    "candidate": "opponent_adjusted_ridge",
+    "games": 0,
+    "pending": 85,
+    "mae": null,
+    "rmse": null,
+    "brier": null,
+    "log_loss": null,
+    "probability_scoring_games": 0,
+    "pushes": 0,
+    "forecast_entries": 85,
+    "abstentions": 83,
+    "calibration_bins": [],
+    "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
+  },
+  {
+    "model_version": "totals-v4-20260908",
+    "candidate": "opponent_adjusted_structural",
+    "games": 0,
+    "pending": 85,
+    "mae": null,
+    "rmse": null,
+    "brier": null,
+    "log_loss": null,
+    "probability_scoring_games": 0,
+    "pushes": 0,
+    "forecast_entries": 85,
+    "abstentions": 83,
     "calibration_bins": [],
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
   }

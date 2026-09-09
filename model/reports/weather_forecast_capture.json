@@ -1,0 +1,187 @@
+{
+  "as_of": "2026-09-09T00:24:07.328583+00:00",
+  "source_coordinates": "https://raw.githubusercontent.com/gboeing/data-visualization/main/ncaa-football-stadiums/data/stadiums-geocoded.csv",
+  "games": [
+    {
+      "game": {
+        "game_id": "401858220",
+        "venue_id": "3923",
+        "kickoff": "2026-09-11T23:00Z",
+        "indoor": false,
+        "neutral_site": false,
+        "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401858220"
+      },
+      "venue": {
+        "venue_id": "3923",
+        "name": "Scott Stadium",
+        "latitude": 38.03112372855688,
+        "longitude": -78.51370811462402,
+        "outdoor_verified": true,
+        "metadata_source": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/venues/3923?lang=en&region=us",
+        "coordinates_source": "https://raw.githubusercontent.com/gboeing/data-visualization/main/ncaa-football-stadiums/data/stadiums-geocoded.csv",
+        "valid_from": "2026-09-09",
+        "valid_through": "2026-12-31"
+      },
+      "samples": [
+        {
+          "candidate": "weather_under_shadow_v1",
+          "game_id": "401858220",
+          "status": "shadow_only",
+          "shadow_under_flag": false,
+          "win_probability": null,
+          "expected_value": null,
+          "bet_eligible": false,
+          "thresholds": {
+            "wind_mph_above": 7.78,
+            "temperature_f_below": 64.81,
+            "relative_humidity_percent_above": 56.8
+          },
+          "flags": [],
+          "source_url": "https://api.open-meteo.com/v1/forecast",
+          "model": "gfs_global",
+          "forecast_mode": "live",
+          "observed_at": "2026-09-09T00:24:08.377705+00:00",
+          "rule_source": "https://doi.org/10.1080/13504851.2022.2146651",
+          "interpretation": "Frozen research criterion only; published historical win rate is not a probability for this matchup.",
+          "availability_evidence": "prospectively_archived_receipt",
+          "temperature_f": 75.9,
+          "relative_humidity_percent": 69.0,
+          "wind_mph": 2.6,
+          "forecast_valid_time": "2026-09-11T23:00:00+00:00",
+          "wind_aggregation": "Mean of forecast kickoff hour and next three hours; fixed pregame duration proxy",
+          "grid_latitude": 38.01497,
+          "grid_longitude": -78.515625,
+          "archive": "data/raw/weather/forecast-eca8b1d6e3bffb840b30562e882f9872efc83c8388105dc52c015bc00a67b850.json.gz"
+        },
+        {
+          "candidate": "weather_under_shadow_v1",
+          "game_id": "401858220",
+          "status": "unavailable",
+          "shadow_under_flag": null,
+          "win_probability": null,
+          "expected_value": null,
+          "bet_eligible": false,
+          "thresholds": {
+            "wind_mph_above": 7.78,
+            "temperature_f_below": 64.81,
+            "relative_humidity_percent_above": 56.8
+          },
+          "flags": [
+            "fixed_lead_forecast_not_yet_available_under_buffer"
+          ],
+          "source_url": "https://previous-runs-api.open-meteo.com/v1/forecast",
+          "model": "gfs_global",
+          "forecast_mode": "previous_day2",
+          "observed_at": "2026-09-09T00:24:08.916819+00:00",
+          "rule_source": "https://doi.org/10.1080/13504851.2022.2146651",
+          "interpretation": "Frozen research criterion only; published historical win rate is not a probability for this matchup.",
+          "nominal_forecast_reference_time": "2026-09-09T23:00:00+00:00",
+          "forecast_lead_hours": 48,
+          "latest_nominal_reference_time": "2026-09-10T02:00:00+00:00",
+          "publication_timestamp_verified": false,
+          "publication_delay_buffer_hours": 6,
+          "availability_evidence": "prospectively_archived_receipt",
+          "archive": "data/raw/weather/forecast-0b7f64f8de838cad61347912f2f5ea0b10354ac9fb45860f007ac2f6cc36e5df.json.gz"
+        }
+      ]
+    },
+    {
+      "game": {
+        "game_id": "401858222",
+        "venue_id": "3670",
+        "kickoff": "2026-09-11T23:00Z",
+        "indoor": false,
+        "neutral_site": false,
+        "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401858222"
+      },
+      "venue": {
+        "venue_id": "3670",
+        "name": "Carter-Finley Stadium",
+        "latitude": 35.80075968207897,
+        "longitude": -78.71948719024658,
+        "outdoor_verified": true,
+        "metadata_source": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/venues/3670?lang=en&region=us",
+        "coordinates_source": "https://raw.githubusercontent.com/gboeing/data-visualization/main/ncaa-football-stadiums/data/stadiums-geocoded.csv",
+        "valid_from": "2026-09-09",
+        "valid_through": "2026-12-31"
+      },
+      "samples": [
+        {
+          "candidate": "weather_under_shadow_v1",
+          "game_id": "401858222",
+          "status": "shadow_only",
+          "shadow_under_flag": false,
+          "win_probability": null,
+          "expected_value": null,
+          "bet_eligible": false,
+          "thresholds": {
+            "wind_mph_above": 7.78,
+            "temperature_f_below": 64.81,
+            "relative_humidity_percent_above": 56.8
+          },
+          "flags": [],
+          "source_url": "https://api.open-meteo.com/v1/forecast",
+          "model": "gfs_global",
+          "forecast_mode": "live",
+          "observed_at": "2026-09-09T00:24:09.266294+00:00",
+          "rule_source": "https://doi.org/10.1080/13504851.2022.2146651",
+          "interpretation": "Frozen research criterion only; published historical win rate is not a probability for this matchup.",
+          "availability_evidence": "prospectively_archived_receipt",
+          "temperature_f": 89.5,
+          "relative_humidity_percent": 44.0,
+          "wind_mph": 7.875,
+          "forecast_valid_time": "2026-09-11T23:00:00+00:00",
+          "wind_aggregation": "Mean of forecast kickoff hour and next three hours; fixed pregame duration proxy",
+          "grid_latitude": 35.78913,
+          "grid_longitude": -78.75,
+          "archive": "data/raw/weather/forecast-37f4054f47e370a67a15e9a6ff8e0da3f1d3cabe2b7a8411650c436e0146d595.json.gz"
+        },
+        {
+          "candidate": "weather_under_shadow_v1",
+          "game_id": "401858222",
+          "status": "unavailable",
+          "shadow_under_flag": null,
+          "win_probability": null,
+          "expected_value": null,
+          "bet_eligible": false,
+          "thresholds": {
+            "wind_mph_above": 7.78,
+            "temperature_f_below": 64.81,
+            "relative_humidity_percent_above": 56.8
+          },
+          "flags": [
+            "fixed_lead_forecast_not_yet_available_under_buffer"
+          ],
+          "source_url": "https://previous-runs-api.open-meteo.com/v1/forecast",
+          "model": "gfs_global",
+          "forecast_mode": "previous_day2",
+          "observed_at": "2026-09-09T00:24:09.421136+00:00",
+          "rule_source": "https://doi.org/10.1080/13504851.2022.2146651",
+          "interpretation": "Frozen research criterion only; published historical win rate is not a probability for this matchup.",
+          "nominal_forecast_reference_time": "2026-09-09T23:00:00+00:00",
+          "forecast_lead_hours": 48,
+          "latest_nominal_reference_time": "2026-09-10T02:00:00+00:00",
+          "publication_timestamp_verified": false,
+          "publication_delay_buffer_hours": 6,
+          "availability_evidence": "prospectively_archived_receipt",
+          "archive": "data/raw/weather/forecast-26d72ee2bd41ba34446c94a05349fe623298b95b13084bd947fea45935271444.json.gz"
+        }
+      ]
+    }
+  ],
+  "archives": [
+    "data/raw/weather/forecast-eca8b1d6e3bffb840b30562e882f9872efc83c8388105dc52c015bc00a67b850.json.gz",
+    "data/raw/weather/forecast-0b7f64f8de838cad61347912f2f5ea0b10354ac9fb45860f007ac2f6cc36e5df.json.gz",
+    "data/raw/weather/forecast-37f4054f47e370a67a15e9a6ff8e0da3f1d3cabe2b7a8411650c436e0146d595.json.gz",
+    "data/raw/weather/forecast-26d72ee2bd41ba34446c94a05349fe623298b95b13084bd947fea45935271444.json.gz"
+  ],
+  "historical_archive_probe": {
+    "valid_date": "2024-09-07",
+    "archive": "data/raw/weather/forecast-c10cd2a5c66d72c057b0810898797d7edd7b8b1b6364ae643bb1e09927625796.json.gz",
+    "nonmissing_counts": {
+      "temperature_2m_previous_day2": 24,
+      "relative_humidity_2m_previous_day2": 24,
+      "wind_speed_10m_previous_day2": 24
+    }
+  }
+}

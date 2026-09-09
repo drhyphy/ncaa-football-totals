@@ -1,0 +1,239 @@
+{
+  "status": "reused_development_not_proof_of_profit",
+  "specification": "opponent-adjusted-v2-expanded",
+  "historical_price_assumption": -110,
+  "alternative_data_used": true,
+  "selection": "two fixed candidates, no outcome-based hyperparameter search; same specifications refitted with newly acquired public CFBD historical data",
+  "by_season": {
+    "2023": {
+      "market_only": {
+        "games": 795,
+        "mae": 12.755345911949686,
+        "rmse": 15.822074779069444,
+        "mae_delta": 0.0,
+        "mae_delta_week_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "brier": 0.2501105389152794,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "assumed_minus110_roi": null,
+        "roi_week_bootstrap_95": null
+      },
+      "opponent_adjusted_ridge": {
+        "games": 795,
+        "mae": 12.722886460832886,
+        "rmse": 15.758265912845433,
+        "mae_delta": -0.032459451116800236,
+        "mae_delta_week_bootstrap_95": [
+          -0.0725719615811129,
+          0.02077658299579289
+        ],
+        "brier": 0.24939654895189778,
+        "bets": 67,
+        "wins": 32,
+        "losses": 35,
+        "assumed_minus110_roi": -0.08819538670284939,
+        "roi_week_bootstrap_95": [
+          -0.2801788375558868,
+          0.15216229695069755
+        ]
+      },
+      "opponent_adjusted_structural": {
+        "games": 795,
+        "mae": 12.763769917251055,
+        "rmse": 15.777143233784034,
+        "mae_delta": 0.008424005301371006,
+        "mae_delta_week_bootstrap_95": [
+          -0.0665721937767254,
+          0.0818452155916696
+        ],
+        "brier": 0.25050001400918,
+        "bets": 191,
+        "wins": 95,
+        "losses": 93,
+        "assumed_minus110_roi": -0.03474535935268916,
+        "roi_week_bootstrap_95": [
+          -0.1725351315711783,
+          0.0888872264695161
+        ]
+      }
+    },
+    "2024": {
+      "market_only": {
+        "games": 823,
+        "mae": 12.55224787363305,
+        "rmse": 16.0725780221169,
+        "mae_delta": 0.0,
+        "mae_delta_week_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "brier": 0.24990412112124996,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "assumed_minus110_roi": null,
+        "roi_week_bootstrap_95": null
+      },
+      "opponent_adjusted_ridge": {
+        "games": 823,
+        "mae": 12.48153490851542,
+        "rmse": 15.93140085745852,
+        "mae_delta": -0.07071296511762926,
+        "mae_delta_week_bootstrap_95": [
+          -0.1685200054173292,
+          0.02436840739589333
+        ],
+        "brier": 0.24786853379437648,
+        "bets": 307,
+        "wins": 177,
+        "losses": 130,
+        "assumed_minus110_roi": 0.10068107787977494,
+        "roi_week_bootstrap_95": [
+          -0.013553942088397483,
+          0.20001927401220676
+        ]
+      },
+      "opponent_adjusted_structural": {
+        "games": 823,
+        "mae": 12.48889419715322,
+        "rmse": 15.988219963053295,
+        "mae_delta": -0.06335367647982769,
+        "mae_delta_week_bootstrap_95": [
+          -0.1298023433376395,
+          0.013581026624064189
+        ],
+        "brier": 0.24815381106659506,
+        "bets": 159,
+        "wins": 94,
+        "losses": 65,
+        "assumed_minus110_roi": 0.12864493996569468,
+        "roi_week_bootstrap_95": [
+          -0.03849667070910465,
+          0.26877470355731226
+        ]
+      }
+    },
+    "2025": {
+      "market_only": {
+        "games": 854,
+        "mae": 12.481264637002342,
+        "rmse": 15.48828597172458,
+        "mae_delta": 0.0,
+        "mae_delta_week_bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "brier": 0.25000486284412693,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "assumed_minus110_roi": null,
+        "roi_week_bootstrap_95": null
+      },
+      "opponent_adjusted_ridge": {
+        "games": 854,
+        "mae": 12.561880240264417,
+        "rmse": 15.520258624164414,
+        "mae_delta": 0.08061560326207558,
+        "mae_delta_week_bootstrap_95": [
+          -0.03344349012316379,
+          0.19674362933550735
+        ],
+        "brier": 0.25213558308589307,
+        "bets": 394,
+        "wins": 204,
+        "losses": 190,
+        "assumed_minus110_roi": -0.011536686663590215,
+        "roi_week_bootstrap_95": [
+          -0.09004477642882652,
+          0.06186393991860228
+        ]
+      },
+      "opponent_adjusted_structural": {
+        "games": 854,
+        "mae": 12.506268169309344,
+        "rmse": 15.486923779626864,
+        "mae_delta": 0.025003532307000118,
+        "mae_delta_week_bootstrap_95": [
+          -0.03932353520419901,
+          0.08694779918213774
+        ],
+        "brier": 0.25039039830514487,
+        "bets": 110,
+        "wins": 57,
+        "losses": 53,
+        "assumed_minus110_roi": -0.010743801652892553,
+        "roi_week_bootstrap_95": [
+          -0.17449775979187743,
+          0.17192548202188637
+        ]
+      }
+    }
+  },
+  "pooled": {
+    "market_only": {
+      "games": 2472,
+      "mae": 12.593042071197411,
+      "rmse": 15.79200875294446,
+      "mae_delta": 0.0,
+      "mae_delta_week_bootstrap_95": [
+        0.0,
+        0.0
+      ],
+      "brier": 0.25000496699594077,
+      "bets": 0,
+      "wins": 0,
+      "losses": 0,
+      "assumed_minus110_roi": null,
+      "roi_week_bootstrap_95": null
+    },
+    "opponent_adjusted_ridge": {
+      "games": 2472,
+      "mae": 12.586910878339866,
+      "rmse": 15.734603150453585,
+      "mae_delta": -0.00613119285754552,
+      "mae_delta_week_bootstrap_95": [
+        -0.05874412517623847,
+        0.05138175752841962
+      ],
+      "brier": 0.2498355013365536,
+      "bets": 768,
+      "wins": 413,
+      "losses": 355,
+      "assumed_minus110_roi": 0.026633522727272724,
+      "roi_week_bootstrap_95": [
+        -0.03810132663454123,
+        0.08982133701974226
+      ]
+    },
+    "opponent_adjusted_structural": {
+      "games": 2472,
+      "mae": 12.583296935704642,
+      "rmse": 15.748521132753776,
+      "mae_delta": -0.00974513549277109,
+      "mae_delta_week_bootstrap_95": [
+        -0.051106236416079746,
+        0.036203693024711325
+      ],
+      "brier": 0.2496783675672184,
+      "bets": 460,
+      "wins": 246,
+      "losses": 211,
+      "assumed_minus110_roi": 0.027470355731225304,
+      "roi_week_bootstrap_95": [
+        -0.06617660427807488,
+        0.11614481568582746
+      ]
+    }
+  },
+  "limitations": [
+    "Resolved close, no historical offered prices or morning timestamps.",
+    "2019\u20132025 reused development data; not an untouched holdout.",
+    "Weekly Monday cutoff and kickoff+6h availability proxy; later upstream revisions not fully auditable.",
+    "Individual bootstrap intervals are descriptive, not corrected for all prior research selection."
+  ]
+}

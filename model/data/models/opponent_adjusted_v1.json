@@ -1,0 +1,91 @@
+{
+  "version": "opponent-adjusted-v3-pregame-provider",
+  "features": [
+    "adjusted_score_minus_market",
+    "adjusted_drive_minus_market",
+    "adjusted_clock_minus_market",
+    "adjusted_pass_yards",
+    "adjusted_rush_yards",
+    "adjusted_pass_share",
+    "market_total",
+    "abs_spread",
+    "week",
+    "clock_rule_2023",
+    "two_minute_rule_2024"
+  ],
+  "median": [
+    1.1316399066797906,
+    2.141690782603966,
+    1.8474368530919705,
+    13.9292687922986,
+    10.068084139757591,
+    0.49332023273502135,
+    53.5,
+    8.5,
+    8.0,
+    1.0,
+    0.0
+  ],
+  "center": [
+    0.9716758853927269,
+    1.9762552907272155,
+    1.6717240716475006,
+    13.945438293742274,
+    10.066908131292658,
+    0.4917309788445704,
+    53.639769126301495,
+    11.26403349932096,
+    7.58623811679493,
+    0.5534178361249434,
+    0.37347215934812134
+  ],
+  "scale": [
+    4.1218524947097315,
+    4.192713201667619,
+    4.217289379140731,
+    1.0821011567410244,
+    1.0,
+    1.0,
+    7.631330054947129,
+    9.256153727632793,
+    4.125730062217857,
+    1.0,
+    1.0
+  ],
+  "coefficients": [
+    0.545582503248154,
+    0.30382670769056613,
+    -0.23449480354350183,
+    -0.2698057301946005,
+    -0.26334602785019606,
+    0.3987497219462859,
+    0.06805578348686667,
+    -1.1874125089105174,
+    0.1855224877377866,
+    0.42901093559070874,
+    0.7567091622396428,
+    -0.3702881678188137
+  ],
+  "training_games": 4418,
+  "training_seasons": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "adjustment_cap": 10.0,
+  "status": "development_candidate_unvalidated",
+  "market_provenance": "cfbd_and_verified_pregame_provider_only",
+  "data_fingerprint": "cf764f803b38ecfd",
+  "market_source_counts": {
+    "espn_nonlive_provider_58": 2680,
+    "cfbd_consensus": 2235,
+    "espn_nonlive_provider_100": 47,
+    "cfbd_Bovada": 24,
+    "espn_nonlive_provider_40": 14,
+    "cfbd_William Hill (New Jersey)": 7,
+    "espn_nonlive_provider_52": 1
+  }
+}

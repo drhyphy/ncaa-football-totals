@@ -33,9 +33,11 @@ from .totals_scoring import attach_totals_schedule
 from .teams import normalize_team
 
 TZ = ZoneInfo("America/New_York")
-VERSION = "totals-v3-20260908"
-PRIMARY = "market_consensus_loo"
+VERSION = "totals-v4-20260908"
+PRIMARY = "opponent_adjusted_ridge"
+PRICE_REFERENCE = "market_price_reference"
 MAX_QUOTE_MINUTES = 60
+MAX_OBSERVATION_MINUTES = 2
 SOURCES = [
     {"name": "SportsDataverse public archives", "url": "https://cfbfastr.sportsdataverse.org/"},
     {"name": "ESPN college football", "url": "https://www.espn.com/college-football/scoreboard"},
@@ -45,10 +47,11 @@ SOURCES = [
 ]
 LIMITATIONS = [
     "No candidate has established high-confidence profitability. All positions are prospective paper research.",
-    "Historical tests use resolved closing totals and assumed -110 prices, not executable morning quotes. The 2019–2025 data are reused development data.",
+    "Earlier historical results are quarantined: the old ESPN archive included live-game lines. Replacement studies use verified pregame-provider archives and assumed -110 prices; quote times and actual offered total prices are unavailable.",
     "Modeled EV and stressed EV are estimates, not confidence bounds or proof that a quoted price remains available.",
-    "Public weekly EPA/FEI are reconstructed through-week statistics; original publication times are not fully auditable. Annual current-season roster snapshots are excluded.",
-    "Morning-only snapshots do not establish closing line value. CLV stays unavailable unless a separate valid pre-kickoff close is captured.",
+    "The primary model's 2025 test lost 4.5% at assumed -110. Similar over probabilities were too optimistic that year; low-total corrections require prospective validation.",
+    "Active opponent models use completed score, drive, and pass/rush observations with a weekly information cutoff. Historical availability uses kickoff plus six hours; later source corrections remain a limitation.",
+    "Near-kickoff captures compare later same-book prices within 30 minutes before kickoff. These are observed proxies, not exact closing prices or proof of value.",
     "Weather, quarterback availability, and late roster news are not separately modeled; much of this information enters through sportsbook prices.",
 ]
 
@@ -92,11 +95,7 @@ def refresh_inputs(settings, now: datetime) -> tuple[pd.DataFrame, dict]:
     root = settings.raw_dir / "sportsdataverse"
     sources = {"schedule": f"cfb_schedule_{settings.season}",
                "adv_team_gamelog": f"adv_team_gamelog_{settings.season}",
-               "drives": f"drives_{settings.season}",
-               "fpi_weekly": f"fpi_weekly_{settings.season}",
-               "ratings_weekly": f"ratings_weekly_{settings.season}",
-               "summaries_weekly": f"summaries_weekly_{settings.season}",
-               "ratings_final": f"ratings_final_{settings.season-1}"}
+               "drives": f"drives_{settings.season}"}
     def fetch(source, name):
         season = settings.season - 1 if source == "ratings_final" else settings.season
         client._download(settings.data_urls[source].format(season=season), root / f"{name}.parquet", True)
@@ -239,7 +238,19 @@ def quotes_from_events(events: list, settings, now: datetime) -> pd.DataFrame:
                 updated = market.get("last_update") or book.get("last_update")
                 dt = pd.to_datetime(updated, utc=True, errors="coerce")
                 age = (now - dt).total_seconds() / 60 if pd.notna(dt) else None
-                valid_time = age is not None and -5 <= age <= MAX_QUOTE_MINUTES
+                observed = market.get("observed_at")
+                observed_dt = pd.to_datetime(observed, utc=True, errors="coerce")
+                observed_age = (now - observed_dt).total_seconds() / 60 if pd.notna(observed_dt) else None
+                full_state = (book.get("source") == "odds_api_io" and
+                              market.get("observation_kind") == "provider_full_state")
+                # updatedAt means a changed market; a newly received full-state
+                # response also proves recent provider presence, not acceptance.
+                if full_state:
+                    valid_time = observed_age is not None and -5/60 <= observed_age <= MAX_OBSERVATION_MINUTES
+                    if age is not None and age < -5:
+                        valid_time = False
+                else:
+                    valid_time = age is not None and -5 <= age <= MAX_QUOTE_MINUTES
                 pairs = {}
                 for outcome in market.get("outcomes", []):
                     side = str(outcome.get("name", "")).lower()
@@ -260,7 +271,10 @@ def quotes_from_events(events: list, settings, now: datetime) -> pd.DataFrame:
                     fair_over, _ = devig_pair(pair["over"], pair["under"])
                     quotes.append({"book": book["key"], "line": line, "over_price": pair["over"],
                                    "under_price": pair["under"], "fair_over": fair_over,
-                                   "quote_time": updated, "fresh": valid_time, "age_minutes": age})
+                                   "quote_time": observed if full_state else updated, "market_updated_at": updated,
+                                   "observed_at": observed, "observation_kind": market.get("observation_kind"),
+                                   "freshness_basis": "provider_full_state_receipt" if full_state else "market_update",
+                                   "fresh": valid_time, "age_minutes": observed_age if full_state else age})
         if not quotes:
             continue
         # Main market only; a book contributes one reference to avoid weighting
@@ -281,6 +295,14 @@ def quotes_from_events(events: list, settings, now: datetime) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def schedule_is_upcoming(game, now: datetime) -> bool:
+    canonical = pd.to_datetime(game.get("canonical_kickoff"), utc=True, errors="coerce")
+    provider = pd.to_datetime(game.get("commence_time"), utc=True, errors="coerce")
+    return bool(game.get("schedule_match", False) and game.get("schedule_status") == "STATUS_SCHEDULED"
+                and pd.notna(canonical) and pd.notna(provider) and canonical > now and provider > now
+                and abs(canonical-provider) <= pd.Timedelta(hours=4))
+
+
 def score_games(games: pd.DataFrame, projections: dict, distribution: dict, now: datetime,
                 diagnostics: dict | None = None) -> list[dict]:
     """One best side/book per candidate/game, with independent peer consensus."""
@@ -288,13 +310,13 @@ def score_games(games: pd.DataFrame, projections: dict, distribution: dict, now:
     sigma, family = distribution["sigma"], distribution["family"]
     for index, game in games.reset_index(drop=True).iterrows():
         quote_centers = {q["book"]: infer_center(q["line"], q["fair_over"], sigma, family) for q in game.quotes}
-        for candidate, values in {PRIMARY: None, **projections}.items():
+        for candidate, values in {PRICE_REFERENCE: None, **projections}.items():
             choices = []
             for quote in game.quotes:
                 peers = [q for q in game.quotes if q["book"] != quote["book"] and q["fresh"]]
                 centers = [quote_centers[q["book"]] for q in peers]
                 consensus = float(np.median(centers)) if centers else float(game.market_total)
-                projection = consensus if candidate == PRIMARY else float(values[index])
+                projection = consensus if candidate == PRICE_REFERENCE else float(values[index])
                 if not math.isfinite(projection):
                     continue
                 for side in ("over", "under"):
@@ -307,10 +329,12 @@ def score_games(games: pd.DataFrame, projections: dict, distribution: dict, now:
                     flags = []
                     if not bool(game.get("schedule_match", False)):
                         flags.append("schedule_unmatched")
+                    if not schedule_is_upcoming(game, now):
+                        flags.append("official_schedule_not_upcoming_or_time_mismatch")
                     if not quote["fresh"]:
                         flags.append("quote_timestamp_missing_or_stale")
-                    if len(peers) < 3:
-                        flags.append("fewer_than_three_other_fresh_books")
+                    if len(peers) < 1:
+                        flags.append("no_other_current_sportsbook")
                     dispersion = max(centers) - min(centers) if centers else None
                     if dispersion is not None and dispersion > 3:
                         flags.append("peer_dispersion_high")
@@ -321,15 +345,13 @@ def score_games(games: pd.DataFrame, projections: dict, distribution: dict, now:
                     if robust < .01:
                         flags.append("stressed_ev_below_1pct")
                     line_edge = projection - quote["line"] if side == "over" else quote["line"] - projection
-                    if candidate == PRIMARY and line_edge < 1:
-                        flags.append("line_value_below_one_point")
-                    if candidate != PRIMARY:
-                        if abs(projection - float(game.market_total)) < 6:
-                            flags.append("challenger_edge_below_six_points")
+                    if candidate != PRICE_REFERENCE:
                         history = np.array([game.get("home_prior_games", 0), game.get("away_prior_games", 0)], dtype=float)
                         if not np.isfinite(history).all() or history.min() < 5:
                             flags.append("team_history_sparse")
                         failures = (diagnostics or {}).get("input_failures", {})
+                        if "active_model_market_provenance" in failures:
+                            flags.append("historical_market_training_not_repaired")
                         if any(k in failures for k in ("adv_team_gamelog", "drives", "current_team_history", "current_drive_history")):
                             flags.append("current_form_refresh_incomplete")
                         if candidate.startswith("public_") and (any(k in failures for k in ("fpi_weekly", "ratings_weekly", "summaries_weekly", "ratings_final")) or not game.get(f"{candidate}_data_available", True)):
@@ -345,12 +367,16 @@ def score_games(games: pd.DataFrame, projections: dict, distribution: dict, now:
                     bankroll_fraction = min(.0025, max(0., robust) * .10) if eligible and candidate == PRIMARY else 0.
                     choices.append({"game_id": str(int(game.espn_game_id)) if pd.notna(game.get("espn_game_id")) else game.event_id,
                         "event_id": game.event_id, "away_team": game.away_team, "home_team": game.home_team,
-                        "kickoff": game.commence_time, "candidate": candidate, "side": side,
+                        "kickoff": game.get("canonical_kickoff") or game.commence_time, "candidate": candidate, "side": side,
                         "line": quote["line"], "american_odds": int(round(price)),
                         "decimal_odds": 1 + (price / 100 if price > 0 else 100 / abs(price)), "sportsbook": quote["book"],
                         "projected_total": projection, "consensus_total": consensus,
                         "win_probability": win, "push_probability": push, "expected_value": ev,
                         "robust_ev": robust, "quote_time": quote["quote_time"], "confidence": "experimental",
+                        "market_updated_at": quote.get("market_updated_at"), "observed_at": quote.get("observed_at"),
+                        "freshness_basis": quote.get("freshness_basis"), "execution_confirmed": False,
+                        "probability_basis": "peer-price assumption" if candidate == PRICE_REFERENCE else "opponent-adjusted statistical forecast",
+                        "reference_book_count_is_not_confidence": True,
                         "paper_stake_fraction": bankroll_fraction, "eligible": eligible, "flags": flags,
                         "reference_books": [q["book"] for q in peers], "peer_dispersion": dispersion,
                         "model_version": VERSION})
@@ -361,53 +387,36 @@ def score_games(games: pd.DataFrame, projections: dict, distribution: dict, now:
 
 
 def candidate_projections(settings, matched: pd.DataFrame, now: datetime, diagnostics: dict) -> tuple[pd.DataFrame, dict]:
-    from .totals_features import latest_team_states, live_game_features, load_team_games
-    from .totals_backtest import candidate_projections as core_projections
-    history = pd.read_parquet(settings.models_dir / "team_games_history.parquet")
+    """The active v4 candidates use observable games and opponent adjustment.
+
+    Old opaque-rating and market-residual candidates stay in their immutable v3
+    archive. Their contaminated market training does not enter this version.
+    """
+    from .opponent_model import load_history, adjusted_features, projections as opponent_projections
+    history = pd.read_parquet(settings.models_dir / "opponent_history.parquet")
     try:
-        current = load_team_games(settings, [settings.season])
+        current = load_history(settings.root, [settings.season])
         history = pd.concat([history, current], ignore_index=True).drop_duplicates(["game_id", "team_id"], keep="last")
         diagnostics["current_team_game_rows"] = len(current)
     except (FileNotFoundError, ValueError, KeyError) as exc:
         diagnostics["input_failures"]["current_team_history"] = safe_failure(exc)
-    states = latest_team_states(history, season=settings.season, as_of=now)
-    games = live_game_features(matched, states)
-    models = joblib.load(settings.models_dir / "totals_models_latest.joblib")
-    artifact = json.loads((settings.models_dir / "totals_artifact_latest.json").read_text())
-    projections = core_projections(games, models, artifact["feature_columns"], settings)
-    projections.pop("market_only", None)
-    projections.pop("market_consensus_shop", None)
-    from .public_features import attach_public_features
-    from .public_ensemble import load_live_public_projection
-    games["game_date"] = games["commence_time"]
-    current_completed = history.loc[history.season.eq(settings.season) &
-        (pd.to_datetime(history.start_date, utc=True) + pd.Timedelta(hours=6)).lt(now)]
-    latest_week = int(current_completed.week.max()) if not current_completed.empty else 0
-    public_games = attach_public_features(games, settings, [settings.season], live_latest_week=latest_week, as_of=now)
-    base, public_projection, _ = load_live_public_projection(public_games, settings)
-    for name, family_name in (("public_fpi", "fpi"), ("public_fei_epa", "fei_epa"), ("public_summary", "summary")):
-        games[f"{name}_data_available"] = public_games[f"coverage_{family_name}"].ge(.99).to_numpy()
-    prior_columns = [column for column in public_games if column.startswith(("home_prior_", "away_prior_")) and column.endswith(("epa", "fei_off", "fei_def", "off_pace", "net_z"))]
-    games["public_roster_prior_data_available"] = public_games[prior_columns].notna().all(axis=1).to_numpy() if prior_columns else False
-    games["public_full_hgb_data_available"] = games[["public_fpi_data_available", "public_fei_epa_data_available", "public_summary_data_available"]].all(axis=1)
-    games["public_superensemble_v2_data_available"] = games["public_full_hgb_data_available"]
-    for name in base:
-        projections[f"public_{name}"] = games.market_total.to_numpy(float) + base[name].to_numpy(float)
-    projections["public_superensemble_v2"] = public_projection
-    from .drive_model import load_drive_team_games, build_drive_features, drive_projections
-    drive_history = pd.read_parquet(settings.models_dir / "drive_history.parquet")
-    try:
-        drive_current = load_drive_team_games(settings.raw_dir / "sportsdataverse", [settings.season])
-        drive_history = pd.concat([drive_history, drive_current], ignore_index=True).drop_duplicates(["game_id", "team_id"], keep="last")
-        diagnostics["current_drive_team_rows"] = len(drive_current)
-    except (FileNotFoundError, ValueError, KeyError) as exc:
-        diagnostics["input_failures"]["current_drive_history"] = safe_failure(exc)
-    drive_games = games.assign(game_id=games.espn_game_id)
-    drive_features = build_drive_features(drive_games, drive_history, as_of=now)
-    drive_artifact = json.loads((settings.models_dir / "drive_clock_v1.json").read_text())
-    projections.update(drive_projections(drive_features, drive_artifact))
-    diagnostics["feature_snapshot"] = {"core_and_public": clean_json(public_games.drop(columns=["quotes"], errors="ignore").to_dict("records")),
-                                       "drive": clean_json(drive_features.drop(columns=["quotes"], errors="ignore").to_dict("records"))}
+    games = matched.copy().reset_index(drop=True)
+    games["game_date"] = games.canonical_kickoff.fillna(games.commence_time)
+    games["season"] = settings.season
+    if "neutral_site" not in games:
+        games["neutral_site"] = False
+    if "week" not in games:
+        games["week"] = 0
+    feature_games = adjusted_features(games, history, as_of=now)
+    games["home_prior_games"] = feature_games.adjusted_history_games
+    games["away_prior_games"] = feature_games.adjusted_history_games
+    artifact = json.loads((settings.models_dir / "opponent_adjusted_v1.json").read_text())
+    projections = opponent_projections(feature_games, artifact)
+    diagnostics["active_data_fingerprint"] = artifact.get("data_fingerprint")
+    diagnostics["active_training_market_provenance"] = artifact.get("market_provenance", "unverified")
+    if artifact.get("market_provenance") != "cfbd_and_verified_pregame_provider_only":
+        diagnostics["input_failures"]["active_model_market_provenance"] = "Model not refitted on replacement market data"
+    diagnostics["feature_snapshot"] = {"opponent_adjusted": clean_json(feature_games.drop(columns=["quotes"], errors="ignore").to_dict("records"))}
     return games, projections
 
 
@@ -431,7 +440,7 @@ def record_forecasts(existing: list, forecasts: list, now: datetime) -> list:
     keys = {(r["model_version"], r["candidate"], str(r["game_id"])) for r in existing}
     for row in forecasts:
         key = (row["model_version"], row["candidate"], str(row["game_id"]))
-        if key not in keys and "schedule_unmatched" not in row["flags"] and pd.to_datetime(row["kickoff"], utc=True) > now:
+        if key not in keys and not any(flag in row["flags"] for flag in ("schedule_unmatched", "official_schedule_not_upcoming_or_time_mismatch")) and pd.to_datetime(row["kickoff"], utc=True) > now:
             output.append({**row, "recorded_at": stamp(now), "result": "pending", "profit_units": None})
             keys.add(key)
     return output
@@ -439,8 +448,9 @@ def record_forecasts(existing: list, forecasts: list, now: datetime) -> list:
 
 def forecast_performance(entries: list) -> list:
     result = []
-    for candidate in sorted({r["candidate"] for r in entries}):
-        sample = [r for r in entries if r["candidate"] == candidate and r["result"] != "pending"]
+    for version, candidate in sorted({(r.get("model_version", "legacy"), r["candidate"]) for r in entries}):
+        group = [r for r in entries if (r.get("model_version", "legacy"), r["candidate"]) == (version, candidate)]
+        sample = [r for r in group if r["result"] != "pending"]
         decided = [r for r in sample if r["result"] != "push"]
         probs = np.array([r["win_probability"] / (1 - r["push_probability"]) for r in decided])
         actual = np.array([r["result"] == "win" for r in decided], dtype=float)
@@ -452,15 +462,15 @@ def forecast_performance(entries: list) -> list:
             if keep.any():
                 bins.append({"lower": lower, "upper": min(1., upper), "games": int(keep.sum()),
                              "predicted_win_rate": float(probs[keep].mean()), "observed_win_rate": float(actual[keep].mean())})
-        result.append({"candidate": candidate, "games": len(sample),
-            "pending": sum(r["candidate"] == candidate and r["result"] == "pending" for r in entries),
+        result.append({"model_version": version, "candidate": candidate, "games": len(sample),
+            "pending": sum(r["result"] == "pending" for r in group),
             "mae": float(abs(errors).mean()) if len(sample) else None,
             "rmse": float(np.sqrt((errors**2).mean())) if len(sample) else None,
             "brier": float(((probs - actual)**2).mean()) if len(decided) else None,
             "log_loss": float(-(actual * np.log(probs) + (1 - actual) * np.log(1 - probs)).mean()) if len(decided) else None,
             "probability_scoring_games": len(decided), "pushes": len(sample) - len(decided),
-            "forecast_entries": sum(r["candidate"] == candidate for r in entries),
-            "abstentions": sum(r["candidate"] == candidate and not r["eligible"] for r in entries),
+            "forecast_entries": len(group),
+            "abstentions": sum(not r["eligible"] for r in group),
             "calibration_bins": bins,
             "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."})
     return result
@@ -485,64 +495,61 @@ def grade_positions(positions: list, schedule: pd.DataFrame) -> list:
     return output
 
 
-def performance(positions: list, candidate: str = PRIMARY) -> dict:
-    rows = [p for p in positions if p["candidate"] == candidate and p["result"] != "pending"]
+def performance(positions: list, candidate: str = PRIMARY, version: str = VERSION) -> dict:
+    group = [p for p in positions if p["candidate"] == candidate and p.get("model_version", "legacy") == version]
+    rows = [p for p in group if p["result"] != "pending"]
     profits = np.array([p["profit_units"] for p in rows], float)
     low = high = None
     weeks = {}
     for row in rows:
         dt = datetime.fromisoformat(row["kickoff"].replace("Z", "+00:00")).astimezone(TZ)
-        group = dt.strftime("%G-%V")
-        weeks.setdefault(group, []).append(row["profit_units"])
+        week_key = dt.strftime("%G-%V")
+        weeks.setdefault(week_key, []).append(row["profit_units"])
     if len(rows) >= 50 and len(weeks) >= 8:
         totals = np.array([[sum(p), len(p)] for p in weeks.values()])
         draws = np.random.default_rng(20260908).integers(0, len(totals), (5000, len(totals)))
         sampled = totals[draws].sum(axis=1)
         low, high = np.quantile(sampled[:, 0] / sampled[:, 1], [.025, .975]).tolist()
-    return {"bets": len(rows), "pending": sum(p["candidate"] == candidate and p["result"] == "pending" for p in positions),
+    return {"bets": len(rows), "pending": sum(p["result"] == "pending" for p in group),
             "wins": sum(p["result"] == "win" for p in rows), "losses": sum(p["result"] == "loss" for p in rows),
             "pushes": sum(p["result"] == "push" for p in rows), "profit_units": float(profits.sum()),
             "roi": float(profits.mean()) if len(rows) else None, "roi_95_low": low, "roi_95_high": high,
-            "week_clusters": len(weeks), "confidence_method": "week-block bootstrap; minimum 50 settled bets and 8 weeks",
+            "model_version": version, "candidate": candidate, "week_clusters": len(weeks), "confidence_method": "week-block bootstrap; minimum 50 settled bets and 8 weeks",
             "clv": None, "status": "research_only"}
 
 
 def evidence(settings) -> list:
-    result = []
-    report_specs = [("totals_backtest_summary.json", "primary_period"),
-                    ("public_superensemble_v2_summary.json", "metrics")]
-    for filename, key in report_specs:
-        path = settings.reports_dir / filename
-        if path.exists():
-            report = json.loads(path.read_text())
-            for metric in report.get(key, []):
-                row = {**metric, "roi": metric.get("flat_roi", metric.get("roi")), "status": "retrospective development; not validated profitable"}
-                if row.get("candidate") == "market_consensus_shop":
-                    continue
-                result.append(row)
-    path = settings.reports_dir / "drive_clock_development_summary.json"
-    if path.exists():
-        for candidate, metric in json.loads(path.read_text()).get("metrics", {}).items():
-            if candidate == "market_only":
-                continue
-            ci = metric.get("roi_week_bootstrap_95") or [None, None]
-            result.append({**metric, "candidate": candidate, "roi": metric.get("assumed_minus110_roi"),
-                           "roi_95_low": ci[0], "roi_95_high": ci[1], "brier": metric.get("brier"),
-                           "status": "prospective shadow; no established profit"})
-    return result
+    path = settings.reports_dir / "opponent_adjusted_development.json"
+    if not path.exists():
+        return []
+    report = json.loads(path.read_text())
+    if report.get("market_provenance") != "cfbd_and_verified_pregame_provider_only":
+        return []
+    output = []
+    for candidate, metric in report.get("pooled", {}).items():
+        ci = metric.get("roi_week_bootstrap_95") or [None, None]
+        output.append({**metric, "candidate": candidate, "roi": metric.get("assumed_minus110_roi"),
+                       "roi_95_low": ci[0], "roi_95_high": ci[1],
+                       "status": "replacement pregame-provider archive; assumed -110; development only"})
+    return output
 
 
 def daily(settings=None, now: datetime | None = None) -> dict:
     settings = settings or load_settings()
+    use_wall_clock = now is None
     now = now or datetime.now(timezone.utc)
     season = now.year if now.month >= 3 else now.year - 1
     settings = replace(settings, season=season)
     site_data = settings.root.parent / "site/data"
     board = {"schema_version": 1, "generated_at": stamp(now), "date": now.astimezone(TZ).date().isoformat(),
              "timezone": "America/New_York", "status": "unavailable", "message": "Live data unavailable; no current picks.",
-             "model_version": VERSION, "evidence_status": "research_only", "today_picks": [], "upcoming_picks": [],
+             "model_version": VERSION, "evidence_status": "research_only",
+             "historical_evidence_status": "quarantined_market_provenance", "today_picks": [], "upcoming_picks": [],
              "forecasts": [], "candidates": evidence(settings), "sources": SOURCES, "limitations": LIMITATIONS, "diagnostics": {}}
-    board["reports"] = [{"name": "Historical evaluation", "url": "data/research.json"}]
+    board["reports"] = [{"name": "Historical evaluation", "url": "data/research.json"},
+                        {"name": "Current calibration audit", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/current_pick_audit.md"},
+                        {"name": "Live-line contamination audit", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/espn_market_timing_audit.md"},
+                        {"name": "Current research protocol", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/docs/PROSPECTIVE_PROTOCOL.md"}]
     positions_path = settings.ledger_dir / "positions.json"
     positions = json.loads(positions_path.read_text()) if positions_path.exists() else []
     forecasts_path = settings.ledger_dir / "forecast_entries.json"
@@ -554,25 +561,43 @@ def daily(settings=None, now: datetime | None = None) -> dict:
         forecast_entries = grade_positions(forecast_entries, schedule)
         events, odds_diagnostics = fetch_odds(settings, now)
         diagnostics.update(odds_diagnostics)
+        if use_wall_clock:
+            now = datetime.now(timezone.utc)
+            board["generated_at"] = stamp(now)
+            board["date"] = now.astimezone(TZ).date().isoformat()
         atomic_write_bytes(settings.root / "data/runtime" / f"odds-{now:%Y%m%dT%H%M%SZ}.json.gz",
                            gzip.compress(json.dumps({"as_of": stamp(now), "events": events}, separators=(",", ":")).encode(), mtime=0))
         odds = quotes_from_events(events, settings, now)
         diagnostics["events_with_totals"] = len(odds)
         diagnostics["fresh_total_quotes"] = sum(q["fresh"] for qs in odds.get("quotes", []) for q in qs)
         diagnostics["fresh_sportsbooks"] = sorted({q["book"] for qs in odds.get("quotes", []) for q in qs if q["fresh"]})
+        from .market_opportunities import scan_market_opportunities
+        market_scan = clean_json(scan_market_opportunities([], now, settings.allowed_books))
         forecasts = []
         if not odds.empty:
             matched = attach_totals_schedule(odds, schedule)
             diagnostics["schedule_matches"] = int(matched.schedule_match.sum())
+            approved = {str(row.event_id): row for _, row in matched.iterrows() if schedule_is_upcoming(row, now)}
+            scan_events = [{**event, "commence_time": approved[str(event["id"])].canonical_kickoff}
+                           for event in events if str(event["id"]) in approved]
+            market_scan = clean_json(scan_market_opportunities(scan_events, now, settings.allowed_books))
             games, projections = candidate_projections(settings, matched, now, diagnostics)
-            distribution = json.loads((settings.models_dir / "score_distribution_v1.json").read_text())
+            distribution = json.loads((settings.models_dir / "score_distribution_v2.json").read_text())
+            if (distribution.get("market_provenance") != "cfbd_and_verified_pregame_provider_only" or
+                not diagnostics.get("active_data_fingerprint") or
+                distribution.get("data_fingerprint") != diagnostics.get("active_data_fingerprint")):
+                raise ValueError("Active model and distribution provenance do not match")
             forecasts = score_games(games, projections, distribution, now, diagnostics)
+            if board["candidates"]:
+                board["historical_evidence_status"] = "replacement_development_only"
+                board["prior_historical_evidence_quarantined"] = True
         current_picks = [r for r in forecasts if r["eligible"] and r["candidate"] == PRIMARY]
         current_picks.sort(key=lambda r: r["robust_ev"], reverse=True)
         for row in current_picks:
             day = datetime.fromisoformat(row["kickoff"].replace("Z", "+00:00")).astimezone(TZ).date().isoformat()
             board["today_picks" if day == board["date"] else "upcoming_picks"].append(row)
         snapshot = {"as_of": stamp(now), "model_version": VERSION, "events": events, "forecasts": forecasts,
+                    "market_opportunities": market_scan,
                     "features": diagnostics.pop("feature_snapshot", {}),
                     "code_hashes": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(__file__).parent.glob('*.py')},
                     "git_commit": os.getenv("GITHUB_SHA"),
@@ -584,12 +609,22 @@ def daily(settings=None, now: datetime | None = None) -> dict:
             raise RuntimeError("Snapshot collision")
         atomic_write_bytes(snapshot_path, compressed)
         diagnostics["snapshot_sha256"] = hashlib.sha256(encoded).hexdigest()
+        # The full comparison remains in the immutable compressed snapshot;
+        # the page needs all positive-floor pairs and a small inspection sample.
+        board["market_opportunities"] = {**market_scan,
+            "hedges": market_scan.get("hedges", [])[:10],
+            "dominance": market_scan.get("dominance", [])[:20],
+            "quote_observations": [],
+            "hedges_available": len(market_scan.get("hedges", [])),
+            "dominance_available": len(market_scan.get("dominance", [])),
+            "quote_observation_count": len(market_scan.get("quote_observations", [])),
+            "full_archive": f"https://github.com/drhyphy/ncaa-football-totals/blob/main/model/data/runtime/{snapshot_path.name}"}
         positions = record_positions(positions, forecasts, now)
         forecast_entries = record_forecasts(forecast_entries, forecasts, now)
         board.update(status="ok", forecasts=forecasts,
                      message=f"{len(board['today_picks'])} qualifying experimental pick(s) for today. No high-confidence profitable model is established.")
-        if len(diagnostics["fresh_sportsbooks"]) < 4:
-            board["message"] += f" Only {len(diagnostics['fresh_sportsbooks'])} sportsbooks have verified recent quotes; main picks require four including the execution book."
+        board["message"] += f" {len(diagnostics['fresh_sportsbooks'])} sportsbooks are currently observed; selections require two distinct books and positive modeled and stressed EV."
+        board["comparison_picks"] = sorted([r for r in forecasts if r["eligible"] and r["candidate"] != PRIMARY], key=lambda r:r["robust_ev"], reverse=True)
     except Exception as exc:
         board.update(status="unavailable", today_picks=[], upcoming_picks=[], forecasts=[])
         diagnostics.pop("feature_snapshot", None)
@@ -603,6 +638,9 @@ def daily(settings=None, now: datetime | None = None) -> dict:
     board["candidate_performance"] = {name: performance(positions, name) for name in sorted({p["candidate"] for p in positions})}
     board["results"] = positions
     board["forecast_performance"] = forecast_performance(forecast_entries)
+    closing_path = settings.ledger_dir / "closing_summary.json"
+    if closing_path.exists():
+        board["closing_summary"] = json.loads(closing_path.read_text())
     write_json(positions_path, positions)
     write_json(forecasts_path, forecast_entries)
     write_json(site_data / "forecast-performance.json", board["forecast_performance"])

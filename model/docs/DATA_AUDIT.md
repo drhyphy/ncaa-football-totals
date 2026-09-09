@@ -1,3 +1,5 @@
+> **Superseded market evidence:** A subsequent primary-source audit found live-game lines in the historical scalar archive. Prior market-based metrics below are quarantined, including those previously called corrected. See [the timing audit](../reports/espn_market_timing_audit.md) and [v4 protocol](../../docs/PROSPECTIVE_PROTOCOL.md).
+
 # Data and temporal audit — 2026-09-08
 
 The source project was preserved. Corrections and refits are in this separate project. Machine-readable findings are in `reports/data_audit_v3.json`.

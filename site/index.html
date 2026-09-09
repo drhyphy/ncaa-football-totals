@@ -25,17 +25,19 @@
     </section>
 
     <div class="status-banner loading" id="status-banner" role="status" aria-live="polite"><span class="status-dot" aria-hidden="true"></span><div><strong id="status-title">Loading the latest board</strong><p id="status-message">Checking the publication time and data status.</p></div><span id="updated-at" class="update-time"></span></div>
+    <div class="status-banner warning historical-alert" id="historical-alert" role="status" hidden><span class="status-dot" aria-hidden="true"></span><div><strong id="historical-alert-title">Historical evidence quarantined</strong><p id="historical-alert-copy">The previous market archive includes in-play odds. Historical model comparisons and betting returns are withdrawn pending clean pregame data. Current projections remain experimental.</p></div></div>
 
     <section id="today" class="section-block" aria-labelledby="today-title">
       <div class="section-heading"><div><p class="eyebrow">01 / DAILY SELECTIONS</p><h2 id="today-title">Today's top picks <span id="pick-count" class="count">—</span></h2></div><span class="badge research-badge">Experimental · Paper tracking</span></div>
-      <p class="section-description">Ranked by conservative modeled expected value. An empty board is a valid decision. A modeled advantage has not yet established a profitable betting edge.</p>
+      <p class="section-description">Ranked by stressed modeled expected value. An empty board is a valid decision. A modeled advantage has not yet established a profitable betting edge.</p>
       <div id="today-picks" class="pick-grid"><div class="empty-state"><span class="empty-symbol" aria-hidden="true">—</span><h3>Checking today's slate</h3><p>Only current, pregame selections will appear here.</p></div></div>
     </section>
 
     <section class="section-block" aria-labelledby="upcoming-title">
       <div class="section-heading"><div><p class="eyebrow">02 / LOOKING AHEAD</p><h2 id="upcoming-title">Upcoming watchlist</h2></div><span id="upcoming-count" class="small-meta"></span></div>
-      <p class="section-description">Early prices can change before game day. These are future matchups, with the same experimental status as today's board.</p>
+      <p class="section-description">Early prices can change before game day. Probabilities are raw model estimates; comparable over forecasts were too optimistic in 2025. Stressed EV is a sensitivity estimate, not a confidence bound.</p>
       <div id="upcoming-picks" class="table-container"></div>
+      <div class="market-checks"><h3>Cross-book price checks</h3><p class="section-description">Quoted hedge calculations are conditional on both prices being accepted and both books using the same settlement rules. These are unconfirmed comparisons, with no bets placed.</p><p id="market-checks-summary" class="small-meta"></p><div id="market-checks-table" class="table-container"></div><details id="market-checks-details" class="forecast-details"><summary>Inspect other quoted combinations</summary><p class="section-description forward-description">These combinations can lose money. Price dominance or a possible middle does not establish positive expected value.</p><div id="market-hedges-table" class="table-container"></div></details></div>
     </section>
 
     <section id="evidence" class="section-block" aria-labelledby="evidence-title">

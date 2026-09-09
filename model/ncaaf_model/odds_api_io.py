@@ -1,8 +1,9 @@
 """Read-only Odds-API.io adapter; validated against September 8, 2026 payloads.
 
 Docs: https://docs.odds-api.io/guides/fetching-odds
-No bookmaker selection or subscription mutations are performed. Missing or old
-market timestamps stay missing/old; fetching does not establish quote freshness.
+No bookmaker selection or subscription mutations are performed. Market update
+time and receipt of an authoritative full-state response are separate facts.
+Neither is proof that a sportsbook will accept a requested stake.
 """
 from __future__ import annotations
 
@@ -52,8 +53,17 @@ def _number(value: Any) -> float | None:
     return result if math.isfinite(result) else None
 
 
-def parse_odds_api_io(payload: Any, now: datetime, allowed_books: tuple[str, ...] = ("draftkings", "fanduel")) -> list[dict[str, Any]]:
-    """Convert paired full-game markets into the engine's event contract."""
+def parse_odds_api_io(payload: Any, now: datetime, allowed_books: tuple[str, ...] = ("draftkings", "fanduel"),
+                      observed_at: datetime | None = None) -> list[dict[str, Any]]:
+    """Normalize a response, marking receipt only when the fetcher supplies it.
+
+    Pure parsing of an archived payload must not make that payload look new.
+    ``last_update`` is the provider's market timestamp; ``observed_at`` is when
+    this complete provider response was received, not a substitute timestamp.
+    """
+    if observed_at is not None and observed_at.tzinfo is None:
+        raise ValueError("Observation receipt timestamp must be timezone-aware")
+    observed = observed_at.astimezone(timezone.utc).isoformat().replace("+00:00", "Z") if observed_at is not None else None
     events = payload if isinstance(payload, list) else [payload]
     output = []
     for event in events:
@@ -105,11 +115,13 @@ def parse_odds_api_io(payload: Any, now: datetime, allowed_books: tuple[str, ...
                             outcome["point"] = -line if key == "spreads" and index == 1 else line
                         outcomes.append(outcome)
                 if outcomes:
-                    markets.append({"key": key, "last_update": stamp, "outcomes": outcomes})
+                    markets.append({"key": key, "last_update": stamp, "outcomes": outcomes,
+                                    "observed_at": observed,
+                                    "observation_kind": "provider_full_state" if observed is not None else None})
             if markets:
                 # No invented bookmaker-wide timestamp; use market timestamps.
                 books.append({"key": book_key, "title": title, "last_update": None,
-                              "markets": markets, "source": "odds_api_io"})
+                              "markets": markets, "source": "odds_api_io", "source_event_id": str(event["id"])})
         if any(any(m["key"] == "totals" for m in book["markets"]) for book in books):
             output.append({"id": f"oddsio-{event['id']}", "commence_time": start,
                            "home_team": home, "away_team": away, "bookmakers": books,
@@ -179,7 +191,8 @@ def fetch_odds_api_io(session: requests.Session, key: str, now: datetime,
             payload = _get(session, "/odds/multi", key, timeout,
                            eventIds=",".join(str(x["id"]) for x in chosen[offset:offset + 10]),
                            bookmakers=",".join(books))
-            normalized.extend(parse_odds_api_io(payload, now, allowed_books))
+            received_at = datetime.now(timezone.utc)
+            normalized.extend(parse_odds_api_io(payload, now, allowed_books, observed_at=received_at))
         except RuntimeError as exc:
             errors.append(str(exc))
             if "HTTP 401" in str(exc) or "HTTP 403" in str(exc) or "HTTP 429" in str(exc):

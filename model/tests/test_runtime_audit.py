@@ -31,7 +31,7 @@ def _settings(root=None):
 
 def _games(now=NOW):
     odds = runtime.quotes_from_events(_events(now), _settings(), now)
-    return odds.assign(schedule_match=True, espn_game_id=1, home_prior_games=15, away_prior_games=15)
+    return odds.assign(schedule_match=True, schedule_status="STATUS_SCHEDULED", canonical_kickoff=lambda x:x.commence_time, espn_game_id=1, home_prior_games=15, away_prior_games=15)
 
 
 def _score(games, now=NOW, diagnostics=None):
@@ -52,14 +52,15 @@ def test_nonfinite_price_is_rejected_before_consensus(price):
     events[0]["bookmakers"][0]["markets"][0]["outcomes"][0]["price"] = price
     odds = runtime.quotes_from_events(events, _settings(), NOW)
     assert "shop" not in {quote["book"] for quote in odds.iloc[0]["quotes"]}
-    games = odds.assign(schedule_match=True, espn_game_id=1, home_prior_games=15, away_prior_games=15)
-    assert not any(row["eligible"] for row in _score(games))
+    games = odds.assign(schedule_match=True, schedule_status="STATUS_SCHEDULED", canonical_kickoff=lambda x:x.commence_time, espn_game_id=1, home_prior_games=15, away_prior_games=15)
+    assert all(row["sportsbook"] != "shop" for row in _score(games))
+    assert all(np.isfinite(row["expected_value"]) for row in _score(games))
 
 
 def test_january_postseason_uses_prior_calendar_season():
     january = datetime(2027, 1, 10, 10, 30, tzinfo=timezone.utc)
     rows = _score(_games(january), now=january)
-    primary = next(row for row in rows if row["candidate"] == runtime.PRIMARY)
+    primary = next(row for row in rows if row["candidate"] == runtime.PRICE_REFERENCE)
     assert primary["eligible"]
     assert "model_requires_new_season_validation" not in primary["flags"]
 
@@ -68,7 +69,7 @@ def test_january_postseason_uses_prior_calendar_season():
 def test_missing_current_history_blocks_challenger_but_keeps_market_reference(failed_input):
     rows = _score(_games(), diagnostics={"schedule_fresh": True, "input_failures": {failed_input: "ValueError"}})
     challenger = next(row for row in rows if row["candidate"] == "challenger")
-    primary = next(row for row in rows if row["candidate"] == runtime.PRIMARY)
+    primary = next(row for row in rows if row["candidate"] == runtime.PRICE_REFERENCE)
     assert not challenger["eligible"]
     assert "current_form_refresh_incomplete" in challenger["flags"]
     assert primary["eligible"]
@@ -77,7 +78,7 @@ def test_missing_current_history_blocks_challenger_but_keeps_market_reference(fa
 def test_failed_immutable_snapshot_cannot_publish_picks_or_lock_positions(tmp_path, monkeypatch):
     settings = _settings(tmp_path / "model")
     settings.models_dir.mkdir(parents=True)
-    (settings.models_dir / "score_distribution_v1.json").write_text(json.dumps({"sigma": 16., "family": "normal"}))
+    (settings.models_dir / "score_distribution_v2.json").write_text(json.dumps({"sigma": 16., "family": "normal"}))
     schedule = pd.DataFrame([{"game_id": 1, "season": 2026, "week": 2,
                               "home_id": 1, "away_id": 2, "home_team": "Home", "away_team": "Away",
                               "game_date": runtime.stamp(NOW + timedelta(days=1)), "neutral_site": False,
