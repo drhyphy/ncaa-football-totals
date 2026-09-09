@@ -133,7 +133,8 @@ def environment(tmp_path,monkeypatch):
     root = tmp_path/'project'/'model'
     root.mkdir(parents=True)
     for relative in ('ncaaf_model/weather_revision_collector.py','ncaaf_model/weather_revision_weather.py',
-                     'ncaaf_model/revision_archive.py','ncaaf_model/teams.py','reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md'):
+                     'ncaaf_model/revision_archive.py','ncaaf_model/teams.py','reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md',
+                     collector.QUOTA_AMENDMENT):
         path = root/relative
         path.parent.mkdir(parents=True,exist_ok=True)
         path.write_text('Synthetic provenance fixture; no executable source or observations.\n')
@@ -312,8 +313,8 @@ def test_low_quota_stops_before_odds_batch_and_reports_partial(environment):
 def test_quote_requested_before_final_context_recheck_cannot_be_paired(environment,monkeypatch):
     root,_ = environment
     original = collector.collect_quotes
-    def stale_request(client,rows,key,start):
-        quotes,failures = original(client,rows,key,start)
+    def stale_request(client,rows,key,start,**kwargs):
+        quotes,failures = original(client,rows,key,start,**kwargs)
         rechecked = collector._time(rows[0]['context_recheck_received_at'])
         for quote in quotes:
             quote['requested_at'] = (rechecked-timedelta(milliseconds=50)).isoformat()
@@ -389,6 +390,121 @@ def test_each_odds_response_is_restricted_to_its_requested_batch(environment):
     assert len({q['quote_id'] for q in quotes})==22
     assert all(sum(q['game_id']==row['game_id'] for q in quotes)==2 for row in rows)
     assert sum(url==collector.ODDS+'/odds/multi' for url,_ in session.calls)==2
+
+
+def quota_session(root, games, *, remaining_by_stage=None, status_by_stage=None):
+    """Use original-byte fake HTTP with genuinely absent headers by default."""
+    session = SyntheticSession(root, games)
+    original = session.get
+    batches = 0
+
+    def get(url, params, **kwargs):
+        nonlocal batches
+        response = original(url, params, **kwargs)
+        stage = url.rsplit('/', 1)[-1]
+        if stage == 'multi':
+            batches += 1
+            stage = f'batch{batches}'
+        remaining = (remaining_by_stage or {}).get(stage)
+        response.headers.pop('X-RateLimit-Remaining', None)
+        if remaining is not None:
+            response.headers['X-RateLimit-Remaining'] = str(remaining)
+        response.status_code = (status_by_stage or {}).get(stage, response.status_code)
+        return response
+
+    session.get = get
+    return session
+
+
+@pytest.mark.parametrize('count,maximum_calls', [(11, 4), (20, 4), (150, 17)])
+def test_opted_in_absent_quota_headers_preserve_all_fixed_batches(environment, count, maximum_calls):
+    root, _ = environment
+    games = [event(500+i, KICKOFF+timedelta(minutes=i)) for i in range(count)]
+    rows = collector.parse_cohort({'events': games}, START)[0]
+    session = quota_session(root, games)
+    client = archive.ArchiveClient(root, session=session)
+    quotes, failures = collector.collect_quotes(client, rows, 'synthetic-test-token', START,
+                                                require_quota_metadata=False)
+    assert not failures and len(quotes) == count * 2
+    assert len(session.calls) == maximum_calls
+    assert all('x_ratelimit_remaining' not in r['response_headers'] for r in client.receipts)
+    batches = [params['eventIds'].split(',') for url, params in session.calls if url.endswith('/odds/multi')]
+    assert all(len(batch) <= 10 for batch in batches)
+    assert len({identity for batch in batches for identity in batch}) == count
+
+
+@pytest.mark.parametrize('metadata,expected_calls,expected_quotes', [
+    ({}, 2, 0),
+    ({'events': 100}, 3, 20),
+])
+def test_strict_default_retains_both_original_missing_header_stops(environment, metadata, expected_calls, expected_quotes):
+    root, _ = environment
+    games = [event(500+i) for i in range(11)]
+    rows = collector.parse_cohort({'events': games}, START)[0]
+    session = quota_session(root, games, remaining_by_stage=metadata)
+    client = archive.ArchiveClient(root, session=session)
+    quotes, failures = collector.collect_quotes(client, rows, 'synthetic-test-token', START)
+    assert len(session.calls) == expected_calls and len(quotes) == expected_quotes
+    assert any(f['reason'] in {'quota_reserve_or_metadata_unavailable', 'remaining_batches_stopped_for_quota'}
+               for f in failures)
+
+
+@pytest.mark.parametrize('metadata,expected_calls,expected_quotes', [
+    ({'selected': 20}, 1, 0),
+    ({'events': 20}, 2, 0),
+    ({'events': 21}, 2, 0),  # two planned batches cannot retain the reported reserve
+    ({'batch1': 20}, 3, 20),
+    ({'batch1': 19}, 3, 20),
+    ({'events': 22, 'batch1': 21, 'batch2': 20}, 4, 22),
+])
+def test_opted_in_mode_still_obeys_reported_reserve(environment, metadata, expected_calls, expected_quotes):
+    root, _ = environment
+    games = [event(500+i) for i in range(11)]
+    rows = collector.parse_cohort({'events': games}, START)[0]
+    session = quota_session(root, games, remaining_by_stage=metadata)
+    quotes, failures = collector.collect_quotes(archive.ArchiveClient(root, session=session), rows,
+                                                'synthetic-test-token', START, require_quota_metadata=False)
+    assert len(session.calls) == expected_calls and len(quotes) == expected_quotes
+    assert bool(failures) == (expected_calls < 4)
+
+
+@pytest.mark.parametrize('status', [401, 403, 429])
+@pytest.mark.parametrize('stage,expected_calls', [('selected', 1), ('events', 2), ('batch1', 3)])
+def test_opted_in_missing_metadata_never_bypasses_auth_or_rate_limit_stop(environment, stage, expected_calls, status):
+    root, _ = environment
+    games = [event(500+i) for i in range(11)]
+    rows = collector.parse_cohort({'events': games}, START)[0]
+    session = quota_session(root, games, status_by_stage={stage: status})
+    client = archive.ArchiveClient(root, session=session)
+    quotes, failures = collector.collect_quotes(client, rows, 'synthetic-test-token', START,
+                                                require_quota_metadata=False)
+    assert not quotes and failures
+    assert len(session.calls) == expected_calls
+    assert client.receipts[-1]['status_code'] == status
+
+
+def test_weather_v3_explicitly_opts_in_and_pins_quota_amendment(environment):
+    root, _ = environment
+    session = quota_session(root, [event()])
+    result = collector.collect(root, now=START, client=archive.ArchiveClient(root, session=session))
+    assert result['status'] == 'ok' and result['counts']['paired_two_book_games'] == 1
+    assert result['collector_version'] == 'weather-revision-collector-v3'
+    assert result['quota_policy'] == {
+        'require_quota_metadata': False, 'reserve_if_reported': 20,
+        'missing_metadata': 'continue_fixed_bounded_calls', 'stop_http_statuses': [401, 403, 429],
+        'maximum_provider_calls': 17, 'amendment_file': collector.QUOTA_AMENDMENT,
+    }
+    assert result['provenance'][collector.QUOTA_AMENDMENT] == hashlib.sha256((root/collector.QUOTA_AMENDMENT).read_bytes()).hexdigest()
+    assert result['collection_profile'] == 'pilot'
+    assert result['collection_protocol_id'] == 'weather-revision-capture-pilot-v1'
+    assert result['collection_window']['end_exclusive'] == '2026-09-16T03:00:00Z'
+
+
+def test_missing_quota_amendment_fails_before_any_http(environment):
+    root, _ = environment
+    (root/collector.QUOTA_AMENDMENT).unlink()
+    result, session, _ = run(root)
+    assert result['status'] == 'failed' and not session.calls
 
 
 @pytest.mark.parametrize('alias',[50.,'50.0','050.000'])

@@ -16,6 +16,9 @@ import zlib
 SCHEMA = 'acc-availability-status-v1'
 CAPTURE_SCHEMA = 'acc-availability-collector-v1'
 PROTOCOL = 'reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md'
+AMENDMENT = 'reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md'
+AMENDED_FIELDS = {'collector_version': 'acc-availability-collector-v2', 'execution_revision': 2,
+                  'quota_policy': 'bounded_calls_when_headers_missing', 'amendment': AMENDMENT}
 START = datetime(2026, 9, 9, 8, tzinfo=timezone.utc)
 END = datetime(2026, 9, 16, 7, tzinfo=timezone.utc)
 ZONE = ZoneInfo('America/New_York')
@@ -137,6 +140,9 @@ def manifest_summary(integrity, path, now):
     data = json.loads(body)
     if not isinstance(data, dict) or data.get('schema_version') != CAPTURE_SCHEMA or data.get('protocol') != PROTOCOL:
         raise ValueError('Unknown availability manifest')
+    amended = any(key in data for key in AMENDED_FIELDS)
+    if amended and (any(data.get(key) != value for key, value in AMENDED_FIELDS.items()) or type(data.get('execution_revision')) is not int):
+        raise ValueError('Unknown availability operational amendment')
     run, attempt = data.get('run_id'), data.get('run_attempt')
     if any(not isinstance(v, str) or not re.fullmatch('[A-Za-z0-9_-]+', v) for v in (run, attempt)) or path.name != f'{run}-{attempt}.json':
         raise ValueError('Invocation filename mismatch')
@@ -164,7 +170,8 @@ def manifest_summary(integrity, path, now):
         raise ValueError('Outside-window attempt contains observations')
     if inside:
         hashes = data.get('source_hashes', {})
-        if not isinstance(hashes, dict) or set(hashes) != set(SOURCES):
+        expected_sources = set(SOURCES) | ({AMENDMENT} if amended else set())
+        if not isinstance(hashes, dict) or set(hashes) != expected_sources:
             raise ValueError('Missing source provenance')
         for name, digest in hashes.items():
             integrity.source(data.get('git_commit'), 'model/' + name, digest)
@@ -191,6 +198,8 @@ def manifest_summary(integrity, path, now):
     counts['failed_requests'] = int(failed_requests)
     return {'run_id': run, 'run_attempt': attempt, 'trigger': trigger, 'status': status,
             'capture_started_at': iso(started), 'capture_completed_at': iso(completed), 'counts': counts,
+            'collector_version': data.get('collector_version', CAPTURE_SCHEMA), 'execution_revision': 2 if amended else 1,
+            'quota_policy': data.get('quota_policy'), 'amendment': data.get('amendment'),
             'manifest_sha256': hashlib.sha256(body).hexdigest(), 'references_hash_verified': True}
 
 

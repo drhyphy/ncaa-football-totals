@@ -17,7 +17,8 @@ from .teams import normalize_team
 from .weather_revision_weather import (select_run, single_run_request, previous_day2_request,
     parse_single_run, parse_previous_day2, maturity_time)
 
-VERSION = "weather-revision-collector-v2"
+VERSION = "weather-revision-collector-v3"
+QUOTA_AMENDMENT = "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md"
 START = datetime(2026, 9, 9, 3, tzinfo=timezone.utc)
 END = datetime(2026, 9, 16, 3, tzinfo=timezone.utc)
 SEASON_START = END
@@ -274,7 +275,13 @@ def parse_quote_pairs(payload, targets, receipt):
     return output, failures
 
 
-def collect_quotes(client, rows, key, start):
+def collect_quotes(client, rows, key, start, *, require_quota_metadata=True):
+    """Observe the caller's fixed batches; never retry or expand its cohort.
+
+    The default retains the original missing-header stops. Explicitly opting
+    out permits absent allowance metadata, not observed low allowance or
+    authentication/rate-limit failures. Without headers a reserve is unknown.
+    """
     if not key:
         return [], [{"reason": "odds_key_missing"}]
     auth = {"apiKey": key}
@@ -317,7 +324,8 @@ def collect_quotes(client, rows, key, start):
         targets[identity] = games[0]
     remaining = _remaining(events)
     required = math.ceil(len(targets) / 10)
-    if remaining is None or remaining < required + QUOTA_RESERVE:
+    if ((remaining is None and require_quota_metadata)
+            or (remaining is not None and remaining < required + QUOTA_RESERVE)):
         return [], failures + [{"reason": "quota_reserve_or_metadata_unavailable", "remaining": remaining, "required": required}]
     identities = sorted(targets, key=lambda k: (_time(targets[k]["kickoff"]), int(targets[k]["game_id"])))
     quotes = []
@@ -332,7 +340,9 @@ def collect_quotes(client, rows, key, start):
         else:
             failures.append({"reason": "odds_batch_failed", "receipt_path": envelope["receipt"]["receipt_path"]})
         remaining = _remaining(envelope)
-        if envelope["receipt"]["status_code"] in {401, 403, 429} or remaining is None or remaining <= QUOTA_RESERVE:
+        if (envelope["receipt"]["status_code"] in {401, 403, 429}
+                or (remaining is None and require_quota_metadata)
+                or (remaining is not None and remaining <= QUOTA_RESERVE)):
             if offset + 10 < len(identities):
                 failures.append({"reason": "remaining_batches_stopped_for_quota"})
             break
@@ -362,6 +372,10 @@ def collect(root, now=None, client=None, profile="pilot"):
         "collection_window": {"start_inclusive": _stamp(selected["start"]),
                               "end_exclusive": _stamp(selected["end"])},
         "scheduled_utc_slots": list(SCHEDULED_UTC_SLOTS),
+        "quota_policy": {"require_quota_metadata": False, "reserve_if_reported": QUOTA_RESERVE,
+                         "missing_metadata": "continue_fixed_bounded_calls",
+                         "stop_http_statuses": [401, 403, 429], "maximum_provider_calls": 17,
+                         "amendment_file": QUOTA_AMENDMENT},
         "run_id": run_id, "run_attempt": attempt, "trigger": os.environ.get("GITHUB_EVENT_NAME", "manual_local"),
         "capture_started_at": _stamp(start), "capture_completed_at": None,
         "requested_run": _stamp(select_run(start)), "status": "failed", "rows": [], "failures": [],
@@ -376,7 +390,8 @@ def collect(root, now=None, client=None, profile="pilot"):
             manifest["status"] = "outside_" + profile
             return manifest
         pinned = ["ncaaf_model/weather_revision_collector.py", "ncaaf_model/weather_revision_weather.py",
-                  "ncaaf_model/revision_archive.py", "ncaaf_model/teams.py", "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md"]
+                  "ncaaf_model/revision_archive.py", "ncaaf_model/teams.py", "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md",
+                  QUOTA_AMENDMENT]
         if profile == "season":
             pinned.append(selected["protocol_file"])
         pinned.append("data/models/weather_venues_v1.json")
@@ -461,7 +476,8 @@ def collect(root, now=None, client=None, profile="pilot"):
         with ThreadPoolExecutor(max_workers=WORKERS) as pool:
             list(pool.map(recheck, rows))
         load_dotenv(root.parents[1] / ".env")
-        quotes, failures = collect_quotes(client, rows, os.environ.get("ODDS_API_IO_KEY", ""), start)
+        quotes, failures = collect_quotes(client, rows, os.environ.get("ODDS_API_IO_KEY", ""), start,
+                                          require_quota_metadata=False)
         manifest["failures"].extend(failures)
         for row in rows:
             row["quotes"] = [q for q in quotes if q["game_id"] == row["game_id"]]

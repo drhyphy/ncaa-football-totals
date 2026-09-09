@@ -20,6 +20,8 @@ from .teams import normalize_team
 from .weather_revision_collector import SCOREBOARD, SUMMARY, collect_quotes, parse_cohort
 
 VERSION = "acc-availability-collector-v1"
+COLLECTOR_VERSION = "acc-availability-collector-v2"
+AMENDMENT = "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md"
 START = datetime(2026, 9, 9, 8, tzinfo=timezone.utc)
 END = datetime(2026, 9, 16, 7, tzinfo=timezone.utc)
 ZONE = ZoneInfo("America/New_York")
@@ -173,6 +175,8 @@ def collect(root, *, now=None, client=None, source_capture=None):
     if path.exists():
         raise ValueError("Invocation already archived")
     manifest = {"schema_version": VERSION, "protocol": PROTOCOL, "run_id": invocation, "run_attempt": attempt,
+                "collector_version": COLLECTOR_VERSION, "execution_revision": 2,
+                "quota_policy": "bounded_calls_when_headers_missing", "amendment": AMENDMENT,
                 "trigger": os.getenv("GITHUB_EVENT_NAME", "manual_local"), "capture_started_at": start.isoformat(),
                 "capture_completed_at": None, "status": "failed", "reports": [], "rows": [], "failures": [],
                 "receipts": [], "counts": {}, "models_fitted": 0, "verified_completed_reports": 0}
@@ -184,7 +188,7 @@ def collect(root, *, now=None, client=None, source_capture=None):
             manifest["status"] = "outside_pilot"
             return manifest
         sources = [PROTOCOL, "ncaaf_model/availability_collector.py", "ncaaf_model/availability_archive.py",
-                   "ncaaf_model/revision_archive.py", "ncaaf_model/weather_revision_collector.py", "ncaaf_model/teams.py"]
+                   "ncaaf_model/revision_archive.py", "ncaaf_model/weather_revision_collector.py", "ncaaf_model/teams.py", AMENDMENT]
         manifest["source_hashes"] = {p: hashlib.sha256((root / p).read_bytes()).hexdigest() for p in sources}
         manifest["git_commit"] = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True, check=True).stdout.strip()
         manifest["workflow_commit"] = os.getenv("GITHUB_SHA")
@@ -225,7 +229,8 @@ def collect(root, *, now=None, client=None, source_capture=None):
         quotes, failures = [], []
         if eligible:
             load_dotenv(root.parents[1] / ".env")
-            quotes, failures = collect_quotes(client, eligible, os.getenv("ODDS_API_IO_KEY", ""), start)
+            quotes, failures = collect_quotes(client, eligible, os.getenv("ODDS_API_IO_KEY", ""), start,
+                                               require_quota_metadata=False)
         manifest["quote_diagnostics"] = failures
         for row in rows:
             row["quotes"] = [quote for quote in quotes if quote["game_id"] == row["game_id"]]

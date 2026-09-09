@@ -23,7 +23,7 @@ class AvailabilityStatusTests(unittest.TestCase):
         self.root = Path(self.tmp.name)
         self.started = STATUS.stamp('2026-09-09T10:17:00Z')
         self.now = self.started + timedelta(minutes=5)
-        for name in STATUS.SOURCES:
+        for name in (*STATUS.SOURCES, STATUS.AMENDMENT):
             path = self.root/'model'/name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text('frozen fixture '+name)
@@ -164,6 +164,59 @@ class AvailabilityStatusTests(unittest.TestCase):
     def test_recorded_git_source_is_used_even_when_working_source_changes(self):
         self.manifest()
         (self.root/'model'/STATUS.PROTOCOL).write_text('later edit')
+        data,failed=STATUS.build_status(self.root,self.now,'success')
+        self.assertFalse(failed)
+        self.assertEqual(data['archived_runs'],1)
+
+    def amended_manifest(self, run='456'):
+        row,path=self.manifest(run)
+        row.update(STATUS.AMENDED_FIELDS)
+        row['source_hashes'][STATUS.AMENDMENT]=hashlib.sha256((self.root/'model'/STATUS.AMENDMENT).read_bytes()).hexdigest()
+        path.write_text(json.dumps(row))
+        return row,path
+
+    def test_original_and_amended_manifests_keep_separate_exact_provenance_and_labels(self):
+        original,path=self.manifest()
+        original_bytes=path.read_bytes()
+        self.amended_manifest()
+        data,failed=STATUS.build_status(self.root,self.now,'success')
+        self.assertFalse(failed)
+        self.assertEqual((data['archived_runs'],data['invalid_manifests']),(2,0))
+        self.assertEqual(data['latest']['collector_version'],'acc-availability-collector-v2')
+        self.assertEqual(data['latest']['execution_revision'],2)
+        self.assertEqual(data['latest']['quota_policy'],'bounded_calls_when_headers_missing')
+        self.assertEqual(data['latest']['amendment'],STATUS.AMENDMENT)
+        self.assertEqual(path.read_bytes(),original_bytes)
+        first=STATUS.manifest_summary(STATUS.Integrity(self.root),path,self.now)
+        self.assertEqual(first['collector_version'],STATUS.CAPTURE_SCHEMA)
+        self.assertEqual(first['execution_revision'],1)
+        self.assertIsNone(first['amendment'])
+        self.assertIsNone(first['quota_policy'])
+        self.assertEqual(set(original['source_hashes']),set(STATUS.SOURCES))
+
+    def test_amendment_metadata_and_its_recorded_git_pin_are_required_together(self):
+        original,path=self.amended_manifest()
+        for fault in ('version','revision','quota_policy','amendment','missing_field','missing_pin','wrong_pin','extra_pin','legacy_metadata_with_amendment_pin'):
+            with self.subTest(fault=fault):
+                row=json.loads(json.dumps(original))
+                if fault=='version': row['collector_version']='acc-availability-collector-v3'
+                if fault=='revision': row['execution_revision']=2.0
+                if fault=='quota_policy': row['quota_policy']='unlimited'
+                if fault=='amendment': row['amendment']='reports/OTHER.md'
+                if fault=='missing_field': del row['quota_policy']
+                if fault=='missing_pin': del row['source_hashes'][STATUS.AMENDMENT]
+                if fault=='wrong_pin': row['source_hashes'][STATUS.AMENDMENT]='0'*64
+                if fault=='extra_pin': row['source_hashes']['reports/OTHER.md']='0'*64
+                if fault=='legacy_metadata_with_amendment_pin':
+                    for key in STATUS.AMENDED_FIELDS: del row[key]
+                path.write_text(json.dumps(row))
+                data,failed=STATUS.build_status(self.root,self.now,'success')
+                self.assertTrue(failed)
+                self.assertEqual((data['archived_runs'],data['invalid_manifests']),(0,1))
+
+    def test_older_amendment_source_is_not_reinterpreted_by_a_later_working_edit(self):
+        self.amended_manifest()
+        (self.root/'model'/STATUS.AMENDMENT).write_text('later version; never replace the original recorded meaning')
         data,failed=STATUS.build_status(self.root,self.now,'success')
         self.assertFalse(failed)
         self.assertEqual(data['archived_runs'],1)

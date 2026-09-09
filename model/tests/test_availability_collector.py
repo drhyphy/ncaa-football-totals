@@ -226,8 +226,10 @@ class Response:
     def __init__(self, payload, *, status=200, remaining=100):
         self.content = json.dumps(payload, allow_nan=False).encode()
         self.status_code = status
-        self.headers = {"Content-Type": "application/json", "X-RateLimit-Remaining": str(remaining),
+        self.headers = {"Content-Type": "application/json",
                         "Cache-Control": "public, max-age=60", "Age": "45"}
+        if remaining is not None:
+            self.headers["X-RateLimit-Remaining"] = str(remaining)
 
     def iter_content(self, chunk_size):
         yield self.content
@@ -300,7 +302,7 @@ class SyntheticHTTP:
 @pytest.fixture
 def environment(tmp_path, monkeypatch):
     root = tmp_path/"project/model"
-    for relative in (collector.PROTOCOL, "ncaaf_model/availability_collector.py", "ncaaf_model/availability_archive.py",
+    for relative in (collector.PROTOCOL, collector.AMENDMENT, "ncaaf_model/availability_collector.py", "ncaaf_model/availability_archive.py",
                      "ncaaf_model/revision_archive.py", "ncaaf_model/weather_revision_collector.py", "ncaaf_model/teams.py"):
         p = root/relative
         p.parent.mkdir(parents=True, exist_ok=True)
@@ -456,6 +458,23 @@ def test_twenty_games_never_exceeds_four_odds_calls_or_27_total_requests(environ
     assert [g["game_id"] for g in result["rows"]] == [str(i) for i in range(101, 121)]
     assert sum("odds-api.io" in c[1] for c in http.calls) == 4
     assert result["counts"]["total_requests"] == 27
+
+
+def test_amended_missing_quota_headers_allows_only_bounded_price_batches(environment):
+    http = SyntheticHTTP(environment, [event(i, generic=True) for i in range(101, 121)])
+    http.remaining = None
+    result, _, client = run(environment, http)
+    assert result["status"] == "captured" and result["counts"]["paired_games"] == 20
+    assert result["collector_version"] == "acc-availability-collector-v2"
+    assert result["execution_revision"] == 2 and result["quota_policy"] == "bounded_calls_when_headers_missing"
+    assert result["amendment"] == collector.AMENDMENT
+    assert result["source_hashes"][collector.AMENDMENT] == hashlib.sha256((environment/collector.AMENDMENT).read_bytes()).hexdigest()
+    quota_receipts = [r for r in client.receipts if "api.odds-api.io" in r["request"]["url"]]
+    assert len(quota_receipts) == 4 and result["counts"]["total_requests"] == 27
+    # Unknown quota is retained as absent original headers, never invented as
+    # available allowance or a guaranteed twenty-request reserve.
+    assert all("x_ratelimit_remaining" not in r["response_headers"] for r in quota_receipts)
+    assert not result["failures"]
 
 
 @pytest.mark.parametrize("when", [collector.START-timedelta(microseconds=1), collector.END])
