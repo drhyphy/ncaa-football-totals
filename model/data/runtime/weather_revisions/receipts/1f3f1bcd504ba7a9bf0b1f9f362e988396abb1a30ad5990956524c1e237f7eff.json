@@ -1,0 +1,33 @@
+{
+  "body_path": "data/runtime/weather_revisions/bodies/42e7d8dc2b231b3432b4ad4122104529c257a76b1902cf1d21f5a8bc5d2677e9.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "42e7d8dc2b231b3432b4ad4122104529c257a76b1902cf1d21f5a8bc5d2677e9",
+  "body_size_bytes": 6357,
+  "body_withheld": false,
+  "purpose": "weather_single_run",
+  "receipt_path": "data/runtime/weather_revisions/receipts/1f3f1bcd504ba7a9bf0b1f9f362e988396abb1a30ad5990956524c1e237f7eff.json",
+  "received_at": "2026-09-09T03:24:55.920633Z",
+  "request": {
+    "params": {
+      "forecast_days": 8,
+      "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m",
+      "latitude": 41.65838893680983,
+      "longitude": -91.55147552490234,
+      "models": "gfs_global",
+      "run": "2026-09-08T18:00",
+      "temperature_unit": "fahrenheit",
+      "timezone": "GMT",
+      "wind_speed_unit": "mph"
+    },
+    "url": "https://single-runs-api.open-meteo.com/v1/forecast"
+  },
+  "requested_at": "2026-09-09T03:24:55.416510Z",
+  "response_headers": {
+    "content_encoding": "deflate",
+    "content_type": "application/json; charset=utf-8",
+    "date": "Wed, 09 Sep 2026 03:24:55 GMT"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}

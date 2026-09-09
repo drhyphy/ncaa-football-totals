@@ -1,0 +1,61 @@
+{
+  "schema_version": "weather-revision-independent-audit-v1",
+  "audit_passed": true,
+  "run_id": "local-20260909T032436108097Z",
+  "run_attempt": "1",
+  "manifest_sha256": "b180532c3d7d7fb73eea3aa84991ec3f934fef430d15874bb923cccfa9f0e42a",
+  "capture_status": "partial",
+  "capture_started_at": "2026-09-09T03:24:36.108097Z",
+  "capture_completed_at": "2026-09-09T03:25:02.654702Z",
+  "counts_reconstructed": {
+    "cohort_games": 86,
+    "failed_requests": 0,
+    "mature_comparator_games": 0,
+    "paired_games": 57,
+    "paired_two_book_games": 37,
+    "total_requests": 307,
+    "two_book_games": 51,
+    "weather_available_games": 62
+  },
+  "original_receipts_verified": 307,
+  "current_capture_receipts": 307,
+  "normalized_quote_pairs_reconstructed": 128,
+  "weather_quote_links_reconstructed": 94,
+  "weather_quote_gap_seconds": {
+    "minimum": 5.149548,
+    "maximum": 11.298161
+  },
+  "odds_requests": 10,
+  "provenance": {
+    "data/models/weather_venues_v1.json": {
+      "recorded": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7",
+      "current_matches": true
+    },
+    "ncaaf_model/revision_archive.py": {
+      "recorded": "6b44bdda76281c4d8ebbf5387ab736602b617da77b518de6e8581f405f50d728",
+      "current_matches": true
+    },
+    "ncaaf_model/teams.py": {
+      "recorded": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+      "current_matches": true
+    },
+    "ncaaf_model/weather_revision_collector.py": {
+      "recorded": "f75f983d75e79c6726945ce8eefb83c6a9d6eefb48cd3f6c0d5c4c02cc1cad61",
+      "current_matches": true
+    },
+    "ncaaf_model/weather_revision_weather.py": {
+      "recorded": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0",
+      "current_matches": true
+    },
+    "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+      "recorded": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496",
+      "current_matches": true
+    }
+  },
+  "no_network": true,
+  "outcomes_extracted": false,
+  "performance_evaluated": false,
+  "method": "Independent standard-library reconstruction; no project parser imported. Frozen team aliases read as literal data.",
+  "limitation": "Receipt/schema/measurement/price linkage audit, not forecast accuracy, profitability, publication-time certification, or proof of complete provider coverage.",
+  "audit_script_sha256": "ffe042ce576068728bd88effffaad3540048ce000f5859053067f3af832536d1"
+}

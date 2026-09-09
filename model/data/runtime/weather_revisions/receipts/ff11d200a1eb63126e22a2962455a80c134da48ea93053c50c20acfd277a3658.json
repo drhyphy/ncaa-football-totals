@@ -1,0 +1,26 @@
+{
+  "body_path": "data/runtime/weather_revisions/bodies/6617ea8e530471f1cdb78c84d49ecc5231e851496540bdb9003a80fe7d7f5a0a.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "6617ea8e530471f1cdb78c84d49ecc5231e851496540bdb9003a80fe7d7f5a0a",
+  "body_size_bytes": 622,
+  "body_withheld": false,
+  "purpose": "official_roof_context",
+  "receipt_path": "data/runtime/weather_revisions/receipts/ff11d200a1eb63126e22a2962455a80c134da48ea93053c50c20acfd277a3658.json",
+  "received_at": "2026-09-09T03:24:37.744358Z",
+  "request": {
+    "params": {
+      "lang": "en",
+      "region": "us"
+    },
+    "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/venues/3615"
+  },
+  "requested_at": "2026-09-09T03:24:37.570232Z",
+  "response_headers": {
+    "content_encoding": "gzip",
+    "content_type": "application/json;charset=utf-8",
+    "date": "Wed, 09 Sep 2026 03:24:37 GMT"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}

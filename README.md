@@ -27,6 +27,8 @@ The separate [58-predictor ordinary-statistics ridge/tree study](model/reports/o
 
 A separate [seven-day weather revision pilot](model/reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md) captures original GFS runs and subsequently received DraftKings/FanDuel prices four times daily, through September 16 at 03:00 UTC. Its public status reports collection coverage and failures. The archive supplies no additional performance evidence and does not change the four registered policies.
 
+The [first manual capture audit](model/reports/WEATHER_REVISION_FIRST_CAPTURE_AUDIT.md) independently reconstructed 307 HTTP receipts: 86 upcoming games, 62 valid forecasts, and 57 games with later prices (37 with both books). Forecast-to-price receipt gaps were 5.15–11.30 seconds. Missing venue and quote coverage remains explicit; these are collection counts, not betting results.
+
 ## Prospective evaluation
 
 The [fixed evaluation protocol](model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md) covers September 9, 2026–January 31, 2027 games and sets February 8, 2027 as the evaluation date for the four current policies. Running results remain descriptive, with no interim promotion; historical results and reconstructed replays are excluded.
