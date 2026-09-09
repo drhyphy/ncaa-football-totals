@@ -1,0 +1,345 @@
+{
+  "bootstrap": {
+    "cluster": "Monday-Sunday Eastern calendar week",
+    "descriptive_95_quantiles": [
+      0.025,
+      0.975
+    ],
+    "draws": 10000,
+    "estimand": "Ratio of resampled total paired loss differences to resampled common game count",
+    "local_four_comparison_9875_quantiles": [
+      0.00625,
+      0.99375
+    ],
+    "metric": "paired_binary_log_loss_difference",
+    "minimum_distinct_weeks": 2,
+    "periods": {
+      "reused_2025": [
+        2025
+      ],
+      "selection_2021_2024": [
+        2021,
+        2022,
+        2023,
+        2024
+      ]
+    },
+    "quantile_method": "linear",
+    "resample": "G complete weeks with replacement from sorted G observed week identities",
+    "reset_rng_for_each_period": true,
+    "rng": "numpy.random.Generator(numpy.random.PCG64(seed))",
+    "seed": 20260909,
+    "shared_indices_across_comparisons_within_period": true
+  },
+  "cache_data_fingerprint": "cf764f803b38ecfd",
+  "candidate_order": [
+    "raw50",
+    "rawridge",
+    "context_logit",
+    "opponent_logit",
+    "context_hgb",
+    "opponent_hgb"
+  ],
+  "chronology": {
+    "choice_freeze": "Write and hash immutable choice file before computing 2025 diagnostic results",
+    "choice_rule": "Minimum game-weighted pooled 2021-2024 binary log loss; exact ties use candidate_order",
+    "failure_policy": "Explicitly unavailable; no fallback or selection on fewer favorable folds",
+    "minimum_is_evidence_threshold": false,
+    "minimum_training_games": 100,
+    "report_all_2025_configurations": true,
+    "require_both_classes": true,
+    "reused_check_year": 2025,
+    "selection_years": [
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "test_years": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "train_rule": "All eligible seasons strictly earlier than test year",
+    "warmup_year": 2020
+  },
+  "cohort": {
+    "base_games": 5008,
+    "base_games_by_season": {
+      "2020": 538,
+      "2021": 848,
+      "2022": 849,
+      "2023": 910,
+      "2024": 920,
+      "2025": 943
+    },
+    "halfpoint_games": 3581,
+    "halfpoint_games_by_season": {
+      "2020": 323,
+      "2021": 428,
+      "2022": 403,
+      "2023": 777,
+      "2024": 798,
+      "2025": 852
+    },
+    "halfpoint_games_by_source": {
+      "cfbd_Bovada": 5,
+      "cfbd_consensus": 1167,
+      "espn_nonlive_provider_100": 47,
+      "espn_nonlive_provider_40": 9,
+      "espn_nonlive_provider_58": 2353
+    },
+    "inventory_inspected_outcomes": false,
+    "line_fraction_exact": 0.5,
+    "minimum_history_games": 5,
+    "missing_original_spread_policy": "Preserve inherited abs_spread=0; no new imputation",
+    "outcome_support_inclusive": [
+      0,
+      250
+    ],
+    "require_all_eleven_predictors_finite": true,
+    "require_finite_positive_line": true,
+    "require_verified_pregame_provider_role": true,
+    "seasons": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "selection_games": 2406,
+    "target": "under = 1[actual_total < market_total]",
+    "test_games": 3258
+  },
+  "comparison_pairs": [
+    [
+      "opponent_logit",
+      "context_logit"
+    ],
+    [
+      "opponent_hgb",
+      "context_hgb"
+    ],
+    [
+      "opponent_logit",
+      "rawridge"
+    ],
+    [
+      "opponent_hgb",
+      "rawridge"
+    ]
+  ],
+  "created_at": "2026-09-09T05:23:43.068290+00:00",
+  "diagnostics": [
+    "All candidate metrics and coverage by year",
+    "All candidate metrics and coverage by source",
+    "All candidate metrics by period and source",
+    "Raw-probability reliability with fixed bins, counts and observed rates",
+    "Mean predicted and observed Under fraction",
+    "Logistic coefficient and convergence diagnostics; HGB iteration diagnostics",
+    "All exclusion and source/era coverage counts"
+  ],
+  "feature_cache": "data/normalized/opponent_features_verified_cf764f803b38ecfd.parquet",
+  "feature_columns": {
+    "context": [
+      "market_total",
+      "abs_spread",
+      "week",
+      "clock_rule_2023",
+      "two_minute_rule_2024"
+    ],
+    "opponent": [
+      "adjusted_score_minus_market",
+      "adjusted_drive_minus_market",
+      "adjusted_clock_minus_market",
+      "adjusted_pass_yards",
+      "adjusted_rush_yards",
+      "adjusted_pass_share",
+      "market_total",
+      "abs_spread",
+      "week",
+      "clock_rule_2023",
+      "two_minute_rule_2024"
+    ]
+  },
+  "freeze_status": "frozen_before_new_model_fits",
+  "hgb": {
+    "categorical_features": null,
+    "class_weight": null,
+    "early_stopping": false,
+    "estimator": "HistGradientBoostingClassifier",
+    "imputation": false,
+    "l2_regularization": 20.0,
+    "learning_rate": 0.025,
+    "loss": "log_loss",
+    "max_bins": 255,
+    "max_depth": null,
+    "max_iter": 220,
+    "max_leaf_nodes": 10,
+    "min_samples_leaf": 45,
+    "positive_class": 1,
+    "random_state": 2026,
+    "scaling": false
+  },
+  "implementation_frozen_at": "2026-09-09T05:30:16.263554Z",
+  "implementation_protocol_sha256": "4de223ef4fe3b22692075e78fd61f9bfb62fa85e40cb24eb6fc64bed0c28e5d0",
+  "implementation_sha256": {
+    "ncaaf_model/calibration_research.py": "696c57801ab499e57964ff3bfc649d01d91d7b94c9ef4252b80b4f6d3fdabdc9",
+    "ncaaf_model/conditional_distribution.py": "581a8c57b8640e5c3c1d6e9f98b036afd09e3ac2e30ce44c7575f3f598e93fe1",
+    "ncaaf_model/direct_probability_models.py": "69f5bcd484f814d1b903762486d6818da601c85cf4d7f1aebd7623c0357adc21",
+    "ncaaf_model/direct_probability_research.py": "0d1b2468ab1a7a178b42254e3e83b253c48c7aa2452916586630005824c36829",
+    "ncaaf_model/opponent_model.py": "0db01c48c0d49e236c90c7134953aeedd0b9963b03278ae3bfc222cf2b91fc5d",
+    "ncaaf_model/ordinary_features_research.py": "0b013347adf804c49e2a20f05066b29e30089a2f37b765677a04c40f4b9c128c",
+    "ncaaf_model/revision_archive.py": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+  },
+  "input_alignment_checks": [
+    "Verify every pinned file digest before new fits",
+    "Unique canonical game IDs, exact expected season and cohort counts",
+    "Exact game/team identity, season/week, kickoff, repaired line/spread, source and ratings-cutoff agreement between feature/OOF sources",
+    "All target labels match across admitted sources when loaded",
+    "Recompute three adjusted-minus-market features and require agreement",
+    "Require ratings cutoff strictly before kickoff and original frozen feature provenance",
+    "Validate original OOF prior-season means/scales provenance; never use current fitted artifact",
+    "Preserve repaired source priority and validate original market rows; no scalar-odds fallback",
+    "No outcome or arbitrary numeric field outside the explicit predictor allowlist",
+    "Same admitted game rows for all configurations"
+  ],
+  "library_versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.17.1"
+  },
+  "limitations": [
+    "Every historical season is reused development, including 2025",
+    "Historical paired offered prices and original quote receipts are unknown; no historical EV or selected-bet ROI is computed",
+    "Verified pregame provider role does not prove morning or exact closing availability",
+    "Prior-game timing uses historical cutoff plus six-hour proxy and retrospectively revised sources",
+    "Halfpoint-only cohort changes early-year and source composition; push probability is not tested",
+    "A binary model at one reference line is not a coherent alternate-line score CDF",
+    "Local four-comparison sensitivity does not correct historical search, selection among six, both periods or all diagnostics",
+    "Whole-week resampling does not eliminate cross-week team dependence and source/regime shifts",
+    "Better proper scores can motivate a separate prospective paper policy, not establish profit or authorize confident staking",
+    "Rawridge originally trained on the larger all-line prior-season cohort, so versus-ridge comparisons change both target/method and training cohort; within-family opponent/context comparisons retain identical rows"
+  ],
+  "live_policy_changes": false,
+  "logistic": {
+    "bounds": null,
+    "ftol": 1e-12,
+    "gradient": "D.T@(expit(D@beta)-y)/n + 0.1*beta",
+    "gtol": 1e-08,
+    "initial_coefficients": 0,
+    "intercept_scaled": false,
+    "lambda": 0.1,
+    "maxiter": 1000,
+    "objective": "mean(logaddexp(0,D@beta)-y*(D@beta)) + 0.05*sum(beta**2)",
+    "optimizer": "L-BFGS-B",
+    "penalize_intercept": true,
+    "raw_prediction": "expit(D@beta)",
+    "require_optimizer_success_and_finite_solution": true,
+    "required_gradient_infinity_norm_max": 1e-05,
+    "scaling": "training-only column mean and population std, exactly zero std replaced by 1",
+    "standardized_feature_clip": [
+      -5,
+      5
+    ]
+  },
+  "new_configurations": [
+    "context_logit",
+    "opponent_logit",
+    "context_hgb",
+    "opponent_hgb"
+  ],
+  "new_model_fits_run": false,
+  "no_2026_outcomes": true,
+  "python_package_versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.17.1"
+  },
+  "references": {
+    "raw50": {
+      "meaning": "Statistical null, not observed no-vig probability",
+      "under_probability": 0.5
+    },
+    "rawridge": {
+      "candidate": "opponent_adjusted_ridge",
+      "center": "saved prior-season OOF projected_total",
+      "distribution": "same zero-truncated integer Normal PMF as calibration study",
+      "integer_support": [
+        0,
+        250
+      ],
+      "logit": "log(p)-log1p(-p), require finite 0<p<1 from original PMF",
+      "original_training_cohort": "Larger prior-season score cohort including integer lines; new classifiers share halfpoint-only training cohort",
+      "overflow_to_last_bin": true,
+      "push_probability": 0,
+      "sigma": "saved prior-season OOF residual_sigma",
+      "sigma_bounds": [
+        6,
+        30
+      ],
+      "source": "reports/opponent_adjusted_predictions.csv",
+      "under_probability": "sum PMF scores strictly below actual halfpoint line"
+    }
+  },
+  "scores": {
+    "brier_uses_raw_probability": true,
+    "log_loss_formula": "logaddexp(0,z) - y*z from finite raw logit z",
+    "no_accuracy_roi_or_threshold_selection": true,
+    "preserve_raw_probabilities_and_logits": true,
+    "primary": "binary_log_loss",
+    "probability_or_logit_clipping": false,
+    "raw_probability": "expit(z)",
+    "reliability_edges": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1
+    ],
+    "reliability_intervals": "left-closed right-open, last includes 1; preserve empty bins",
+    "secondary": "brier"
+  },
+  "source_files_sha256": {
+    "data/models/opponent_history.parquet": "a747dbaa90b28cd555e9e45024091f34ce5f105cabefee6fc6a67a8f3bde4a57",
+    "data/normalized/opponent_features_verified_cf764f803b38ecfd.parquet": "ec33e9add2cb5b84742a17e65c313ca225503f6edadba125fbf7eeb5a45bb73c",
+    "data/raw/alternative/cfbd_manifest.json": "d0260a1e95fa2ed37fd885accdf1e2c2384ee1563baaf2e724600419f9b6b286",
+    "data/raw/alternative/cfbd_market_games.parquet": "2a325ef3b50bc6d45f27cad3208e85d5d73062bf900e15f51d9ea7e93becae0e",
+    "data/raw/alternative/espn_verified_pregame_games.parquet": "f034e24b8e79ffc33e64d643a92e4b9876c7a1af62f9be7b79176abf6495fab4",
+    "data/raw/sportsdataverse/cfb_schedule_2020.parquet": "42ef6ff8710509d89897da32b63de0b6ecda83c3df6cbb26e395a2ed503d662c",
+    "data/raw/sportsdataverse/cfb_schedule_2021.parquet": "63febfbdb9998da17919dcd4f5edf5f515cdb45106557867e7b90a4212137c91",
+    "data/raw/sportsdataverse/cfb_schedule_2022.parquet": "1d4f255e73e754df0e89624bc92017ba356e107426db543687bd0df093cfdf69",
+    "data/raw/sportsdataverse/cfb_schedule_2023.parquet": "76b11da6b1c0352fe41fd73c440933508d730415e0c727448265f8bd643f0401",
+    "data/raw/sportsdataverse/cfb_schedule_2024.parquet": "b786f466a3a8e7f8d4f25e464a0172a9d5dea5e7206c4a0141620ae0f101658f",
+    "data/raw/sportsdataverse/cfb_schedule_2025.parquet": "8020567f0daeee0cc6508ad906a4d48de7f56c28372aec34e02ea63e9a7bff44",
+    "ncaaf_model/calibration_research.py": "696c57801ab499e57964ff3bfc649d01d91d7b94c9ef4252b80b4f6d3fdabdc9",
+    "ncaaf_model/conditional_distribution.py": "581a8c57b8640e5c3c1d6e9f98b036afd09e3ac2e30ce44c7575f3f598e93fe1",
+    "ncaaf_model/drive_model.py": "7d2be144e534561d240e99427b28b532a1f21e57a4a49ce101ddf2e98512497b",
+    "ncaaf_model/espn_provider_repair.py": "74f3f1f2df2b5a35cda8ea5fe8793e50ced398035ba2280b3d30f12c51e663bc",
+    "ncaaf_model/opponent_model.py": "0db01c48c0d49e236c90c7134953aeedd0b9963b03278ae3bfc222cf2b91fc5d",
+    "reports/CALIBRATION_RESEARCH_AUDIT.md": "21aadeb56952d1cfe0ba32088f1c39fc3091d96fb07b1ebcad384234bf2bc6d0",
+    "reports/CALIBRATION_RESEARCH_PLAN.md": "9e6ac91344639c0afe50677fedf1a71d768454158d61d264244d4a12a9fd6d05",
+    "reports/DIRECT_PROBABILITY_RESEARCH_PLAN.md": "4de223ef4fe3b22692075e78fd61f9bfb62fa85e40cb24eb6fc64bed0c28e5d0",
+    "reports/calibration_research_plan.json": "50eae12efdee34e5f594b0de3bd0ee4910114c807dd3c0a215ed00342a0fda77",
+    "reports/opponent_adjusted_development.json": "b1f7dccf7db28557bf5b978d8e216e961fc774e7d9c3cbbb17a120a909d4ad49",
+    "reports/opponent_adjusted_predictions.csv": "1b032e26993c7c15f98f74c26ed69d6112520da8dbae442e41b20ea602b0b524",
+    "reports/ordinary_model_research_plan.json": "a57209fc3733428815d556254edc99fdc070544671d225b1a4948c920944c98f"
+  },
+  "validation_sha256": {
+    "requirements-lock.txt": "6eb7960e47f87217e6380b007b6a8c9c643c3fac5e55f401aff5144e372f158d",
+    "tests/test_direct_probability_models.py": "3e7829fa063f79818e99e90283a2e761bcf7c7e0069671608246adb64a76e99a",
+    "tests/test_direct_probability_research.py": "4ca16bb6e238d2516d0b44105fbf230d4ad63f50c8cc28e8c2b1bcb4ce4d5e21"
+  },
+  "version": "repaired-direct-probability-v1"
+}

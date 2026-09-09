@@ -1,3 +1,5 @@
+> **Quarantined market provenance:** This historical run used the original scalar `betting_{season}.parquet` inputs through broad `core_odds_api` / `summary_pickcenter` tags. Those tags include live-game lines, as documented in [the provider audit](espn_market_timing_audit.md). The original results below are retained for transparency and are not repaired pregame or closing-line evidence. The separately repaired opponent-adjusted model incorporates drive and clock predictors, but does not validate this old study.
+
 # Drive/clock development study
 
 Two fixed challengers; expanding prior-year fits; reused historical development periods. Neither is approved for live betting.
