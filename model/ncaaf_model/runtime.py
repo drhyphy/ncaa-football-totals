@@ -27,7 +27,8 @@ import requests
 from .config import load_settings
 from .distribution import expected_value, infer_center
 from .math import devig_pair
-from .sources import DataClient, ESPN_SCOREBOARD_URL, load_dotenv, merge_schedule_frames, parse_espn_scoreboard
+from .sources import (DataClient, ESPN_SCOREBOARD_URL, load_dotenv, merge_schedule_frames, parse_espn_scoreboard,
+                      schedule_artifact_input, write_derived_schedule)
 from .storage import atomic_write_bytes
 from .totals_scoring import attach_totals_schedule
 from .teams import normalize_team
@@ -112,6 +113,7 @@ def refresh_inputs(settings, now: datetime) -> tuple[pd.DataFrame, dict]:
                 diagnostics["input_failures"][key] = safe_failure(exc)
     path = root / f"cfb_schedule_{settings.season}.parquet"
     schedule = pd.read_parquet(path) if path.exists() else pd.DataFrame()
+    schedule_input = schedule_artifact_input(path, "schedule_before_scoreboard_merge")
     # Include the full season for grading old positions, and FBS/FCS current slate.
     start = now.astimezone(TZ).date() - timedelta(days=8)
     end = start + timedelta(days=22)
@@ -128,8 +130,7 @@ def refresh_inputs(settings, now: datetime) -> tuple[pd.DataFrame, dict]:
             diagnostics["input_failures"][f"espn_{group}"] = safe_failure(exc)
     if schedule.empty:
         raise RuntimeError("No schedule available")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    schedule.to_parquet(path, index=False)
+    write_derived_schedule(path, schedule, operation="runtime_scoreboard_merge", inputs=[schedule_input])
     diagnostics["schedule_fresh"] = "schedule" in diagnostics["refreshed_inputs"] or any(
         diagnostics.get(f"espn_group_{group}_games", 0) > 0 for group in (80, 81))
     return schedule, diagnostics

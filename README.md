@@ -19,6 +19,8 @@ The separate [original NOAA 2021–2023 replication](model/reports/noaa_weather_
 
 The deeper audit confirmed that the old ESPN scalar archive includes **live-game totals**. For example, SMU–TCU in 2024 used 107.5 from an explicitly live provider; the separate opening field was 57.5. Previous closing-line backtests are quarantined. The replacement sample uses public CFBD archives and verified pregame-provider ESPN records, excluding live-only records. Actual historical total-side prices and quote timestamps remain unavailable, so assumed -110 results are exploratory.
 
+Schedule caches augmented with later scoreboard rows now carry explicit derived-artifact metadata: their current file checksum and materialization time are separate from any retained upstream download receipt. Earlier mismatched sidecars cannot certify original source bytes or when individual rows became available. This provenance correction covers all three schedule merge paths and preserves their existing rows, forecasts and selection rules.
+
 See [the primary-source audit](model/reports/espn_market_timing_audit.md), [opponent-model development](model/reports/opponent_adjusted_development.md), [the two-book audit](model/reports/TWO_BOOK_OPPORTUNITIES.md), and [the current protocol](docs/PROSPECTIVE_PROTOCOL.md). Earlier failed experiments remain available for audit; reused historical data are never called a pristine holdout.
 
 The [fixed six-configuration probability experiment](model/reports/calibration_research_results.md) did not justify replacing the current model: the 2022–2024 selection chose raw ridge, and every ridge variant scored worse than the raw market reference in the reused 2025 check. No ROI-based selection or new live candidate was introduced.
