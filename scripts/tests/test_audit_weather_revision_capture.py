@@ -36,7 +36,7 @@ class IndependentCaptureAuditTests(unittest.TestCase):
         (self.root / RELATIVE).write_text(json.dumps(self.manifest))
 
     def audit(self):
-        return AUDIT.Audit(self.root).execute(self.root / RELATIVE)
+        return AUDIT.Audit(self.root, repository=REPO).execute(self.root / RELATIVE)
 
     def test_real_receipts_reconstruct_without_importing_collector_or_parser(self):
         result = self.audit()
@@ -45,6 +45,38 @@ class IndependentCaptureAuditTests(unittest.TestCase):
         self.assertEqual(result['normalized_quote_pairs_reconstructed'], 128)
         self.assertEqual(result['weather_quote_links_reconstructed'], 94)
         self.assertFalse(result['outcomes_extracted'])
+        self.assertTrue(result['recorded_commit_provenance_verified'])
+
+    def test_later_source_change_does_not_invalidate_recorded_git_blobs(self):
+        source = self.root / 'ncaaf_model/revision_archive.py'
+        source.write_text('Later versioned compatibility correction.\n')
+        result = self.audit()
+        provenance = result['provenance']['ncaaf_model/revision_archive.py']
+        self.assertFalse(provenance['current_matches'])
+        self.assertTrue(provenance['recorded_commit_matches'])
+
+    def test_aliases_and_catalog_are_taken_from_verified_historical_blobs(self):
+        (self.root / 'ncaaf_model/teams.py').write_text('Not executable Python or a usable alias map.\n')
+        (self.root / 'data/models/weather_venues_v1.json').write_text('{}')
+        result = self.audit()
+        self.assertFalse(result['provenance']['ncaaf_model/teams.py']['current_matches'])
+        self.assertFalse(result['provenance']['data/models/weather_venues_v1.json']['current_matches'])
+        self.assertEqual(result['normalized_quote_pairs_reconstructed'], 128)
+
+    def test_recorded_source_hash_cannot_be_replaced_by_current_tree_hash(self):
+        self.manifest['provenance']['ncaaf_model/revision_archive.py'] = '0' * 64
+        self.write_manifest()
+        with self.assertRaisesRegex(AssertionError, 'Git source hash mismatch'):
+            self.audit()
+
+    def test_missing_recorded_commit_is_not_silently_replaced_by_head(self):
+        self.manifest['git_commit'] = '0' * 40
+        self.write_manifest()
+        result = self.audit()
+        self.assertFalse(result['recorded_commit_provenance_verified'])
+        for provenance in result['provenance'].values():
+            self.assertIsNone(provenance['recorded_commit_matches'])
+            self.assertTrue(provenance['git_blob_unavailable'])
 
     def test_altered_measurement_fails_even_when_manifest_is_valid_json(self):
         row = next(r for r in self.manifest['rows'] if r['single_run'])

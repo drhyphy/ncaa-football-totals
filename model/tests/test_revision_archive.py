@@ -81,6 +81,23 @@ def test_content_addressed_write_is_concurrent_and_immutable(tmp_path):
     assert path.read_bytes() == body
 
 
+def test_existing_original_body_survives_different_runtime_gzip_header(tmp_path):
+    original = b'{"same": true}'
+    client = ArchiveClient(tmp_path, session=Session(original))
+    first = client.fetch('https://example.com/data')['receipt']
+    path = tmp_path / first['body_path']
+    variant = bytearray(path.read_bytes())
+    variant[9] = 3  # Python 3.11/3.12 zlib-derived Unix OS byte, vs 3.13's 255.
+    path.write_bytes(variant)
+    second = client.fetch('https://example.com/data')['receipt']
+    assert first['body_sha256'] == second['body_sha256']
+    assert path.read_bytes() == bytes(variant)
+    assert load_envelope(tmp_path, second['receipt_path'])['payload'] == {'same': True}
+    with pytest.raises(ValueError, match='collision'):
+        immutable_bytes(path, b'changed')
+    assert path.read_bytes() == bytes(variant)
+
+
 @pytest.mark.parametrize('url,params', [
     ('https://example.com/data?apiKey=secret', {}),
     ('https://user@example.com/data', {}),

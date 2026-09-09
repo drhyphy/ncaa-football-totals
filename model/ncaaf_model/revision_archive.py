@@ -13,6 +13,8 @@ from urllib.parse import quote, quote_plus, urlsplit
 
 import requests
 
+WRITER_VERSION = "revision-archive-v2-portable-gzip"
+
 
 def timestamp() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -22,7 +24,7 @@ def digest_json(value) -> str:
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
 
 
-def immutable_bytes(path: Path, body: bytes) -> None:
+def immutable_bytes(path: Path, body: bytes, *, equivalent=None) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(dir=path.parent, prefix=".tmp-archive-", delete=False) as handle:
         temporary = Path(handle.name)
@@ -33,7 +35,8 @@ def immutable_bytes(path: Path, body: bytes) -> None:
         try:
             os.link(temporary, path)
         except FileExistsError:
-            if path.read_bytes() != body:
+            existing = path.read_bytes()
+            if existing != body and (equivalent is None or not equivalent(existing)):
                 raise ValueError("Immutable archive collision")
     finally:
         temporary.unlink(missing_ok=True)
@@ -72,6 +75,7 @@ class ArchiveClient:
         if any(n in json.dumps(public_request).encode() for n in needles):
             raise ValueError("Credential found in public request")
         receipt = {"schema_version": "raw-http-receipt-v1", "purpose": purpose,
+                   "archive_writer_version": WRITER_VERSION,
                    "requested_at": timestamp(), "received_at": None, "request": public_request,
                    "status_code": None, "response_headers": {}, "body_sha256": None,
                    "body_path": None, "transport_error": None, "body_withheld": False}
@@ -96,7 +100,11 @@ class ArchiveClient:
                 receipt["transport_error"] = "credential_echo_withheld"
             else:
                 path = self.archive / "bodies" / f"{receipt['body_sha256']}.body.gz"
-                immutable_bytes(path, gzip.compress(body, mtime=0))
+                # Different Python/zlib versions can produce distinct gzip
+                # headers/streams for identical original response bytes. Keep
+                # the earliest stored file and verify its original contents.
+                immutable_bytes(path, gzip.compress(body, compresslevel=9, mtime=0),
+                                equivalent=lambda existing: gzip.decompress(existing) == body)
                 receipt["body_path"] = path.relative_to(self.root).as_posix()
                 try:
                     payload = json.loads(body)

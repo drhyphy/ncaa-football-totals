@@ -15,6 +15,7 @@ import json
 import math
 from pathlib import Path
 import re
+import subprocess
 import unicodedata
 from urllib.parse import urlsplit
 
@@ -50,13 +51,50 @@ def close(a, b):
 
 
 class Audit:
-    def __init__(self, root):
+    def __init__(self, root, repository=None, model_git_path='model'):
         self.root = root.resolve()
         self.base = self.root / 'data/runtime/weather_revisions'
         self.loaded = {}
-        tree = ast.parse((self.root / 'ncaaf_model/teams.py').read_text())
+        if repository is None:
+            self.repository = Path(subprocess.check_output(['git', 'rev-parse', '--show-toplevel'], cwd=self.root, text=True).strip()).resolve()
+            self.model_git_path = self.root.relative_to(self.repository).as_posix()
+        else:
+            self.repository = Path(repository).resolve()
+            self.model_git_path = model_git_path
+        self.aliases = None
+        self.blobs = {}
+
+    def provenance(self, manifest):
+        commit = manifest.get('git_commit')
+        assert isinstance(commit, str) and re.fullmatch(r'[0-9a-f]{40}|[0-9a-f]{64}', commit), 'Full recorded Git commit required'
+        provenance = {}
+        for relative, expected in manifest['provenance'].items():
+            path = Path(relative)
+            assert not path.is_absolute() and '..' not in path.parts, 'Unsafe source path'
+            blob_path = self.model_git_path + '/' + path.as_posix()
+            current = (self.root / path).read_bytes() if (self.root / path).is_file() else None
+            current_matches = current is not None and sha(current) == expected
+            try:
+                blob = subprocess.check_output(['git', 'show', commit + ':' + blob_path], cwd=self.repository, stderr=subprocess.PIPE)
+            except subprocess.CalledProcessError:
+                provenance[relative] = {'recorded': expected, 'git_blob_sha256': None,
+                    'recorded_commit_matches': None, 'git_blob_path': blob_path,
+                    'git_blob_unavailable': True, 'current_matches': current_matches,
+                    'limitation': 'Recorded Git object unavailable locally; no network fetch or HEAD substitution performed.'}
+                if current_matches:
+                    self.blobs[relative] = current
+                continue
+            actual = sha(blob)
+            assert actual == expected, 'Recorded Git source hash mismatch: ' + relative
+            self.blobs[relative] = blob
+            provenance[relative] = {'recorded': expected, 'git_blob_sha256': actual,
+                'recorded_commit_matches': True, 'git_blob_path': blob_path,
+                'git_blob_unavailable': False, 'current_matches': current_matches}
+        assert {'ncaaf_model/teams.py', 'data/models/weather_venues_v1.json'} <= self.blobs.keys(), 'Frozen alias/catalog bytes unavailable at their recorded hashes'
+        tree = ast.parse(self.blobs['ncaaf_model/teams.py'].decode())
         self.aliases = next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign)
                             and any(isinstance(t, ast.Name) and t.id == 'ALIASES' for t in n.targets))
+        return provenance
 
     def name(self, name):
         chars = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode().lower().replace('&', 'and')
@@ -289,6 +327,7 @@ class Audit:
         body = path.read_bytes()
         manifest = json.loads(body)
         assert manifest['schema_version'] == 'weather-revision-capture-v1'
+        provenance = self.provenance(manifest)
         start, end = [stamp(manifest[k]) for k in ('capture_started_at', 'capture_completed_at')]
         assert START <= start < END and start <= end
         assert len(manifest['receipts']) == len(set(manifest['receipts']))
@@ -298,9 +337,9 @@ class Audit:
         assert counts['total_requests'] == len(receipts)
         assert counts['failed_requests'] == sum(r['status_code'] != 200 or bool(r['transport_error']) for r in receipts)
         assert manifest['stored_response_bytes'] == sum(r.get('body_size_bytes', 0) for r in receipts)
-        catalog_path = self.root / 'data/models/weather_venues_v1.json'
-        assert sha(catalog_path.read_bytes()) == CATALOG_SHA
-        catalog = json.loads(catalog_path.read_text())
+        catalog_bytes = self.blobs['data/models/weather_venues_v1.json']
+        assert sha(catalog_bytes) == CATALOG_SHA
+        catalog = json.loads(catalog_bytes)
         frozen = self.cohort(manifest)
         quoted, paired, weather = 0, 0, 0
         gaps = []
@@ -383,8 +422,6 @@ class Audit:
             for row in rows:
                 for quote in row['quotes']:
                     assert provider_to_game[quote['provider_event_id']] == row['game_id']
-        provenance = {p: {'recorded': h, 'current_matches': (self.root / p).exists() and sha((self.root / p).read_bytes()) == h}
-                      for p, h in manifest['provenance'].items()}
         return {'schema_version': 'weather-revision-independent-audit-v1', 'audit_passed': True,
             'run_id': manifest['run_id'], 'run_attempt': manifest['run_attempt'], 'manifest_sha256': sha(body),
             'capture_status': manifest['status'], 'capture_started_at': manifest['capture_started_at'],
@@ -392,9 +429,11 @@ class Audit:
             'original_receipts_verified': len(self.loaded), 'current_capture_receipts': len(receipts),
             'normalized_quote_pairs_reconstructed': quoted, 'weather_quote_links_reconstructed': paired,
             'weather_quote_gap_seconds': {'minimum': min(gaps), 'maximum': max(gaps)} if gaps else None,
-            'odds_requests': len(odds), 'provenance': provenance,
+            'odds_requests': len(odds), 'recorded_git_commit': manifest['git_commit'],
+            'recorded_commit_provenance_verified': all(p['recorded_commit_matches'] is True for p in provenance.values()),
+            'provenance': provenance,
             'no_network': True, 'outcomes_extracted': False, 'performance_evaluated': False,
-            'method': 'Independent standard-library reconstruction; no project parser imported. Frozen team aliases read as literal data.',
+            'method': 'Independent reconstruction; no project parser imported. Recorded Git source blobs verified when available; missing history explicitly unavailable. Frozen alias/catalog bytes must match their recorded hashes. Current-tree matching is informational.',
             'limitation': 'Receipt/schema/measurement/price linkage audit, not forecast accuracy, profitability, publication-time certification, or proof of complete provider coverage.'}
 
 
@@ -403,10 +442,11 @@ def main():
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1] / 'model')
     parser.add_argument('--manifest', type=Path)
     parser.add_argument('--output', type=Path)
+    parser.add_argument('--repository', type=Path, help='Git repository for a separately exported archive; missing history is reported explicitly')
     args = parser.parse_args()
     paths = sorted((args.root / 'data/runtime/weather_revisions/runs').glob('*.json'))
     path = args.manifest or max(paths, key=lambda p: stamp(json.loads(p.read_text())['capture_started_at']))
-    result = Audit(args.root).execute(path)
+    result = Audit(args.root, repository=args.repository).execute(path)
     result['audit_script_sha256'] = sha(Path(__file__).read_bytes())
     output = args.output or args.root / 'reports/weather_revision_capture_audit.json'
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -417,6 +457,10 @@ def main():
         f"Verified {result['current_capture_receipts']} current HTTP receipts, {result['counts_reconstructed']['weather_available_games']} explicit-run game measurements, "
         f"{result['normalized_quote_pairs_reconstructed']} same-book quote pairs and {result['weather_quote_links_reconstructed']} weather/quote links. "
         f"The collector used {result['odds_requests']} Odds API IO requests. All original body/receipt hashes, retained numeric quotes, game-hour measurements, applicable cohort/timing checks and reported counts matched.\n\n"
+        + (f"All recorded source hashes matched their blobs in capture commit `{result['recorded_git_commit']}`. "
+         if result['recorded_commit_provenance_verified'] else
+         'Recorded Git history was unavailable for some sources; commit provenance remains explicitly incomplete. ')
+        + 'Current-tree matches are informational, allowing later versioned implementation corrections without invalidating original receipts. Frozen alias and venue bytes match their capture-recorded hashes. No source history was fetched over the network.\n\n'
         'This is an operational integrity check. It does not establish complete source coverage, certified first publication, forecast accuracy or positive EV. No outcomes were extracted and no policy was changed.\n\n'
         f"Manifest SHA-256: `{result['manifest_sha256']}`. Machine-readable details: [{output.name}]({output.name}).\n")
     print(json.dumps({k: result[k] for k in ('run_id', 'audit_passed', 'current_capture_receipts', 'odds_requests')}, sort_keys=True))
