@@ -1,0 +1,53 @@
+{
+  "archive_writer_version": "acc-availability-archive-v1",
+  "body_complete": true,
+  "body_hash_scope": "complete_response",
+  "body_path": "data/runtime/availability/bodies/5357bab47fa8be4279f2e9a4e022c2c8ee97dc45e770f2536c0c06ee0ea5a7bf.body.gz",
+  "body_representation": "requests.iter_content bytes after HTTP transfer/content decoding; original unparsed representation",
+  "body_sha256": "5357bab47fa8be4279f2e9a4e022c2c8ee97dc45e770f2536c0c06ee0ea5a7bf",
+  "body_size_bytes": 16,
+  "capture_error": null,
+  "cookies_sent": false,
+  "credentials_sent": false,
+  "elapsed_seconds": 0.12157514899999455,
+  "environment_settings_used": false,
+  "http_error": null,
+  "max_body_bytes": 1048576,
+  "observed_decoded_bytes": 16,
+  "parse_error": null,
+  "receipt_path": "data/runtime/availability/receipts/1304658e2094e81ad6e5e2fdb5db305e5eb912ae06ff3e7619bf9ebb34439a6a.json",
+  "received_at": "2026-09-09T08:35:07.014282Z",
+  "redirects_allowed": false,
+  "request": {
+    "body_sha256": "72077cc5118fb29b998e6de283a5830918570883d29f61cd5c2832cbc24637f4",
+    "body_utf8": "{\"conference_param\":\"ACC\",\"referrer\":\"https://theacc.com/sports/2025/8/28/availability-reporting-football.aspx\",\"source\":\"ACC\",\"sport_param\":\"Football\",\"type_param\":\"report\"}",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "User-Agent": "NCAAF-public-availability-research/1.0"
+    },
+    "json": {
+      "conference_param": "ACC",
+      "referrer": "https://theacc.com/sports/2025/8/28/availability-reporting-football.aspx",
+      "source": "ACC",
+      "sport_param": "Football",
+      "type_param": "report"
+    },
+    "method": "POST",
+    "url": "https://app.hdintelligence.com/api/public-load"
+  },
+  "request_id": "7a957ad4c2c44f1bbcc648a0e7a95284",
+  "requested_at": "2026-09-09T08:35:06.892711Z",
+  "response_headers": {
+    "cache_control": "private",
+    "content_length": "16",
+    "content_type": "application/json",
+    "date": "Wed, 09 Sep 2026 08:35:07 GMT"
+  },
+  "retries": 0,
+  "schema_version": "availability-http-receipt-v1",
+  "status_code": 200,
+  "timeout_seconds": 30.0,
+  "timeout_semantics": "Connect/read inactivity timeout plus elapsed budget checked after headers and between decoded chunks; not a strict total wall-clock guarantee.",
+  "transport_error": null
+}
