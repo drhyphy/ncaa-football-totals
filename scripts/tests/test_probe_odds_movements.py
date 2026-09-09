@@ -69,6 +69,26 @@ class MovementProbeTests(unittest.TestCase):
                     probe.fetch(label, path, {})
             self.assertEqual(session.calls, 0)
 
+    def test_single_metadata_amendment_restores_quota_without_resetting_count(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            probe = PROBE.Probe(root, 'sample', 'private-test')
+            session = Session(200, None)
+            probe.client.session = session
+            probe.fetch('first', '/odds/multi', {'eventIds': '1'})
+            session.remaining = '90'
+            probe.refresh_quota()
+            with self.assertRaises(RuntimeError):
+                probe.refresh_quota()
+            resumed = PROBE.Probe(root, 'sample', 'private-test')
+            self.assertEqual(resumed.request_count, 2)
+            self.assertEqual(resumed.max_requests, 8)
+            self.assertFalse(resumed.quota_missing)
+            self.assertFalse(resumed.stopped)
+            resumed.client.session = session
+            resumed.fetch('second', '/odds/movements', {'eventId': '1'})
+            self.assertEqual(session.calls, 3)
+
     def test_schema_summary_does_not_print_historical_outcomes(self):
         payload = {'scores': {'home': 68, 'away': 41}, 'bookmakers': {'DraftKings': [{'name': 'Totals'}]}}
         encoded = json.dumps(PROBE.shape(payload))

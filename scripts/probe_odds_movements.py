@@ -23,10 +23,14 @@ class Probe:
         self.max_requests = max_requests
         self.remaining = None
         self.stopped = False
+        self.quota_missing = False
+        self.first_status = None
         receipts = [json.loads(p.read_text()) for p in (self.path / "receipts").glob("*.json")]
         receipts.sort(key=lambda r: datetime.fromisoformat(r["received_at"].replace("Z", "+00:00")))
         self.request_count = len(receipts)
         for index, receipt in enumerate(receipts):
+            if index == 0:
+                self.first_status = receipt['status_code']
             reported = receipt["response_headers"].get("x_ratelimit_remaining")
             if reported is not None:
                 self.remaining = int(reported)
@@ -34,8 +38,35 @@ class Probe:
                 self.remaining -= 1
             if receipt["status_code"] in (401, 403, 429):
                 self.stopped = True
-            if index == 0 and (reported is None or int(reported) < 27):
+            if index == 0 and reported is None:
+                self.quota_missing = True
+            if reported is not None and int(reported) < 27 and index == 0:
                 self.stopped = True
+            if receipt['purpose'] == 'movement_probe_quota-refresh':
+                self.quota_missing = reported is None
+                self.max_requests = 8
+                if receipt['status_code'] != 200 or reported is None or int(reported) < 27:
+                    self.stopped = True
+
+    def refresh_quota(self):
+        """Single amendment-only metadata read after the first missing header."""
+        if self.stopped or not self.quota_missing or self.request_count != 1 or self.first_status != 200:
+            raise RuntimeError('Quota amendment unavailable for this probe state')
+        if (self.path / 'quota-refresh.json').exists():
+            raise RuntimeError('Quota amendment already used')
+        envelope = self.client.fetch('https://api.odds-api.io/v3/bookmakers/selected', {},
+                                     {'apiKey': self.key}, purpose='movement_probe_quota-refresh')
+        receipt = envelope['receipt']
+        reported = receipt['response_headers'].get('x_ratelimit_remaining')
+        self.request_count += 1
+        self.max_requests = 8
+        self.remaining = int(reported) if reported is not None else None
+        self.quota_missing = reported is None
+        self.stopped = receipt['status_code'] != 200 or reported is None or int(reported) < 27
+        immutable_json(self.path / 'quota-refresh.json', {'receipt_path': receipt['receipt_path'],
+            'request_count': self.request_count, 'quota_remaining_reported': reported,
+            'retrieved_at': receipt['received_at']})
+        return envelope
 
     def fetch(self, label, path, params):
         if path not in {"/odds/multi", "/odds/movements", "/historical/events", "/historical/odds"}:
@@ -44,7 +75,7 @@ class Probe:
             raise ValueError("Safe request label required")
         if (self.path / (label + ".json")).exists():
             raise RuntimeError("Request label already archived")
-        if self.stopped or self.request_count >= self.max_requests:
+        if self.stopped or self.quota_missing or self.request_count >= self.max_requests:
             raise RuntimeError("Bounded probe stopped")
         if self.remaining is not None and self.remaining <= 20:
             raise RuntimeError("Quota reserve reached")
@@ -52,6 +83,8 @@ class Probe:
                                      {"apiKey": self.key}, purpose="movement_probe_" + label)
         receipt = envelope["receipt"]
         self.request_count += 1
+        if self.request_count == 1:
+            self.first_status = receipt['status_code']
         reported = receipt["response_headers"].get("x_ratelimit_remaining")
         if reported is not None:
             self.remaining = int(reported)
@@ -59,7 +92,9 @@ class Probe:
             self.remaining -= 1 # Conservative own-call accounting, not a fresh provider report.
         if receipt["status_code"] in (401, 403, 429) or (self.remaining is not None and self.remaining <= 20):
             self.stopped = True
-        if self.request_count == 1 and (reported is None or int(reported) < 27):
+        if self.request_count == 1 and reported is None:
+            self.quota_missing = True
+        if self.request_count == 1 and reported is not None and int(reported) < 27:
             self.stopped = True
         immutable_json(self.path / (label + ".json"), {"receipt_path": receipt["receipt_path"],
             "request_count": self.request_count, "quota_remaining_reported": reported,
@@ -87,6 +122,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--request-file", type=Path, required=True)
     parser.add_argument("--run-name", required=True)
+    parser.add_argument('--quota-refresh', action='store_true', help='Use the separately recorded one-call metadata amendment')
     args = parser.parse_args()
     if not args.run_name or any(c not in "abcdefghijklmnopqrstuvwxyz0123456789-_" for c in args.run_name):
         parser.error("run-name must be a safe lowercase archive name")
@@ -98,10 +134,14 @@ def main():
     if not key:
         parser.error("existing odds key unavailable")
     probe = Probe(ROOT / "model", args.run_name, key)
+    if args.quota_refresh:
+        print(json.dumps({'label': 'quota-refresh', **summary(probe.refresh_quota())}, sort_keys=True), flush=True)
+        if probe.stopped:
+            return
     for request in requests:
         result = probe.fetch(request["label"], request["path"], request["params"])
         print(json.dumps({"label": request["label"], **summary(result)}, sort_keys=True), flush=True)
-        if probe.stopped:
+        if probe.stopped or probe.quota_missing:
             break
 
 
