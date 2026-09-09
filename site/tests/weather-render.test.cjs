@@ -28,6 +28,7 @@ test('weather DOM separates development evidence from forward results and expire
   researchFixture.weather_shadow.archived_2026_replay={prospective_model_performance:false,cohorts:{two_book_the_odds_api:{settled_price_eligible_covered_games:35,calendar_week_blocks:1,rule:{bets:0,roi:null}},single_draftkings_espn_sensitivity:{settled_price_eligible_covered_games:35,calendar_week_blocks:1,rule:{bets:0,roi:null}}}};
   researchFixture.archived_2026_scoring_replay={version:'2026-priced-replay-v1',prospective_model_performance:false,exact_0630_replay:false,evaluated_at:'2026-09-09T01:22:40Z',cohorts:{connected_two_books:{snapshots:Array.from({length:14},(_,i)=>({source_sha256:`fixture-${i}`,observed_at:new Date(Date.parse('2026-08-20T13:00:00Z')+i*86400000).toISOString(),games:8})),positions:{opponent_adjusted_ridge:{bets:2,pending:2,wins:1,losses:1,pushes:0,roi:-.037037037,profit_units:-.074074074},opponent_adjusted_structural:{bets:11,pending:5,wins:5,losses:6,pushes:0,roi:-.1212995758,profit_units:-1.334295334}}}}};
   researchFixture.calibration_research={status:'reused_historical_development_only',configuration_count:6,selected_configuration:'opponent_adjusted_ridge:raw',all_ridge_variants_worse_than_raw_market_2025:true,roi_evaluated:false,credible_new_betting_edge:false,live_policy_changed:false,links:[{name:'All six configurations',url:'https://example.com/calibration'},{name:'Unsafe link',url:'javascript:alert(1)'}]};
+  researchFixture.weather_shadow.original_noaa_2021_2023={...JSON.parse(fs.readFileSync(path.join(__dirname,'../../model/reports/noaa_weather_results.json'),'utf8')),combined_with_other_weather_studies:false,links:[{name:'Full NOAA results',url:'https://example.com/noaa'}]};
   const context={window:{document:doc},Date:ClockDate,Intl,URL,fetch:async url=>({ok:true,json:async()=>url.startsWith('data/research.json')?researchFixture:fixture}),setInterval:callback=>{tick=callback;}};
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context);
   await new Promise(resolve=>setImmediate(resolve));
@@ -36,6 +37,15 @@ test('weather DOM separates development evidence from forward results and expire
   assert.match(card,/Under 47.5/);assert.match(card,/61.2°F/);assert.match(card,/71.0%/);
   assert.doesNotMatch(card,/Projected total|Stressed modeled EV/);
   assert.match(nodes.get('weather-evidence').textContent,/85 hypothetical bets/);
+  assert.equal(nodes.get('noaa-weather-evidence').hidden,false);
+  assert.match(nodes.get('noaa-weather-note').textContent,/130 hypothetical Unders.*68 W \/ 62 L \/ 0 P.*-0.14% ROI/);
+  assert.match(nodes.get('noaa-weather-note').textContent,/older-period test did not confirm a profitable edge/);
+  assert.match(nodes.get('noaa-weather-note').textContent,/availability proxies.*separate from the 2024–25 study/);
+  assert.match(nodes.get('noaa-weather-years').textContent,/2021.*2022.*2023.*-21.68%/);
+  assert.match(nodes.get('noaa-weather-uncertainty').textContent,/paired-week 95% interval.*99%.*full earlier search count is unknown/);
+  for (const label of ['Cfbd Bovada', 'Cfbd William Hill', 'Cfbd Consensus', 'Espn Nonlive Provider 40', 'Espn Nonlive Provider 58']) assert.ok(nodes.get('noaa-weather-sources').textContent.includes(label));
+  assert.doesNotMatch(nodes.get('noaa-weather-note').textContent,/215 hypothetical/);
+  assert.equal(nodes.get('noaa-weather-links').children.length,1);
   assert.match(nodes.get('weather-robustness-note').textContent,/-4.15% to \+51.21%, crossing zero/);
   assert.match(nodes.get('weather-robustness-note').textContent,/search count is unknown/);
   assert.match(nodes.get('weather-2026-note').textContent,/0 qualifying bets in 35 covered two-book games/);

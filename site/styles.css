@@ -9,4 +9,5 @@
 .market-checks{margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}.market-checks h3{margin-bottom:8px}.market-checks details[hidden]{display:none}
 .weather-daily-heading{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:24px}.weather-daily-heading h3{margin-bottom:6px}.weather-record-title{margin:26px 0 14px}.weather-stake{font-size:19px;font-weight:650;color:var(--white)}.weather-card-bottom{padding-top:16px}.weather-card .pick-metrics+.weather-card-bottom{padding-top:0}.weather-evidence{border-left-color:#59738c}
 .weather-robustness-note{margin-bottom:8px}.weather-report-links{margin:0 0 16px;font-size:13px}
+#noaa-weather-evidence>div{min-width:0;width:100%}.noaa-research-details{margin-top:14px}.noaa-research-details .small-meta{margin:14px 0}
 .archive-times{font-size:13px;color:var(--muted);padding-left:20px;columns:2;column-gap:28px}.archive-times li{margin:8px 0;break-inside:avoid}@media(max-width:620px){.archive-times{columns:1}}

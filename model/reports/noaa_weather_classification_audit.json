@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "audited_at": "2026-09-09T02:30:17.064291+00:00",
+  "plan_sha256": "47747f5a0216b5b0a43e9df5777575bfafb165ad6616332869eda35c2b508258",
+  "inventory_plan_sha256": "f486e78a6a2a4699f3b7c54ae4f9186beab87ed04dcbd8aa234959767a734649",
+  "fetch_manifest_sha256": "3a8639154a7d19719fa3c6798ae3b9cd60bc05e46b7a960fdcb6c8f35060652a",
+  "classification_sha256": "132874fe46c150121fad2b40d7aefed8b17fb5593f6318b3db3f062ea31d8951",
+  "implementation": "No project module imports. Full GRIB arrays, independent corner ordering and rectangular bilinear algebra; separate UTC/Eastern timing and strict fixed-rule computations.",
+  "field_ranges": 3572,
+  "field_counts": {
+    "relative_humidity": 511,
+    "temperature": 511,
+    "u_wind": 1275,
+    "v_wind": 1275
+  },
+  "game_field_values": 17470,
+  "games": 1747,
+  "availability": {
+    "available": 1747
+  },
+  "rule_flags": {
+    "False": 1617,
+    "True": 130
+  },
+  "by_season": {
+    "2021": {
+      "available": 576,
+      "rule_matches": 35
+    },
+    "2022": {
+      "available": 583,
+      "rule_matches": 56
+    },
+    "2023": {
+      "available": 588,
+      "rule_matches": 39
+    }
+  },
+  "maximum_raw_grid_error": 0.0,
+  "maximum_feature_errors": {
+    "wind_mph": 7.105427357601002e-15,
+    "temperature_f": 2.1316282072803006e-13,
+    "relative_humidity_percent": 2.842170943040401e-14
+  },
+  "outcomes_read": false,
+  "return_evaluation_performed": false,
+  "active_policy_modified": false
+}

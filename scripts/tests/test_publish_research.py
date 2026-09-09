@@ -176,6 +176,64 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'source hash is stale'):
             PUBLISH.build_outputs(self.root)
 
+    def copy_noaa_reports(self):
+        fixture = SCRIPTS.parent / 'model/reports'
+        for name in ('noaa_weather_results.json', 'noaa_weather_results.md',
+                     'noaa_weather_request_plan.json', 'NOAA_WEATHER_EVALUATION_PROTOCOL.md'):
+            (self.reports / name).write_bytes((fixture / name).read_bytes())
+
+    def test_noaa_preserves_every_year_source_and_separate_negative_result(self):
+        self.copy_noaa_reports()
+        self.copy_weather_reports()
+        bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root / 'site/data/research.json'])
+        study = bundle['weather_shadow']['original_noaa_2021_2023']
+        self.assertEqual(set(study['by_season']), {'2021', '2022', '2023'})
+        self.assertLess(study['by_season']['2023']['weather_rule']['roi'], 0)
+        self.assertEqual(study['pooled']['weather_rule']['bets'], 130)
+        self.assertLess(study['pooled']['weather_rule']['roi'], 0)
+        self.assertEqual(sum(study['source_game_counts'].values()), 1747)
+        self.assertEqual(len(study['by_market_source']), 5)
+        self.assertEqual(bundle['weather_shadow']['historical_hypothesis_results']['pooled']['weather_rule']['bets'], 85)
+        self.assertFalse(study['combined_with_other_weather_studies'])
+        self.assertTrue(study['no_live_policy_changes'])
+        self.assertFalse(study['credible_executable_edge_established'])
+        self.assertEqual(study['timing_evidence_class'], 'original_s3_metadata_availability_proxy_not_certified_publication')
+        self.assertNotIn('weeks', study['pooled'])
+        for source in study['by_market_source'].values():
+            if source['weather_rule']['bets'] == 0:
+                self.assertIsNone(source['weather_rule']['roi'])
+        for key in ('weather_rule_roi_95_week_bootstrap', 'weather_rule_roi_99_week_bootstrap',
+                    'rule_minus_all_under_roi_95_paired_week_bootstrap', 'rule_minus_all_under_roi_99_paired_week_bootstrap'):
+            self.assertLess(study['pooled'][key][0], 0)
+            self.assertGreater(study['pooled'][key][1], 0)
+
+    def test_noaa_cannot_omit_losing_year_or_change_timing_and_protocol_claims(self):
+        self.copy_noaa_reports()
+        path = self.reports / 'noaa_weather_results.json'
+        original = path.read_text()
+        for modification, expected in (('omit_2023', 'all three'), ('certified_timing', 'availability-proxy'), ('stale_protocol', 'protocol source hash')):
+            result = json.loads(original)
+            if modification == 'omit_2023':
+                del result['by_season']['2023']
+            elif modification == 'certified_timing':
+                result['timing_evidence_class'] = 'certified'
+            else:
+                result['protocol_sha256'] = 'stale'
+            path.write_text(json.dumps(result))
+            with self.subTest(modification=modification), self.assertRaisesRegex(ValueError, expected):
+                PUBLISH.build_outputs(self.root)
+
+    def test_noaa_settlement_and_zero_bet_roi_are_checked_before_publication(self):
+        self.copy_noaa_reports()
+        result = json.loads((self.reports / 'noaa_weather_results.json').read_text())
+        zero = next(row for row in result['by_market_source'].values() if row['weather_rule']['bets'] == 0)
+        zero['weather_rule']['roi'] = 0.
+        with self.assertRaisesRegex(ValueError, 'zero-bet ROI'):
+            PUBLISH.noaa_summary(zero)
+        result['pooled']['weather_rule']['profit_units'] += 1
+        with self.assertRaisesRegex(ValueError, 'settlement'):
+            PUBLISH.noaa_summary(result['pooled'])
+
 
 if __name__ == '__main__':
     unittest.main()

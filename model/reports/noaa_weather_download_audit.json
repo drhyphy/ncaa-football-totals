@@ -1,0 +1,51 @@
+{
+  "version": "noaa-download-independent-audit-v1",
+  "audited_at": "2026-09-09T02:28:52.643888+00:00",
+  "status": "passed",
+  "plan_sha256": "47747f5a0216b5b0a43e9df5777575bfafb165ad6616332869eda35c2b508258",
+  "inventory_plan_sha256": "f486e78a6a2a4699f3b7c54ae4f9186beab87ed04dcbd8aa234959767a734649",
+  "fetch_manifest_sha256": "3a8639154a7d19719fa3c6798ae3b9cd60bc05e46b7a960fdcb6c8f35060652a",
+  "upstream_source_files_verified": 2564,
+  "download_files_verified": 7144,
+  "available_objects": 1275,
+  "excluded_objects": 0,
+  "verified_ranges": 3572,
+  "verified_field_bytes": 3151825716,
+  "inventory_bytes": 52624355,
+  "by_field": {
+    "relative_humidity": {
+      "messages": 511,
+      "bytes": 401647828
+    },
+    "temperature": {
+      "messages": 511,
+      "bytes": 330605010
+    },
+    "u_wind": {
+      "messages": 1275,
+      "bytes": 1223006069
+    },
+    "v_wind": {
+      "messages": 1275,
+      "bytes": 1196566809
+    }
+  },
+  "first_receipt_utc": "2026-09-09T02:19:46.366382+00:00",
+  "last_receipt_utc": "2026-09-09T02:22:54.037002+00:00",
+  "source_last_modified_after_initialization_hours": [
+    3.703888888888889,
+    4.049722222222222
+  ],
+  "source_last_modified_before_decision_hours": [
+    30.57138888888889,
+    43.79611111111111
+  ],
+  "multipart_pattern_field_receipts": 0,
+  "forecast_values_decoded": false,
+  "outcomes_read": false,
+  "limitations": [
+    "Hashes and HTTP range receipts validate the frozen download, not historical bookmaker execution.",
+    "S3 Last-Modified remains an availability proxy; no certified dissemination claim, even without multipart patterns.",
+    "Binary framing and recorded header metadata were audited; meteorological value extraction and outcome evaluation were not performed."
+  ]
+}

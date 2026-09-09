@@ -53,6 +53,32 @@ def metric_summary(metrics):
     return result
 
 
+def noaa_summary(summary):
+    """Retain all cohorts/uncertainty while leaving per-week rows in the report."""
+    groups = ('weather_rule', 'all_under_same_weather_coverage', 'nonselected_games')
+    for group in groups:
+        m = summary[group]
+        if any(type(m.get(key)) is not int or m[key] < 0 for key in ('bets', 'wins', 'losses', 'pushes')) or m['bets'] != m['wins']+m['losses']+m['pushes']:
+            raise ValueError('NOAA stake/outcome counts are inconsistent')
+        expected = m['wins']*100/110-m['losses']
+        if not math.isclose(m['profit_units'], expected, abs_tol=1e-8):
+            raise ValueError('NOAA return differs from assumed minus110 settlement')
+        if (m['bets'] == 0 and m['roi'] is not None) or (m['bets'] > 0 and (m['roi'] is None or not math.isclose(m['roi'], expected/m['bets'], abs_tol=1e-10))):
+            raise ValueError('NOAA zero-bet ROI must be unavailable; settled ROI must match stakes')
+    rule, benchmark, nonselected = (summary[key] for key in groups)
+    if benchmark['bets'] != summary['games'] or rule['bets']+nonselected['bets'] != summary['games']:
+        raise ValueError('NOAA coverage and selection denominators disagree')
+    if any(rule[key]+nonselected[key] != benchmark[key] for key in ('wins', 'losses', 'pushes')):
+        raise ValueError('NOAA selected and nonselected outcomes do not conserve coverage')
+    keys = ('games', 'calendar_week_blocks', *groups, 'price_assumption',
+            'bootstrap_draws', 'bootstrap_seed', 'bootstrap_draws_with_no_rule_bets', 'bootstrap_valid_rule_draws',
+            'weather_rule_roi_95_week_bootstrap', 'weather_rule_roi_99_week_bootstrap',
+            'rule_minus_all_under_roi', 'rule_minus_all_under_roi_95_paired_week_bootstrap',
+            'rule_minus_all_under_roi_99_paired_week_bootstrap', 'active_week_cluster_t',
+            'leave_one_week_out_roi_range')
+    return {key: summary[key] for key in keys}
+
+
 def render_opponent_report(primary):
     ridge = primary["pooled"]["opponent_adjusted_ridge"]
     last_year = max(primary["by_season"], key=int)
@@ -220,6 +246,61 @@ def build_outputs(root):
             "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md",
             "sha256": inputs["model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md"],
         }
+    noaa_path = reports / "noaa_weather_results.json"
+    if noaa_path.exists():
+        noaa, noaa_plan = read(noaa_path.name), read("noaa_weather_request_plan.json")
+        read_bytes("NOAA_WEATHER_EVALUATION_PROTOCOL.md")
+        read_bytes("noaa_weather_results.md")
+        plan_body = {key: value for key, value in noaa_plan.items() if key != 'plan_sha256'}
+        plan_hash = hashlib.sha256(json.dumps(plan_body, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+        if noaa.get('plan_sha256') != plan_hash or noaa_plan.get('plan_sha256') != plan_hash or noaa.get('thresholds') != noaa_plan.get('thresholds'):
+            raise ValueError('NOAA results differ from their frozen request plan')
+        protocol_hash = inputs['model/reports/NOAA_WEATHER_EVALUATION_PROTOCOL.md']
+        if noaa.get('protocol_sha256') != protocol_hash or noaa.get('source_files_sha256', {}).get('reports/NOAA_WEATHER_EVALUATION_PROTOCOL.md') != protocol_hash:
+            raise ValueError('NOAA evaluation protocol source hash is stale')
+        if any(noaa.get('source_files_sha256', {}).get(path) != expected for path, expected in noaa_plan['source_files_sha256'].items()):
+            raise ValueError('NOAA result source hashes differ from the frozen source plan')
+        if noaa.get('status') != 'separate_reused_development_forecast_source_replication' or noaa.get('price_assumption') != -110 or noaa.get('no_live_policy_changes') is not True or noaa.get('credible_executable_edge_established') is not False:
+            raise ValueError('NOAA source replication cannot become executable or live betting evidence')
+        if noaa.get('timing_evidence_class') != 'original_s3_metadata_availability_proxy_not_certified_publication':
+            raise ValueError('NOAA publication must retain the timestamp availability-proxy qualification')
+        if set(noaa.get('by_season', {})) != {'2021', '2022', '2023'}:
+            raise ValueError('NOAA publication must retain all three seasons')
+        noaa_pooled = noaa_summary(noaa['pooled'])
+        noaa_years = {year: noaa_summary(row) for year, row in sorted(noaa['by_season'].items())}
+        noaa_sources = {source: noaa_summary(row) for source, row in sorted(noaa['by_market_source'].items())}
+        for partition in (noaa_years, noaa_sources):
+            if sum(row['games'] for row in partition.values()) != noaa_pooled['games'] or any(sum(row['weather_rule'][key] for row in partition.values()) != noaa_pooled['weather_rule'][key] for key in ('bets', 'wins', 'losses', 'pushes')):
+                raise ValueError('NOAA annual/source partitions do not conserve pooled coverage')
+        coverage = noaa['coverage']
+        if coverage['planned_games'] != len(noaa_plan['games']) or coverage['weather_available_with_final_valid_market_games'] != noaa_pooled['games'] or coverage['selected_games'] != noaa_pooled['weather_rule']['bets']:
+            raise ValueError('NOAA coverage funnel differs from its results')
+        weather['original_noaa_2021_2023'] = {
+            'version': noaa['version'], 'status': noaa['status'], 'evaluated_at': noaa['evaluated_at'],
+            'plan_sha256': plan_hash, 'classification_sha256': noaa['classification_sha256'],
+            'classification_file_sha256': noaa['classification_file_sha256'], 'protocol_sha256': protocol_hash,
+            'thresholds': noaa['thresholds'], 'price_assumption': -110,
+            'timing_evidence_class': noaa['timing_evidence_class'], 'timing_limitation': noaa['timing_limitation'],
+            'multipart_field_ranges': noaa['multipart_field_ranges'], 'coverage': coverage,
+            'pooled': noaa_pooled, 'by_season': noaa_years, 'by_market_source': noaa_sources,
+            'source_game_counts': {source: row['games'] for source, row in noaa_sources.items()},
+            'source_summary_note': 'Source splits are descriptive. Zero- or one-selection subgroups cannot estimate stable profitability or strategy uncertainty.',
+            'no_live_policy_changes': True, 'credible_executable_edge_established': False,
+            'combined_with_other_weather_studies': False,
+            'interpretation': 'Separate original NOAA 2021–2023 forecast-source replication on reused historical data. The older-period test did not confirm a profitable edge. Prices assume −110 and source times are availability proxies. No combined historical ROI or live policy change.',
+            'limitations': noaa['limitations'],
+            'links': [{'name': label, 'url': 'https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/'+filename}
+                      for label, filename in (('Full NOAA results', 'noaa_weather_results.md'),
+                                              ('NOAA data and all exclusions', 'noaa_weather_results.json'),
+                                              ('Fixed NOAA evaluation protocol', 'NOAA_WEATHER_EVALUATION_PROTOCOL.md'))],
+        }
+        for filename, label in (('NOAA_WEATHER_REQUEST_PLAN.md', 'Frozen NOAA request plan'),
+                                ('NOAA_WEATHER_SOURCE_AUDIT.md', 'Independent NOAA source audit'),
+                                ('NOAA_WEATHER_DOWNLOAD_AUDIT.md', 'NOAA download integrity audit'),
+                                ('NOAA_WEATHER_RESULTS_AUDIT.md', 'Independent NOAA classification and result audit')):
+            if (reports/filename).exists():
+                read_bytes(filename)
+                weather['original_noaa_2021_2023']['links'].append({'name': label, 'url': 'https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/'+filename})
     weather_replay_path = reports / "weather_2026_replay_results.json"
     if weather_replay_path.exists():
         weather_replay, weather_replay_plan = read(weather_replay_path.name), read("weather_2026_replay_plan.json")

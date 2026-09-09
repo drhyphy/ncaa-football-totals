@@ -1585,6 +1585,703 @@
       "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md",
       "sha256": "64f5603280f218144edf2333bbe052949d73c1750dbe056a3392bef78b85e5da"
     },
+    "original_noaa_2021_2023": {
+      "version": "noaa-original-weather-evaluation-v1",
+      "status": "separate_reused_development_forecast_source_replication",
+      "evaluated_at": "2026-09-09T02:28:12.482302+00:00",
+      "plan_sha256": "47747f5a0216b5b0a43e9df5777575bfafb165ad6616332869eda35c2b508258",
+      "classification_sha256": "132874fe46c150121fad2b40d7aefed8b17fb5593f6318b3db3f062ea31d8951",
+      "classification_file_sha256": "fe23b721963fc562eb69c66a9ed8a142b94713cc4bc0bcac4d9ce96efd2251da",
+      "protocol_sha256": "f182ca457f354399ded6dbd6be9459a5e0e7268cf18c8bdc3234b967f74bf741",
+      "thresholds": {
+        "wind_mph_above": 7.78,
+        "temperature_f_below": 64.81,
+        "relative_humidity_percent_above": 56.8
+      },
+      "price_assumption": -110,
+      "timing_evidence_class": "original_s3_metadata_availability_proxy_not_certified_publication",
+      "timing_limitation": "S3 Last-Modified is not an independently certified publication receipt; multipart objects record upload initiation, which may precede completion. Multipart storage does not change eligibility.",
+      "multipart_field_ranges": 0,
+      "coverage": {
+        "repaired_market_games": 2607,
+        "planned_games": 1747,
+        "planning_excluded_games": 860,
+        "planning_exclusion_reasons": {
+          "actual_venue_outside_frozen_catalog": 697,
+          "neutral_or_unknown_neutral": 101,
+          "indoor_or_unknown_roof": 61,
+          "historical_event_identity_missing_or_ambiguous": 1
+        },
+        "weather_available_games": 1747,
+        "weather_unavailable_games": 0,
+        "weather_available_with_final_valid_market_games": 1747,
+        "weather_available_but_invalid_market_or_outcome": 0,
+        "selected_games": 130,
+        "nonselected_games": 1617,
+        "evaluation_exclusion_reasons": {},
+        "reasons_may_overlap": true
+      },
+      "pooled": {
+        "games": 1747,
+        "calendar_week_blocks": 45,
+        "weather_rule": {
+          "bets": 130,
+          "wins": 68,
+          "losses": 62,
+          "pushes": 0,
+          "profit_units": -0.18181818181818166,
+          "roi": -0.0013986013986013973,
+          "win_rate_excluding_pushes": 0.5230769230769231
+        },
+        "all_under_same_weather_coverage": {
+          "bets": 1747,
+          "wins": 850,
+          "losses": 884,
+          "pushes": 13,
+          "profit_units": -111.27272727272728,
+          "roi": -0.06369360462090858,
+          "win_rate_excluding_pushes": 0.49019607843137253
+        },
+        "nonselected_games": {
+          "bets": 1617,
+          "wins": 782,
+          "losses": 822,
+          "pushes": 13,
+          "profit_units": -111.0909090909091,
+          "roi": -0.06870186090965312,
+          "win_rate_excluding_pushes": 0.48753117206982544
+        },
+        "price_assumption": -110,
+        "bootstrap_draws": 10000,
+        "bootstrap_seed": 20260909,
+        "bootstrap_draws_with_no_rule_bets": 0,
+        "bootstrap_valid_rule_draws": 10000,
+        "weather_rule_roi_95_week_bootstrap": [
+          -0.16115702479338842,
+          0.1425619834710744
+        ],
+        "weather_rule_roi_99_week_bootstrap": [
+          -0.21678321678321674,
+          0.18105161787365115
+        ],
+        "rule_minus_all_under_roi": 0.06229500322230718,
+        "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+          -0.09326687775416602,
+          0.20086017094286965
+        ],
+        "rule_minus_all_under_roi_99_paired_week_bootstrap": [
+          -0.14969049031419837,
+          0.23529734247594247
+        ],
+        "active_week_cluster_t": {
+          "active_weeks": 30,
+          "roi": -0.0013986013986014144,
+          "standard_error": 0.07842750429637883,
+          "interval_95": [
+            -0.1618008579440454,
+            0.1590036551468426
+          ],
+          "interval_99": [
+            -0.21757506870120583,
+            0.21477786590400302
+          ],
+          "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+          "status": "descriptive_only",
+          "df": 29
+        },
+        "leave_one_week_out_roi_range": [
+          -0.04545454545454545,
+          0.036833855799373046
+        ]
+      },
+      "by_season": {
+        "2021": {
+          "games": 576,
+          "calendar_week_blocks": 15,
+          "weather_rule": {
+            "bets": 35,
+            "wins": 21,
+            "losses": 14,
+            "pushes": 0,
+            "profit_units": 5.090909090909091,
+            "roi": 0.14545454545454545,
+            "win_rate_excluding_pushes": 0.6
+          },
+          "all_under_same_weather_coverage": {
+            "bets": 576,
+            "wins": 292,
+            "losses": 279,
+            "pushes": 5,
+            "profit_units": -13.545454545454545,
+            "roi": -0.02351641414141414,
+            "win_rate_excluding_pushes": 0.51138353765324
+          },
+          "nonselected_games": {
+            "bets": 541,
+            "wins": 271,
+            "losses": 265,
+            "pushes": 5,
+            "profit_units": -18.63636363636363,
+            "roi": -0.0344479919341287,
+            "win_rate_excluding_pushes": 0.5055970149253731
+          },
+          "price_assumption": -110,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909,
+          "bootstrap_draws_with_no_rule_bets": 0,
+          "bootstrap_valid_rule_draws": 10000,
+          "weather_rule_roi_95_week_bootstrap": [
+            -0.10909090909090911,
+            0.34759358288770054
+          ],
+          "weather_rule_roi_99_week_bootstrap": [
+            -0.28409090909090906,
+            0.4318181818181818
+          ],
+          "rule_minus_all_under_roi": 0.1689709595959596,
+          "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+            -0.12546895795465587,
+            0.39270789997606936
+          ],
+          "rule_minus_all_under_roi_99_paired_week_bootstrap": [
+            -0.317612192707474,
+            0.4734171919413004
+          ],
+          "active_week_cluster_t": {
+            "active_weeks": 9,
+            "roi": 0.14545454545454545,
+            "standard_error": 0.09818181818181818,
+            "interval_95": [
+              -0.0809531332745908,
+              0.3718622241836817
+            ],
+            "interval_99": [
+              -0.18398348344000603,
+              0.47489257434909693
+            ],
+            "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+            "status": "descriptive_only",
+            "df": 8
+          },
+          "leave_one_week_out_roi_range": [
+            0.09917355371900825,
+            0.19318181818181818
+          ]
+        },
+        "2022": {
+          "games": 583,
+          "calendar_week_blocks": 15,
+          "weather_rule": {
+            "bets": 56,
+            "wins": 31,
+            "losses": 25,
+            "pushes": 0,
+            "profit_units": 3.1818181818181825,
+            "roi": 0.05681818181818183,
+            "win_rate_excluding_pushes": 0.5535714285714286
+          },
+          "all_under_same_weather_coverage": {
+            "bets": 583,
+            "wins": 271,
+            "losses": 305,
+            "pushes": 7,
+            "profit_units": -58.63636363636363,
+            "roi": -0.10057695306408856,
+            "win_rate_excluding_pushes": 0.4704861111111111
+          },
+          "nonselected_games": {
+            "bets": 527,
+            "wins": 240,
+            "losses": 280,
+            "pushes": 7,
+            "profit_units": -61.81818181818181,
+            "roi": -0.11730205278592375,
+            "win_rate_excluding_pushes": 0.46153846153846156
+          },
+          "price_assumption": -110,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909,
+          "bootstrap_draws_with_no_rule_bets": 0,
+          "bootstrap_valid_rule_draws": 10000,
+          "weather_rule_roi_95_week_bootstrap": [
+            -0.19008264462809918,
+            0.32467532467532456
+          ],
+          "weather_rule_roi_99_week_bootstrap": [
+            -0.24738040368722186,
+            0.38104715972717046
+          ],
+          "rule_minus_all_under_roi": 0.1573951348822704,
+          "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+            -0.057786165541376056,
+            0.38022020593654365
+          ],
+          "rule_minus_all_under_roi_99_paired_week_bootstrap": [
+            -0.12697006062276572,
+            0.4253379861166587
+          ],
+          "active_week_cluster_t": {
+            "active_weeks": 10,
+            "roi": 0.05681818181818178,
+            "standard_error": 0.1435191411465479,
+            "interval_95": [
+              -0.2678446713251281,
+              0.38148103496149166
+            ],
+            "interval_99": [
+              -0.4095954239786464,
+              0.52323178761501
+            ],
+            "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+            "status": "descriptive_only",
+            "df": 9
+          },
+          "leave_one_week_out_roi_range": [
+            -0.045454545454545435,
+            0.18181818181818185
+          ]
+        },
+        "2023": {
+          "games": 588,
+          "calendar_week_blocks": 15,
+          "weather_rule": {
+            "bets": 39,
+            "wins": 16,
+            "losses": 23,
+            "pushes": 0,
+            "profit_units": -8.454545454545457,
+            "roi": -0.21678321678321685,
+            "win_rate_excluding_pushes": 0.41025641025641024
+          },
+          "all_under_same_weather_coverage": {
+            "bets": 588,
+            "wins": 287,
+            "losses": 300,
+            "pushes": 1,
+            "profit_units": -39.09090909090909,
+            "roi": -0.06648113790970935,
+            "win_rate_excluding_pushes": 0.4889267461669506
+          },
+          "nonselected_games": {
+            "bets": 549,
+            "wins": 271,
+            "losses": 277,
+            "pushes": 1,
+            "profit_units": -30.636363636363637,
+            "roi": -0.05580394104984269,
+            "win_rate_excluding_pushes": 0.49452554744525545
+          },
+          "price_assumption": -110,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909,
+          "bootstrap_draws_with_no_rule_bets": 0,
+          "bootstrap_valid_rule_draws": 10000,
+          "weather_rule_roi_95_week_bootstrap": [
+            -0.5849802371541503,
+            -0.0039525691699604975
+          ],
+          "weather_rule_roi_99_week_bootstrap": [
+            -0.739698347107438,
+            0.04999999999999998
+          ],
+          "rule_minus_all_under_roi": -0.1503020788735075,
+          "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+            -0.5154929185397935,
+            0.06781071523882634
+          ],
+          "rule_minus_all_under_roi_99_paired_week_bootstrap": [
+            -0.6692233728276713,
+            0.11984241734321698
+          ],
+          "active_week_cluster_t": {
+            "active_weeks": 11,
+            "roi": -0.21678321678321674,
+            "standard_error": 0.1455103209055946,
+            "interval_95": [
+              -0.5410004161579626,
+              0.10743398259152911
+            ],
+            "interval_99": [
+              -0.6779451004130406,
+              0.2443786668466071
+            ],
+            "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+            "status": "descriptive_only",
+            "df": 10
+          },
+          "leave_one_week_out_roi_range": [
+            -0.3181818181818183,
+            -0.15151515151515157
+          ]
+        }
+      },
+      "by_market_source": {
+        "cfbd_Bovada": {
+          "games": 15,
+          "calendar_week_blocks": 8,
+          "weather_rule": {
+            "bets": 1,
+            "wins": 1,
+            "losses": 0,
+            "pushes": 0,
+            "profit_units": 0.9090909090909091,
+            "roi": 0.9090909090909091,
+            "win_rate_excluding_pushes": 1.0
+          },
+          "all_under_same_weather_coverage": {
+            "bets": 15,
+            "wins": 5,
+            "losses": 10,
+            "pushes": 0,
+            "profit_units": -5.454545454545454,
+            "roi": -0.3636363636363636,
+            "win_rate_excluding_pushes": 0.3333333333333333
+          },
+          "nonselected_games": {
+            "bets": 14,
+            "wins": 4,
+            "losses": 10,
+            "pushes": 0,
+            "profit_units": -6.363636363636363,
+            "roi": -0.45454545454545453,
+            "win_rate_excluding_pushes": 0.2857142857142857
+          },
+          "price_assumption": -110,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909,
+          "bootstrap_draws_with_no_rule_bets": 3335,
+          "bootstrap_valid_rule_draws": 6665,
+          "weather_rule_roi_95_week_bootstrap": [
+            0.9090909090909091,
+            0.9090909090909091
+          ],
+          "weather_rule_roi_99_week_bootstrap": [
+            0.9090909090909091,
+            0.9090909090909091
+          ],
+          "rule_minus_all_under_roi": 1.2727272727272727,
+          "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+            0.5874125874125874,
+            1.643636363636357
+          ],
+          "rule_minus_all_under_roi_99_paired_week_bootstrap": [
+            0.44055944055944046,
+            1.6969696969696968
+          ],
+          "active_week_cluster_t": {
+            "active_weeks": 1,
+            "roi": 0.9090909090909091,
+            "standard_error": null,
+            "interval_95": null,
+            "interval_99": null,
+            "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+            "status": "insufficient_active_weeks"
+          },
+          "leave_one_week_out_roi_range": [
+            0.9090909090909091,
+            0.9090909090909091
+          ]
+        },
+        "cfbd_William Hill (New Jersey)": {
+          "games": 5,
+          "calendar_week_blocks": 3,
+          "weather_rule": {
+            "bets": 0,
+            "wins": 0,
+            "losses": 0,
+            "pushes": 0,
+            "profit_units": 0.0,
+            "roi": null,
+            "win_rate_excluding_pushes": null
+          },
+          "all_under_same_weather_coverage": {
+            "bets": 5,
+            "wins": 1,
+            "losses": 4,
+            "pushes": 0,
+            "profit_units": -3.090909090909091,
+            "roi": -0.6181818181818182,
+            "win_rate_excluding_pushes": 0.2
+          },
+          "nonselected_games": {
+            "bets": 5,
+            "wins": 1,
+            "losses": 4,
+            "pushes": 0,
+            "profit_units": -3.090909090909091,
+            "roi": -0.6181818181818182,
+            "win_rate_excluding_pushes": 0.2
+          },
+          "price_assumption": -110,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909,
+          "bootstrap_draws_with_no_rule_bets": 10000,
+          "bootstrap_valid_rule_draws": 0,
+          "weather_rule_roi_95_week_bootstrap": null,
+          "weather_rule_roi_99_week_bootstrap": null,
+          "rule_minus_all_under_roi": null,
+          "rule_minus_all_under_roi_95_paired_week_bootstrap": null,
+          "rule_minus_all_under_roi_99_paired_week_bootstrap": null,
+          "active_week_cluster_t": {
+            "active_weeks": 0,
+            "roi": null,
+            "standard_error": null,
+            "interval_95": null,
+            "interval_99": null,
+            "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+            "status": "insufficient_active_weeks"
+          },
+          "leave_one_week_out_roi_range": null
+        },
+        "cfbd_consensus": {
+          "games": 1158,
+          "calendar_week_blocks": 33,
+          "weather_rule": {
+            "bets": 90,
+            "wins": 51,
+            "losses": 39,
+            "pushes": 0,
+            "profit_units": 7.363636363636363,
+            "roi": 0.08181818181818182,
+            "win_rate_excluding_pushes": 0.5666666666666667
+          },
+          "all_under_same_weather_coverage": {
+            "bets": 1158,
+            "wins": 566,
+            "losses": 579,
+            "pushes": 13,
+            "profit_units": -64.45454545454545,
+            "roi": -0.055660229235358766,
+            "win_rate_excluding_pushes": 0.4943231441048035
+          },
+          "nonselected_games": {
+            "bets": 1068,
+            "wins": 515,
+            "losses": 540,
+            "pushes": 13,
+            "profit_units": -71.81818181818181,
+            "roi": -0.0672454885938032,
+            "win_rate_excluding_pushes": 0.4881516587677725
+          },
+          "price_assumption": -110,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909,
+          "bootstrap_draws_with_no_rule_bets": 0,
+          "bootstrap_valid_rule_draws": 10000,
+          "weather_rule_roi_95_week_bootstrap": [
+            -0.10743801652892561,
+            0.2641277641277641
+          ],
+          "weather_rule_roi_99_week_bootstrap": [
+            -0.16477272727272732,
+            0.310163221326522
+          ],
+          "rule_minus_all_under_roi": 0.13747841105354058,
+          "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+            -0.041641536432624665,
+            0.3054914265325282
+          ],
+          "rule_minus_all_under_roi_99_paired_week_bootstrap": [
+            -0.10389801156897616,
+            0.35235430467950796
+          ],
+          "active_week_cluster_t": {
+            "active_weeks": 19,
+            "roi": 0.08181818181818182,
+            "standard_error": 0.09725157193967063,
+            "interval_95": [
+              -0.12249978911795911,
+              0.28613615275432275
+            ],
+            "interval_99": [
+              -0.19811467889041642,
+              0.36175104252678003
+            ],
+            "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+            "status": "descriptive_only",
+            "df": 18
+          },
+          "leave_one_week_out_roi_range": [
+            0.02797202797202797,
+            0.15550239234449761
+          ]
+        },
+        "espn_nonlive_provider_40": {
+          "games": 10,
+          "calendar_week_blocks": 2,
+          "weather_rule": {
+            "bets": 0,
+            "wins": 0,
+            "losses": 0,
+            "pushes": 0,
+            "profit_units": 0.0,
+            "roi": null,
+            "win_rate_excluding_pushes": null
+          },
+          "all_under_same_weather_coverage": {
+            "bets": 10,
+            "wins": 3,
+            "losses": 7,
+            "pushes": 0,
+            "profit_units": -4.2727272727272725,
+            "roi": -0.42727272727272725,
+            "win_rate_excluding_pushes": 0.3
+          },
+          "nonselected_games": {
+            "bets": 10,
+            "wins": 3,
+            "losses": 7,
+            "pushes": 0,
+            "profit_units": -4.2727272727272725,
+            "roi": -0.42727272727272725,
+            "win_rate_excluding_pushes": 0.3
+          },
+          "price_assumption": -110,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909,
+          "bootstrap_draws_with_no_rule_bets": 10000,
+          "bootstrap_valid_rule_draws": 0,
+          "weather_rule_roi_95_week_bootstrap": null,
+          "weather_rule_roi_99_week_bootstrap": null,
+          "rule_minus_all_under_roi": null,
+          "rule_minus_all_under_roi_95_paired_week_bootstrap": null,
+          "rule_minus_all_under_roi_99_paired_week_bootstrap": null,
+          "active_week_cluster_t": {
+            "active_weeks": 0,
+            "roi": null,
+            "standard_error": null,
+            "interval_95": null,
+            "interval_99": null,
+            "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+            "status": "insufficient_active_weeks"
+          },
+          "leave_one_week_out_roi_range": null
+        },
+        "espn_nonlive_provider_58": {
+          "games": 559,
+          "calendar_week_blocks": 14,
+          "weather_rule": {
+            "bets": 39,
+            "wins": 16,
+            "losses": 23,
+            "pushes": 0,
+            "profit_units": -8.454545454545457,
+            "roi": -0.21678321678321685,
+            "win_rate_excluding_pushes": 0.41025641025641024
+          },
+          "all_under_same_weather_coverage": {
+            "bets": 559,
+            "wins": 275,
+            "losses": 284,
+            "pushes": 0,
+            "profit_units": -34.0,
+            "roi": -0.06082289803220036,
+            "win_rate_excluding_pushes": 0.4919499105545617
+          },
+          "nonselected_games": {
+            "bets": 520,
+            "wins": 259,
+            "losses": 261,
+            "pushes": 0,
+            "profit_units": -25.545454545454547,
+            "roi": -0.04912587412587413,
+            "win_rate_excluding_pushes": 0.4980769230769231
+          },
+          "price_assumption": -110,
+          "bootstrap_draws": 10000,
+          "bootstrap_seed": 20260909,
+          "bootstrap_draws_with_no_rule_bets": 0,
+          "bootstrap_valid_rule_draws": 10000,
+          "weather_rule_roi_95_week_bootstrap": [
+            -0.6022727272727272,
+            -0.002066115702479357
+          ],
+          "weather_rule_roi_99_week_bootstrap": [
+            -0.7613636363636364,
+            0.050021370420620735
+          ],
+          "rule_minus_all_under_roi": -0.15596031875101649,
+          "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+            -0.5289030658758272,
+            0.05379937664610204
+          ],
+          "rule_minus_all_under_roi_99_paired_week_bootstrap": [
+            -0.6953373956279391,
+            0.10714468232864
+          ],
+          "active_week_cluster_t": {
+            "active_weeks": 11,
+            "roi": -0.21678321678321674,
+            "standard_error": 0.1455103209055946,
+            "interval_95": [
+              -0.5410004161579626,
+              0.10743398259152911
+            ],
+            "interval_99": [
+              -0.6779451004130406,
+              0.2443786668466071
+            ],
+            "method": "CR1 ratio-score sandwich, approximate t(active weeks\u22121); excludes zero-stake weeks",
+            "status": "descriptive_only",
+            "df": 10
+          },
+          "leave_one_week_out_roi_range": [
+            -0.3181818181818183,
+            -0.15151515151515157
+          ]
+        }
+      },
+      "source_game_counts": {
+        "cfbd_Bovada": 15,
+        "cfbd_William Hill (New Jersey)": 5,
+        "cfbd_consensus": 1158,
+        "espn_nonlive_provider_40": 10,
+        "espn_nonlive_provider_58": 559
+      },
+      "source_summary_note": "Source splits are descriptive. Zero- or one-selection subgroups cannot estimate stable profitability or strategy uncertainty.",
+      "no_live_policy_changes": true,
+      "credible_executable_edge_established": false,
+      "combined_with_other_weather_studies": false,
+      "interpretation": "Separate original NOAA 2021\u20132023 forecast-source replication on reused historical data. The older-period test did not confirm a profitable edge. Prices assume \u2212110 and source times are availability proxies. No combined historical ROI or live policy change.",
+      "limitations": [
+        "All stakes assume one-unit risk at \u2212110, including pushes; historical offered prices and morning entry timing are unverified.",
+        "Weather classifications were saved before this outcome join. Earlier outcomes were reused in other research, so this is not prospective performance or an untouched overall sample.",
+        "Calendar-week bootstrap and active-week cluster-t intervals are descriptive; cross-week dependence and the unknown full earlier search remain outside their uncertainty estimates.",
+        "No combined estimate with 2024\u201325 Open-Meteo or 2026 archived-price cohorts: forecast grid, cycle, interpolation, era and source differ.",
+        "S3 Last-Modified is not an independently certified publication receipt; multipart objects record upload initiation, which may precede completion. Multipart storage does not change eligibility.",
+        "Venue roof state and schedule metadata were retrospectively retrieved. No station, cycle, threshold or stadium substitutions were selected from outcomes."
+      ],
+      "links": [
+        {
+          "name": "Full NOAA results",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/noaa_weather_results.md"
+        },
+        {
+          "name": "NOAA data and all exclusions",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/noaa_weather_results.json"
+        },
+        {
+          "name": "Fixed NOAA evaluation protocol",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/NOAA_WEATHER_EVALUATION_PROTOCOL.md"
+        },
+        {
+          "name": "Frozen NOAA request plan",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/NOAA_WEATHER_REQUEST_PLAN.md"
+        },
+        {
+          "name": "Independent NOAA source audit",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/NOAA_WEATHER_SOURCE_AUDIT.md"
+        },
+        {
+          "name": "NOAA download integrity audit",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/NOAA_WEATHER_DOWNLOAD_AUDIT.md"
+        },
+        {
+          "name": "Independent NOAA classification and result audit",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/NOAA_WEATHER_RESULTS_AUDIT.md"
+        }
+      ]
+    },
     "archived_2026_replay": {
       "version": "weather-2026-archived-price-replay-v1",
       "plan_sha256": "30a34892cd467ddab0dfa1436608ed69ca73364869043949e2e893dd291d8277",
@@ -2062,6 +2759,14 @@
     "model/reports/weather_source_sensitivity.json": "85ca48847e9c12b04f2bb8ee06f256ce704742821358ee898bf5115c762e19f2",
     "model/reports/weather_robustness.json": "300abc43ffce4bc65eb4986a9adeeedf57fc0b5f1309d6c8fcb1342dbc9f04ff",
     "model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md": "64f5603280f218144edf2333bbe052949d73c1750dbe056a3392bef78b85e5da",
+    "model/reports/noaa_weather_results.json": "edcab2e8025c78a79d0b71a0167a91c538beb552d2a7fc0cef776450d649f3c3",
+    "model/reports/noaa_weather_request_plan.json": "25d1ffd896b009e2d61a3288d103ab212c0883ac3947b45a48efaeeb1c917d4a",
+    "model/reports/NOAA_WEATHER_EVALUATION_PROTOCOL.md": "f182ca457f354399ded6dbd6be9459a5e0e7268cf18c8bdc3234b967f74bf741",
+    "model/reports/noaa_weather_results.md": "a59730a05489b0a118691821205380954bd76772327acbb32e4f01d0020298be",
+    "model/reports/NOAA_WEATHER_REQUEST_PLAN.md": "fdbb78f8b1887b4edf48e105a4b6a530e6e6ecd65386e45d0f94e0ec54b20710",
+    "model/reports/NOAA_WEATHER_SOURCE_AUDIT.md": "fa6d7fba364131de8a8c6fa528f71be77fc4a510ce448351b1260d7ce7945c59",
+    "model/reports/NOAA_WEATHER_DOWNLOAD_AUDIT.md": "c4a673f18453731ebda84ade352f919fc82199221542c7280c40f35df84a6820",
+    "model/reports/NOAA_WEATHER_RESULTS_AUDIT.md": "4d0718e0ff94cdd72fe41cd19a048bc6fbfab76757478edfbbabd464dbb5a120",
     "model/reports/weather_2026_replay_results.json": "c419f156fcae3f353b416928603d38614861c571ea8d94fb2c62795899ce673e",
     "model/reports/weather_2026_replay_plan.json": "38b2a372ae29cd4569391efb4decf2f7b5fb19b79b25c88b4d3459ee690c52e7",
     "model/reports/weather_2026_replay_results.md": "56c5e3a57de0b72f67291d3d2623627876715aab00923a23f4ef348ae262db50",

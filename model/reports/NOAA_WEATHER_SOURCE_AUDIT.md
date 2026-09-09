@@ -1,6 +1,6 @@
 # NOAA request and forecast-source audit
 
-Status: frozen request-plan, complete inventory, and implementation review passed. Complete downloaded-field and result audits remain pending. No forecast values, weather classifications, game outcomes, or returns were inspected for this audit.
+Status: frozen request-plan, complete inventory, and implementation review passed. This source review was completed without inspecting forecast values, weather classifications, game outcomes, or returns. Subsequent independent raw-field and result audits also passed; they are documented separately in [NOAA_WEATHER_RESULTS_AUDIT.md](NOAA_WEATHER_RESULTS_AUDIT.md).
 
 ## Request-plan reconstruction
 
@@ -36,7 +36,7 @@ An independent header-and-index audit verified inventory SHA-256 `f486e78a6a2a46
 
 Last-Modified occurs **3.704–4.050 hours after initialization** and **30.571–43.796 hours before the earliest affected decision**. Every inventory's original bytes match its hash. Every selected field has one exact selector, the correct initialization and lead, and a byte range extending to the next complete-message offset (or object end for the final message).
 
-The verified inventory contains 511 temperature, 511 humidity, 1,275 U-wind, and 1,275 V-wind fields: 3,572 ranges totaling **3,151,825,716 bytes**. Individual fields span 422,299–1,014,378 bytes. No field body was needed for these checks, and this inventory audit does not certify their yet-unfinished download or decoding.
+The verified inventory contains 511 temperature, 511 humidity, 1,275 U-wind, and 1,275 V-wind fields: 3,572 ranges totaling **3,151,825,716 bytes**. Individual fields span 422,299–1,014,378 bytes. No field body was needed for these inventory checks; the subsequent independent raw-field audit is documented separately above.
 
 ## Downloader and extractor requirements
 
@@ -48,7 +48,7 @@ The archive-integration code review checks the complete inventory and fetch mani
 
 The outcome-join code preserves repaired-source precedence, canonicalizes game IDs, and requires matching season/team/source identity plus final score agreement with the independent schedule. Its common-week bootstrap uses identical draws for the selected and all-Under ratios, includes zero-selection covered weeks, and reports draws with no selected stakes. Push settlement and active-week ratio-score t calculations match the frozen protocol. A schema-only check confirmed that the actual source Parquet files contain the required columns; no score values were read.
 
-No material implementation defect was found in this review. Executing independent complete-field extraction and independently recomputing the eventual result remain pending. This report does not certify future or unfinished stages.
+No material implementation defect was found in this review. The subsequent independent complete-field reconstruction and return recomputation are documented in the separate [results audit](NOAA_WEATHER_RESULTS_AUDIT.md); this source report preserves the scope and chronology of its original review.
 
 ## Interpretation boundaries
 
