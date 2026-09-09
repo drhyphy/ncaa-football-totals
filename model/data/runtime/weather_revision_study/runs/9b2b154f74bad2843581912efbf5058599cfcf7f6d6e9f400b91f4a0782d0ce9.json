@@ -1,0 +1,75 @@
+{
+  "event_name": "schedule",
+  "labels_only": false,
+  "run_attempt": "1",
+  "run_id": "34408537286",
+  "started_at": "2026-09-09T21:45:26.370121Z",
+  "status": {
+    "coverage_gaps": [],
+    "errors": [],
+    "evidence": {
+      "edge_established": false,
+      "prospective": true
+    },
+    "experimental_picks": [],
+    "forecasts": {
+      "movement": 0,
+      "probability": 0
+    },
+    "generated_at": "2026-09-09T21:45:27.396251Z",
+    "implementation": {
+      "git_commit": "11757cf9ebe40ea346de0ff330c21259297ccee5",
+      "protocol_sha256": "6c19b41a585e40b3b4bef8e2b3e3203347e3ad9c9209d8ef98e509b8d2daae3f",
+      "source_sha256": {
+        "model/ncaaf_model/weather_revision_dataset.py": "de0c63d179f409390f7e9c6d1803fc23dfa6a70c9b8892d909837814949da5e7",
+        "model/ncaaf_model/weather_revision_evaluation.py": "1a1db2358e9991955a9e8f158c4dacdad180daf3dc53fa30283a3574f91ef044",
+        "model/ncaaf_model/weather_revision_study.py": "844f8117157c0fefbc16ed40fe881291d2fb7302d261d25518ddf5addc1022cd",
+        "scripts/weather_revision_model_inventory.py": "e0a66a410c7dcba686e5c916379681d5503a4db30df294c353ceb94413318e17",
+        "scripts/weather_revision_study.py": "ed351949e58ce988a3a6ed7fb0fc0c358f7e20840946b05d859074691f01e8bc",
+        "scripts/weather_revision_study_labels.py": "2e964524866d8d10511e67431a84e3542d6d6a3462bc42382bf7f2b4bb2c4758"
+      }
+    },
+    "labels": {
+      "final_deferred_by_cap": 0,
+      "final_due_games": 0,
+      "final_http_calls": 0,
+      "final_labels_available": 0,
+      "final_targets_pending": 0,
+      "labels_written": 0,
+      "movement_labels_available": 0,
+      "movement_targets_unavailable": 0,
+      "observations": 0
+    },
+    "models": {
+      "movement": {
+        "available_at": "2026-09-09T05:06:30.133397Z",
+        "completed_weeks": 0,
+        "cutoff": "2026-09-07T04:00:00Z",
+        "games": 0,
+        "status": "insufficient_training"
+      },
+      "probability": {
+        "available_at": "2026-09-09T05:06:30.131848Z",
+        "completed_weeks": 0,
+        "cutoff": "2026-09-07T04:00:00Z",
+        "games": 0,
+        "status": "insufficient_training"
+      }
+    },
+    "observations": {
+      "movement": 0,
+      "probability": 0,
+      "total": 0
+    },
+    "paper": {
+      "locked": 0,
+      "profit_units": null,
+      "settled": 0,
+      "unresolved": 0
+    },
+    "protocol_id": "weather-revision-prospective-v1-20260909",
+    "report_path": "model/data/runtime/weather_revision_study/interim_evaluation.json",
+    "schema_version": "weather-revision-study-status-v1",
+    "status": "collecting"
+  }
+}
