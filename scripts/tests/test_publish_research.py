@@ -25,6 +25,81 @@ class PublicationTests(unittest.TestCase):
     def tearDown(self):
         self.temporary.cleanup()
 
+    def copy_direct_reports(self):
+        fixture = SCRIPTS.parent/'model/reports'
+        for name in (*PUBLISH.DIRECT_REPORT_SHA256, 'DIRECT_PROBABILITY_RESEARCH_PLAN.md',
+                     'direct_probability_results.md', 'DIRECT_PROBABILITY_RESEARCH_AUDIT.md'):
+            (self.reports/name).write_bytes((fixture/name).read_bytes())
+
+    def test_direct_study_is_absent_until_completed_results_exist(self):
+        bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])
+        self.assertIsNone(bundle['direct_probability_research'])
+
+    def test_direct_preserves_all_six_scores_fixed_selection_and_all_paired_intervals(self):
+        self.copy_direct_reports()
+        bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])
+        study = bundle['direct_probability_research']
+        source = json.loads((self.reports/'direct_probability_results.json').read_text())
+        selection = json.loads((self.reports/'direct_probability_selection.json').read_text())
+        self.assertEqual(study['candidate_order'], list(PUBLISH.DIRECT_CONFIGURATIONS))
+        self.assertEqual(study['selected_configuration'], 'rawridge')
+        self.assertEqual(study['selection_2021_2024']['games'], 2406)
+        self.assertEqual(study['reused_2025']['games'], 852)
+        for period, original in [('selection_2021_2024',selection['summary']),('reused_2025',source['development_2025'])]:
+            for name in PUBLISH.DIRECT_CONFIGURATIONS:
+                for metric in ('games','log_loss','brier'):
+                    self.assertEqual(study[period]['configurations'][name][metric],original['configurations'][name][metric])
+            self.assertEqual(study[period]['comparisons'],original['comparisons'])
+        self.assertTrue(study['all_new_2025_point_scores_worse_than_raw50'])
+        self.assertTrue(study['all_local_2025_comparison_intervals_include_zero'])
+        for key in ('roi_evaluated','live_policy_changes','credible_executable_edge_established'):
+            self.assertIs(study[key],False)
+        self.assertEqual(study['implementation_freeze_commit'][:7],'586423c')
+        self.assertEqual(study['selection_commit'][:7],'33e1c5d')
+        for name, digest in PUBLISH.DIRECT_REPORT_SHA256.items():
+            self.assertEqual(bundle['source_report_sha256']['model/reports/'+name],digest)
+        audit = self.reports/'DIRECT_PROBABILITY_RESEARCH_AUDIT.md'
+        self.assertEqual(bundle['source_report_sha256']['model/reports/'+audit.name],hashlib.sha256(audit.read_bytes()).hexdigest())
+        self.assertTrue(any(link['url'].endswith(audit.name) for link in study['links']))
+        self.assertNotIn('context_logit',bundle['reports'][PUBLISH.PRIMARY]['pooled'])
+
+    def test_direct_rejects_changed_plan_selection_result_and_independent_audit_bytes(self):
+        self.copy_direct_reports()
+        for name in PUBLISH.DIRECT_REPORT_SHA256:
+            with self.subTest(name=name):
+                path = self.reports/name
+                original = path.read_bytes()
+                path.write_bytes(original+b'\n')
+                with self.assertRaisesRegex(ValueError,'immutable report hash'):
+                    PUBLISH.build_outputs(self.root)
+                path.write_bytes(original)
+
+    def test_direct_requires_bound_protocol_and_independent_audit(self):
+        self.copy_direct_reports()
+        path = self.reports/'DIRECT_PROBABILITY_RESEARCH_PLAN.md'
+        original = path.read_bytes()
+        path.write_bytes(original+b'\nchanged protocol')
+        with self.assertRaisesRegex(ValueError,'plan/protocol'):
+            PUBLISH.build_outputs(self.root)
+        path.write_bytes(original)
+        (self.reports/'direct_probability_research_audit.json').unlink()
+        with self.assertRaises(FileNotFoundError):
+            PUBLISH.build_outputs(self.root)
+
+    def test_direct_semantic_validation_rejects_omitted_models_counts_and_invalid_scores(self):
+        fixture = json.loads((SCRIPTS.parent/'model/reports/direct_probability_results.json').read_text())['development_2025']
+        for fault in ('configuration','count','score','year','source','comparison','interval'):
+            with self.subTest(fault=fault):
+                summary = json.loads(json.dumps(fixture))
+                if fault == 'configuration': del summary['configurations']['context_logit']
+                if fault == 'count': summary['configurations']['raw50']['games'] -= 1
+                if fault == 'score': summary['configurations']['raw50']['brier'] = float('nan')
+                if fault == 'year': summary['by_year'] = {}
+                if fault == 'source': summary['by_source'] = {}
+                if fault == 'comparison': summary['comparisons'].pop()
+                if fault == 'interval': summary['comparisons'][0]['interval_98_75'] = [0,0]
+                with self.assertRaises(ValueError): PUBLISH.direct_summary(summary,('2025',))
+
     def test_bundle_uses_repaired_reports_and_preserves_losing_year(self):
         outputs = PUBLISH.build_outputs(self.root)
         bundle = json.loads(outputs[self.root / 'site/data/research.json'])

@@ -352,6 +352,30 @@
       $("ordinary-study-sources").textContent = `All-period source counts: ${Object.entries(study.by_market_source || {}).map(([source,row])=>`${titleCase(source)} ${number(row.games,0)}`).join("; ")}. ${study.by_market_source_scope || "Source and era effects may be entangled."} Detailed scores for every source and period are linked below; no favorable source is selected.`;
       items(study.links).forEach(report => { if (safeUrl(report.url)) $("ordinary-study-links").append(link(`${report.name || "Ordinary-stat report"} ↗`, report.url)); });
     }
+    function renderDirectProbabilityStudy() {
+      const study = research?.direct_probability_research;
+      const order = ["raw50", "rawridge", "context_logit", "opponent_logit", "context_hgb", "opponent_hgb"];
+      const names = {raw50:"Constant 50/50",rawridge:"Existing raw ridge",context_logit:"Context logistic",opponent_logit:"Opponent logistic",context_hgb:"Context tree",opponent_hgb:"Opponent tree"};
+      const selection = study?.selection_2021_2024, later = study?.reused_2025;
+      const validPeriod = (period, count) => period?.games === count && Object.keys(period.configurations || {}).length === 6 && order.every(name => {const row=period.configurations?.[name]; return row?.games === count && finite(row.log_loss) && row.log_loss >= 0 && finite(row.brier) && row.brier >= 0 && row.brier <= 1;});
+      const pairs = [["opponent_logit","context_logit"],["opponent_hgb","context_hgb"],["opponent_logit","rawridge"],["opponent_hgb","rawridge"]];
+      const comparisons = items(later?.comparisons);
+      const validComparisons = comparisons.length === 4 && comparisons.every((row,i) => row.candidate === pairs[i][0] && row.reference === pairs[i][1] && row.games === 852 && finite(row.log_loss_difference) && ["interval_95","interval_98_75"].every(key=>items(row[key]).length === 2 && row[key].every(finite) && row[key][0] <= row[key][1]));
+      const available = study?.status === "reused_development_probability_score_study" && study.configuration_count === 6 && study.historical_data_reused === true && study.roi_evaluated === false && study.live_policy_changes === false && study.credible_executable_edge_established === false && study.selected_configuration === "rawridge" && JSON.stringify(study.candidate_order) === JSON.stringify(order) && validPeriod(selection,2406) && validPeriod(later,852) && validComparisons;
+      $("direct-probability-study").hidden = !available;
+      for (const id of ["direct-probability-note","direct-probability-coverage","direct-probability-table","direct-probability-comparisons","direct-probability-uncertainty","direct-probability-links"]) $(id).replaceChildren();
+      if (!available) return;
+      const worse = order.slice(2).every(name => ["log_loss","brier"].every(metric => later.configurations[name][metric] > later.configurations.raw50[metric]));
+      const outcome = worse ? " All four new classifiers had worse 2025 NLL and Brier point scores than constant 50/50." : " All six configurations are retained in both periods.";
+      $("direct-probability-note").textContent = `Four fixed direct classifiers, using five context or eleven opponent/context predictors, were tested against two references on reused historical data. Selection on 2021–2024 NLL chose the existing raw ridge before the 2025 check.${outcome} No ROI test was run and no profitable edge was established. No live model or paper policy was added.`;
+      $("direct-probability-coverage").textContent = "2,406 common selection games: 428 in 2021, 403 in 2022, 777 in 2023 and 798 in 2024. The separate 2025 check contains 852 common games. Training used earlier seasons only; 2020 was the initial training year. All years, including 2025, remain reused development data.";
+      table($("direct-probability-table"), "All six direct probability configurations, retaining both periods", ["Configuration",{label:"2021–24 NLL",numeric:true},{label:"2021–24 Brier",numeric:true},{label:"2025 NLL",numeric:true},{label:"2025 Brier",numeric:true}], order.map(name => [cell(names[name],name === "rawridge" ? "Selected using 2021–2024 only" : null), ...[selection.configurations[name].log_loss,selection.configurations[name].brier,later.configurations[name].log_loss,later.configurations[name].brier].map(value=>cell(number(value,6),null,"numeric"))]));
+      const intervalText = values => `${number(values[0],6)} to ${number(values[1],6)}`;
+      table($("direct-probability-comparisons"), "All four paired 2025 NLL comparisons", ["2025 comparison",{label:"NLL difference",numeric:true},"Descriptive 95% interval","Local 98.75% interval"], comparisons.map(row=>[cell(`${names[row.candidate]} − ${names[row.reference]}`),cell(number(row.log_loss_difference,6),null,"numeric"),cell(intervalText(row.interval_95)),cell(intervalText(row.interval_98_75))]));
+      const allCrossZero = comparisons.every(row=>row.interval_98_75[0] <= 0 && row.interval_98_75[1] >= 0);
+      $("direct-probability-uncertainty").textContent = `${allCrossZero ? "All four local 98.75% intervals include zero. " : ""}Negative NLL differences favor the first model. A better 2025 point score cannot replace the earlier selection after the fact. Week intervals do not cover the full earlier search or all shared-team dependence. The ridge reference originally trained on a larger all-line score cohort; the new classifiers share a half-point cohort. Full annual/source scores and audits are linked below.`;
+      items(study.links).forEach(report=>{if(safeUrl(report.url)) $("direct-probability-links").append(link(`${report.name || "Direct probability report"} ↗`,report.url));});
+    }
     function renderArchivedReplay() {
       const replay = research?.archived_2026_scoring_replay, cohorts = Object.entries(replay?.cohorts || {});
       const available = replay?.prospective_model_performance === false && replay?.exact_0630_replay === false && cohorts.length > 0;
@@ -444,11 +468,11 @@
     function render(data) {
       board = data;
       $("edition-date").textContent = new Intl.DateTimeFormat("en-US", {timeZone: ZONE, weekday: "long", month: "long", day: "numeric", year: "numeric"}).format(new Date());
-      renderPicks(new Date()); renderCandidates(); renderCalibrationStudy(); renderOrdinaryStudy(); renderArchivedReplay(); renderPerformance(); renderTransparency();
+      renderPicks(new Date()); renderCandidates(); renderCalibrationStudy(); renderOrdinaryStudy(); renderDirectProbabilityStudy(); renderArchivedReplay(); renderPerformance(); renderTransparency();
     }
     $("candidate-filter").addEventListener("change", renderForecasts);
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
-    fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderCalibrationStudy(); renderOrdinaryStudy(); renderArchivedReplay();}}).catch(() => {});
+    fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderCalibrationStudy(); renderOrdinaryStudy(); renderDirectProbabilityStudy(); renderArchivedReplay();}}).catch(() => {});
     fetch(`data/weather-revisions.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherRevisions = data; renderWeatherRevisions(new Date());}).catch(() => {});
     fetch(`data/weather-revision-season.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherSeason = data; renderWeatherSeason(new Date());}).catch(() => {});
     fetch(`data/weather-revision-study.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherStudy = data; renderWeatherStudy(new Date());}).catch(() => {});

@@ -8,7 +8,7 @@
   <title>College Football Totals · Daily model board</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101e31'/%3E%3Cpath d='M7 23V15M16 23V7M25 23V11' stroke='%237bedb0' stroke-width='4'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
-  <script defer src="app.js?v=9797a0b0ac95"></script>
+  <script defer src="app.js?v=61dfcf866f1d"></script>
 </head>
 <body>
   <a class="skip-link" href="#today">Skip to today's board</a>
@@ -69,6 +69,7 @@
       <div class="definition-grid"><p><strong>MAE / RMSE</strong>Prediction error in total points; lower is better. Compare candidates on the same games.</p><p><strong>ROI / 95% interval</strong>Estimated return per unit staked and its uncertainty. An interval spanning zero does not establish profitability.</p><p><strong>Brier score</strong>Probability error for the stated evaluation sample; lower is better. Calibration matters more than confidence.</p></div>
       <div id="research-links" class="resource-links"></div>
       <div id="calibration-study" class="evidence-note" hidden><div><span class="note-label">PROBABILITY-SCORE STUDY</span><p id="calibration-study-note"></p><div id="calibration-study-links" class="resource-links"></div></div></div>
+      <div id="direct-probability-study" class="evidence-note" hidden><div><span class="note-label">DIRECT UNDER-PROBABILITY STUDY</span><p id="direct-probability-note"></p><details class="forecast-details"><summary>Compare all six configurations and paired checks</summary><p id="direct-probability-coverage" class="small-meta"></p><div id="direct-probability-table" class="table-container"></div><p class="small-meta">NLL (binary log loss) and Brier loss score probability forecasts; lower is better. Constant 50/50 is a statistical reference, not an observed bookmaker probability. These models address one half-point total, without alternate-line or integer-push probabilities.</p><div id="direct-probability-comparisons" class="table-container"></div><p id="direct-probability-uncertainty" class="small-meta"></p></details><div id="direct-probability-links" class="resource-links"></div></div></div>
       <div id="ordinary-study" class="evidence-note" hidden><div><span class="note-label">ORDINARY-STATISTICS FORECAST STUDY</span><p id="ordinary-study-note"></p><details class="forecast-details"><summary>Compare all four configurations and annual results</summary><p id="ordinary-study-coverage" class="small-meta"></p><div id="ordinary-study-table" class="table-container"></div><p class="small-meta">MSE measures squared point error; lower is better. Every year is reused development data. The report retains all four paired comparisons and descriptive 95% / 98.75% MSE intervals.</p><div id="ordinary-study-years" class="table-container"></div><p id="ordinary-study-sources" class="small-meta"></p></details><div id="ordinary-study-links" class="resource-links"></div></div></div>
       <div id="archived-replay" class="market-checks" hidden>
         <h3>2026 replay at archived prices</h3>

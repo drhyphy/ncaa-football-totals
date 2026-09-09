@@ -3784,6 +3784,635 @@
       }
     ]
   },
+  "direct_probability_research": {
+    "version": "direct-probability-research-v1-20260909",
+    "status": "reused_development_probability_score_study",
+    "evaluated_at": "2026-09-09T05:31:39.224998Z",
+    "candidate_order": [
+      "raw50",
+      "rawridge",
+      "context_logit",
+      "opponent_logit",
+      "context_hgb",
+      "opponent_hgb"
+    ],
+    "configuration_count": 6,
+    "selected_configuration": "rawridge",
+    "selection_2021_2024": {
+      "games": 2406,
+      "configurations": {
+        "raw50": {
+          "games": 2406,
+          "log_loss": 0.6931471805599453,
+          "brier": 0.25
+        },
+        "rawridge": {
+          "games": 2406,
+          "log_loss": 0.6918993795784186,
+          "brier": 0.2493748019396595
+        },
+        "context_logit": {
+          "games": 2406,
+          "log_loss": 0.6924629816249238,
+          "brier": 0.2496570571379888
+        },
+        "opponent_logit": {
+          "games": 2406,
+          "log_loss": 0.6946447743521412,
+          "brier": 0.2507316255405959
+        },
+        "context_hgb": {
+          "games": 2406,
+          "log_loss": 0.7032674081362538,
+          "brier": 0.25489704392497486
+        },
+        "opponent_hgb": {
+          "games": 2406,
+          "log_loss": 0.713163823080684,
+          "brier": 0.2594984633223562
+        }
+      },
+      "by_year": {
+        "2021": {
+          "raw50": {
+            "games": 428,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 428,
+            "log_loss": 0.6960285430348135,
+            "brier": 0.25143288378053263
+          },
+          "context_logit": {
+            "games": 428,
+            "log_loss": 0.6968183741578701,
+            "brier": 0.2518211230086455
+          },
+          "opponent_logit": {
+            "games": 428,
+            "log_loss": 0.7061323779408,
+            "brier": 0.2564124590146353
+          },
+          "context_hgb": {
+            "games": 428,
+            "log_loss": 0.7011706793455572,
+            "brier": 0.25389742837796775
+          },
+          "opponent_hgb": {
+            "games": 428,
+            "log_loss": 0.7195791452525867,
+            "brier": 0.2623448754057857
+          }
+        },
+        "2022": {
+          "raw50": {
+            "games": 403,
+            "log_loss": 0.6931471805599452,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 403,
+            "log_loss": 0.6941946771491254,
+            "brier": 0.25052003215537044
+          },
+          "context_logit": {
+            "games": 403,
+            "log_loss": 0.6935332625351732,
+            "brier": 0.2501965284101021
+          },
+          "opponent_logit": {
+            "games": 403,
+            "log_loss": 0.695541942051603,
+            "brier": 0.2511881716766091
+          },
+          "context_hgb": {
+            "games": 403,
+            "log_loss": 0.712612149118739,
+            "brier": 0.2594726476007613
+          },
+          "opponent_hgb": {
+            "games": 403,
+            "log_loss": 0.724394296598497,
+            "brier": 0.26455966902215156
+          }
+        },
+        "2023": {
+          "raw50": {
+            "games": 777,
+            "log_loss": 0.6931471805599454,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 777,
+            "log_loss": 0.6920568736247172,
+            "brier": 0.2494459317759359
+          },
+          "context_logit": {
+            "games": 777,
+            "log_loss": 0.6934634314802196,
+            "brier": 0.2501569709216699
+          },
+          "opponent_logit": {
+            "games": 777,
+            "log_loss": 0.6934840458154976,
+            "brier": 0.25016018728554723
+          },
+          "context_hgb": {
+            "games": 777,
+            "log_loss": 0.7055710874979924,
+            "brier": 0.2560306912646685
+          },
+          "opponent_hgb": {
+            "games": 777,
+            "log_loss": 0.7086686209975284,
+            "brier": 0.25747252474720556
+          }
+        },
+        "2024": {
+          "raw50": {
+            "games": 798,
+            "log_loss": 0.6931471805599452,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 798,
+            "log_loss": 0.6883722370291633,
+            "brier": 0.24762335496270207
+          },
+          "context_logit": {
+            "games": 798,
+            "log_loss": 0.6886123791831993,
+            "brier": 0.24773718229435102
+          },
+          "opponent_logit": {
+            "games": 798,
+            "log_loss": 0.6891606053723708,
+            "brier": 0.2480106013607346
+          },
+          "context_hgb": {
+            "games": 798,
+            "log_loss": 0.6974297019237294,
+            "brier": 0.25201862686963056
+          },
+          "opponent_hgb": {
+            "games": 798,
+            "log_loss": 0.7084284011525627,
+            "brier": 0.25738846834010914
+          }
+        }
+      },
+      "by_source": {
+        "cfbd_Bovada": {
+          "raw50": {
+            "games": 5,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 5,
+            "log_loss": 0.6605717092588017,
+            "brier": 0.23373548472668298
+          },
+          "context_logit": {
+            "games": 5,
+            "log_loss": 0.6701307923814293,
+            "brier": 0.23850961613186555
+          },
+          "opponent_logit": {
+            "games": 5,
+            "log_loss": 0.6453768208740766,
+            "brier": 0.22621469439763056
+          },
+          "context_hgb": {
+            "games": 5,
+            "log_loss": 0.6684400091108174,
+            "brier": 0.23798417111615833
+          },
+          "opponent_hgb": {
+            "games": 5,
+            "log_loss": 0.7267191565537369,
+            "brier": 0.2681125461268794
+          }
+        },
+        "cfbd_consensus": {
+          "raw50": {
+            "games": 844,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 844,
+            "log_loss": 0.6954566972719062,
+            "brier": 0.25114884168187146
+          },
+          "context_logit": {
+            "games": 844,
+            "log_loss": 0.6958248969083553,
+            "brier": 0.25133256286759126
+          },
+          "opponent_logit": {
+            "games": 844,
+            "log_loss": 0.7014564948975812,
+            "brier": 0.2541087591405358
+          },
+          "context_hgb": {
+            "games": 844,
+            "log_loss": 0.7095161547532938,
+            "brier": 0.25794990753157876
+          },
+          "opponent_hgb": {
+            "games": 844,
+            "log_loss": 0.7229553042240776,
+            "brier": 0.26394231482025315
+          }
+        },
+        "espn_nonlive_provider_40": {
+          "raw50": {
+            "games": 9,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 9,
+            "log_loss": 0.6883099388408231,
+            "brier": 0.24757742449130765
+          },
+          "context_logit": {
+            "games": 9,
+            "log_loss": 0.6949025095546822,
+            "brier": 0.2508754060487546
+          },
+          "opponent_logit": {
+            "games": 9,
+            "log_loss": 0.6911637862527158,
+            "brier": 0.24900719941880448
+          },
+          "context_hgb": {
+            "games": 9,
+            "log_loss": 0.6879428863802178,
+            "brier": 0.2473399969351996
+          },
+          "opponent_hgb": {
+            "games": 9,
+            "log_loss": 0.7093875174899859,
+            "brier": 0.25722442430449044
+          }
+        },
+        "espn_nonlive_provider_58": {
+          "raw50": {
+            "games": 1548,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 1548,
+            "log_loss": 0.6900819165195898,
+            "brier": 0.24846852509254908
+          },
+          "context_logit": {
+            "games": 1548,
+            "log_loss": 0.6906879484825682,
+            "brier": 0.24877246103272344
+          },
+          "opponent_logit": {
+            "games": 1548,
+            "log_loss": 0.6911102630601089,
+            "brier": 0.2489795607682843
+          },
+          "context_hgb": {
+            "games": 1548,
+            "log_loss": 0.7000620564218802,
+            "brier": 0.2533311271956328
+          },
+          "opponent_hgb": {
+            "games": 1548,
+            "log_loss": 0.7078034871620321,
+            "brier": 0.2570609861084759
+          }
+        }
+      },
+      "comparisons": [
+        {
+          "candidate": "opponent_logit",
+          "games": 2406,
+          "interval_95": [
+            0.00016184032930999508,
+            0.0043010639738197244
+          ],
+          "interval_98_75": [
+            -0.0003906865060359885,
+            0.0049315213844103355
+          ],
+          "log_loss_difference": 0.0021817927272174205,
+          "reference": "context_logit",
+          "week_blocks": 73
+        },
+        {
+          "candidate": "opponent_hgb",
+          "games": 2406,
+          "interval_95": [
+            0.002476666260588964,
+            0.017595049720385305
+          ],
+          "interval_98_75": [
+            0.0002965398445336509,
+            0.019980975709970292
+          ],
+          "log_loss_difference": 0.00989641494443026,
+          "reference": "context_hgb",
+          "week_blocks": 73
+        },
+        {
+          "candidate": "opponent_logit",
+          "games": 2406,
+          "interval_95": [
+            0.0005906728203475938,
+            0.005144770200072702
+          ],
+          "interval_98_75": [
+            3.975824127032118e-05,
+            0.005741614530187448
+          ],
+          "log_loss_difference": 0.002745394773722622,
+          "reference": "rawridge",
+          "week_blocks": 73
+        },
+        {
+          "candidate": "opponent_hgb",
+          "games": 2406,
+          "interval_95": [
+            0.013486029136502332,
+            0.02915647031920304
+          ],
+          "interval_98_75": [
+            0.011066843218568106,
+            0.03159393899795819
+          ],
+          "log_loss_difference": 0.021264443502265393,
+          "reference": "rawridge",
+          "week_blocks": 73
+        }
+      ]
+    },
+    "reused_2025": {
+      "games": 852,
+      "configurations": {
+        "raw50": {
+          "games": 852,
+          "log_loss": 0.6931471805599453,
+          "brier": 0.25
+        },
+        "rawridge": {
+          "games": 852,
+          "log_loss": 0.697509388839389,
+          "brier": 0.252162974582449
+        },
+        "context_logit": {
+          "games": 852,
+          "log_loss": 0.6951755386355539,
+          "brier": 0.2510074556536664
+        },
+        "opponent_logit": {
+          "games": 852,
+          "log_loss": 0.6943787318471154,
+          "brier": 0.2506098521931771
+        },
+        "context_hgb": {
+          "games": 852,
+          "log_loss": 0.698217005650481,
+          "brier": 0.2524772090176937
+        },
+        "opponent_hgb": {
+          "games": 852,
+          "log_loss": 0.696272602976613,
+          "brier": 0.25146687547228586
+        }
+      },
+      "by_year": {
+        "2025": {
+          "raw50": {
+            "games": 852,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 852,
+            "log_loss": 0.697509388839389,
+            "brier": 0.252162974582449
+          },
+          "context_logit": {
+            "games": 852,
+            "log_loss": 0.6951755386355539,
+            "brier": 0.2510074556536664
+          },
+          "opponent_logit": {
+            "games": 852,
+            "log_loss": 0.6943787318471154,
+            "brier": 0.2506098521931771
+          },
+          "context_hgb": {
+            "games": 852,
+            "log_loss": 0.698217005650481,
+            "brier": 0.2524772090176937
+          },
+          "opponent_hgb": {
+            "games": 852,
+            "log_loss": 0.696272602976613,
+            "brier": 0.25146687547228586
+          }
+        }
+      },
+      "by_source": {
+        "espn_nonlive_provider_100": {
+          "raw50": {
+            "games": 47,
+            "log_loss": 0.6931471805599451,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 47,
+            "log_loss": 0.704894612964997,
+            "brier": 0.25579560839527693
+          },
+          "context_logit": {
+            "games": 47,
+            "log_loss": 0.6973235063084093,
+            "brier": 0.2520601708247782
+          },
+          "opponent_logit": {
+            "games": 47,
+            "log_loss": 0.6963959787266623,
+            "brier": 0.2516043513231424
+          },
+          "context_hgb": {
+            "games": 47,
+            "log_loss": 0.7203777708257343,
+            "brier": 0.26351748515718587
+          },
+          "opponent_hgb": {
+            "games": 47,
+            "log_loss": 0.6963278074569164,
+            "brier": 0.2516703922526595
+          }
+        },
+        "espn_nonlive_provider_58": {
+          "raw50": {
+            "games": 805,
+            "log_loss": 0.6931471805599452,
+            "brier": 0.25
+          },
+          "rawridge": {
+            "games": 805,
+            "log_loss": 0.697078201840751,
+            "brier": 0.25195088291884293
+          },
+          "context_logit": {
+            "games": 805,
+            "log_loss": 0.6950501293428532,
+            "brier": 0.2509459927803219
+          },
+          "opponent_logit": {
+            "games": 805,
+            "log_loss": 0.6942609547001107,
+            "brier": 0.25055178826881885
+          },
+          "context_hgb": {
+            "games": 805,
+            "log_loss": 0.6969231473110562,
+            "brier": 0.25183262146669233
+          },
+          "opponent_hgb": {
+            "games": 805,
+            "log_loss": 0.6962693798578873,
+            "brier": 0.2514549931261026
+          }
+        }
+      },
+      "comparisons": [
+        {
+          "candidate": "opponent_logit",
+          "games": 852,
+          "interval_95": [
+            -0.0017998521504650402,
+            0.00018118723540944744
+          ],
+          "interval_98_75": [
+            -0.002111140896286033,
+            0.0003990624585594529
+          ],
+          "log_loss_difference": -0.0007968067884385637,
+          "reference": "context_logit",
+          "week_blocks": 22
+        },
+        {
+          "candidate": "opponent_hgb",
+          "games": 852,
+          "interval_95": [
+            -0.008948832418748115,
+            0.004479194029743475
+          ],
+          "interval_98_75": [
+            -0.010758718119779034,
+            0.006081819478556595
+          ],
+          "log_loss_difference": -0.0019444026738678509,
+          "reference": "context_hgb",
+          "week_blocks": 22
+        },
+        {
+          "candidate": "opponent_logit",
+          "games": 852,
+          "interval_95": [
+            -0.005642687479411192,
+            -0.0006546358270325749
+          ],
+          "interval_98_75": [
+            -0.006304873663273346,
+            3.4156301350008216e-05
+          ],
+          "log_loss_difference": -0.003130656992273546,
+          "reference": "rawridge",
+          "week_blocks": 22
+        },
+        {
+          "candidate": "opponent_hgb",
+          "games": 852,
+          "interval_95": [
+            -0.0074845581034680125,
+            0.004736904794738602
+          ],
+          "interval_98_75": [
+            -0.009157667370886207,
+            0.006512218117852654
+          ],
+          "log_loss_difference": -0.001236785862775861,
+          "reference": "rawridge",
+          "week_blocks": 22
+        }
+      ]
+    },
+    "source_report_sha256": {
+      "direct_probability_research_plan.json": "ef36cdea636dd87661141560af6f3934bf883730aab6d354370c218f26b5778b",
+      "direct_probability_selection.json": "f444d8c04790a66beb73a069858304834c34763be16aea140ee0990bd40d77be",
+      "direct_probability_results.json": "ba150975d6565a87539fd5dce80ca88212eda1ed91a24f8fd9f54ce181cc37cf",
+      "direct_probability_research_audit.json": "bcf606dd375297b33436e2dfc8a10ce6bab18a584e029f9dd64393e961c5c36d"
+    },
+    "protocol_sha256": "4de223ef4fe3b22692075e78fd61f9bfb62fa85e40cb24eb6fc64bed0c28e5d0",
+    "implementation_freeze_commit": "586423cb0739e6eeea1208c940649331dbdd5518",
+    "selection_commit": "33e1c5db738800c5a2c443f8014395a83565f940",
+    "historical_data_reused": true,
+    "roi_evaluated": false,
+    "live_policy_changes": false,
+    "credible_executable_edge_established": false,
+    "all_new_2025_point_scores_worse_than_raw50": true,
+    "all_local_2025_comparison_intervals_include_zero": true,
+    "limitations": [
+      "All historical years are reused development observations, including 2025.",
+      "Provider roles are repaired; original morning prices, paired odds and quote receipt times remain unavailable.",
+      "Raw50 is a price-free statistical reference, not verified historical no-vig probabilities.",
+      "New classifiers share half-point training games; saved ridge originally used its larger prior-year score cohort.",
+      "A single-line classifier is not a coherent distribution for alternate totals or integer pushes.",
+      "Weekly intervals do not account for all previous searches or all recurring-team dependence."
+    ],
+    "links": [
+      {
+        "name": "All six configurations and interpretation",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/direct_probability_results.md",
+        "sha256": "5e8160d3351d004aa10cb4b7cab258f4437c007800da6ec12bee5a55f1410c5d"
+      },
+      {
+        "name": "Full scores and paired intervals",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/direct_probability_results.json",
+        "sha256": "ba150975d6565a87539fd5dce80ca88212eda1ed91a24f8fd9f54ce181cc37cf"
+      },
+      {
+        "name": "Frozen direct-probability plan",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/DIRECT_PROBABILITY_RESEARCH_PLAN.md",
+        "sha256": "4de223ef4fe3b22692075e78fd61f9bfb62fa85e40cb24eb6fc64bed0c28e5d0"
+      },
+      {
+        "name": "Pinned machine plan",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/direct_probability_research_plan.json",
+        "sha256": "ef36cdea636dd87661141560af6f3934bf883730aab6d354370c218f26b5778b"
+      },
+      {
+        "name": "Selection committed before the 2025 check",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/direct_probability_selection.json",
+        "sha256": "f444d8c04790a66beb73a069858304834c34763be16aea140ee0990bd40d77be"
+      },
+      {
+        "name": "Independent direct-probability audit",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/DIRECT_PROBABILITY_RESEARCH_AUDIT.md",
+        "sha256": "8f26707bfc4f0b0614f320b61ffc1883c6680a046666b3b6d1a8538ec5f8638b"
+      },
+      {
+        "name": "Independent audit receipt",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/direct_probability_research_audit.json",
+        "sha256": "bcf606dd375297b33436e2dfc8a10ce6bab18a584e029f9dd64393e961c5c36d"
+      }
+    ]
+  },
   "prospective_evaluation_protocol": {
     "report": "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
     "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
@@ -3834,6 +4463,13 @@
     "model/reports/ORDINARY_MODEL_RESEARCH_AUDIT.md": "8c083eff447be11f18ad3b89dfd1265fb0337c950c9529dbeb6cbce45bdab738",
     "model/reports/ORDINARY_MODEL_PREFIT_AUDIT.md": "1fcc3897ed3990f9ef2806a4d27388b89b5f9ce6a72760812ebc84888fe2a84d",
     "model/reports/RICH_FEATURE_REUSE_AUDIT.md": "c9a8d90d56ca33b1a3b677ff8951bdffc5b156ef496b2abdf4ea9bbd3a199718",
+    "model/reports/direct_probability_research_plan.json": "ef36cdea636dd87661141560af6f3934bf883730aab6d354370c218f26b5778b",
+    "model/reports/direct_probability_selection.json": "f444d8c04790a66beb73a069858304834c34763be16aea140ee0990bd40d77be",
+    "model/reports/direct_probability_results.json": "ba150975d6565a87539fd5dce80ca88212eda1ed91a24f8fd9f54ce181cc37cf",
+    "model/reports/direct_probability_research_audit.json": "bcf606dd375297b33436e2dfc8a10ce6bab18a584e029f9dd64393e961c5c36d",
+    "model/reports/DIRECT_PROBABILITY_RESEARCH_PLAN.md": "4de223ef4fe3b22692075e78fd61f9bfb62fa85e40cb24eb6fc64bed0c28e5d0",
+    "model/reports/direct_probability_results.md": "5e8160d3351d004aa10cb4b7cab258f4437c007800da6ec12bee5a55f1410c5d",
+    "model/reports/DIRECT_PROBABILITY_RESEARCH_AUDIT.md": "8f26707bfc4f0b0614f320b61ffc1883c6680a046666b3b6d1a8538ec5f8638b",
     "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md": "f22f08b214e45c33de01d078abb987ee3cc5d59f7995023ad9ea73a0f67953fb"
   },
   "generator": "scripts/publish_research.py"

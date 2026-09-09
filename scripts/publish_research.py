@@ -32,6 +32,18 @@ LABELS = {
 }
 ORDINARY_CONFIGURATIONS = ('market_only', 'opponent_adjusted_ridge', 'ordinary_ridge', 'ordinary_hgb')
 ORDINARY_COMPARISONS = {(new, base) for new in ORDINARY_CONFIGURATIONS[2:] for base in ORDINARY_CONFIGURATIONS[:2]}
+DIRECT_CONFIGURATIONS = ('raw50', 'rawridge', 'context_logit', 'opponent_logit', 'context_hgb', 'opponent_hgb')
+DIRECT_COMPARISONS = (('opponent_logit', 'context_logit'), ('opponent_hgb', 'context_hgb'),
+                      ('opponent_logit', 'rawridge'), ('opponent_hgb', 'rawridge'))
+# Completed immutable study, including its independent audit receipt. Publication
+# does not silently accept revised results or a substitute selection/audit.
+DIRECT_REPORT_SHA256 = {
+    'direct_probability_research_plan.json': 'ef36cdea636dd87661141560af6f3934bf883730aab6d354370c218f26b5778b',
+    'direct_probability_selection.json': 'f444d8c04790a66beb73a069858304834c34763be16aea140ee0990bd40d77be',
+    'direct_probability_results.json': 'ba150975d6565a87539fd5dce80ca88212eda1ed91a24f8fd9f54ce181cc37cf',
+    'direct_probability_research_audit.json': 'bcf606dd375297b33436e2dfc8a10ce6bab18a584e029f9dd64393e961c5c36d',
+}
+DIRECT_YEAR_COUNTS = {'2021': 428, '2022': 403, '2023': 777, '2024': 798, '2025': 852}
 
 
 def percent(value):
@@ -103,6 +115,128 @@ def ordinary_summary(summary, compact=False):
     if not compact:
         result['comparisons'] = comparisons
     return result
+
+
+def direct_scores(scores, expected_games):
+    if set(scores) != set(DIRECT_CONFIGURATIONS):
+        raise ValueError('Direct probability publication requires all six configurations')
+    result = {}
+    for name in DIRECT_CONFIGURATIONS:
+        row = scores[name]
+        if type(row.get('games')) is not int or row['games'] != expected_games:
+            raise ValueError('Direct probability configurations must retain exact common counts')
+        for metric in ('log_loss', 'brier'):
+            value = row.get(metric)
+            if type(value) not in (int, float) or not math.isfinite(value) or value < 0 or (metric == 'brier' and value > 1):
+                raise ValueError('Direct probability scores must be finite and valid')
+        result[name] = {key: row[key] for key in ('games', 'log_loss', 'brier')}
+    return result
+
+
+def direct_summary(summary, years):
+    expected = sum(DIRECT_YEAR_COUNTS[year] for year in years)
+    if summary.get('games') != expected or set(summary.get('by_year', {})) != set(years):
+        raise ValueError('Direct probability period/year coverage changed')
+    scores = direct_scores(summary['configurations'], expected)
+    annual = {year: direct_scores(summary['by_year'][year], DIRECT_YEAR_COUNTS[year]) for year in years}
+    sources = {}
+    for name, group in summary['by_source'].items():
+        count = group.get('raw50', {}).get('games')
+        if type(count) is not int or count <= 0:
+            raise ValueError('Direct probability source coverage must be nonempty')
+        sources[name] = direct_scores(group, count)
+    if sum(group['raw50']['games'] for group in sources.values()) != expected:
+        raise ValueError('Direct probability source counts do not conserve coverage')
+    for groups in (annual, sources):
+        for candidate in DIRECT_CONFIGURATIONS:
+            for metric in ('log_loss', 'brier'):
+                pooled = sum(group[candidate][metric]*group[candidate]['games'] for group in groups.values())/expected
+                if not math.isclose(pooled, scores[candidate][metric], rel_tol=0, abs_tol=1e-12):
+                    raise ValueError('Direct probability pooled scores do not match year/source scores')
+    comparisons = summary.get('comparisons', [])
+    if [(row.get('candidate'), row.get('reference')) for row in comparisons] != list(DIRECT_COMPARISONS):
+        raise ValueError('Direct probability must retain all four fixed comparisons')
+    for row in comparisons:
+        if row.get('games') != expected or type(row.get('week_blocks')) is not int or row['week_blocks'] < 2:
+            raise ValueError('Direct probability paired counts changed')
+        delta = scores[row['candidate']]['log_loss']-scores[row['reference']]['log_loss']
+        if not math.isclose(row['log_loss_difference'], delta, rel_tol=0, abs_tol=1e-12):
+            raise ValueError('Direct probability comparison disagrees with scores')
+        for key in ('interval_95', 'interval_98_75'):
+            ci = row.get(key)
+            if not isinstance(ci, list) or len(ci) != 2 or not all(type(v) in (int, float) and math.isfinite(v) for v in ci) or ci[0] > ci[1]:
+                raise ValueError('Direct probability interval is invalid')
+        if not row['interval_98_75'][0] <= row['interval_95'][0] <= row['interval_95'][1] <= row['interval_98_75'][1]:
+            raise ValueError('Direct probability sensitivity interval must contain its 95% interval')
+    return {'games': expected, 'configurations': scores, 'by_year': annual,
+            'by_source': sources, 'comparisons': comparisons}
+
+
+def direct_publication(read, read_bytes, inputs):
+    records = {name: read(name) for name in DIRECT_REPORT_SHA256}
+    for name, expected in DIRECT_REPORT_SHA256.items():
+        if inputs['model/reports/'+name] != expected:
+            raise ValueError('Direct probability immutable report hash changed: '+name)
+    plan, selection, result, audit = (records[name] for name in DIRECT_REPORT_SHA256)
+    protocol_name = 'DIRECT_PROBABILITY_RESEARCH_PLAN.md'
+    read_bytes(protocol_name)
+    protocol_hash = inputs['model/reports/'+protocol_name]
+    if (plan.get('candidate_order') != list(DIRECT_CONFIGURATIONS)
+            or plan.get('comparison_pairs') != [list(pair) for pair in DIRECT_COMPARISONS]
+            or plan.get('chronology', {}).get('selection_years') != [2021, 2022, 2023, 2024]
+            or plan.get('source_files_sha256', {}).get('reports/'+protocol_name) != protocol_hash
+            or plan.get('implementation_protocol_sha256') != protocol_hash):
+        raise ValueError('Direct probability frozen plan/protocol contract changed')
+    if (selection.get('phase') != 'selection' or selection.get('2025_metrics_computed') is not False
+            or selection.get('historical_data_reused') is not True or selection.get('active_model_changed') is not False
+            or result.get('phase') != '2025_reused_development_check' or result.get('active_model_changed') is not False
+            or result.get('historical_ev_or_roi_computed') is not False or result.get('high_confidence_edge_established') is not False):
+        raise ValueError('Direct probability development study cannot become live betting evidence')
+    for record in (selection, result):
+        p = record.get('provenance', {})
+        if (p.get('plan_sha256') != DIRECT_REPORT_SHA256['direct_probability_research_plan.json']
+                or p.get('protocol_sha256') != protocol_hash or p.get('implementation_sha256') != plan.get('implementation_sha256')):
+            raise ValueError('Direct probability stage provenance differs from frozen inputs')
+    if result.get('selection_record_sha256') != DIRECT_REPORT_SHA256['direct_probability_selection.json'] or result.get('selection_summary') != selection.get('summary'):
+        raise ValueError('Direct probability later check does not retain its frozen selection')
+    for name in tuple(DIRECT_REPORT_SHA256)[:3]:
+        if audit.get('input_report_sha256', {}).get('reports/'+name) != DIRECT_REPORT_SHA256[name]:
+            raise ValueError('Direct probability independent audit does not bind these reports')
+    if audit.get('status') != 'passed_no_material_discrepancy' or audit.get('new_candidate_promoted') is not False or audit.get('model_refit_count') != 20 or audit.get('ridge_refit_count') != 5:
+        raise ValueError('Direct probability independent audit status/counts changed')
+    for year, count in {'2020': 323, **DIRECT_YEAR_COUNTS}.items():
+        if (plan.get('cohort', {}).get('halfpoint_games_by_season', {}).get(year) != count
+                or audit.get('coverage', {}).get('by_year', {}).get(year, {}).get('eligible_halfpoint_games') != count):
+            raise ValueError('Direct probability frozen/audited cohort counts differ')
+    earlier = direct_summary(selection['summary'], tuple(DIRECT_YEAR_COUNTS)[:4])
+    later = direct_summary(result['development_2025'], ('2025',))
+    selected = min(DIRECT_CONFIGURATIONS, key=lambda name: earlier['configurations'][name]['log_loss'])
+    if selected != 'rawridge' or any(record.get('selected_configuration') != selected for record in (selection, result, audit)):
+        raise ValueError('Direct probability selection must remain the pre-2025 raw ridge')
+    links = []
+    for name, label in (('direct_probability_results.md', 'All six configurations and interpretation'),
+                        ('direct_probability_results.json', 'Full scores and paired intervals'),
+                        (protocol_name, 'Frozen direct-probability plan'),
+                        ('direct_probability_research_plan.json', 'Pinned machine plan'),
+                        ('direct_probability_selection.json', 'Selection committed before the 2025 check'),
+                        ('DIRECT_PROBABILITY_RESEARCH_AUDIT.md', 'Independent direct-probability audit'),
+                        ('direct_probability_research_audit.json', 'Independent audit receipt')):
+        read_bytes(name)
+        links.append({'name': label, 'url': 'https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/'+name,
+                      'sha256': inputs['model/reports/'+name]})
+    return {'version': result['schema_version'], 'status': 'reused_development_probability_score_study',
+        'evaluated_at': result['created_at'], 'candidate_order': list(DIRECT_CONFIGURATIONS),
+        'configuration_count': 6, 'selected_configuration': selected,
+        'selection_2021_2024': earlier, 'reused_2025': later,
+        'source_report_sha256': dict(DIRECT_REPORT_SHA256), 'protocol_sha256': protocol_hash,
+        'implementation_freeze_commit': selection['provenance']['git_commit'],
+        'selection_commit': result['provenance']['git_commit'],
+        'historical_data_reused': True, 'roi_evaluated': False, 'live_policy_changes': False,
+        'credible_executable_edge_established': False,
+        'all_new_2025_point_scores_worse_than_raw50': all(later['configurations'][name][metric] > later['configurations']['raw50'][metric]
+            for name in DIRECT_CONFIGURATIONS[2:] for metric in ('log_loss', 'brier')),
+        'all_local_2025_comparison_intervals_include_zero': all(row['interval_98_75'][0] <= 0 <= row['interval_98_75'][1] for row in later['comparisons']),
+        'limitations': result['limits'], 'links': links}
 
 
 def render_opponent_report(primary):
@@ -490,6 +624,9 @@ def build_outputs(root):
             if (reports/filename).exists():
                 read_bytes(filename)
                 ordinary['links'].append({'name': label, 'url': 'https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/'+filename})
+    direct = None
+    if (reports/'direct_probability_results.json').exists():
+        direct = direct_publication(read, read_bytes, inputs)
     protocol = None
     protocol_path = reports / "PROSPECTIVE_EVALUATION_PROTOCOL.md"
     if protocol_path.exists():
@@ -519,6 +656,7 @@ def build_outputs(root):
         "archived_2026_scoring_replay": archived_replay,
         "calibration_research": calibration,
         "ordinary_model_research": ordinary,
+        "direct_probability_research": direct,
         "prospective_evaluation_protocol": protocol,
         "limitations": [
             "All 2019–2025 periods have been reused in development; no untouched historical test is claimed.",
