@@ -1,0 +1,336 @@
+{
+  "acc_crosswalk": {
+    "ACC_name_jersey_to_roster_identity_verified": false,
+    "populated_current_rows_verified": false,
+    "source_report_type": "Report Pending",
+    "stable_ACC_athlete_id_verified": false
+  },
+  "access_date": "2026-09-09",
+  "conclusion": "Current ESPN roster-QB identity plus prior completed-game passing participation is observable for these two fixed teams; the populated ACC status-to-athlete crosswalk remains unverified.",
+  "first_preflight_freeze": {
+    "commit": "39164343fc6d489dbcf7445ad34c470e13a6e5ad",
+    "unchanged_report_sha256": {
+      "ACC_QB_ROLE_PREFLIGHT.json": "2ade96c0b1eb4a40e6dd7d866203e4b96e34dce2e6765022ddc5cf26ea6bee47",
+      "ACC_QB_ROLE_PREFLIGHT.md": "60fbc67d3a259faa00c2caf3025e99d252cc3f6513bbc604b5a180867651e576"
+    }
+  },
+  "future_target": {
+    "game_id": "401858216",
+    "kickoff": "2026-09-12T19:30:00Z",
+    "new_receipts_available_for_first_ACC_0816_capture": false,
+    "prior_game_and_roster_receipts_before_target": true
+  },
+  "games": [
+    {
+      "away_id": "160",
+      "completed_status": {
+        "description": "Final",
+        "state": "post",
+        "status_id": "3"
+      },
+      "game_date": "2026-09-05T16:00Z",
+      "game_id": "401858208",
+      "gamecast_diagnostic": {
+        "distinct_roster_QBs_with_explicit_C_ATT": 3,
+        "explicit_C_ATT_card_rows_matched_to_current_roster": 34,
+        "not_used_as_complete_passing_table": true,
+        "passing_leader_exact_roster_QB_id_uid_name_jersey_match": true,
+        "per_athlete_repeated_card_values_consistent": true
+      },
+      "home_id": "183",
+      "identity_verified": true,
+      "literal_boxscore_link": "/college-football/boxscore/_/gameId/401858208",
+      "passing_table": {
+        "UID_name_jersey_exact_matches": 3,
+        "athlete_fields": [
+          "athlt.id",
+          "athlt.uid",
+          "athlt.dspNm",
+          "athlt.jersey",
+          "athlt.lnk"
+        ],
+        "athlete_rows": 3,
+        "category_predicate": "type == 'passing'",
+        "duplicate_athlete_ids": 0,
+        "missing_or_invalid_C_ATT_rows": 0,
+        "non_QB_roster_matches": 0,
+        "positive_attempt_rows": 3,
+        "published_team_attempts": 34,
+        "roster_QB_ID_matches": 3,
+        "source_path": "window.__espnfitt__.page.content.gamepackage.bxscr[].stats[]",
+        "stat_key": "completions/passingAttempts",
+        "stat_label": "C/ATT",
+        "stats_keys_labels_totals_aligned": true,
+        "sum_athlete_attempts": 34,
+        "team_attempts_reconciled": true,
+        "team_completions_reconciled": true,
+        "team_field": "tm.id",
+        "unmatched_roster_ids": 0,
+        "value_format": "nonnegative integer completions/attempts, with completions <= attempts"
+      },
+      "prior_selection": "Fixed before these requests: latest team-linked date in the original target-summary lastFiveGames earlier than its receipt; no score/result values used.",
+      "role_evidence_available_at": "2026-09-09T09:03:51.740668Z",
+      "stages": {
+        "linked_boxscore": {
+          "body_sha256": "8090033efdee0f1ead380d166f292b7521e2ec2e1f7e428bcc113511eed14622",
+          "receipt_path": "data/raw/availability_role_web_preflight/03_syracuse_prior_boxscore.receipt.json",
+          "received_at": "2026-09-09T09:03:51.740668Z"
+        },
+        "observed_gamecast": {
+          "body_sha256": "4fd469b43b7bd1aec90df954f4eb88b088591887e081bd346559bd2eade3b71d",
+          "receipt_path": "data/raw/availability_role_web_preflight/01_syracuse_prior_gamecast.receipt.json",
+          "received_at": "2026-09-09T08:58:46.791281Z"
+        }
+      },
+      "team_id": "183"
+    },
+    {
+      "away_id": "26",
+      "completed_status": {
+        "description": "Final",
+        "state": "post",
+        "status_id": "3"
+      },
+      "game_date": "2026-09-06T02:30Z",
+      "game_id": "401858210",
+      "gamecast_diagnostic": {
+        "distinct_roster_QBs_with_explicit_C_ATT": 2,
+        "explicit_C_ATT_card_rows_matched_to_current_roster": 46,
+        "not_used_as_complete_passing_table": true,
+        "passing_leader_exact_roster_QB_id_uid_name_jersey_match": true,
+        "per_athlete_repeated_card_values_consistent": true
+      },
+      "home_id": "25",
+      "identity_verified": true,
+      "literal_boxscore_link": "/college-football/boxscore/_/gameId/401858210",
+      "passing_table": {
+        "UID_name_jersey_exact_matches": 2,
+        "athlete_fields": [
+          "athlt.id",
+          "athlt.uid",
+          "athlt.dspNm",
+          "athlt.jersey",
+          "athlt.lnk"
+        ],
+        "athlete_rows": 2,
+        "category_predicate": "type == 'passing'",
+        "duplicate_athlete_ids": 0,
+        "missing_or_invalid_C_ATT_rows": 0,
+        "non_QB_roster_matches": 0,
+        "positive_attempt_rows": 2,
+        "published_team_attempts": 47,
+        "roster_QB_ID_matches": 2,
+        "source_path": "window.__espnfitt__.page.content.gamepackage.bxscr[].stats[]",
+        "stat_key": "completions/passingAttempts",
+        "stat_label": "C/ATT",
+        "stats_keys_labels_totals_aligned": true,
+        "sum_athlete_attempts": 47,
+        "team_attempts_reconciled": true,
+        "team_completions_reconciled": true,
+        "team_field": "tm.id",
+        "unmatched_roster_ids": 0,
+        "value_format": "nonnegative integer completions/attempts, with completions <= attempts"
+      },
+      "prior_selection": "Fixed before these requests: latest team-linked date in the original target-summary lastFiveGames earlier than its receipt; no score/result values used.",
+      "role_evidence_available_at": "2026-09-09T09:03:51.999291Z",
+      "stages": {
+        "linked_boxscore": {
+          "body_sha256": "7127bb79259e26d8beefb831bd2cf717a4762c6fcf5b04269a35bffb79cdad14",
+          "receipt_path": "data/raw/availability_role_web_preflight/04_california_prior_boxscore.receipt.json",
+          "received_at": "2026-09-09T09:03:51.999291Z"
+        },
+        "observed_gamecast": {
+          "body_sha256": "4935f67d865ad70d1cc42c984bf7840ea18cbe1045d95f4012c5e3a42b5c3021",
+          "receipt_path": "data/raw/availability_role_web_preflight/02_california_prior_gamecast.receipt.json",
+          "received_at": "2026-09-09T08:58:47.369155Z"
+        }
+      },
+      "team_id": "25"
+    }
+  ],
+  "limits": [
+    "Complete means the explicitly labeled passing table returned in this snapshot, with player sums equal to team totals; later publisher corrections and broader source completeness are not certified.",
+    "The source-selected prior games are the most recent dated entries in the original lastFiveGames list; this preflight does not establish completeness of every team schedule.",
+    "All five observed passers are roster QBs with ATT>0, but prior participation does not establish a future starter or a health condition.",
+    "A current roster is mutable. Use actual original receipt times; do not backdate these new role observations into the earlier ACC capture.",
+    "Last-Modified headers that lie after receipt are preserved but cannot establish publication time.",
+    "The Gamecast passing leader alone is not the full passer set. Mixed shot-chart rows and repeated play cards were not substituted for the explicit passing table.",
+    "No populated ACC row crosswalk, status burden/change encoding, participation weighting, model performance or edge is established here."
+  ],
+  "new_web_sources": [
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_web_preflight/01_syracuse_prior_gamecast.body",
+      "body_sha256": "4fd469b43b7bd1aec90df954f4eb88b088591887e081bd346559bd2eade3b71d",
+      "body_size_bytes": 1309736,
+      "error": null,
+      "last_modified_after_receipt": true,
+      "receipt_path": "data/raw/availability_role_web_preflight/01_syracuse_prior_gamecast.receipt.json",
+      "receipt_sha256": "8e415397f006486c15c5a275fed9cd78ae98b7285c72cc113a62183267422e66",
+      "received_at": "2026-09-09T08:58:46.791281Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/game/_/gameId/401858208/new-hampshire-syracuse"
+      },
+      "requested_at": "2026-09-09T08:58:45.928311Z",
+      "response_headers": {
+        "cache_control": "max-age=0, must-revalidate",
+        "content_type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 08:58:46 GMT",
+        "last_modified": "Wed, 09 Sep 2026 09:08:46 GMT"
+      },
+      "stage": "observed_gamecast",
+      "status_code": 200
+    },
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_web_preflight/02_california_prior_gamecast.body",
+      "body_sha256": "4935f67d865ad70d1cc42c984bf7840ea18cbe1045d95f4012c5e3a42b5c3021",
+      "body_size_bytes": 1322785,
+      "error": null,
+      "last_modified_after_receipt": true,
+      "receipt_path": "data/raw/availability_role_web_preflight/02_california_prior_gamecast.receipt.json",
+      "receipt_sha256": "2a528bdf7151e7e55a133d5fc868bb12d358277c6a2ad7c02acb879a9ff5afb1",
+      "received_at": "2026-09-09T08:58:47.369155Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/game/_/gameId/401858210/ucla-california"
+      },
+      "requested_at": "2026-09-09T08:58:46.795112Z",
+      "response_headers": {
+        "cache_control": "max-age=0, must-revalidate",
+        "content_type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 08:58:47 GMT",
+        "last_modified": "Wed, 09 Sep 2026 09:08:47 GMT"
+      },
+      "stage": "observed_gamecast",
+      "status_code": 200
+    },
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_web_preflight/03_syracuse_prior_boxscore.body",
+      "body_sha256": "8090033efdee0f1ead380d166f292b7521e2ec2e1f7e428bcc113511eed14622",
+      "body_size_bytes": 574888,
+      "error": null,
+      "last_modified_after_receipt": true,
+      "receipt_path": "data/raw/availability_role_web_preflight/03_syracuse_prior_boxscore.receipt.json",
+      "receipt_sha256": "a616ae61399a14d810397e86737081c1414322d10a5b42594255dc9759e600fd",
+      "received_at": "2026-09-09T09:03:51.740668Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/boxscore/_/gameId/401858208"
+      },
+      "requested_at": "2026-09-09T09:03:51.261877Z",
+      "response_headers": {
+        "cache_control": "max-age=0, must-revalidate",
+        "content_type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 09:03:51 GMT",
+        "last_modified": "Wed, 09 Sep 2026 09:13:51 GMT"
+      },
+      "stage": "linked_boxscore",
+      "status_code": 200
+    },
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_web_preflight/04_california_prior_boxscore.body",
+      "body_sha256": "7127bb79259e26d8beefb831bd2cf717a4762c6fcf5b04269a35bffb79cdad14",
+      "body_size_bytes": 558614,
+      "error": null,
+      "last_modified_after_receipt": true,
+      "receipt_path": "data/raw/availability_role_web_preflight/04_california_prior_boxscore.receipt.json",
+      "receipt_sha256": "62a38bcd371acf4f8fc104df9ec4f03d084a338de8b981130f59137c810db8f5",
+      "received_at": "2026-09-09T09:03:51.999291Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/boxscore/_/gameId/401858210"
+      },
+      "requested_at": "2026-09-09T09:03:51.744300Z",
+      "response_headers": {
+        "cache_control": "max-age=0, must-revalidate",
+        "content_length": "558614",
+        "content_type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 09:03:51 GMT",
+        "last_modified": "Wed, 09 Sep 2026 09:10:39 GMT"
+      },
+      "stage": "linked_boxscore",
+      "status_code": 200
+    }
+  ],
+  "original_source_availability_reports": [
+    "ACC_QB_ROLE_PREFLIGHT.md",
+    "ACC_QB_ROLE_PREFLIGHT.json"
+  ],
+  "reused_roster_sources": [
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_preflight/01_syracuse_roster_network_authorized.body",
+      "body_sha256": "65342a98f7c5fefc68954c31ad4e02a46ff1053866c37f7f335b089db80e57ba",
+      "body_size_bytes": 626244,
+      "error": null,
+      "last_modified_after_receipt": true,
+      "receipt_path": "data/raw/availability_role_preflight/01_syracuse_roster_network_authorized.receipt.json",
+      "receipt_sha256": "2f12e18cd987910d7f014e06e4ed5a402450ec526612afcb941fa198e9284f9f",
+      "received_at": "2026-09-09T08:49:39.001529Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/team/roster/_/id/183"
+      },
+      "requested_at": "2026-09-09T08:49:38.574058Z",
+      "response_headers": {
+        "cache_control": "max-age=0, must-revalidate",
+        "content_type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 08:49:38 GMT",
+        "last_modified": "Wed, 09 Sep 2026 08:54:38 GMT"
+      },
+      "status_code": 200
+    },
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_preflight/02_california_roster.body",
+      "body_sha256": "0f273af255340e09c479d64f58534c5573c5e9349fa076d1a7aef54fef6d7a4d",
+      "body_size_bytes": 626106,
+      "error": null,
+      "last_modified_after_receipt": true,
+      "receipt_path": "data/raw/availability_role_preflight/02_california_roster.receipt.json",
+      "receipt_sha256": "02fe7f9fdd90ba4e0c983d7c286871412c1ce81b5d22db1b34cf52bf0090198e",
+      "received_at": "2026-09-09T08:49:39.280430Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/team/roster/_/id/25"
+      },
+      "requested_at": "2026-09-09T08:49:39.006994Z",
+      "response_headers": {
+        "cache_control": "max-age=0, must-revalidate",
+        "content_type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 08:49:39 GMT",
+        "last_modified": "Wed, 09 Sep 2026 08:54:39 GMT"
+      },
+      "status_code": 200
+    }
+  ],
+  "schema_version": "acc-qb-role-web-preflight-v1",
+  "scope": {
+    "all_HTTP200": true,
+    "gamecast_responses": 2,
+    "individual_ATT_weights_published": false,
+    "linked_boxscore_responses": 2,
+    "model_activation": false,
+    "model_fits": 0,
+    "new_public_HTTP_responses": 4,
+    "new_roster_requests": 0,
+    "player_list_published": false,
+    "repeated_denied_API_requests": 0,
+    "target_game_outcome_requests": 0
+  },
+  "source_plan": [
+    "Two Gamecast URLs directly observed in the original saved target summary; IDs selected before these source requests.",
+    "Two boxscore relative links directly observed in those Gamecast bodies, resolved against the same public ESPN origin; no other requests."
+  ],
+  "written_at": "2026-09-09T09:07:08.225764Z"
+}
