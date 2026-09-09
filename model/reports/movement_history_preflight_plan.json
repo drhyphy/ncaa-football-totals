@@ -1,0 +1,204 @@
+{
+  "schema_version": "movement-history-preflight-plan-v1",
+  "reference_date_utc": "2026-09-09",
+  "purpose": "Outcome-blind endpoint/identity/schema/retention feasibility, never an evaluation cohort or trading rule.",
+  "network_calls_made_in_plan_creation": 0,
+  "outcomes_read": false,
+  "maximum_authenticated_calls": 8,
+  "planned_authenticated_calls": 7,
+  "future_selection": {
+    "rule": "Use earliest pilot capture by actual capture_started_at, then earliest kickoff/numeric game ID among rows with both selected books.",
+    "pilot_path": "model/data/runtime/weather_revisions/runs/local-20260909T032436108097Z-1.json",
+    "pilot_sha256": "b180532c3d7d7fb73eea3aa84991ec3f934fef430d15874bb923cccfa9f0e42a",
+    "pilot_capture_started_at": "2026-09-09T03:24:36.108097Z",
+    "cohort_path": "model/data/runtime/weather_revisions/cohorts/local-20260909T032436108097Z-1.json",
+    "cohort_sha256": "85a6df88774a86dbbd396f4fb4ba9714697e4a375a5b630b95f9a17efb6f2c21",
+    "eligible_two_book_games": 51,
+    "selected": {
+      "game_id": "401858215",
+      "home_id": "97",
+      "away_id": "222",
+      "home_team": "Louisville Cardinals",
+      "away_team": "Villanova Wildcats",
+      "kickoff": "2026-09-11T23:00:00Z",
+      "odds_api_io_event_id": "70900784",
+      "first_quote_receipts": [
+        {
+          "body_sha256": "394816e3ce5bc851551f303b64b813d3f85c55a3147e8c40bb597713e773c9e5",
+          "game_id": "401858215",
+          "line": 56.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-08T03:35:45.803000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-09T03:25:00.935212Z",
+          "over_decimal_odds": 1.95,
+          "period": "full_game",
+          "provider_event_id": "70900784",
+          "quote_id": "c696551e5600985a6cc8f117210dcdf57aceb3fbb8e1f98fa24798e9caf69c1d",
+          "receipt_path": "data/runtime/weather_revisions/receipts/68d4f33f3068f8079ea3b9cb8801749f69f0c5fc2c68e77edd5113bd90b36956.json",
+          "requested_at": "2026-09-09T03:25:00.741290Z",
+          "source": "odds_api_io",
+          "sportsbook": "draftkings",
+          "under_decimal_odds": 1.86
+        },
+        {
+          "body_sha256": "394816e3ce5bc851551f303b64b813d3f85c55a3147e8c40bb597713e773c9e5",
+          "game_id": "401858215",
+          "line": 56.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-07T06:05:27.014000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-09T03:25:00.935212Z",
+          "over_decimal_odds": 1.909,
+          "period": "full_game",
+          "provider_event_id": "70900784",
+          "quote_id": "8a88f8a331c5d7947cb0669a79a242182ebb96e17cf560c5c288b807eac69c8f",
+          "receipt_path": "data/runtime/weather_revisions/receipts/68d4f33f3068f8079ea3b9cb8801749f69f0c5fc2c68e77edd5113bd90b36956.json",
+          "requested_at": "2026-09-09T03:25:00.741290Z",
+          "source": "odds_api_io",
+          "sportsbook": "fanduel",
+          "under_decimal_odds": 1.909
+        }
+      ]
+    }
+  },
+  "older_selection": {
+    "rule": "Among original captured pregame quotes with kickoff<=2026-09-02T00:00Z, sort actual recorded receipt, then kickoff, numeric game ID and book; select first game.",
+    "archive_path": "model/data/raw/alternative/archived_2026_paired_quotes.parquet",
+    "archive_sha256": "bf0c86d92458d7f253424b3fa8c9b97182207dae7519c559d93f89ceb91b970b",
+    "candidate_games": 8,
+    "selected": {
+      "game_id": "401856766",
+      "home_id": "2628",
+      "away_id": "153",
+      "home_team": "TCU Horned Frogs",
+      "away_team": "North Carolina Tar Heels",
+      "kickoff": "2026-08-29T16:00:00Z",
+      "earliest_retained_receipt": "2026-08-20T13:01:09Z",
+      "odds_api_io_event_id": null,
+      "existing_source": "the_odds_api",
+      "existing_source_event_id": "2c288580da16e12d35355f2548721be6",
+      "provider_id_resolution": "Required: exact home/away identity and kickoff from historical/events on 2026-08-29 UTC; do not reuse another provider ID.",
+      "original_source_reference": "ncaa_football_model/data/raw/the_odds_api/ncaaf_20260820T130109Z.json",
+      "original_source_sha256": "d7d706a0c31a9a53aa4c23f66e4080ba0f33b13bca6a8b4524cd484522ed0d95",
+      "original_metadata_sha256": "bfdcf82ed3ed7bebf932627164c831a18867aa073096b08d5849899e86b4b17a",
+      "receipt_evidence": "local_metadata_sha256_and_filesystem_dates; raw archive not committed to Git; not independently timestamp-attested",
+      "earliest_book_quotes": [
+        {
+          "book": "draftkings",
+          "line": 47.5,
+          "over_price": -110.0,
+          "under_price": -110.0,
+          "over_decimal_odds": 1.9090909090909092,
+          "under_decimal_odds": 1.9090909090909092,
+          "market_updated_at": "2026-08-20 13:00:28+00:00"
+        },
+        {
+          "book": "fanduel",
+          "line": 47.5,
+          "over_price": -115.0,
+          "under_price": -105.0,
+          "over_decimal_odds": 1.8695652173913042,
+          "under_decimal_odds": 1.9523809523809523,
+          "market_updated_at": "2026-08-20 13:00:28+00:00"
+        }
+      ]
+    }
+  },
+  "calls": [
+    {
+      "sequence": 1,
+      "params": {
+        "eventIds": "70900784",
+        "bookmakers": "DraftKings,FanDuel"
+      },
+      "purpose": "Fresh explicit Over/Under full-state schema and remaining-quota receipt for selected future event.",
+      "url": "https://api.odds-api.io/v3/odds/multi",
+      "max_attempts": 1
+    },
+    {
+      "sequence": 2,
+      "params": {
+        "eventId": "70900784",
+        "bookmaker": "DraftKings",
+        "market": "Totals",
+        "marketLine": "56.5"
+      },
+      "purpose": "Future DraftKings movement shape on the already-captured fixed line.",
+      "url": "https://api.odds-api.io/v3/odds/movements",
+      "max_attempts": 1
+    },
+    {
+      "sequence": 3,
+      "params": {
+        "eventId": "70900784",
+        "bookmaker": "FanDuel",
+        "market": "Totals",
+        "marketLine": "56.5"
+      },
+      "purpose": "Future FanDuel movement shape on the already-captured fixed line.",
+      "url": "https://api.odds-api.io/v3/odds/movements",
+      "max_attempts": 1
+    },
+    {
+      "sequence": 4,
+      "params": {
+        "sport": "american-football",
+        "league": "usa-college",
+        "from": "2026-08-29T00:00:00Z",
+        "to": "2026-08-30T00:00:00Z"
+      },
+      "purpose": "Resolve selected older game to this provider using identity fields only.",
+      "url": "https://api.odds-api.io/v3/historical/events",
+      "max_attempts": 1
+    },
+    {
+      "sequence": 5,
+      "params": {
+        "eventId": "<resolved_older_provider_id>",
+        "bookmakers": "DraftKings,FanDuel",
+        "markets": "Totals"
+      },
+      "purpose": "Validate explicit closing-total Over/Under fields; select one smallest valid reported total per book for retention probe only.",
+      "url": "https://api.odds-api.io/v3/historical/odds",
+      "max_attempts": 1
+    },
+    {
+      "sequence": 6,
+      "params": {
+        "eventId": "<resolved_older_provider_id>",
+        "bookmaker": "DraftKings",
+        "market": "Totals",
+        "marketLine": "<smallest_valid_DraftKings_total_from_call_5>"
+      },
+      "purpose": "Older DraftKings retention/schema check only; skip if ID or unambiguous line unavailable.",
+      "url": "https://api.odds-api.io/v3/odds/movements",
+      "max_attempts": 1
+    },
+    {
+      "sequence": 7,
+      "params": {
+        "eventId": "<resolved_older_provider_id>",
+        "bookmaker": "FanDuel",
+        "market": "Totals",
+        "marketLine": "<smallest_valid_FanDuel_total_from_call_5>"
+      },
+      "purpose": "Older FanDuel retention/schema check only; skip if ID or unambiguous line unavailable.",
+      "url": "https://api.odds-api.io/v3/odds/movements",
+      "max_attempts": 1
+    }
+  ],
+  "eighth_call_reserve": "Only a source-documented continuation needed to complete the same exact-day historical event discovery, if explicitly indicated by the response. Otherwise unused. No arbitrary retries or alternative game/date/line queries.",
+  "quota_guard": "Before call1 use current local allowance to ensure capacity; after call1 require valid remaining metadata >=7 reserved possible calls+20 reserve. Recheck remaining headers after every call and stop before crossing reserve. Stop on401/403/429; no subscriptions, book changes or quota expansion.",
+  "future_line_rule": "Keep each book line from first pilot capture, even if fresh current line differs.",
+  "older_line_rule": "From call5 each book selects the smallest positive finite half-point full-game Totals line having unambiguous explicit paired over/under decimal prices>1. Ignore outcomes. Selection is only endpoint/retention preflight; closing-conditioned lines cannot define a backtest cohort.",
+  "response_evidence": "Original unparsed bodies and sanitized request/HTTP receipts outside frozen pilot, plus schemas/counts and identity/side/time/line observations. No scores, weather values, winner, ROI, EV or signal tables.",
+  "limits": [
+    "The older original quote receipt is supported by local metadata and raw hashes, not independent timestamp attestation.",
+    "Provider-reported historical ticks retrieved now are different evidence from original pregame receipts.",
+    "No generic home/away to Over/Under mapping is assumed; symmetric prices cannot disambiguate sides.",
+    "No timestamp unit, suspension history, uninterrupted availability, pregame role, complete line-history or retention guarantee is inferred from one successful response.",
+    "Do not substitute a different event/book/line to repair missingness or change the frozen pilot/live policies."
+  ],
+  "plan_sha256": "4446aedf08bf2448044ab17ff9861238bc0dfb24021e31e3a3fc04aef5da5886"
+}
