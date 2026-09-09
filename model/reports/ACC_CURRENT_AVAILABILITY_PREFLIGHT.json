@@ -1,0 +1,421 @@
+{
+  "schema_version": "acc-current-availability-source-preflight-v1",
+  "observed_at": "2026-09-09T07:46:33.478204+00:00",
+  "status": "public_pending_report_verified_current_policy_summary_verified",
+  "scope": {
+    "successful_http_requests": 6,
+    "redirects": 0,
+    "actual_current_payloads_fetched": 1,
+    "public_eligibility_payloads_fetched": 1,
+    "policy_html_pages_fetched": 1,
+    "policy_pdf_fetched": false,
+    "credentials_or_cookies_sent": false,
+    "nonpublic_endpoints_called": false,
+    "roster_or_outcome_joins": false,
+    "model_fits": false,
+    "automation_or_policy_changes": false
+  },
+  "official_current_page": "https://theacc.com/sports/2025/8/28/availability-reporting-football.aspx",
+  "embedded_current_report": "https://app.hdintelligence.com/?source=ACC&sport=Football&conf=ACC&type=report",
+  "reused_bundle": {
+    "path": "data/raw/availability_preflight/acc/03_application.js",
+    "sha256": "11a53bb5861b2313855e5429751b334ee48a193f2679ef0b83ee674f90649f59",
+    "prior_receipt_path": "data/raw/availability_preflight/acc/03_application.receipt.json",
+    "prior_receipt_sha256": "dc4d04d746c57b195cbaa2a867d8a0d5f1d15a341fe3ffa7fb2dd5e220339059",
+    "new_embed_bytes_equal_prior_embed": true,
+    "same_bundle_url_observed": "https://app.hdintelligence.com/assets/index-CfQ2iXoZ.js",
+    "bundle_refetched": false
+  },
+  "public_access": {
+    "url": "https://app.hdintelligence.com/api/public-load",
+    "request_body": {
+      "conference_param": "ACC",
+      "sport_param": "Football",
+      "type_param": "report",
+      "referrer": "https://theacc.com/sports/2025/8/28/availability-reporting-football.aspx",
+      "source": "ACC"
+    },
+    "response": {
+      "public": true
+    },
+    "status_code": 200
+  },
+  "current_endpoint": {
+    "url": "https://app.hdintelligence.com/api/get-publish-public",
+    "method": "POST",
+    "request_body": {
+      "sport": "Football",
+      "organization": "ACC",
+      "conference": "ACC"
+    },
+    "documented_public_path_source": "https://app.hdintelligence.com/assets/PublishScreen-Dg-G25B2.js",
+    "status_code": 200
+  },
+  "payload": {
+    "top_type": "object",
+    "top_report_keys": [
+      "1182"
+    ],
+    "report_count": 1,
+    "report_fields": [
+      "ReportType",
+      "backgroundImage",
+      "conferenceColor1",
+      "conferenceColor2",
+      "conferenceFont",
+      "conferenceFont2",
+      "conferenceFontFileUrl",
+      "conferenceFontFileUrl2",
+      "conferenceFontSize",
+      "conferenceFontSize2",
+      "conferenceFontStyle",
+      "conferenceFontStyle2",
+      "conferenceImage",
+      "conferenceTimeZone",
+      "footer",
+      "gameNeutral",
+      "games",
+      "outCombined",
+      "postedTime",
+      "publishDate",
+      "publishDayOfWeek",
+      "statusReportOrder"
+    ],
+    "report_metadata": {
+      "ReportType": "Report Pending",
+      "conferenceTimeZone": "ET",
+      "gameNeutral": false,
+      "outCombined": 1,
+      "postedTime": "20:00:00",
+      "publishDate": "2026-09-09",
+      "publishDayOfWeek": "Wednesday",
+      "statusReportOrder": [
+        "Out",
+        "Out - (1st Half)",
+        "Doubtful",
+        "Questionable",
+        "Probable",
+        "Available"
+      ]
+    },
+    "team_block_fields": [
+      "rows",
+      "teamColor",
+      "teamColorHex1",
+      "teamColorHex2",
+      "teamDisplayName",
+      "teamImage",
+      "teamName",
+      "teamTextColor"
+    ],
+    "team_blocks": [
+      {
+        "teamName": "California",
+        "teamDisplayName": "California",
+        "rows_count": 0
+      },
+      {
+        "teamName": "Syracuse",
+        "teamDisplayName": "Syracuse",
+        "rows_count": 0
+      }
+    ],
+    "footer_fields": [
+      "date",
+      "location",
+      "networkAlternateImage",
+      "networkImage",
+      "time",
+      "venueImage"
+    ],
+    "footer_metadata": {
+      "date": "2026-09-12",
+      "time": "15:30:00",
+      "location": "Syracuse, NY"
+    },
+    "total_player_rows": 0,
+    "future_game_date_present": true,
+    "future_game_date_evidence": "Payload footer date 2026-09-12 is later than actual receipt date 2026-09-09; no independent schedule or outcome join was performed.",
+    "report_pending": true,
+    "current_player_row_schema_verified": false,
+    "report_key_is_verified_stable_game_id": false
+  },
+  "timing": {
+    "publish_fields_present": [
+      "publishDate",
+      "publishDayOfWeek",
+      "postedTime",
+      "conferenceTimeZone"
+    ],
+    "timezone_label": "ET",
+    "iana_timezone_explicit": false,
+    "already_issued_report_time_verified": false,
+    "interpretation": "The returned report is explicitly pending. Its September9 20:00:00 ET fields are a pending publication label, not evidence that a finalized report was issued at that instant. Server Date and actual HTTP receipt are separate.",
+    "first_publication_time_verified": false,
+    "revision_sequence_verified": false,
+    "empty_player_rows_mean_all_available": false,
+    "cache_control": "public, max-age=60, s-maxage=60, stale-while-revalidate=60, stale-if-error=300"
+  },
+  "policy": {
+    "official_summary_url": "https://theacc.com/sports/2025/8/28/availability-reporting.aspx",
+    "observed_second_consecutive_year_language": true,
+    "football_first_report_nights_before_game": 3,
+    "subsequent_reports": "Each day until game day; final report two hours before scheduled game time.",
+    "pre_game_day_categories": [
+      "Available",
+      "Probable",
+      "Questionable",
+      "Doubtful",
+      "Out"
+    ],
+    "game_day_categories": [
+      "Available",
+      "Game Time Decision",
+      "Out"
+    ],
+    "policy_percentage_labels": {
+      "Probable": 75,
+      "Questionable": 50,
+      "Doubtful": 25
+    },
+    "percentage_labels_are_empirically_calibrated": false,
+    "full_policy_link_observed": "https://theacc.com/documents/2026/8/24//ACC_Availability_Reporting_Policy_2026_27.pdf?id=2940",
+    "full_policy_body_read": false,
+    "four_phase_and_doubtful_archive_discrepancy_resolved_by_current_summary": true,
+    "exact_evening_deadline_verified_from_policy": false,
+    "first_half_exemption_rules_verified": false
+  },
+  "limitations": [
+    "One pending current payload establishes route/schema availability but contains no populated player-status rows.",
+    "The future matchup date is source-provided only, without official schedule reconciliation.",
+    "The current official policy summary resolves phase/category changes, but the linked 2026\u201327 PDF was not fetched within budget; exact evening deadlines and exception rules remain unverified.",
+    "Actual receipt does not certify first publication time; pending date/time metadata cannot be used as an issued report timestamp.",
+    "Zero pending rows are not a statement that all players are available.",
+    "Full rendering/routing timezone formatting was not inspected; ET remains the literal source label."
+  ],
+  "receipts": [
+    {
+      "schema_version": "acc-current-availability-preflight-receipt-v1",
+      "request_number": 1,
+      "source_url": "https://theacc.com/sports/2025/8/28/availability-reporting-football.aspx",
+      "method": "GET",
+      "request_body": null,
+      "capture_started_at": "2026-09-09T07:43:07+00:00",
+      "capture_completed_at": "2026-09-09T07:43:07+00:00",
+      "host_clock_resolution_seconds": 1,
+      "body_last_write_at_utc": "2026-09-09T07:43:07.836015+00:00",
+      "hashed_at": "2026-09-09T07:46:33.478204+00:00",
+      "status_code": 200,
+      "response_bytes": 498649,
+      "body_path": "data/raw/availability_preflight/acc_current/01_official.html",
+      "sha256": "a3bac9761211c2ecc9a8f7bd87422c44340db41c156392e990cc7dfa38960dcf",
+      "headers_path": "data/raw/availability_preflight/acc_current/01_official.headers",
+      "headers_sha256": "a7b3458fde6b1f4e25975d55b2d59a946fd8a3460dccac8375dca0df75306e04",
+      "safe_response_headers": {
+        "date": "Wed, 09 Sep 2026 07:43:07 GMT",
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=300",
+        "last-modified": "Wed, 09 Sep 2026 07:43:07 GMT"
+      },
+      "redirects": 0,
+      "request_credentials_used": false,
+      "cookies_sent": false,
+      "curl_transfer": {
+        "http_code": 200,
+        "redirects": 0,
+        "bytes": 498649,
+        "elapsed_seconds": 0.647671
+      },
+      "receipt_path": "data/raw/availability_preflight/acc_current/01_official.receipt.json",
+      "receipt_sha256": "9ec55877acd09dc6a969d6161f450f49af48df33d455366b7e52d813188adce6"
+    },
+    {
+      "schema_version": "acc-current-availability-preflight-receipt-v1",
+      "request_number": 2,
+      "source_url": "https://app.hdintelligence.com/?source=ACC&sport=Football&conf=ACC&type=report",
+      "method": "GET",
+      "request_body": null,
+      "capture_started_at": "2026-09-09T07:43:25+00:00",
+      "capture_completed_at": "2026-09-09T07:43:25+00:00",
+      "host_clock_resolution_seconds": 1,
+      "body_last_write_at_utc": "2026-09-09T07:43:25.459519+00:00",
+      "hashed_at": "2026-09-09T07:46:33.478204+00:00",
+      "status_code": 200,
+      "response_bytes": 945,
+      "body_path": "data/raw/availability_preflight/acc_current/02_embed.html",
+      "sha256": "0569e747190bb0d5fe69e6f17fe3428b06b727230c4553f7336ee97c940401e4",
+      "headers_path": "data/raw/availability_preflight/acc_current/02_embed.headers",
+      "headers_sha256": "9d20e21a6ee380eab7c8fc5aeefb484c0971e98bd5ff5925741c84e5a3c9c1ff",
+      "safe_response_headers": {
+        "date": "Wed, 09 Sep 2026 07:43:25 GMT",
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public,max-age=10,s-maxage=86400",
+        "last-modified": "Wed, 09 Sep 2026 02:01:51 GMT"
+      },
+      "redirects": 0,
+      "request_credentials_used": false,
+      "cookies_sent": false,
+      "curl_transfer": {
+        "http_code": 200,
+        "redirects": 0,
+        "bytes": 945,
+        "elapsed_seconds": 0.299709
+      },
+      "receipt_path": "data/raw/availability_preflight/acc_current/02_embed.receipt.json",
+      "receipt_sha256": "6029c38cd2fd78f41f5e998369207e8650678727d5af54bd9bc7e5f2a0a31354"
+    },
+    {
+      "schema_version": "acc-current-availability-preflight-receipt-v1",
+      "request_number": 3,
+      "source_url": "https://app.hdintelligence.com/assets/PublishScreen-Dg-G25B2.js",
+      "method": "GET",
+      "request_body": null,
+      "capture_started_at": "2026-09-09T07:43:42+00:00",
+      "capture_completed_at": "2026-09-09T07:43:42+00:00",
+      "host_clock_resolution_seconds": 1,
+      "body_last_write_at_utc": "2026-09-09T07:43:42.275177+00:00",
+      "hashed_at": "2026-09-09T07:46:33.478204+00:00",
+      "status_code": 200,
+      "response_bytes": 979,
+      "body_path": "data/raw/availability_preflight/acc_current/03_publish_screen.js",
+      "sha256": "99ff0e3aae03e1a48aaf48dcf2df9f29e2a7fcfcb8f0e8b80709f36eca65d9fc",
+      "headers_path": "data/raw/availability_preflight/acc_current/03_publish_screen.headers",
+      "headers_sha256": "edf2af793542b07c9da41867221f1143b0312f7bafe3a2c6e3051258fca3b53a",
+      "safe_response_headers": {
+        "date": "Wed, 09 Sep 2026 07:43:42 GMT",
+        "content-type": "text/javascript; charset=utf-8",
+        "content-length": "979",
+        "cache-control": "public,max-age=10,s-maxage=86400",
+        "etag": "\"dff62ff445d31c61a6348e2034638ba4\"",
+        "last-modified": "Wed, 09 Sep 2026 02:01:51 GMT"
+      },
+      "redirects": 0,
+      "request_credentials_used": false,
+      "cookies_sent": false,
+      "curl_transfer": {
+        "http_code": 200,
+        "redirects": 0,
+        "bytes": 979,
+        "elapsed_seconds": 0.07832
+      },
+      "receipt_path": "data/raw/availability_preflight/acc_current/03_publish_screen.receipt.json",
+      "receipt_sha256": "1484e88e3ebc31fae5966b83f3aa8f0f2a9b7bad6bc6482d5b47afbe60c0dcf8"
+    },
+    {
+      "schema_version": "acc-current-availability-preflight-receipt-v1",
+      "request_number": 4,
+      "source_url": "https://app.hdintelligence.com/api/public-load",
+      "method": "POST",
+      "request_body": {
+        "conference_param": "ACC",
+        "sport_param": "Football",
+        "type_param": "report",
+        "referrer": "https://theacc.com/sports/2025/8/28/availability-reporting-football.aspx",
+        "source": "ACC"
+      },
+      "capture_started_at": "2026-09-09T07:43:59+00:00",
+      "capture_completed_at": "2026-09-09T07:43:59+00:00",
+      "host_clock_resolution_seconds": 1,
+      "body_last_write_at_utc": "2026-09-09T07:43:59.917609+00:00",
+      "hashed_at": "2026-09-09T07:46:33.478204+00:00",
+      "status_code": 200,
+      "response_bytes": 16,
+      "body_path": "data/raw/availability_preflight/acc_current/04_public_load.json",
+      "sha256": "5357bab47fa8be4279f2e9a4e022c2c8ee97dc45e770f2536c0c06ee0ea5a7bf",
+      "headers_path": "data/raw/availability_preflight/acc_current/04_public_load.headers",
+      "headers_sha256": "9bc21beb9e4a6d1834227a51b5b21a100c08d9d481dadb197a235c5610526405",
+      "safe_response_headers": {
+        "date": "Wed, 09 Sep 2026 07:43:59 GMT",
+        "content-type": "application/json",
+        "content-length": "16",
+        "cache-control": "private"
+      },
+      "redirects": 0,
+      "request_credentials_used": false,
+      "cookies_sent": false,
+      "curl_transfer": {
+        "http_code": 200,
+        "redirects": 0,
+        "bytes": 16,
+        "elapsed_seconds": 0.168886
+      },
+      "receipt_path": "data/raw/availability_preflight/acc_current/04_public_load.receipt.json",
+      "receipt_sha256": "430497d3a7c9200e3c213ec81b8e037380f69c5c8b23080a9d8b69a022036d22"
+    },
+    {
+      "schema_version": "acc-current-availability-preflight-receipt-v1",
+      "request_number": 5,
+      "source_url": "https://app.hdintelligence.com/api/get-publish-public",
+      "method": "POST",
+      "request_body": {
+        "sport": "Football",
+        "organization": "ACC",
+        "conference": "ACC"
+      },
+      "capture_started_at": "2026-09-09T07:44:20+00:00",
+      "capture_completed_at": "2026-09-09T07:44:20+00:00",
+      "host_clock_resolution_seconds": 1,
+      "body_last_write_at_utc": "2026-09-09T07:44:20.899589+00:00",
+      "hashed_at": "2026-09-09T07:46:33.478204+00:00",
+      "status_code": 200,
+      "response_bytes": 1117075,
+      "body_path": "data/raw/availability_preflight/acc_current/05_current_payload.json",
+      "sha256": "7f16dceda02779e726ddb15f2392d2a65543e90ac2b02789127e09106cc4b6fc",
+      "headers_path": "data/raw/availability_preflight/acc_current/05_current_payload.headers",
+      "headers_sha256": "cfb6c7e1a61b99b070f3b638b9c31976c9fdfdc91f5c741771a1854642e5ea69",
+      "safe_response_headers": {
+        "date": "Wed, 09 Sep 2026 07:44:20 GMT",
+        "content-type": "application/json",
+        "content-length": "1117075",
+        "cache-control": "public, max-age=60, s-maxage=60, stale-while-revalidate=60, stale-if-error=300"
+      },
+      "redirects": 0,
+      "request_credentials_used": false,
+      "cookies_sent": false,
+      "curl_transfer": {
+        "http_code": 200,
+        "redirects": 0,
+        "bytes": 1117075,
+        "elapsed_seconds": 0.447715
+      },
+      "receipt_path": "data/raw/availability_preflight/acc_current/05_current_payload.receipt.json",
+      "receipt_sha256": "21c97775843a5ef4c28b628dc3388b5a323155406dd2bdd580e5e79234f4e9d2"
+    },
+    {
+      "schema_version": "acc-current-availability-preflight-receipt-v1",
+      "request_number": 6,
+      "source_url": "https://theacc.com/sports/2025/8/28/availability-reporting.aspx",
+      "method": "GET",
+      "request_body": null,
+      "capture_started_at": "2026-09-09T07:44:43+00:00",
+      "capture_completed_at": "2026-09-09T07:44:45+00:00",
+      "host_clock_resolution_seconds": 1,
+      "body_last_write_at_utc": "2026-09-09T07:44:45.869577+00:00",
+      "hashed_at": "2026-09-09T07:46:33.478204+00:00",
+      "status_code": 200,
+      "response_bytes": 351089,
+      "body_path": "data/raw/availability_preflight/acc_current/06_policy_home.html",
+      "sha256": "e6a00f892e0185f59c65f623d50b97ac1b0d787f64e6d6c22cfe9ab90ab47138",
+      "headers_path": "data/raw/availability_preflight/acc_current/06_policy_home.headers",
+      "headers_sha256": "898815b64fee3b4246d387aac2a30730b051956e572e844b24b657958e991490",
+      "safe_response_headers": {
+        "date": "Wed, 09 Sep 2026 07:44:44 GMT",
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "public, max-age=300",
+        "last-modified": "Wed, 09 Sep 2026 07:44:44 GMT"
+      },
+      "redirects": 0,
+      "request_credentials_used": false,
+      "cookies_sent": false,
+      "curl_transfer": {
+        "http_code": 200,
+        "redirects": 0,
+        "bytes": 351089,
+        "elapsed_seconds": 1.887498
+      },
+      "receipt_path": "data/raw/availability_preflight/acc_current/06_policy_home.receipt.json",
+      "receipt_sha256": "6713c7eeebba3eb99fc3d0c3109dfb8e17047682ec07def673da2353970b5120"
+    }
+  ],
+  "no_edge_claim": true
+}
