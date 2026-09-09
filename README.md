@@ -29,6 +29,8 @@ A separate [seven-day weather revision pilot](model/reports/WEATHER_REVISION_CAP
 
 The [first manual capture audit](model/reports/WEATHER_REVISION_FIRST_CAPTURE_AUDIT.md) independently reconstructed 307 HTTP receipts: 86 upcoming games, 62 valid forecasts, and 57 games with later prices (37 with both books). Forecast-to-price receipt gaps were 5.15–11.30 seconds. Missing venue and quote coverage remains explicit; these are collection counts, not betting results.
 
+The [first GitHub-hosted capture](model/reports/WEATHER_REVISION_HOSTED_CAPTURE_AUDIT.md) also passed reconstruction, with 46 weather-covered games and 44 paired with later prices. Sixteen forecast requests timed out and remain recorded as failures; hosted receipt gaps reached 130.30 seconds. A successful archive audit does not imply complete collection coverage.
+
 ## Prospective evaluation
 
 The [fixed evaluation protocol](model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md) covers September 9, 2026–January 31, 2027 games and sets February 8, 2027 as the evaluation date for the four current policies. Running results remain descriptive, with no interim promotion; historical results and reconstructed replays are excluded.

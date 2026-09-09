@@ -1,0 +1,105 @@
+{
+  "schema_version": "weather-revision-independent-audit-v1",
+  "audit_passed": true,
+  "run_id": "34307520971",
+  "run_attempt": "1",
+  "manifest_sha256": "f69d4a2e473d0be1a88411830531d6077eebbac7e298bb328e3a07b16fcae2cb",
+  "capture_status": "partial",
+  "capture_started_at": "2026-09-09T03:33:35.961981Z",
+  "capture_completed_at": "2026-09-09T03:35:55.211136Z",
+  "counts_reconstructed": {
+    "cohort_games": 86,
+    "failed_requests": 16,
+    "mature_comparator_games": 0,
+    "paired_games": 44,
+    "paired_two_book_games": 27,
+    "total_requests": 291,
+    "two_book_games": 51,
+    "weather_available_games": 46
+  },
+  "original_receipts_verified": 291,
+  "current_capture_receipts": 291,
+  "normalized_quote_pairs_reconstructed": 128,
+  "weather_quote_links_reconstructed": 71,
+  "weather_quote_gap_seconds": {
+    "minimum": 6.078164,
+    "maximum": 130.295177,
+    "median": 128.371973
+  },
+  "odds_requests": 10,
+  "recorded_git_commit": "a8fa0151e6d0d3209d7eee59d735bb9bae541f11",
+  "recorded_commit_provenance_verified": true,
+  "provenance": {
+    "data/models/weather_venues_v1.json": {
+      "recorded": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7",
+      "git_blob_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7",
+      "recorded_commit_matches": true,
+      "git_blob_path": "model/data/models/weather_venues_v1.json",
+      "git_blob_unavailable": false,
+      "current_matches": true
+    },
+    "ncaaf_model/revision_archive.py": {
+      "recorded": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0",
+      "git_blob_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0",
+      "recorded_commit_matches": true,
+      "git_blob_path": "model/ncaaf_model/revision_archive.py",
+      "git_blob_unavailable": false,
+      "current_matches": true
+    },
+    "ncaaf_model/teams.py": {
+      "recorded": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+      "git_blob_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+      "recorded_commit_matches": true,
+      "git_blob_path": "model/ncaaf_model/teams.py",
+      "git_blob_unavailable": false,
+      "current_matches": true
+    },
+    "ncaaf_model/weather_revision_collector.py": {
+      "recorded": "f75f983d75e79c6726945ce8eefb83c6a9d6eefb48cd3f6c0d5c4c02cc1cad61",
+      "git_blob_sha256": "f75f983d75e79c6726945ce8eefb83c6a9d6eefb48cd3f6c0d5c4c02cc1cad61",
+      "recorded_commit_matches": true,
+      "git_blob_path": "model/ncaaf_model/weather_revision_collector.py",
+      "git_blob_unavailable": false,
+      "current_matches": true
+    },
+    "ncaaf_model/weather_revision_weather.py": {
+      "recorded": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0",
+      "git_blob_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0",
+      "recorded_commit_matches": true,
+      "git_blob_path": "model/ncaaf_model/weather_revision_weather.py",
+      "git_blob_unavailable": false,
+      "current_matches": true
+    },
+    "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+      "recorded": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496",
+      "git_blob_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496",
+      "recorded_commit_matches": true,
+      "git_blob_path": "model/reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md",
+      "git_blob_unavailable": false,
+      "current_matches": true
+    }
+  },
+  "no_network": true,
+  "outcomes_extracted": false,
+  "performance_evaluated": false,
+  "method": "Independent reconstruction; no project parser imported. Recorded Git source blobs verified when available; missing history explicitly unavailable. Frozen alias/catalog bytes must match their recorded hashes. Current-tree matching is informational.",
+  "limitation": "Receipt/schema/measurement/price linkage audit, not forecast accuracy, profitability, publication-time certification, or proof of complete provider coverage.",
+  "audit_script_sha256": "65411b7be13f75c4759c21df7820f18045166a47c484cf8474037d17f3ec574c",
+  "failure_types": {
+    "ReadTimeout": 16
+  },
+  "failed_request_purposes": {
+    "weather_single_run": 16
+  },
+  "http_status_counts": {
+    "200": 275,
+    "None": 16
+  },
+  "missingness_counts": {
+    "venue_not_in_frozen_catalog": 24,
+    "no_valid_totals_quote": 9,
+    "indoor_or_unknown_roof": 1,
+    "single_run_validation_failed": 16
+  },
+  "capture_duration_seconds": 139.249155
+}
