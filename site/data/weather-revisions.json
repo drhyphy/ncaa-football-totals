@@ -1,6 +1,6 @@
 {
   "schema_version": "weather-revision-status-v1",
-  "generated_at": "2026-09-09T03:35:55.341000Z",
+  "generated_at": "2026-09-09T12:23:59.307343Z",
   "phase": "active",
   "status": "attention",
   "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
@@ -15,36 +15,36 @@
   "collection_only": true,
   "performance_evaluated": false,
   "active_policy_changed": false,
-  "archived_runs": 2,
+  "archived_runs": 3,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 2,
+  "partial_or_failed_runs": 3,
   "latest": {
-    "capture_started_at": "2026-09-09T03:33:35.961981Z",
-    "capture_completed_at": "2026-09-09T03:35:55.211136Z",
-    "requested_run": "2026-09-08T18:00:00Z",
+    "capture_started_at": "2026-09-09T12:22:42.601240Z",
+    "capture_completed_at": "2026-09-09T12:23:57.707367Z",
+    "requested_run": "2026-09-09T06:00:00Z",
     "status": "partial",
     "counts": {
       "cohort_games": 86,
-      "weather_available_games": 46,
+      "weather_available_games": 55,
       "two_book_games": 51,
-      "paired_games": 44,
-      "failed_requests": 16,
-      "paired_two_book_games": 27,
-      "total_requests": 291
+      "paired_games": 50,
+      "failed_requests": 7,
+      "paired_two_book_games": 31,
+      "total_requests": 300
     },
-    "manifest_sha256": "f69d4a2e473d0be1a88411830531d6077eebbac7e298bb328e3a07b16fcae2cb"
+    "manifest_sha256": "097e63ed4273b047bfd80a8ebfa1172ab251ed87a0d4bfc0063e0d5197d702b0"
   },
   "game_observation_totals": {
-    "cohort_games": 172,
-    "weather_available_games": 108,
-    "two_book_games": 102,
-    "paired_games": 101,
-    "failed_requests": 16,
-    "total_requests": 598,
-    "paired_two_book_games": 64
+    "cohort_games": 258,
+    "weather_available_games": 163,
+    "two_book_games": 153,
+    "paired_games": 151,
+    "failed_requests": 23,
+    "total_requests": 898,
+    "paired_two_book_games": 95
   },
   "last_workflow_attempt": {
-    "started_at": "2026-09-09T03:33:10.315146Z",
+    "started_at": "2026-09-09T12:22:12.897832Z",
     "outcome": "failure",
     "matching_manifest": true
   },
