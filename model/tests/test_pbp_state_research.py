@@ -123,3 +123,16 @@ def test_outputs_are_immutable(tmp_path):
     study.write_new(p,{'value':1})
     with pytest.raises(FileExistsError):study.write_new(p,{'value':2})
     assert json.loads(p.read_text())=={'value':1}
+
+
+@pytest.mark.parametrize('path',[
+    'reports/pbp_state_selection.json', 'reports/pbp_state_results.json',
+    'data/normalized/pbp_state_v1/selection.parquet', 'data/normalized/pbp_state_v1/2025.parquet'])
+def test_source_amendment_cannot_claim_pre_performance_after_v1_forecasts(tmp_path,path):
+    audit=tmp_path/'reports/pbp_state_feature_audit.json'
+    audit.parent.mkdir(parents=True)
+    audit.write_text(json.dumps({'matchup_prediction_scores_computed':False}))
+    existing=tmp_path/path;existing.parent.mkdir(parents=True,exist_ok=True)
+    existing.write_bytes(b'prior evaluation exists')
+    with pytest.raises(ValueError,match='no earlier matchup evaluation'):study.freeze(tmp_path)
+    assert not (tmp_path/study.PLAN).exists()

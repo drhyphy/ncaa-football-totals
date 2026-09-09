@@ -20,14 +20,14 @@ from . import opponent_model
 from .ordinary_features_research import validate_cache
 from .ordinary_model_research import scores, weeks
 
-VERSION = 'pbp-state-residual-comparison-v1'
-PLAN = Path('reports/pbp_state_research_plan.json')
-SPEC = Path('reports/PBP_STATE_RESEARCH_PLAN.md')
+VERSION = 'pbp-state-residual-comparison-v2-local-order'
+PLAN = Path('reports/pbp_state_research_plan_v2.json')
+SPEC = Path('reports/PBP_STATE_RESEARCH_PLAN_V2.md')
 BASE = Path('data/normalized/opponent_features_verified_cf764f803b38ecfd.parquet')
-SPACE = Path('data/normalized/pbp_state_v1')
-FEATURE_AUDIT = Path('reports/pbp_state_feature_audit.json')
-SELECTION = Path('reports/pbp_state_selection.json')
-RESULTS = Path('reports/pbp_state_results.json')
+SPACE = Path('data/normalized/pbp_state_v2')
+FEATURE_AUDIT = Path('reports/pbp_state_feature_audit_v2.json')
+SELECTION = Path('reports/pbp_state_selection_v2.json')
+RESULTS = Path('reports/pbp_state_results_v2.json')
 CONFIGS = ('market_only', 'opponent_adjusted_ridge', 'pbp_state_ridge')
 NEW_COLUMNS = ('pbp_clock_rating', 'pbp_conversion_percentage_points')
 FULL_COLUMNS = (*opponent_model.FEATURES, *NEW_COLUMNS)
@@ -69,10 +69,17 @@ def committed(root, relatives):
 def freeze(root):
     if (root/PLAN).exists() or (root/SPACE).exists():
         raise FileExistsError('This experiment is already frozen or has generated data')
+    old_audit = json.loads((root/'reports/pbp_state_feature_audit.json').read_text())
+    if old_audit.get('matchup_prediction_scores_computed') is not False or any((root/path).exists() for path in (
+            'reports/pbp_state_selection.json', 'reports/pbp_state_results.json',
+            'data/normalized/pbp_state_v1/selection.parquet', 'data/normalized/pbp_state_v1/2025.parquet')):
+        raise ValueError('The v2 source amendment requires no earlier matchup evaluation')
     prior = json.loads((root/'reports/direct_probability_research_plan.json').read_text())
     inputs = dict(prior['source_files_sha256'])
     tracked = [SPEC, Path('reports/PBP_RESEARCH_SOURCE_INVENTORY.json'),
                Path('reports/PBP_RAW_ACQUISITION_AUDIT.json'),
+               Path('reports/PBP_IDENTITY_DIAGNOSTIC.md'), Path('reports/PBP_IDENTITY_DIAGNOSTIC.json'),
+               Path('reports/pbp_state_research_plan.json'), Path('reports/pbp_state_feature_audit.json'),
                Path('requirements-lock.txt'), Path('pyproject.toml'),
                Path('ncaaf_model/ordinary_model_research.py'),
                Path('ncaaf_model/ordinary_features_research.py')]
@@ -90,10 +97,13 @@ def freeze(root):
             'tracked_files': list(map(str, tracked)), 'libraries': {k: version(k) for k in LIBRARIES},
             'candidate_order': list(CONFIGS), 'new_predictors': list(NEW_COLUMNS),
             'selection_years': list(SELECTION_YEARS), 'later_check_year': 2025,
-            'primary_metric': 'mse', 'plays_read': False, 'new_model_fits_run': False,
+            'primary_metric': 'mse', 'pre_performance_source_amendment': True,
+            'prior_play_values_inspected': True, 'prior_v1_conditional_rating_fits_run': True,
+            'v2_rating_fits_run': False, 'matchup_model_fits_or_scores_computed': False,
             'no_2026_outcomes': True, 'live_policy_changes': False}
     write_new(root/PLAN, plan)
-    return {'status': 'frozen', 'plan_sha256': sha(root/PLAN), 'plays_read': False}
+    return {'status': 'amended_plan_frozen', 'plan_sha256': sha(root/PLAN),
+            'prior_play_values_inspected': True, 'matchup_scores_computed': False}
 
 
 def read_plan(root):

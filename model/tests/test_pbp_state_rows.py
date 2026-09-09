@@ -241,24 +241,121 @@ def test_unknown_helper_flags_are_preserved_in_coverage_without_imaginary_veto()
     assert report["unknown_raw_flags"]["penalty_flag"]==1 and report["unknown_raw_flags"]["isPenalty"]==1
 
 
-@pytest.mark.parametrize("column", ["id","sequenceNumber","game_play_number"])
-def test_ambiguous_duplicates_and_missing_order_reject_whole_game(column):
+@pytest.mark.parametrize("column", ["id","game_play_number"])
+def test_ambiguous_duplicate_play_id_or_number_rejects_whole_game(column):
     frame=three();frame.loc[1,column]=frame.loc[0,column]
     rows,report=parser.prepare_rows(frame,schedule())
     assert rows.empty and report["exclusions"]["ambiguous_duplicate_play_identity"]==3
+
+
+@pytest.mark.parametrize("column", ["id","sequenceNumber","game_play_number"])
+def test_missing_play_identity_or_order_still_rejects_whole_game(column):
     frame=three();frame.loc[1,column]=pd.NA
     rows,report=parser.prepare_rows(frame,schedule())
     assert rows.empty and report["exclusions"]["missing_or_invalid_play_identity"]==3
 
 
-def test_inconsistent_archived_order_and_schedule_identity_are_counted():
+def test_local_order_disagreement_withholds_states_without_rejecting_game():
     frame=three();frame.loc[[1,2],"game_play_number"]=[3,2]
     rows,report=parser.prepare_rows(frame,schedule())
-    assert rows.empty and report["exclusions"]["inconsistent_archived_order"]==3
+    assert rows.empty
+    assert report["exclusions"]["unavailable_pre_score_after_archived_play_number_gap"]==2
+    assert report["by_game"][0]["rejected_reason"] is None
+    assert report["matched_final_games"]==1
+
+
+def test_schedule_identity_mismatch_still_rejects_whole_game():
     for col in ["homeTeamId","awayTeamId","season"]:
         frame=three();frame.loc[1,col]=999
         rows,report=parser.prepare_rows(frame,schedule())
         assert rows.empty and report["exclusions"]["raw_schedule_identity_mismatch"]==3
+
+
+def ordered_chain(count=8):
+    return raw(*(play(i, **{"clock.displayValue": f"13:{(count-i)*5:02d}"})
+                 for i in range(1, count+1)))
+
+
+def test_sequence_ties_are_local_state_and_clock_barriers():
+    frame=ordered_chain()
+    frame.loc[3,"sequenceNumber"]=frame.loc[2,"sequenceNumber"]
+    rows,report=parser.prepare_rows(frame,schedule())
+    assert rows.game_play_number.tolist()==[2,6,7,8]
+    assert np.isnan(rows.clock_seconds.iloc[0])
+    assert rows.clock_seconds.iloc[1:3].tolist()==[5.,5.]
+    assert report["version"]=="raw-play-state-rows-v2"
+    assert report["exclusions"]["ambiguous_sequence_number"]==2
+    assert report["exclusions"]["unavailable_pre_score_after_ambiguous_sequence_number"]==1
+    assert report["sequence_tie_rows"]==2 and report["sequence_tie_groups"]==1
+    assert report["by_game"][0]["rejected_reason"] is None
+    assert report["by_game"][0]["sequence_tie_rows"]==2
+
+
+def test_tie_input_permutation_and_tied_scores_cannot_change_retained_state():
+    frame=ordered_chain()
+    frame.loc[3,"sequenceNumber"]=frame.loc[2,"sequenceNumber"]
+    frame.loc[2,["homeScore","awayScore"]]=[10,20]
+    frame.loc[3,["homeScore","awayScore"]]=[30,40]
+    expected,coverage=parser.prepare_rows(frame,schedule())
+    permuted=frame.iloc[[7,3,0,6,2,4,1,5]].copy()
+    changed,changed_coverage=parser.prepare_rows(permuted,schedule())
+    pd.testing.assert_frame_equal(changed,expected)
+    assert changed_coverage==coverage
+    frame.loc[[2,3],["homeScore","awayScore"]]=999
+    poisoned,_=parser.prepare_rows(frame,schedule())
+    pd.testing.assert_frame_equal(poisoned,expected)
+
+
+def test_multiple_tie_blocks_do_not_merge_or_bridge_into_valid_segments():
+    frame=ordered_chain()
+    frame.loc[1,"sequenceNumber"]=frame.loc[0,"sequenceNumber"]
+    frame.loc[4,"sequenceNumber"]=frame.loc[3,"sequenceNumber"]
+    rows,report=parser.prepare_rows(frame,schedule())
+    assert rows.game_play_number.tolist()==[7,8]
+    assert rows.clock_seconds.iloc[0]==5
+    assert report["sequence_tie_groups"]==2 and report["sequence_tie_rows"]==4
+    assert report["exclusions"]["unavailable_pre_score_after_ambiguous_sequence_number"]==2
+
+
+def test_administrative_tied_row_still_blocks_the_immediate_successor():
+    frame=ordered_chain(6)
+    frame.loc[3,"sequenceNumber"]=frame.loc[2,"sequenceNumber"]
+    frame.loc[3,"type.text"]="Timeout"
+    frame.loc[3,"orig_play_type"]="Timeout"
+    frame.loc[3,"text"]="Timeout"
+    rows,report=parser.prepare_rows(frame,schedule())
+    assert rows.game_play_number.tolist()==[2,6]
+    assert report["exclusions"]["ambiguous_sequence_number"]==2
+    assert report["exclusions"]["unavailable_pre_score_after_ambiguous_sequence_number"]==1
+    assert rows.clock_seconds.isna().all()
+
+
+def test_all_tied_rows_have_no_fallback_order_or_state():
+    frame=ordered_chain()
+    frame["sequenceNumber"]=pd.array([9007199254741311]*len(frame),dtype="Int64")
+    rows,report=parser.prepare_rows(frame,schedule())
+    assert rows.empty and report["exclusions"]["ambiguous_sequence_number"]==8
+    assert report["sequence_tie_groups"]==1 and report["matched_final_games"]==1
+
+
+def test_global_play_number_reversal_retains_only_locally_agreeing_segments():
+    frame=ordered_chain()
+    frame["game_play_number"]=pd.array([1,2,3,10,11,4,5,6],dtype="Int64")
+    rows,report=parser.prepare_rows(frame,schedule())
+    assert rows.game_play_number.tolist()==[2,3,11,5,6]
+    assert rows.play_id.tolist()==[9007199254741202,9007199254741203,
+                                  9007199254741205,9007199254741207,9007199254741208]
+    assert rows.clock_seconds.dropna().tolist()==[5.,5.]
+    assert report["exclusions"]["unavailable_pre_score_after_archived_play_number_gap"]==2
+    assert report["by_game"][0]["rejected_reason"] is None
+
+
+def test_sparse_but_unique_sequence_values_do_not_require_numeric_adjacency():
+    frame=three()
+    frame["sequenceNumber"]=pd.array([100,200,500],dtype="Int64")
+    rows,report=parser.prepare_rows(frame,schedule())
+    assert rows.game_play_number.tolist()==[2,3] and rows.clock_seconds.iloc[0]==10
+    assert report["sequence_tie_rows"]==report["sequence_tie_groups"]==0
 
 
 def test_unmatched_nonfinal_and_invalid_schedule_context_are_not_training_data():

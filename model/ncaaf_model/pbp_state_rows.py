@@ -1,8 +1,9 @@
 """Pure, unvalidated raw-play state observations; no I/O, ratings or EPA.
 
 Scores are reconstructed from the preceding consecutive archived post-play
-record. First rows and first rows after numbered gaps have unavailable state.
-Clock depletion describes
+record. First rows, sequence ties, their immediate successors, and first rows
+after numbered gaps have unavailable state. Sequence order remains primary;
+locally consecutive play numbers are also required. Clock depletion describes
 adjacent recorded game clocks, not measured between-snap tempo. Unknown helper
 flags are counted; only explicit vetoes exclude a play. Missing response and
 ambiguous pass/rush attribution remain missing, independently of one another.
@@ -17,7 +18,7 @@ import numpy as np
 import pandas as pd
 from pandas.api.types import is_bool_dtype, is_integer_dtype
 
-VERSION = "raw-play-state-rows-v1"
+VERSION = "raw-play-state-rows-v2"
 RAW_COLUMNS = (
     "season", "game_id", "id", "sequenceNumber", "game_play_number",
     "homeTeamId", "awayTeamId", "drive.id", "type.text", "orig_play_type", "text",
@@ -176,8 +177,10 @@ def prepare_rows(raw: pd.DataFrame, schedules: pd.DataFrame):
 
     Extra input fields are ignored; only RAW_COLUMNS can influence output.
     Schema errors or ambiguous duplicate schedule identities raise. Invalid raw
-    game identities/order reject that game's rows with a counted reason. Gaps in
-    game_play_number are retained for efficiency but break clock adjacency.
+    game identities or duplicate play IDs/numbers reject that game's rows with
+    a counted reason. Sequence ties are local barriers: every tied row and the
+    first following state are withheld. Other states require locally consecutive
+    game_play_number in primary sequence order; disagreements are not bridged.
     """
     _schema(raw, RAW_COLUMNS, INTEGER_COLUMNS, FLAG_COLUMNS, STRING_COLUMNS)
     _schema(schedules, SCHEDULE_COLUMNS, ("game_id", "season", "week", "home_id", "away_id"), ("neutral_site",), ("status",))
@@ -192,7 +195,7 @@ def prepare_rows(raw: pd.DataFrame, schedules: pd.DataFrame):
     exclusions["missing_or_invalid_game_id"] += int((~valid_game).sum())
     for name in FLAG_COLUMNS:
         unknown[name] = int(work[name].isna().sum())
-    matched_games = 0
+    matched_games, sequence_tie_rows, sequence_tie_groups = 0, 0, 0
     for game_id, group in work.loc[valid_game].groupby("game_id", sort=True):
         game_id = int(game_id)
         game = schedule_map.get(game_id)
@@ -218,27 +221,32 @@ def prepare_rows(raw: pd.DataFrame, schedules: pd.DataFrame):
             home, away = int(game["home_id"]), int(game["away_id"])
             if any(not group[col].notna().all() or not group[col].ge(0 if col in ("sequenceNumber", "game_play_number") else 1).all() for col in ("id", "sequenceNumber", "game_play_number")):
                 reason = "missing_or_invalid_play_identity"
-            elif any(group[col].duplicated().any() for col in ("id", "sequenceNumber", "game_play_number")):
+            elif any(group[col].duplicated().any() for col in ("id", "game_play_number")):
                 reason = "ambiguous_duplicate_play_identity"
             elif not group.season.eq(game["season"]).fillna(False).all() or not group.homeTeamId.eq(home).fillna(False).all() or not group.awayTeamId.eq(away).fillna(False).all():
                 reason = "raw_schedule_identity_mismatch"
         if reason is None:
             group = group.sort_values("sequenceNumber", kind="stable")
-            ordered = group.game_play_number.tolist()
-            if any(int(b) <= int(a) for a, b in zip(ordered, ordered[1:])):
-                reason = "inconsistent_archived_order"
         if reason is not None:
             exclusions[reason] += len(group)
             game_reports.append({"game_id": game_id, "raw_rows": len(group), "rejected_reason": reason, "output_rows": 0})
             continue
         matched_games += 1
         records = group.to_dict("records")
-        legal = [_legal(row, home, away) for row in records]
+        ties = group.sequenceNumber.duplicated(keep=False).tolist()
+        tied_groups = int(group.loc[ties, "sequenceNumber"].nunique())
+        sequence_tie_rows += sum(ties)
+        sequence_tie_groups += tied_groups
+        legal = ["ambiguous_sequence_number" if tied else _legal(row, home, away)
+                 for row, tied in zip(records, ties)]
         local_exclusions, n_clock, n_conversion, n_pass_unknown = Counter(), 0, 0, 0
         start_count = len(output)
         for i, row in enumerate(records):
             if legal[i] is not None:
                 local_exclusions[legal[i]] += 1
+                continue
+            if i and ties[i-1]:
+                local_exclusions["unavailable_pre_score_after_ambiguous_sequence_number"] += 1
                 continue
             if i and int(row["game_play_number"]) != int(records[i-1]["game_play_number"]) + 1:
                 local_exclusions["unavailable_pre_score_after_archived_play_number_gap"] += 1
@@ -283,6 +291,7 @@ def prepare_rows(raw: pd.DataFrame, schedules: pd.DataFrame):
                 int(row["id"]), int(row["sequenceNumber"]), int(row["game_play_number"]), _text(row["drive.id"]) or None, pre[0], pre[1]))
         exclusions.update(local_exclusions)
         game_reports.append({"game_id": game_id, "season": int(game["season"]), "raw_rows": len(group),
+            "sequence_tie_rows": sum(ties), "sequence_tie_groups": tied_groups,
             "legal_scrimmage_rows": sum(x is None for x in legal), "output_rows": len(output)-start_count,
             "clock_available_rows": n_clock, "conversion_available_rows": n_conversion,
             "pass_unknown_rows": n_pass_unknown, "exclusions": dict(local_exclusions), "rejected_reason": None})
@@ -291,10 +300,12 @@ def prepare_rows(raw: pd.DataFrame, schedules: pd.DataFrame):
         rows = rows.sort_values(["available_at", "game_id", "sequence_number"]).reset_index(drop=True)
     coverage = {"version": VERSION, "raw_rows": len(raw), "raw_games_with_valid_id": int(work.loc[valid_game, "game_id"].nunique()),
         "matched_final_games": matched_games, "output_rows": len(rows),
+        "sequence_tie_rows": sequence_tie_rows, "sequence_tie_groups": sequence_tie_groups,
         "clock_available_rows": int(rows.clock_seconds.notna().sum()), "conversion_available_rows": int(rows.conversion.notna().sum()),
         "pass_unknown_rows": int(rows.pass_play.isna().sum()), "exclusions": dict(exclusions), "missing_responses": dict(missing),
         "unknown_raw_flags": dict(unknown), "by_game": game_reports,
-        "limits": ["First archived rows and rows immediately after numbered gaps have no inferred pre-score; later state uses the previous consecutive archived post-score.",
+        "limits": ["Primary sequence order is retained. Sequence ties and their immediate following states are barriers, never guessed tie-breaks.",
+                   "First archived rows and rows after local play-number disagreement have no inferred pre-score; later state uses the previous consecutive, unambiguous archived post-score.",
                    "Unknown helper flags are counted; absence of an explicit veto does not certify absence of an event.",
                    "Fumble origins may remain ambiguous after explicit special-team vetoes; pass/rush attribution can be missing.",
                    "Adjacent game-clock depletion is not measured between-snap tempo; gaps and administrative rows are never bridged.",

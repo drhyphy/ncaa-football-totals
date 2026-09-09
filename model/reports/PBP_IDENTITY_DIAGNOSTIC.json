@@ -1,0 +1,1604 @@
+{
+  "conclusions": [
+    "No within-game raw id or game_play_number duplicates occur in any of the seven pinned assets. The proposed raw-ID collision explanation is unsupported.",
+    "All detected duplicate-identity intersections are sequenceNumber-only. In 2025, 414 affected games contain 72693 rows; 4290 repeated sequence groups contain 8813 rows (4523 excess keys).",
+    "The (game_id,sequenceNumber,game_play_number) composite is unique in all seven seasons, but uniqueness does not establish chronology.",
+    "Sequence and processed play-number order disagree even in games without sequence ties. The four identity-selected examples favor retaining sequence as the primary ordering field, while demonstrating that neither field guarantees chronology.",
+    "A conservative local correction can retain sequence order, preserve tied records as barriers, exclude tied rows and their first successor state, and require consecutive game_play_number values on every admitted predecessor/state or clock edge. It must not bridge ties, guess tie order, or treat global field disagreement as proof that every local segment is invalid.",
+    "No parser, acquisition receipt, source inventory, frozen plan or previous build was changed by this diagnostic. Coverage repair is a source-semantic decision made before evaluating model performance."
+  ],
+  "created_at": "2026-09-09T06:19:53.738034+00:00",
+  "definitions": {
+    "composite_key": "(game_id, sequenceNumber, game_play_number)",
+    "duplicate_by_field": "Within-game duplicate non-null values; rows_in_affected_games counts every raw record in the affected games.",
+    "exact_identity_tuple": "(game_id, id, sequenceNumber, game_play_number, season)",
+    "intersection_profiles": "Mutually exclusive game sets showing exactly which fields duplicate.",
+    "numeric_pattern": "For positive raw IDs above 2^53, count divisibility by 2^(bit_length(id)-53), the binary64 integer spacing at that magnitude. This is only a numeric pattern, not a proven conversion history.",
+    "ordering": "Sort by sequenceNumber, breaking equal sequence ties by game_play_number; detect non-increasing play number. Unique-order conflicts are separately restricted to games with both order fields unique."
+  },
+  "dtype_backend": "numpy_nullable",
+  "fixed_chronology_sample": {
+    "additional_columns": [
+      "period.number",
+      "clock.displayValue",
+      "type.text"
+    ],
+    "games": [
+      {
+        "game_id": 401752746,
+        "orders": {
+          "game_play_number": {
+            "examples": [
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "12:27",
+                    "game_play_number": 9,
+                    "id": 40175274643,
+                    "period.number": 1,
+                    "sequenceNumber": 9,
+                    "type.text": "Rush"
+                  },
+                  {
+                    "clock.displayValue": "12:34",
+                    "game_play_number": 10,
+                    "id": 40175274645,
+                    "period.number": 1,
+                    "sequenceNumber": 8,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              },
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "5:39",
+                    "game_play_number": 26,
+                    "id": 401752746110,
+                    "period.number": 1,
+                    "sequenceNumber": 25,
+                    "type.text": "Sack"
+                  },
+                  {
+                    "clock.displayValue": "5:49",
+                    "game_play_number": 27,
+                    "id": 401752746112,
+                    "period.number": 1,
+                    "sequenceNumber": 24,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              },
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "4:43",
+                    "game_play_number": 29,
+                    "id": 401752746122,
+                    "period.number": 1,
+                    "sequenceNumber": 28,
+                    "type.text": "Rush"
+                  },
+                  {
+                    "clock.displayValue": "4:51",
+                    "game_play_number": 30,
+                    "id": 401752746124,
+                    "period.number": 1,
+                    "sequenceNumber": 27,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              },
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "13:27",
+                    "game_play_number": 41,
+                    "id": 401752746174,
+                    "period.number": 2,
+                    "sequenceNumber": 38,
+                    "type.text": "Pass Reception"
+                  },
+                  {
+                    "clock.displayValue": "13:36",
+                    "game_play_number": 42,
+                    "id": 401752746176,
+                    "period.number": 2,
+                    "sequenceNumber": 37,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              }
+            ],
+            "period_decreases": 0,
+            "same_period_clock_increases": 13,
+            "valid_regulation_adjacent_pairs": 163
+          },
+          "sequenceNumber": {
+            "examples": [
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "1:59",
+                    "game_play_number": 157,
+                    "id": 401752746645,
+                    "period.number": 4,
+                    "sequenceNumber": 144,
+                    "type.text": "Rush"
+                  },
+                  {
+                    "clock.displayValue": "2:00",
+                    "game_play_number": 159,
+                    "id": 401752746651,
+                    "period.number": 4,
+                    "sequenceNumber": 144,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              }
+            ],
+            "period_decreases": 0,
+            "same_period_clock_increases": 1,
+            "valid_regulation_adjacent_pairs": 163
+          }
+        },
+        "rows": 164,
+        "selection_group": "smallest_duplicate_sequence"
+      },
+      {
+        "game_id": 401752747,
+        "orders": {
+          "game_play_number": {
+            "examples": [
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "6:51",
+                    "game_play_number": 70,
+                    "id": 401752747337,
+                    "period.number": 2,
+                    "sequenceNumber": 75,
+                    "type.text": "Pass Reception"
+                  },
+                  {
+                    "clock.displayValue": "7:02",
+                    "game_play_number": 71,
+                    "id": 401752747339,
+                    "period.number": 2,
+                    "sequenceNumber": 74,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              },
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "1:52",
+                    "game_play_number": 80,
+                    "id": 401752747381,
+                    "period.number": 2,
+                    "sequenceNumber": 84,
+                    "type.text": "Rush"
+                  },
+                  {
+                    "clock.displayValue": "2:00",
+                    "game_play_number": 81,
+                    "id": 401752747383,
+                    "period.number": 2,
+                    "sequenceNumber": 83,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              },
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "1:37",
+                    "game_play_number": 83,
+                    "id": 401752747390,
+                    "period.number": 2,
+                    "sequenceNumber": 86,
+                    "type.text": "Passing Touchdown"
+                  },
+                  {
+                    "clock.displayValue": "1:42",
+                    "game_play_number": 84,
+                    "id": 401752747392,
+                    "period.number": 2,
+                    "sequenceNumber": 85,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              },
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "0:10",
+                    "game_play_number": 94,
+                    "id": 401752747435,
+                    "period.number": 2,
+                    "sequenceNumber": 97,
+                    "type.text": "Pass Reception"
+                  },
+                  {
+                    "clock.displayValue": "0:15",
+                    "game_play_number": 95,
+                    "id": 401752747437,
+                    "period.number": 2,
+                    "sequenceNumber": 96,
+                    "type.text": "Timeout"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              }
+            ],
+            "period_decreases": 0,
+            "same_period_clock_increases": 6,
+            "valid_regulation_adjacent_pairs": 169
+          },
+          "sequenceNumber": {
+            "examples": [],
+            "period_decreases": 0,
+            "same_period_clock_increases": 0,
+            "valid_regulation_adjacent_pairs": 169
+          }
+        },
+        "rows": 170,
+        "selection_group": "smallest_duplicate_sequence"
+      },
+      {
+        "game_id": 401752673,
+        "orders": {
+          "game_play_number": {
+            "examples": [
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "0:00",
+                    "game_play_number": 215,
+                    "id": 401752673104999901,
+                    "period.number": 4,
+                    "sequenceNumber": 104999901,
+                    "type.text": "Rush"
+                  },
+                  {
+                    "clock.displayValue": "7:54",
+                    "game_play_number": 217,
+                    "id": 401752673104999903,
+                    "period.number": 1,
+                    "sequenceNumber": 101925351,
+                    "type.text": "Field Goal Good"
+                  }
+                ],
+                "reason": "period_decreases"
+              }
+            ],
+            "period_decreases": 1,
+            "same_period_clock_increases": 0,
+            "valid_regulation_adjacent_pairs": 212
+          },
+          "sequenceNumber": {
+            "examples": [
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "7:48",
+                    "game_play_number": 29,
+                    "id": 401752673101925101,
+                    "period.number": 1,
+                    "sequenceNumber": 101925101,
+                    "type.text": "Pass Reception"
+                  },
+                  {
+                    "clock.displayValue": "7:54",
+                    "game_play_number": 217,
+                    "id": 401752673104999903,
+                    "period.number": 1,
+                    "sequenceNumber": 101925351,
+                    "type.text": "Field Goal Good"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              }
+            ],
+            "period_decreases": 0,
+            "same_period_clock_increases": 1,
+            "valid_regulation_adjacent_pairs": 212
+          }
+        },
+        "rows": 213,
+        "selection_group": "smallest_unique_sequence_order_conflict"
+      },
+      {
+        "game_id": 401752800,
+        "orders": {
+          "game_play_number": {
+            "examples": [
+              {
+                "pair": [
+                  {
+                    "clock.displayValue": "10:05",
+                    "game_play_number": 130,
+                    "id": 401752800104899201,
+                    "period.number": 4,
+                    "sequenceNumber": 104899301,
+                    "type.text": "Passing Touchdown"
+                  },
+                  {
+                    "clock.displayValue": "10:07",
+                    "game_play_number": 131,
+                    "id": 401752800104899202,
+                    "period.number": 4,
+                    "sequenceNumber": 104899202,
+                    "type.text": "Rush"
+                  }
+                ],
+                "reason": "same_period_clock_increases"
+              }
+            ],
+            "period_decreases": 0,
+            "same_period_clock_increases": 1,
+            "valid_regulation_adjacent_pairs": 151
+          },
+          "sequenceNumber": {
+            "examples": [],
+            "period_decreases": 0,
+            "same_period_clock_increases": 0,
+            "valid_regulation_adjacent_pairs": 151
+          }
+        },
+        "rows": 152,
+        "selection_group": "smallest_unique_sequence_order_conflict"
+      }
+    ],
+    "limits": "Four identity-selected games only; clock increases can also reflect official corrections, so no automatic chronology repair is inferred.",
+    "selection": "Two smallest 2025 game IDs with duplicate sequenceNumber; two smallest with unique sequenceNumber and non-increasing game_play_number when sorted by sequenceNumber. Chosen only from identity columns before reading period/clock/type."
+  },
+  "inventory_path": "model/reports/PBP_RESEARCH_SOURCE_INVENTORY.json",
+  "inventory_sha256": "2898f79ea2509805a9da51bbfb0f45d4ebff6303e6428b9ac9c9bf4a9a88ccea",
+  "limitations": [
+    "Quarter/clock comparisons cover only the four fixed identity-selected 2025 games and are not a whole-archive chronology certification.",
+    "Clock increases can reflect source corrections or administrative record timing; they identify disagreement rather than prove a universal sorting rule.",
+    "Original source sequence values are supplied by the upstream feed; the inspected processing code does not independently reconstruct their semantic truth.",
+    "Raw IDs above binary64 exact-integer range are retained as nullable Int64. No within-game collision occurs here; the cause of repeated sequence numbers is not established."
+  ],
+  "per_season": [
+    {
+      "any_duplicate_identity_games": 4,
+      "column_dtypes": {
+        "game_id": "Int64",
+        "game_play_number": "Int64",
+        "id": "Int64",
+        "season": "Int64",
+        "sequenceNumber": "Int64"
+      },
+      "composite_key_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "deterministic_collision_examples": [],
+      "deterministic_sequence_collision_examples": [
+        {
+          "colliding_sequence_number": 105000241,
+          "game_id": 401112078,
+          "identity_rows": [
+            {
+              "game_play_number": 194,
+              "id": 401112078105000241,
+              "sequenceNumber": 105000241
+            },
+            {
+              "game_play_number": 195,
+              "id": 401112078105000272,
+              "sequenceNumber": 105000241
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 101997701,
+          "game_id": 401112212,
+          "identity_rows": [
+            {
+              "game_play_number": 43,
+              "id": 401112212101997701,
+              "sequenceNumber": 101997701
+            },
+            {
+              "game_play_number": 45,
+              "id": 401112212101999901,
+              "sequenceNumber": 101997701
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 104999501,
+          "game_id": 401114268,
+          "identity_rows": [
+            {
+              "game_play_number": 167,
+              "id": 401114268104999501,
+              "sequenceNumber": 104999501
+            },
+            {
+              "game_play_number": 169,
+              "id": 401114268105000208,
+              "sequenceNumber": 104999501
+            }
+          ]
+        }
+      ],
+      "duplicate_by_field": {
+        "game_play_number": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "id": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "sequenceNumber": {
+          "affected_games": 4,
+          "distinct_duplicate_groups": 4,
+          "excess_rows_over_unique_keys": 4,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 748,
+          "rows_in_duplicate_groups": 8
+        }
+      },
+      "duplicate_game_intersection_profiles": {
+        "sequenceNumber": 4
+      },
+      "exact_identity_tuple_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "invalid_identity_values": {
+        "game_play_number": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "id": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "sequenceNumber": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        }
+      },
+      "missing_game_id_rows": 0,
+      "ordering": {
+        "backward_play_number_steps_when_sorted_by_sequence": 38,
+        "equal_play_number_steps_when_sorted_by_sequence": 0,
+        "forward_gap_steps": 2764,
+        "games_with_forward_play_number_gaps": 889,
+        "sequence_and_play_number_unique_games": 886,
+        "strict_order_conflict_games": 17,
+        "unique_order_conflict_games": 16
+      },
+      "raw_games": 890,
+      "raw_id_decimal_digit_counts": {
+        "18": 156908
+      },
+      "raw_id_numeric_pattern": {
+        "above_2_to_53_aligned_to_binary64_integer_spacing": 1129,
+        "all_nonmissing_raw_ids_max": 401183793104984206,
+        "all_nonmissing_raw_ids_min": 401110720101849902,
+        "rows_above_2_to_53": 156908
+      },
+      "raw_id_only_collision_games": 0,
+      "raw_rows": 156908,
+      "rows_in_any_duplicate_identity_games": 748,
+      "rows_in_raw_id_only_collision_games": 0,
+      "season": 2019,
+      "sequence_numeric_pattern": {
+        "maximum": 144001246,
+        "minimum": 101849901,
+        "nonpositive_rows": 0,
+        "rows_above_2_to_53": 0
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2019.parquet",
+      "source_sha256": "ae58ee5fb3b4dcf2e7402d9151ce9875af16ba92882257871e59bdeb117e647b"
+    },
+    {
+      "any_duplicate_identity_games": 0,
+      "column_dtypes": {
+        "game_id": "Int64",
+        "game_play_number": "Int64",
+        "id": "Int64",
+        "season": "Int64",
+        "sequenceNumber": "Int64"
+      },
+      "composite_key_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "deterministic_collision_examples": [],
+      "deterministic_sequence_collision_examples": [],
+      "duplicate_by_field": {
+        "game_play_number": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "id": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "sequenceNumber": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        }
+      },
+      "duplicate_game_intersection_profiles": {},
+      "exact_identity_tuple_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "invalid_identity_values": {
+        "game_play_number": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "id": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "sequenceNumber": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 1
+        }
+      },
+      "missing_game_id_rows": 0,
+      "ordering": {
+        "backward_play_number_steps_when_sorted_by_sequence": 20,
+        "equal_play_number_steps_when_sorted_by_sequence": 0,
+        "forward_gap_steps": 1753,
+        "games_with_forward_play_number_gaps": 565,
+        "sequence_and_play_number_unique_games": 565,
+        "strict_order_conflict_games": 11,
+        "unique_order_conflict_games": 11
+      },
+      "raw_games": 565,
+      "raw_id_decimal_digit_counts": {
+        "10": 1,
+        "18": 100432
+      },
+      "raw_id_numeric_pattern": {
+        "above_2_to_53_aligned_to_binary64_integer_spacing": 648,
+        "all_nonmissing_raw_ids_max": 401279078104999901,
+        "all_nonmissing_raw_ids_min": 4012345990,
+        "rows_above_2_to_53": 100432
+      },
+      "raw_id_only_collision_games": 0,
+      "raw_rows": 100433,
+      "rows_in_any_duplicate_identity_games": 0,
+      "rows_in_raw_id_only_collision_games": 0,
+      "season": 2020,
+      "sequence_numeric_pattern": {
+        "maximum": 107000283,
+        "minimum": 0,
+        "nonpositive_rows": 1,
+        "rows_above_2_to_53": 0
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2020.parquet",
+      "source_sha256": "51455bdc8756ad499c7bf4271269d3b196e3f61121d31608b2e9cf84658feaaf"
+    },
+    {
+      "any_duplicate_identity_games": 5,
+      "column_dtypes": {
+        "game_id": "Int64",
+        "game_play_number": "Int64",
+        "id": "Int64",
+        "season": "Int64",
+        "sequenceNumber": "Int64"
+      },
+      "composite_key_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "deterministic_collision_examples": [],
+      "deterministic_sequence_collision_examples": [
+        {
+          "colliding_sequence_number": 104897202,
+          "game_id": 401282681,
+          "identity_rows": [
+            {
+              "game_play_number": 155,
+              "id": 401282681104897202,
+              "sequenceNumber": 104897202
+            },
+            {
+              "game_play_number": 189,
+              "id": 401282681104999904,
+              "sequenceNumber": 104897202
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 101954602,
+          "game_id": 401309546,
+          "identity_rows": [
+            {
+              "game_play_number": 36,
+              "id": 401309546101000040,
+              "sequenceNumber": 101954602
+            },
+            {
+              "game_play_number": 44,
+              "id": 401309546101954602,
+              "sequenceNumber": 101954602
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 102999952,
+          "game_id": 401309591,
+          "identity_rows": [
+            {
+              "game_play_number": 120,
+              "id": 401309591103000001,
+              "sequenceNumber": 102999952
+            },
+            {
+              "game_play_number": 126,
+              "id": 401309591103000007,
+              "sequenceNumber": 102999952
+            },
+            {
+              "game_play_number": 127,
+              "id": 401309591103000008,
+              "sequenceNumber": 102999952
+            },
+            {
+              "game_play_number": 128,
+              "id": 401309591103000009,
+              "sequenceNumber": 102999952
+            },
+            {
+              "game_play_number": 129,
+              "id": 401309591103000010,
+              "sequenceNumber": 102999952
+            }
+          ]
+        }
+      ],
+      "duplicate_by_field": {
+        "game_play_number": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "id": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "sequenceNumber": {
+          "affected_games": 5,
+          "distinct_duplicate_groups": 8,
+          "excess_rows_over_unique_keys": 15,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 887,
+          "rows_in_duplicate_groups": 23
+        }
+      },
+      "duplicate_game_intersection_profiles": {
+        "sequenceNumber": 5
+      },
+      "exact_identity_tuple_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "invalid_identity_values": {
+        "game_play_number": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "id": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "sequenceNumber": {
+          "invalid_by_current_parser_bound_games": 1,
+          "invalid_by_current_parser_bound_rows": 1,
+          "missing_rows": 0,
+          "negative_rows": 1,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 2
+        }
+      },
+      "missing_game_id_rows": 0,
+      "ordering": {
+        "backward_play_number_steps_when_sorted_by_sequence": 92,
+        "equal_play_number_steps_when_sorted_by_sequence": 0,
+        "forward_gap_steps": 2651,
+        "games_with_forward_play_number_gaps": 842,
+        "sequence_and_play_number_unique_games": 837,
+        "strict_order_conflict_games": 31,
+        "unique_order_conflict_games": 28
+      },
+      "raw_games": 842,
+      "raw_id_decimal_digit_counts": {
+        "10": 2,
+        "18": 147317
+      },
+      "raw_id_numeric_pattern": {
+        "above_2_to_53_aligned_to_binary64_integer_spacing": 964,
+        "all_nonmissing_raw_ids_max": 401391158104999901,
+        "all_nonmissing_raw_ids_min": 4012822450,
+        "rows_above_2_to_53": 147317
+      },
+      "raw_id_only_collision_games": 0,
+      "raw_rows": 147319,
+      "rows_in_any_duplicate_identity_games": 887,
+      "rows_in_raw_id_only_collision_games": 0,
+      "season": 2021,
+      "sequence_numeric_pattern": {
+        "maximum": 107000236,
+        "minimum": -102957200,
+        "nonpositive_rows": 3,
+        "rows_above_2_to_53": 0
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2021.parquet",
+      "source_sha256": "302f6e182b4653ae6c7d31f975c2c090e1804ed736ad35931cdbaa5d7dd26f7e"
+    },
+    {
+      "any_duplicate_identity_games": 4,
+      "column_dtypes": {
+        "game_id": "Int64",
+        "game_play_number": "Int64",
+        "id": "Int64",
+        "season": "Int64",
+        "sequenceNumber": "Int64"
+      },
+      "composite_key_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "deterministic_collision_examples": [],
+      "deterministic_sequence_collision_examples": [
+        {
+          "colliding_sequence_number": 105212176,
+          "game_id": 401404065,
+          "identity_rows": [
+            {
+              "game_play_number": 168,
+              "id": 401404065105211177,
+              "sequenceNumber": 105212176
+            },
+            {
+              "game_play_number": 169,
+              "id": 401404065105212176,
+              "sequenceNumber": 105212176
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 104000001,
+          "game_id": 401416596,
+          "identity_rows": [
+            {
+              "game_play_number": 100,
+              "id": 401416596103976701,
+              "sequenceNumber": 104000001
+            },
+            {
+              "game_play_number": 103,
+              "id": 401416596104000001,
+              "sequenceNumber": 104000001
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 102000071,
+          "game_id": 401416627,
+          "identity_rows": [
+            {
+              "game_play_number": 9,
+              "id": 401416627102000071,
+              "sequenceNumber": 102000071
+            },
+            {
+              "game_play_number": 50,
+              "id": 401416627102999102,
+              "sequenceNumber": 102000071
+            }
+          ]
+        }
+      ],
+      "duplicate_by_field": {
+        "game_play_number": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "id": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "sequenceNumber": {
+          "affected_games": 4,
+          "distinct_duplicate_groups": 4,
+          "excess_rows_over_unique_keys": 4,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 564,
+          "rows_in_duplicate_groups": 8
+        }
+      },
+      "duplicate_game_intersection_profiles": {
+        "sequenceNumber": 4
+      },
+      "exact_identity_tuple_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "invalid_identity_values": {
+        "game_play_number": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "id": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "sequenceNumber": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 8
+        }
+      },
+      "missing_game_id_rows": 0,
+      "ordering": {
+        "backward_play_number_steps_when_sorted_by_sequence": 57,
+        "equal_play_number_steps_when_sorted_by_sequence": 0,
+        "forward_gap_steps": 2702,
+        "games_with_forward_play_number_gaps": 861,
+        "sequence_and_play_number_unique_games": 857,
+        "strict_order_conflict_games": 33,
+        "unique_order_conflict_games": 30
+      },
+      "raw_games": 861,
+      "raw_id_decimal_digit_counts": {
+        "10": 8,
+        "18": 149692
+      },
+      "raw_id_numeric_pattern": {
+        "above_2_to_53_aligned_to_binary64_integer_spacing": 1135,
+        "all_nonmissing_raw_ids_max": 401507088104999901,
+        "all_nonmissing_raw_ids_min": 4014038610,
+        "rows_above_2_to_53": 149692
+      },
+      "raw_id_only_collision_games": 0,
+      "raw_rows": 149700,
+      "rows_in_any_duplicate_identity_games": 564,
+      "rows_in_raw_id_only_collision_games": 0,
+      "season": 2022,
+      "sequence_numeric_pattern": {
+        "maximum": 107360276,
+        "minimum": 0,
+        "nonpositive_rows": 8,
+        "rows_above_2_to_53": 0
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2022.parquet",
+      "source_sha256": "1e0271f3182271ee7f680e8fbeb05c7122952abda0f933be1be3987c51024a88"
+    },
+    {
+      "any_duplicate_identity_games": 7,
+      "column_dtypes": {
+        "game_id": "Int64",
+        "game_play_number": "Int64",
+        "id": "Int64",
+        "season": "Int64",
+        "sequenceNumber": "Int64"
+      },
+      "composite_key_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "deterministic_collision_examples": [],
+      "deterministic_sequence_collision_examples": [
+        {
+          "colliding_sequence_number": 104879006,
+          "game_id": 401520165,
+          "identity_rows": [
+            {
+              "game_play_number": 136,
+              "id": 401520165104879004,
+              "sequenceNumber": 104879006
+            },
+            {
+              "game_play_number": 138,
+              "id": 401520165104879006,
+              "sequenceNumber": 104879006
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 105000010,
+          "game_id": 401525529,
+          "identity_rows": [
+            {
+              "game_play_number": 169,
+              "id": 401525529105000010,
+              "sequenceNumber": 105000010
+            },
+            {
+              "game_play_number": 170,
+              "id": 401525529105252164,
+              "sequenceNumber": 105000010
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 105000000,
+          "game_id": 401525831,
+          "identity_rows": [
+            {
+              "game_play_number": 201,
+              "id": 401525831105000000,
+              "sequenceNumber": 105000000
+            },
+            {
+              "game_play_number": 202,
+              "id": 401525831105000002,
+              "sequenceNumber": 105000000
+            },
+            {
+              "game_play_number": 203,
+              "id": 401525831105000003,
+              "sequenceNumber": 105000000
+            }
+          ]
+        }
+      ],
+      "duplicate_by_field": {
+        "game_play_number": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "id": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "sequenceNumber": {
+          "affected_games": 7,
+          "distinct_duplicate_groups": 8,
+          "excess_rows_over_unique_keys": 10,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 1206,
+          "rows_in_duplicate_groups": 18
+        }
+      },
+      "duplicate_game_intersection_profiles": {
+        "sequenceNumber": 7
+      },
+      "exact_identity_tuple_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "invalid_identity_values": {
+        "game_play_number": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "id": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "sequenceNumber": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 1
+        }
+      },
+      "missing_game_id_rows": 0,
+      "ordering": {
+        "backward_play_number_steps_when_sorted_by_sequence": 35,
+        "equal_play_number_steps_when_sorted_by_sequence": 0,
+        "forward_gap_steps": 2843,
+        "games_with_forward_play_number_gaps": 903,
+        "sequence_and_play_number_unique_games": 896,
+        "strict_order_conflict_games": 24,
+        "unique_order_conflict_games": 22
+      },
+      "raw_games": 903,
+      "raw_id_decimal_digit_counts": {
+        "10": 1,
+        "18": 153689
+      },
+      "raw_id_numeric_pattern": {
+        "above_2_to_53_aligned_to_binary64_integer_spacing": 1155,
+        "all_nonmissing_raw_ids_max": 401581109104999801,
+        "all_nonmissing_raw_ids_min": 4015258580,
+        "rows_above_2_to_53": 153689
+      },
+      "raw_id_only_collision_games": 0,
+      "raw_rows": 153690,
+      "rows_in_any_duplicate_identity_games": 1206,
+      "rows_in_raw_id_only_collision_games": 0,
+      "season": 2023,
+      "sequence_numeric_pattern": {
+        "maximum": 107280234,
+        "minimum": 0,
+        "nonpositive_rows": 1,
+        "rows_above_2_to_53": 0
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2023.parquet",
+      "source_sha256": "fd0b04553ba3944e8acddc1088aba60692b7a555fb945de8381055c37a98799c"
+    },
+    {
+      "any_duplicate_identity_games": 6,
+      "column_dtypes": {
+        "game_id": "Int64",
+        "game_play_number": "Int64",
+        "id": "Int64",
+        "season": "Int64",
+        "sequenceNumber": "Int64"
+      },
+      "composite_key_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "deterministic_collision_examples": [],
+      "deterministic_sequence_collision_examples": [
+        {
+          "colliding_sequence_number": 104854401,
+          "game_id": 401634181,
+          "identity_rows": [
+            {
+              "game_play_number": 116,
+              "id": 401634181104854101,
+              "sequenceNumber": 104854401
+            },
+            {
+              "game_play_number": 117,
+              "id": 401634181104854401,
+              "sequenceNumber": 104854401
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 103959309,
+          "game_id": 401635534,
+          "identity_rows": [
+            {
+              "game_play_number": 88,
+              "id": 401635534103849906,
+              "sequenceNumber": 103959309
+            },
+            {
+              "game_play_number": 119,
+              "id": 401635534103959309,
+              "sequenceNumber": 103959309
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 105292723,
+          "game_id": 401643714,
+          "identity_rows": [
+            {
+              "game_play_number": 217,
+              "id": 401643714105292723,
+              "sequenceNumber": 105292723
+            },
+            {
+              "game_play_number": 218,
+              "id": 401643714105292734,
+              "sequenceNumber": 105292723
+            }
+          ]
+        }
+      ],
+      "duplicate_by_field": {
+        "game_play_number": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "id": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "sequenceNumber": {
+          "affected_games": 6,
+          "distinct_duplicate_groups": 6,
+          "excess_rows_over_unique_keys": 6,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 1079,
+          "rows_in_duplicate_groups": 12
+        }
+      },
+      "duplicate_game_intersection_profiles": {
+        "sequenceNumber": 6
+      },
+      "exact_identity_tuple_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "invalid_identity_values": {
+        "game_play_number": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "id": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "sequenceNumber": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        }
+      },
+      "missing_game_id_rows": 0,
+      "ordering": {
+        "backward_play_number_steps_when_sorted_by_sequence": 49,
+        "equal_play_number_steps_when_sorted_by_sequence": 0,
+        "forward_gap_steps": 2952,
+        "games_with_forward_play_number_gaps": 946,
+        "sequence_and_play_number_unique_games": 940,
+        "strict_order_conflict_games": 39,
+        "unique_order_conflict_games": 36
+      },
+      "raw_games": 946,
+      "raw_id_decimal_digit_counts": {
+        "18": 163142
+      },
+      "raw_id_numeric_pattern": {
+        "above_2_to_53_aligned_to_binary64_integer_spacing": 606,
+        "all_nonmissing_raw_ids_max": 401729867104999901,
+        "all_nonmissing_raw_ids_min": 401628319101849902,
+        "rows_above_2_to_53": 163142
+      },
+      "raw_id_only_collision_games": 0,
+      "raw_rows": 163142,
+      "rows_in_any_duplicate_identity_games": 1079,
+      "rows_in_raw_id_only_collision_games": 0,
+      "season": 2024,
+      "sequence_numeric_pattern": {
+        "maximum": 110380297,
+        "minimum": 101849901,
+        "nonpositive_rows": 0,
+        "rows_above_2_to_53": 0
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2024.parquet",
+      "source_sha256": "25ae95cf175a59bbb362d5f8af3cb3e748b56635d084ebda69461c31b3c5e312"
+    },
+    {
+      "any_duplicate_identity_games": 414,
+      "column_dtypes": {
+        "game_id": "Int64",
+        "game_play_number": "Int64",
+        "id": "Int64",
+        "season": "Int64",
+        "sequenceNumber": "Int64"
+      },
+      "composite_key_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "deterministic_collision_examples": [],
+      "deterministic_sequence_collision_examples": [
+        {
+          "colliding_sequence_number": 8,
+          "game_id": 401752746,
+          "identity_rows": [
+            {
+              "game_play_number": 8,
+              "id": 40175274638,
+              "sequenceNumber": 8
+            },
+            {
+              "game_play_number": 10,
+              "id": 40175274645,
+              "sequenceNumber": 8
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 74,
+          "game_id": 401752747,
+          "identity_rows": [
+            {
+              "game_play_number": 69,
+              "id": 401752747334,
+              "sequenceNumber": 74
+            },
+            {
+              "game_play_number": 71,
+              "id": 401752747339,
+              "sequenceNumber": 74
+            }
+          ]
+        },
+        {
+          "colliding_sequence_number": 51,
+          "game_id": 401752749,
+          "identity_rows": [
+            {
+              "game_play_number": 49,
+              "id": 401752749209,
+              "sequenceNumber": 51
+            },
+            {
+              "game_play_number": 161,
+              "id": 401752749707,
+              "sequenceNumber": 51
+            }
+          ]
+        }
+      ],
+      "deterministic_sequence_inversion_examples": [
+        {
+          "consecutive_number_order_rows": [
+            {
+              "game_play_number": 215,
+              "id": 401752673104999901,
+              "sequenceNumber": 104999901
+            },
+            {
+              "game_play_number": 217,
+              "id": 401752673104999903,
+              "sequenceNumber": 101925351
+            }
+          ],
+          "game_id": 401752673
+        },
+        {
+          "consecutive_number_order_rows": [
+            {
+              "game_play_number": 9,
+              "id": 40175274643,
+              "sequenceNumber": 9
+            },
+            {
+              "game_play_number": 10,
+              "id": 40175274645,
+              "sequenceNumber": 8
+            }
+          ],
+          "game_id": 401752746
+        },
+        {
+          "consecutive_number_order_rows": [
+            {
+              "game_play_number": 70,
+              "id": 401752747337,
+              "sequenceNumber": 75
+            },
+            {
+              "game_play_number": 71,
+              "id": 401752747339,
+              "sequenceNumber": 74
+            }
+          ],
+          "game_id": 401752747
+        }
+      ],
+      "duplicate_by_field": {
+        "game_play_number": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "id": {
+          "affected_games": 0,
+          "distinct_duplicate_groups": 0,
+          "excess_rows_over_unique_keys": 0,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 0,
+          "rows_in_duplicate_groups": 0
+        },
+        "sequenceNumber": {
+          "affected_games": 414,
+          "distinct_duplicate_groups": 4290,
+          "excess_rows_over_unique_keys": 4523,
+          "missing_rows": 0,
+          "missing_value_games": 0,
+          "rows_in_affected_games": 72693,
+          "rows_in_duplicate_groups": 8813
+        }
+      },
+      "duplicate_game_intersection_profiles": {
+        "sequenceNumber": 414
+      },
+      "exact_identity_tuple_duplicates": {
+        "affected_games": 0,
+        "distinct_duplicate_tuples": 0,
+        "excess_rows": 0,
+        "rows_in_duplicate_groups": 0
+      },
+      "invalid_identity_values": {
+        "game_play_number": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "id": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        },
+        "sequenceNumber": {
+          "invalid_by_current_parser_bound_games": 0,
+          "invalid_by_current_parser_bound_rows": 0,
+          "missing_rows": 0,
+          "negative_rows": 0,
+          "noninteger_note": "All five selective columns retain Int64 dtype; missing values counted separately.",
+          "noninteger_rows": 0,
+          "zero_rows": 0
+        }
+      },
+      "missing_game_id_rows": 0,
+      "ordering": {
+        "backward_play_number_steps_when_sorted_by_sequence": 4243,
+        "equal_play_number_steps_when_sorted_by_sequence": 0,
+        "forward_gap_steps": 10610,
+        "games_with_forward_play_number_gaps": 956,
+        "sequence_and_play_number_unique_games": 542,
+        "strict_order_conflict_games": 439,
+        "unique_order_conflict_games": 31
+      },
+      "raw_games": 956,
+      "raw_id_decimal_digit_counts": {
+        "10": 402,
+        "11": 8321,
+        "12": 63365,
+        "13": 18,
+        "18": 93947
+      },
+      "raw_id_numeric_pattern": {
+        "above_2_to_53_aligned_to_binary64_integer_spacing": 252,
+        "all_nonmissing_raw_ids_max": 401778325104999901,
+        "all_nonmissing_raw_ids_min": 4017527463,
+        "rows_above_2_to_53": 93947
+      },
+      "raw_id_only_collision_games": 0,
+      "raw_rows": 166053,
+      "rows_in_any_duplicate_identity_games": 72693,
+      "rows_in_raw_id_only_collision_games": 0,
+      "season": 2025,
+      "sequence_numeric_pattern": {
+        "maximum": 106220204,
+        "minimum": 1,
+        "nonpositive_rows": 0,
+        "rows_above_2_to_53": 0
+      },
+      "source_path": "model/data/raw/pbp_research/espn/partials/2025/0001.parquet",
+      "source_sha256": "aa037920e980acf17317747f2010a031b3b7e1013a44a7b15db18b1dd9df0e63"
+    }
+  ],
+  "publisher_version_limitation": "These are the primary publisher code locations inspected during this audit. The exact processor commit and environment that produced each downloaded season asset have not been certified. Mutable main links and source conventions are not a provenance proof for the exact artifacts.",
+  "read_columns": [
+    "game_id",
+    "id",
+    "sequenceNumber",
+    "game_play_number",
+    "season"
+  ],
+  "schema_version": "pbp-identity-diagnostic-v1",
+  "scope": "Source-semantic diagnosis before matchup prediction or performance evaluation. Read five identity/order columns in all seven pinned seasons; additionally read period, clock and play type only for the four games selected deterministically using identity properties. No scores, final totals, outcomes, fitted models or performance metrics were inspected.",
+  "source_evidence": [
+    {
+      "finding": "Official release describes raw per-game JSON capture, processing and publication repositories.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-data/releases/tag/espn_cfb_pbp"
+    },
+    {
+      "finding": "Inspected _sort_plays_ot_aware sorts regulation by id and start.adj_TimeSecsRem; overtime is sorted by sequenceNumber.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-py/blob/main/sportsdataverse/cfb/cfb_pbp.py#L575-L593"
+    },
+    {
+      "finding": "Inspected processor casts supplied id and sequenceNumber and applies its sorting helper.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-py/blob/main/sportsdataverse/cfb/cfb_pbp.py#L1104-L1108"
+    },
+    {
+      "finding": "Inspected processor assigns game_play_number with a one-based row index after the preceding sort/filter operations.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-py/blob/main/sportsdataverse/cfb/cfb_pbp.py#L1157-L1158"
+    },
+    {
+      "finding": "Later sorting, deduplication and marker filtering can leave gaps in the already assigned play number.",
+      "url": "https://github.com/sportsdataverse/sportsdataverse-py/blob/main/sportsdataverse/cfb/cfb_pbp.py#L1778-L1786"
+    },
+    {
+      "finding": "Inspected publication script flattens supplied play records and conforms schema; it does not establish an independent chronological definition.",
+      "url": "https://github.com/sportsdataverse/cfbfastR-cfb-data/blob/main/R/espn_cfb_01_pbp_creation.R"
+    }
+  ]
+}
