@@ -1,0 +1,18 @@
+{
+  "version": "noaa-original-weather-evaluation-v1",
+  "plan_sha256": "47747f5a0216b5b0a43e9df5777575bfafb165ad6616332869eda35c2b508258",
+  "classified_at": "2026-09-09T02:27:42.072060+00:00",
+  "classification_path": "data/raw/noaa_weather_research/weather_classifications.json",
+  "classification_sha256": "132874fe46c150121fad2b40d7aefed8b17fb5593f6318b3db3f062ea31d8951",
+  "classification_file_sha256": "fe23b721963fc562eb69c66a9ed8a142b94713cc4bc0bcac4d9ce96efd2251da",
+  "outcomes_joined": false,
+  "planned_games": 1747,
+  "available_games": 1747,
+  "qualifying_weather_games": 130,
+  "unavailable_games": 0,
+  "timing_evidence_class": "original_s3_metadata_availability_proxy_not_certified_publication",
+  "timing_limitation": "S3 Last-Modified is not an independently certified publication receipt; multipart objects record upload initiation, which may precede completion. Multipart storage does not change eligibility.",
+  "multipart_field_ranges": 0,
+  "unavailable_reason_counts": {},
+  "reasons_may_overlap": true
+}
