@@ -37,6 +37,12 @@ def audit(root, manifest_path):
     archive = model/'data/runtime/availability'
     assert manifest_path.parent == archive/'runs' and not manifest_path.is_symlink()
     assert m['schema_version'] == 'acc-availability-collector-v1' and m['models_fitted'] == m['verified_completed_reports'] == 0
+    amendment='reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md'
+    if 'collector_version' in m:
+        assert m['collector_version']=='acc-availability-collector-v2' and type(m['execution_revision']) is int and m['execution_revision']==2
+        assert m['quota_policy']=='bounded_calls_when_headers_missing' and m['amendment']==amendment and amendment in m['source_hashes']
+    else:
+        assert not {'execution_revision','quota_policy','amendment'} & m.keys(), 'Partial/unknown version metadata'
     start, end = time(m['capture_started_at']), time(m['capture_completed_at'])
     assert time('2026-09-09T08:00Z') <= start < time('2026-09-16T07:00Z') and start <= end
     assert manifest_path.name == f"{m['run_id']}-{m['run_attempt']}.json"
@@ -137,8 +143,17 @@ def audit(root, manifest_path):
     quota=[{'url':r['request']['url'],'status_code':r['status_code'],'requested_at':r['requested_at'],'received_at':r['received_at'],
             'quota_headers':{k:v for k,v in r['response_headers'].items() if 'ratelimit' in k}}
            for r in receipts.values() if 'api.odds-api.io' in r['request']['url']]
+    quota.sort(key=lambda r:time(r['requested_at']))
+    for previous,next_request in zip(quota,quota[1:]):
+        assert previous['status_code'] not in (401,403,429)
+        remaining=previous['quota_headers'].get('x_ratelimit_remaining')
+        assert remaining is None or int(remaining)>20
+    if any(r['url'].endswith('/odds/multi') for r in quota):
+        inv=next(r for r in quota if r['url'].endswith('/events')); remaining=inv['quota_headers'].get('x_ratelimit_remaining')
+        assert remaining is not None or m.get('collector_version')=='acc-availability-collector-v2'
+        assert remaining is None or int(remaining)>=math.ceil(len(expected)/10)+20
     if not any(r['url'].endswith('/odds/multi') for r in quota): assert not quote_facts
-    return {'status':'passed','audit_kind':'independent_original_bytes_no_project_imports','manifest':manifest_path.relative_to(root).as_posix(),'manifest_sha256':sha(raw),'recorded_git_commit':m['git_commit'],'recorded_git_sources_verified':True,'cohort_sha256':m['cohort_sha256'],'capture_started_at':m['capture_started_at'],'capture_completed_at':m['capture_completed_at'],'capture_status':m['status'],'counts':counts,'failed_requests':failed,'receipt_body_hashes_verified':len(receipts),'current_body_sha256':source_receipt['body_sha256'],'current_received_at':source_receipt['received_at'],'current_cache_headers':source_receipt['response_headers'],'capture_failures':m['failures'],'quote_diagnostics':m.get('quote_diagnostics',[]),'quota_receipts':quota,'reports':report_facts,'quotes':quote_facts,'outcomes_or_models_evaluated':False,'edge_established':False}
+    return {'status':'passed','audit_kind':'independent_original_bytes_no_project_imports','manifest':manifest_path.relative_to(root).as_posix(),'manifest_sha256':sha(raw),'recorded_git_commit':m['git_commit'],'recorded_git_sources_verified':True,'collector_version':m.get('collector_version','acc-availability-collector-v1'),'quota_policy':m.get('quota_policy','strict_inventory_quota_metadata'),'amendment':m.get('amendment'),'cohort_sha256':m['cohort_sha256'],'capture_started_at':m['capture_started_at'],'capture_completed_at':m['capture_completed_at'],'capture_status':m['status'],'counts':counts,'failed_requests':failed,'receipt_body_hashes_verified':len(receipts),'current_body_sha256':source_receipt['body_sha256'],'current_received_at':source_receipt['received_at'],'current_cache_headers':source_receipt['response_headers'],'capture_failures':m['failures'],'quote_diagnostics':m.get('quote_diagnostics',[]),'quota_receipts':quota,'reports':report_facts,'quotes':quote_facts,'outcomes_or_models_evaluated':False,'edge_established':False}
 
 
 if __name__=='__main__':

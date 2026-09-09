@@ -200,6 +200,12 @@ def _remaining(envelope):
         return None
 
 
+def _malformed_allowance(envelope):
+    headers = envelope["receipt"]["response_headers"]
+    value = headers.get("x_ratelimit_remaining")
+    return "x_ratelimit_remaining" in headers and (not isinstance(value, str) or not value.isascii() or not value.isdigit())
+
+
 def _match_key(event, provider=False):
     return (normalize_team(str(event["home"] if provider else event["home_team"])),
             normalize_team(str(event["away"] if provider else event["away_team"])),
@@ -288,6 +294,8 @@ def collect_quotes(client, rows, key, start, *, require_quota_metadata=True):
     selected = client.fetch(ODDS + "/bookmakers/selected", secret_params=auth, purpose="selected_books")
     if not _ok(selected):
         return [], [{"reason": "selected_books_request_failed"}]
+    if not require_quota_metadata and _malformed_allowance(selected):
+        return [], [{"reason": "reported_quota_metadata_invalid", "receipt_path": selected["receipt"]["receipt_path"]}]
     selected_remaining = _remaining(selected)
     if selected_remaining is not None and selected_remaining <= QUOTA_RESERVE:
         return [], [{"reason": "selected_books_quota_reserve", "remaining": selected_remaining}]
@@ -302,6 +310,8 @@ def collect_quotes(client, rows, key, start, *, require_quota_metadata=True):
         "limit": 500, "from": _stamp(start), "to": _stamp(start + timedelta(days=7))}, auth, purpose="provider_inventory")
     if not _ok(events) or not isinstance(events["payload"], list):
         return [], [{"reason": "provider_inventory_failed"}]
+    if not require_quota_metadata and _malformed_allowance(events):
+        return [], [{"reason": "reported_quota_metadata_invalid", "receipt_path": events["receipt"]["receipt_path"]}]
     official, candidates = {}, {}
     for game in rows:
         official.setdefault(_match_key(game), []).append(game)
@@ -339,6 +349,9 @@ def collect_quotes(client, rows, key, start, *, require_quota_metadata=True):
             failures.extend(errors)
         else:
             failures.append({"reason": "odds_batch_failed", "receipt_path": envelope["receipt"]["receipt_path"]})
+        if not require_quota_metadata and _malformed_allowance(envelope):
+            failures.append({"reason": "reported_quota_metadata_invalid", "receipt_path": envelope["receipt"]["receipt_path"]})
+            break
         remaining = _remaining(envelope)
         if (envelope["receipt"]["status_code"] in {401, 403, 429}
                 or (remaining is None and require_quota_metadata)

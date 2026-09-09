@@ -1,0 +1,105 @@
+{
+  "schema_version": "acc-availability-status-v1",
+  "generated_at": "2026-09-09T08:24:08.778085Z",
+  "phase": "active",
+  "status": "current",
+  "message": "Recent collection receipts are available; captured transport is not a verified completed report.",
+  "pilot_start": "2026-09-09T08:00:00Z",
+  "pilot_end": "2026-09-16T07:00:00Z",
+  "timezone": "America/New_York",
+  "registered_slots": 245,
+  "schedule": {
+    "minutes": [
+      17,
+      47
+    ],
+    "hours": [
+      0,
+      1,
+      2,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "additional": "06:17"
+  },
+  "nominal_slots_elapsed": 0,
+  "first_slot": "2026-09-09T10:17:00Z",
+  "last_slot": "2026-09-16T06:47:00Z",
+  "archived_runs": 2,
+  "archived_scheduled_attempts": 0,
+  "archived_manual_attempts": 2,
+  "outside_window_attempts": 0,
+  "invalid_manifests": 0,
+  "partial_or_failed_runs": 1,
+  "latest": {
+    "run_id": "local-20260909T082339963125Z",
+    "run_attempt": "1",
+    "trigger": "manual_local",
+    "status": "captured",
+    "capture_started_at": "2026-09-09T08:23:39.963125Z",
+    "capture_completed_at": "2026-09-09T08:23:41.615384Z",
+    "counts": {
+      "source_reports": 1,
+      "pending_reports": 1,
+      "nonpending_unverified_reports": 0,
+      "matched_games": 1,
+      "context_verified_games": 1,
+      "paired_games": 1,
+      "paired_two_book_games": 1,
+      "total_requests": 7,
+      "failed_requests": 0
+    },
+    "collector_version": "acc-availability-collector-v2",
+    "execution_revision": 2,
+    "quota_policy": "bounded_calls_when_headers_missing",
+    "amendment": "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md",
+    "manifest_sha256": "b8cd87096b4952e8a326e0b31e247dfe9e59fc4b74d29abe7d02b53d819bd511",
+    "references_hash_verified": true
+  },
+  "observation_totals": {
+    "source_reports": 2,
+    "pending_reports": 2,
+    "nonpending_unverified_reports": 0,
+    "matched_games": 2,
+    "context_verified_games": 2,
+    "paired_games": 1,
+    "paired_two_book_games": 1,
+    "total_requests": 13,
+    "failed_requests": 0
+  },
+  "verified_completed_reports": 0,
+  "models_fitted": 0,
+  "collection_only": true,
+  "performance_evaluated": false,
+  "active_policy_changed": false,
+  "edge_established": false,
+  "last_workflow_attempt": {
+    "started_at": "2026-09-09T08:23:39Z",
+    "outcome": "success",
+    "matching_manifest": true
+  },
+  "counting_note": "Counts are repeated observations and archived attempts, not distinct reports, games or bets. Actual starts do not identify every missed or delayed nominal slot; unarchived failures are not counted as completed captures.",
+  "report_note": "Pending and nonpending reports remain completion-unverified. Empty rows do not mean players are available; source issue labels differ from UTC receipt times. No player semantics, model fit or betting edge has been established.",
+  "links": [
+    {
+      "name": "Fixed collection protocol",
+      "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md"
+    },
+    {
+      "name": "Original public archives",
+      "url": "https://github.com/drhyphy/ncaa-football-totals/tree/main/model/data/runtime/availability"
+    }
+  ]
+}

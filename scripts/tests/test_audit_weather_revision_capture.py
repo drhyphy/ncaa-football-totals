@@ -11,6 +11,7 @@ import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
+from copy import deepcopy
 
 REPO = Path(__file__).resolve().parents[2]
 MODEL = REPO / 'model'
@@ -46,6 +47,92 @@ class ProfileAdmissionTests(unittest.TestCase):
                 with self.assertRaisesRegex(AssertionError, 'outside declared'):
                     AUDIT.collection_profile(manifest)
 
+
+class QuotaAmendmentTests(unittest.TestCase):
+    def amended(self):
+        return {'collector_version': 'weather-revision-collector-v3',
+                'quota_policy': deepcopy(AUDIT.AMENDED_QUOTA_POLICY),
+                'provenance': {AUDIT.QUOTA_AMENDMENT: 'a'*64}}
+
+    def receipt(self, route, remaining=100, status=200, ids=()):
+        return {'status_code': status, 'response_headers': {} if remaining is None else {'x_ratelimit_remaining': str(remaining)},
+                'request': {'url': 'https://api.odds-api.io/v3/'+route,
+                            'params': {'eventIds': ','.join(map(str, ids))} if route=='odds/multi' else {}}}
+
+    def requests(self, games=20, remaining=100):
+        return [self.receipt('bookmakers/selected', remaining), self.receipt('events', remaining)] + [
+            self.receipt('odds/multi', remaining, ids=range(i+1, min(i+11, games+1))) for i in range(0, games, 10)]
+
+    def test_old_versions_keep_strict_policy_and_cannot_be_relabelled(self):
+        for version in ('weather-revision-collector-v1', 'weather-revision-collector-v2'):
+            with self.subTest(version=version):
+                manifest={'collector_version':version, 'provenance':{}}
+                self.assertFalse(AUDIT.quota_contract(manifest))
+                with self.assertRaisesRegex(AssertionError, 'strict legacy'):
+                    AUDIT.audit_quota_requests(self.requests(20, None), 20, False)
+                manifest['quota_policy']=deepcopy(AUDIT.AMENDED_QUOTA_POLICY)
+                with self.assertRaisesRegex(AssertionError, 'Legacy collector'):
+                    AUDIT.quota_contract(manifest)
+
+    def test_v3_requires_exact_typed_policy_and_amendment_pin(self):
+        self.assertTrue(AUDIT.quota_contract(self.amended()))
+        changes={'require_quota_metadata':0, 'reserve_if_reported':19, 'missing_metadata':'skip_all_checks',
+                 'stop_http_statuses':[429], 'maximum_provider_calls':18, 'amendment_file':'other.md'}
+        for key,value in changes.items():
+            with self.subTest(key=key):
+                manifest=self.amended(); manifest['quota_policy'][key]=value
+                with self.assertRaisesRegex(AssertionError, 'policy mismatch'):
+                    AUDIT.quota_contract(manifest)
+        for value in (None, 'a'*63, 'not-a-hash'):
+            with self.subTest(hash=value):
+                manifest=self.amended(); manifest['provenance'][AUDIT.QUOTA_AMENDMENT]=value
+                with self.assertRaisesRegex(AssertionError, 'amendment hash'):
+                    AUDIT.quota_contract(manifest)
+        with self.assertRaisesRegex(AssertionError, 'Unknown collector'):
+            AUDIT.quota_contract({'collector_version':'weather-revision-collector-v4'})
+
+    def test_missing_headers_allow_exact150_games17calls_only_for_v3(self):
+        rows=self.requests(150, None)
+        self.assertEqual(AUDIT.audit_quota_requests(rows, 150, True), list(map(str, range(1,151))))
+        self.assertEqual(len(rows),17)
+        with self.assertRaisesRegex(AssertionError, 'call cap'):
+            AUDIT.audit_quota_requests(rows+[self.receipt('odds/multi', None, ids=[151])], 151, True)
+
+    def test_reported_inventory_must_fund_full_plan_even_after_one_batch(self):
+        for allow_missing in (False,True):
+            with self.subTest(allow_missing=allow_missing):
+                rows=self.requests(20); rows[1]['response_headers']['x_ratelimit_remaining']='21'
+                with self.assertRaisesRegex(AssertionError, 'all planned batches'):
+                    AUDIT.audit_quota_requests(rows[:3], 20, allow_missing)
+                rows[1]['response_headers']['x_ratelimit_remaining']='22'
+                self.assertEqual(len(AUDIT.audit_quota_requests(rows[:3],20,allow_missing)),10)
+
+    def test_reported_low_remaining_and_auth_stops_survive_missing_header_amendment(self):
+        for index in (0,1,2):
+            with self.subTest(index=index):
+                rows=self.requests(20,None); rows[index]['response_headers']['x_ratelimit_remaining']='20'
+                with self.assertRaisesRegex(AssertionError, 'reserve stop|all planned'):
+                    AUDIT.audit_quota_requests(rows,20,True)
+        for status in (401,403,429):
+            for index in (0,1,2):
+                with self.subTest(status=status,index=index):
+                    rows=self.requests(20,None); rows[index]['status_code']=status
+                    with self.assertRaisesRegex(AssertionError, 'auth/rate-limit'):
+                        AUDIT.audit_quota_requests(rows,20,True)
+
+    def test_missing_selected_header_was_already_allowed_under_old_rule(self):
+        rows=self.requests(10); rows[0]['response_headers']={}
+        self.assertEqual(len(AUDIT.audit_quota_requests(rows,10,False)),10)
+
+    def test_malformed_present_header_or_repeated_batch_is_not_absence(self):
+        rows=self.requests(20,None); rows[1]['response_headers']['x_ratelimit_remaining']='unknown'
+        with self.assertRaisesRegex(AssertionError,'Malformed'):
+            AUDIT.audit_quota_requests(rows,20,True)
+        rows=self.requests(20,None); rows[3]['request']['params']=deepcopy(rows[2]['request']['params'])
+        with self.assertRaisesRegex(AssertionError,'Repeated'):
+            AUDIT.audit_quota_requests(rows,20,True)
+
+class ExplicitProfileAdmissionTests(unittest.TestCase):
     def test_explicit_pilot_has_no_season_admission(self):
         manifest = profile_manifest('pilot')
         self.assertFalse(AUDIT.collection_profile(manifest)['legacy_pilot_profile'])
@@ -168,6 +255,26 @@ class SyntheticSeasonAuditTests(unittest.TestCase):
     def test_wrong_recorded_season_protocol_hash_fails(self):
         self.manifest['provenance'][AUDIT.SEASON_PROTOCOL] = '0' * 64
         with self.assertRaisesRegex(AssertionError, 'Git source hash mismatch'):
+            self.audit()
+
+    def test_v3_amendment_bytes_use_recorded_git_not_later_working_tree(self):
+        path=self.root/AUDIT.QUOTA_AMENDMENT
+        body=b'Synthetic before-use quota amendment, separately retained.\n'
+        path.write_bytes(body)
+        subprocess.run(['git','add','model'],cwd=self.repository,check=True,capture_output=True)
+        subprocess.run(['git','-c','user.name=Audit Test','-c','user.email=audit@example.invalid',
+                        'commit','-qm','Synthetic quota amendment'],cwd=self.repository,check=True,capture_output=True)
+        self.manifest.update(collector_version='weather-revision-collector-v3',
+            quota_policy=deepcopy(AUDIT.AMENDED_QUOTA_POLICY),
+            git_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=self.repository,text=True).strip())
+        self.manifest['provenance'][AUDIT.QUOTA_AMENDMENT]=AUDIT.sha(body)
+        path.write_text('Later source change must not replace the recorded amendment.\n')
+        result=self.audit()
+        self.assertTrue(result['quota_audit']['allow_missing_quota_metadata'])
+        self.assertTrue(result['provenance'][AUDIT.QUOTA_AMENDMENT]['recorded_commit_matches'])
+        self.assertFalse(result['provenance'][AUDIT.QUOTA_AMENDMENT]['current_matches'])
+        self.manifest['provenance'][AUDIT.QUOTA_AMENDMENT]='0'*64
+        with self.assertRaisesRegex(AssertionError,'Git source hash mismatch'):
             self.audit()
 
 

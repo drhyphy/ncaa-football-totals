@@ -29,6 +29,10 @@ SCHEDULED_UTC_SLOTS = ['01:17', '07:17', '13:17', '19:17']
 BOOKS = {'DraftKings': 'draftkings', 'FanDuel': 'fanduel'}
 VARS = ('temperature_2m', 'relative_humidity_2m', 'wind_speed_10m')
 CATALOG_SHA = 'eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7'
+QUOTA_AMENDMENT = 'reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md'
+AMENDED_QUOTA_POLICY = {'require_quota_metadata': False, 'reserve_if_reported': 20,
+    'missing_metadata': 'continue_fixed_bounded_calls', 'stop_http_statuses': [401, 403, 429],
+    'maximum_provider_calls': 17, 'amendment_file': QUOTA_AMENDMENT}
 
 
 def stamp(value):
@@ -79,6 +83,56 @@ def collection_profile(manifest):
     return {'collection_profile': name, 'legacy_pilot_profile': not explicit,
             'collection_protocol_id': protocol_id, 'collection_protocol_file': protocol,
             'collection_window': window, 'scheduled_utc_slots': list(SCHEDULED_UTC_SLOTS)}
+
+
+def quota_contract(manifest):
+    """A new opt-in does not silently relax old captures or unknown versions."""
+    version = manifest.get('collector_version')
+    assert version in ('weather-revision-collector-v1', 'weather-revision-collector-v2',
+                       'weather-revision-collector-v3'), 'Unknown collector quota version'
+    if version != 'weather-revision-collector-v3':
+        assert 'quota_policy' not in manifest, 'Legacy collector cannot opt into amended quota rules'
+        return False
+    assert isinstance(manifest.get('quota_policy'), dict) and digest(manifest['quota_policy']) == digest(AMENDED_QUOTA_POLICY), 'Amended quota policy mismatch'
+    assert re.fullmatch('[0-9a-f]{64}', str(manifest.get('provenance', {}).get(QUOTA_AMENDMENT))), 'Quota amendment hash missing'
+    return True
+
+
+def audit_quota_requests(odds, planned_games, allow_missing):
+    """Check actual original request order; allowance is unknown when absent."""
+    assert len(odds) <= 17, 'Provider call cap exceeded'
+    batches = []
+    def remaining(receipt):
+        value = receipt['response_headers'].get('x_ratelimit_remaining')
+        if value is None:
+            return None
+        assert re.fullmatch('[0-9]+', str(value)), 'Malformed reported allowance'
+        return int(value)
+    inventory = next((r for r in odds if r['request']['url'].endswith('/events')), None)
+    for i, receipt in enumerate(odds):
+        suffix = receipt['request']['url'].rsplit('/', 1)[-1]
+        assert suffix in ('selected', 'events', 'multi'), 'Unexpected provider route'
+        if i:
+            previous = odds[i-1]
+            assert previous['status_code'] not in (401, 403, 429), 'Request after auth/rate-limit rejection'
+            allowance = remaining(previous)
+            assert allowance is None or allowance > 20, 'Request after reported reserve stop'
+        if suffix == 'selected':
+            assert i == 0, 'Repeated/reordered selected-books request'
+        elif suffix == 'events':
+            assert i == 1 and odds[0]['status_code'] == 200, 'Inventory without usable selected-books response'
+        else:
+            assert i >= 2 and inventory is not None and inventory['status_code'] == 200, 'Batch without usable inventory'
+            ids = receipt['request']['params']['eventIds'].split(',')
+            assert 1 <= len(ids) <= 10 and len(ids) == len(set(ids)), 'Invalid batch size/identities'
+            batches.extend(ids)
+            allowance = remaining(odds[i-1])
+            assert allowance is not None or allow_missing, 'Missing quota metadata under strict legacy policy'
+            initial = remaining(inventory)
+            assert initial is not None or allow_missing, 'Missing inventory quota under strict legacy policy'
+            assert initial is None or initial >= math.ceil(planned_games/10)+20, 'Inventory cannot fund all planned batches plus reserve'
+    assert len(batches) == len(set(batches)) and len(batches) <= planned_games, 'Repeated or excess batch targets'
+    return batches
 
 
 class Audit:
@@ -359,7 +413,10 @@ class Audit:
         manifest = json.loads(body)
         assert manifest['schema_version'] == 'weather-revision-capture-v1'
         profile = collection_profile(manifest)
+        allow_missing_quota = quota_contract(manifest)
         provenance = self.provenance(manifest)
+        if allow_missing_quota:
+            assert QUOTA_AMENDMENT in self.blobs, 'Verified quota amendment bytes unavailable'
         start, end = [stamp(manifest[k]) for k in ('capture_started_at', 'capture_completed_at')]
         assert len(manifest['receipts']) == len(set(manifest['receipts']))
         receipts = [self.envelope(p)[0] for p in manifest['receipts']]
@@ -420,20 +477,9 @@ class Audit:
             'paired_two_book_games': sum(len({p['sportsbook'] for p in r['pairs']}) == 2 for r in rows)}
         assert all(counts[k] == v for k, v in rebuilt.items())
         odds = sorted([r for r in receipts if urlsplit(r['request']['url']).hostname == 'api.odds-api.io'], key=lambda r: stamp(r['requested_at']))
-        assert len(odds) <= 17
-        batch_ids = []
-        for i, receipt in enumerate(odds):
-            if receipt['request']['url'].endswith('/odds/multi'):
-                ids = receipt['request']['params']['eventIds'].split(',')
-                assert 1 <= len(ids) <= 10 and len(ids) == len(set(ids))
-                batch_ids.extend(ids)
-                previous = odds[i-1]
-                assert int(previous['response_headers']['x_ratelimit_remaining']) > 20
-                assert previous['status_code'] not in (401, 403, 429)
-        assert len(batch_ids) == len(set(batch_ids)) and len(batch_ids) <= len(frozen['games'])
-        if batch_ids:
-            inventory = next(r for r in odds if r['request']['url'].endswith('/events'))
-            assert int(inventory['response_headers']['x_ratelimit_remaining']) >= math.ceil(len(batch_ids)/10) + 20
+        provider_to_game = {}
+        inventory = next((r for r in odds if r['request']['url'].endswith('/events')), None)
+        if inventory is not None and inventory['status_code'] == 200 and not inventory['transport_error']:
             source_events = self.success(inventory['receipt_path'])[1]
             official_keys, source_keys = {}, {}
             for row in manifest['rows']:
@@ -449,10 +495,11 @@ class Audit:
                     continue
             provider_to_game = {source_keys[k][0]: ids[0] for k, ids in official_keys.items()
                                 if len(ids) == 1 and len(source_keys.get(k, [])) == 1 and source_keys[k][0].isdigit()}
-            assert set(batch_ids) <= set(provider_to_game)
-            for row in rows:
-                for quote in row['quotes']:
-                    assert provider_to_game[quote['provider_event_id']] == row['game_id']
+        batch_ids = audit_quota_requests(odds, len(provider_to_game), allow_missing_quota)
+        assert len(batch_ids) <= len(frozen['games']) and set(batch_ids) <= set(provider_to_game)
+        for row in rows:
+            for quote in row['quotes']:
+                assert provider_to_game[quote['provider_event_id']] == row['game_id']
         return {'schema_version': 'weather-revision-independent-audit-v1', 'audit_passed': True,
             **profile,
             'run_id': manifest['run_id'], 'run_attempt': manifest['run_attempt'], 'manifest_sha256': sha(body),
@@ -462,6 +509,10 @@ class Audit:
             'normalized_quote_pairs_reconstructed': quoted, 'weather_quote_links_reconstructed': paired,
             'weather_quote_gap_seconds': {'minimum': min(gaps), 'maximum': max(gaps)} if gaps else None,
             'odds_requests': len(odds), 'recorded_git_commit': manifest['git_commit'],
+            'quota_audit': {'collector_version': manifest['collector_version'],
+                'allow_missing_quota_metadata': allow_missing_quota, 'planned_provider_games': len(provider_to_game),
+                'requests_without_allowance': sum('x_ratelimit_remaining' not in r['response_headers'] for r in odds),
+                'reserve_unknown_when_metadata_absent': True, 'maximum_provider_calls': 17},
             'recorded_commit_provenance_verified': all(p['recorded_commit_matches'] is True for p in provenance.values()),
             'provenance': provenance,
             'no_network': True, 'outcomes_extracted': False, 'performance_evaluated': False,

@@ -449,6 +449,19 @@ def test_strict_default_retains_both_original_missing_header_stops(environment, 
                for f in failures)
 
 
+@pytest.mark.parametrize('stage,expected_calls', [('selected', 1), ('events', 2), ('batch1', 3)])
+@pytest.mark.parametrize('value', ['unknown', '21.5', '+100', '-1'])
+def test_present_malformed_allowance_is_not_treated_as_an_absent_header(environment, stage, expected_calls, value):
+    root, _ = environment
+    games = [event(500+i) for i in range(11)]
+    rows = collector.parse_cohort({'events': games}, START)[0]
+    session = quota_session(root, games, remaining_by_stage={stage: value})
+    _, failures = collector.collect_quotes(archive.ArchiveClient(root, session=session), rows,
+                                          'synthetic-test-token', START, require_quota_metadata=False)
+    assert len(session.calls) == expected_calls
+    assert any(f['reason'] == 'reported_quota_metadata_invalid' for f in failures)
+
+
 @pytest.mark.parametrize('metadata,expected_calls,expected_quotes', [
     ({'selected': 20}, 1, 0),
     ({'events': 20}, 2, 0),
