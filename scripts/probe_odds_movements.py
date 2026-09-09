@@ -123,6 +123,7 @@ def main():
     parser.add_argument("--request-file", type=Path, required=True)
     parser.add_argument("--run-name", required=True)
     parser.add_argument('--quota-refresh', action='store_true', help='Use the separately recorded one-call metadata amendment')
+    parser.add_argument('--bounded-without-quota-headers', action='store_true', help='Recorded operational correction: complete the six fixed calls within eight total')
     args = parser.parse_args()
     if not args.run_name or any(c not in "abcdefghijklmnopqrstuvwxyz0123456789-_" for c in args.run_name):
         parser.error("run-name must be a safe lowercase archive name")
@@ -134,6 +135,18 @@ def main():
     if not key:
         parser.error("existing odds key unavailable")
     probe = Probe(ROOT / "model", args.run_name, key)
+    if args.bounded_without_quota_headers:
+        receipts = [json.loads(p.read_text()) for p in (probe.path / 'receipts').glob('*.json')]
+        required = {'movement_probe_future-full-state', 'movement_probe_quota-refresh'}
+        missing = [r for r in receipts if r['purpose'] in required]
+        if (len(missing) != 2 or {r['purpose'] for r in missing} != required
+                or any(r['status_code'] != 200 or 'x_ratelimit_remaining' in r['response_headers'] for r in missing)
+                or any(r['status_code'] in (401, 403, 429) for r in receipts)
+                or (probe.remaining is not None and probe.remaining <= 20)):
+            parser.error('Header-absence correction does not apply to this recorded state')
+        probe.max_requests = 8
+        probe.quota_missing = False
+        probe.stopped = False
     if args.quota_refresh:
         print(json.dumps({'label': 'quota-refresh', **summary(probe.refresh_quota())}, sort_keys=True), flush=True)
         if probe.stopped:
