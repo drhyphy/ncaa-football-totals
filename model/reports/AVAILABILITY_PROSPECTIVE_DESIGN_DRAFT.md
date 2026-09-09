@@ -1,5 +1,7 @@
 # ACC availability information: prospective design draft
 
+**Historical draft, superseded by the [September 9 model specification](AVAILABILITY_MODEL_DESIGN.md).** The text below remains as design history. In particular, the newer source-posted predicate replaces a nonexistent completed-bit requirement, its zero-burden rules avoid irrelevant role prerequisites, and the positive-L2 model does not require both outcome classes. No live forecasts or profitable edge were established by this draft.
+
 **DRAFT / UNFROZEN — revised September 9, 2026. NOT ACTIVATED.** This proposes one directional probability experiment using a separately frozen collection pilot. It does not authorize a fitted candidate, revise an existing betting policy, or establish an edge. No target-game movement/outcome labels or real-data fits informed this revision. The original draft is preserved in Git commit `65f7fb377b1b938338eaf6b19aa8ebea960e698e`; this revision corrects its game-day-only transition design, which could miss a quarterback already listed Out in the initial report. The source-only follow-up supports prior passing-attempt shares as the intended role representation. The populated ACC player schema, crosswalk and final model protocol remain unresolved and must be frozen before target labels are examined or fitting begins.
 
 ## What is established, and what can begin now

@@ -1,0 +1,1048 @@
+{
+  "actions_this_check": {
+    "forecasts_created": 0,
+    "http_requests": 0,
+    "models_fitted": 0,
+    "original_artifacts_modified": false,
+    "paper_positions_created": 0,
+    "prior_passing_participation_fields_read": true,
+    "target_game_outcome_fields_read": false
+  },
+  "component_status": {
+    "edge_established": false,
+    "model_driven_page_posting_activated": false,
+    "populated_current_report_to_role_to_price_opportunity_validated": false,
+    "prior_completion_by_planner": false,
+    "prior_explicit_source_season_present": false,
+    "probability_runner_activated": false,
+    "prospective_probability_results_validated": false,
+    "source_schema_acceptance": "verified for this single future ACC target and its observed role URLs"
+  },
+  "controller_recommendation": {
+    "attempts_original_bodies_receipts_and_profiles_immutable": true,
+    "budget_counts_failures_and_followups": true,
+    "completion_and_literal_boxscore_followup_verified_after_gamecast": true,
+    "earlier_prior_substitution_allowed": false,
+    "failed_attempt_refreshes_cached_roster_time": false,
+    "failed_roster_retry": "Next invocation through the same fair queue and request budget; no extra 24-hour failure embargo.",
+    "fit_minimum_completed_weeks": 2,
+    "fit_minimum_distinct_games": 20,
+    "fit_minimum_is_confidence_threshold": false,
+    "fit_requires_both_classes": false,
+    "implemented": false,
+    "inputs": "Already verified original inventory and summary envelopes with actual receipt hashes/times.",
+    "labels_only_backfill_allowed": false,
+    "later_receipts_may_repair_past_phase": false,
+    "new_namespace": "data/runtime/availability_roles",
+    "one_class_training": "Permitted by fixed positive L2-penalized logistic objective; no both-class admission gate.",
+    "paper_entries_max_per_game": 1,
+    "phase_designations": [
+      "initial",
+      "gameday"
+    ],
+    "prior_profile_key": [
+      "team_id",
+      "selected_prior_game_id"
+    ],
+    "publication": "Separate study aggregate read at existing 06:30 board; no existing policy or weather-ledger changes.",
+    "queue_independent_of_report_status_prices_and_modeled_ev": true,
+    "queue_order": [
+      "never_attempted",
+      "oldest_actual_attempt",
+      "target_kickoff",
+      "target_game_id",
+      "team_id",
+      "kind"
+    ],
+    "raw_acc_collection_continues_after_role_failure": true,
+    "request_budget_per_invocation": 12,
+    "retry_within_invocation": false,
+    "roster_cache_key": [
+      "season",
+      "team_id"
+    ],
+    "roster_max_source_age_hours": 24,
+    "roster_reuse": "A successful verified roster may be reused until 24h after its actual source receipt."
+  },
+  "focused_tests": {
+    "combined_passed": 101,
+    "command": "PYTHONPATH=model python -m pytest model/tests/test_availability_role_plan.py model/tests/test_availability_role_archive.py -q",
+    "kind": "synthetic only",
+    "other_component_counts": "See separate integration_validation; original 101-test role check remains distinct.",
+    "role_archive": 49,
+    "role_planner": 52
+  },
+  "generated_at": "2026-09-09T09:55:08.285787Z",
+  "integration_validation": {
+    "command": "PYTHONPATH=model python -m pytest -q model/tests scripts/tests",
+    "completed_at": "2026-09-09T10:03:17.877115Z",
+    "edge_established": false,
+    "elapsed_seconds": 38.99,
+    "new_component_counts": {
+      "decisions": 120,
+      "evaluation": 48,
+      "models": 52,
+      "opportunities": 37,
+      "role_archive": 49,
+      "role_plan": 52,
+      "sources": 137
+    },
+    "new_component_tests": 495,
+    "passed": 1731,
+    "prospective_forecasts_created": 0,
+    "real_model_fits": 0,
+    "source_sha256": {
+      "model/ncaaf_model/availability_archive.py": "d213bc367c691f5b632be68ace61521d213fb2d71cf0d4e7408b6132dbd37f1f",
+      "model/ncaaf_model/availability_collector.py": "0b5e1f172e379e80ff7fa3daf357d6d3f56a97b99df7e2d1a2fbbf97ff2a98e5",
+      "model/ncaaf_model/availability_decisions.py": "a6b0b554d9dd18c05ca5a99012a071291ea63a4a06a10a58d799c09dba05c40b",
+      "model/ncaaf_model/availability_evaluation.py": "160a874e93ded8b0259eed20bbfd0edf6251955acd65abc13bed72c2f48ce2f2",
+      "model/ncaaf_model/availability_models.py": "e2cc35474025e729fd5f68c8db57639bb1974e0d266ac12251470ca28e71f4fb",
+      "model/ncaaf_model/availability_opportunities.py": "4c3ac791c11f89f278a5547f85704740fd500a75ff5aba2a1488ccc42f2ca4c1",
+      "model/ncaaf_model/availability_role_archive.py": "05d2d57bd3cf4d25629965b2441abaaa4659e8c9a0601c6632b10d6739d5d002",
+      "model/ncaaf_model/availability_role_plan.py": "88f1fbc93c39e4fd658bd0161a82a4741989dec98c998f504b20add93956b936",
+      "model/ncaaf_model/availability_sources.py": "5c793191979f966b3cea629be8565c415579d99ced4d856165cd5e6adfa7c6e6",
+      "model/tests/test_availability_archive.py": "4cb9e30f2e49572943045ffdcf7b022954c98d1aef7a60da52237fde8b60e19f",
+      "model/tests/test_availability_collector.py": "1efb39be16747ba38cc9de6f6181bb8170a8316d049ee83ac25f03fca4255b00",
+      "model/tests/test_availability_decisions.py": "d6fb0101f10cfc11e975ad9f09aa62e03cc5f7de107fdf6b9be67d2c81486a39",
+      "model/tests/test_availability_evaluation.py": "a4399279b655c465ef455a740f366d927242a21650d0d4a8c3cbd5f46615629a",
+      "model/tests/test_availability_models.py": "9fce4b6919c71872fcfe7d6963e4ffd83f10afadbdcc78116fd5682f7d8791c6",
+      "model/tests/test_availability_opportunities.py": "5f8ec9dbe64adf6a8a6add7ddc89e5ac1cf444e02829c42a2286a542fa821c96",
+      "model/tests/test_availability_role_archive.py": "e77412edbd3fc6ad2ba09e4b26d0c8bd8bcb94f15becea18e432ee1e1ab7ae96",
+      "model/tests/test_availability_role_plan.py": "72fb74f4b26ae588563ce42fe2d00cd5aa7641613eafc6afb153cf760af39b4c",
+      "model/tests/test_availability_sources.py": "0de306ee7374c205b89b82f24b0fe8affe5d1eb840b93f0fc11e50661cedb2ac"
+    },
+    "subtests_passed": 176,
+    "warnings": 9
+  },
+  "limitations": [
+    "One source capture cannot establish general coverage, current populated-report semantics or prospective model performance.",
+    "The latest dated observed prior entry does not certify full schedule coverage or completed status.",
+    "Missing prior season is explicitly inferred only from the prepared specification\u2019s fixed Aug1 2026-Feb1 2027 operational window.",
+    "Later roster/Gamecast/boxscore receipts are not made available at this earlier supplied cutoff.",
+    "No actual new role transport, source-to-forecast runner or scheduled future posting was exercised by this check.",
+    "Controller recommendations are not active code, a new collection authorization or a validated betting policy."
+  ],
+  "literal_url_provenance_pointers_verified": true,
+  "opportunity_component": {
+    "activated_in_workflow": false,
+    "contract": "Verified source inputs; scheduled first initial/game-day designation before any player-row inspection; duplicate-phase ambiguity remains designated; preserves first kickoff grouping and failed-source/inventory snapshots for preceding quotes.",
+    "path": "ncaaf_model/availability_opportunities.py",
+    "synthetic_tests_reported_by_root": 37,
+    "test_scope": "Root executed; not repeated by this report."
+  },
+  "original_metadata_inputs": [
+    {
+      "body_path": "data/runtime/availability/bodies/fd3ea93d301d8384dde0f9e3e369371955ba7658f226d7f46df6c92c9406b722.body.gz",
+      "body_sha256": "fd3ea93d301d8384dde0f9e3e369371955ba7658f226d7f46df6c92c9406b722",
+      "body_size_bytes": 1409649,
+      "kind": "inventory",
+      "receipt_path": "data/runtime/availability/receipts/533222d2e7fd8544f6811644f7c048d6196fe6cb67e86f09068b7a84dae4e265.json",
+      "receipt_sha256": "f06fc140746f6076773bfd951e415409b096ce8f5da7fe2321a7cb7a8d8fc3a3",
+      "received_at": "2026-09-09T08:35:06.842427Z",
+      "requested_at": "2026-09-09T08:35:06.753368Z"
+    },
+    {
+      "body_path": "data/runtime/availability/bodies/7424ff526bdd6d8791d7f8a950e547f163975572b1026f177123440931881724.body.gz",
+      "body_sha256": "7424ff526bdd6d8791d7f8a950e547f163975572b1026f177123440931881724",
+      "body_size_bytes": 96318,
+      "kind": "summary",
+      "receipt_path": "data/runtime/availability/receipts/bc395f1ea790068e72ab7522ad170cec918411e08953534b80065ffd897fd494.json",
+      "receipt_sha256": "834efcf36f03b42725eceef6360e0363a2d24631d03666085d70c0abbd3acc58",
+      "received_at": "2026-09-09T08:35:07.625146Z",
+      "requested_at": "2026-09-09T08:35:07.596065Z"
+    }
+  ],
+  "planner_as_of": "2026-09-09T08:35:08.271901Z",
+  "planner_result": {
+    "as_of": "2026-09-09T08:35:08.271901Z",
+    "counts": {
+      "excess_targets": 0,
+      "inventory_events": 86,
+      "prior_team_game_requests": 2,
+      "roster_requests": 2,
+      "targets": 1,
+      "verified_future_acc_games": 1
+    },
+    "exclusions": [
+      {
+        "game_id": "401858213",
+        "pointer": "/events/0",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858215",
+        "pointer": "/events/1",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858220",
+        "pointer": "/events/2",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858222",
+        "pointer": "/events/3",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858214",
+        "pointer": "/events/4",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856678",
+        "pointer": "/events/5",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858439",
+        "pointer": "/events/6",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856782",
+        "pointer": "/events/7",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856683",
+        "pointer": "/events/8",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856679",
+        "pointer": "/events/9",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858442",
+        "pointer": "/events/10",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856781",
+        "pointer": "/events/11",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858218",
+        "pointer": "/events/12",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858221",
+        "pointer": "/events/13",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858224",
+        "pointer": "/events/14",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401862702",
+        "pointer": "/events/15",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864571",
+        "pointer": "/events/16",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866416",
+        "pointer": "/events/17",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856673",
+        "pointer": "/events/18",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856791",
+        "pointer": "/events/19",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866415",
+        "pointer": "/events/20",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866417",
+        "pointer": "/events/21",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866413",
+        "pointer": "/events/22",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401859184",
+        "pointer": "/events/23",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856674",
+        "pointer": "/events/24",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856810",
+        "pointer": "/events/25",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858446",
+        "pointer": "/events/26",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856677",
+        "pointer": "/events/27",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856785",
+        "pointer": "/events/28",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856790",
+        "pointer": "/events/29",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858217",
+        "pointer": "/events/31",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858440",
+        "pointer": "/events/32",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858444",
+        "pointer": "/events/33",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401860884",
+        "pointer": "/events/34",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401862708",
+        "pointer": "/events/35",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866412",
+        "pointer": "/events/36",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866419",
+        "pointer": "/events/37",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866420",
+        "pointer": "/events/38",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401867929",
+        "pointer": "/events/39",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401862705",
+        "pointer": "/events/40",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858223",
+        "pointer": "/events/41",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864506",
+        "pointer": "/events/42",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401865252",
+        "pointer": "/events/43",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401868326",
+        "pointer": "/events/44",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856684",
+        "pointer": "/events/45",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856672",
+        "pointer": "/events/46",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401860881",
+        "pointer": "/events/47",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866414",
+        "pointer": "/events/48",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866418",
+        "pointer": "/events/49",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401868187",
+        "pointer": "/events/50",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401866421",
+        "pointer": "/events/51",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856681",
+        "pointer": "/events/52",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856787",
+        "pointer": "/events/53",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856680",
+        "pointer": "/events/54",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856786",
+        "pointer": "/events/55",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858441",
+        "pointer": "/events/56",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401860882",
+        "pointer": "/events/57",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401862707",
+        "pointer": "/events/58",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864503",
+        "pointer": "/events/59",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864575",
+        "pointer": "/events/60",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401868241",
+        "pointer": "/events/61",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401869955",
+        "pointer": "/events/62",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401871045",
+        "pointer": "/events/63",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401871046",
+        "pointer": "/events/64",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858443",
+        "pointer": "/events/65",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858447",
+        "pointer": "/events/66",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856682",
+        "pointer": "/events/67",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401867796",
+        "pointer": "/events/68",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856783",
+        "pointer": "/events/69",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856788",
+        "pointer": "/events/70",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858219",
+        "pointer": "/events/71",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401862703",
+        "pointer": "/events/72",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401868008",
+        "pointer": "/events/73",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856676",
+        "pointer": "/events/74",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856671",
+        "pointer": "/events/75",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856789",
+        "pointer": "/events/76",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856784",
+        "pointer": "/events/77",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864504",
+        "pointer": "/events/78",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864505",
+        "pointer": "/events/79",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864502",
+        "pointer": "/events/80",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401856670",
+        "pointer": "/events/81",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401860883",
+        "pointer": "/events/82",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864500",
+        "pointer": "/events/83",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401858445",
+        "pointer": "/events/84",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      },
+      {
+        "game_id": "401864578",
+        "pointer": "/events/85",
+        "reason": "not_verified_acc_conference_matchup",
+        "stage": "inventory",
+        "team_id": null
+      }
+    ],
+    "limitations": [
+      "Original payload receipts and their availability must be verified by the caller.",
+      "Prior selection is the latest dated entry in observed prior-game list; list completeness and completed status are not established.",
+      "Missing explicit prior season uses the fixed operational date window, not source season certification.",
+      "No outcomes, player roles, future starters or model eligibility are inferred."
+    ],
+    "plans": [
+      {
+        "game_id": null,
+        "kind": "roster",
+        "provenance": [
+          {
+            "pointer": "/header/competitions/0",
+            "source": "summary",
+            "summary_game_id": "401858216",
+            "target_game_id": "401858216"
+          },
+          {
+            "pointer": "/events/30/competitions/0/competitors/0/team/links/2/href",
+            "source": "inventory",
+            "target_game_id": "401858216"
+          }
+        ],
+        "target_game_ids": [
+          "401858216"
+        ],
+        "team_id": "183",
+        "url": "https://www.espn.com/college-football/team/roster/_/id/183"
+      },
+      {
+        "game_id": "401858208",
+        "kind": "gamecast",
+        "prior_context": {
+          "away_id": "160",
+          "completed_status_verified": false,
+          "game_date": "2026-09-05T16:00:00Z",
+          "game_id": "401858208",
+          "home_id": "183",
+          "season": 2026,
+          "season_basis": "fixed_date_window_inference",
+          "selection": "latest dated entry in observed prior-game list"
+        },
+        "provenance": [
+          {
+            "pointer": "/header/competitions/0",
+            "source": "summary",
+            "summary_game_id": "401858216",
+            "target_game_id": "401858216"
+          },
+          {
+            "pointer": "/lastFiveGames/0/events/4",
+            "season_basis": "fixed_date_window_inference",
+            "source": "summary",
+            "summary_game_id": "401858216",
+            "target_game_id": "401858216"
+          },
+          {
+            "pointer": "/lastFiveGames/0/events/4/links/0/href",
+            "source": "summary",
+            "summary_game_id": "401858216",
+            "target_game_id": "401858216"
+          }
+        ],
+        "target_game_ids": [
+          "401858216"
+        ],
+        "team_id": "183",
+        "url": "https://www.espn.com/college-football/game/_/gameId/401858208/new-hampshire-syracuse"
+      },
+      {
+        "game_id": null,
+        "kind": "roster",
+        "provenance": [
+          {
+            "pointer": "/header/competitions/0",
+            "source": "summary",
+            "summary_game_id": "401858216",
+            "target_game_id": "401858216"
+          },
+          {
+            "pointer": "/events/30/competitions/0/competitors/1/team/links/2/href",
+            "source": "inventory",
+            "target_game_id": "401858216"
+          }
+        ],
+        "target_game_ids": [
+          "401858216"
+        ],
+        "team_id": "25",
+        "url": "https://www.espn.com/college-football/team/roster/_/id/25"
+      },
+      {
+        "game_id": "401858210",
+        "kind": "gamecast",
+        "prior_context": {
+          "away_id": "26",
+          "completed_status_verified": false,
+          "game_date": "2026-09-06T02:30:00Z",
+          "game_id": "401858210",
+          "home_id": "25",
+          "season": 2026,
+          "season_basis": "fixed_date_window_inference",
+          "selection": "latest dated entry in observed prior-game list"
+        },
+        "provenance": [
+          {
+            "pointer": "/header/competitions/0",
+            "source": "summary",
+            "summary_game_id": "401858216",
+            "target_game_id": "401858216"
+          },
+          {
+            "pointer": "/lastFiveGames/1/events/4",
+            "season_basis": "fixed_date_window_inference",
+            "source": "summary",
+            "summary_game_id": "401858216",
+            "target_game_id": "401858216"
+          },
+          {
+            "pointer": "/lastFiveGames/1/events/4/links/0/href",
+            "source": "summary",
+            "summary_game_id": "401858216",
+            "target_game_id": "401858216"
+          }
+        ],
+        "target_game_ids": [
+          "401858216"
+        ],
+        "team_id": "25",
+        "url": "https://www.espn.com/college-football/game/_/gameId/401858210/ucla-california"
+      }
+    ],
+    "schema_version": "availability-role-request-plan-v1",
+    "season": 2026,
+    "season_window": {
+      "end_exclusive": "2027-02-01T00:00:00Z",
+      "start_inclusive": "2026-08-01T00:00:00Z"
+    },
+    "targets": [
+      {
+        "away_id": "25",
+        "game_id": "401858216",
+        "home_id": "183",
+        "kickoff": "2026-09-12T19:30:00Z",
+        "season": 2026
+      }
+    ]
+  },
+  "prepared_specification_timing": "The fixed date window and new planner were prepared after the hosted capture; this is an offline reconstruction, not an earlier frozen decision.",
+  "retained_later_role_source_validation": {
+    "http_requests": 0,
+    "original_html_and_receipt_hashes_verified": 6,
+    "player_names_published": false,
+    "results": [
+      {
+        "completed_context_valid": true,
+        "passing_rows": 3,
+        "passing_valid": true,
+        "prior_game_id": "401858208",
+        "role_evidence_available_at": "2026-09-09T09:03:51.740668Z",
+        "roster_rows": 112,
+        "roster_unmatched_passing_ids": 0,
+        "roster_valid": true,
+        "team_id": "183",
+        "total_attempts": 34
+      },
+      {
+        "completed_context_valid": true,
+        "passing_rows": 2,
+        "passing_valid": true,
+        "prior_game_id": "401858210",
+        "role_evidence_available_at": "2026-09-09T09:03:51.999291Z",
+        "roster_rows": 112,
+        "roster_unmatched_passing_ids": 0,
+        "roster_valid": true,
+        "team_id": "25",
+        "total_attempts": 47
+      }
+    ],
+    "source_parser_path": "ncaaf_model/availability_sources.py",
+    "source_parser_sha256": "5c793191979f966b3cea629be8565c415579d99ced4d856165cd5e6adfa7c6e6",
+    "sources": [
+      {
+        "body_path": "data/raw/availability_role_preflight/01_syracuse_roster_network_authorized.body",
+        "body_sha256": "65342a98f7c5fefc68954c31ad4e02a46ff1053866c37f7f335b089db80e57ba",
+        "body_size_bytes": 626244,
+        "receipt_path": "data/raw/availability_role_preflight/01_syracuse_roster_network_authorized.receipt.json",
+        "receipt_sha256": "2f12e18cd987910d7f014e06e4ed5a402450ec526612afcb941fa198e9284f9f",
+        "received_at": "2026-09-09T08:49:39.001529Z",
+        "requested_at": "2026-09-09T08:49:38.574058Z"
+      },
+      {
+        "body_path": "data/raw/availability_role_preflight/02_california_roster.body",
+        "body_sha256": "0f273af255340e09c479d64f58534c5573c5e9349fa076d1a7aef54fef6d7a4d",
+        "body_size_bytes": 626106,
+        "receipt_path": "data/raw/availability_role_preflight/02_california_roster.receipt.json",
+        "receipt_sha256": "02fe7f9fdd90ba4e0c983d7c286871412c1ce81b5d22db1b34cf52bf0090198e",
+        "received_at": "2026-09-09T08:49:39.280430Z",
+        "requested_at": "2026-09-09T08:49:39.006994Z"
+      },
+      {
+        "body_path": "data/raw/availability_role_web_preflight/01_syracuse_prior_gamecast.body",
+        "body_sha256": "4fd469b43b7bd1aec90df954f4eb88b088591887e081bd346559bd2eade3b71d",
+        "body_size_bytes": 1309736,
+        "receipt_path": "data/raw/availability_role_web_preflight/01_syracuse_prior_gamecast.receipt.json",
+        "receipt_sha256": "8e415397f006486c15c5a275fed9cd78ae98b7285c72cc113a62183267422e66",
+        "received_at": "2026-09-09T08:58:46.791281Z",
+        "requested_at": "2026-09-09T08:58:45.928311Z"
+      },
+      {
+        "body_path": "data/raw/availability_role_web_preflight/02_california_prior_gamecast.body",
+        "body_sha256": "4935f67d865ad70d1cc42c984bf7840ea18cbe1045d95f4012c5e3a42b5c3021",
+        "body_size_bytes": 1322785,
+        "receipt_path": "data/raw/availability_role_web_preflight/02_california_prior_gamecast.receipt.json",
+        "receipt_sha256": "2a528bdf7151e7e55a133d5fc868bb12d358277c6a2ad7c02acb879a9ff5afb1",
+        "received_at": "2026-09-09T08:58:47.369155Z",
+        "requested_at": "2026-09-09T08:58:46.795112Z"
+      },
+      {
+        "body_path": "data/raw/availability_role_web_preflight/03_syracuse_prior_boxscore.body",
+        "body_sha256": "8090033efdee0f1ead380d166f292b7521e2ec2e1f7e428bcc113511eed14622",
+        "body_size_bytes": 574888,
+        "receipt_path": "data/raw/availability_role_web_preflight/03_syracuse_prior_boxscore.receipt.json",
+        "receipt_sha256": "a616ae61399a14d810397e86737081c1414322d10a5b42594255dc9759e600fd",
+        "received_at": "2026-09-09T09:03:51.740668Z",
+        "requested_at": "2026-09-09T09:03:51.261877Z"
+      },
+      {
+        "body_path": "data/raw/availability_role_web_preflight/04_california_prior_boxscore.body",
+        "body_sha256": "7127bb79259e26d8beefb831bd2cf717a4762c6fcf5b04269a35bffb79cdad14",
+        "body_size_bytes": 558614,
+        "receipt_path": "data/raw/availability_role_web_preflight/04_california_prior_boxscore.receipt.json",
+        "receipt_sha256": "62a38bcd371acf4f8fc104df9ec4f03d084a338de8b981130f59137c810db8f5",
+        "received_at": "2026-09-09T09:03:51.999291Z",
+        "requested_at": "2026-09-09T09:03:51.744300Z"
+      }
+    ],
+    "target_outcomes_read": false,
+    "validation_scope": "Current source parser applied offline to original later receipts; aggregate counts only; not available at the earlier hosted planner cutoff."
+  },
+  "schema_version": "availability-component-validation-v1",
+  "scope": "Current planner applied retrospectively to verified retained original payload metadata; not a historically recorded decision or independent algorithm audit.",
+  "selected_team_detail_exclusions": 0,
+  "source_capture": {
+    "capture_completed_at": "2026-09-09T08:35:08.271901Z",
+    "cohort_path": "data/runtime/availability/cohorts/34329726247-1.json",
+    "cohort_sha256": "9f06050ab617a8b37dbdafa32a24dad52beadd01391b5d539b0abe4a1047597c",
+    "manifest_path": "data/runtime/availability/runs/34329726247-1.json",
+    "manifest_sha256": "b9ec913a7646b051d7eb5c1a55fa1f8ed1a70f599ebfa97acc340a05ce4fc862",
+    "original_receipt_and_body_hashes_verified": 7,
+    "recorded_counts": {
+      "context_verified_games": 1,
+      "matched_games": 1,
+      "nonpending_unverified_reports": 0,
+      "paired_games": 1,
+      "paired_two_book_games": 1,
+      "pending_reports": 1,
+      "source_reports": 1,
+      "total_requests": 7
+    },
+    "recorded_git_commit": "620b77dcc762b3d370e8a18b20ae60cda0aae1d6",
+    "recorded_models_fitted": 0,
+    "recorded_verified_completed_reports": 0,
+    "run_attempt": "1",
+    "run_id": "34329726247",
+    "source_files_verified_against_recorded_git": {
+      "ncaaf_model/availability_archive.py": "d213bc367c691f5b632be68ace61521d213fb2d71cf0d4e7408b6132dbd37f1f",
+      "ncaaf_model/availability_collector.py": "0b5e1f172e379e80ff7fa3daf357d6d3f56a97b99df7e2d1a2fbbf97ff2a98e5",
+      "ncaaf_model/revision_archive.py": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0",
+      "ncaaf_model/teams.py": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+      "ncaaf_model/weather_revision_collector.py": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360",
+      "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md": "0b7c409daedc78bfabacebb738db8f74f3e8643d27125ff9276d982e06c9b989",
+      "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+    },
+    "trigger": "workflow_dispatch"
+  },
+  "source_files_at_check_sha256": {
+    ".github/workflows/availability.yml": "32f41f32f46f4bdb516ceab00db4610e5d1425fd0a94913339244fe8ea86f4ee",
+    "model/ncaaf_model/availability_role_archive.py": "05d2d57bd3cf4d25629965b2441abaaa4659e8c9a0601c6632b10d6739d5d002",
+    "model/ncaaf_model/availability_role_plan.py": "88f1fbc93c39e4fd658bd0161a82a4741989dec98c998f504b20add93956b936",
+    "model/tests/test_availability_role_archive.py": "e77412edbd3fc6ad2ba09e4b26d0c8bd8bcb94f15becea18e432ee1e1ab7ae96",
+    "model/tests/test_availability_role_plan.py": "72fb74f4b26ae588563ce42fe2d00cd5aa7641613eafc6afb153cf760af39b4c",
+    "scripts/weather_revision_study.py": "ed351949e58ce988a3a6ed7fb0fc0c358f7e20840946b05d859074691f01e8bc"
+  },
+  "status": "offline_source_plan_validation_passed"
+}

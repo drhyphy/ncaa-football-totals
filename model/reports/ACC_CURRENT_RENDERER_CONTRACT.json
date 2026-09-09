@@ -1,0 +1,247 @@
+{
+  "access_date": "2026-09-09",
+  "conclusion": "The public ACC Football renderer supports freezing a strict source-derived name/status parser and exact Initial/Game Day publication-phase allowlist now. It does not expose a separate completed flag, canonical player identity, unknown phase aliases, or an all-available declaration for empty arrays.",
+  "evidence": [
+    {
+      "exact_fragment": "ACC:{Baseball:Ye,Football:Ze,",
+      "id": "acc_football_route",
+      "line_1based": 1,
+      "meaning": "The ACC Football renderer is Ze, not the generic or other-conference renderer.",
+      "utf8_byte_offset_0based": 139719
+    },
+    {
+      "exact_fragment": "function Ve(r,x){return r.ReportType===\"Initial\"?\"INITIAL REPORT\":r.ReportType===\"Report Pending\"?\"REPORT PENDING\":",
+      "id": "recognized_phases",
+      "line_1based": 1,
+      "meaning": "Exact Initial and Report Pending phase branches; later fallback is presentation, not a phase enum.",
+      "utf8_byte_offset_0based": 21058
+    },
+    {
+      "exact_fragment": "r.ReportType===\"Game Day\"?\"GAME DAY UPDATE\"",
+      "id": "gameday_phase",
+      "line_1based": 1,
+      "meaning": "Exact Game Day branch. A preceding Wednesday-date presentation branch can override the heading; parse raw ReportType.",
+      "utf8_byte_offset_0based": 21233
+    },
+    {
+      "exact_fragment": "Ke=[{statuses:[\"Out\",\"Out - (1st Half)\"],label:\"OUT\"",
+      "id": "raw_status_groups",
+      "line_1based": 1,
+      "meaning": "Full-game Out and first-half suspension share the displayed OUT heading; preserve raw distinction.",
+      "utf8_byte_offset_0based": 20058
+    },
+    {
+      "exact_fragment": "const n=t.rows||[],a=n.some(p=>p.status!==\"Available\"),d=n.length>0",
+      "id": "row_array_and_none_test",
+      "line_1based": 1,
+      "meaning": "Source none-to-report condition needs a nonempty row array and no non-Available statuses.",
+      "utf8_byte_offset_0based": 23259
+    },
+    {
+      "exact_fragment": "d&&!a&&",
+      "id": "none_message_guard",
+      "line_1based": 1,
+      "meaning": "Guard on the none-to-report message; empty arrays do not satisfy it.",
+      "utf8_byte_offset_0based": 23963
+    },
+    {
+      "exact_fragment": "children:\"none to report\"",
+      "id": "none_message",
+      "line_1based": 1,
+      "meaning": "Exact displayed team declaration under the preceding guard.",
+      "utf8_byte_offset_0based": 24131
+    },
+    {
+      "exact_fragment": "n.filter(c=>p.statuses.includes(c.status))",
+      "id": "status_category_filter",
+      "line_1based": 1,
+      "meaning": "Only explicitly recognized category statuses are displayed; unknown non-Available values can disappear.",
+      "utf8_byte_offset_0based": 23353
+    },
+    {
+      "exact_fragment": "children:w.name",
+      "id": "raw_name_render",
+      "line_1based": 1,
+      "meaning": "The renderer prints the raw name and does not join a player ID or jersey.",
+      "utf8_byte_offset_0based": 24793
+    },
+    {
+      "exact_fragment": "children:w.name},f)",
+      "id": "react_row_identity",
+      "line_1based": 1,
+      "meaning": "React row key is its positional index, not a stable athlete key.",
+      "utf8_byte_offset_0based": 24793
+    },
+    {
+      "exact_fragment": "t.ReportType===\"Report Pending\"?\"expected\":\"posted\"",
+      "id": "publication_label",
+      "line_1based": 1,
+      "meaning": "Display says expected iff Pending; all other strings say posted. No backend completion bit is checked.",
+      "utf8_byte_offset_0based": 26471
+    },
+    {
+      "exact_fragment": "const n=t.games?.[0],a=t.games?.[1]",
+      "id": "team_blocks",
+      "line_1based": 1,
+      "meaning": "Two presented team blocks, with no canonical home/away inference.",
+      "utf8_byte_offset_0based": 25242
+    },
+    {
+      "exact_fragment": "r.slice(0,18)",
+      "id": "ui_limit",
+      "line_1based": 1,
+      "meaning": "UI display limit only; not proof the endpoint contains at most 18 reports.",
+      "utf8_byte_offset_0based": 25216
+    },
+    {
+      "exact_fragment": "`${d}:${s.toString().padStart(2,\"0\")} ${p} ET`",
+      "id": "ET_format",
+      "line_1based": 1,
+      "meaning": "The ACC football formatter appends ET to source time; it does not establish publication or perform a verified venue-time conversion.",
+      "utf8_byte_offset_0based": 22154
+    }
+  ],
+  "policy": {
+    "API_phase_strings_or_completed_bit_defined": false,
+    "original_body_sha256": "f12f1e5b006683d313dd7fb009d361e77d53fac8df9271be6650691043d9d5a0",
+    "page_3": "Both teams are published together after the reporting deadline; nonconference reporting is optional.",
+    "pages_1_2": "Named availability statuses, full-game versus first-half Out, unlisted-player presumed Available and explicit Available when a previously listed player recovers.",
+    "prior_audit": "ACC_AVAILABILITY_POLICY_2026.md",
+    "url": "https://s3.amazonaws.com/sidearm.sites/acc.sidearmsports.com/documents/2026/8/24/ACC_Availability_Reporting_Policy_2026_27.pdf"
+  },
+  "proposed_strict_parser_design_not_active": {
+    "QB_matching": "Selected research rule, not a publisher guarantee: exact team-and-season-scoped full name after NFKD -> ASCII -> lowercase -> alphanumeric normalization, preserving raw names and all tokens/suffixes. Canonical collisions remain ambiguous; no fuzzy/prefix match, initials expansion, suffix dropping or jersey-only substitution. Supersedes the earlier uncommitted NFKC proposal.",
+    "basis": "Renderer source plus official policy; distinguish operational source-posted classification from independent backend completeness certification.",
+    "eligible_phase_allowlist": [
+      "Initial",
+      "Game Day"
+    ],
+    "empty_team_array": "Unknown; do not infer all available.",
+    "first_half": "Retain separately; do not merge into full-game Out even though the UI heading does.",
+    "full_game_Out_mapping_failure": "Unknown burden; do not silently discard an unresolved Out row.",
+    "nonempty_mixed_team_rows": "Interpret recognized explicit statuses under the known posted phase. The policy supplies the unlisted-player presumption only for an applicable report, not for pending/missing/invalid input.",
+    "pending_or_unknown_phase": "Not a usable source-posted study phase. Preserve raw record and reason.",
+    "publication_phase_validation": "First real responses must satisfy the already frozen predicates; no discretionary requirement for another schema review solely because they are populated.",
+    "row_schema": "Require arrays and string status; require nonempty name for player-specific interpretation. Reject/preserve malformed or unknown categories rather than silently dropping them.",
+    "team_none": "Known posted phase AND nonempty all-Available rows supports the explicit team none declaration without guessing a placeholder player identity.",
+    "timing": "Use actual original source receipt; issue labels/deadlines/cache metadata are separate."
+  },
+  "residual_limits": [
+    "Renderer source defines presentation and field use, not a general backend data schema or exhaustive guarantee of submission completeness.",
+    "Unknown nonpending ReportType values must not be treated as completed simply because the renderer prints posted.",
+    "No canonical player ID or jersey field is established by this component. Name format, duplicate/placeholder cases and roster matching can fail on future actual records; preserve unavailable states.",
+    "An Available-only row could be a display placeholder; the source does not establish its player identity. The explicit team none predicate is the supported meaning.",
+    "The source does not verify both teams ACC membership; a separate conference-eligibility source/rule is needed if a study excludes optional nonconference reports.",
+    "Source can change. Preserve this source hash and original response before any parser revision; do not retroactively manufacture decision-time forecasts."
+  ],
+  "retained_wrapper": {
+    "import": "./routing-BOw04HdD.js",
+    "line_1based": 1,
+    "path": "data/raw/availability_preflight/acc_current/03_publish_screen.js",
+    "sha256": "99ff0e3aae03e1a48aaf48dcf2df9f29e2a7fcfcb8f0e8b80709f36eca65d9fc",
+    "url": "https://app.hdintelligence.com/assets/PublishScreen-Dg-G25B2.js"
+  },
+  "schema_version": "acc-current-renderer-contract-v1",
+  "scope": {
+    "additional_assets_needed": false,
+    "keys_or_auth_headers_used_or_published": false,
+    "maximum_authorized_asset_requests": 3,
+    "new_public_asset_requests": 1,
+    "outcomes_or_model_results_inspected": false,
+    "parser_or_model_code_changed": false,
+    "untrusted_JS_executed": false
+  },
+  "separate_official_conference_evidence": {
+    "body_path": "data/runtime/availability/bodies/3317efbaa69a3a711846aefab1c76771b9d13f2e960bc3eb1e15e7811c309fcc.body.gz",
+    "competitors": [
+      {
+        "conferenceId": "1",
+        "team_id": "183"
+      },
+      {
+        "conferenceId": "1",
+        "team_id": "25"
+      }
+    ],
+    "conferenceCompetition": true,
+    "decoded_body_sha256": "3317efbaa69a3a711846aefab1c76771b9d13f2e960bc3eb1e15e7811c309fcc",
+    "game_id": "401858216",
+    "groups": {
+      "id": "1",
+      "isConference": true,
+      "name": "Atlantic Coast Conference",
+      "shortName": "ACC"
+    },
+    "receipt_path": "data/runtime/availability/receipts/be38ca53650fb71cd31368e2f38da831ac9ade3fc33f70b73774f6548e89694f.json",
+    "receipt_sha256": "6bf0eb8cd7bfd9a9f6843755256324d071602edcaa05b0cdb0a1a9cf2138af00",
+    "received_at": "2026-09-09T08:16:30.398440Z",
+    "request": {
+      "params": {
+        "dates": "20260909-20260916",
+        "groups": 80,
+        "limit": 1000
+      },
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
+    },
+    "requested_at": "2026-09-09T08:16:30.232558Z",
+    "scope": "Only this current matchup verified; future official inputs require the same conjoined checks. No target outcome inspected.",
+    "source": "ESPN original scoreboard inventory, distinct from ACC renderer",
+    "status_code": 200
+  },
+  "source": {
+    "body_bytes": 140231,
+    "body_path": "data/raw/availability_renderer_preflight/01_routing.body",
+    "body_sha256": "56a370b79721d76119891c55780731b941cda934019d484737f9d7b0a1f70be8",
+    "receipt_path": "data/raw/availability_renderer_preflight/01_routing.receipt.json",
+    "receipt_sha256": "c53dc349530de00513b88f63f9cd5e38e4029fc17b96a2a34657e27f6f1a9899",
+    "received_at": "2026-09-09T09:14:28.444509Z",
+    "requested_at": "2026-09-09T09:14:28.108149Z",
+    "safe_response_headers": {
+      "age": "17273",
+      "cache_control": "public,max-age=10,s-maxage=86400",
+      "content_length": "140231",
+      "content_type": "text/javascript; charset=utf-8",
+      "date": "Wed, 09 Sep 2026 09:14:28 GMT",
+      "etag": "\"d626f1437f6189d45f293fa2d2b4bc46\"",
+      "last_modified": "Wed, 09 Sep 2026 02:01:51 GMT"
+    },
+    "status_code": 200,
+    "url": "https://app.hdintelligence.com/assets/routing-BOw04HdD.js"
+  },
+  "verified_renderer_contract": {
+    "Available_row_names_are_always_actual_players_verified": false,
+    "available_status": "Available",
+    "backend_completed_boolean_checked": false,
+    "category_whitelist_is_phase_specific": false,
+    "conference_membership_evidence": "ACC route/request establishes report organization, not that both teams are ACC conference members.",
+    "display_report_limit": 18,
+    "empty_rows_explicit_none_to_report": false,
+    "exact_pending_phase": "Report Pending",
+    "exact_recognized_study_phases": [
+      "Initial",
+      "Game Day"
+    ],
+    "first_half_out_predicate": "status == Out - (1st Half)",
+    "full_game_out_predicate": "status == Out",
+    "named_category_statuses": [
+      "Out",
+      "Out - (1st Half)",
+      "Doubtful",
+      "Questionable",
+      "Probable",
+      "Game Time Decision"
+    ],
+    "other_update_phase_strings_exhaustively_defined": false,
+    "player_display_field": "name",
+    "player_matching_or_normalization": "None in this ACC Football component; names are emitted as supplied.",
+    "posted_label_predicate": "ReportType != Report Pending (display behavior only; not recommended as an unrestricted eligibility predicate)",
+    "rendered_canonical_player_id": null,
+    "rendered_jersey_field": null,
+    "row_array": "games[].rows",
+    "stable_row_key": "None; positional index used for rendering.",
+    "status_field": "status",
+    "team_none_to_report_predicate": "rows is nonempty and every row.status == Available",
+    "unknown_status_behavior": "Can be invisible because it fails the fixed category filters; must remain unknown in a research parser."
+  },
+  "written_at": "2026-09-09T09:19:57.309468Z"
+}
