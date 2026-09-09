@@ -204,6 +204,9 @@ def _attempts(root):
             if value.get('receipt_path'):
                 original = load_study_envelope(root, value['receipt_path'])['receipt']
                 _require(all(original.get(k) == value.get(k) for k in ('requested_at', 'received_at', 'status_code', 'body_sha256')), 'attempt_receipt_mismatch')
+            else:
+                _require(value.get('status') == 'request_not_archived' and value.get('operational_clock_only') is True,
+                         'missing_attempt_receipt')
             values.append(value)
         except (OSError, EOFError, KeyError, TypeError, ValueError) as exc:
             errors.append({'reason': 'invalid_poll_attempt_archive', 'path': path.relative_to(root).as_posix(),
@@ -312,8 +315,23 @@ def collect_labels(root, observations, runs, *, envelope, now, client=None, comp
         if client is None:
             client = ArchiveClient(root / 'model', archive=root / BASE / 'http')
         result['counts']['final_http_calls'] += 1
-        response = client.fetch(SUMMARY, {'event': observation['game_id']}, purpose='weather_revision_official_final')
-        receipt = response['receipt']
+        request_started = timestamp()
+        try:
+            response = client.fetch(SUMMARY, {'event': observation['game_id']}, purpose='weather_revision_official_final')
+            receipt = response['receipt']
+            _time(receipt['received_at'])
+        except (OSError, KeyError, TypeError, ValueError) as exc:
+            attempt = {'schema_version': 'weather-revision-label-attempt-v1', 'version': VERSION,
+                       'observation_id': observation['observation_id'], 'game_id': observation['game_id'],
+                       'status': 'request_not_archived', 'requested_at': request_started, 'received_at': timestamp(),
+                       'receipt_path': None, 'status_code': None, 'body_sha256': None, 'label_sha256': None,
+                       'operational_clock_only': True, 'exception_class': type(exc).__name__,
+                       'previously_finalized': observation['observation_id'] in finalized}
+            immutable_json(root / BASE / 'label_attempts' / (digest_json(attempt) + '.json'), attempt)
+            result['attempts'].append(attempt)
+            result['errors'].append({'reason': 'final_request_not_archived', 'observation_id': observation['observation_id'],
+                                     'exception_class': type(exc).__name__})
+            break
         cursor = max(cursor, _time(receipt['received_at']))
         attempt = {'schema_version': 'weather-revision-label-attempt-v1', 'version': VERSION,
                    'observation_id': observation['observation_id'], 'game_id': observation['game_id'],

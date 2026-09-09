@@ -305,6 +305,22 @@ class LabelTests(unittest.TestCase):
         self.assertEqual(latest['final_total'], {})
         self.assertEqual(latest['errors'][0]['reason'], 'invalid_label_archive')
 
+    def test_archive_client_failure_is_an_explicit_attempt_without_a_label_receipt(self):
+        class FailedClient:
+            def fetch(self, *args, **kwargs):
+                raise OSError('synthetic archive write failure')
+
+        first = self.collect(client=FailedClient())
+        self.assertEqual(first['status'], 'partial')
+        self.assertEqual(first['counts']['final_http_calls'], 1)
+        self.assertEqual(first['attempts'][0]['status'], 'request_not_archived')
+        self.assertIsNone(first['attempts'][0]['receipt_path'])
+        self.assertTrue(first['attempts'][0]['operational_clock_only'])
+        self.assertFalse(first['records'])
+        client, session = self.client()
+        self.collect(now=NOW + timedelta(minutes=1), client=client)
+        self.assertFalse(session.calls)
+
 
 if __name__ == '__main__':
     unittest.main()
