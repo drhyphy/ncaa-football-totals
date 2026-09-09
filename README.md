@@ -19,6 +19,8 @@ The deeper audit confirmed that the old ESPN scalar archive includes **live-game
 
 See [the primary-source audit](model/reports/espn_market_timing_audit.md), [opponent-model development](model/reports/opponent_adjusted_development.md), [the two-book audit](model/reports/TWO_BOOK_OPPORTUNITIES.md), and [the current protocol](docs/PROSPECTIVE_PROTOCOL.md). Earlier failed experiments remain available for audit; reused historical data are never called a pristine holdout.
 
+The [fixed six-configuration probability experiment](model/reports/calibration_research_results.md) did not justify replacing the current model: the 2022–2024 selection chose raw ridge, and every ridge variant scored worse than the raw market reference in the reused 2025 check. No ROI-based selection or new live candidate was introduced. An [earlier NOAA weather replication](model/reports/NOAA_WEATHER_REQUEST_PLAN.md) separately fixes 1,747 games from 2021–2023 before forecast classification; its [evaluation protocol](model/reports/NOAA_WEATHER_EVALUATION_PROTOCOL.md) retains the original weather thresholds and reports source/timing limits.
+
 ## Prospective evaluation
 
 The [fixed evaluation protocol](model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md) covers September 9, 2026–January 31, 2027 games and sets February 8, 2027 as the evaluation date for the four current policies. Running results remain descriptive, with no interim promotion; historical results and reconstructed replays are excluded.

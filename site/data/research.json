@@ -1838,6 +1838,208 @@
       }
     ]
   },
+  "calibration_research": {
+    "version": "repaired-oof-calibration-v1",
+    "status": "reused_historical_development_only",
+    "plan_sha256": "bbe38aeaef6fa287da0f4b7d15548f604fa85980d90c8ef1e9e4154851884d32",
+    "evaluated_at": "2026-09-09T02:03:02.245288+00:00",
+    "configuration_count": 6,
+    "configurations": [
+      "market_only:raw",
+      "opponent_adjusted_ridge:raw",
+      "market_only:recalibrated",
+      "opponent_adjusted_ridge:recalibrated",
+      "market_only:conditional_variance",
+      "opponent_adjusted_ridge:conditional_variance"
+    ],
+    "selected_configuration": "opponent_adjusted_ridge:raw",
+    "selection_period": "2022\u20132024",
+    "selection_rule": "Minimum pooled three-outcome market log loss on2022\u201324;2025reported separately as reused development. No ROI selection or parameter search.",
+    "primary_metric": "market_nll",
+    "lower_scores_are_better": true,
+    "periods": {
+      "selection_2022_2024": {
+        "market_only:conditional_variance": {
+          "games": 2327,
+          "market_nll": 0.7107749036107129,
+          "conditional_log_loss": 0.6918638780512213,
+          "brier": 0.24935985954636836,
+          "score_nll": 4.176495163404794,
+          "crps": 8.87097714675064,
+          "absolute_error": 12.51167885038736,
+          "posted_integer_lines": 349,
+          "predicted_pushes": 8.943369343413172,
+          "observed_pushes": 12
+        },
+        "market_only:raw": {
+          "games": 2327,
+          "market_nll": 0.7122818341198336,
+          "conditional_log_loss": 0.6931350571693561,
+          "brier": 0.24999391262933174,
+          "score_nll": 4.181317212544515,
+          "crps": 8.89647623312648,
+          "absolute_error": 12.534926087441402,
+          "posted_integer_lines": 349,
+          "predicted_pushes": 8.501012413249207,
+          "observed_pushes": 12
+        },
+        "market_only:recalibrated": {
+          "games": 2327,
+          "market_nll": 0.7110545615127443,
+          "conditional_log_loss": 0.6919477220349164,
+          "brier": 0.2494013655216266,
+          "score_nll": 4.178689593086046,
+          "crps": 8.875004455292434,
+          "absolute_error": 12.51264021495569,
+          "posted_integer_lines": 349,
+          "predicted_pushes": 8.791556670099064,
+          "observed_pushes": 12
+        },
+        "opponent_adjusted_ridge:conditional_variance": {
+          "games": 2327,
+          "market_nll": 0.7111643961448444,
+          "conditional_log_loss": 0.6922495263135839,
+          "brier": 0.2495507040633232,
+          "score_nll": 4.177628087476946,
+          "crps": 8.882013867492683,
+          "absolute_error": 12.524961607325332,
+          "posted_integer_lines": 349,
+          "predicted_pushes": 8.88492656411611,
+          "observed_pushes": 12
+        },
+        "opponent_adjusted_ridge:raw": {
+          "games": 2327,
+          "market_nll": 0.7104651219899735,
+          "conditional_log_loss": 0.6912997776249213,
+          "brier": 0.24907760891755618,
+          "score_nll": 4.177972862140131,
+          "crps": 8.872539992498039,
+          "absolute_error": 12.508870538428964,
+          "posted_integer_lines": 349,
+          "predicted_pushes": 8.469703049454079,
+          "observed_pushes": 12
+        },
+        "opponent_adjusted_ridge:recalibrated": {
+          "games": 2327,
+          "market_nll": 0.7115051512692527,
+          "conditional_log_loss": 0.6923957634831878,
+          "brier": 0.24962227783923313,
+          "score_nll": 4.180006265429194,
+          "crps": 8.886447462110784,
+          "absolute_error": 12.526554003278493,
+          "posted_integer_lines": 349,
+          "predicted_pushes": 8.733775863738156,
+          "observed_pushes": 12
+        }
+      },
+      "reused_2025": {
+        "market_only:conditional_variance": {
+          "games": 852,
+          "market_nll": 0.6943588918182015,
+          "conditional_log_loss": 0.6943588918182015,
+          "brier": 0.25060020036561137,
+          "score_nll": 4.1571473174004225,
+          "crps": 8.776904144636855,
+          "absolute_error": 12.494837323607983,
+          "posted_integer_lines": 0,
+          "predicted_pushes": 0.0,
+          "observed_pushes": 0
+        },
+        "market_only:raw": {
+          "games": 852,
+          "market_nll": 0.6931579593591751,
+          "conditional_log_loss": 0.6931579593591751,
+          "brier": 0.25000538921112364,
+          "score_nll": 4.159109410543945,
+          "crps": 8.772465834892047,
+          "absolute_error": 12.475749331602898,
+          "posted_integer_lines": 0,
+          "predicted_pushes": 0.0,
+          "observed_pushes": 0
+        },
+        "market_only:recalibrated": {
+          "games": 852,
+          "market_nll": 0.6942476019537572,
+          "conditional_log_loss": 0.6942476019537572,
+          "brier": 0.2505454533529606,
+          "score_nll": 4.1582915046938185,
+          "crps": 8.780056764472805,
+          "absolute_error": 12.496098928585862,
+          "posted_integer_lines": 0,
+          "predicted_pushes": 0.0,
+          "observed_pushes": 0
+        },
+        "opponent_adjusted_ridge:conditional_variance": {
+          "games": 852,
+          "market_nll": 0.6966635841410627,
+          "conditional_log_loss": 0.6966635841410627,
+          "brier": 0.251736957138795,
+          "score_nll": 4.159063534044894,
+          "crps": 8.800581590633321,
+          "absolute_error": 12.541882855905115,
+          "posted_integer_lines": 0,
+          "predicted_pushes": 0.0,
+          "observed_pushes": 0
+        },
+        "opponent_adjusted_ridge:raw": {
+          "games": 852,
+          "market_nll": 0.697509388839389,
+          "conditional_log_loss": 0.697509388839389,
+          "brier": 0.252162974582449,
+          "score_nll": 4.161653790154522,
+          "crps": 8.815412601082153,
+          "absolute_error": 12.566289492254652,
+          "posted_integer_lines": 0,
+          "predicted_pushes": 0.0,
+          "observed_pushes": 0
+        },
+        "opponent_adjusted_ridge:recalibrated": {
+          "games": 852,
+          "market_nll": 0.6964348666531796,
+          "conditional_log_loss": 0.6964348666531794,
+          "brier": 0.2516260517701571,
+          "score_nll": 4.160162060599701,
+          "crps": 8.803628600206856,
+          "absolute_error": 12.543296861461046,
+          "posted_integer_lines": 0,
+          "predicted_pushes": 0.0,
+          "observed_pushes": 0
+        }
+      }
+    },
+    "all_ridge_variants_worse_than_raw_market_2025": true,
+    "roi_evaluated": false,
+    "credible_new_betting_edge": false,
+    "live_policy_changed": false,
+    "interpretation": "Six fixed probability-score configurations on reused historical data. No ROI test, no new betting-edge claim, and no added live candidate; the four-policy forward protocol is unchanged.",
+    "limitations": [
+      "All2021\u201325outcomes were previously used in research; chronological fitting does not make this a pristine holdout.",
+      "Verified pregame-provider role does not certify exact entry time or prices; no betting returns or EV-based selections are calculated.",
+      "2024and2025have no posted integer lines in this common evaluation sample; their posted-push calibration is untested.",
+      "Raw comparators use saved fold means/scales in the same nonnegative discrete-normal family; this is not a byte-for-byte runtime replay.",
+      "Eight-comparison intervals are descriptive on reused data and do not account for the entire earlier research search.",
+      "The inherited absolute-spread feature maps a missing original spread to zero; no new missing-data treatment is introduced.",
+      "No2026outcomes used; no active model artifact, registered forward policy or ledger changed."
+    ],
+    "links": [
+      {
+        "name": "All six calibration configurations",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/calibration_research_results.md"
+      },
+      {
+        "name": "Full probability scores and comparisons",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/calibration_research_results.json"
+      },
+      {
+        "name": "Fixed calibration study plan",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/CALIBRATION_RESEARCH_PLAN.md"
+      },
+      {
+        "name": "Independent calibration audit",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/CALIBRATION_RESEARCH_AUDIT.md"
+      }
+    ]
+  },
   "prospective_evaluation_protocol": {
     "report": "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
     "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
@@ -1868,6 +2070,11 @@
     "model/reports/archived_2026_replay_plan.json": "61f2814f6e6a1ee590576767729c61cabdad099bd1672bb56aaffd92e699df20",
     "model/reports/archived_2026_replay_results.md": "bd24b0b80bb644d77fc60b967ea6e80e66c644908b9cf9697216b73b8a34c72e",
     "model/reports/ARCHIVED_2026_QUOTES.md": "3a47dc67bc28e6e399dc1bd5dcc6ffa3dd2e712a92ea0267f17195b675403afe",
+    "model/reports/calibration_research_results.json": "f2b072fcef32c9bbc8c57667a48308f9123aba08471eaef02fa9059b5b30b626",
+    "model/reports/calibration_research_plan.json": "50eae12efdee34e5f594b0de3bd0ee4910114c807dd3c0a215ed00342a0fda77",
+    "model/reports/CALIBRATION_RESEARCH_PLAN.md": "9e6ac91344639c0afe50677fedf1a71d768454158d61d264244d4a12a9fd6d05",
+    "model/reports/calibration_research_results.md": "2bcca27377593af765f60b61ca45af395cff42786aa138228ecf72c60c440c93",
+    "model/reports/CALIBRATION_RESEARCH_AUDIT.md": "21aadeb56952d1cfe0ba32088f1c39fc3091d96fb07b1ebcad384234bf2bc6d0",
     "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md": "f22f08b214e45c33de01d078abb987ee3cc5d59f7995023ad9ea73a0f67953fb"
   },
   "generator": "scripts/publish_research.py"

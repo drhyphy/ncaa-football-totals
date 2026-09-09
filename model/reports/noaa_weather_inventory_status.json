@@ -1,0 +1,19 @@
+{
+  "version": "noaa-original-forecast-fetch-v1",
+  "parent_plan_sha256": "47747f5a0216b5b0a43e9df5777575bfafb165ad6616332869eda35c2b508258",
+  "observed_at": "2026-09-09T02:17:16.279228+00:00",
+  "complete": true,
+  "planned_objects": 1275,
+  "available_objects": 1275,
+  "excluded_objects": 0,
+  "missing_objects": [],
+  "failures_this_run": [],
+  "exact_field_bytes": 3151825716,
+  "field_range_requests": 3572,
+  "index_bytes": 52624355,
+  "weather_values_classified": false,
+  "outcomes_used": false,
+  "timing_limitation": "S3 Last-Modified and initialization+6h are availability proxies. For multipart uploads Last-Modified can be upload initiation, not completion; no certified historical publication claim.",
+  "multipart_pattern_objects": 0,
+  "inventory_plan_sha256": "f486e78a6a2a4699f3b7c54ae4f9186beab87ed04dcbd8aa234959767a734649"
+}

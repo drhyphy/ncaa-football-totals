@@ -27,6 +27,7 @@ test('weather DOM separates development evidence from forward results and expire
   const researchFixture={weather_shadow:{statistical_robustness:{published_result:fixture.weather_strategy.evidence,all_covered_week_cluster_t:{multiplicity_sensitivity:[{hypothetical_family_size:4,bonferroni_95_family_interval:[-.0415228339,.5121110692]}]}}}};
   researchFixture.weather_shadow.archived_2026_replay={prospective_model_performance:false,cohorts:{two_book_the_odds_api:{settled_price_eligible_covered_games:35,calendar_week_blocks:1,rule:{bets:0,roi:null}},single_draftkings_espn_sensitivity:{settled_price_eligible_covered_games:35,calendar_week_blocks:1,rule:{bets:0,roi:null}}}};
   researchFixture.archived_2026_scoring_replay={version:'2026-priced-replay-v1',prospective_model_performance:false,exact_0630_replay:false,evaluated_at:'2026-09-09T01:22:40Z',cohorts:{connected_two_books:{snapshots:Array.from({length:14},(_,i)=>({source_sha256:`fixture-${i}`,observed_at:new Date(Date.parse('2026-08-20T13:00:00Z')+i*86400000).toISOString(),games:8})),positions:{opponent_adjusted_ridge:{bets:2,pending:2,wins:1,losses:1,pushes:0,roi:-.037037037,profit_units:-.074074074},opponent_adjusted_structural:{bets:11,pending:5,wins:5,losses:6,pushes:0,roi:-.1212995758,profit_units:-1.334295334}}}}};
+  researchFixture.calibration_research={status:'reused_historical_development_only',configuration_count:6,selected_configuration:'opponent_adjusted_ridge:raw',all_ridge_variants_worse_than_raw_market_2025:true,roi_evaluated:false,credible_new_betting_edge:false,live_policy_changed:false,links:[{name:'All six configurations',url:'https://example.com/calibration'},{name:'Unsafe link',url:'javascript:alert(1)'}]};
   const context={window:{document:doc},Date:ClockDate,Intl,URL,fetch:async url=>({ok:true,json:async()=>url.startsWith('data/research.json')?researchFixture:fixture}),setInterval:callback=>{tick=callback;}};
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context);
   await new Promise(resolve=>setImmediate(resolve));
@@ -47,6 +48,13 @@ test('weather DOM separates development evidence from forward results and expire
   assert.match(nodes.get('archived-replay-table').textContent,/-3.70%/);
   assert.match(nodes.get('archived-replay-table').textContent,/-12.13%/);
   assert.equal(nodes.get('archived-replay-times').children.length,14);
+  assert.equal(nodes.get('calibration-study').hidden,false);
+  assert.match(nodes.get('calibration-study-note').textContent,/Six fixed configurations.*reused historical data/);
+  assert.match(nodes.get('calibration-study-note').textContent,/2022–2024 selection chose raw opponent-adjusted ridge/);
+  assert.match(nodes.get('calibration-study-note').textContent,/All three ridge variants scored worse.*2025 market log loss/);
+  assert.match(nodes.get('calibration-study-note').textContent,/no live candidate was added.*four-policy forward study is unchanged/);
+  assert.equal(nodes.get('calibration-study-links').children.length,1);
+  assert.equal(nodes.get('candidate-table').textContent,'Candidate evaluation metrics have not been published.');
   assert.match(nodes.get('performance-stats').textContent,/Settled paper bets0/);
   clock+=2*60*60*1000;tick();
   assert.equal(nodes.get('weather-pick-count').textContent,'0');

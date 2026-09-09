@@ -128,6 +128,54 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(cohort['settled_price_eligible_covered_games'], 35)
         self.assertNotIn('pooled', replay)
 
+    def copy_calibration_reports(self):
+        fixture = SCRIPTS.parent / 'model/reports'
+        for name in ('calibration_research_results.json', 'calibration_research_results.md',
+                     'calibration_research_plan.json', 'CALIBRATION_RESEARCH_PLAN.md'):
+            (self.reports / name).write_bytes((fixture / name).read_bytes())
+
+    def test_calibration_preserves_all_six_configurations_and_pre2025_selection(self):
+        self.copy_calibration_reports()
+        bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root / 'site/data/research.json'])
+        study = bundle['calibration_research']
+        source = json.loads((self.reports / 'calibration_research_results.json').read_text())
+        self.assertEqual(study['configuration_count'], 6)
+        self.assertEqual(study['selected_configuration'], 'opponent_adjusted_ridge:raw')
+        self.assertEqual(study['periods'], source['periods'])
+        self.assertTrue(study['all_ridge_variants_worse_than_raw_market_2025'])
+        self.assertFalse(study['roi_evaluated'])
+        self.assertFalse(study['live_policy_changed'])
+        self.assertFalse(study['credible_new_betting_edge'])
+        self.assertNotIn('fits', study)
+        key = 'model/reports/calibration_research_results.json'
+        self.assertEqual(bundle['source_report_sha256'][key], hashlib.sha256((self.reports / 'calibration_research_results.json').read_bytes()).hexdigest())
+
+    def test_calibration_rejects_omitted_configuration_and_2025_winner_substitution(self):
+        self.copy_calibration_reports()
+        path = self.reports / 'calibration_research_results.json'
+        original = json.loads(path.read_text())
+        missing = json.loads(path.read_text())
+        del missing['periods']['reused_2025']['opponent_adjusted_ridge:raw']
+        path.write_text(json.dumps(missing))
+        with self.assertRaisesRegex(ValueError, 'all six'):
+            PUBLISH.build_outputs(self.root)
+        original['selected_configuration'] = 'market_only:raw'
+        path.write_text(json.dumps(original))
+        with self.assertRaisesRegex(ValueError, 'pre-2025'):
+            PUBLISH.build_outputs(self.root)
+
+    def test_calibration_rejects_stale_plan_source_and_hashes_optional_audit(self):
+        self.copy_calibration_reports()
+        audit = self.reports / 'CALIBRATION_RESEARCH_AUDIT.md'
+        audit.write_text('Independent audit fixture.')
+        bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root / 'site/data/research.json'])
+        self.assertEqual(bundle['source_report_sha256']['model/reports/CALIBRATION_RESEARCH_AUDIT.md'], hashlib.sha256(audit.read_bytes()).hexdigest())
+        self.assertTrue(any(link['url'].endswith(audit.name) for link in bundle['calibration_research']['links']))
+        path = self.reports / 'CALIBRATION_RESEARCH_PLAN.md'
+        path.write_text(path.read_text() + '\nUntracked specification change.\n')
+        with self.assertRaisesRegex(ValueError, 'source hash is stale'):
+            PUBLISH.build_outputs(self.root)
+
 
 if __name__ == '__main__':
     unittest.main()

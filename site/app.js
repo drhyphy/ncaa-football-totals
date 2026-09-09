@@ -259,6 +259,17 @@
         cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(titleCase(row.candidate), row.probability_basis), cell(number(row.projected_total)), cell(number(row.line), `${titleCase(row.side)} ${odds(row.american_odds)}`), cell(percent(row.expected_value, true)), cell(row.eligible ? "Qualified at publication" : "No selection", items(row.flags).map(titleCase).join(" · "))
       ]));
     }
+    function renderCalibrationStudy() {
+      const study = research?.calibration_research;
+      const available = study?.status === "reused_historical_development_only" && study?.configuration_count === 6 && study?.roi_evaluated === false && study?.credible_new_betting_edge === false && study?.live_policy_changed === false;
+      $("calibration-study").hidden = !available;
+      $("calibration-study-links").replaceChildren();
+      if (!available) { $("calibration-study-note").textContent = ""; return; }
+      const selected = study.selected_configuration === "opponent_adjusted_ridge:raw" ? "raw opponent-adjusted ridge" : titleCase(study.selected_configuration);
+      const comparison = study.all_ridge_variants_worse_than_raw_market_2025 ? " All three ridge variants scored worse than the raw market reference on 2025 market log loss." : " All six 2025 configurations are reported together.";
+      $("calibration-study-note").textContent = `Six fixed configurations tested probability scores on reused historical data. The 2022–2024 selection chose ${selected}.${comparison} No ROI test was run and no new edge was established; no live candidate was added, and the four-policy forward study is unchanged.`;
+      items(study.links).forEach(report => { if (safeUrl(report.url)) $("calibration-study-links").append(link(`${report.name || "Calibration report"} ↗`, report.url)); });
+    }
     function renderArchivedReplay() {
       const replay = research?.archived_2026_scoring_replay, cohorts = Object.entries(replay?.cohorts || {});
       const available = replay?.prospective_model_performance === false && replay?.exact_0630_replay === false && cohorts.length > 0;
@@ -302,11 +313,11 @@
     function render(data) {
       board = data;
       $("edition-date").textContent = new Intl.DateTimeFormat("en-US", {timeZone: ZONE, weekday: "long", month: "long", day: "numeric", year: "numeric"}).format(new Date());
-      renderPicks(new Date()); renderCandidates(); renderArchivedReplay(); renderPerformance(); renderTransparency();
+      renderPicks(new Date()); renderCandidates(); renderCalibrationStudy(); renderArchivedReplay(); renderPerformance(); renderTransparency();
     }
     $("candidate-filter").addEventListener("change", renderForecasts);
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
-    fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderArchivedReplay();}}).catch(() => {});
+    fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderCalibrationStudy(); renderArchivedReplay();}}).catch(() => {});
     setInterval(() => { if (board) renderPicks(new Date()); }, 60000);
   }
   return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};

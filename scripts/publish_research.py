@@ -275,6 +275,54 @@ def build_outputs(root):
         if provenance_path.exists():
             read_bytes(provenance_path.name)
             archived_replay["links"].append({"name": "Archived quote provenance", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ARCHIVED_2026_QUOTES.md"})
+    calibration = None
+    if (reports / "calibration_research_results.json").exists():
+        result, plan = read("calibration_research_results.json"), read("calibration_research_plan.json")
+        read_bytes("CALIBRATION_RESEARCH_PLAN.md")
+        read_bytes("calibration_research_results.md")
+        if not result.get("plan_sha256") or result["plan_sha256"] != plan.get("plan_sha256") or result.get("parameters") != plan.get("parameters"):
+            raise ValueError("Calibration research has a stale or mismatched fixed plan")
+        for filename in (PRIMARY, "CALIBRATION_RESEARCH_PLAN.md"):
+            if plan.get("input_sha256", {}).get(f"reports/{filename}") != inputs[f"model/reports/{filename}"]:
+                raise ValueError("Calibration research source hash is stale: " + filename)
+        configurations = ["market_only:raw", "opponent_adjusted_ridge:raw", "market_only:recalibrated",
+                          "opponent_adjusted_ridge:recalibrated", "market_only:conditional_variance",
+                          "opponent_adjusted_ridge:conditional_variance"]
+        if set(plan.get("bases", [])) != {"market_only", "opponent_adjusted_ridge"} or set(plan.get("methods", [])) != {"raw", "recalibrated", "conditional_variance"}:
+            raise ValueError("Calibration research must preserve all six fixed configurations")
+        periods = result.get("periods", {})
+        for period in ("selection_2022_2024", "reused_2025"):
+            metrics = periods.get(period, {})
+            if set(metrics) != set(configurations):
+                raise ValueError("Calibration research must publish all six configurations in both periods")
+            if len({row.get("games") for row in metrics.values()}) != 1 or any(not row.get("games") or not math.isfinite(float(row.get("market_nll", math.nan))) for row in metrics.values()):
+                raise ValueError("Calibration research configurations must use the same nonempty scored cohort")
+        selected = min(configurations, key=lambda name: periods["selection_2022_2024"][name]["market_nll"])
+        if result.get("selected_configuration") != selected:
+            raise ValueError("Calibration research selection must use the pre-2025 period")
+        if result.get("status") != "reused_historical_development_only" or result.get("credible_new_betting_edge") is not False:
+            raise ValueError("Calibration publication cannot promote this development experiment as a betting edge")
+        calibration = {
+            "version": result["version"], "status": result["status"], "plan_sha256": result["plan_sha256"],
+            "evaluated_at": result["evaluated_at"], "configuration_count": len(configurations),
+            "configurations": configurations, "selected_configuration": selected,
+            "selection_period": "2022–2024", "selection_rule": result["selection_rule"],
+            "primary_metric": "market_nll", "lower_scores_are_better": True,
+            "periods": {name: periods[name] for name in ("selection_2022_2024", "reused_2025")},
+            "all_ridge_variants_worse_than_raw_market_2025": all(
+                periods["reused_2025"][name]["market_nll"] > periods["reused_2025"]["market_only:raw"]["market_nll"]
+                for name in configurations if name.startswith("opponent_adjusted_ridge:")),
+            "roi_evaluated": False, "credible_new_betting_edge": False, "live_policy_changed": False,
+            "interpretation": "Six fixed probability-score configurations on reused historical data. No ROI test, no new betting-edge claim, and no added live candidate; the four-policy forward protocol is unchanged.",
+            "limitations": result["limitations"],
+            "links": [{"name": label, "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/" + filename}
+                      for label, filename in (("All six calibration configurations", "calibration_research_results.md"),
+                                              ("Full probability scores and comparisons", "calibration_research_results.json"),
+                                              ("Fixed calibration study plan", "CALIBRATION_RESEARCH_PLAN.md"))],
+        }
+        if (reports / "CALIBRATION_RESEARCH_AUDIT.md").exists():
+            read_bytes("CALIBRATION_RESEARCH_AUDIT.md")
+            calibration["links"].append({"name": "Independent calibration audit", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/CALIBRATION_RESEARCH_AUDIT.md"})
     protocol = None
     protocol_path = reports / "PROSPECTIVE_EVALUATION_PROTOCOL.md"
     if protocol_path.exists():
@@ -302,6 +350,7 @@ def build_outputs(root):
         "quarantined_reports": quarantine,
         "weather_shadow": weather,
         "archived_2026_scoring_replay": archived_replay,
+        "calibration_research": calibration,
         "prospective_evaluation_protocol": protocol,
         "limitations": [
             "All 2019–2025 periods have been reused in development; no untouched historical test is claimed.",
