@@ -44,6 +44,8 @@ SOURCES = [
     {"name": "The Odds API", "url": "https://the-odds-api.com/sports/ncaaf-odds.html"},
     {"name": "Action Network public odds", "url": "https://www.actionnetwork.com/ncaaf/odds"},
     {"name": "Odds-API.io timestamped prices", "url": "https://docs.odds-api.io/guides/fetching-odds"},
+    {"name": "Open-Meteo archived operational forecasts", "url": "https://open-meteo.com/en/docs/previous-runs-api"},
+    {"name": "Public CFBD market archive", "url": "https://github.com/jasperfriis-cuni/cfb-market-efficiency"},
 ]
 LIMITATIONS = [
     "No candidate has established high-confidence profitability. All positions are prospective paper research.",
@@ -52,7 +54,7 @@ LIMITATIONS = [
     "The primary model's 2025 test lost 4.5% at assumed -110. Similar over probabilities were too optimistic that year; low-total corrections require prospective validation.",
     "Active opponent models use completed score, drive, and pass/rush observations with a weekly information cutoff. Historical availability uses kickoff plus six hours; later source corrections remain a limitation.",
     "Near-kickoff captures compare later same-book prices within 30 minutes before kickoff. These are observed proxies, not exact closing prices or proof of value.",
-    "Weather, quarterback availability, and late roster news are not separately modeled; much of this information enters through sportsbook prices.",
+    "Weather has its own fixed-rule paper strategy. The scoring models do not separately estimate weather, quarterback availability or late roster news; sportsbook prices incorporate some of this information.",
 ]
 
 
@@ -626,7 +628,7 @@ def daily(settings=None, now: datetime | None = None) -> dict:
         forecast_entries = record_forecasts(forecast_entries, forecasts, now)
         board.update(status="ok", forecasts=forecasts,
                      message=f"{len(board['today_picks'])} qualifying experimental pick(s) for today. No high-confidence profitable model is established.")
-        board["message"] += f" {len(diagnostics['fresh_sportsbooks'])} sportsbooks are currently observed; selections require two distinct books and positive modeled and stressed EV."
+        board["message"] += f" {len(diagnostics['fresh_sportsbooks'])} sportsbooks are currently observed. Scoring-model selections require positive modeled and stressed EV; the weather strategy has separate published rules."
         board["comparison_picks"] = sorted([r for r in forecasts if r["eligible"] and r["candidate"] != PRIMARY], key=lambda r:r["robust_ev"], reverse=True)
         board["weather_strategy"] = publish_weather(settings, schedule, games, weather_state, now)
     except Exception as exc:
