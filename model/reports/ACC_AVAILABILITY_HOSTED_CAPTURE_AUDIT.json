@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "audit_kind": "independent_original_bytes_no_project_imports",
+  "manifest": "model/data/runtime/availability/runs/34329726247-1.json",
+  "manifest_sha256": "b9ec913a7646b051d7eb5c1a55fa1f8ed1a70f599ebfa97acc340a05ce4fc862",
+  "recorded_git_commit": "620b77dcc762b3d370e8a18b20ae60cda0aae1d6",
+  "recorded_git_sources_verified": true,
+  "collector_version": "acc-availability-collector-v2",
+  "quota_policy": "bounded_calls_when_headers_missing",
+  "amendment": "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md",
+  "cohort_sha256": "9f06050ab617a8b37dbdafa32a24dad52beadd01391b5d539b0abe4a1047597c",
+  "capture_started_at": "2026-09-09T08:35:06.750438+00:00",
+  "capture_completed_at": "2026-09-09T08:35:08.271901Z",
+  "capture_status": "captured",
+  "counts": {
+    "source_reports": 1,
+    "pending_reports": 1,
+    "nonpending_unverified_reports": 0,
+    "matched_games": 1,
+    "context_verified_games": 1,
+    "paired_games": 1,
+    "paired_two_book_games": 1,
+    "total_requests": 7
+  },
+  "failed_requests": [],
+  "receipt_body_hashes_verified": 7,
+  "current_body_sha256": "7f16dceda02779e726ddb15f2392d2a65543e90ac2b02789127e09106cc4b6fc",
+  "current_received_at": "2026-09-09T08:35:07.538867Z",
+  "current_cache_headers": {
+    "cache_control": "public, max-age=60, s-maxage=60, stale-while-revalidate=60, stale-if-error=300",
+    "content_length": "1117075",
+    "content_type": "application/json",
+    "date": "Wed, 09 Sep 2026 08:35:07 GMT"
+  },
+  "capture_failures": [],
+  "quote_diagnostics": [],
+  "quota_receipts": [
+    {
+      "url": "https://api.odds-api.io/v3/bookmakers/selected",
+      "status_code": 200,
+      "requested_at": "2026-09-09T08:35:07.631354Z",
+      "received_at": "2026-09-09T08:35:07.978330Z",
+      "quota_headers": {}
+    },
+    {
+      "url": "https://api.odds-api.io/v3/events",
+      "status_code": 200,
+      "requested_at": "2026-09-09T08:35:07.980323Z",
+      "received_at": "2026-09-09T08:35:08.135029Z",
+      "quota_headers": {
+        "x_ratelimit_limit": "100",
+        "x_ratelimit_remaining": "87",
+        "x_ratelimit_reset": "2026-09-09T09:16:31Z"
+      }
+    },
+    {
+      "url": "https://api.odds-api.io/v3/odds/multi",
+      "status_code": 200,
+      "requested_at": "2026-09-09T08:35:08.144182Z",
+      "received_at": "2026-09-09T08:35:08.269334Z",
+      "quota_headers": {
+        "x_ratelimit_limit": "100",
+        "x_ratelimit_remaining": "86",
+        "x_ratelimit_reset": "2026-09-09T09:16:31Z"
+      }
+    }
+  ],
+  "reports": [
+    {
+      "source_key": "1182",
+      "game_id": "401858216",
+      "teams": [
+        "California",
+        "Syracuse"
+      ],
+      "state": "pending",
+      "raw_row_lengths": [
+        0,
+        0
+      ],
+      "source_game_date": "2026-09-12",
+      "source_game_time": "15:30:00",
+      "source_timezone": "ET",
+      "source_publish_date": "2026-09-09",
+      "source_posted_time": "20:00:00"
+    }
+  ],
+  "quotes": [
+    {
+      "game_id": "401858216",
+      "sportsbook": "draftkings",
+      "line": 56.5,
+      "under_decimal_odds": 1.95,
+      "over_decimal_odds": 1.86,
+      "market_updated_at": "2026-09-08T22:29:46.520000Z",
+      "requested_at": "2026-09-09T08:35:08.144182Z",
+      "observed_at": "2026-09-09T08:35:08.269334Z",
+      "report_to_quote_seconds": 0.730467
+    },
+    {
+      "game_id": "401858216",
+      "sportsbook": "fanduel",
+      "line": 56.5,
+      "under_decimal_odds": 1.877,
+      "over_decimal_odds": 1.943,
+      "market_updated_at": "2026-09-08T14:26:59.848000Z",
+      "requested_at": "2026-09-09T08:35:08.144182Z",
+      "observed_at": "2026-09-09T08:35:08.269334Z",
+      "report_to_quote_seconds": 0.730467
+    }
+  ],
+  "outcomes_or_models_evaluated": false,
+  "edge_established": false,
+  "trigger": "workflow_dispatch",
+  "run_id": "34329726247",
+  "run_attempt": "1",
+  "workflow_commit": "fcb86733affe6e29075638f2581ad6504f379421",
+  "workflow_sha256": "32f41f32f46f4bdb516ceab00db4610e5d1425fd0a94913339244fe8ea86f4ee",
+  "dispatched_workflow_blob_verified": true
+}

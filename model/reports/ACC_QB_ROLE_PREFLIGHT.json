@@ -1,0 +1,402 @@
+{
+  "acc_crosswalk": {
+    "name_jersey_cross_source_join_verified": false,
+    "populated_player_schema_verified": false,
+    "report_type": "Report Pending",
+    "source_key": "1182",
+    "source_row_counts": [
+      0,
+      0
+    ],
+    "stable_athlete_id_in_populated_current_rows_verified": false
+  },
+  "access_date": "2026-09-09",
+  "conclusion": "ESPN roster identity/QB schema verified for both 2026 teams; prior-game passing participation unavailable in this preflight and populated ACC player crosswalk still unverified.",
+  "diagnostic_name_normalization": "Unicode NFKD, ASCII transliteration, lower case, retain a-z0-9; used only to count within-snapshot ambiguities, not frozen as an ACC join rule.",
+  "excluded_local_cache": {
+    "actual_sha256": "abee9b3ea16bb32b8c58880f007c25cfb0668a7904703677ad5d588bbc733226",
+    "code_evidence": [
+      "ncaaf_model/sources.py:156",
+      "ncaaf_model/sources.py:168",
+      "ncaaf_model/runtime.py:94",
+      "ncaaf_model/runtime.py:132"
+    ],
+    "metadata_declared_source_sha256": "178e3eef47052372ab93943ad8df1b9c3e4bf6db7d29b4fa9b31d3c19d6107c1",
+    "metadata_path": "data/raw/sportsdataverse/cfb_schedule_2026.parquet.meta.json",
+    "metadata_sha256": "1901b24b75f050b38a2fd903532ce52440eb6528c772ea1c282ce58c26f078ac",
+    "path": "data/raw/sportsdataverse/cfb_schedule_2026.parquet",
+    "use": "Excluded from receipt-verified prior-game evidence. Only exact designated IDs, date, teams and status columns were read; no score columns. DataClient._download records the original response SHA, while runtime.refresh_inputs can merge ESPN records and rewrite this Parquet without refreshing the download sidecar; raw-source versus derived-byte hashes therefore need not agree. No corruption claim is made."
+  },
+  "limitations": [
+    "ESPN is the publisher of these roster pages; this is not independent certification by team athletic departments.",
+    "Source athlete ID/UID/link agree within each snapshot; cross-season persistence and an ACC stable-ID mapping are not proven.",
+    "Both roster receipts occur after the first 08:16 ACC capture; they cannot be backdated into that earlier decision. Actual earliest receipt, not a mutable current page or HTTP cache date, determines availability.",
+    "A QB roster label is not starting status, future participation, or a health diagnosis.",
+    "Jersey-only joins are ambiguous within these rosters; ACC names, formatting, duplicates and jersey semantics must be inspected in an actual populated current body.",
+    "The original lastFiveGames list provides the designated prior IDs and dates; its completeness and explicit completed-state/ATT schema were not confirmed through the denied summary request. No score or gameResult values were inspected.",
+    "Both roster Last-Modified headers lie about five minutes after their actual receipt. They are retained as anomalous provider metadata, not publication-time proof; local original receipt times remain the availability evidence."
+  ],
+  "original_manifest": {
+    "path": "data/runtime/availability/runs/local-20260909T081630214455Z-1.json",
+    "sha256": "07e69ca80cd720c072ab878e6bfd369c944b877eee94ad431fb270252ed3b334"
+  },
+  "original_sources": [
+    {
+      "body_path": "data/runtime/availability/bodies/3317efbaa69a3a711846aefab1c76771b9d13f2e960bc3eb1e15e7811c309fcc.body.gz",
+      "body_sha256": "3317efbaa69a3a711846aefab1c76771b9d13f2e960bc3eb1e15e7811c309fcc",
+      "receipt_path": "data/runtime/availability/receipts/be38ca53650fb71cd31368e2f38da831ac9ade3fc33f70b73774f6548e89694f.json",
+      "receipt_sha256": "6bf0eb8cd7bfd9a9f6843755256324d071602edcaa05b0cdb0a1a9cf2138af00",
+      "received_at": "2026-09-09T08:16:30.398440Z",
+      "request": {
+        "params": {
+          "dates": "20260909-20260916",
+          "groups": 80,
+          "limit": 1000
+        },
+        "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
+      },
+      "requested_at": "2026-09-09T08:16:30.232558Z",
+      "status_code": 200
+    },
+    {
+      "body_path": "data/runtime/availability/bodies/e35db60fa6836de3b0adf4fdf3411b6490ba619ee140ca75cbf4ada76b406428.body.gz",
+      "body_sha256": "e35db60fa6836de3b0adf4fdf3411b6490ba619ee140ca75cbf4ada76b406428",
+      "receipt_path": "data/runtime/availability/receipts/e69eb098377d88c2aca26cb7d81e18bc3aac9efdd3673de57bc70fb776f17104.json",
+      "receipt_sha256": "6bf9a64709a0b2b7ebb3b391f1fc482dbf9cb20fb34e2ac4326ae80cdefd633f",
+      "received_at": "2026-09-09T08:16:31.323592Z",
+      "request": {
+        "params": {
+          "event": "401858216"
+        },
+        "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+      },
+      "requested_at": "2026-09-09T08:16:31.255962Z",
+      "status_code": 200
+    },
+    {
+      "body_path": "data/runtime/availability/bodies/7f16dceda02779e726ddb15f2392d2a65543e90ac2b02789127e09106cc4b6fc.body.gz",
+      "body_sha256": "7f16dceda02779e726ddb15f2392d2a65543e90ac2b02789127e09106cc4b6fc",
+      "receipt_path": "data/runtime/availability/receipts/bf2c5ccff9f6639d1e2f383ec4008aff17aeeb16813b9aa96e3ccf7f9d2a0bc7.json",
+      "receipt_sha256": "6ea66dea92005c0b94a96cb8a7dcdba6d9c169eaf0b416965619f58d757f4bf8",
+      "received_at": "2026-09-09T08:16:31.175451Z",
+      "request": {
+        "body_sha256": "fe17ca4c1f96e9c2dcf35c4f3b8cfbb84bddf15a9d1ca9ac3776654607c602ee",
+        "body_utf8": "{\"conference\":\"ACC\",\"organization\":\"ACC\",\"sport\":\"Football\"}",
+        "headers": {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "User-Agent": "NCAAF-public-availability-research/1.0"
+        },
+        "json": {
+          "conference": "ACC",
+          "organization": "ACC",
+          "sport": "Football"
+        },
+        "method": "POST",
+        "url": "https://app.hdintelligence.com/api/get-publish-public"
+      },
+      "requested_at": "2026-09-09T08:16:30.759669Z",
+      "status_code": 200
+    }
+  ],
+  "prior_game_candidates": [
+    {
+      "away_id": "160",
+      "game_date": "2026-09-05T16:00Z",
+      "game_id": "401858208",
+      "home_id": "183",
+      "prior_completed_status_independently_verified": false,
+      "selection": "Latest gameDate among team-linked lastFiveGames entries earlier than the original target-summary receipt; no score/result field used",
+      "team_id": "183"
+    },
+    {
+      "away_id": "26",
+      "game_date": "2026-09-06T02:30Z",
+      "game_id": "401858210",
+      "home_id": "25",
+      "prior_completed_status_independently_verified": false,
+      "selection": "Latest gameDate among team-linked lastFiveGames entries earlier than the original target-summary receipt; no score/result field used",
+      "team_id": "25"
+    }
+  ],
+  "prior_passing_schema": {
+    "california": {
+      "game_id": "401858210",
+      "passing_attempt_fields_verified": false,
+      "status": "not_requested_after_403_stop"
+    },
+    "readily_available_exact_prior_summary_archive_found": false,
+    "syracuse": {
+      "game_id": "401858208",
+      "passing_attempt_fields_verified": false,
+      "status": "HTTP403_Access_Denied"
+    }
+  },
+  "rosters": [
+    {
+      "all_athletes": {
+        "athlete_link_and_id_consistent_rows": 112,
+        "id_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "jersey_duplicates": {
+          "affected_rows": 54,
+          "duplicated_values": 26
+        },
+        "nonempty_string_fields": {
+          "id": 112,
+          "jersey": 112,
+          "name": 112,
+          "position": 112,
+          "uid": 112
+        },
+        "normalized_name_and_jersey_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "normalized_name_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "rows": 112,
+        "uid_and_id_consistent_rows": 112
+      },
+      "field_names": [
+        "id",
+        "uid",
+        "name",
+        "jersey",
+        "position",
+        "href"
+      ],
+      "first_publication_time_verified": false,
+      "last_modified_after_received_at": true,
+      "last_modified_header": "Wed, 09 Sep 2026 08:54:38 GMT",
+      "literal_qb_rows": {
+        "athlete_link_and_id_consistent_rows": 7,
+        "id_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "jersey_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "nonempty_string_fields": {
+          "id": 7,
+          "jersey": 7,
+          "name": 7,
+          "position": 7,
+          "uid": 7
+        },
+        "normalized_name_and_jersey_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "normalized_name_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "rows": 7,
+        "uid_and_id_consistent_rows": 7
+      },
+      "qb_rows_with_jersey_shared_by_another_roster_athlete": 7,
+      "received_at": "2026-09-09T08:49:39.001529Z",
+      "source_body_sha256": "65342a98f7c5fefc68954c31ad4e02a46ff1053866c37f7f335b089db80e57ba",
+      "source_path": "window.__espnfitt__.page.content.roster",
+      "source_receipt_path": "data/raw/availability_role_preflight/01_syracuse_roster_network_authorized.receipt.json",
+      "source_season": "2026",
+      "team_id": "183",
+      "team_name": "Syracuse Orange"
+    },
+    {
+      "all_athletes": {
+        "athlete_link_and_id_consistent_rows": 112,
+        "id_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "jersey_duplicates": {
+          "affected_rows": 63,
+          "duplicated_values": 31
+        },
+        "nonempty_string_fields": {
+          "id": 112,
+          "jersey": 112,
+          "name": 112,
+          "position": 112,
+          "uid": 112
+        },
+        "normalized_name_and_jersey_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "normalized_name_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "rows": 112,
+        "uid_and_id_consistent_rows": 112
+      },
+      "field_names": [
+        "id",
+        "uid",
+        "name",
+        "jersey",
+        "position",
+        "href"
+      ],
+      "first_publication_time_verified": false,
+      "last_modified_after_received_at": true,
+      "last_modified_header": "Wed, 09 Sep 2026 08:54:39 GMT",
+      "literal_qb_rows": {
+        "athlete_link_and_id_consistent_rows": 6,
+        "id_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "jersey_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "nonempty_string_fields": {
+          "id": 6,
+          "jersey": 6,
+          "name": 6,
+          "position": 6,
+          "uid": 6
+        },
+        "normalized_name_and_jersey_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "normalized_name_duplicates": {
+          "affected_rows": 0,
+          "duplicated_values": 0
+        },
+        "rows": 6,
+        "uid_and_id_consistent_rows": 6
+      },
+      "qb_rows_with_jersey_shared_by_another_roster_athlete": 6,
+      "received_at": "2026-09-09T08:49:39.280430Z",
+      "source_body_sha256": "0f273af255340e09c479d64f58534c5573c5e9349fa076d1a7aef54fef6d7a4d",
+      "source_path": "window.__espnfitt__.page.content.roster",
+      "source_receipt_path": "data/raw/availability_role_preflight/02_california_roster.receipt.json",
+      "source_season": "2026",
+      "team_id": "25",
+      "team_name": "California Golden Bears"
+    }
+  ],
+  "schema_version": "acc-qb-role-preflight-v1",
+  "scope": {
+    "model_fits": 0,
+    "network_http_responses": 3,
+    "new_target_outcome_requests": 0,
+    "no_individual_player_selected": true,
+    "original_source_targets": 4,
+    "player_lists_published": false,
+    "request_policy": "Original sources only; one explicit authorized retry of the empty first sandbox transport failure. Stop after first HTTP403; California prior summary not requested.",
+    "transport_failure_without_http_response": 1
+  },
+  "source_requests": [
+    {
+      "body_complete": false,
+      "body_path": "data/raw/availability_role_preflight/01_syracuse_roster.body",
+      "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "body_size_bytes": 0,
+      "error": "ConnectionError",
+      "receipt_path": "data/raw/availability_role_preflight/01_syracuse_roster.receipt.json",
+      "receipt_sha256": "638cf40e8afe496e1a0c054898b970e706c3a540fed44ada2f98a2222badd7e3",
+      "received_at": "2026-09-09T08:28:05.595316Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/team/roster/_/id/183"
+      },
+      "requested_at": "2026-09-09T08:28:05.593380Z",
+      "response_headers": {},
+      "status_code": null
+    },
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_preflight/01_syracuse_roster_network_authorized.body",
+      "body_sha256": "65342a98f7c5fefc68954c31ad4e02a46ff1053866c37f7f335b089db80e57ba",
+      "body_size_bytes": 626244,
+      "error": null,
+      "receipt_path": "data/raw/availability_role_preflight/01_syracuse_roster_network_authorized.receipt.json",
+      "receipt_sha256": "2f12e18cd987910d7f014e06e4ed5a402450ec526612afcb941fa198e9284f9f",
+      "received_at": "2026-09-09T08:49:39.001529Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/team/roster/_/id/183"
+      },
+      "requested_at": "2026-09-09T08:49:38.574058Z",
+      "response_headers": {
+        "cache_control": "max-age=0, must-revalidate",
+        "content_type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 08:49:38 GMT",
+        "last_modified": "Wed, 09 Sep 2026 08:54:38 GMT"
+      },
+      "status_code": 200
+    },
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_preflight/02_california_roster.body",
+      "body_sha256": "0f273af255340e09c479d64f58534c5573c5e9349fa076d1a7aef54fef6d7a4d",
+      "body_size_bytes": 626106,
+      "error": null,
+      "receipt_path": "data/raw/availability_role_preflight/02_california_roster.receipt.json",
+      "receipt_sha256": "02fe7f9fdd90ba4e0c983d7c286871412c1ce81b5d22db1b34cf52bf0090198e",
+      "received_at": "2026-09-09T08:49:39.280430Z",
+      "request": {
+        "method": "GET",
+        "params": {},
+        "url": "https://www.espn.com/college-football/team/roster/_/id/25"
+      },
+      "requested_at": "2026-09-09T08:49:39.006994Z",
+      "response_headers": {
+        "cache_control": "max-age=0, must-revalidate",
+        "content_type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 08:49:39 GMT",
+        "last_modified": "Wed, 09 Sep 2026 08:54:39 GMT"
+      },
+      "status_code": 200
+    },
+    {
+      "body_complete": true,
+      "body_path": "data/raw/availability_role_preflight/03_syracuse_prior_summary.body",
+      "body_sha256": "4c685e9e0995f09b2481758981fdf4b4505aec2a20bae3207ed49fc6c3053b96",
+      "body_size_bytes": 461,
+      "error": null,
+      "receipt_path": "data/raw/availability_role_preflight/03_syracuse_prior_summary.receipt.json",
+      "receipt_sha256": "ef8b86bf6f8f3272352530c93d4384910ae51dd15d4d9d5509bc57f632029fa5",
+      "received_at": "2026-09-09T08:49:39.487547Z",
+      "request": {
+        "method": "GET",
+        "params": {
+          "event": "401858208"
+        },
+        "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+      },
+      "requested_at": "2026-09-09T08:49:39.285056Z",
+      "response_headers": {
+        "content_length": "461",
+        "content_type": "text/html",
+        "date": "Wed, 09 Sep 2026 08:49:39 GMT"
+      },
+      "status_code": 403
+    }
+  ],
+  "target": {
+    "away_id": "25",
+    "away_team": "California",
+    "game_id": "401858216",
+    "home_id": "183",
+    "home_team": "Syracuse",
+    "kickoff": "2026-09-12T19:30:00Z",
+    "status_at_original_receipt": "pre"
+  },
+  "written_at": "2026-09-09T08:54:17.997561Z"
+}
