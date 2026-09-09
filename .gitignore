@@ -12,3 +12,4 @@ model/data/snapshots/
 model/data/models/market_residual_latest.json
 model/reports/*predictions*.csv
 *.log
+model/data/runtime/weather_revisions/**/.tmp-archive-*

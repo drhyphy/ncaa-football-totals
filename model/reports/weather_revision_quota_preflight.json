@@ -1,0 +1,36 @@
+{
+  "observed_at": "2026-09-09T03:10:45.058475+00:00",
+  "status": 200,
+  "quota_headers": {
+    "x-ratelimit-limit": "100",
+    "x-ratelimit-remaining": "81",
+    "x-ratelimit-reset": "2026-09-09T03:46:04Z"
+  },
+  "header_names": [
+    "Connection",
+    "Content-Encoding",
+    "Content-Length",
+    "Content-Type",
+    "Date",
+    "Server",
+    "access-control-allow-credentials",
+    "access-control-allow-headers",
+    "access-control-allow-methods",
+    "access-control-allow-origin",
+    "vary",
+    "x-hikari-trace",
+    "x-railway-edge",
+    "x-railway-request-id",
+    "x-ratelimit-limit",
+    "x-ratelimit-remaining",
+    "x-ratelimit-reset"
+  ],
+  "documented_requests_per_hour": 5000,
+  "documented_source": "https://docs.odds-api.io/authentication",
+  "pilot_max_odds_requests_per_capture": 17,
+  "selected_books_preflight": [
+    "DraftKings",
+    "FanDuel"
+  ],
+  "limitation": "Response headers do not establish account-specific remaining allowance unless returned."
+}

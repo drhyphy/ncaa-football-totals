@@ -64,6 +64,18 @@
     const feature = pick.weather || {}, values = feature.weather || feature;
     return {wind_mph: values.wind_mph, temperature_f: values.temperature_f, relative_humidity_pct: values.relative_humidity_pct ?? values.relative_humidity_percent};
   }
+  function weatherRevisionHealth(data, now = new Date()) {
+    if (data?.schema_version !== "weather-revision-status-v1" || data.collection_only !== true || data.performance_evaluated !== false || data.active_policy_changed !== false) return {visible: false};
+    const start = epoch(data.pilot_start), end = epoch(data.pilot_end), current = now.getTime();
+    if (start !== epoch("2026-09-09T03:00:00Z") || end !== epoch("2026-09-16T03:00:00Z")) return {visible: false};
+    if (current < start) return {visible: true, label: "Scheduled", message: "The seven-day collection window has not started."};
+    if (current >= end) return {visible: true, label: "Ended", message: "The pilot window has ended; scheduled collection is stopped. Archived inputs remain separate from model performance evidence."};
+    const age = current - epoch(data.generated_at), receiptAge = current - epoch(data.latest?.capture_completed_at);
+    if (data.status === "attention") return {visible: true, label: "Active · needs attention", message: "A collection was partial or failed, or an archive manifest could not be validated. Available receipts are retained; missing observations are not filled retrospectively."};
+    if (!Number.isFinite(age) || age < -300000 || age > 8 * 3600000 || (data.latest && (!Number.isFinite(receiptAge) || receiptAge < -300000 || receiptAge > 8 * 3600000))) return {visible: true, label: "Active · receipts stale", message: "No recent, valid collection receipt is available. Scheduled jobs can be delayed or missed."};
+    if (!data.latest) return {visible: true, label: "Active · awaiting capture", message: "The pilot is awaiting its first archived collection. It produces research inputs, not new betting selections."};
+    return {visible: true, label: "Active · receipts current", message: "Forecast revisions and newly received prices are being archived for a separately specified future study. Coverage does not establish a betting edge."};
+  }
   function dedupeResults(rows) {
     const seen = new Set();
     return items(rows).slice().sort((a, b) => (epoch(a.recorded_at) || Infinity) - (epoch(b.recorded_at) || Infinity)).filter(row => {
@@ -94,6 +106,7 @@
   function start(doc) {
     let board = null;
     let research = null;
+    let weatherRevisions = null;
     const $ = id => doc.getElementById(id);
     function element(tag, text, cls) {
       const node = doc.createElement(tag);
@@ -344,6 +357,17 @@
       $("diagnostics-list").replaceChildren();
       Object.entries(board.diagnostics || {}).forEach(([key, value]) => $("diagnostics-list").append(element("dt", titleCase(key)), element("dd", typeof value === "object" ? JSON.stringify(value) : String(value))));
     }
+    function renderWeatherRevisions(now) {
+      const state = weatherRevisionHealth(weatherRevisions, now);
+      $("weather-revision-pilot").hidden = !state.visible;
+      if (!state.visible) return;
+      $("weather-revision-label").textContent = state.label;
+      $("weather-revision-message").textContent = state.message;
+      const latest = weatherRevisions.latest, counts = latest?.counts || {};
+      $("weather-revision-counts").textContent = `${number(weatherRevisions.archived_runs, 0)} archived collection runs · ${number(weatherRevisions.partial_or_failed_runs, 0)} partial or failed runs · ${number(weatherRevisions.invalid_manifests, 0)} invalid manifests. ${latest ? `Latest receipt: ${dateLabel(latest.capture_completed_at)} · ${titleCase(latest.status)}. Latest cohort: ${number(counts.cohort_games, 0)} games · ${number(counts.weather_available_games, 0)} with weather · ${number(counts.two_book_games, 0)} with two books · ${number(counts.paired_games, 0)} with weather and at least one same-book quote pair${finite(counts.paired_two_book_games) ? ` · ${number(counts.paired_two_book_games, 0)} with weather and both books` : ""} · ${number(counts.failed_requests, 0)} failed requests.` : "No archived receipt yet."} Repeated collections are observations, not independent games or bets.`;
+      $("weather-revision-links").replaceChildren(link("Public status JSON", "data/weather-revisions.json"));
+      items(weatherRevisions.links).filter(item => safeUrl(item.url)).forEach(item => $("weather-revision-links").append(link(`${item.name} ↗`, item.url)));
+    }
     function render(data) {
       board = data;
       $("edition-date").textContent = new Intl.DateTimeFormat("en-US", {timeZone: ZONE, weekday: "long", month: "long", day: "numeric", year: "numeric"}).format(new Date());
@@ -352,7 +376,8 @@
     $("candidate-filter").addEventListener("change", renderForecasts);
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
     fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderCalibrationStudy(); renderOrdinaryStudy(); renderArchivedReplay();}}).catch(() => {});
-    setInterval(() => { if (board) renderPicks(new Date()); }, 60000);
+    fetch(`data/weather-revisions.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherRevisions = data; renderWeatherRevisions(new Date());}).catch(() => {});
+    setInterval(() => { if (board) renderPicks(new Date()); if (weatherRevisions) renderWeatherRevisions(new Date()); }, 60000);
   }
-  return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
+  return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, weatherRevisionHealth, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
 });

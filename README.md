@@ -25,7 +25,7 @@ The [fixed six-configuration probability experiment](model/reports/calibration_r
 
 The separate [58-predictor ordinary-statistics ridge/tree study](model/reports/ordinary_model_research_results.md) also did not justify a replacement. Selection on 2021–2024 MSE chose the existing opponent-adjusted ridge. Both new models had higher MSE than the market and existing ridge in the 3,061-game selection period and the 852-game reused 2025 check. All four configurations and annual/source comparisons are retained. No probabilities, ROI test or live policy changes were produced.
 
-A [weather-revision collection feasibility study](model/reports/WEATHER_REVISION_CAPTURE_FEASIBILITY.md) identifies the next data gap: original forecast runs paired with newly received prices during the week before kickoff. That separate archive is proposed, not implemented; it supplies no additional performance evidence yet.
+A separate [seven-day weather revision pilot](model/reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md) captures original GFS runs and subsequently received DraftKings/FanDuel prices four times daily, through September 16 at 03:00 UTC. Its public status reports collection coverage and failures. The archive supplies no additional performance evidence and does not change the four registered policies.
 
 ## Prospective evaluation
 

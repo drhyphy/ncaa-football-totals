@@ -34,7 +34,8 @@ test('weather DOM separates development evidence from forward results and expire
   const ordinarySummary=(n,mses)=>({games:n,configurations:Object.fromEntries(ordinaryOrder.map((name,i)=>[name,{games:n,mse:mses[i],rmse:Math.sqrt(mses[i]),mae:10}]))});
   const ordinarySelection=ordinarySummary(400,[200,195,190,205]), ordinaryCheck=ordinarySummary(100,[200,201,207,199]);
   researchFixture.ordinary_model_research={status:'reused_development_point_prediction_study',configuration_count:4,predictor_count:58,live_policy_changes:false,roi_evaluated:false,probabilities_evaluated:false,credible_executable_edge_established:false,candidate_order:ordinaryOrder,selected_on_2021_2024:'ordinary_ridge',selection_2021_2024:ordinarySelection,reused_2025:ordinaryCheck,by_season:Object.fromEntries([2021,2022,2023,2024,2025].map(year=>[year,year===2025?ordinaryCheck:ordinarySummary(100,[200,195,190,205])])),by_market_source:{synthetic_source:{games:500}},feature_provenance:{counts:{games:5008}},links:[{name:'All four ordinary configurations',url:'https://example.com/ordinary'}]};
-  const context={window:{document:doc},Date:ClockDate,Intl,URL,fetch:async url=>({ok:true,json:async()=>url.startsWith('data/research.json')?researchFixture:fixture}),setInterval:callback=>{tick=callback;}};
+  const revisionsFixture={schema_version:'weather-revision-status-v1',collection_only:true,performance_evaluated:false,active_policy_changed:false,pilot_start:'2026-09-09T03:00:00Z',pilot_end:'2026-09-16T03:00:00Z',generated_at:'2026-09-12T11:45:00Z',status:'current',archived_runs:3,partial_or_failed_runs:1,invalid_manifests:0,latest:{capture_completed_at:'2026-09-12T11:45:00Z',status:'ok',counts:{cohort_games:8,weather_available_games:6,two_book_games:3,paired_games:5,paired_two_book_games:2,failed_requests:0}},links:[{name:'Archive',url:'https://example.com/archive'},{name:'Unsafe',url:'javascript:alert(1)'}]};
+  const context={window:{document:doc},Date:ClockDate,Intl,URL,fetch:async url=>({ok:true,json:async()=>url.startsWith('data/research.json')?researchFixture:url.startsWith('data/weather-revisions.json')?revisionsFixture:fixture}),setInterval:callback=>{tick=callback;}};
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../app.js'),'utf8'),context);
   await new Promise(resolve=>setImmediate(resolve));
   assert.equal(nodes.get('weather-pick-count').textContent,'1');
@@ -78,8 +79,15 @@ test('weather DOM separates development evidence from forward results and expire
   assert.equal(nodes.get('ordinary-study-links').children.length,1);
   assert.equal(nodes.get('candidate-table').textContent,'Candidate evaluation metrics have not been published.');
   assert.match(nodes.get('performance-stats').textContent,/Settled paper bets0/);
+  assert.equal(nodes.get('weather-revision-pilot').hidden,false);
+  assert.equal(nodes.get('weather-revision-label').textContent,'Active · receipts current');
+  assert.match(nodes.get('weather-revision-message').textContent,/Coverage does not establish a betting edge/);
+  assert.match(nodes.get('weather-revision-counts').textContent,/5 with weather and at least one same-book quote pair.*2 with weather and both books/);
+  assert.equal(nodes.get('weather-revision-links').children.length,2);
   clock+=2*60*60*1000;tick();
   assert.equal(nodes.get('weather-pick-count').textContent,'0');
   assert.doesNotMatch(nodes.get('weather-picks').textContent,/Under 47.5/);
   assert.match(nodes.get('weather-evidence').textContent,/85 hypothetical bets/);
+  clock=Date.parse('2026-09-16T03:00:00Z');tick();
+  assert.equal(nodes.get('weather-revision-label').textContent,'Ended');
 });
