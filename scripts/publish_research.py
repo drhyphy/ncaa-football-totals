@@ -96,11 +96,14 @@ def build_outputs(root):
     reports = root / "model/reports"
     inputs = {}
 
-    def read(name):
+    def read_bytes(name):
         path = reports / name
         content = path.read_bytes()
         inputs[f"model/reports/{name}"] = hashlib.sha256(content).hexdigest()
-        return json.loads(content)
+        return content
+
+    def read(name):
+        return json.loads(read_bytes(name))
 
     primary, repair, audit, sensitivity = [read(name) for name in (PRIMARY, REPAIR, AUDIT, SENSITIVITY)]
     if primary.get("market_provenance") != PROVENANCE:
@@ -180,6 +183,105 @@ def build_outputs(root):
             "version", "status", "plan_sha256", "weather_flags_changed", "only_repriced_field", "price_assumption",
             "primary_games", "common_games", "unshared_primary_games", "unshared_primary_weather_rule_bets",
             "source_counts", "line_discrepancies", "pooled", "by_season", "paired_quote_impact", "limitations")}
+    weather_robustness_path = reports / "weather_robustness.json"
+    if weather_robustness_path.exists():
+        robustness = read(weather_robustness_path.name)
+        hypothesis = weather.get("historical_hypothesis_results", {})
+        if robustness.get("plan_sha256") != hypothesis.get("plan_sha256") or not hypothesis:
+            raise ValueError("Weather robustness is stale or lacks its matching hypothesis report")
+        for source_name in ("weather_request_plan.json", "weather_published_hypothesis_results.json"):
+            key = f"model/reports/{source_name}"
+            if robustness.get("input_sha256", {}).get(key) != inputs.get(key) or key not in inputs:
+                raise ValueError("Weather robustness input source hash is stale: " + source_name)
+        expected = hypothesis["pooled"]["weather_rule"]
+        if any(robustness.get("published_result", {}).get(key) != expected.get(key) for key in ("bets", "wins", "losses", "pushes", "roi")):
+            raise ValueError("Weather robustness published result differs from its source")
+        pooled_robustness = robustness["pooled"]
+        weather["statistical_robustness"] = {
+            "version": robustness["version"], "status": robustness["status"],
+            "plan_sha256": robustness["plan_sha256"],
+            "published_result": robustness["published_result"],
+            "calendar_weeks": pooled_robustness["calendar_weeks"],
+            "active_weeks": pooled_robustness["active_weeks"],
+            "all_covered_week_cluster_t": pooled_robustness["all_covered_week_cluster_t"],
+            "active_week_cluster_t": pooled_robustness["active_week_cluster_t"],
+            "leave_one_week_out_roi_range": pooled_robustness["leave_one_week_out_roi_range"],
+            "venue_concentration": {key: robustness["venue_concentration"][key] for key in ("groups", "largest_group_bet_share", "top_five_group_bet_share", "leave_one_group_out_roi_range")},
+            "team_involvement": {key: robustness["team_involvement"][key] for key in ("unique_teams", "largest_team_game_share", "leave_one_team_out_roi_range")},
+            "multiplicity_interpretation": robustness["methods"]["multiplicity"],
+            "limitations": robustness["limitations"],
+            "report_url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/weather_robustness.md",
+        }
+    source_audit_path = reports / "WEATHER_PRIMARY_SOURCE_AUDIT.md"
+    if source_audit_path.exists():
+        read_bytes(source_audit_path.name)
+        weather["primary_source_audit"] = {
+            "report": "model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md",
+            "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md",
+            "sha256": inputs["model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md"],
+        }
+    weather_replay_path = reports / "weather_2026_replay_results.json"
+    if weather_replay_path.exists():
+        weather_replay, weather_replay_plan = read(weather_replay_path.name), read("weather_2026_replay_plan.json")
+        if weather_replay.get("plan_sha256") != weather_replay_plan.get("plan_sha256") or weather_replay.get("rule") != weather_replay_plan.get("thresholds"):
+            raise ValueError("2026 weather replay differs from its fixed plan")
+        for cohort in weather_replay["cohorts"].values():
+            if cohort["rule"]["bets"] == 0 and cohort["rule"]["roi"] is not None:
+                raise ValueError("Zero-bet weather replay cannot publish a realized ROI")
+        weather["archived_2026_replay"] = {key: weather_replay[key] for key in (
+            "version", "plan_sha256", "evaluated_at", "cohort_plan_counts", "forecast_unavailable_rows", "cohorts", "rule", "limitations")}
+        weather["archived_2026_replay"].update({
+            "prospective_model_performance": False, "exact_0630_replay": False,
+            "interpretation": "Reconstructed after games. The two-book primary and overlapping one-book sensitivity remain separate. Zero qualifying bets means ROI is unavailable and provides no strategy performance evidence.",
+            "links": [{"name": "2026 weather replay data", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/weather_2026_replay_results.json"},
+                      {"name": "2026 weather replay plan", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_2026_REPLAY_PLAN.md"}],
+        })
+        for filename in ("weather_2026_replay_results.md", "WEATHER_2026_REPLAY_PLAN.md"):
+            if (reports / filename).exists():
+                read_bytes(filename)
+        if (reports / "weather_2026_replay_results.md").exists():
+            weather["archived_2026_replay"]["links"][0] = {"name": "2026 weather replay report", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/weather_2026_replay_results.md"}
+    archived_replay = None
+    replay_path = reports / "archived_2026_replay_results.json"
+    if replay_path.exists():
+        replay, replay_plan = read(replay_path.name), read("archived_2026_replay_plan.json")
+        if (reports / "archived_2026_replay_results.md").exists():
+            read_bytes("archived_2026_replay_results.md")
+        if replay.get("plan_sha256") != replay_plan.get("plan_sha256") or not replay.get("plan_sha256"):
+            raise ValueError("2026 archived-price replay has a stale or missing plan")
+        if replay.get("status") != "retrospective_2026_replay_with_observed_prices_not_prospective_forecasts":
+            raise ValueError("2026 archived-price replay must retain its retrospective status")
+        planned = {(row["source_sha256"], row["observed_at"]) for row in replay_plan["snapshots"]}
+        cohorts = {}
+        for name, cohort in replay["cohorts"].items():
+            snapshots = cohort["snapshots"]
+            if cohort["snapshot_count"] != len(snapshots) or any((row["source_sha256"], row["observed_at"]) not in planned for row in snapshots):
+                raise ValueError("2026 archived-price replay capture times or hashes differ from the plan")
+            cohorts[name] = {"books": cohort["books"], "snapshot_count": cohort["snapshot_count"],
+                             "forecast_games": cohort["forecast_games"],
+                             "positions": {candidate: {key: metrics.get(key) for key in ("model_version", "candidate", "bets", "pending", "wins", "losses", "pushes", "profit_units", "roi", "roi_95_low", "roi_95_high", "week_clusters")}
+                                           for candidate, metrics in cohort["positions"].items()},
+                             "snapshots": [{key: row[key] for key in ("observed_at", "games", "source_sha256")} for row in snapshots]}
+        archived_replay = {"version": replay["version"], "status": replay["status"],
+                           "plan_sha256": replay["plan_sha256"], "evaluated_at": replay["evaluated_at"],
+                           "prospective_model_performance": False, "exact_0630_replay": False,
+                           "actual_archived_prices_used": True,
+                           "quote_receipt_evidence": "Local metadata and hashes; no independent timestamp attestation",
+                           "interpretation": "Predictions reconstructed after games using locally supported earlier actual price captures. Actual snapshot times differ from 06:30; this is not prospective model performance. The settled sample is too small to establish an edge.",
+                           "cohorts": cohorts, "limitations": replay["limitations"],
+                           "links": [{"name": "2026 replay report", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/archived_2026_replay_results.md"},
+                                     {"name": "Frozen replay plan", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/archived_2026_replay_plan.json"}]}
+        provenance_path = reports / "ARCHIVED_2026_QUOTES.md"
+        if provenance_path.exists():
+            read_bytes(provenance_path.name)
+            archived_replay["links"].append({"name": "Archived quote provenance", "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ARCHIVED_2026_QUOTES.md"})
+    protocol = None
+    protocol_path = reports / "PROSPECTIVE_EVALUATION_PROTOCOL.md"
+    if protocol_path.exists():
+        read_bytes(protocol_path.name)
+        protocol = {"report": "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
+                    "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
+                    "sha256": inputs["model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md"]}
     ridge = pooled["opponent_adjusted_ridge"]
     last_ridge = by_season["2025"]["opponent_adjusted_ridge"]
     conclusion = (f"No high-confidence profitable edge established. Pooled ridge ROI is {ridge['roi_display']} "
@@ -195,9 +297,12 @@ def build_outputs(root):
         "historical_prices_observed": False,
         "quote_or_closing_times_verified": False,
         "price_assumption": -110,
+        "price_assumption_scope": "Primary 2019-2025 development evidence; the separate 2026 replay uses archived offered prices",
         "reports": current_reports,
         "quarantined_reports": quarantine,
         "weather_shadow": weather,
+        "archived_2026_scoring_replay": archived_replay,
+        "prospective_evaluation_protocol": protocol,
         "limitations": [
             "All 2019–2025 periods have been reused in development; no untouched historical test is claimed.",
             "Verified bookmaker pregame role does not certify exact closing time, 06:30 availability, execution, or payout.",

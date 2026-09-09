@@ -1,0 +1,62 @@
+{
+  "status": "pre-outcome record pins; exact policy provenance still required at the fixed audit",
+  "decision_snapshot": "data/runtime/snapshot-20260909T003243Z.json.gz",
+  "snapshot_sha256": "aa578fa81ecf3b327c538c79ddc9d193c3c41a7f94c878bff84998256679c355",
+  "snapshot_as_of": "2026-09-09T00:32:43Z",
+  "model_version": "totals-v4-20260908",
+  "model_hashes": {
+    "opponent_adjusted_v1.json": "bf8af58e3d927acf5ad780ac4725f87dede802359ac747622a49de662615d99c",
+    "score_distribution_v2.json": "7e028b30a38308d66456e2559cc4262deab954a982b8fc2d19ef3a64366bd529"
+  },
+  "snapshot_runtime_sha256": "98527397c45c4089771b10c597975a0c42abfc6565e9d587cc182162d3245c34",
+  "positions": [
+    {
+      "position_id": "fa0a2cd7997d0f679d7c1f6d",
+      "game_id": "401856788",
+      "candidate": "opponent_adjusted_ridge",
+      "kickoff": "2026-09-12T23:30:00+00:00",
+      "recorded_at": "2026-09-09T00:32:43Z",
+      "side": "over",
+      "line": 40.5,
+      "decimal_odds": 1.92,
+      "sportsbook": "draftkings",
+      "result": "pending"
+    },
+    {
+      "position_id": "435ecfa5e3ffbf1e213c5aca",
+      "game_id": "401856788",
+      "candidate": "opponent_adjusted_structural",
+      "kickoff": "2026-09-12T23:30:00+00:00",
+      "recorded_at": "2026-09-09T00:32:43Z",
+      "side": "over",
+      "line": 40.5,
+      "decimal_odds": 1.92,
+      "sportsbook": "draftkings",
+      "result": "pending"
+    },
+    {
+      "position_id": "cc677bb4c3a768a783654c46",
+      "game_id": "401856670",
+      "candidate": "opponent_adjusted_structural",
+      "kickoff": "2026-09-13T02:15:00+00:00",
+      "recorded_at": "2026-09-09T00:32:43Z",
+      "side": "over",
+      "line": 55.5,
+      "decimal_odds": 1.962,
+      "sportsbook": "fanduel",
+      "result": "pending"
+    },
+    {
+      "position_id": "ddd5c39b9bd6a8d0dd4c8c62",
+      "game_id": "401860883",
+      "candidate": "opponent_adjusted_ridge",
+      "kickoff": "2026-09-13T02:30:00+00:00",
+      "recorded_at": "2026-09-09T00:32:43Z",
+      "side": "over",
+      "line": 45.5,
+      "decimal_odds": 1.952,
+      "sportsbook": "fanduel",
+      "result": "pending"
+    }
+  ]
+}

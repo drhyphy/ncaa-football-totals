@@ -1,0 +1,4643 @@
+{
+  "version": "weather-robustness-v1",
+  "status": "descriptive_reused_development_robustness",
+  "plan_sha256": "d08836ca73abab7ab47cc63a18005acd1608e772d3ac5f721f15f7640794318f",
+  "thresholds_unchanged": true,
+  "probabilities_fitted": false,
+  "price_assumption": -110,
+  "published_result": {
+    "bets": 85,
+    "wins": 55,
+    "losses": 30,
+    "pushes": 0,
+    "win_rate_excluding_pushes": 0.6470588235294118,
+    "roi": 0.23529411764705888,
+    "profit_units": 20.000000000000004
+  },
+  "published_percentile_bootstrap_95": [
+    0.014186132154882158,
+    0.43917287630402374
+  ],
+  "pooled": {
+    "calendar_weeks": 34,
+    "active_weeks": 21,
+    "zero_bet_weeks": 13,
+    "bet_weight_effective_week_count": 11.634460547504025,
+    "all_covered_week_cluster_t": {
+      "roi": 0.2352941176470588,
+      "clusters": 34,
+      "active_clusters": 21,
+      "df": 33,
+      "standard_error": 0.10477279111550633,
+      "t_statistic": 2.2457559366501916,
+      "two_sided_p_zero_roi": 0.03153577119945902,
+      "interval_95": [
+        0.022132271366097023,
+        0.44845596392802056
+      ],
+      "interval_99": [
+        -0.05107890506285781,
+        0.5216671403569754
+      ],
+      "multiplicity_sensitivity": [
+        {
+          "hypothetical_family_size": 1,
+          "two_sided_per_interval_confidence": 0.95,
+          "bonferroni_95_family_interval": [
+            0.022132271366097023,
+            0.44845596392802056
+          ],
+          "bonferroni_adjusted_p": 0.03153577119945902
+        },
+        {
+          "hypothetical_family_size": 4,
+          "two_sided_per_interval_confidence": 0.9875,
+          "bonferroni_95_family_interval": [
+            -0.04152283390051262,
+            0.5121110691946302
+          ],
+          "bonferroni_adjusted_p": 0.1261430847978361
+        },
+        {
+          "hypothetical_family_size": 10,
+          "two_sided_per_interval_confidence": 0.995,
+          "bonferroni_95_family_interval": [
+            -0.07988779200902349,
+            0.550476027303141
+          ],
+          "bonferroni_adjusted_p": 0.31535771199459023
+        },
+        {
+          "hypothetical_family_size": 25,
+          "two_sided_per_interval_confidence": 0.998,
+          "bonferroni_95_family_interval": [
+            -0.11635870703689336,
+            0.586946942331011
+          ],
+          "bonferroni_adjusted_p": 0.7883942799864756
+        },
+        {
+          "hypothetical_family_size": 100,
+          "two_sided_per_interval_confidence": 0.9995,
+          "bonferroni_95_family_interval": [
+            -0.1691083631089018,
+            0.6396965984030194
+          ],
+          "bonferroni_adjusted_p": 1.0
+        }
+      ]
+    },
+    "active_week_cluster_t": {
+      "roi": 0.2352941176470588,
+      "clusters": 21,
+      "active_clusters": 21,
+      "df": 20,
+      "standard_error": 0.10576955434830487,
+      "t_statistic": 2.224592124802025,
+      "two_sided_p_zero_roi": 0.037782707772688884,
+      "interval_95": [
+        0.014662693442894559,
+        0.455925541851223
+      ],
+      "interval_99": [
+        -0.06565619542655296,
+        0.5362444307206705
+      ],
+      "multiplicity_sensitivity": [
+        {
+          "hypothetical_family_size": 1,
+          "two_sided_per_interval_confidence": 0.95,
+          "bonferroni_95_family_interval": [
+            0.014662693442894559,
+            0.455925541851223
+          ],
+          "bonferroni_adjusted_p": 0.037782707772688884
+        },
+        {
+          "hypothetical_family_size": 4,
+          "two_sided_per_interval_confidence": 0.9875,
+          "bonferroni_95_family_interval": [
+            -0.05497734802907109,
+            0.5255655833231887
+          ],
+          "bonferroni_adjusted_p": 0.15113083109075554
+        },
+        {
+          "hypothetical_family_size": 10,
+          "two_sided_per_interval_confidence": 0.995,
+          "bonferroni_95_family_interval": [
+            -0.09823965140016486,
+            0.5688278866942824
+          ],
+          "bonferroni_adjusted_p": 0.37782707772688884
+        },
+        {
+          "hypothetical_family_size": 25,
+          "two_sided_per_interval_confidence": 0.998,
+          "bonferroni_95_family_interval": [
+            -0.14037906794414876,
+            0.6109673032382663
+          ],
+          "bonferroni_adjusted_p": 0.9445676943172221
+        },
+        {
+          "hypothetical_family_size": 100,
+          "two_sided_per_interval_confidence": 0.9995,
+          "bonferroni_95_family_interval": [
+            -0.20322939736267645,
+            0.6738176326567941
+          ],
+          "bonferroni_adjusted_p": 1.0
+        }
+      ]
+    },
+    "leave_one_week_out_roi_range": [
+      0.16528925619834706,
+      0.28048780487804875
+    ],
+    "leave_one_week_out_95_lower_positive_count": 29,
+    "largest_profit_week": {
+      "week": "2025-11-24",
+      "covered_games": 41,
+      "bets": 8,
+      "wins": 8,
+      "losses": 0,
+      "pushes": 0,
+      "profit_units": 7.2727272727272725,
+      "selected_roi": 0.9090909090909091,
+      "share_of_bets": 0.09411764705882353,
+      "leave_one_week_out_bets": 77,
+      "leave_one_week_out_roi": 0.16528925619834706,
+      "leave_one_week_out_cluster_t_95": [
+        -0.019011708726768106,
+        0.34959022112346233
+      ],
+      "share_of_net_profit": 0.3636363636363637
+    },
+    "weeks": [
+      {
+        "week": "2024-08-19",
+        "covered_games": 2,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764514,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2024-08-26",
+        "covered_games": 52,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764514,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2024-09-02",
+        "covered_games": 49,
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "selected_roi": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_week_out_bets": 84,
+        "leave_one_week_out_roi": 0.24999999999999994,
+        "leave_one_week_out_cluster_t_95": [
+          0.036689705991328536,
+          0.46331029400867135
+        ]
+      },
+      {
+        "week": "2024-09-09",
+        "covered_games": 34,
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "selected_roi": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_week_out_bets": 84,
+        "leave_one_week_out_roi": 0.2272727272727272,
+        "leave_one_week_out_cluster_t_95": [
+          0.0114196510185188,
+          0.44312580352693565
+        ]
+      },
+      {
+        "week": "2024-09-16",
+        "covered_games": 37,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764514,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2024-09-23",
+        "covered_games": 38,
+        "bets": 5,
+        "wins": 4,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 2.6363636363636362,
+        "selected_roi": 0.5272727272727272,
+        "share_of_bets": 0.058823529411764705,
+        "leave_one_week_out_bets": 80,
+        "leave_one_week_out_roi": 0.21704545454545449,
+        "leave_one_week_out_cluster_t_95": [
+          -0.007502168065697701,
+          0.4415930771566067
+        ]
+      },
+      {
+        "week": "2024-09-30",
+        "covered_games": 36,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764514,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2024-10-07",
+        "covered_games": 35,
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "selected_roi": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_week_out_bets": 84,
+        "leave_one_week_out_roi": 0.2272727272727272,
+        "leave_one_week_out_cluster_t_95": [
+          0.011419651018518856,
+          0.44312580352693565
+        ]
+      },
+      {
+        "week": "2024-10-14",
+        "covered_games": 38,
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "selected_roi": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_week_out_bets": 84,
+        "leave_one_week_out_roi": 0.2272727272727272,
+        "leave_one_week_out_cluster_t_95": [
+          0.011419651018518856,
+          0.44312580352693565
+        ]
+      },
+      {
+        "week": "2024-10-21",
+        "covered_games": 39,
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "selected_roi": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_week_out_bets": 84,
+        "leave_one_week_out_roi": 0.2272727272727272,
+        "leave_one_week_out_cluster_t_95": [
+          0.011419651018518856,
+          0.44312580352693565
+        ]
+      },
+      {
+        "week": "2024-10-28",
+        "covered_games": 34,
+        "bets": 3,
+        "wins": 0,
+        "losses": 3,
+        "pushes": 0,
+        "profit_units": -3.0,
+        "selected_roi": -1.0,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_week_out_bets": 82,
+        "leave_one_week_out_roi": 0.28048780487804875,
+        "leave_one_week_out_cluster_t_95": [
+          0.0820092581655592,
+          0.4789663515905384
+        ]
+      },
+      {
+        "week": "2024-11-04",
+        "covered_games": 37,
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "selected_roi": -0.04545454545454547,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_week_out_bets": 83,
+        "leave_one_week_out_roi": 0.24205914567360345,
+        "leave_one_week_out_cluster_t_95": [
+          0.02416824141640231,
+          0.4599500499308047
+        ]
+      },
+      {
+        "week": "2024-11-11",
+        "covered_games": 38,
+        "bets": 6,
+        "wins": 5,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 3.5454545454545454,
+        "selected_roi": 0.5909090909090909,
+        "share_of_bets": 0.07058823529411765,
+        "leave_one_week_out_bets": 79,
+        "leave_one_week_out_roi": 0.20828538550057532,
+        "leave_one_week_out_cluster_t_95": [
+          -0.01559321106745859,
+          0.4321639820686093
+        ]
+      },
+      {
+        "week": "2024-11-18",
+        "covered_games": 43,
+        "bets": 14,
+        "wins": 8,
+        "losses": 6,
+        "pushes": 0,
+        "profit_units": 1.2727272727272725,
+        "selected_roi": 0.0909090909090909,
+        "share_of_bets": 0.16470588235294117,
+        "leave_one_week_out_bets": 71,
+        "leave_one_week_out_roi": 0.263764404609475,
+        "leave_one_week_out_cluster_t_95": [
+          0.018920487200719427,
+          0.5086083220182307
+        ]
+      },
+      {
+        "week": "2024-11-25",
+        "covered_games": 48,
+        "bets": 4,
+        "wins": 1,
+        "losses": 3,
+        "pushes": 0,
+        "profit_units": -2.090909090909091,
+        "selected_roi": -0.5227272727272727,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_week_out_bets": 81,
+        "leave_one_week_out_roi": 0.27272727272727265,
+        "leave_one_week_out_cluster_t_95": [
+          0.0646133869527081,
+          0.4808411585018372
+        ]
+      },
+      {
+        "week": "2024-12-02",
+        "covered_games": 2,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764542,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2024-12-16",
+        "covered_games": 4,
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "selected_roi": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_week_out_bets": 84,
+        "leave_one_week_out_roi": 0.2272727272727272,
+        "leave_one_week_out_cluster_t_95": [
+          0.011419651018518856,
+          0.44312580352693565
+        ]
+      },
+      {
+        "week": "2025-08-18",
+        "covered_games": 1,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764542,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2025-08-25",
+        "covered_games": 55,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764542,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2025-09-01",
+        "covered_games": 58,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764542,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2025-09-08",
+        "covered_games": 45,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764542,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2025-09-15",
+        "covered_games": 39,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764542,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2025-09-22",
+        "covered_games": 36,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764542,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2025-09-29",
+        "covered_games": 36,
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "selected_roi": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_week_out_bets": 84,
+        "leave_one_week_out_roi": 0.2272727272727272,
+        "leave_one_week_out_cluster_t_95": [
+          0.011419651018518856,
+          0.44312580352693565
+        ]
+      },
+      {
+        "week": "2025-10-06",
+        "covered_games": 38,
+        "bets": 3,
+        "wins": 1,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -1.0909090909090908,
+        "selected_roi": -0.3636363636363636,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_week_out_bets": 82,
+        "leave_one_week_out_roi": 0.25720620842572056,
+        "leave_one_week_out_cluster_t_95": [
+          0.041617846421467236,
+          0.47279457042997397
+        ]
+      },
+      {
+        "week": "2025-10-13",
+        "covered_games": 44,
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "selected_roi": -0.04545454545454547,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_week_out_bets": 83,
+        "leave_one_week_out_roi": 0.24205914567360345,
+        "leave_one_week_out_cluster_t_95": [
+          0.02416824141640231,
+          0.4599500499308047
+        ]
+      },
+      {
+        "week": "2025-10-20",
+        "covered_games": 39,
+        "bets": 4,
+        "wins": 2,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -0.18181818181818188,
+        "selected_roi": -0.04545454545454547,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_week_out_bets": 81,
+        "leave_one_week_out_roi": 0.24915824915824913,
+        "leave_one_week_out_cluster_t_95": [
+          0.02767016804984407,
+          0.4706463302666542
+        ]
+      },
+      {
+        "week": "2025-10-27",
+        "covered_games": 35,
+        "bets": 5,
+        "wins": 4,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 2.6363636363636362,
+        "selected_roi": 0.5272727272727272,
+        "share_of_bets": 0.058823529411764705,
+        "leave_one_week_out_bets": 80,
+        "leave_one_week_out_roi": 0.21704545454545449,
+        "leave_one_week_out_cluster_t_95": [
+          -0.0075021680656976175,
+          0.4415930771566067
+        ]
+      },
+      {
+        "week": "2025-11-03",
+        "covered_games": 34,
+        "bets": 5,
+        "wins": 3,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": 0.7272727272727272,
+        "selected_roi": 0.14545454545454545,
+        "share_of_bets": 0.058823529411764705,
+        "leave_one_week_out_bets": 80,
+        "leave_one_week_out_roi": 0.24090909090909088,
+        "leave_one_week_out_cluster_t_95": [
+          0.01464874488721013,
+          0.4671694369309716
+        ]
+      },
+      {
+        "week": "2025-11-10",
+        "covered_games": 40,
+        "bets": 13,
+        "wins": 9,
+        "losses": 4,
+        "pushes": 0,
+        "profit_units": 4.181818181818182,
+        "selected_roi": 0.32167832167832167,
+        "share_of_bets": 0.15294117647058825,
+        "leave_one_week_out_bets": 72,
+        "leave_one_week_out_roi": 0.21969696969696964,
+        "leave_one_week_out_cluster_t_95": [
+          -0.030625664472378827,
+          0.47001960386631825
+        ]
+      },
+      {
+        "week": "2025-11-17",
+        "covered_games": 46,
+        "bets": 4,
+        "wins": 2,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -0.18181818181818188,
+        "selected_roi": -0.04545454545454547,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_week_out_bets": 81,
+        "leave_one_week_out_roi": 0.24915824915824913,
+        "leave_one_week_out_cluster_t_95": [
+          0.02767016804984407,
+          0.4706463302666542
+        ]
+      },
+      {
+        "week": "2025-11-24",
+        "covered_games": 41,
+        "bets": 8,
+        "wins": 8,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 7.2727272727272725,
+        "selected_roi": 0.9090909090909091,
+        "share_of_bets": 0.09411764705882353,
+        "leave_one_week_out_bets": 77,
+        "leave_one_week_out_roi": 0.16528925619834706,
+        "leave_one_week_out_cluster_t_95": [
+          -0.019011708726768106,
+          0.34959022112346233
+        ]
+      },
+      {
+        "week": "2025-12-01",
+        "covered_games": 3,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764514,
+          0.4488073636663531
+        ]
+      },
+      {
+        "week": "2025-12-15",
+        "covered_games": 4,
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "selected_roi": null,
+        "share_of_bets": 0.0,
+        "leave_one_week_out_bets": 85,
+        "leave_one_week_out_roi": 0.2352941176470588,
+        "leave_one_week_out_cluster_t_95": [
+          0.021780871627764514,
+          0.4488073636663531
+        ]
+      }
+    ]
+  },
+  "by_season": {
+    "2024": {
+      "calendar_weeks": 17,
+      "active_weeks": 12,
+      "zero_bet_weeks": 5,
+      "bet_weight_effective_week_count": 5.47945205479452,
+      "all_covered_week_cluster_t": {
+        "roi": 0.14545454545454545,
+        "clusters": 17,
+        "active_clusters": 12,
+        "df": 16,
+        "standard_error": 0.15179223716798831,
+        "t_statistic": 0.9582475900501489,
+        "two_sided_p_zero_roi": 0.3521949490075156,
+        "interval_95": [
+          -0.17633062249852244,
+          0.46723971340761333
+        ],
+        "interval_99": [
+          -0.2978974312925071,
+          0.588806522201598
+        ],
+        "multiplicity_sensitivity": [
+          {
+            "hypothetical_family_size": 1,
+            "two_sided_per_interval_confidence": 0.95,
+            "bonferroni_95_family_interval": [
+              -0.17633062249852244,
+              0.46723971340761333
+            ],
+            "bonferroni_adjusted_p": 0.3521949490075156
+          },
+          {
+            "hypothetical_family_size": 4,
+            "two_sided_per_interval_confidence": 0.9875,
+            "bonferroni_95_family_interval": [
+              -0.28154545720525004,
+              0.5724545481143409
+            ],
+            "bonferroni_adjusted_p": 1.0
+          },
+          {
+            "hypothetical_family_size": 10,
+            "two_sided_per_interval_confidence": 0.995,
+            "bonferroni_95_family_interval": [
+              -0.34817272820239015,
+              0.6390818191114811
+            ],
+            "bonferroni_adjusted_p": 1.0
+          },
+          {
+            "hypothetical_family_size": 25,
+            "two_sided_per_interval_confidence": 0.998,
+            "bonferroni_95_family_interval": [
+              -0.4140751370747667,
+              0.7049842279838576
+            ],
+            "bonferroni_adjusted_p": 1.0
+          },
+          {
+            "hypothetical_family_size": 100,
+            "two_sided_per_interval_confidence": 0.9995,
+            "bonferroni_95_family_interval": [
+              -0.5142874296167563,
+              0.8051965205258471
+            ],
+            "bonferroni_adjusted_p": 1.0
+          }
+        ]
+      },
+      "active_week_cluster_t": {
+        "roi": 0.14545454545454545,
+        "clusters": 12,
+        "active_clusters": 12,
+        "df": 11,
+        "standard_error": 0.15380815863246117,
+        "t_statistic": 0.9456881009941908,
+        "two_sided_p_zero_roi": 0.3646180813891082,
+        "interval_95": [
+          -0.1930749291965222,
+          0.4839840201056131
+        ],
+        "interval_99": [
+          -0.33224383576925165,
+          0.6231529266783425
+        ],
+        "multiplicity_sensitivity": [
+          {
+            "hypothetical_family_size": 1,
+            "two_sided_per_interval_confidence": 0.95,
+            "bonferroni_95_family_interval": [
+              -0.1930749291965222,
+              0.4839840201056131
+            ],
+            "bonferroni_adjusted_p": 0.3646180813891082
+          },
+          {
+            "hypothetical_family_size": 4,
+            "two_sided_per_interval_confidence": 0.9875,
+            "bonferroni_95_family_interval": [
+              -0.3130279541301253,
+              0.6039370450392162
+            ],
+            "bonferroni_adjusted_p": 1.0
+          },
+          {
+            "hypothetical_family_size": 10,
+            "two_sided_per_interval_confidence": 0.995,
+            "bonferroni_95_family_interval": [
+              -0.3923532419817692,
+              0.68326233289086
+            ],
+            "bonferroni_adjusted_p": 1.0
+          },
+          {
+            "hypothetical_family_size": 25,
+            "two_sided_per_interval_confidence": 0.998,
+            "bonferroni_95_family_interval": [
+              -0.4735773101895942,
+              0.7644864010986852
+            ],
+            "bonferroni_adjusted_p": 1.0
+          },
+          {
+            "hypothetical_family_size": 100,
+            "two_sided_per_interval_confidence": 0.9995,
+            "bonferroni_95_family_interval": [
+              -0.602565762369816,
+              0.893474853278907
+            ],
+            "bonferroni_adjusted_p": 1.0
+          }
+        ]
+      },
+      "leave_one_week_out_roi_range": [
+        0.06684491978609626,
+        0.23832923832923833
+      ],
+      "leave_one_week_out_95_lower_positive_count": 0,
+      "largest_profit_week": {
+        "week": "2024-11-11",
+        "covered_games": 38,
+        "bets": 6,
+        "wins": 5,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 3.5454545454545454,
+        "selected_roi": 0.5909090909090909,
+        "share_of_bets": 0.15,
+        "leave_one_week_out_bets": 34,
+        "leave_one_week_out_roi": 0.06684491978609626,
+        "leave_one_week_out_cluster_t_95": [
+          -0.263000816736811,
+          0.3966906563090035
+        ],
+        "share_of_net_profit": 0.609375
+      },
+      "weeks": [
+        {
+          "week": "2024-08-19",
+          "covered_games": 2,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 40,
+          "leave_one_week_out_roi": 0.14545454545454545,
+          "leave_one_week_out_cluster_t_95": [
+            -0.17871671598987438,
+            0.46962580689896527
+          ]
+        },
+        {
+          "week": "2024-08-26",
+          "covered_games": 52,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 40,
+          "leave_one_week_out_roi": 0.14545454545454545,
+          "leave_one_week_out_cluster_t_95": [
+            -0.17871671598987438,
+            0.46962580689896527
+          ]
+        },
+        {
+          "week": "2024-09-02",
+          "covered_games": 49,
+          "bets": 1,
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "profit_units": -1.0,
+          "selected_roi": -1.0,
+          "share_of_bets": 0.025,
+          "leave_one_week_out_bets": 39,
+          "leave_one_week_out_roi": 0.17482517482517482,
+          "leave_one_week_out_cluster_t_95": [
+            -0.15340696040494314,
+            0.5030573100552928
+          ]
+        },
+        {
+          "week": "2024-09-09",
+          "covered_games": 34,
+          "bets": 1,
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.9090909090909091,
+          "selected_roi": 0.9090909090909091,
+          "share_of_bets": 0.025,
+          "leave_one_week_out_bets": 39,
+          "leave_one_week_out_roi": 0.1258741258741259,
+          "leave_one_week_out_cluster_t_95": [
+            -0.20340300447107615,
+            0.45515125621932784
+          ]
+        },
+        {
+          "week": "2024-09-16",
+          "covered_games": 37,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 40,
+          "leave_one_week_out_roi": 0.14545454545454545,
+          "leave_one_week_out_cluster_t_95": [
+            -0.17871671598987438,
+            0.46962580689896527
+          ]
+        },
+        {
+          "week": "2024-09-23",
+          "covered_games": 38,
+          "bets": 5,
+          "wins": 4,
+          "losses": 1,
+          "pushes": 0,
+          "profit_units": 2.6363636363636362,
+          "selected_roi": 0.5272727272727272,
+          "share_of_bets": 0.125,
+          "leave_one_week_out_bets": 35,
+          "leave_one_week_out_roi": 0.09090909090909091,
+          "leave_one_week_out_cluster_t_95": [
+            -0.25557238867070464,
+            0.4373905704888864
+          ]
+        },
+        {
+          "week": "2024-09-30",
+          "covered_games": 36,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 40,
+          "leave_one_week_out_roi": 0.14545454545454545,
+          "leave_one_week_out_cluster_t_95": [
+            -0.17871671598987438,
+            0.46962580689896527
+          ]
+        },
+        {
+          "week": "2024-10-07",
+          "covered_games": 35,
+          "bets": 1,
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.9090909090909091,
+          "selected_roi": 0.9090909090909091,
+          "share_of_bets": 0.025,
+          "leave_one_week_out_bets": 39,
+          "leave_one_week_out_roi": 0.1258741258741259,
+          "leave_one_week_out_cluster_t_95": [
+            -0.2034030044710762,
+            0.45515125621932795
+          ]
+        },
+        {
+          "week": "2024-10-14",
+          "covered_games": 38,
+          "bets": 1,
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.9090909090909091,
+          "selected_roi": 0.9090909090909091,
+          "share_of_bets": 0.025,
+          "leave_one_week_out_bets": 39,
+          "leave_one_week_out_roi": 0.1258741258741259,
+          "leave_one_week_out_cluster_t_95": [
+            -0.2034030044710762,
+            0.45515125621932795
+          ]
+        },
+        {
+          "week": "2024-10-21",
+          "covered_games": 39,
+          "bets": 1,
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.9090909090909091,
+          "selected_roi": 0.9090909090909091,
+          "share_of_bets": 0.025,
+          "leave_one_week_out_bets": 39,
+          "leave_one_week_out_roi": 0.1258741258741259,
+          "leave_one_week_out_cluster_t_95": [
+            -0.2034030044710762,
+            0.45515125621932795
+          ]
+        },
+        {
+          "week": "2024-10-28",
+          "covered_games": 34,
+          "bets": 3,
+          "wins": 0,
+          "losses": 3,
+          "pushes": 0,
+          "profit_units": -3.0,
+          "selected_roi": -1.0,
+          "share_of_bets": 0.075,
+          "leave_one_week_out_bets": 37,
+          "leave_one_week_out_roi": 0.23832923832923833,
+          "leave_one_week_out_cluster_t_95": [
+            -0.05431955595897095,
+            0.5309780326174475
+          ]
+        },
+        {
+          "week": "2024-11-04",
+          "covered_games": 37,
+          "bets": 2,
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "profit_units": -0.09090909090909094,
+          "selected_roi": -0.04545454545454547,
+          "share_of_bets": 0.05,
+          "leave_one_week_out_bets": 38,
+          "leave_one_week_out_roi": 0.15550239234449761,
+          "leave_one_week_out_cluster_t_95": [
+            -0.18549610885656065,
+            0.4965008935455558
+          ]
+        },
+        {
+          "week": "2024-11-11",
+          "covered_games": 38,
+          "bets": 6,
+          "wins": 5,
+          "losses": 1,
+          "pushes": 0,
+          "profit_units": 3.5454545454545454,
+          "selected_roi": 0.5909090909090909,
+          "share_of_bets": 0.15,
+          "leave_one_week_out_bets": 34,
+          "leave_one_week_out_roi": 0.06684491978609626,
+          "leave_one_week_out_cluster_t_95": [
+            -0.263000816736811,
+            0.3966906563090035
+          ]
+        },
+        {
+          "week": "2024-11-18",
+          "covered_games": 43,
+          "bets": 14,
+          "wins": 8,
+          "losses": 6,
+          "pushes": 0,
+          "profit_units": 1.2727272727272725,
+          "selected_roi": 0.0909090909090909,
+          "share_of_bets": 0.35,
+          "leave_one_week_out_bets": 26,
+          "leave_one_week_out_roi": 0.17482517482517484,
+          "leave_one_week_out_cluster_t_95": [
+            -0.31752302802000215,
+            0.6671733776703519
+          ]
+        },
+        {
+          "week": "2024-11-25",
+          "covered_games": 48,
+          "bets": 4,
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "profit_units": -2.090909090909091,
+          "selected_roi": -0.5227272727272727,
+          "share_of_bets": 0.1,
+          "leave_one_week_out_bets": 36,
+          "leave_one_week_out_roi": 0.2196969696969697,
+          "leave_one_week_out_cluster_t_95": [
+            -0.10451134624393565,
+            0.543905285637875
+          ]
+        },
+        {
+          "week": "2024-12-02",
+          "covered_games": 2,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 40,
+          "leave_one_week_out_roi": 0.14545454545454545,
+          "leave_one_week_out_cluster_t_95": [
+            -0.17871671598987438,
+            0.46962580689896527
+          ]
+        },
+        {
+          "week": "2024-12-16",
+          "covered_games": 4,
+          "bets": 1,
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.9090909090909091,
+          "selected_roi": 0.9090909090909091,
+          "share_of_bets": 0.025,
+          "leave_one_week_out_bets": 39,
+          "leave_one_week_out_roi": 0.1258741258741259,
+          "leave_one_week_out_cluster_t_95": [
+            -0.20340300447107612,
+            0.4551512562193279
+          ]
+        }
+      ]
+    },
+    "2025": {
+      "calendar_weeks": 17,
+      "active_weeks": 9,
+      "zero_bet_weeks": 8,
+      "bet_weight_effective_week_count": 6.155015197568389,
+      "all_covered_week_cluster_t": {
+        "roi": 0.3151515151515151,
+        "clusters": 17,
+        "active_clusters": 9,
+        "df": 16,
+        "standard_error": 0.1327959189532884,
+        "t_statistic": 2.3732018094800877,
+        "two_sided_p_zero_roi": 0.03050097607494182,
+        "interval_95": [
+          0.0336367428474828,
+          0.5966662874555475
+        ],
+        "interval_99": [
+          -0.07271636446030277,
+          0.703019394763333
+        ],
+        "multiplicity_sensitivity": [
+          {
+            "hypothetical_family_size": 1,
+            "two_sided_per_interval_confidence": 0.95,
+            "bonferroni_95_family_interval": [
+              0.0336367428474828,
+              0.5966662874555475
+            ],
+            "bonferroni_adjusted_p": 0.03050097607494182
+          },
+          {
+            "hypothetical_family_size": 4,
+            "two_sided_per_interval_confidence": 0.9875,
+            "bonferroni_95_family_interval": [
+              -0.058410788192825414,
+              0.6887138184958557
+            ],
+            "bonferroni_adjusted_p": 0.12200390429976728
+          },
+          {
+            "hypothetical_family_size": 10,
+            "two_sided_per_interval_confidence": 0.995,
+            "bonferroni_95_family_interval": [
+              -0.11669986703170648,
+              0.7470028973347367
+            ],
+            "bonferroni_adjusted_p": 0.3050097607494182
+          },
+          {
+            "hypothetical_family_size": 25,
+            "two_sided_per_interval_confidence": 0.998,
+            "bonferroni_95_family_interval": [
+              -0.17435479794729225,
+              0.8046578282503225
+            ],
+            "bonferroni_adjusted_p": 0.7625244018735455
+          },
+          {
+            "hypothetical_family_size": 100,
+            "two_sided_per_interval_confidence": 0.9995,
+            "bonferroni_95_family_interval": [
+              -0.2620258391468601,
+              0.8923288694498903
+            ],
+            "bonferroni_adjusted_p": 1.0
+          }
+        ]
+      },
+      "active_week_cluster_t": {
+        "roi": 0.3151515151515151,
+        "clusters": 9,
+        "active_clusters": 9,
+        "df": 8,
+        "standard_error": 0.13664587327912942,
+        "t_statistic": 2.3063375979730356,
+        "two_sided_p_zero_roi": 0.04997397938296173,
+        "interval_95": [
+          4.55663112582938e-05,
+          0.630257463991772
+        ],
+        "interval_99": [
+          -0.14334831692826416,
+          0.7736513472312945
+        ],
+        "multiplicity_sensitivity": [
+          {
+            "hypothetical_family_size": 1,
+            "two_sided_per_interval_confidence": 0.95,
+            "bonferroni_95_family_interval": [
+              4.55663112582938e-05,
+              0.630257463991772
+            ],
+            "bonferroni_adjusted_p": 0.04997397938296173
+          },
+          {
+            "hypothetical_family_size": 4,
+            "two_sided_per_interval_confidence": 0.9875,
+            "bonferroni_95_family_interval": [
+              -0.12292906746178406,
+              0.7532320977648144
+            ],
+            "bonferroni_adjusted_p": 0.1998959175318469
+          },
+          {
+            "hypothetical_family_size": 10,
+            "two_sided_per_interval_confidence": 0.995,
+            "bonferroni_95_family_interval": [
+              -0.20854634746594564,
+              0.8388493777689758
+            ],
+            "bonferroni_adjusted_p": 0.49973979382961725
+          },
+          {
+            "hypothetical_family_size": 25,
+            "two_sided_per_interval_confidence": 0.998,
+            "bonferroni_95_family_interval": [
+              -0.2998629924339515,
+              0.9301660227369817
+            ],
+            "bonferroni_adjusted_p": 1.0
+          },
+          {
+            "hypothetical_family_size": 100,
+            "two_sided_per_interval_confidence": 0.9995,
+            "bonferroni_95_family_interval": [
+              -0.45244449016967164,
+              1.082747520472702
+            ],
+            "bonferroni_adjusted_p": 1.0
+          }
+        ]
+      },
+      "leave_one_week_out_roi_range": [
+        0.1867321867321867,
+        0.3636363636363636
+      ],
+      "leave_one_week_out_95_lower_positive_count": 14,
+      "largest_profit_week": {
+        "week": "2025-11-24",
+        "covered_games": 41,
+        "bets": 8,
+        "wins": 8,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 7.2727272727272725,
+        "selected_roi": 0.9090909090909091,
+        "share_of_bets": 0.17777777777777778,
+        "leave_one_week_out_bets": 37,
+        "leave_one_week_out_roi": 0.1867321867321867,
+        "leave_one_week_out_cluster_t_95": [
+          -0.012451436405723132,
+          0.38591580987009655
+        ],
+        "share_of_net_profit": 0.5128205128205129
+      },
+      "weeks": [
+        {
+          "week": "2025-08-18",
+          "covered_games": 1,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 45,
+          "leave_one_week_out_roi": 0.3151515151515151,
+          "leave_one_week_out_cluster_t_95": [
+            0.0315492614070329,
+            0.5987537688959974
+          ]
+        },
+        {
+          "week": "2025-08-25",
+          "covered_games": 55,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 45,
+          "leave_one_week_out_roi": 0.3151515151515151,
+          "leave_one_week_out_cluster_t_95": [
+            0.0315492614070329,
+            0.5987537688959974
+          ]
+        },
+        {
+          "week": "2025-09-01",
+          "covered_games": 58,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 45,
+          "leave_one_week_out_roi": 0.3151515151515151,
+          "leave_one_week_out_cluster_t_95": [
+            0.0315492614070329,
+            0.5987537688959974
+          ]
+        },
+        {
+          "week": "2025-09-08",
+          "covered_games": 45,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 45,
+          "leave_one_week_out_roi": 0.3151515151515151,
+          "leave_one_week_out_cluster_t_95": [
+            0.0315492614070329,
+            0.5987537688959974
+          ]
+        },
+        {
+          "week": "2025-09-15",
+          "covered_games": 39,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 45,
+          "leave_one_week_out_roi": 0.3151515151515151,
+          "leave_one_week_out_cluster_t_95": [
+            0.0315492614070329,
+            0.5987537688959974
+          ]
+        },
+        {
+          "week": "2025-09-22",
+          "covered_games": 36,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 45,
+          "leave_one_week_out_roi": 0.3151515151515151,
+          "leave_one_week_out_cluster_t_95": [
+            0.0315492614070329,
+            0.5987537688959974
+          ]
+        },
+        {
+          "week": "2025-09-29",
+          "covered_games": 36,
+          "bets": 1,
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.9090909090909091,
+          "selected_roi": 0.9090909090909091,
+          "share_of_bets": 0.022222222222222223,
+          "leave_one_week_out_bets": 44,
+          "leave_one_week_out_roi": 0.30165289256198347,
+          "leave_one_week_out_cluster_t_95": [
+            0.010415638466334864,
+            0.5928901466576321
+          ]
+        },
+        {
+          "week": "2025-10-06",
+          "covered_games": 38,
+          "bets": 3,
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "profit_units": -1.0909090909090908,
+          "selected_roi": -0.3636363636363636,
+          "share_of_bets": 0.06666666666666667,
+          "leave_one_week_out_bets": 42,
+          "leave_one_week_out_roi": 0.3636363636363636,
+          "leave_one_week_out_cluster_t_95": [
+            0.08867633792847746,
+            0.6385963893442499
+          ]
+        },
+        {
+          "week": "2025-10-13",
+          "covered_games": 44,
+          "bets": 2,
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "profit_units": -0.09090909090909094,
+          "selected_roi": -0.04545454545454547,
+          "share_of_bets": 0.044444444444444446,
+          "leave_one_week_out_bets": 43,
+          "leave_one_week_out_roi": 0.33192389006342493,
+          "leave_one_week_out_cluster_t_95": [
+            0.04049673040091589,
+            0.623351049725934
+          ]
+        },
+        {
+          "week": "2025-10-20",
+          "covered_games": 39,
+          "bets": 4,
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "profit_units": -0.18181818181818188,
+          "selected_roi": -0.04545454545454547,
+          "share_of_bets": 0.08888888888888889,
+          "leave_one_week_out_bets": 41,
+          "leave_one_week_out_roi": 0.3503325942350332,
+          "leave_one_week_out_cluster_t_95": [
+            0.05632442029223339,
+            0.6443407681778331
+          ]
+        },
+        {
+          "week": "2025-10-27",
+          "covered_games": 35,
+          "bets": 5,
+          "wins": 4,
+          "losses": 1,
+          "pushes": 0,
+          "profit_units": 2.6363636363636362,
+          "selected_roi": 0.5272727272727272,
+          "share_of_bets": 0.1111111111111111,
+          "leave_one_week_out_bets": 40,
+          "leave_one_week_out_roi": 0.2886363636363636,
+          "leave_one_week_out_cluster_t_95": [
+            -0.03021321829299828,
+            0.6074859455657257
+          ]
+        },
+        {
+          "week": "2025-11-03",
+          "covered_games": 34,
+          "bets": 5,
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "profit_units": 0.7272727272727272,
+          "selected_roi": 0.14545454545454545,
+          "share_of_bets": 0.1111111111111111,
+          "leave_one_week_out_bets": 40,
+          "leave_one_week_out_roi": 0.3363636363636363,
+          "leave_one_week_out_cluster_t_95": [
+            0.025401085742898066,
+            0.6473261869843747
+          ]
+        },
+        {
+          "week": "2025-11-10",
+          "covered_games": 40,
+          "bets": 13,
+          "wins": 9,
+          "losses": 4,
+          "pushes": 0,
+          "profit_units": 4.181818181818182,
+          "selected_roi": 0.32167832167832167,
+          "share_of_bets": 0.28888888888888886,
+          "leave_one_week_out_bets": 32,
+          "leave_one_week_out_roi": 0.31249999999999994,
+          "leave_one_week_out_cluster_t_95": [
+            -0.08692653803156142,
+            0.7119265380315614
+          ]
+        },
+        {
+          "week": "2025-11-17",
+          "covered_games": 46,
+          "bets": 4,
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "profit_units": -0.18181818181818188,
+          "selected_roi": -0.04545454545454547,
+          "share_of_bets": 0.08888888888888889,
+          "leave_one_week_out_bets": 41,
+          "leave_one_week_out_roi": 0.3503325942350332,
+          "leave_one_week_out_cluster_t_95": [
+            0.05632442029223328,
+            0.6443407681778331
+          ]
+        },
+        {
+          "week": "2025-11-24",
+          "covered_games": 41,
+          "bets": 8,
+          "wins": 8,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 7.2727272727272725,
+          "selected_roi": 0.9090909090909091,
+          "share_of_bets": 0.17777777777777778,
+          "leave_one_week_out_bets": 37,
+          "leave_one_week_out_roi": 0.1867321867321867,
+          "leave_one_week_out_cluster_t_95": [
+            -0.012451436405723132,
+            0.38591580987009655
+          ]
+        },
+        {
+          "week": "2025-12-01",
+          "covered_games": 3,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 45,
+          "leave_one_week_out_roi": 0.3151515151515151,
+          "leave_one_week_out_cluster_t_95": [
+            0.0315492614070329,
+            0.5987537688959974
+          ]
+        },
+        {
+          "week": "2025-12-15",
+          "covered_games": 4,
+          "bets": 0,
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "profit_units": 0.0,
+          "selected_roi": null,
+          "share_of_bets": 0.0,
+          "leave_one_week_out_bets": 45,
+          "leave_one_week_out_roi": 0.3151515151515151,
+          "leave_one_week_out_cluster_t_95": [
+            0.0315492614070329,
+            0.5987537688959974
+          ]
+        }
+      ]
+    }
+  },
+  "venue_concentration": {
+    "groups": 49,
+    "largest_group_bet_share": 0.058823529411764705,
+    "top_five_group_bet_share": 0.23529411764705882,
+    "count_hhi": 0.027266435986159167,
+    "inverse_count_hhi": 36.675126903553306,
+    "leave_one_group_out_roi_range": [
+      0.21064301552106435,
+      0.27272727272727276
+    ],
+    "groups_table": [
+      {
+        "id": "3786",
+        "name": "Kelly/Shorts Stadium",
+        "bets": 5,
+        "wins": 4,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 2.6363636363636362,
+        "share_of_bets": 0.058823529411764705,
+        "leave_one_group_out_roi": 0.2170454545454546
+      },
+      {
+        "id": "3835",
+        "name": "Memorial Stadium (Norman, OK)",
+        "bets": 4,
+        "wins": 2,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -0.18181818181818177,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_group_out_roi": 0.24915824915824922
+      },
+      {
+        "id": "3887",
+        "name": "Donald W. Reynolds Razorback Stadium",
+        "bets": 4,
+        "wins": 1,
+        "losses": 3,
+        "pushes": 0,
+        "profit_units": -2.090909090909091,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_group_out_roi": 0.27272727272727276
+      },
+      {
+        "id": "3936",
+        "name": "Spartan Stadium",
+        "bets": 4,
+        "wins": 3,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 1.727272727272727,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_group_out_roi": 0.22558922558922564
+      },
+      {
+        "id": "3636",
+        "name": "Bill Snyder Family Stadium",
+        "bets": 3,
+        "wins": 2,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 0.8181818181818181,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.23392461197339254
+      },
+      {
+        "id": "3792",
+        "name": "Kidd Brewer Stadium",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "3855",
+        "name": "Notre Dame Stadium",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "3919",
+        "name": "Scheumann Stadium",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "3996",
+        "name": "Yager Stadium",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "347",
+        "name": "Camp Randall Stadium",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "3558",
+        "name": "Michigan Stadium",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "3632",
+        "name": "Beaver Stadium",
+        "bets": 2,
+        "wins": 0,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -2.0,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.26506024096385544
+      },
+      {
+        "id": "3683",
+        "name": "Kroger Field",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "3713",
+        "name": "Falcon Stadium",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "3764",
+        "name": "Huskie Stadium",
+        "bets": 2,
+        "wins": 0,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -2.0,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.26506024096385544
+      },
+      {
+        "id": "3772",
+        "name": "Jack Trice Stadium",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "3793",
+        "name": "Kinnick Stadium",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "3820",
+        "name": "Martin Stadium",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "3831",
+        "name": "California Memorial Stadium",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "3861",
+        "name": "Ohio Stadium",
+        "bets": 2,
+        "wins": 0,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -2.0,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.26506024096385544
+      },
+      {
+        "id": "3912",
+        "name": "Rynearson Stadium",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "3980",
+        "name": "Waldo Stadium",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "3615",
+        "name": "Alumni Stadium (Chestnut Hill, MA)",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3626",
+        "name": "Autzen Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3646",
+        "name": "Boone Pickens Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3651",
+        "name": "Bridgeforth Stadium",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3670",
+        "name": "Carter-Finley Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3674",
+        "name": "H. A. Chapman Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3739",
+        "name": "Glass Bowl",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3768",
+        "name": "InfoCision Stadium",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3799",
+        "name": "Lane Stadium",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3830",
+        "name": "Memorial Stadium (Bloomington, IN)",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3834",
+        "name": "Memorial Stadium (Lincoln, NE)",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3842",
+        "name": "Milan Puskar Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3854",
+        "name": "Nippert Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3876",
+        "name": "Peden Stadium",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3893",
+        "name": "Reser Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3906",
+        "name": "Roos Field",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3910",
+        "name": "DKR-Texas Memorial Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3917",
+        "name": "Sanford Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3923",
+        "name": "Scott Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3942",
+        "name": "Stewart Stadium",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "3974",
+        "name": "Vaught-Hemingway Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "3984",
+        "name": "War Memorial Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "4727",
+        "name": "McLane Stadium",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "4729",
+        "name": "Yulman Stadium",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "477",
+        "name": "Los Angeles Memorial Coliseum",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "587",
+        "name": "Rice-Eccles Stadium",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "717",
+        "name": "Villanova Stadium",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      }
+    ]
+  },
+  "home_team_concentration": {
+    "groups": 49,
+    "largest_group_bet_share": 0.058823529411764705,
+    "top_five_group_bet_share": 0.23529411764705882,
+    "count_hhi": 0.027266435986159167,
+    "inverse_count_hhi": 36.675126903553306,
+    "leave_one_group_out_roi_range": [
+      0.21064301552106435,
+      0.27272727272727276
+    ],
+    "groups_table": [
+      {
+        "id": "2117",
+        "name": "Central Michigan Chippewas",
+        "bets": 5,
+        "wins": 4,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 2.6363636363636362,
+        "share_of_bets": 0.058823529411764705,
+        "leave_one_group_out_roi": 0.2170454545454546
+      },
+      {
+        "id": "127",
+        "name": "Michigan State Spartans",
+        "bets": 4,
+        "wins": 3,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 1.727272727272727,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_group_out_roi": 0.22558922558922564
+      },
+      {
+        "id": "201",
+        "name": "Oklahoma Sooners",
+        "bets": 4,
+        "wins": 2,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -0.18181818181818177,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_group_out_roi": 0.24915824915824922
+      },
+      {
+        "id": "8",
+        "name": "Arkansas Razorbacks",
+        "bets": 4,
+        "wins": 1,
+        "losses": 3,
+        "pushes": 0,
+        "profit_units": -2.090909090909091,
+        "share_of_bets": 0.047058823529411764,
+        "leave_one_group_out_roi": 0.27272727272727276
+      },
+      {
+        "id": "193",
+        "name": "Miami (OH) RedHawks",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "2026",
+        "name": "App State Mountaineers",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "2050",
+        "name": "Ball State Cardinals",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "2306",
+        "name": "Kansas State Wildcats",
+        "bets": 3,
+        "wins": 2,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 0.8181818181818181,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.23392461197339254
+      },
+      {
+        "id": "87",
+        "name": "Notre Dame Fighting Irish",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "130",
+        "name": "Michigan Wolverines",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "194",
+        "name": "Ohio State Buckeyes",
+        "bets": 2,
+        "wins": 0,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -2.0,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.26506024096385544
+      },
+      {
+        "id": "2005",
+        "name": "Air Force Falcons",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "213",
+        "name": "Penn State Nittany Lions",
+        "bets": 2,
+        "wins": 0,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -2.0,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.26506024096385544
+      },
+      {
+        "id": "2199",
+        "name": "Eastern Michigan Eagles",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "2294",
+        "name": "Iowa Hawkeyes",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "2459",
+        "name": "Northern Illinois Huskies",
+        "bets": 2,
+        "wins": 0,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -2.0,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.26506024096385544
+      },
+      {
+        "id": "25",
+        "name": "California Golden Bears",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "265",
+        "name": "Washington State Cougars",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "2711",
+        "name": "Western Michigan Broncos",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "275",
+        "name": "Wisconsin Badgers",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "66",
+        "name": "Iowa State Cyclones",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "96",
+        "name": "Kentucky Wildcats",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "103",
+        "name": "Boston College Eagles",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "145",
+        "name": "Ole Miss Rebels",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "152",
+        "name": "NC State Wolfpack",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "158",
+        "name": "Nebraska Cornhuskers",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "195",
+        "name": "Ohio Bobcats",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "197",
+        "name": "Oklahoma State Cowboys",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2006",
+        "name": "Akron Zips",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "202",
+        "name": "Tulsa Golden Hurricane",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "204",
+        "name": "Oregon State Beavers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2132",
+        "name": "Cincinnati Bearcats",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "222",
+        "name": "Villanova Wildcats",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "239",
+        "name": "Baylor Bears",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2483",
+        "name": "Oregon Ducks",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "251",
+        "name": "Texas Longhorns",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "254",
+        "name": "Utah Utes",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "256",
+        "name": "James Madison Dukes",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "258",
+        "name": "Virginia Cavaliers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "259",
+        "name": "Virginia Tech Hokies",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "2649",
+        "name": "Toledo Rockets",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "2655",
+        "name": "Tulane Green Wave",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "2692",
+        "name": "Weber State Wildcats",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "2751",
+        "name": "Wyoming Cowboys",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "277",
+        "name": "West Virginia Mountaineers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "30",
+        "name": "USC Trojans",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "331",
+        "name": "Eastern Washington Eagles",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "61",
+        "name": "Georgia Bulldogs",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "84",
+        "name": "Indiana Hoosiers",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      }
+    ]
+  },
+  "away_team_concentration": {
+    "groups": 62,
+    "largest_group_bet_share": 0.03529411764705882,
+    "top_five_group_bet_share": 0.1764705882352941,
+    "count_hhi": 0.019515570934256054,
+    "inverse_count_hhi": 51.24113475177305,
+    "leave_one_group_out_roi_range": [
+      0.21064301552106435,
+      0.26506024096385544
+    ],
+    "groups_table": [
+      {
+        "id": "189",
+        "name": "Bowling Green Falcons",
+        "bets": 3,
+        "wins": 2,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 0.8181818181818181,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.23392461197339254
+      },
+      {
+        "id": "2309",
+        "name": "Kent State Golden Flashes",
+        "bets": 3,
+        "wins": 2,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 0.8181818181818181,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.23392461197339254
+      },
+      {
+        "id": "2649",
+        "name": "Toledo Rockets",
+        "bets": 3,
+        "wins": 3,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 2.727272727272727,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.21064301552106435
+      },
+      {
+        "id": "84",
+        "name": "Indiana Hoosiers",
+        "bets": 3,
+        "wins": 1,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -1.0909090909090908,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.2572062084257207
+      },
+      {
+        "id": "9",
+        "name": "Arizona State Sun Devils",
+        "bets": 3,
+        "wins": 2,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": 0.8181818181818181,
+        "share_of_bets": 0.03529411764705882,
+        "leave_one_group_out_roi": 0.23392461197339254
+      },
+      {
+        "id": "16",
+        "name": "Sacramento State Hornets",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "194",
+        "name": "Ohio State Buckeyes",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "2084",
+        "name": "Buffalo Bulls",
+        "bets": 2,
+        "wins": 0,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -2.0,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.26506024096385544
+      },
+      {
+        "id": "21",
+        "name": "San Diego State Aztecs",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "2116",
+        "name": "UCF Knights",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "2132",
+        "name": "Cincinnati Bearcats",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "2199",
+        "name": "Eastern Michigan Eagles",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "245",
+        "name": "Texas A&M Aggies",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "2459",
+        "name": "Northern Illinois Huskies",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "2483",
+        "name": "Oregon Ducks",
+        "bets": 2,
+        "wins": 2,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 1.8181818181818181,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.21905805038335166
+      },
+      {
+        "id": "26",
+        "name": "UCLA Bruins",
+        "bets": 2,
+        "wins": 0,
+        "losses": 2,
+        "pushes": 0,
+        "profit_units": -2.0,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.26506024096385544
+      },
+      {
+        "id": "2711",
+        "name": "Western Michigan Broncos",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "275",
+        "name": "Wisconsin Badgers",
+        "bets": 2,
+        "wins": 1,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -0.09090909090909094,
+        "share_of_bets": 0.023529411764705882,
+        "leave_one_group_out_roi": 0.24205914567360354
+      },
+      {
+        "id": "113",
+        "name": "Massachusetts Minutemen",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "12",
+        "name": "Arizona Wildcats",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "120",
+        "name": "Maryland Terrapins",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "142",
+        "name": "Missouri Tigers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "145",
+        "name": "Ole Miss Rebels",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "153",
+        "name": "North Carolina Tar Heels",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "164",
+        "name": "Rutgers Scarlet Knights",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "195",
+        "name": "Ohio Bobcats",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2",
+        "name": "Auburn Tigers",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "2006",
+        "name": "Akron Zips",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "2026",
+        "name": "App State Mountaineers",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "2050",
+        "name": "Ball State Cardinals",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "213",
+        "name": "Penn State Nittany Lions",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2247",
+        "name": "Georgia State Panthers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2294",
+        "name": "Iowa Hawkeyes",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2348",
+        "name": "Louisiana Tech Bulldogs",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "235",
+        "name": "Memphis Tigers",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "238",
+        "name": "Vanderbilt Commodores",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2390",
+        "name": "Miami Hurricanes",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "24",
+        "name": "Stanford Cardinal",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2439",
+        "name": "UNLV Rebels",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2509",
+        "name": "Purdue Boilermakers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "251",
+        "name": "Texas Longhorns",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "256",
+        "name": "James Madison Dukes",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2567",
+        "name": "SMU Mustangs",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "258",
+        "name": "Virginia Cavaliers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "2635",
+        "name": "Tennessee Tech Golden Eagles",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "264",
+        "name": "Washington Huskies",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "265",
+        "name": "Washington State Cougars",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "276",
+        "name": "Marshall Thundering Herd",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "278",
+        "name": "Fresno State Bulldogs",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "30",
+        "name": "USC Trojans",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "311",
+        "name": "Maine Black Bears",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "333",
+        "name": "Alabama Crimson Tide",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "344",
+        "name": "Mississippi State Bulldogs",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "36",
+        "name": "Colorado State Rams",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "38",
+        "name": "Colorado Buffaloes",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "48",
+        "name": "Delaware Blue Hens",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "5",
+        "name": "UAB Blazers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "52",
+        "name": "Florida State Seminoles",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "66",
+        "name": "Iowa State Cyclones",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "77",
+        "name": "Northwestern Wildcats",
+        "bets": 1,
+        "wins": 0,
+        "losses": 1,
+        "pushes": 0,
+        "profit_units": -1.0,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.25000000000000006
+      },
+      {
+        "id": "96",
+        "name": "Kentucky Wildcats",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      },
+      {
+        "id": "99",
+        "name": "LSU Tigers",
+        "bets": 1,
+        "wins": 1,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.9090909090909091,
+        "share_of_bets": 0.011764705882352941,
+        "leave_one_group_out_roi": 0.2272727272727273
+      }
+    ]
+  },
+  "team_involvement": {
+    "unique_teams": 88,
+    "team_appearances": 170,
+    "largest_team_game_share": 0.058823529411764705,
+    "top_five_appearance_share": 0.12352941176470589,
+    "appearance_hhi": 0.015363321799307958,
+    "inverse_appearance_hhi": 65.0900900900901,
+    "leave_one_team_out_roi_range": [
+      0.21064301552106435,
+      0.27272727272727276
+    ],
+    "interpretation": "Each game has two team appearances. Associated profit sums double-count the portfolio; every individual team-deletion calculation removes each game only once.",
+    "teams": [
+      {
+        "team_id": "2117",
+        "team": "Central Michigan Chippewas",
+        "games": 5,
+        "home_games": 5,
+        "away_games": 0,
+        "appearance_share": 0.029411764705882353,
+        "share_of_bets_involving_team": 0.058823529411764705,
+        "wins": 4,
+        "losses": 1,
+        "associated_profit_units": 2.6363636363636362,
+        "leave_one_team_out_roi": 0.2170454545454546
+      },
+      {
+        "team_id": "127",
+        "team": "Michigan State Spartans",
+        "games": 4,
+        "home_games": 4,
+        "away_games": 0,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 3,
+        "losses": 1,
+        "associated_profit_units": 1.727272727272727,
+        "leave_one_team_out_roi": 0.22558922558922564
+      },
+      {
+        "team_id": "194",
+        "team": "Ohio State Buckeyes",
+        "games": 4,
+        "home_games": 2,
+        "away_games": 2,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 2,
+        "losses": 2,
+        "associated_profit_units": -0.18181818181818177,
+        "leave_one_team_out_roi": 0.24915824915824922
+      },
+      {
+        "team_id": "201",
+        "team": "Oklahoma Sooners",
+        "games": 4,
+        "home_games": 4,
+        "away_games": 0,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 2,
+        "losses": 2,
+        "associated_profit_units": -0.18181818181818177,
+        "leave_one_team_out_roi": 0.24915824915824922
+      },
+      {
+        "team_id": "2026",
+        "team": "App State Mountaineers",
+        "games": 4,
+        "home_games": 3,
+        "away_games": 1,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 3,
+        "losses": 1,
+        "associated_profit_units": 1.727272727272727,
+        "leave_one_team_out_roi": 0.22558922558922564
+      },
+      {
+        "team_id": "2050",
+        "team": "Ball State Cardinals",
+        "games": 4,
+        "home_games": 3,
+        "away_games": 1,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 3,
+        "losses": 1,
+        "associated_profit_units": 1.727272727272727,
+        "leave_one_team_out_roi": 0.22558922558922564
+      },
+      {
+        "team_id": "2199",
+        "team": "Eastern Michigan Eagles",
+        "games": 4,
+        "home_games": 2,
+        "away_games": 2,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 3,
+        "losses": 1,
+        "associated_profit_units": 1.727272727272727,
+        "leave_one_team_out_roi": 0.22558922558922564
+      },
+      {
+        "team_id": "2459",
+        "team": "Northern Illinois Huskies",
+        "games": 4,
+        "home_games": 2,
+        "away_games": 2,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 1,
+        "losses": 3,
+        "associated_profit_units": -2.090909090909091,
+        "leave_one_team_out_roi": 0.27272727272727276
+      },
+      {
+        "team_id": "2649",
+        "team": "Toledo Rockets",
+        "games": 4,
+        "home_games": 1,
+        "away_games": 3,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 3,
+        "losses": 1,
+        "associated_profit_units": 1.727272727272727,
+        "leave_one_team_out_roi": 0.22558922558922564
+      },
+      {
+        "team_id": "2711",
+        "team": "Western Michigan Broncos",
+        "games": 4,
+        "home_games": 2,
+        "away_games": 2,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 3,
+        "losses": 1,
+        "associated_profit_units": 1.727272727272727,
+        "leave_one_team_out_roi": 0.22558922558922564
+      },
+      {
+        "team_id": "275",
+        "team": "Wisconsin Badgers",
+        "games": 4,
+        "home_games": 2,
+        "away_games": 2,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 3,
+        "losses": 1,
+        "associated_profit_units": 1.727272727272727,
+        "leave_one_team_out_roi": 0.22558922558922564
+      },
+      {
+        "team_id": "8",
+        "team": "Arkansas Razorbacks",
+        "games": 4,
+        "home_games": 4,
+        "away_games": 0,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 1,
+        "losses": 3,
+        "associated_profit_units": -2.090909090909091,
+        "leave_one_team_out_roi": 0.27272727272727276
+      },
+      {
+        "team_id": "84",
+        "team": "Indiana Hoosiers",
+        "games": 4,
+        "home_games": 1,
+        "away_games": 3,
+        "appearance_share": 0.023529411764705882,
+        "share_of_bets_involving_team": 0.047058823529411764,
+        "wins": 1,
+        "losses": 3,
+        "associated_profit_units": -2.090909090909091,
+        "leave_one_team_out_roi": 0.27272727272727276
+      },
+      {
+        "team_id": "189",
+        "team": "Bowling Green Falcons",
+        "games": 3,
+        "home_games": 0,
+        "away_games": 3,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 2,
+        "losses": 1,
+        "associated_profit_units": 0.8181818181818181,
+        "leave_one_team_out_roi": 0.23392461197339254
+      },
+      {
+        "team_id": "193",
+        "team": "Miami (OH) RedHawks",
+        "games": 3,
+        "home_games": 3,
+        "away_games": 0,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 3,
+        "losses": 0,
+        "associated_profit_units": 2.727272727272727,
+        "leave_one_team_out_roi": 0.21064301552106435
+      },
+      {
+        "team_id": "213",
+        "team": "Penn State Nittany Lions",
+        "games": 3,
+        "home_games": 2,
+        "away_games": 1,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 1,
+        "losses": 2,
+        "associated_profit_units": -1.0909090909090908,
+        "leave_one_team_out_roi": 0.2572062084257207
+      },
+      {
+        "team_id": "2132",
+        "team": "Cincinnati Bearcats",
+        "games": 3,
+        "home_games": 1,
+        "away_games": 2,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 2,
+        "losses": 1,
+        "associated_profit_units": 0.8181818181818181,
+        "leave_one_team_out_roi": 0.23392461197339254
+      },
+      {
+        "team_id": "2294",
+        "team": "Iowa Hawkeyes",
+        "games": 3,
+        "home_games": 2,
+        "away_games": 1,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 2,
+        "losses": 1,
+        "associated_profit_units": 0.8181818181818181,
+        "leave_one_team_out_roi": 0.23392461197339254
+      },
+      {
+        "team_id": "2306",
+        "team": "Kansas State Wildcats",
+        "games": 3,
+        "home_games": 3,
+        "away_games": 0,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 2,
+        "losses": 1,
+        "associated_profit_units": 0.8181818181818181,
+        "leave_one_team_out_roi": 0.23392461197339254
+      },
+      {
+        "team_id": "2309",
+        "team": "Kent State Golden Flashes",
+        "games": 3,
+        "home_games": 0,
+        "away_games": 3,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 2,
+        "losses": 1,
+        "associated_profit_units": 0.8181818181818181,
+        "leave_one_team_out_roi": 0.23392461197339254
+      },
+      {
+        "team_id": "2483",
+        "team": "Oregon Ducks",
+        "games": 3,
+        "home_games": 1,
+        "away_games": 2,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 3,
+        "losses": 0,
+        "associated_profit_units": 2.727272727272727,
+        "leave_one_team_out_roi": 0.21064301552106435
+      },
+      {
+        "team_id": "265",
+        "team": "Washington State Cougars",
+        "games": 3,
+        "home_games": 2,
+        "away_games": 1,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 3,
+        "losses": 0,
+        "associated_profit_units": 2.727272727272727,
+        "leave_one_team_out_roi": 0.21064301552106435
+      },
+      {
+        "team_id": "66",
+        "team": "Iowa State Cyclones",
+        "games": 3,
+        "home_games": 2,
+        "away_games": 1,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 3,
+        "losses": 0,
+        "associated_profit_units": 2.727272727272727,
+        "leave_one_team_out_roi": 0.21064301552106435
+      },
+      {
+        "team_id": "87",
+        "team": "Notre Dame Fighting Irish",
+        "games": 3,
+        "home_games": 3,
+        "away_games": 0,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 3,
+        "losses": 0,
+        "associated_profit_units": 2.727272727272727,
+        "leave_one_team_out_roi": 0.21064301552106435
+      },
+      {
+        "team_id": "9",
+        "team": "Arizona State Sun Devils",
+        "games": 3,
+        "home_games": 0,
+        "away_games": 3,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 2,
+        "losses": 1,
+        "associated_profit_units": 0.8181818181818181,
+        "leave_one_team_out_roi": 0.23392461197339254
+      },
+      {
+        "team_id": "96",
+        "team": "Kentucky Wildcats",
+        "games": 3,
+        "home_games": 2,
+        "away_games": 1,
+        "appearance_share": 0.01764705882352941,
+        "share_of_bets_involving_team": 0.03529411764705882,
+        "wins": 3,
+        "losses": 0,
+        "associated_profit_units": 2.727272727272727,
+        "leave_one_team_out_roi": 0.21064301552106435
+      },
+      {
+        "team_id": "130",
+        "team": "Michigan Wolverines",
+        "games": 2,
+        "home_games": 2,
+        "away_games": 0,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 1,
+        "losses": 1,
+        "associated_profit_units": -0.09090909090909094,
+        "leave_one_team_out_roi": 0.24205914567360354
+      },
+      {
+        "team_id": "145",
+        "team": "Ole Miss Rebels",
+        "games": 2,
+        "home_games": 1,
+        "away_games": 1,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 1,
+        "losses": 1,
+        "associated_profit_units": -0.09090909090909094,
+        "leave_one_team_out_roi": 0.24205914567360354
+      },
+      {
+        "team_id": "16",
+        "team": "Sacramento State Hornets",
+        "games": 2,
+        "home_games": 0,
+        "away_games": 2,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 1,
+        "losses": 1,
+        "associated_profit_units": -0.09090909090909094,
+        "leave_one_team_out_roi": 0.24205914567360354
+      },
+      {
+        "team_id": "195",
+        "team": "Ohio Bobcats",
+        "games": 2,
+        "home_games": 1,
+        "away_games": 1,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 1,
+        "losses": 1,
+        "associated_profit_units": -0.09090909090909094,
+        "leave_one_team_out_roi": 0.24205914567360354
+      },
+      {
+        "team_id": "2005",
+        "team": "Air Force Falcons",
+        "games": 2,
+        "home_games": 2,
+        "away_games": 0,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 1,
+        "losses": 1,
+        "associated_profit_units": -0.09090909090909094,
+        "leave_one_team_out_roi": 0.24205914567360354
+      },
+      {
+        "team_id": "2006",
+        "team": "Akron Zips",
+        "games": 2,
+        "home_games": 1,
+        "away_games": 1,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 0,
+        "losses": 2,
+        "associated_profit_units": -2.0,
+        "leave_one_team_out_roi": 0.26506024096385544
+      },
+      {
+        "team_id": "2084",
+        "team": "Buffalo Bulls",
+        "games": 2,
+        "home_games": 0,
+        "away_games": 2,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 0,
+        "losses": 2,
+        "associated_profit_units": -2.0,
+        "leave_one_team_out_roi": 0.26506024096385544
+      },
+      {
+        "team_id": "21",
+        "team": "San Diego State Aztecs",
+        "games": 2,
+        "home_games": 0,
+        "away_games": 2,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 2,
+        "losses": 0,
+        "associated_profit_units": 1.8181818181818181,
+        "leave_one_team_out_roi": 0.21905805038335166
+      },
+      {
+        "team_id": "2116",
+        "team": "UCF Knights",
+        "games": 2,
+        "home_games": 0,
+        "away_games": 2,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 2,
+        "losses": 0,
+        "associated_profit_units": 1.8181818181818181,
+        "leave_one_team_out_roi": 0.21905805038335166
+      },
+      {
+        "team_id": "245",
+        "team": "Texas A&M Aggies",
+        "games": 2,
+        "home_games": 0,
+        "away_games": 2,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 1,
+        "losses": 1,
+        "associated_profit_units": -0.09090909090909094,
+        "leave_one_team_out_roi": 0.24205914567360354
+      },
+      {
+        "team_id": "25",
+        "team": "California Golden Bears",
+        "games": 2,
+        "home_games": 2,
+        "away_games": 0,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 2,
+        "losses": 0,
+        "associated_profit_units": 1.8181818181818181,
+        "leave_one_team_out_roi": 0.21905805038335166
+      },
+      {
+        "team_id": "251",
+        "team": "Texas Longhorns",
+        "games": 2,
+        "home_games": 1,
+        "away_games": 1,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 2,
+        "losses": 0,
+        "associated_profit_units": 1.8181818181818181,
+        "leave_one_team_out_roi": 0.21905805038335166
+      },
+      {
+        "team_id": "256",
+        "team": "James Madison Dukes",
+        "games": 2,
+        "home_games": 1,
+        "away_games": 1,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 1,
+        "losses": 1,
+        "associated_profit_units": -0.09090909090909094,
+        "leave_one_team_out_roi": 0.24205914567360354
+      },
+      {
+        "team_id": "258",
+        "team": "Virginia Cavaliers",
+        "games": 2,
+        "home_games": 1,
+        "away_games": 1,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 2,
+        "losses": 0,
+        "associated_profit_units": 1.8181818181818181,
+        "leave_one_team_out_roi": 0.21905805038335166
+      },
+      {
+        "team_id": "26",
+        "team": "UCLA Bruins",
+        "games": 2,
+        "home_games": 0,
+        "away_games": 2,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 0,
+        "losses": 2,
+        "associated_profit_units": -2.0,
+        "leave_one_team_out_roi": 0.26506024096385544
+      },
+      {
+        "team_id": "30",
+        "team": "USC Trojans",
+        "games": 2,
+        "home_games": 1,
+        "away_games": 1,
+        "appearance_share": 0.011764705882352941,
+        "share_of_bets_involving_team": 0.023529411764705882,
+        "wins": 2,
+        "losses": 0,
+        "associated_profit_units": 1.8181818181818181,
+        "leave_one_team_out_roi": 0.21905805038335166
+      },
+      {
+        "team_id": "103",
+        "team": "Boston College Eagles",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "113",
+        "team": "Massachusetts Minutemen",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "12",
+        "team": "Arizona Wildcats",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "120",
+        "team": "Maryland Terrapins",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "142",
+        "team": "Missouri Tigers",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "152",
+        "team": "NC State Wolfpack",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "153",
+        "team": "North Carolina Tar Heels",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "158",
+        "team": "Nebraska Cornhuskers",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "164",
+        "team": "Rutgers Scarlet Knights",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "197",
+        "team": "Oklahoma State Cowboys",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "2",
+        "team": "Auburn Tigers",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "202",
+        "team": "Tulsa Golden Hurricane",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "204",
+        "team": "Oregon State Beavers",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "222",
+        "team": "Villanova Wildcats",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "2247",
+        "team": "Georgia State Panthers",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "2348",
+        "team": "Louisiana Tech Bulldogs",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "235",
+        "team": "Memphis Tigers",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "238",
+        "team": "Vanderbilt Commodores",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "239",
+        "team": "Baylor Bears",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "2390",
+        "team": "Miami Hurricanes",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "24",
+        "team": "Stanford Cardinal",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "2439",
+        "team": "UNLV Rebels",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "2509",
+        "team": "Purdue Boilermakers",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "254",
+        "team": "Utah Utes",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "2567",
+        "team": "SMU Mustangs",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "259",
+        "team": "Virginia Tech Hokies",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "2635",
+        "team": "Tennessee Tech Golden Eagles",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "264",
+        "team": "Washington Huskies",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "2655",
+        "team": "Tulane Green Wave",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "2692",
+        "team": "Weber State Wildcats",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "2751",
+        "team": "Wyoming Cowboys",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "276",
+        "team": "Marshall Thundering Herd",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "277",
+        "team": "West Virginia Mountaineers",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "278",
+        "team": "Fresno State Bulldogs",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "311",
+        "team": "Maine Black Bears",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "331",
+        "team": "Eastern Washington Eagles",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "333",
+        "team": "Alabama Crimson Tide",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "344",
+        "team": "Mississippi State Bulldogs",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "36",
+        "team": "Colorado State Rams",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "38",
+        "team": "Colorado Buffaloes",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "48",
+        "team": "Delaware Blue Hens",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "5",
+        "team": "UAB Blazers",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "52",
+        "team": "Florida State Seminoles",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "61",
+        "team": "Georgia Bulldogs",
+        "games": 1,
+        "home_games": 1,
+        "away_games": 0,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      },
+      {
+        "team_id": "77",
+        "team": "Northwestern Wildcats",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 0,
+        "losses": 1,
+        "associated_profit_units": -1.0,
+        "leave_one_team_out_roi": 0.25000000000000006
+      },
+      {
+        "team_id": "99",
+        "team": "LSU Tigers",
+        "games": 1,
+        "home_games": 0,
+        "away_games": 1,
+        "appearance_share": 0.0058823529411764705,
+        "share_of_bets_involving_team": 0.011764705882352941,
+        "wins": 1,
+        "losses": 0,
+        "associated_profit_units": 0.9090909090909091,
+        "leave_one_team_out_roi": 0.2272727272727273
+      }
+    ]
+  },
+  "methods": {
+    "estimand": "Mean hypothetical profit per one-unit selected bet, not mean of weekly ROIs",
+    "cluster_score": "U_g=P_g-theta*N_g; theta=sum(P_g)/sum(N_g)",
+    "cluster_se": "sqrt(G/(G-1)*sum(U_g^2))/sum(N_g)",
+    "reference_distribution": "Student t with G-1 degrees of freedom; approximate finite-cluster inference",
+    "multiplicity": "Two-sided alpha=0.05/m Bonferroni sensitivity, m=1,4,10,25,100; m=4 represents the requested current-strategy comparison. Wider sizes are illustrative, not a known count of all prior searches.",
+    "two_way_team_cluster": "Not computed: ordinary home-role/away-role two-way clustering misses dependence when the same team switches roles. Concentration and deletion are descriptive, not a replacement covariance estimator.",
+    "source": "https://cameron.econ.ucdavis.edu/research/Cameron_Miller_JHR_2015_February.pdf"
+  },
+  "limitations": [
+    "Calendar-week clusters are assumed independent; persistent teams, weather regimes, seasons, or bookmaker-source errors can violate this.",
+    "Only two seasons and 21 active betting weeks; unequal cluster sizes and the t reference do not give exact finite-sample coverage.",
+    "Bonferroni sensitivities do not retroactively establish familywise control for the unknown cumulative adaptive research search.",
+    "All 2024-25 outcomes are reused development data; every interval and deletion analysis is descriptive.",
+    "Archived non-live line timing and actual historical prices are unavailable; returns assume -110 and the historical roof/forecast-provenance limitations remain.",
+    "A positive leave-one-group-out point estimate does not establish calibration, future profitability, or validity of a confidence interval."
+  ],
+  "further_evidence": [
+    "Preserve the frozen rule, price filter, and version before observing new outcomes; retain unavailable games and abstentions.",
+    "Evaluate prospectively recorded game-day forecasts and accepted/observed line prices, with a separate deduplicated ledger.",
+    "Accumulate more independent active weeks and seasons across teams/venues; report both nominal and multiplicity-aware uncertainty on a prespecified review schedule.",
+    "Do not infer an individual matchup probability or stake optimization from the 55/85 historical group record."
+  ],
+  "input_sha256": {
+    "model/data/raw/weather_research/game_results.parquet": "0f37cae42ef635fca17ce64ac960aed8f4df490d2b12e795e30edd2f40f731c5",
+    "model/data/raw/alternative/espn_verified_pregame_games.parquet": "f034e24b8e79ffc33e64d643a92e4b9876c7a1af62f9be7b79176abf6495fab4",
+    "model/reports/weather_request_plan.json": "591abe5c255323ea2ad0b71905a83310d63b86312bf59904546aec6d2e484167",
+    "model/reports/weather_published_hypothesis_results.json": "1cac218606e7867d8427db7ba325f7770abe78aa5e36d6a1ccab73d40943347b"
+  }
+}

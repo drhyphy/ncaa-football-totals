@@ -37,6 +37,10 @@
       <div class="section-heading"><div><p class="eyebrow">02 / WEATHER PAPER STRATEGY</p><h2 id="weather-title">A fixed rule. A separate record.</h2></div><span class="badge research-badge">Forward paper experiment</span></div>
       <p class="section-description">Under only when forecast wind exceeds 7.78 mph, temperature is below 64.81°F, and relative humidity exceeds 56.8%. Wind uses a fixed four-hour average. Today's selections also require a verified future game, two observed books, and a qualifying price.</p>
       <div class="evidence-note weather-evidence"><span class="note-label">DEVELOPMENT RESULT</span><p id="weather-evidence">Historical weather evidence has not been published.</p></div>
+      <p id="weather-robustness-note" class="section-description weather-robustness-note">The full earlier research search count is unknown; the positive historical interval does not establish a future edge.</p>
+      <div class="resource-links weather-report-links"><a href="https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md" target="_blank" rel="noopener noreferrer">Primary source audit ↗</a><a href="https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/weather_robustness.md" target="_blank" rel="noopener noreferrer">Statistical robustness ↗</a></div>
+      <p id="weather-2026-note" class="section-description" hidden></p>
+      <div id="weather-2026-links" class="resource-links weather-report-links"></div>
       <p class="section-description">This published weather hypothesis warrants a separate paper experiment. Reused historical results and assumed prices do not prove a future edge. Its group win rate is not a probability for an individual matchup.</p>
       <div class="weather-daily-heading"><h3>Today's weather selections <span id="weather-pick-count" class="count">—</span></h3><span id="weather-as-of" class="small-meta"></span></div>
       <p id="weather-status" class="small-meta" role="status" aria-live="polite">Checking weather publication status.</p>
@@ -60,6 +64,14 @@
       <div id="candidate-table" class="table-container"></div>
       <div class="definition-grid"><p><strong>MAE / RMSE</strong>Prediction error in total points; lower is better. Compare candidates on the same games.</p><p><strong>ROI / 95% interval</strong>Estimated return per unit staked and its uncertainty. An interval spanning zero does not establish profitability.</p><p><strong>Brier score</strong>Probability error for the stated evaluation sample; lower is better. Calibration matters more than confidence.</p></div>
       <div id="research-links" class="resource-links"></div>
+      <div id="archived-replay" class="market-checks" hidden>
+        <h3>2026 replay at archived prices</h3>
+        <p class="section-description">Predictions were reconstructed after the games using locally supported earlier price captures. This is retrospective evidence, separate from prospective model performance; capture times differ from 6:30 AM. The settled sample is too small to establish an edge.</p>
+        <p id="archived-replay-summary" class="small-meta"></p>
+        <div id="archived-replay-table" class="table-container"></div>
+        <div id="archived-replay-links" class="resource-links"></div>
+        <details class="forecast-details"><summary>Inspect actual archive capture times</summary><ul id="archived-replay-times" class="archive-times"></ul></details>
+      </div>
       <details class="forecast-details"><summary>Forward forecast evaluation <span id="forward-forecast-count"></span></summary><p class="section-description forward-description">First archived forecast per candidate and game, including abstentions. Prediction accuracy is measured even when no bet qualifies; this table does not infer betting returns.</p><div id="forward-forecast-table" class="table-container"></div></details>
       <details class="forecast-details"><summary>Inspect all model forecasts <span id="forecast-count"></span></summary><div class="forecast-controls"><label for="candidate-filter">Candidate</label><select id="candidate-filter"><option value="all">All candidates</option></select></div><div id="forecast-table" class="table-container"></div></details>
     </section>
@@ -67,6 +79,7 @@
     <section id="results" class="section-block" aria-labelledby="results-title">
       <div class="section-heading"><div><p class="eyebrow">05 / FORWARD RECORD</p><h2 id="results-title">The record starts before kickoff.</h2></div><a href="data/board.json" class="text-link">View published data <span aria-hidden="true">↗</span></a></div>
       <p class="section-description">Forward paper results are separate from historical tests. Repeated daily publications do not create additional bets.</p>
+      <div class="resource-links weather-report-links"><a href="https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md" target="_blank" rel="noopener noreferrer">Fixed prospective evaluation protocol ↗</a></div>
       <div id="performance-stats" class="stat-grid"></div>
       <p id="performance-note" class="small-meta performance-note"></p>
       <div id="results-table" class="table-container"></div>

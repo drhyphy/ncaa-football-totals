@@ -9,7 +9,7 @@
   const MAX_AGE = 26 * 60 * 60 * 1000;
   const finite = value => typeof value === "number" && Number.isFinite(value);
   const number = (value, digits = 1) => finite(value) ? value.toLocaleString("en-US", {minimumFractionDigits: digits, maximumFractionDigits: digits}) : "—";
-  const percent = (value, signed = false) => finite(value) ? `${signed && value > 0 ? "+" : ""}${number(value * 100)}%` : "—";
+  const percent = (value, signed = false, digits = 1) => finite(value) ? `${signed && value > 0 ? "+" : ""}${number(value * 100, digits)}%` : "—";
   const odds = value => finite(value) ? `${value > 0 ? "+" : ""}${number(value, 0)}` : "—";
   const titleCase = value => String(value || "").replace(/[_-]/g, " ").replace(/\b\w/g, char => char.toUpperCase());
   const items = value => Array.isArray(value) ? value : [];
@@ -93,6 +93,7 @@
   }
   function start(doc) {
     let board = null;
+    let research = null;
     const $ = id => doc.getElementById(id);
     function element(tag, text, cls) {
       const node = doc.createElement(tag);
@@ -185,6 +186,16 @@
       const strategy = board.weather_strategy || {}, evidence = strategy.evidence || {}, state = weatherHealth(board, now), picks = currentWeatherPicks(board, now);
       const interval = finite(evidence.roi_95_low) && finite(evidence.roi_95_high) ? `${percent(evidence.roi_95_low, true)} to ${percent(evidence.roi_95_high, true)}` : "not estimated";
       $("weather-evidence").textContent = finite(evidence.bets) && evidence.bets > 0 ? `2024–25 development replication: ${number(evidence.bets, 0)} hypothetical bets · ${number(evidence.wins, 0)} wins / ${number(evidence.losses, 0)} losses · ${percent(evidence.roi, true)} ROI · 95% week bootstrap interval ${interval}. All prices assumed ${odds(evidence.price_assumption)}; exact historical quote times are unverified.` : "Historical weather evidence has not been published. No profitable edge is asserted.";
+      const robustness = research?.weather_shadow?.statistical_robustness;
+      const matches = robustness && ["bets", "wins", "losses", "roi"].every(key => finite(evidence[key]) && Math.abs(evidence[key] - robustness.published_result?.[key]) < 1e-10);
+      const family = items(robustness?.all_covered_week_cluster_t?.multiplicity_sensitivity).find(row => row.hypothetical_family_size === 4);
+      const sensitivity = family?.bonferroni_95_family_interval;
+      const precisePercent = value => `${value > 0 ? "+" : ""}${number(value * 100, 2)}%`;
+      $("weather-robustness-note").textContent = matches && items(sensitivity).length === 2 && sensitivity.every(finite) ? `The four-candidate sensitivity interval is ${precisePercent(sensitivity[0])} to ${precisePercent(sensitivity[1])}${sensitivity[0] <= 0 && sensitivity[1] >= 0 ? ", crossing zero" : ""}; the full earlier research search count is unknown.` : "The full earlier research search count is unknown; the positive historical interval does not establish a future edge.";
+      const weatherReplay = research?.weather_shadow?.archived_2026_replay, primaryReplay = weatherReplay?.cohorts?.two_book_the_odds_api, secondaryReplay = weatherReplay?.cohorts?.single_draftkings_espn_sensitivity;
+      $("weather-2026-note").hidden = !primaryReplay;
+      if (primaryReplay) $("weather-2026-note").textContent = `2026 replay, reconstructed after games: ${number(primaryReplay.rule?.bets, 0)} qualifying bets in ${number(primaryReplay.settled_price_eligible_covered_games, 0)} covered two-book games (${number(primaryReplay.calendar_week_blocks, 0)} calendar week${primaryReplay.calendar_week_blocks === 1 ? "" : "s"}). ${primaryReplay.rule?.bets === 0 ? "ROI is unavailable; this provides no strategy performance evidence." : "This is retrospective evidence, excluded from the forward record."}${secondaryReplay ? ` The overlapping one-book sensitivity has ${number(secondaryReplay.rule?.bets, 0)} qualifying bets; cohorts are not pooled.` : ""}`;
+      $("weather-2026-links").replaceChildren(...items(weatherReplay?.links).filter(row => safeUrl(row.url)).map(row => link(`${row.name} ↗`, row.url)));
       $("weather-pick-count").textContent = String(picks.length);
       $("weather-as-of").textContent = Number.isFinite(epoch(strategy.as_of)) ? `Checked ${dateLabel(strategy.as_of)}` : "";
       $("weather-status").textContent = `${state.message}${state.usable ? ` ${number(strategy.forecast_count, 0)} games inspected · ${number(strategy.qualifying_count, 0)} qualifying selections at publication.` : ""}`;
@@ -248,6 +259,24 @@
         cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(titleCase(row.candidate), row.probability_basis), cell(number(row.projected_total)), cell(number(row.line), `${titleCase(row.side)} ${odds(row.american_odds)}`), cell(percent(row.expected_value, true)), cell(row.eligible ? "Qualified at publication" : "No selection", items(row.flags).map(titleCase).join(" · "))
       ]));
     }
+    function renderArchivedReplay() {
+      const replay = research?.archived_2026_scoring_replay, cohorts = Object.entries(replay?.cohorts || {});
+      const available = replay?.prospective_model_performance === false && replay?.exact_0630_replay === false && cohorts.length > 0;
+      $("archived-replay").hidden = !available;
+      if (!available) return;
+      const snapshotMap = new Map(), rows = [], order = ["opponent_adjusted_ridge", "opponent_adjusted_structural", "market_price_reference"];
+      cohorts.forEach(([cohort, values]) => {
+        items(values.snapshots).forEach(row => snapshotMap.set(row.source_sha256 || row.observed_at, row));
+        Object.entries(values.positions || {}).sort(([a], [b]) => order.indexOf(a) - order.indexOf(b)).forEach(([candidate, m]) => rows.push([
+          cell(titleCase(candidate), `${m.model_version || replay.version} · ${titleCase(cohort)}`), cell(number(m.bets, 0), null, "numeric"), cell(`${number(m.wins, 0)}–${number(m.losses, 0)}–${number(m.pushes, 0)}`), cell(finite(m.profit_units) ? `${m.profit_units > 0 ? "+" : ""}${number(m.profit_units, 2)} u` : "—", null, "numeric"), cell(percent(m.roi, true, 2), "Recorded-price reconstruction", "numeric"), cell(number(m.pending, 0), null, "numeric")
+        ]));
+      });
+      const snapshots = [...snapshotMap.values()].sort((a, b) => epoch(a.observed_at) - epoch(b.observed_at));
+      $("archived-replay-summary").textContent = `${snapshots.length} actual archive snapshots · Reconstructed ${dateLabel(replay.evaluated_at)} · Hypothetical one-unit stakes at recorded prices; acceptance unverified.`;
+      table($("archived-replay-table"), "Retrospective 2026 reconstruction, excluded from prospective results", ["Candidate", {label:"Settled",numeric:true}, "W–L–P", {label:"Profit",numeric:true}, {label:"ROI",numeric:true}, {label:"Pending",numeric:true}], rows);
+      $("archived-replay-links").replaceChildren(...items(replay.links).filter(row => safeUrl(row.url)).map(row => link(`${row.name} ↗`, row.url)));
+      $("archived-replay-times").replaceChildren(...snapshots.map(row => element("li", `${dateLabel(row.observed_at, {second:"2-digit"})} · ${number(row.games, 0)} games in snapshot`)));
+    }
     function renderPerformance() {
       const p = board.performance || {}, settled = Number(p.wins || 0) + Number(p.losses || 0) + Number(p.pushes || 0);
       const stats = $("performance-stats"); stats.replaceChildren();
@@ -273,10 +302,11 @@
     function render(data) {
       board = data;
       $("edition-date").textContent = new Intl.DateTimeFormat("en-US", {timeZone: ZONE, weekday: "long", month: "long", day: "numeric", year: "numeric"}).format(new Date());
-      renderPicks(new Date()); renderCandidates(); renderPerformance(); renderTransparency();
+      renderPicks(new Date()); renderCandidates(); renderArchivedReplay(); renderPerformance(); renderTransparency();
     }
     $("candidate-filter").addEventListener("change", renderForecasts);
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
+    fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderArchivedReplay();}}).catch(() => {});
     setInterval(() => { if (board) renderPicks(new Date()); }, 60000);
   }
   return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};

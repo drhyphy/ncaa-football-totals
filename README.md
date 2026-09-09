@@ -4,7 +4,7 @@ Public-data NCAA totals forecasts, exact sportsbook-price comparisons, and an im
 
 **The goal has not yet been achieved: high-confidence profitability is not established.** The project now separates a workable experimental betting strategy from the evidence needed to trust it.
 
-The strongest new lead is a separately published weather under criterion, replicated with forecast data on 2024–2025 games: **55–30, +23.53% at assumed −110**; descriptive week-bootstrap interval **+1.42% to +43.92%**. A second line archive gives **52–27–1, +25.34%** on the 80 shared selections. It now has its own daily paper strategy and immutable ledger. Its fixed weather and price rules can qualify a selection without inventing individual-game win probabilities. See [weather replication](model/reports/weather_published_hypothesis_results.md), [source sensitivity](model/reports/weather_source_sensitivity.md), and [independent audit](model/reports/weather_independent_audit.md). Reused development data and unverified historical quote times remain material limits.
+The strongest new lead is a separately published weather under criterion, replicated with forecast data on 2024–2025 games: **55–30, +23.53% at assumed −110**; descriptive week-bootstrap interval **+1.42% to +43.92%**. Four-candidate multiplicity sensitivity gives **−4.15% to +51.21%**, crossing zero; the full earlier research search count is unknown. A second line archive gives **52–27–1, +25.34%** on the 80 shared selections. It now has its own daily paper strategy and immutable ledger. Its fixed weather and price rules can qualify a selection without inventing individual-game win probabilities. See [weather replication](model/reports/weather_published_hypothesis_results.md), [source sensitivity](model/reports/weather_source_sensitivity.md), [independent audit](model/reports/weather_independent_audit.md), [primary source audit](model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md), and [statistical robustness](model/reports/weather_robustness.md). Reused development data and unverified historical quote times remain material limits.
 
 ## Version 4
 
@@ -20,6 +20,8 @@ The deeper audit confirmed that the old ESPN scalar archive includes **live-game
 See [the primary-source audit](model/reports/espn_market_timing_audit.md), [opponent-model development](model/reports/opponent_adjusted_development.md), [the two-book audit](model/reports/TWO_BOOK_OPPORTUNITIES.md), and [the current protocol](docs/PROSPECTIVE_PROTOCOL.md). Earlier failed experiments remain available for audit; reused historical data are never called a pristine holdout.
 
 ## Prospective evaluation
+
+The [fixed evaluation protocol](model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md) covers September 9, 2026–January 31, 2027 games and sets February 8, 2027 as the evaluation date for the four current policies. Running results remain descriptive, with no interim promotion; historical results and reconstructed replays are excluded.
 
 Each version/candidate/game keeps its first qualifying selection and exact price. Predictions that abstain are also recorded. Grades account for integer pushes, overtime and score corrections. Calendar-week bootstrap intervals accompany sufficiently large return samples. The near-kickoff collector compares only later same-book observations strictly before kickoff, within 30 minutes; it does not manufacture an exact closing price.
 

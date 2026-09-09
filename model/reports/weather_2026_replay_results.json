@@ -1,0 +1,90 @@
+{
+  "version": "weather-2026-archived-price-replay-v1",
+  "plan_sha256": "30a34892cd467ddab0dfa1436608ed69ca73364869043949e2e893dd291d8277",
+  "evaluated_at": "2026-09-09T01:33:37.882359+00:00",
+  "outcome_source": "data/raw/sportsdataverse/cfb_schedule_2026.parquet",
+  "outcome_source_sha256": "abee9b3ea16bb32b8c58880f007c25cfb0668a7904703677ad5d588bbc733226",
+  "cohort_plan_counts": {
+    "two_book_the_odds_api": {
+      "first_captures": 74,
+      "venue_eligible": 50,
+      "venue_and_price_eligible": 35,
+      "venue_context_received_by_quote": 50
+    },
+    "single_draftkings_espn_sensitivity": {
+      "first_captures": 97,
+      "venue_eligible": 54,
+      "venue_and_price_eligible": 35,
+      "venue_context_received_by_quote": 54
+    }
+  },
+  "forecast_unavailable_rows": 0,
+  "cohorts": {
+    "two_book_the_odds_api": {
+      "settled_price_eligible_covered_games": 35,
+      "calendar_week_blocks": 1,
+      "rule": {
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "roi": null
+      },
+      "all_under_same_price_and_weather_coverage": {
+        "bets": 35,
+        "wins": 15,
+        "losses": 20,
+        "pushes": 0,
+        "profit_units": -6.185030902012032,
+        "roi": -0.1767151686289152
+      },
+      "rule_roi_95_week_bootstrap": null,
+      "interval_note": "Suppressed below8calendar weeks; conditional descriptive bootstrap otherwise. No familywise inference."
+    },
+    "single_draftkings_espn_sensitivity": {
+      "settled_price_eligible_covered_games": 35,
+      "calendar_week_blocks": 1,
+      "rule": {
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0.0,
+        "roi": null
+      },
+      "all_under_same_price_and_weather_coverage": {
+        "bets": 35,
+        "wins": 15,
+        "losses": 20,
+        "pushes": 0,
+        "profit_units": -6.08727462778517,
+        "roi": -0.17392213222243344
+      },
+      "rule_roi_95_week_bootstrap": null,
+      "interval_note": "Suppressed below8calendar weeks; conditional descriptive bootstrap otherwise. No familywise inference."
+    }
+  },
+  "rule": {
+    "wind_mph_above": 7.78,
+    "temperature_f_below": 64.81,
+    "relative_humidity_percent_above": 56.8
+  },
+  "policy": {
+    "capture": "First same-Eastern-game-day receipt at/after06:30 and strictly before kickoff with qualifying source/books; ties broken by archive hash, never price/weather/outcome. Do not replace a first capture that fails the Under price policy with a later capture.",
+    "primary": "TheOddsAPI DraftKings+FanDuel in one archive and receipt; both paired full-game prices valid; each market update0\u201360minutes before receipt.",
+    "secondary": "ESPN DraftKings100 paired totals in explicit pregame state; one book only; no market-update timestamp guarantee; sensitivity, never pooled with primary.",
+    "price": "At first capture, Under line>=median of cohort books and decimal payout>=1+100/110; choose highest line, then highest payout, then sportsbook key.",
+    "weather": "Unchanged GFS previous_day2, fixed four-hour wind mean, kickoff-hour temperature/humidity;6h publication buffer against game-day06:30Eastern. Actual quote receipt remains the decision timestamp.",
+    "venue": "Exact ESPN event/team IDs/kickoff and actual venue ID in the frozen100-ID coordinate catalog; nonneutral and explicitly outdoor. Prefer latest pregame metadata received by quote time. A later same-venue roof value is an explicitly labeled stability assumption, never contemporaneous proof.",
+    "stake": "Hypothetical flat one-unit risk at actual archived Under payout; integer pushes refund. No probability, EV, Kelly or execution claim."
+  },
+  "limitations": [
+    "Retrospective2026replay; hypothesis frozen after the games, before this weather/outcome evaluation.",
+    "Local quote metadata/hashes support but do not independently attest receipt time; no betting execution proved.",
+    "Original forecast dissemination timestamps unverified; GFS fixed-lead historical availability proxy with6h buffer.",
+    "Two-book primary and one-book ESPN sensitivity can overlap and are not independent or pooled.",
+    "Small early-season sample and very few calendar weeks cannot establish high-confidence profitability.",
+    "No individual-game probability or live EV inferred from this group result."
+  ]
+}

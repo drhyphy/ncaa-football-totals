@@ -8,6 +8,7 @@
   "historical_prices_observed": false,
   "quote_or_closing_times_verified": false,
   "price_assumption": -110,
+  "price_assumption_scope": "Primary 2019-2025 development evidence; the separate 2026 replay uses archived offered prices",
   "reports": {
     "opponent_adjusted_development.json": {
       "role": "primary_repaired_development",
@@ -1403,7 +1404,444 @@
         "2024\u201325 outcomes are reused development data. Week-bootstrap intervals do not correct for overall research selection or establish high-confidence profitability.",
         "No probabilities, live expected values, new thresholds or wagering recommendations were fitted by this check."
       ]
+    },
+    "statistical_robustness": {
+      "version": "weather-robustness-v1",
+      "status": "descriptive_reused_development_robustness",
+      "plan_sha256": "d08836ca73abab7ab47cc63a18005acd1608e772d3ac5f721f15f7640794318f",
+      "published_result": {
+        "bets": 85,
+        "wins": 55,
+        "losses": 30,
+        "pushes": 0,
+        "win_rate_excluding_pushes": 0.6470588235294118,
+        "roi": 0.23529411764705888,
+        "profit_units": 20.000000000000004
+      },
+      "calendar_weeks": 34,
+      "active_weeks": 21,
+      "all_covered_week_cluster_t": {
+        "roi": 0.2352941176470588,
+        "clusters": 34,
+        "active_clusters": 21,
+        "df": 33,
+        "standard_error": 0.10477279111550633,
+        "t_statistic": 2.2457559366501916,
+        "two_sided_p_zero_roi": 0.03153577119945902,
+        "interval_95": [
+          0.022132271366097023,
+          0.44845596392802056
+        ],
+        "interval_99": [
+          -0.05107890506285781,
+          0.5216671403569754
+        ],
+        "multiplicity_sensitivity": [
+          {
+            "hypothetical_family_size": 1,
+            "two_sided_per_interval_confidence": 0.95,
+            "bonferroni_95_family_interval": [
+              0.022132271366097023,
+              0.44845596392802056
+            ],
+            "bonferroni_adjusted_p": 0.03153577119945902
+          },
+          {
+            "hypothetical_family_size": 4,
+            "two_sided_per_interval_confidence": 0.9875,
+            "bonferroni_95_family_interval": [
+              -0.04152283390051262,
+              0.5121110691946302
+            ],
+            "bonferroni_adjusted_p": 0.1261430847978361
+          },
+          {
+            "hypothetical_family_size": 10,
+            "two_sided_per_interval_confidence": 0.995,
+            "bonferroni_95_family_interval": [
+              -0.07988779200902349,
+              0.550476027303141
+            ],
+            "bonferroni_adjusted_p": 0.31535771199459023
+          },
+          {
+            "hypothetical_family_size": 25,
+            "two_sided_per_interval_confidence": 0.998,
+            "bonferroni_95_family_interval": [
+              -0.11635870703689336,
+              0.586946942331011
+            ],
+            "bonferroni_adjusted_p": 0.7883942799864756
+          },
+          {
+            "hypothetical_family_size": 100,
+            "two_sided_per_interval_confidence": 0.9995,
+            "bonferroni_95_family_interval": [
+              -0.1691083631089018,
+              0.6396965984030194
+            ],
+            "bonferroni_adjusted_p": 1.0
+          }
+        ]
+      },
+      "active_week_cluster_t": {
+        "roi": 0.2352941176470588,
+        "clusters": 21,
+        "active_clusters": 21,
+        "df": 20,
+        "standard_error": 0.10576955434830487,
+        "t_statistic": 2.224592124802025,
+        "two_sided_p_zero_roi": 0.037782707772688884,
+        "interval_95": [
+          0.014662693442894559,
+          0.455925541851223
+        ],
+        "interval_99": [
+          -0.06565619542655296,
+          0.5362444307206705
+        ],
+        "multiplicity_sensitivity": [
+          {
+            "hypothetical_family_size": 1,
+            "two_sided_per_interval_confidence": 0.95,
+            "bonferroni_95_family_interval": [
+              0.014662693442894559,
+              0.455925541851223
+            ],
+            "bonferroni_adjusted_p": 0.037782707772688884
+          },
+          {
+            "hypothetical_family_size": 4,
+            "two_sided_per_interval_confidence": 0.9875,
+            "bonferroni_95_family_interval": [
+              -0.05497734802907109,
+              0.5255655833231887
+            ],
+            "bonferroni_adjusted_p": 0.15113083109075554
+          },
+          {
+            "hypothetical_family_size": 10,
+            "two_sided_per_interval_confidence": 0.995,
+            "bonferroni_95_family_interval": [
+              -0.09823965140016486,
+              0.5688278866942824
+            ],
+            "bonferroni_adjusted_p": 0.37782707772688884
+          },
+          {
+            "hypothetical_family_size": 25,
+            "two_sided_per_interval_confidence": 0.998,
+            "bonferroni_95_family_interval": [
+              -0.14037906794414876,
+              0.6109673032382663
+            ],
+            "bonferroni_adjusted_p": 0.9445676943172221
+          },
+          {
+            "hypothetical_family_size": 100,
+            "two_sided_per_interval_confidence": 0.9995,
+            "bonferroni_95_family_interval": [
+              -0.20322939736267645,
+              0.6738176326567941
+            ],
+            "bonferroni_adjusted_p": 1.0
+          }
+        ]
+      },
+      "leave_one_week_out_roi_range": [
+        0.16528925619834706,
+        0.28048780487804875
+      ],
+      "venue_concentration": {
+        "groups": 49,
+        "largest_group_bet_share": 0.058823529411764705,
+        "top_five_group_bet_share": 0.23529411764705882,
+        "leave_one_group_out_roi_range": [
+          0.21064301552106435,
+          0.27272727272727276
+        ]
+      },
+      "team_involvement": {
+        "unique_teams": 88,
+        "largest_team_game_share": 0.058823529411764705,
+        "leave_one_team_out_roi_range": [
+          0.21064301552106435,
+          0.27272727272727276
+        ]
+      },
+      "multiplicity_interpretation": "Two-sided alpha=0.05/m Bonferroni sensitivity, m=1,4,10,25,100; m=4 represents the requested current-strategy comparison. Wider sizes are illustrative, not a known count of all prior searches.",
+      "limitations": [
+        "Calendar-week clusters are assumed independent; persistent teams, weather regimes, seasons, or bookmaker-source errors can violate this.",
+        "Only two seasons and 21 active betting weeks; unequal cluster sizes and the t reference do not give exact finite-sample coverage.",
+        "Bonferroni sensitivities do not retroactively establish familywise control for the unknown cumulative adaptive research search.",
+        "All 2024-25 outcomes are reused development data; every interval and deletion analysis is descriptive.",
+        "Archived non-live line timing and actual historical prices are unavailable; returns assume -110 and the historical roof/forecast-provenance limitations remain.",
+        "A positive leave-one-group-out point estimate does not establish calibration, future profitability, or validity of a confidence interval."
+      ],
+      "report_url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/weather_robustness.md"
+    },
+    "primary_source_audit": {
+      "report": "model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md",
+      "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md",
+      "sha256": "64f5603280f218144edf2333bbe052949d73c1750dbe056a3392bef78b85e5da"
+    },
+    "archived_2026_replay": {
+      "version": "weather-2026-archived-price-replay-v1",
+      "plan_sha256": "30a34892cd467ddab0dfa1436608ed69ca73364869043949e2e893dd291d8277",
+      "evaluated_at": "2026-09-09T01:33:37.882359+00:00",
+      "cohort_plan_counts": {
+        "two_book_the_odds_api": {
+          "first_captures": 74,
+          "venue_eligible": 50,
+          "venue_and_price_eligible": 35,
+          "venue_context_received_by_quote": 50
+        },
+        "single_draftkings_espn_sensitivity": {
+          "first_captures": 97,
+          "venue_eligible": 54,
+          "venue_and_price_eligible": 35,
+          "venue_context_received_by_quote": 54
+        }
+      },
+      "forecast_unavailable_rows": 0,
+      "cohorts": {
+        "two_book_the_odds_api": {
+          "settled_price_eligible_covered_games": 35,
+          "calendar_week_blocks": 1,
+          "rule": {
+            "bets": 0,
+            "wins": 0,
+            "losses": 0,
+            "pushes": 0,
+            "profit_units": 0.0,
+            "roi": null
+          },
+          "all_under_same_price_and_weather_coverage": {
+            "bets": 35,
+            "wins": 15,
+            "losses": 20,
+            "pushes": 0,
+            "profit_units": -6.185030902012032,
+            "roi": -0.1767151686289152
+          },
+          "rule_roi_95_week_bootstrap": null,
+          "interval_note": "Suppressed below8calendar weeks; conditional descriptive bootstrap otherwise. No familywise inference."
+        },
+        "single_draftkings_espn_sensitivity": {
+          "settled_price_eligible_covered_games": 35,
+          "calendar_week_blocks": 1,
+          "rule": {
+            "bets": 0,
+            "wins": 0,
+            "losses": 0,
+            "pushes": 0,
+            "profit_units": 0.0,
+            "roi": null
+          },
+          "all_under_same_price_and_weather_coverage": {
+            "bets": 35,
+            "wins": 15,
+            "losses": 20,
+            "pushes": 0,
+            "profit_units": -6.08727462778517,
+            "roi": -0.17392213222243344
+          },
+          "rule_roi_95_week_bootstrap": null,
+          "interval_note": "Suppressed below8calendar weeks; conditional descriptive bootstrap otherwise. No familywise inference."
+        }
+      },
+      "rule": {
+        "wind_mph_above": 7.78,
+        "temperature_f_below": 64.81,
+        "relative_humidity_percent_above": 56.8
+      },
+      "limitations": [
+        "Retrospective2026replay; hypothesis frozen after the games, before this weather/outcome evaluation.",
+        "Local quote metadata/hashes support but do not independently attest receipt time; no betting execution proved.",
+        "Original forecast dissemination timestamps unverified; GFS fixed-lead historical availability proxy with6h buffer.",
+        "Two-book primary and one-book ESPN sensitivity can overlap and are not independent or pooled.",
+        "Small early-season sample and very few calendar weeks cannot establish high-confidence profitability.",
+        "No individual-game probability or live EV inferred from this group result."
+      ],
+      "prospective_model_performance": false,
+      "exact_0630_replay": false,
+      "interpretation": "Reconstructed after games. The two-book primary and overlapping one-book sensitivity remain separate. Zero qualifying bets means ROI is unavailable and provides no strategy performance evidence.",
+      "links": [
+        {
+          "name": "2026 weather replay report",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/weather_2026_replay_results.md"
+        },
+        {
+          "name": "2026 weather replay plan",
+          "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/WEATHER_2026_REPLAY_PLAN.md"
+        }
+      ]
     }
+  },
+  "archived_2026_scoring_replay": {
+    "version": "2026-priced-replay-v1",
+    "status": "retrospective_2026_replay_with_observed_prices_not_prospective_forecasts",
+    "plan_sha256": "3e17b1b00d98f2ce4f492fd1acf3ecdfc1183e48c9e6fc00dbeff1f333e2c544",
+    "evaluated_at": "2026-09-09T01:22:40.344736+00:00",
+    "prospective_model_performance": false,
+    "exact_0630_replay": false,
+    "actual_archived_prices_used": true,
+    "quote_receipt_evidence": "Local metadata and hashes; no independent timestamp attestation",
+    "interpretation": "Predictions reconstructed after games using locally supported earlier actual price captures. Actual snapshot times differ from 06:30; this is not prospective model performance. The settled sample is too small to establish an edge.",
+    "cohorts": {
+      "connected_two_books": {
+        "books": [
+          "draftkings",
+          "fanduel"
+        ],
+        "snapshot_count": 14,
+        "forecast_games": 141,
+        "positions": {
+          "market_price_reference": {
+            "model_version": "totals-v4-20260908",
+            "candidate": "market_price_reference",
+            "bets": 12,
+            "pending": 3,
+            "wins": 6,
+            "losses": 6,
+            "pushes": 0,
+            "profit_units": -0.40836940836940805,
+            "roi": -0.034030784030784,
+            "roi_95_low": null,
+            "roi_95_high": null,
+            "week_clusters": 1
+          },
+          "opponent_adjusted_ridge": {
+            "model_version": "totals-v4-20260908",
+            "candidate": "opponent_adjusted_ridge",
+            "bets": 2,
+            "pending": 2,
+            "wins": 1,
+            "losses": 1,
+            "pushes": 0,
+            "profit_units": -0.07407407407407396,
+            "roi": -0.03703703703703698,
+            "roi_95_low": null,
+            "roi_95_high": null,
+            "week_clusters": 1
+          },
+          "opponent_adjusted_structural": {
+            "model_version": "totals-v4-20260908",
+            "candidate": "opponent_adjusted_structural",
+            "bets": 11,
+            "pending": 5,
+            "wins": 5,
+            "losses": 6,
+            "pushes": 0,
+            "profit_units": -1.3342953342953339,
+            "roi": -0.12129957584503036,
+            "roi_95_low": null,
+            "roi_95_high": null,
+            "week_clusters": 2
+          }
+        },
+        "snapshots": [
+          {
+            "observed_at": "2026-08-20T13:01:09+00:00",
+            "games": 8,
+            "source_sha256": "d7d706a0c31a9a53aa4c23f66e4080ba0f33b13bca6a8b4524cd484522ed0d95"
+          },
+          {
+            "observed_at": "2026-08-21T15:12:10+00:00",
+            "games": 19,
+            "source_sha256": "daa629d7646bb65c41b810074629c71a3feb2f906a2c9a86d6b5806dbb559885"
+          },
+          {
+            "observed_at": "2026-08-22T13:02:44+00:00",
+            "games": 26,
+            "source_sha256": "3520f8ae8b272bd39c64e3a248e1417ef73cc2a50d3ceda4e43904581f6bf2fc"
+          },
+          {
+            "observed_at": "2026-08-23T22:35:56+00:00",
+            "games": 92,
+            "source_sha256": "816c2fdfe2d7368d13de8ee5bc6bb5deab76ca7ac2e5aace9d7931df69280c7f"
+          },
+          {
+            "observed_at": "2026-08-24T13:01:58+00:00",
+            "games": 94,
+            "source_sha256": "5edfe44dc3650a3dae23c6fb9fc066191e7bb99b02b57c197121e4137a869d76"
+          },
+          {
+            "observed_at": "2026-08-25T13:10:23+00:00",
+            "games": 95,
+            "source_sha256": "9fa5a0d73b0cf898209eb258526ae1d1dcfa4a181936992beaa3d66448db7168"
+          },
+          {
+            "observed_at": "2026-08-26T15:33:25+00:00",
+            "games": 95,
+            "source_sha256": "f9d90c2be911c93595e6398963cbe04fd30ac5f291ce8d66e22eaefedd9d39da"
+          },
+          {
+            "observed_at": "2026-08-27T13:02:27+00:00",
+            "games": 95,
+            "source_sha256": "3510a1d891038e7400fff9a50a241575777904720e8b559bff9fc69b3b833f82"
+          },
+          {
+            "observed_at": "2026-08-30T01:01:06+00:00",
+            "games": 81,
+            "source_sha256": "f93624e8d155e5e03132bb56c0c660729ce34d7154b6b7255afed35bf6bbea38"
+          },
+          {
+            "observed_at": "2026-08-30T13:01:45+00:00",
+            "games": 92,
+            "source_sha256": "18c3f8ef10780deb36591087b6675cb3cf3b427c832f45e632c005d75c49517f"
+          },
+          {
+            "observed_at": "2026-08-30T14:34:55+00:00",
+            "games": 92,
+            "source_sha256": "5769ae7f415ba1a284210ed837ad3191757b232f52b81042d9d9d98200aaf3c7"
+          },
+          {
+            "observed_at": "2026-08-31T14:42:40+00:00",
+            "games": 92,
+            "source_sha256": "54fad084fcfcefb3f254b0b055bc67e8af98ecb0ed1891d9a8a620cca613d5d2"
+          },
+          {
+            "observed_at": "2026-09-04T13:01:46+00:00",
+            "games": 116,
+            "source_sha256": "8ed579060387d7889f483cf0acfb357b884d31333deb05282c2dd421a7d29b89"
+          },
+          {
+            "observed_at": "2026-09-05T13:01:58+00:00",
+            "games": 115,
+            "source_sha256": "f247b5e49873456cd1eba195396707ab5b5b0f0ce4bf21f10e9d56c80c75fb8d"
+          }
+        ]
+      }
+    },
+    "limitations": [
+      "Models fitted only through 2025, but this replay was created after 2026 game outcomes were available.",
+      "Raw quote receipts have matching local metadata hashes; no independent pre-kickoff timestamp attestation of every raw price.",
+      "Exact recorded prices replace the -110 assumption; sportsbook acceptance, stake limits and account availability remain unverified.",
+      "Prior game inputs use kickoff+6h availability proxies and retrospective corrections. Target and future outcomes are excluded from feature cutoffs.",
+      "Archive capture times and sparse capture dates differ from the current 06:30 publication schedule.",
+      "Unchanged candidate models and qualification thresholds; no post-result selection of games, books or forecasts.",
+      "The original pre-evaluation plan pinned quote, provenance and fitted-model files, but did not pin code, configuration or history hashes; full byte-for-byte pre-evaluation reproducibility is not attested."
+    ],
+    "links": [
+      {
+        "name": "2026 replay report",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/archived_2026_replay_results.md"
+      },
+      {
+        "name": "Frozen replay plan",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/archived_2026_replay_plan.json"
+      },
+      {
+        "name": "Archived quote provenance",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/ARCHIVED_2026_QUOTES.md"
+      }
+    ]
+  },
+  "prospective_evaluation_protocol": {
+    "report": "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
+    "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
+    "sha256": "f22f08b214e45c33de01d078abb987ee3cc5d59f7995023ad9ea73a0f67953fb"
   },
   "limitations": [
     "All 2019\u20132025 periods have been reused in development; no untouched historical test is claimed.",
@@ -1419,7 +1857,18 @@
     "model/reports/weather_forecast_capture.json": "efdfa61d90e916ea303c0d07f0fa6bf0b34f1e851c937d87facad97e0f1d1ce8",
     "model/reports/weather_request_plan.json": "591abe5c255323ea2ad0b71905a83310d63b86312bf59904546aec6d2e484167",
     "model/reports/weather_published_hypothesis_results.json": "1cac218606e7867d8427db7ba325f7770abe78aa5e36d6a1ccab73d40943347b",
-    "model/reports/weather_source_sensitivity.json": "85ca48847e9c12b04f2bb8ee06f256ce704742821358ee898bf5115c762e19f2"
+    "model/reports/weather_source_sensitivity.json": "85ca48847e9c12b04f2bb8ee06f256ce704742821358ee898bf5115c762e19f2",
+    "model/reports/weather_robustness.json": "300abc43ffce4bc65eb4986a9adeeedf57fc0b5f1309d6c8fcb1342dbc9f04ff",
+    "model/reports/WEATHER_PRIMARY_SOURCE_AUDIT.md": "64f5603280f218144edf2333bbe052949d73c1750dbe056a3392bef78b85e5da",
+    "model/reports/weather_2026_replay_results.json": "c419f156fcae3f353b416928603d38614861c571ea8d94fb2c62795899ce673e",
+    "model/reports/weather_2026_replay_plan.json": "38b2a372ae29cd4569391efb4decf2f7b5fb19b79b25c88b4d3459ee690c52e7",
+    "model/reports/weather_2026_replay_results.md": "56c5e3a57de0b72f67291d3d2623627876715aab00923a23f4ef348ae262db50",
+    "model/reports/WEATHER_2026_REPLAY_PLAN.md": "d6ccdd636e1cc6692bbd93387f7a23545c5cc6b0e45033d99d24caf6971090ad",
+    "model/reports/archived_2026_replay_results.json": "a60454b1bf564e51f225ea6b3a659fd39a535b919bb948c477af7f37a64f56fa",
+    "model/reports/archived_2026_replay_plan.json": "61f2814f6e6a1ee590576767729c61cabdad099bd1672bb56aaffd92e699df20",
+    "model/reports/archived_2026_replay_results.md": "bd24b0b80bb644d77fc60b967ea6e80e66c644908b9cf9697216b73b8a34c72e",
+    "model/reports/ARCHIVED_2026_QUOTES.md": "3a47dc67bc28e6e399dc1bd5dcc6ffa3dd2e712a92ea0267f17195b675403afe",
+    "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md": "f22f08b214e45c33de01d078abb987ee3cc5d59f7995023ad9ea73a0f67953fb"
   },
   "generator": "scripts/publish_research.py"
 }

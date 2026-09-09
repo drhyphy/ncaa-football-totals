@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "audited_at": "2026-09-09T01:36:17.660543+00:00",
+  "plan_sha256": "30a34892cd467ddab0dfa1436608ed69ca73364869043949e2e893dd291d8277",
+  "forecast_requests_checked": 8,
+  "unique_game_forecasts_checked": 54,
+  "cohort_weather_rows_checked": 104,
+  "price_eligible_settlements_checked": 70,
+  "later_price_substitutions": 0,
+  "forecast_rows_using_historical_availability_proxy": 104,
+  "cohorts": {
+    "two_book_the_odds_api": {
+      "rule": {
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0,
+        "roi": null
+      },
+      "all_under_same_price_and_weather_coverage": {
+        "bets": 35,
+        "wins": 15,
+        "losses": 20,
+        "pushes": 0,
+        "profit_units": -6.185030902012032,
+        "roi": -0.1767151686289152
+      }
+    },
+    "single_draftkings_espn_sensitivity": {
+      "rule": {
+        "bets": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "profit_units": 0,
+        "roi": null
+      },
+      "all_under_same_price_and_weather_coverage": {
+        "bets": 35,
+        "wins": 15,
+        "losses": 20,
+        "pushes": 0,
+        "profit_units": -6.08727462778517,
+        "roi": -0.17392213222243344
+      }
+    }
+  },
+  "method": "Independent script, no weather-evaluator imports: raw archive fields, fixed comparisons, original quote first-capture chronology, raw final scores and actual-price settlement.",
+  "limitations": "Hash/consistency agreement does not independently attest old quote or forecast publication time. Zero rule bets cannot estimate rule profitability."
+}

@@ -1,0 +1,310 @@
+{
+  "version": "2026-priced-replay-v1",
+  "plan_sha256": "3e17b1b00d98f2ce4f492fd1acf3ecdfc1183e48c9e6fc00dbeff1f333e2c544",
+  "evaluated_at": "2026-09-09T01:22:40.344736+00:00",
+  "status": "retrospective_2026_replay_with_observed_prices_not_prospective_forecasts",
+  "cohorts": {
+    "connected_two_books": {
+      "books": [
+        "draftkings",
+        "fanduel"
+      ],
+      "snapshot_count": 14,
+      "forecast_games": 141,
+      "positions": {
+        "market_price_reference": {
+          "bets": 12,
+          "pending": 3,
+          "wins": 6,
+          "losses": 6,
+          "pushes": 0,
+          "profit_units": -0.40836940836940805,
+          "roi": -0.034030784030784,
+          "roi_95_low": null,
+          "roi_95_high": null,
+          "model_version": "totals-v4-20260908",
+          "candidate": "market_price_reference",
+          "week_clusters": 1,
+          "confidence_method": "week-block bootstrap; minimum 50 settled bets and 8 weeks",
+          "clv": null,
+          "status": "research_only"
+        },
+        "opponent_adjusted_ridge": {
+          "bets": 2,
+          "pending": 2,
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "profit_units": -0.07407407407407396,
+          "roi": -0.03703703703703698,
+          "roi_95_low": null,
+          "roi_95_high": null,
+          "model_version": "totals-v4-20260908",
+          "candidate": "opponent_adjusted_ridge",
+          "week_clusters": 1,
+          "confidence_method": "week-block bootstrap; minimum 50 settled bets and 8 weeks",
+          "clv": null,
+          "status": "research_only"
+        },
+        "opponent_adjusted_structural": {
+          "bets": 11,
+          "pending": 5,
+          "wins": 5,
+          "losses": 6,
+          "pushes": 0,
+          "profit_units": -1.3342953342953339,
+          "roi": -0.12129957584503036,
+          "roi_95_low": null,
+          "roi_95_high": null,
+          "model_version": "totals-v4-20260908",
+          "candidate": "opponent_adjusted_structural",
+          "week_clusters": 2,
+          "confidence_method": "week-block bootstrap; minimum 50 settled bets and 8 weeks",
+          "clv": null,
+          "status": "research_only"
+        }
+      },
+      "forecast_metrics": [
+        {
+          "model_version": "totals-v4-20260908",
+          "candidate": "market_price_reference",
+          "games": 93,
+          "pending": 48,
+          "mae": 11.832382315669104,
+          "rmse": 14.927421005943623,
+          "brier": 0.25054196514480864,
+          "log_loss": 0.6942362655514606,
+          "probability_scoring_games": 93,
+          "pushes": 0,
+          "forecast_entries": 141,
+          "abstentions": 133,
+          "calibration_bins": [
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "games": 13,
+              "predicted_win_rate": 0.49972511529432434,
+              "observed_win_rate": 0.3076923076923077
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "games": 80,
+              "predicted_win_rate": 0.5181429058738031,
+              "observed_win_rate": 0.4875
+            }
+          ],
+          "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
+        },
+        {
+          "model_version": "totals-v4-20260908",
+          "candidate": "opponent_adjusted_ridge",
+          "games": 93,
+          "pending": 48,
+          "mae": 11.662164243374841,
+          "rmse": 14.707602702341054,
+          "brier": 0.24400161865376452,
+          "log_loss": 0.6811434849336245,
+          "probability_scoring_games": 93,
+          "pushes": 0,
+          "forecast_entries": 141,
+          "abstentions": 141,
+          "calibration_bins": [
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "games": 2,
+              "predicted_win_rate": 0.49631259052327703,
+              "observed_win_rate": 0.5
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "games": 91,
+              "predicted_win_rate": 0.5215615455465548,
+              "observed_win_rate": 0.6373626373626373
+            }
+          ],
+          "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
+        },
+        {
+          "model_version": "totals-v4-20260908",
+          "candidate": "opponent_adjusted_structural",
+          "games": 93,
+          "pending": 48,
+          "mae": 11.941972945464485,
+          "rmse": 14.938531020082308,
+          "brier": 0.2528501134179955,
+          "log_loss": 0.6988761230529049,
+          "probability_scoring_games": 93,
+          "pushes": 0,
+          "forecast_entries": 141,
+          "abstentions": 136,
+          "calibration_bins": [
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "games": 9,
+              "predicted_win_rate": 0.496978878100249,
+              "observed_win_rate": 0.3333333333333333
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "games": 84,
+              "predicted_win_rate": 0.5288594766121835,
+              "observed_win_rate": 0.42857142857142855
+            }
+          ],
+          "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
+        }
+      ],
+      "snapshots": [
+        {
+          "observed_at": "2026-08-20T13:01:09+00:00",
+          "games": 8,
+          "currently_eligible_forecasts": 0,
+          "source_sha256": "d7d706a0c31a9a53aa4c23f66e4080ba0f33b13bca6a8b4524cd484522ed0d95",
+          "ratings_cutoffs": [
+            "2026-08-20T13:01:09+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-21T15:12:10+00:00",
+          "games": 19,
+          "currently_eligible_forecasts": 4,
+          "source_sha256": "daa629d7646bb65c41b810074629c71a3feb2f906a2c9a86d6b5806dbb559885",
+          "ratings_cutoffs": [
+            "2026-08-21T15:12:10+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-22T13:02:44+00:00",
+          "games": 26,
+          "currently_eligible_forecasts": 4,
+          "source_sha256": "3520f8ae8b272bd39c64e3a248e1417ef73cc2a50d3ceda4e43904581f6bf2fc",
+          "ratings_cutoffs": [
+            "2026-08-22T13:02:44+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-23T22:35:56+00:00",
+          "games": 92,
+          "currently_eligible_forecasts": 14,
+          "source_sha256": "816c2fdfe2d7368d13de8ee5bc6bb5deab76ca7ac2e5aace9d7931df69280c7f",
+          "ratings_cutoffs": [
+            "2026-08-23T22:35:56+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-24T13:01:58+00:00",
+          "games": 94,
+          "currently_eligible_forecasts": 13,
+          "source_sha256": "5edfe44dc3650a3dae23c6fb9fc066191e7bb99b02b57c197121e4137a869d76",
+          "ratings_cutoffs": [
+            "2026-08-24T04:00:00+00:00",
+            "2026-08-24T13:01:58+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-25T13:10:23+00:00",
+          "games": 95,
+          "currently_eligible_forecasts": 12,
+          "source_sha256": "9fa5a0d73b0cf898209eb258526ae1d1dcfa4a181936992beaa3d66448db7168",
+          "ratings_cutoffs": [
+            "2026-08-24T04:00:00+00:00",
+            "2026-08-25T13:10:23+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-26T15:33:25+00:00",
+          "games": 95,
+          "currently_eligible_forecasts": 12,
+          "source_sha256": "f9d90c2be911c93595e6398963cbe04fd30ac5f291ce8d66e22eaefedd9d39da",
+          "ratings_cutoffs": [
+            "2026-08-24T04:00:00+00:00",
+            "2026-08-26T15:33:25+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-27T13:02:27+00:00",
+          "games": 95,
+          "currently_eligible_forecasts": 12,
+          "source_sha256": "3510a1d891038e7400fff9a50a241575777904720e8b559bff9fc69b3b833f82",
+          "ratings_cutoffs": [
+            "2026-08-24T04:00:00+00:00",
+            "2026-08-27T13:02:27+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-30T01:01:06+00:00",
+          "games": 81,
+          "currently_eligible_forecasts": 4,
+          "source_sha256": "f93624e8d155e5e03132bb56c0c660729ce34d7154b6b7255afed35bf6bbea38",
+          "ratings_cutoffs": [
+            "2026-08-24T04:00:00+00:00",
+            "2026-08-30T01:01:06+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-30T13:01:45+00:00",
+          "games": 92,
+          "currently_eligible_forecasts": 6,
+          "source_sha256": "18c3f8ef10780deb36591087b6675cb3cf3b427c832f45e632c005d75c49517f",
+          "ratings_cutoffs": [
+            "2026-08-30T13:01:45+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-30T14:34:55+00:00",
+          "games": 92,
+          "currently_eligible_forecasts": 5,
+          "source_sha256": "5769ae7f415ba1a284210ed837ad3191757b232f52b81042d9d9d98200aaf3c7",
+          "ratings_cutoffs": [
+            "2026-08-30T14:34:55+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-08-31T14:42:40+00:00",
+          "games": 92,
+          "currently_eligible_forecasts": 5,
+          "source_sha256": "54fad084fcfcefb3f254b0b055bc67e8af98ecb0ed1891d9a8a620cca613d5d2",
+          "ratings_cutoffs": [
+            "2026-08-31T04:00:00+00:00",
+            "2026-08-31T14:42:40+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-09-04T13:01:46+00:00",
+          "games": 116,
+          "currently_eligible_forecasts": 5,
+          "source_sha256": "8ed579060387d7889f483cf0acfb357b884d31333deb05282c2dd421a7d29b89",
+          "ratings_cutoffs": [
+            "2026-08-31T04:00:00+00:00",
+            "2026-09-04T13:01:46+00:00"
+          ]
+        },
+        {
+          "observed_at": "2026-09-05T13:01:58+00:00",
+          "games": 115,
+          "currently_eligible_forecasts": 16,
+          "source_sha256": "f247b5e49873456cd1eba195396707ab5b5b0f0ce4bf21f10e9d56c80c75fb8d",
+          "ratings_cutoffs": [
+            "2026-08-31T04:00:00+00:00",
+            "2026-09-05T13:01:58+00:00"
+          ]
+        }
+      ],
+      "positions_source_path": "data/raw/alternative/2026_replay_connected_two_books_positions.json"
+    }
+  },
+  "limitations": [
+    "Models fitted only through 2025, but this replay was created after 2026 game outcomes were available.",
+    "Raw quote receipts have matching local metadata hashes; no independent pre-kickoff timestamp attestation of every raw price.",
+    "Exact recorded prices replace the -110 assumption; sportsbook acceptance, stake limits and account availability remain unverified.",
+    "Prior game inputs use kickoff+6h availability proxies and retrospective corrections. Target and future outcomes are excluded from feature cutoffs.",
+    "Archive capture times and sparse capture dates differ from the current 06:30 publication schedule.",
+    "Unchanged candidate models and qualification thresholds; no post-result selection of games, books or forecasts.",
+    "The original pre-evaluation plan pinned quote, provenance and fitted-model files, but did not pin code, configuration or history hashes; full byte-for-byte pre-evaluation reproducibility is not attested."
+  ]
+}

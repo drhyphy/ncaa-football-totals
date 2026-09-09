@@ -1,0 +1,98 @@
+{
+  "version": "2026-priced-replay-v1",
+  "created_at": "2026-09-09T01:22:06.048551+00:00",
+  "candidate_version": "totals-v4-20260908",
+  "quote_path": "data/raw/alternative/archived_2026_paired_quotes.parquet",
+  "quote_sha256": "bf0c86d92458d7f253424b3fa8c9b97182207dae7519c559d93f89ceb91b970b",
+  "model_sha256": "bf8af58e3d927acf5ad780ac4725f87dede802359ac747622a49de662615d99c",
+  "distribution_sha256": "7e028b30a38308d66456e2559cc4262deab954a982b8fc2d19ef3a64366bd529",
+  "data_fingerprint": "cf764f803b38ecfd",
+  "source_manifest_sha256": "c1d93b5684b2a41575fcbdc7b5081ded9e98824e38df8fddb6bd2c546beff6a0",
+  "book_cohorts": {
+    "connected_two_books": [
+      "draftkings",
+      "fanduel"
+    ]
+  },
+  "snapshots": [
+    {
+      "source_sha256": "18c3f8ef10780deb36591087b6675cb3cf3b427c832f45e632c005d75c49517f",
+      "observed_at": "2026-08-30T13:01:45+00:00",
+      "games": 92
+    },
+    {
+      "source_sha256": "3510a1d891038e7400fff9a50a241575777904720e8b559bff9fc69b3b833f82",
+      "observed_at": "2026-08-27T13:02:27+00:00",
+      "games": 95
+    },
+    {
+      "source_sha256": "3520f8ae8b272bd39c64e3a248e1417ef73cc2a50d3ceda4e43904581f6bf2fc",
+      "observed_at": "2026-08-22T13:02:44+00:00",
+      "games": 26
+    },
+    {
+      "source_sha256": "54fad084fcfcefb3f254b0b055bc67e8af98ecb0ed1891d9a8a620cca613d5d2",
+      "observed_at": "2026-08-31T14:42:40+00:00",
+      "games": 92
+    },
+    {
+      "source_sha256": "5769ae7f415ba1a284210ed837ad3191757b232f52b81042d9d9d98200aaf3c7",
+      "observed_at": "2026-08-30T14:34:55+00:00",
+      "games": 92
+    },
+    {
+      "source_sha256": "5edfe44dc3650a3dae23c6fb9fc066191e7bb99b02b57c197121e4137a869d76",
+      "observed_at": "2026-08-24T13:01:58+00:00",
+      "games": 94
+    },
+    {
+      "source_sha256": "816c2fdfe2d7368d13de8ee5bc6bb5deab76ca7ac2e5aace9d7931df69280c7f",
+      "observed_at": "2026-08-23T22:35:56+00:00",
+      "games": 92
+    },
+    {
+      "source_sha256": "8ed579060387d7889f483cf0acfb357b884d31333deb05282c2dd421a7d29b89",
+      "observed_at": "2026-09-04T13:01:46+00:00",
+      "games": 116
+    },
+    {
+      "source_sha256": "9fa5a0d73b0cf898209eb258526ae1d1dcfa4a181936992beaa3d66448db7168",
+      "observed_at": "2026-08-25T13:10:23+00:00",
+      "games": 95
+    },
+    {
+      "source_sha256": "d7d706a0c31a9a53aa4c23f66e4080ba0f33b13bca6a8b4524cd484522ed0d95",
+      "observed_at": "2026-08-20T13:01:09+00:00",
+      "games": 8
+    },
+    {
+      "source_sha256": "daa629d7646bb65c41b810074629c71a3feb2f906a2c9a86d6b5806dbb559885",
+      "observed_at": "2026-08-21T15:12:10+00:00",
+      "games": 19
+    },
+    {
+      "source_sha256": "f247b5e49873456cd1eba195396707ab5b5b0f0ce4bf21f10e9d56c80c75fb8d",
+      "observed_at": "2026-09-05T13:01:58+00:00",
+      "games": 115
+    },
+    {
+      "source_sha256": "f93624e8d155e5e03132bb56c0c660729ce34d7154b6b7255afed35bf6bbea38",
+      "observed_at": "2026-08-30T01:01:06+00:00",
+      "games": 81
+    },
+    {
+      "source_sha256": "f9d90c2be911c93595e6398963cbe04fd30ac5f291ce8d66e22eaefedd9d39da",
+      "observed_at": "2026-08-26T15:33:25+00:00",
+      "games": 95
+    }
+  ],
+  "quote_rows": 6213,
+  "games": 141,
+  "first_entry_rule": "First qualifying archived snapshot per candidate/game; first forecast including abstentions scored separately.",
+  "snapshot_horizon": "Actual archive receipt, pre-kickoff within 14 days; no exact 06:30 claim.",
+  "quote_freshness": "Unchanged live v4 non-IO rule: actual market/book timestamp within 60 minutes, no future updates.",
+  "schedule_status_assumption": "Pregame status inferred from archived future event plus retrospectively matched official kickoff; contemporaneous official state not independently attested.",
+  "outcomes_used_to_select_cohort": false,
+  "thresholds_changed": false,
+  "plan_sha256": "3e17b1b00d98f2ce4f492fd1acf3ecdfc1183e48c9e6fc00dbeff1f333e2c544"
+}
