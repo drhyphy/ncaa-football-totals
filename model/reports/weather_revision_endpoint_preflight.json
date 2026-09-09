@@ -1,0 +1,118 @@
+{
+  "schema_version": "weather-revision-endpoint-preflight-v1",
+  "purpose": "Bounded endpoint/schema preflight; no classification, outcomes, strategy edits or bulk download.",
+  "request_count": 3,
+  "forecast_values_included": false,
+  "production_code_changed": false,
+  "source_receipts_directory": "model/data/raw/weather_revisions_preflight/",
+  "initialization_evidence": "Requested run, documented endpoint contract and first valid time agree; body does not independently certify model initialization.",
+  "findings": [
+    "start_hour/end_hour request rejected with HTTP 400.",
+    "Omitting absolute hour bounds returned HTTP 200 with 168 hourly values.",
+    "Adding forecast_days=8 returned HTTP 200 with 192 hourly values.",
+    "Eight days has sufficient nominal horizon for the proposed seven-day cohort plus initialization lag and four-hour wind window; per-response completeness still required."
+  ],
+  "receipts": [
+    {
+      "requested_at": "2026-09-09T02:54:27.655425+00:00",
+      "received_at": "2026-09-09T02:54:28.223353+00:00",
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=41.65838893680983&longitude=-91.55147552490234&models=gfs_global&run=2026-09-08T18%3A00&hourly=temperature_2m%2Crelative_humidity_2m%2Cwind_speed_10m&start_hour=2026-09-12T23%3A00&end_hour=2026-09-13T02%3A00&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=GMT",
+      "status": 400,
+      "headers": {
+        "Date": "Wed, 09 Sep 2026 02:54:28 GMT",
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "body_sha256": "803f5434208860e7155eaae49fd24d3921bcf731033ae1dfc7b24bd87b593ebc",
+      "bytes": 64,
+      "venue_id": "3793",
+      "requested_run": "2026-09-08T18:00",
+      "top_level_keys": [
+        "error",
+        "reason"
+      ],
+      "provider_error_reason": "Parameter 'start_hour' must not be set"
+    },
+    {
+      "requested_at": "2026-09-09T02:55:12.590164+00:00",
+      "received_at": "2026-09-09T02:55:13.114389+00:00",
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=41.65838893680983&longitude=-91.55147552490234&models=gfs_global&run=2026-09-08T18%3A00&hourly=temperature_2m%2Crelative_humidity_2m%2Cwind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=GMT",
+      "status": 200,
+      "headers": {
+        "Date": "Wed, 09 Sep 2026 02:55:13 GMT",
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "body_sha256": "a488b4042afb3e15f16664b9a2d743a2924f500d6d871b1dd54e34019426dedc",
+      "bytes": 5609,
+      "venue_id": "3793",
+      "requested_run": "2026-09-08T18:00",
+      "top_level_keys": [
+        "elevation",
+        "generationtime_ms",
+        "hourly",
+        "hourly_units",
+        "latitude",
+        "longitude",
+        "timezone",
+        "timezone_abbreviation",
+        "utc_offset_seconds"
+      ],
+      "utc_offset_seconds": 0,
+      "hourly_units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "wind_speed_10m": "mp/h"
+      },
+      "hourly_array_lengths": {
+        "time": 168,
+        "temperature_2m": 168,
+        "relative_humidity_2m": 168,
+        "wind_speed_10m": 168
+      },
+      "first_valid_time_utc": "2026-09-08T18:00",
+      "last_valid_time_utc": "2026-09-15T17:00",
+      "echoed_initialization_field_present": false
+    },
+    {
+      "requested_at": "2026-09-09T02:56:11.671699+00:00",
+      "received_at": "2026-09-09T02:56:12.226092+00:00",
+      "url": "https://single-runs-api.open-meteo.com/v1/forecast?latitude=41.65838893680983&longitude=-91.55147552490234&models=gfs_global&run=2026-09-08T18%3A00&hourly=temperature_2m%2Crelative_humidity_2m%2Cwind_speed_10m&forecast_days=8&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=GMT",
+      "status": 200,
+      "headers": {
+        "Date": "Wed, 09 Sep 2026 02:56:12 GMT",
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "body_sha256": "408f1cce715f6ea415efc893803ed548d8172f7a0fd8db198fd031a476ba0de7",
+      "bytes": 6355,
+      "venue_id": "3793",
+      "requested_run": "2026-09-08T18:00",
+      "top_level_keys": [
+        "elevation",
+        "generationtime_ms",
+        "hourly",
+        "hourly_units",
+        "latitude",
+        "longitude",
+        "timezone",
+        "timezone_abbreviation",
+        "utc_offset_seconds"
+      ],
+      "utc_offset_seconds": 0,
+      "hourly_units": {
+        "time": "iso8601",
+        "temperature_2m": "\u00b0F",
+        "relative_humidity_2m": "%",
+        "wind_speed_10m": "mp/h"
+      },
+      "hourly_array_lengths": {
+        "time": 192,
+        "temperature_2m": 192,
+        "relative_humidity_2m": 192,
+        "wind_speed_10m": 192
+      },
+      "first_valid_time_utc": "2026-09-08T18:00",
+      "last_valid_time_utc": "2026-09-16T17:00",
+      "echoed_initialization_field_present": false
+    }
+  ]
+}
