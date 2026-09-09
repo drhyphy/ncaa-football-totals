@@ -68,6 +68,20 @@ class Probe:
             'retrieved_at': receipt['received_at']})
         return envelope
 
+    def continue_bounded_without_headers(self):
+        """Only the documented two-successful-responses header gap qualifies."""
+        receipts = [json.loads(p.read_text()) for p in (self.path / 'receipts').glob('*.json')]
+        required = {'movement_probe_future-full-state', 'movement_probe_quota-refresh'}
+        missing = [r for r in receipts if r['purpose'] in required]
+        if (len(missing) != 2 or {r['purpose'] for r in missing} != required
+                or any(r['status_code'] != 200 or 'x_ratelimit_remaining' in r['response_headers'] for r in missing)
+                or any(r['status_code'] in (401, 403, 429) for r in receipts)
+                or (self.remaining is not None and self.remaining <= 20)):
+            raise RuntimeError('Header-absence correction does not apply to this recorded state')
+        self.max_requests = 8
+        self.quota_missing = False
+        self.stopped = False
+
     def fetch(self, label, path, params):
         if path not in {"/odds/multi", "/odds/movements", "/historical/events", "/historical/odds"}:
             raise ValueError("Endpoint outside the bounded read-only probe")
@@ -136,17 +150,7 @@ def main():
         parser.error("existing odds key unavailable")
     probe = Probe(ROOT / "model", args.run_name, key)
     if args.bounded_without_quota_headers:
-        receipts = [json.loads(p.read_text()) for p in (probe.path / 'receipts').glob('*.json')]
-        required = {'movement_probe_future-full-state', 'movement_probe_quota-refresh'}
-        missing = [r for r in receipts if r['purpose'] in required]
-        if (len(missing) != 2 or {r['purpose'] for r in missing} != required
-                or any(r['status_code'] != 200 or 'x_ratelimit_remaining' in r['response_headers'] for r in missing)
-                or any(r['status_code'] in (401, 403, 429) for r in receipts)
-                or (probe.remaining is not None and probe.remaining <= 20)):
-            parser.error('Header-absence correction does not apply to this recorded state')
-        probe.max_requests = 8
-        probe.quota_missing = False
-        probe.stopped = False
+        probe.continue_bounded_without_headers()
     if args.quota_refresh:
         print(json.dumps({'label': 'quota-refresh', **summary(probe.refresh_quota())}, sort_keys=True), flush=True)
         if probe.stopped:

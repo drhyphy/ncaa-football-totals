@@ -1,0 +1,469 @@
+{
+  "schema_version": "movement-history-preflight-results-v1",
+  "audit_date_utc": "2026-09-09",
+  "scope": "Independent offline audit of eight bounded authenticated source reads; no new requests and no outcome analysis.",
+  "original_plan_commit": "4e6eb95",
+  "original_plan_internal_sha256": "4446aedf08bf2448044ab17ff9861238bc0dfb24021e31e3a3fc04aef5da5886",
+  "quota_header_correction_commit": "55fd698",
+  "protocol_files_sha256": {
+    "model/reports/movement_history_preflight_plan.json": "e7396783481c80fc89ae45de11581e161c75ed9118a987094f1d65a88ca22d34",
+    "model/reports/MOVEMENT_HISTORY_PREFLIGHT_PLAN.md": "82f5b370c3213b9cbda5dff421366d253689f92b5865472de7dfa3f7a727b59e",
+    "model/reports/MOVEMENT_HISTORY_PREFLIGHT_AMENDMENT.md": "01a24ce13fd4085fb848eeee7e3cb5aa886a26b931c9c564e9b418ee02e44c75",
+    "model/reports/MOVEMENT_QUOTA_REQUIREMENT_CORRECTION.md": "ef9f125cccf951488c042f605bb17bcd213caa189df2c7fbea9b182df0abe18e"
+  },
+  "executed_authenticated_calls": 8,
+  "maximum_authorized_calls": 8,
+  "endpoint_sequence_and_dynamic_line_choices_match_plan": true,
+  "operational_changes": "One quota-read amendment used the eighth-call reserve; correction55fd698 removed unsupported missing-header prerequisite before any movement/history request. Game/book/line rules and eight-call cap unchanged.",
+  "first_request_at": "2026-09-09T03:58:00.342089Z",
+  "last_received_at": "2026-09-09T04:03:30.302708Z",
+  "total_unparsed_decoded_body_bytes": 35871,
+  "http_status_counts": {
+    "200": 6,
+    "404": 2
+  },
+  "all_original_body_hashes_verified": true,
+  "all_receipt_content_addresses_verified": true,
+  "quota_remaining_reports": [
+    null,
+    null,
+    "98",
+    "97",
+    "96",
+    "95",
+    "94",
+    "93"
+  ],
+  "account_limit_reports": [
+    null,
+    null,
+    "100",
+    "100",
+    "100",
+    "100",
+    "100",
+    "100"
+  ],
+  "quota_interpretation": "First two responses omitted quota headers; subsequent six reported remaining98,97,96,95,94,93 and limit100. Missing headers did not establish exhaustion; no allowance was certified for the first two calls.",
+  "source_receipts": [
+    {
+      "requested_at": "2026-09-09T03:58:00.342089Z",
+      "received_at": "2026-09-09T03:58:00.671954Z",
+      "status_code": 200,
+      "request": {
+        "params": {
+          "bookmakers": "DraftKings,FanDuel",
+          "eventIds": "70900784"
+        },
+        "url": "https://api.odds-api.io/v3/odds/multi"
+      },
+      "response_headers": {
+        "content_encoding": "gzip",
+        "content_length": "501",
+        "content_type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 03:58:00 GMT"
+      },
+      "body_sha256": "fcdb7592b0911be18b15314421e35a6c620137905273ee4bf27b949d66269910",
+      "body_size_bytes": 1038,
+      "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+      "sequence": 1,
+      "label": "future-full-state",
+      "receipt_path": "model/data/raw/odds_movement_probe/frozen-20260909/receipts/086559f72686701cf3680c5395fee43f5a7ecaac326f6cf350c7ad6cb8ba0d99.json",
+      "receipt_file_sha256": "90fcdfd1fbb1d7a5588320ef831533e4c2c959fff5c7e6606513137ff105d84d",
+      "original_body_path": "model/data/raw/odds_movement_probe/frozen-20260909/bodies/fcdb7592b0911be18b15314421e35a6c620137905273ee4bf27b949d66269910.body.gz",
+      "body_hash_verified": true,
+      "receipt_content_address_verified": true,
+      "top_level_type": "list",
+      "top_level_length": 1
+    },
+    {
+      "requested_at": "2026-09-09T04:00:22.389627Z",
+      "received_at": "2026-09-09T04:00:22.598403Z",
+      "status_code": 200,
+      "request": {
+        "params": {},
+        "url": "https://api.odds-api.io/v3/bookmakers/selected"
+      },
+      "response_headers": {
+        "content_encoding": "gzip",
+        "content_length": "77",
+        "content_type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 04:00:22 GMT"
+      },
+      "body_sha256": "efe711aeb96aed9e877d0125a53d1696c6899ab105e1e85a2f64419a896568a5",
+      "body_size_bytes": 49,
+      "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+      "sequence": 2,
+      "label": "quota-refresh",
+      "receipt_path": "model/data/raw/odds_movement_probe/frozen-20260909/receipts/3120ad728a7348e994964ef63b6fd4624e94f6f11a7816c2121b35062f639c4a.json",
+      "receipt_file_sha256": "ac6ef08348b3cedc2dd2f442614c7bc98dffc1b25e1a8f997ced0c2568524b0d",
+      "original_body_path": "model/data/raw/odds_movement_probe/frozen-20260909/bodies/efe711aeb96aed9e877d0125a53d1696c6899ab105e1e85a2f64419a896568a5.body.gz",
+      "body_hash_verified": true,
+      "receipt_content_address_verified": true,
+      "top_level_type": "dict",
+      "top_level_length": 2
+    },
+    {
+      "requested_at": "2026-09-09T04:02:05.746824Z",
+      "received_at": "2026-09-09T04:02:05.927002Z",
+      "status_code": 200,
+      "request": {
+        "params": {
+          "bookmaker": "DraftKings",
+          "eventId": "70900784",
+          "market": "Totals",
+          "marketLine": "56.5"
+        },
+        "url": "https://api.odds-api.io/v3/odds/movements"
+      },
+      "response_headers": {
+        "content_encoding": "gzip",
+        "content_length": "146",
+        "content_type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 04:02:05 GMT",
+        "x_ratelimit_limit": "100",
+        "x_ratelimit_remaining": "98",
+        "x_ratelimit_reset": "2026-09-09T04:58:00Z"
+      },
+      "body_sha256": "c0c415edb2de6841d092107af751940f97a95e836093d365ab3fed83da99437d",
+      "body_size_bytes": 201,
+      "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+      "sequence": 3,
+      "label": "future-draftkings",
+      "receipt_path": "model/data/raw/odds_movement_probe/frozen-20260909/receipts/25475e0e21d2af7c74455446ccf5f9bc134b9b9e83315aa071772c3992f1ef86.json",
+      "receipt_file_sha256": "ba5c9829ecd8ae8fb1db0a638ce5a278aac5988885ea1fa3cd2095250019e0e5",
+      "original_body_path": "model/data/raw/odds_movement_probe/frozen-20260909/bodies/c0c415edb2de6841d092107af751940f97a95e836093d365ab3fed83da99437d.body.gz",
+      "body_hash_verified": true,
+      "receipt_content_address_verified": true,
+      "top_level_type": "dict",
+      "top_level_length": 4
+    },
+    {
+      "requested_at": "2026-09-09T04:02:05.931487Z",
+      "received_at": "2026-09-09T04:02:06.086158Z",
+      "status_code": 200,
+      "request": {
+        "params": {
+          "bookmaker": "FanDuel",
+          "eventId": "70900784",
+          "market": "Totals",
+          "marketLine": "56.5"
+        },
+        "url": "https://api.odds-api.io/v3/odds/movements"
+      },
+      "response_headers": {
+        "content_encoding": "gzip",
+        "content_length": "156",
+        "content_type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 04:02:06 GMT",
+        "x_ratelimit_limit": "100",
+        "x_ratelimit_remaining": "97",
+        "x_ratelimit_reset": "2026-09-09T04:58:00Z"
+      },
+      "body_sha256": "0f1eafeff203ceed785f94ab0d655351f7d2b93511e5bf903092402e6f5caeed",
+      "body_size_bytes": 202,
+      "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+      "sequence": 4,
+      "label": "future-fanduel",
+      "receipt_path": "model/data/raw/odds_movement_probe/frozen-20260909/receipts/c2e1da1580519c706e9a2dd38bb6978545dec0189dedd28c72d4dd47e55a2709.json",
+      "receipt_file_sha256": "dc8b31fd696e704df18084d2ff3b6436793c39b76d15a5c8b03f5c54a7077707",
+      "original_body_path": "model/data/raw/odds_movement_probe/frozen-20260909/bodies/0f1eafeff203ceed785f94ab0d655351f7d2b93511e5bf903092402e6f5caeed.body.gz",
+      "body_hash_verified": true,
+      "receipt_content_address_verified": true,
+      "top_level_type": "dict",
+      "top_level_length": 4
+    },
+    {
+      "requested_at": "2026-09-09T04:02:06.091031Z",
+      "received_at": "2026-09-09T04:02:06.252187Z",
+      "status_code": 200,
+      "request": {
+        "params": {
+          "from": "2026-08-29T00:00:00Z",
+          "league": "usa-college",
+          "sport": "american-football",
+          "to": "2026-08-30T00:00:00Z"
+        },
+        "url": "https://api.odds-api.io/v3/historical/events"
+      },
+      "response_headers": {
+        "content_encoding": "gzip",
+        "content_type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 04:02:06 GMT",
+        "x_ratelimit_limit": "100",
+        "x_ratelimit_remaining": "96",
+        "x_ratelimit_reset": "2026-09-09T04:58:00Z"
+      },
+      "body_sha256": "d8716c7e4c09c0c08ad5f14cbc77a9131e320ee651d9bb6588b20db16db70d2b",
+      "body_size_bytes": 30892,
+      "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+      "sequence": 5,
+      "label": "older-discovery",
+      "receipt_path": "model/data/raw/odds_movement_probe/frozen-20260909/receipts/03391f1dc1b85c7557f24720dc44fa066d10a458eec3450686167547fccf9e46.json",
+      "receipt_file_sha256": "341e7c71b79743cf1b9c917f5f2f8fe1c45542613bb13be9cc24a0d41ee2093b",
+      "original_body_path": "model/data/raw/odds_movement_probe/frozen-20260909/bodies/d8716c7e4c09c0c08ad5f14cbc77a9131e320ee651d9bb6588b20db16db70d2b.body.gz",
+      "body_hash_verified": true,
+      "receipt_content_address_verified": true,
+      "top_level_type": "list",
+      "top_level_length": 69
+    },
+    {
+      "requested_at": "2026-09-09T04:02:55.917395Z",
+      "received_at": "2026-09-09T04:02:56.189283Z",
+      "status_code": 200,
+      "request": {
+        "params": {
+          "bookmakers": "DraftKings,FanDuel",
+          "eventId": "70894628",
+          "markets": "Totals"
+        },
+        "url": "https://api.odds-api.io/v3/historical/odds"
+      },
+      "response_headers": {
+        "content_encoding": "gzip",
+        "content_length": "970",
+        "content_type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 04:02:56 GMT",
+        "x_ratelimit_limit": "100",
+        "x_ratelimit_remaining": "95",
+        "x_ratelimit_reset": "2026-09-09T04:58:00Z"
+      },
+      "body_sha256": "29c7158ca663abd88360c7ff9bd3e5530dd030f77b17e3d04d257d74cd56f12f",
+      "body_size_bytes": 3373,
+      "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+      "sequence": 6,
+      "label": "older-full-state",
+      "receipt_path": "model/data/raw/odds_movement_probe/frozen-20260909/receipts/aad1959564159d71eeae20a34e59b24cc1608f65ab1a398a00863b8108c6f862.json",
+      "receipt_file_sha256": "8b3d8ad409a797a7873eb9ed254f21976eb655ba1e0c67e7a29e70e048000019",
+      "original_body_path": "model/data/raw/odds_movement_probe/frozen-20260909/bodies/29c7158ca663abd88360c7ff9bd3e5530dd030f77b17e3d04d257d74cd56f12f.body.gz",
+      "body_hash_verified": true,
+      "receipt_content_address_verified": true,
+      "top_level_type": "dict",
+      "top_level_length": 12
+    },
+    {
+      "requested_at": "2026-09-09T04:03:29.897615Z",
+      "received_at": "2026-09-09T04:03:30.127512Z",
+      "status_code": 404,
+      "request": {
+        "params": {
+          "bookmaker": "DraftKings",
+          "eventId": "70894628",
+          "market": "Totals",
+          "marketLine": "46.5"
+        },
+        "url": "https://api.odds-api.io/v3/odds/movements"
+      },
+      "response_headers": {
+        "content_length": "58",
+        "content_type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 04:03:30 GMT",
+        "x_ratelimit_limit": "100",
+        "x_ratelimit_remaining": "94",
+        "x_ratelimit_reset": "2026-09-09T04:58:00Z"
+      },
+      "body_sha256": "e50a59113942b673e845d9ce6d06910e0f10ae4646d126e4c93cccaa9b4bca78",
+      "body_size_bytes": 58,
+      "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+      "sequence": 7,
+      "label": "older-draftkings",
+      "receipt_path": "model/data/raw/odds_movement_probe/frozen-20260909/receipts/9ad2950f4ecf49a335da28f39379f0a1049895e0abbfd584b53d1ea0c27091b8.json",
+      "receipt_file_sha256": "7db4c0d6d6033240ccd67cbf3a74f17ffb56a7d69f802f16d571a294be01d8b1",
+      "original_body_path": "model/data/raw/odds_movement_probe/frozen-20260909/bodies/e50a59113942b673e845d9ce6d06910e0f10ae4646d126e4c93cccaa9b4bca78.body.gz",
+      "body_hash_verified": true,
+      "receipt_content_address_verified": true,
+      "top_level_type": "dict",
+      "top_level_length": 1
+    },
+    {
+      "requested_at": "2026-09-09T04:03:30.137142Z",
+      "received_at": "2026-09-09T04:03:30.302708Z",
+      "status_code": 404,
+      "request": {
+        "params": {
+          "bookmaker": "FanDuel",
+          "eventId": "70894628",
+          "market": "Totals",
+          "marketLine": "17.5"
+        },
+        "url": "https://api.odds-api.io/v3/odds/movements"
+      },
+      "response_headers": {
+        "content_length": "58",
+        "content_type": "application/json; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 04:03:30 GMT",
+        "x_ratelimit_limit": "100",
+        "x_ratelimit_remaining": "93",
+        "x_ratelimit_reset": "2026-09-09T04:58:00Z"
+      },
+      "body_sha256": "c884db579b0c1f6949e4dbc4563e9648fa19db61d5a1138d5f10a8aad19804ee",
+      "body_size_bytes": 58,
+      "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+      "sequence": 8,
+      "label": "older-fanduel",
+      "receipt_path": "model/data/raw/odds_movement_probe/frozen-20260909/receipts/22531ffb11f8cbf6dfe5802f5fd0f0454bbe68031c99629574964135f344f8aa.json",
+      "receipt_file_sha256": "e8e7a0b6a896072d75e05515916b491e35eee80daf6414c34aaf0a8bb3ee294a",
+      "original_body_path": "model/data/raw/odds_movement_probe/frozen-20260909/bodies/c884db579b0c1f6949e4dbc4563e9648fa19db61d5a1138d5f10a8aad19804ee.body.gz",
+      "body_hash_verified": true,
+      "receipt_content_address_verified": true,
+      "top_level_type": "dict",
+      "top_level_length": 1
+    }
+  ],
+  "future_event": {
+    "id": 70900784,
+    "home": "Louisville Cardinals",
+    "away": "Villanova Wildcats",
+    "homeId": 4335,
+    "awayId": 46490,
+    "date": "2026-09-11T23:00:00Z",
+    "status": "pending"
+  },
+  "future_totals_movements": [
+    {
+      "bookmaker": "DraftKings",
+      "market": "Totals",
+      "line": "56.5",
+      "full_state_explicit_prices": {
+        "over": "1.95",
+        "under": "1.86"
+      },
+      "full_state_updated_at": "2026-09-08T03:35:45.803Z",
+      "full_state_received_at": "2026-09-09T03:58:00.671954Z",
+      "movement_top_level_keys": [
+        "bookmaker",
+        "eventid",
+        "movements",
+        "opening"
+      ],
+      "movement_rows": 1,
+      "opening_equals_sole_movement": true,
+      "latest_field_present": false,
+      "movement_tick": {
+        "hdp": "56.5",
+        "timestamp": 1788838545794,
+        "home": 1.95,
+        "away": 1.86
+      },
+      "timestamp_if_unix_milliseconds": "2026-09-08T03:35:45.794000Z",
+      "full_state_updated_at_minus_tick_ms": 9.0,
+      "timestamp_unit_evidence": "Unix milliseconds is an empirical interpretation consistent with the corresponding full-state market update within milliseconds; source timestamp meaning remains unverified.",
+      "current_tuple_home_matches_explicit_over": true,
+      "current_tuple_away_matches_explicit_under": true,
+      "side_mapping_discriminating": true,
+      "side_mapping_scope": "This asymmetric tuple is consistent with home=Over and away=Under; no global mapping certified.",
+      "matches_first_pilot_line_and_prices": true
+    },
+    {
+      "bookmaker": "FanDuel",
+      "market": "Totals",
+      "line": "56.5",
+      "full_state_explicit_prices": {
+        "over": "1.909",
+        "under": "1.909"
+      },
+      "full_state_updated_at": "2026-09-07T06:05:27.014Z",
+      "full_state_received_at": "2026-09-09T03:58:00.671954Z",
+      "movement_top_level_keys": [
+        "bookmaker",
+        "eventid",
+        "movements",
+        "opening"
+      ],
+      "movement_rows": 1,
+      "opening_equals_sole_movement": true,
+      "latest_field_present": false,
+      "movement_tick": {
+        "hdp": "56.5",
+        "timestamp": 1788761127002,
+        "home": 1.909,
+        "away": 1.909
+      },
+      "timestamp_if_unix_milliseconds": "2026-09-07T06:05:27.002000Z",
+      "full_state_updated_at_minus_tick_ms": 12.0,
+      "timestamp_unit_evidence": "Unix milliseconds is an empirical interpretation consistent with the corresponding full-state market update within milliseconds; source timestamp meaning remains unverified.",
+      "current_tuple_home_matches_explicit_over": true,
+      "current_tuple_away_matches_explicit_under": true,
+      "side_mapping_discriminating": false,
+      "side_mapping_scope": "Equal prices make side orientation observationally ambiguous.",
+      "matches_first_pilot_line_and_prices": true
+    }
+  ],
+  "older_discovery": {
+    "returned_entries": 69,
+    "exact_identity_and_kickoff_matches": 1,
+    "selected_identity": {
+      "id": 70894628,
+      "home": "TCU Horned Frogs",
+      "away": "North Carolina Tar Heels",
+      "homeId": 4303,
+      "awayId": 4307,
+      "date": "2026-08-29T16:00:00Z",
+      "status": "settled"
+    },
+    "provider_participant_ids_are_not_espn_ids": true
+  },
+  "older_totals_retention_probes": [
+    {
+      "bookmaker": "DraftKings",
+      "market": "Totals",
+      "reported_rows": 1,
+      "valid_unique_paired_rows": 1,
+      "numeric_line_min": 46.5,
+      "numeric_line_max": 46.5,
+      "row_schema_keys": [
+        "hdp",
+        "over",
+        "under"
+      ],
+      "reported_market_updated_at": "2026-08-29T15:59:36.155Z",
+      "seconds_before_recorded_kickoff": 23.845,
+      "selected_probe_pair": {
+        "hdp": 46.5,
+        "over": "1.92",
+        "under": "1.89"
+      },
+      "selection_matches_frozen_smallest_valid_line_rule": true,
+      "movement_status_code": 404,
+      "movement_error": "No data found for market Totals with line 46.5",
+      "conclusion_scope": "No data returned for this exact event/book/market/line query; other lines/books/dates remain untested."
+    },
+    {
+      "bookmaker": "FanDuel",
+      "market": "Totals",
+      "reported_rows": 61,
+      "valid_unique_paired_rows": 61,
+      "numeric_line_min": 17.5,
+      "numeric_line_max": 77.5,
+      "row_schema_keys": [
+        "hdp",
+        "over",
+        "under"
+      ],
+      "reported_market_updated_at": "2026-08-29T15:59:36.155Z",
+      "seconds_before_recorded_kickoff": 23.845,
+      "selected_probe_pair": {
+        "hdp": 17.5,
+        "over": "1.002",
+        "under": "36.000"
+      },
+      "selection_matches_frozen_smallest_valid_line_rule": true,
+      "movement_status_code": 404,
+      "movement_error": "No data found for market Totals with line 17.5",
+      "conclusion_scope": "No data returned for this exact event/book/market/line query; other lines/books/dates remain untested."
+    }
+  ],
+  "outcome_values_exported": false,
+  "outcome_analysis_performed": false,
+  "weather_join_performed": false,
+  "returns_or_expected_value_computed": false,
+  "production_or_frozen_pilot_policy_changed": false,
+  "conclusions": [
+    "Movement access worked for the selected upcoming game at its two already-captured book/line combinations.",
+    "Each successful movement response has one observation and an identical opening, so no price-revision sequence or full-event history was demonstrated.",
+    "The selected older event resolved uniquely and historical explicit paired closing-price data were returned.",
+    "Both exact older minimum-line movement queries returned line-specific404 errors. This does not establish book-wide or all-line retention failure.",
+    "A final-line-conditioned retention probe cannot define a historical evaluation cohort or reconstruct a decision-time available line.",
+    "Timestamp semantics, complete line histories, suspension/withdrawal handling, settlement rules and original availability remain unverified."
+  ]
+}

@@ -31,6 +31,8 @@ The [first manual capture audit](model/reports/WEATHER_REVISION_FIRST_CAPTURE_AU
 
 The [first GitHub-hosted capture](model/reports/WEATHER_REVISION_HOSTED_CAPTURE_AUDIT.md) also passed reconstruction, with 46 weather-covered games and 44 paired with later prices. Sixteen forecast requests timed out and remain recorded as failures; hosted receipt gaps reached 130.30 seconds. A successful archive audit does not imply complete collection coverage.
 
+Two [weather-revision models](model/reports/WEATHER_REVISION_MODEL_DESIGN.md) are now implemented as unvalidated research utilities: a regularized probability model anchored to the exact offered half-point total, and a separate six-hour line-movement diagnostic. Both compare forecast changes against the same current-weather and price-history baseline. They have not been fitted to real observations or promoted to the board. The [bounded movement-history probe](model/reports/MOVEMENT_HISTORY_PREFLIGHT_RESULTS.md) retrieved current-game ticks but received line-specific 404 responses for the two fixed older-game queries. Historical closing quotes alone cannot establish an earlier executable entry price.
+
 ## Prospective evaluation
 
 The [fixed evaluation protocol](model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md) covers September 9, 2026–January 31, 2027 games and sets February 8, 2027 as the evaluation date for the four current policies. Running results remain descriptive, with no interim promotion; historical results and reconstructed replays are excluded.

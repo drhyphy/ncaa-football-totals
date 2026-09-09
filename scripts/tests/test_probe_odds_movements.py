@@ -96,6 +96,35 @@ class MovementProbeTests(unittest.TestCase):
         self.assertNotIn('41', encoded)
         self.assertIn('scores', encoded)
 
+    def test_header_correction_preserves_eight_total_cap_and_auth_stop(self):
+        for last_status in [200, 403, 429]:
+            with self.subTest(status=last_status), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                probe = PROBE.Probe(root, 'sample', 'private-test')
+                session = Session(200, None)
+                probe.client.session = session
+                with self.assertRaises(RuntimeError):
+                    probe.continue_bounded_without_headers()
+                probe.fetch('future-full-state', '/odds/multi', {'eventIds': '1'})
+                probe.refresh_quota()
+                resumed = PROBE.Probe(root, 'sample', 'private-test')
+                resumed.client.session = session
+                resumed.continue_bounded_without_headers()
+                session.remaining = '90'
+                for index in range(6):
+                    session.status = last_status if index == 5 else 200
+                    resumed.fetch('history-' + str(index), '/odds/movements', {'eventId': '1'})
+                again = PROBE.Probe(root, 'sample', 'private-test')
+                again.client.session = session
+                if last_status != 200:
+                    with self.assertRaises(RuntimeError):
+                        again.continue_bounded_without_headers()
+                else:
+                    again.continue_bounded_without_headers()
+                with self.assertRaises(RuntimeError):
+                    again.fetch('ninth', '/odds/movements', {'eventId': '1'})
+                self.assertEqual(session.calls, 8)
+
 
 if __name__ == '__main__':
     unittest.main()
