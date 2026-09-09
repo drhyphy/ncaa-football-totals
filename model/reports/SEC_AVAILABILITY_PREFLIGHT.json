@@ -1,0 +1,162 @@
+{
+  "access_date": "2026-09-09",
+  "archive_api_requested": false,
+  "archive_source_handling": "Archive component was captured; it references an additional client header. Header name/value are not included, printed or reused by this report; no archive data endpoint was requested.",
+  "collection_bounds": {
+    "max_body_bytes": 8388608,
+    "new_sec_requests": 6,
+    "redirects_enabled": false,
+    "redirects_followed": 0,
+    "settings_provenance": "Bounded executor settings supplied by root; original receipts independently verify URL, timing, status, body size/hash and selected headers."
+  },
+  "current_body_literal_description": "Empty JSON object followed by newline; three bytes.",
+  "landing_page_published_at": "2024-08-29T19:00:00.000000Z",
+  "landing_time_semantics": "CMS publication time of the landing pages, not a report issue time.",
+  "limitations": [
+    "The component heading is an observed source string, not a verified launch deadline.",
+    "No conclusions about archive accessibility follow from not requesting its data endpoint.",
+    "HTTP Date/Last-Modified and landing-page CMS dates are not player/report publication evidence.",
+    "Public source bodies remain in ignored raw storage; only hashes and selected metadata are published."
+  ],
+  "linked_archive_embed": "https://confinjrepxyz.hdintelligence-app.com?source=SECarchive",
+  "linked_current_embed": "https://confinjrepxyz.hdintelligence-app.com?source=SECreports",
+  "next_step": "A separately bounded source-shape check must obtain one nonempty officially linked report and validate identity, phase/status and issue-time semantics before building a parser or collection plan.",
+  "nonempty_report_bodies": 0,
+  "observed_current_payload": {},
+  "official_archive": "https://www.secsports.com/fbreports-archive",
+  "official_current": "https://www.secsports.com/fbreports",
+  "public_component_heading": "No Games Until Fall 2026",
+  "public_component_url": "https://confinjrepxyz.hdintelligence-app.com/static/js/368.27a1ca65.chunk.js",
+  "public_get_endpoint": "https://confinjrepxyz.hdintelligence-app.com/api/PV8l!c$3C",
+  "schema_version": "sec-availability-preflight-v1",
+  "scope": "Offline verification and report of six root-executed public HTTP captures; no new network by this audit. No nonempty reports, labels, outcomes, fits, roster fetches or production changes.",
+  "shared_existing_source": {
+    "body_path": "model/data/raw/availability_preflight/bigten/04_bundle.js",
+    "body_sha256": "601c89d6ed02259d2b738d99b324e0c776a19ab9490c03af64480a37fc9e70f3",
+    "body_size_bytes": 258471,
+    "receipt_path": "model/data/raw/availability_preflight/bigten/04_bundle.receipt.json",
+    "receipt_sha256": "2f55fa02f671024c0c3e669c2670777afd06841ecaa05233158cb990e9e23ace",
+    "received_at": "2026-09-09T07:19:25Z",
+    "requested_at": "2026-09-09T07:19:25Z",
+    "role": "Previously captured exact shared main.26907188.js reused offline; no seventh SEC HTTP request.",
+    "url": "https://confinjrepxyz.hdintelligence-app.com/static/js/main.26907188.js"
+  },
+  "sources": [
+    {
+      "body_path": "model/data/raw/availability_preflight/sec/0001-archive.html",
+      "body_sha256": "dec175173727a15a2150cbb8b1f1ef7490fcb70a29d9031ee384f73881892d77",
+      "body_size_bytes": 127805,
+      "receipt_path": "model/data/raw/availability_preflight/sec/0001-receipt.json",
+      "receipt_sha256": "64369b2c808c12d94cd429118413e36c7d106b49aa48e47fe78a528a4589225d",
+      "received_at": "2026-09-09T07:18:45.544448+00:00",
+      "requested_at": "2026-09-09T07:18:45.010749+00:00",
+      "selected_response_headers": {
+        "cache-control": "max-age=300, public, stale-if-error=3600, stale-while-revalidate=900",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 07:18:45 GMT",
+        "etag": "W/\"580b192eebe1cd9f88c13296425a608f\""
+      },
+      "status_code": 200,
+      "url": "https://www.secsports.com/fbreports-archive"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/sec/0002-current.html",
+      "body_sha256": "0d1d3d1caa28466f6f89da00cdbf0d88e7eb585efa8f0b1664a093eecec7a7ba",
+      "body_size_bytes": 127635,
+      "receipt_path": "model/data/raw/availability_preflight/sec/0002-current.html.receipt.json",
+      "receipt_sha256": "f1bcd4267b905163a3a39075bd6de8b48b169d4f13cf68ff172852237d3b7b6e",
+      "received_at": "2026-09-09T07:20:17.506423+00:00",
+      "requested_at": "2026-09-09T07:20:17.052532+00:00",
+      "selected_response_headers": {
+        "cache-control": "max-age=300, public, stale-if-error=3600, stale-while-revalidate=900",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 07:20:17 GMT",
+        "etag": "W/\"5b41b9c28086e181f0e126ba1a699f60\""
+      },
+      "status_code": 200,
+      "url": "https://www.secsports.com/fbreports"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/sec/0003-embed.html",
+      "body_sha256": "b11a1c165fb60c9bea4bfdfa986b64adea7cb9c4b1cec7165dddbaa6cf2e65a8",
+      "body_size_bytes": 1099,
+      "receipt_path": "model/data/raw/availability_preflight/sec/0003-embed.html.receipt.json",
+      "receipt_sha256": "36d51b94a25a3a04d298016446690f7e4e2915db0aef65293679ea3865418173",
+      "received_at": "2026-09-09T07:20:20.416196+00:00",
+      "requested_at": "2026-09-09T07:20:20.305442+00:00",
+      "selected_response_headers": {
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "content-type": "text/html",
+        "date": "Wed, 09 Sep 2026 07:20:20 GMT",
+        "etag": "W/\"69ea22a3-44b\"",
+        "last-modified": "Thu, 23 Apr 2026 13:46:11 GMT"
+      },
+      "status_code": 200,
+      "url": "https://confinjrepxyz.hdintelligence-app.com?source=SECarchive"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/sec/0004-published.js",
+      "body_sha256": "c9b144622168f7ec36268eb00630b6b65c6de9750dff73d39b51419f5cbc99ea",
+      "body_size_bytes": 9932,
+      "receipt_path": "model/data/raw/availability_preflight/sec/0004-published.js.receipt.json",
+      "receipt_sha256": "1dde24f35a03d67bd1be7dea38bbff214a17ea3929380de842a922cd257ac4fb",
+      "received_at": "2026-09-09T07:23:03.754040+00:00",
+      "requested_at": "2026-09-09T07:23:03.654731+00:00",
+      "selected_response_headers": {
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-type": "application/javascript",
+        "date": "Wed, 09 Sep 2026 07:23:03 GMT",
+        "etag": "\"69ea22a3-26cc\"",
+        "last-modified": "Thu, 23 Apr 2026 13:46:11 GMT"
+      },
+      "status_code": 200,
+      "url": "https://confinjrepxyz.hdintelligence-app.com/static/js/368.27a1ca65.chunk.js"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/sec/0005-archive.js",
+      "body_sha256": "90966633d18730e8c5bac89d367ca20318386d5089067593f7023fbd0621db75",
+      "body_size_bytes": 7299,
+      "receipt_path": "model/data/raw/availability_preflight/sec/0005-archive.js.receipt.json",
+      "receipt_sha256": "94ddc7448461740b63be966a14d616acee80cf2d4e19f1b3004b4cc865171772",
+      "received_at": "2026-09-09T07:23:05.586003+00:00",
+      "requested_at": "2026-09-09T07:23:05.514870+00:00",
+      "selected_response_headers": {
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-type": "application/javascript",
+        "date": "Wed, 09 Sep 2026 07:23:05 GMT",
+        "etag": "\"69ea22a3-1c83\"",
+        "last-modified": "Thu, 23 Apr 2026 13:46:11 GMT"
+      },
+      "status_code": 200,
+      "url": "https://confinjrepxyz.hdintelligence-app.com/static/js/228.a63c554a.chunk.js"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/sec/0006-current.json",
+      "body_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "body_size_bytes": 3,
+      "receipt_path": "model/data/raw/availability_preflight/sec/0006-current.json.receipt.json",
+      "receipt_sha256": "011f1856dc57f8d1f4482b11b8b8675d9c597a2d3ae6b01a6a979514dc94893a",
+      "received_at": "2026-09-09T07:23:55.174328+00:00",
+      "requested_at": "2026-09-09T07:23:54.879900+00:00",
+      "selected_response_headers": {
+        "content-type": "application/json",
+        "date": "Wed, 09 Sep 2026 07:23:55 GMT"
+      },
+      "status_code": 200,
+      "url": "https://confinjrepxyz.hdintelligence-app.com/api/PV8l!c$3C"
+    }
+  ],
+  "unverified": [
+    "Populated current-season player report format and complete status meanings.",
+    "Canonical game/team/player identity fields in actual records.",
+    "Individual report issue time, source timezone, revision timestamp or release sequence.",
+    "Historical archive completeness, revision access and pregame availability.",
+    "Reason for empty current payload and 2026 delivery readiness."
+  ],
+  "verified": [
+    "Official current/archive HTML embeds identify the provider routes.",
+    "Root captured six successful HTTP200 responses; all original body sizes and SHA256 values match their receipts.",
+    "The shared main JavaScript is exactly the body already archived by Big Ten preflight.",
+    "Published component references an unauthenticated GET; its observed response is empty."
+  ]
+}

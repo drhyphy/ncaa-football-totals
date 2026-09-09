@@ -1,0 +1,212 @@
+{
+  "access_date": "2026-09-09",
+  "actual_report_body_cap": 2,
+  "archive_embed_fetched": false,
+  "client_expected_fields_only": {
+    "footer": [
+      "date",
+      "time",
+      "location",
+      "networkImage"
+    ],
+    "note": "These fields are referenced by the fetched public component, not verified populated response records. Additional IDs or fields could exist in a nonempty response.",
+    "player": [
+      "name",
+      "status",
+      "exempt_status"
+    ],
+    "report": [
+      "games",
+      "footer"
+    ],
+    "team": [
+      "teamName",
+      "teamColor",
+      "teamImage",
+      "rows"
+    ],
+    "top_level": "Object.values(response.data), then first 18 values displayed"
+  },
+  "client_observations": {
+    "client_referer_context": "Main app selects public B10 panels from source query and official-page embedding/referrer context. Direct public API GET required no supplied credentials or fabricated referrer.",
+    "footer_time_display": "Splits HH:MM, adds one hour, formats with ET label; no explicit IANA timezone or offset in this code.",
+    "heading": "Games of December 30-31, 2025",
+    "identity": "The display uses teamName and footer matchup context; no canonical game or player ID is referenced by this component.",
+    "name_display": "Removes first space-separated token; preserve original full name field rather than treating display text as an ID.",
+    "status_filters": [
+      "status == Out and exempt_status != Out",
+      "exempt_status == Out",
+      "status == Questionable"
+    ],
+    "timestamps": "No report issue/version timestamp referenced by the published component."
+  },
+  "limitations": [
+    "Empty current data does not establish why no report was returned. The verified 2026 policy first covers September 19 conference games; no readiness or failure inference is made.",
+    "Old heading and status rendering require revalidation against a nonempty 2026 report before writing a parser.",
+    "No archive payload/version-list endpoint was fetched within this request budget.",
+    "No positions, stable identity fields, source report publication time or timezone was validated in a nonempty record.",
+    "No JSON response or later receipt proves historical pregame availability."
+  ],
+  "next_bounded_step": "After the first required 2026 report window (September 16 at 20:00 America/New_York for September 19 conference games), perform a separately bounded one-report retrieval and exact identity/time validation; preserve original bytes and actual receipt. Do not auto-promote empty data to all players available.",
+  "nonempty_report_bodies": 0,
+  "observed_payload": {},
+  "official_2026_article": "https://bigten.org/fb/article/60323/",
+  "official_linked_archive_embed": "https://confinjrepxyz.hdintelligence-app.com?source=B10archive",
+  "official_linked_current_embed": "https://confinjrepxyz.hdintelligence-app.com?source=B10reports",
+  "public_component_api": "https://confinjrepxyz.hdintelligence-app.com/api/53PV8lI$h8!0",
+  "public_component_url": "https://confinjrepxyz.hdintelligence-app.com/static/js/267.9c3e3bbc.chunk.js",
+  "report_endpoint_responses": 1,
+  "request_cap": 6,
+  "requests_used": 6,
+  "result": "Public official-to-provider delivery chain verified; current endpoint returned an empty object. Nonempty 2026 report schema, issue-time fields and historical revision retention remain unverified.",
+  "schema_version": "bigten-availability-preflight-v1",
+  "scope": "Six public unauthenticated GETs, zero redirects, one empty report-endpoint response, no nonempty player report bodies. Source-delivery/schema inspection only; no outcomes, roster acquisition, fits or automation.",
+  "sources": [
+    {
+      "body_path": "model/data/raw/availability_preflight/bigten/01_index.html",
+      "body_sha256": "19af368ba331334a3bc6d34013d1ca3af6147bec508fa69428c945e852e9893a",
+      "body_size_bytes": 2069671,
+      "headers_path": "model/data/raw/availability_preflight/bigten/01_index.headers",
+      "headers_sha256": "f8c72a41f13ed3b2f12d47c00fe20154dec5c22610d6b9a14e27735007afe2f8",
+      "receipt_path": "model/data/raw/availability_preflight/bigten/01_index.receipt.json",
+      "receipt_sha256": "417d088f2f89226cec87c0a6b6c2d631eb07ac5f9f17d8bcfe939874e107e645",
+      "received_at": "2026-09-09T07:18:01Z",
+      "redirects": 0,
+      "request_url": "https://bigten.org/fb/",
+      "requested_at": "2026-09-09T07:18:01Z",
+      "response_headers": {
+        "age": "403",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Wed, 09 Sep 2026 07:11:18 GMT",
+        "etag": "\"2tgg3idldu18a6h\""
+      },
+      "schema_version": "availability-preflight-http-v1",
+      "status_code": 200,
+      "timestamp_precision": "second; UTC tool brackets around fetch"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/bigten/02_current.html",
+      "body_sha256": "44503f7e87a37a1304be07ee31a5ad8c03afb0a36e7d8716b2fb46c08c442f72",
+      "body_size_bytes": 1645576,
+      "headers_path": "model/data/raw/availability_preflight/bigten/02_current.headers",
+      "headers_sha256": "336d51b2b26d8845b900e07def258fd58cdd4885b44d7f135026343583987bf0",
+      "receipt_path": "model/data/raw/availability_preflight/bigten/02_current.receipt.json",
+      "receipt_sha256": "4d0001c28c8833eb751a6228df1f299dda0974b77a37c89dd746da8c69f67b48",
+      "received_at": "2026-09-09T07:18:31Z",
+      "redirects": 0,
+      "request_url": "https://bigten.org/fb/article/60323/",
+      "requested_at": "2026-09-09T07:18:31Z",
+      "response_headers": {
+        "age": "13916",
+        "cache-control": "public, max-age=0, must-revalidate",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sun, 06 Sep 2026 21:53:14 GMT",
+        "etag": "\"ztmxiqtwokz8rp\""
+      },
+      "schema_version": "availability-preflight-http-v1",
+      "status_code": 200,
+      "timestamp_precision": "second; UTC tool brackets around fetch"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/bigten/03_app.html",
+      "body_sha256": "b11a1c165fb60c9bea4bfdfa986b64adea7cb9c4b1cec7165dddbaa6cf2e65a8",
+      "body_size_bytes": 1099,
+      "headers_path": "model/data/raw/availability_preflight/bigten/03_app.headers",
+      "headers_sha256": "70a607ebd3a960b17305508d8d49a740b0b4056e2624c1e26900c7cc3de62ed1",
+      "receipt_path": "model/data/raw/availability_preflight/bigten/03_app.receipt.json",
+      "receipt_sha256": "eda6356586d482f40aeddf64e09fcc86ab3cb973e8bda4d48c83ae77db103c91",
+      "received_at": "2026-09-09T07:19:02Z",
+      "redirects": 0,
+      "request_url": "https://confinjrepxyz.hdintelligence-app.com?source=B10reports",
+      "requested_at": "2026-09-09T07:19:02Z",
+      "response_headers": {
+        "cache-control": "no-cache, no-store, must-revalidate",
+        "content-type": "text/html",
+        "date": "Wed, 09 Sep 2026 07:19:02 GMT",
+        "etag": "\"69ea22a3-44b\"",
+        "last-modified": "Thu, 23 Apr 2026 13:46:11 GMT"
+      },
+      "schema_version": "availability-preflight-http-v1",
+      "status_code": 200,
+      "timestamp_precision": "second; UTC tool brackets around fetch"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/bigten/04_bundle.js",
+      "body_sha256": "601c89d6ed02259d2b738d99b324e0c776a19ab9490c03af64480a37fc9e70f3",
+      "body_size_bytes": 258471,
+      "headers_path": "model/data/raw/availability_preflight/bigten/04_bundle.headers",
+      "headers_sha256": "20ea07a8fb83c2d48e507df6fc4ea03ad9b75390668be3a4e0e5b2ce660672aa",
+      "receipt_path": "model/data/raw/availability_preflight/bigten/04_bundle.receipt.json",
+      "receipt_sha256": "2f55fa02f671024c0c3e669c2670777afd06841ecaa05233158cb990e9e23ace",
+      "received_at": "2026-09-09T07:19:25Z",
+      "redirects": 0,
+      "request_url": "https://confinjrepxyz.hdintelligence-app.com/static/js/main.26907188.js",
+      "requested_at": "2026-09-09T07:19:25Z",
+      "response_headers": {
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-type": "application/javascript",
+        "date": "Wed, 09 Sep 2026 07:19:25 GMT",
+        "etag": "\"69ea22a3-3f1a7\"",
+        "last-modified": "Thu, 23 Apr 2026 13:46:11 GMT"
+      },
+      "schema_version": "availability-preflight-http-v1",
+      "status_code": 200,
+      "timestamp_precision": "second; UTC tool brackets around fetch"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/bigten/05_publish_chunk.js",
+      "body_sha256": "7f98d66d21a4d9a758e8f755a37f0465571dd2e3c7823bf243cd11135e1af27d",
+      "body_size_bytes": 6615,
+      "headers_path": "model/data/raw/availability_preflight/bigten/05_publish_chunk.headers",
+      "headers_sha256": "dc40ee0529d72c3ea5d86051c4b9a4199bd01326b2fbac235a3c7b7e5c10c01f",
+      "receipt_path": "model/data/raw/availability_preflight/bigten/05_publish_chunk.receipt.json",
+      "receipt_sha256": "e6423c9d7a652b4978ca890f44aae5b6ff1990e5c79440d64866d027a4bfc501",
+      "received_at": "2026-09-09T07:20:17Z",
+      "redirects": 0,
+      "request_url": "https://confinjrepxyz.hdintelligence-app.com/static/js/267.9c3e3bbc.chunk.js",
+      "requested_at": "2026-09-09T07:20:16Z",
+      "response_headers": {
+        "cache-control": "public, max-age=31536000, immutable",
+        "content-type": "application/javascript",
+        "date": "Wed, 09 Sep 2026 07:20:17 GMT",
+        "etag": "\"69ea22a3-19d7\"",
+        "last-modified": "Thu, 23 Apr 2026 13:46:11 GMT"
+      },
+      "schema_version": "availability-preflight-http-v1",
+      "status_code": 200,
+      "timestamp_precision": "second; UTC tool brackets around fetch"
+    },
+    {
+      "body_path": "model/data/raw/availability_preflight/bigten/06_published.json",
+      "body_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "body_size_bytes": 3,
+      "headers_path": "model/data/raw/availability_preflight/bigten/06_published.headers",
+      "headers_sha256": "f3a92cdcf301cc6486f3efd8dbcb10fcde9f67f5b240f5daa18d4edc58c60b9e",
+      "receipt_path": "model/data/raw/availability_preflight/bigten/06_published.receipt.json",
+      "receipt_sha256": "40f93845bc73c37ce2636361c8060e7185cc89d4a5d3b6380d6a707c6c44e961",
+      "received_at": "2026-09-09T07:20:39Z",
+      "redirects": 0,
+      "request_url": "https://confinjrepxyz.hdintelligence-app.com/api/53PV8lI$h8!0",
+      "requested_at": "2026-09-09T07:20:39Z",
+      "response_headers": {
+        "content-type": "application/json",
+        "date": "Wed, 09 Sep 2026 07:20:39 GMT"
+      },
+      "schema_version": "availability-preflight-http-v1",
+      "status_code": 200,
+      "timestamp_precision": "second; UTC tool brackets around fetch"
+    }
+  ],
+  "timestamp_evidence": {
+    "article_context": "HTML/CMS article dates identify the landing page, not report/player revisions.",
+    "article_jsonld": {
+      "dateModified": "9/6/2026",
+      "datePublished": "9/5/2026"
+    },
+    "publication_time_verified": false,
+    "receipt_precision": "UTC tool brackets before and after curl, recorded to whole seconds; not a server publication timestamp.",
+    "report_endpoint_http_date": "Wed, 09 Sep 2026 07:20:39 GMT",
+    "report_endpoint_received_at": "2026-09-09T07:20:39Z"
+  }
+}
