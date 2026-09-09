@@ -40,6 +40,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0 # Receipt audits verify source blobs at earlier capture commits.
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

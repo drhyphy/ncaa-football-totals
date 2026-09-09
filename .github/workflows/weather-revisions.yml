@@ -27,6 +27,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0 # Retain the source versions referenced by earlier receipts.
       - name: Check the fixed UTC pilot window
         id: decision
         run: python3 scripts/weather_revision_status.py decision --root .
