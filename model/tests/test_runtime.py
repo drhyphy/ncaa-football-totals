@@ -1,4 +1,7 @@
 from datetime import datetime, timedelta, timezone
+from copy import deepcopy
+from dataclasses import replace
+import json
 from types import SimpleNamespace
 
 import pandas as pd
@@ -190,3 +193,190 @@ def test_statistical_candidate_can_qualify_below_six_point_adjustment():
     assert row['paper_stake_fraction'] > 0
     assert row['confidence']=='experimental'
     assert not row['execution_confirmed']
+
+
+def full_state_event(observed=NOW, kickoff=None):
+    payload = event(observed.isoformat())
+    if kickoff is not None:
+        payload[0]["commence_time"] = kickoff.isoformat()
+    for book in payload[0]["bookmakers"]:
+        book["source"] = "odds_api_io"
+        book["markets"][0].update(observed_at=observed.isoformat(), observation_kind="provider_full_state")
+    return payload
+
+
+def test_scoring_rechecks_freshness_instead_of_trusting_cached_true_flag():
+    frame = games(full_state_event())
+    assert all(q["fresh"] for q in frame.iloc[0]["quotes"])
+    later = NOW + timedelta(seconds=120, microseconds=1)
+    rows = score_games(frame, {}, {"sigma":16,"family":"normal"}, later)
+    assert not any(row["eligible"] for row in rows)
+    assert all("quote_timestamp_missing_or_stale" in row["flags"] for row in rows)
+    assert all(q["fresh"] for q in frame.iloc[0]["quotes"])  # caller snapshot unchanged
+
+
+def test_position_lock_checks_exact_receipt_boundary_and_started_game():
+    row = score(full_state_event())[0]
+    assert row["eligible"]
+    assert record_positions([], [row], NOW+timedelta(seconds=120))
+    assert not record_positions([], [row], NOW+timedelta(seconds=120,microseconds=1))
+    started = {**row, "kickoff": NOW.isoformat()}
+    assert not record_positions([], [started], NOW)
+
+
+def test_lock_rechecks_peer_quotes_used_in_original_forecast():
+    from ncaaf_model.runtime import forecasts_at_lock, quote_at_time
+    payload=full_state_event()
+    for book in payload[0]["bookmakers"][1:]:
+        book["markets"][0]["observed_at"]=(NOW-timedelta(seconds=90)).isoformat()
+    frame=games(payload)
+    forecasts=score_games(frame, {}, {"sigma":16,"family":"normal"},NOW)
+    original=deepcopy(forecasts)
+    assert forecasts[0]["eligible"] and forecasts[0]["sportsbook"]=="shop"
+    now=NOW+timedelta(seconds=31)
+    assert quote_at_time(forecasts[0], now)["fresh"]
+    checked=forecasts_at_lock(forecasts,frame,now)
+    assert not checked[0]["eligible"]
+    assert "reference_quote_timestamp_missing_or_stale" in checked[0]["flags"]
+    assert not record_positions([],checked,now)
+    assert forecasts==original
+
+
+def daily_fixture(tmp_path, monkeypatch, *, projection_delay=0, snapshot_delay=0, kickoff=None, explicit=False):
+    from ncaaf_model import runtime, weather_publishing
+    from ncaaf_model.config import load_settings
+    clock=SimpleNamespace(value=NOW)
+    class Clock(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            if explicit:
+                raise AssertionError("Explicit synthetic now must not read the wall clock")
+            return clock.value if tz is None else clock.value.astimezone(tz)
+    monkeypatch.setattr(runtime,"datetime",Clock)
+    settings=replace(load_settings(),root=tmp_path/"model",allowed_books=("shop","a","b","c"))
+    settings.models_dir.mkdir(parents=True)
+    (settings.models_dir/"score_distribution_v2.json").write_text(json.dumps({"sigma":16.,"family":"normal",
+        "market_provenance":"cfbd_and_verified_pregame_provider_only","data_fingerprint":"test-fingerprint"}))
+    kick=kickoff or NOW+timedelta(days=1)
+    payload=full_state_event(kickoff=kick)
+    schedule=pd.DataFrame([{"game_id":1,"season":2026,"week":2,"home_id":1,"away_id":2,
+        "home_team":"Home","away_team":"Away","game_date":kick.isoformat(),"neutral_site":False,
+        "status":"STATUS_SCHEDULED","home_score":float("nan"),"away_score":float("nan")}])
+    monkeypatch.setattr(runtime,"refresh_inputs",lambda *_:(schedule,{"schedule_fresh":True,"input_failures":{}}))
+    monkeypatch.setattr(runtime,"fetch_odds",lambda *_:(deepcopy(payload),{}))
+    monkeypatch.setattr(weather_publishing,"collect_inputs",lambda *_:{"status":"unavailable","features":[],"message":"Synthetic"})
+    monkeypatch.setattr(weather_publishing,"publish_weather",lambda *args:{"status":"unavailable"})
+    def project(_settings,matched,now,diagnostics):
+        clock.value += timedelta(seconds=projection_delay)
+        diagnostics["active_data_fingerprint"]="test-fingerprint"
+        return matched.assign(home_prior_games=15,away_prior_games=15),{runtime.PRIMARY:[56.]}
+    monkeypatch.setattr(runtime,"candidate_projections",project)
+    actual_write=runtime.atomic_write_bytes
+    def write(path,payload):
+        result=actual_write(path,payload)
+        if path.name.startswith("snapshot-") and path.name.endswith(".json.gz"):
+            clock.value += timedelta(seconds=snapshot_delay)
+        return result
+    monkeypatch.setattr(runtime,"atomic_write_bytes",write)
+    return runtime,settings,clock,weather_publishing
+
+
+@pytest.mark.parametrize("stage",["projections","snapshot"])
+def test_live_daily_cannot_lock_prices_that_expire_during_expensive_work(tmp_path,monkeypatch,stage):
+    runtime,settings,clock,_=daily_fixture(tmp_path,monkeypatch,
+        projection_delay=121 if stage=="projections" else 0,snapshot_delay=121 if stage=="snapshot" else 0)
+    board=runtime.daily(settings=settings)
+    assert board["status"]=="ok"
+    assert not board["today_picks"] and not board["upcoming_picks"] and not board["results"]
+    assert not any(row["eligible"] for row in board["forecasts"])
+    assert board["diagnostics"]["fresh_sportsbooks"]==[]
+    assert json.loads((settings.ledger_dir/"positions.json").read_text())==[]
+    assert all(entry["recorded_at"]==runtime.stamp(clock.value)
+               for entry in json.loads((settings.ledger_dir/"forecast_entries.json").read_text()))
+
+
+@pytest.mark.parametrize("stage",["projections","snapshot"])
+def test_live_daily_cannot_record_forecasts_or_positions_after_kickoff(tmp_path,monkeypatch,stage):
+    runtime,settings,clock,_=daily_fixture(tmp_path,monkeypatch,kickoff=NOW+timedelta(seconds=30),
+        projection_delay=31 if stage=="projections" else 0,snapshot_delay=31 if stage=="snapshot" else 0)
+    board=runtime.daily(settings=settings)
+    assert board["status"]=="ok" and not board["results"]
+    assert not any(row["eligible"] for row in board["forecasts"])
+    assert json.loads((settings.ledger_dir/"forecast_entries.json").read_text())==[]
+
+
+def test_daily_explicit_now_retains_deterministic_injection(tmp_path,monkeypatch):
+    runtime,settings,clock,_=daily_fixture(tmp_path,monkeypatch,projection_delay=1000,snapshot_delay=1000,explicit=True)
+    board=runtime.daily(settings=settings,now=NOW)
+    assert board["status"]=="ok" and board["results"]
+    assert all(row["recorded_at"]==runtime.stamp(NOW) for row in board["results"])
+    assert clock.value>NOW+timedelta(minutes=30)
+
+
+def test_positions_are_durable_before_later_publishing_work(tmp_path,monkeypatch):
+    runtime,settings,clock,weather=daily_fixture(tmp_path,monkeypatch)
+    captured=[]
+    def publish(*args):
+        locked=json.loads((settings.ledger_dir/"positions.json").read_text())
+        assert locked and all(row["recorded_at"]==runtime.stamp(clock.value) for row in locked)
+        captured.extend(locked)
+        clock.value+=timedelta(minutes=10)
+        return {"status":"unavailable"}
+    monkeypatch.setattr(weather,"publish_weather",publish)
+    board=runtime.daily(settings=settings)
+    assert board["results"]==captured
+
+
+def final_schedule(home=30,away=20):
+    return pd.DataFrame([{"game_id":1,"status":"STATUS_FINAL","home_score":home,"away_score":away}])
+
+
+def test_first_final_and_corrections_append_grade_history_without_mutating_prior_items():
+    row=record_positions([],score(full_state_event()),NOW)[0]
+    receipt=NOW+timedelta(days=2)
+    first=grade_positions([row],final_schedule(),now=receipt)[0]
+    assert first["grade_history"]==[{"outcome_received_at":receipt.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                    "actual_total":50.,"result":"win","profit_units":pytest.approx(100/110)}]
+    original=deepcopy(first)
+    same=grade_positions([first],final_schedule(),now=receipt+timedelta(hours=1))[0]
+    assert same==first
+    corrected=grade_positions([first],final_schedule(20,20),now=receipt+timedelta(hours=2))[0]
+    assert len(corrected["grade_history"])==2
+    assert corrected["grade_history"][0]==first["grade_history"][0]
+    assert corrected["grade_history"][1]["actual_total"]==40 and corrected["grade_history"][1]["result"]=="loss"
+    assert corrected["outcome_received_at"]==(receipt+timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    assert first==original and "grade_history" not in row
+
+
+def test_unchanged_legacy_settlement_does_not_get_an_invented_receipt():
+    row=score(full_state_event())[0]
+    old=grade_positions([row],final_schedule())[0]
+    assert "outcome_received_at" not in old and "grade_history" not in old
+    observed=grade_positions([old],final_schedule(),now=NOW+timedelta(days=2))[0]
+    assert observed==old
+    correction=grade_positions([old],final_schedule(20,20),now=NOW+timedelta(days=3))[0]
+    assert len(correction["grade_history"])==1
+    assert correction["grade_history"][0]["actual_total"]==40
+
+
+@pytest.mark.parametrize("score_value",[float("nan"),float("inf"),float("-inf"),None,-1,1.5,True])
+def test_invalid_final_scores_cannot_create_or_overwrite_grade(score_value):
+    row=record_positions([],score(full_state_event()),NOW)[0]
+    assert grade_positions([row],final_schedule(score_value,20),now=NOW+timedelta(days=2))==[row]
+    settled=grade_positions([row],final_schedule(),now=NOW+timedelta(days=2))[0]
+    assert grade_positions([settled],final_schedule(30,score_value),now=NOW+timedelta(days=3))==[settled]
+
+
+def test_final_total_change_is_a_new_observation_even_if_win_and_payout_unchanged():
+    row=record_positions([],score(full_state_event()),NOW)[0]
+    first=grade_positions([row],final_schedule(),now=NOW+timedelta(days=2))[0]
+    next_grade=grade_positions([first],final_schedule(31,20),now=NOW+timedelta(days=3))[0]
+    assert first["result"]==next_grade["result"]=="win" and len(next_grade["grade_history"])==2
+
+
+def test_untimed_legacy_correction_does_not_reuse_old_outcome_receipt():
+    row=record_positions([],score(full_state_event()),NOW)[0]
+    first=grade_positions([row],final_schedule(),now=NOW+timedelta(days=2))[0]
+    corrected=grade_positions([first],final_schedule(20,20))[0]
+    assert corrected["result"]=="loss" and "outcome_received_at" not in corrected
+    assert corrected["grade_history"]==first["grade_history"]

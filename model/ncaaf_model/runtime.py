@@ -306,12 +306,54 @@ def schedule_is_upcoming(game, now: datetime) -> bool:
                 and abs(canonical-provider) <= pd.Timedelta(hours=4))
 
 
+def quote_at_time(quote: dict, now: datetime) -> dict:
+    """Recheck the existing freshness policy against an actual decision clock."""
+    checked = dict(quote)
+    timestamp = pd.to_datetime(quote.get("quote_time"), utc=True, errors="coerce")
+    age = (now - timestamp).total_seconds() / 60 if pd.notna(timestamp) else None
+    if quote.get("freshness_basis") == "provider_full_state_receipt":
+        fresh = age is not None and -5/60 <= age <= MAX_OBSERVATION_MINUTES
+        updated = pd.to_datetime(quote.get("market_updated_at"), utc=True, errors="coerce")
+        if pd.notna(updated) and (now - updated).total_seconds() / 60 < -5:
+            fresh = False
+    else:
+        fresh = age is not None and -5 <= age <= MAX_QUOTE_MINUTES
+    checked.update(fresh=fresh, age_minutes=age)
+    return checked
+
+
+def forecasts_at_lock(forecasts: list, games: pd.DataFrame, now: datetime) -> list:
+    """Only withdraw expired eligibility; never reselect a side/book at lock."""
+    by_event = {str(game.event_id): game for _, game in games.iterrows()}
+    output = []
+    for original in forecasts:
+        row = {**original, "flags": list(original["flags"])}
+        game = by_event.get(str(row.get("event_id")))
+        if game is None or not schedule_is_upcoming(game, now):
+            row["flags"].append("official_schedule_not_upcoming_or_time_mismatch")
+        if not quote_at_time(row, now)["fresh"]:
+            row["flags"].append("quote_timestamp_missing_or_stale")
+        if game is not None:
+            quotes = {q["book"]: q for q in game.quotes}
+            if any(book not in quotes or not quote_at_time(quotes[book], now)["fresh"]
+                   for book in row.get("reference_books", [])):
+                row["flags"].append("reference_quote_timestamp_missing_or_stale")
+        row["flags"] = list(dict.fromkeys(row["flags"]))
+        row["eligible"] = bool(original["eligible"] and not row["flags"])
+        if not row["eligible"]:
+            row["paper_stake_fraction"] = 0.
+        output.append(row)
+    return output
+
+
 def score_games(games: pd.DataFrame, projections: dict, distribution: dict, now: datetime,
                 diagnostics: dict | None = None) -> list[dict]:
     """One best side/book per candidate/game, with independent peer consensus."""
     records = []
     sigma, family = distribution["sigma"], distribution["family"]
     for index, game in games.reset_index(drop=True).iterrows():
+        game = game.copy()
+        game["quotes"] = [quote_at_time(quote, now) for quote in game.quotes]
         quote_centers = {q["book"]: infer_center(q["line"], q["fair_over"], sigma, family) for q in game.quotes}
         for candidate, values in {PRICE_REFERENCE: None, **projections}.items():
             choices = []
@@ -429,7 +471,9 @@ def record_positions(existing: list, forecasts: list, now: datetime) -> list:
     keys = {(p["model_version"], p["candidate"], str(p["game_id"])) for p in existing}
     for row in forecasts:
         key = (row["model_version"], row["candidate"], str(row["game_id"]))
-        if row["eligible"] and key not in keys:
+        kickoff = pd.to_datetime(row.get("kickoff"), utc=True, errors="coerce")
+        if (row["eligible"] and key not in keys and pd.notna(kickoff) and kickoff > now
+                and quote_at_time(row, now)["fresh"]):
             position = {**row, "recorded_at": stamp(now), "result": "pending", "profit_units": None, "clv": None}
             position["position_id"] = hashlib.sha256("|".join(key).encode()).hexdigest()[:24]
             output.append(position)
@@ -453,8 +497,8 @@ def forecast_performance(entries: list) -> list:
     result = []
     for version, candidate in sorted({(r.get("model_version", "legacy"), r["candidate"]) for r in entries}):
         group = [r for r in entries if (r.get("model_version", "legacy"), r["candidate"]) == (version, candidate)]
-        sample = [r for r in group if r["result"] != "pending"]
-        decided = [r for r in sample if r["result"] != "push"]
+        sample = [r for r in group if r["result"] in {"win", "loss", "push"}]
+        decided = [r for r in sample if r["result"] in {"win", "loss"}]
         probs = np.array([r["win_probability"] / (1 - r["push_probability"]) for r in decided])
         actual = np.array([r["result"] == "win" for r in decided], dtype=float)
         errors = np.array([r["actual_total"] - r["projected_total"] for r in sample])
@@ -466,7 +510,8 @@ def forecast_performance(entries: list) -> list:
                 bins.append({"lower": lower, "upper": min(1., upper), "games": int(keep.sum()),
                              "predicted_win_rate": float(probs[keep].mean()), "observed_win_rate": float(actual[keep].mean())})
         result.append({"model_version": version, "candidate": candidate, "games": len(sample),
-            "pending": sum(r["result"] == "pending" for r in group),
+            "pending": sum(r["result"] not in {"win", "loss", "push", "void"} for r in group),
+            "voids": sum(r["result"] == "void" for r in group),
             "mae": float(abs(errors).mean()) if len(sample) else None,
             "rmse": float(np.sqrt((errors**2).mean())) if len(sample) else None,
             "brier": float(((probs - actual)**2).mean()) if len(decided) else None,
@@ -479,28 +524,58 @@ def forecast_performance(entries: list) -> list:
     return result
 
 
-def grade_positions(positions: list, schedule: pd.DataFrame) -> list:
+def grade_positions(positions: list, schedule: pd.DataFrame, now: datetime | None = None) -> list:
+    """Update grades; supplied receipt time records only new/changed observations.
+
+    No timestamp is inferred for an unchanged legacy settlement. Without an
+    explicit time, legacy callers retain their untimestamped grading behavior.
+    """
+    if now is not None and (now.tzinfo is None or now.utcoffset() is None):
+        raise ValueError("Timezone-aware outcome receipt required")
     final = schedule.loc[schedule.status.eq("STATUS_FINAL")].drop_duplicates("game_id", keep="last")
-    finals = {str(int(row.game_id)): row for row in final.itertuples()}
+    finals = {}
+    for game in final.itertuples():
+        try:
+            identity = int(game.game_id)
+            home, away = float(game.home_score), float(game.away_score)
+            if (isinstance(game.home_score, (bool, np.bool_)) or isinstance(game.away_score, (bool, np.bool_))
+                    or isinstance(game.game_id, (bool, np.bool_))
+                    or isinstance(game.game_id, (float, np.floating)) and not float(game.game_id).is_integer()
+                    or not all(math.isfinite(value) for value in (home, away, home + away)) or identity <= 0
+                    or min(home, away) < 0 or not home.is_integer() or not away.is_integer()):
+                continue
+            finals[str(identity)] = home + away
+        except (ValueError, TypeError, OverflowError):
+            continue
     output = []
     for position in positions:
         row = dict(position)
-        game = finals.get(str(row["game_id"]))
-        if game is not None and pd.notna(game.home_score) and pd.notna(game.away_score):
-            actual = float(game.home_score) + float(game.away_score)
+        actual = finals.get(str(row["game_id"]))
+        if actual is not None:
             # Score corrections update grading without changing the locked entry.
             won = actual > row["line"] if row["side"] == "over" else actual < row["line"]
             row["actual_total"] = actual
             row["result"] = "push" if actual == row["line"] else "win" if won else "loss"
-            payout = row.get("decimal_odds", 1 + (row["american_odds"] / 100 if row["american_odds"] > 0 else 100 / abs(row["american_odds"]))) - 1
+            payout = (row["decimal_odds"] - 1 if "decimal_odds" in row else
+                      row["american_odds"] / 100 if row["american_odds"] > 0 else 100 / abs(row["american_odds"]))
             row["profit_units"] = 0. if row["result"] == "push" else payout if won else -1.
+            changed = any(position.get(key) != row[key] for key in ("actual_total", "result", "profit_units"))
+            if changed:
+                if now is not None:
+                    receipt = {"outcome_received_at": stamp(now), **{key: row[key] for key in ("actual_total", "result", "profit_units")}}
+                    row["grade_history"] = [*position.get("grade_history", []), receipt]
+                    row["outcome_received_at"] = receipt["outcome_received_at"]
+                else:
+                    # A legacy untimed correction cannot inherit the old
+                    # outcome's receipt timestamp. Its old history stays intact.
+                    row.pop("outcome_received_at", None)
         output.append(row)
     return output
 
 
 def performance(positions: list, candidate: str = PRIMARY, version: str = VERSION) -> dict:
     group = [p for p in positions if p["candidate"] == candidate and p.get("model_version", "legacy") == version]
-    rows = [p for p in group if p["result"] != "pending"]
+    rows = [p for p in group if p["result"] in {"win", "loss", "push"}]
     profits = np.array([p["profit_units"] for p in rows], float)
     low = high = None
     weeks = {}
@@ -513,7 +588,8 @@ def performance(positions: list, candidate: str = PRIMARY, version: str = VERSIO
         draws = np.random.default_rng(20260908).integers(0, len(totals), (5000, len(totals)))
         sampled = totals[draws].sum(axis=1)
         low, high = np.quantile(sampled[:, 0] / sampled[:, 1], [.025, .975]).tolist()
-    return {"bets": len(rows), "pending": sum(p["result"] == "pending" for p in group),
+    return {"bets": len(rows), "pending": sum(p["result"] not in {"win", "loss", "push", "void"} for p in group),
+            "voids": sum(p["result"] == "void" for p in group),
             "wins": sum(p["result"] == "win" for p in rows), "losses": sum(p["result"] == "loss" for p in rows),
             "pushes": sum(p["result"] == "push" for p in rows), "profit_units": float(profits.sum()),
             "roi": float(profits.mean()) if len(rows) else None, "roi_95_low": low, "roi_95_high": high,
@@ -562,8 +638,9 @@ def daily(settings=None, now: datetime | None = None) -> dict:
         schedule, diagnostics = refresh_inputs(settings, now)
         from .weather_publishing import collect_inputs, publish_weather
         weather_state = collect_inputs(settings, schedule, datetime.now(timezone.utc) if use_wall_clock else now)
-        positions = grade_positions(positions, schedule)
-        forecast_entries = grade_positions(forecast_entries, schedule)
+        outcome_now = datetime.now(timezone.utc) if use_wall_clock else now
+        positions = grade_positions(positions, schedule, now=outcome_now)
+        forecast_entries = grade_positions(forecast_entries, schedule, now=outcome_now)
         events, odds_diagnostics = fetch_odds(settings, now)
         diagnostics.update(odds_diagnostics)
         if use_wall_clock:
@@ -583,25 +660,24 @@ def daily(settings=None, now: datetime | None = None) -> dict:
         if not odds.empty:
             matched = attach_totals_schedule(odds, schedule)
             diagnostics["schedule_matches"] = int(matched.schedule_match.sum())
-            approved = {str(row.event_id): row for _, row in matched.iterrows() if schedule_is_upcoming(row, now)}
-            scan_events = [{**event, "commence_time": approved[str(event["id"])].canonical_kickoff}
-                           for event in events if str(event["id"]) in approved]
-            market_scan = clean_json(scan_market_opportunities(scan_events, now, settings.allowed_books))
             games, projections = candidate_projections(settings, matched, now, diagnostics)
             distribution = json.loads((settings.models_dir / "score_distribution_v2.json").read_text())
             if (distribution.get("market_provenance") != "cfbd_and_verified_pregame_provider_only" or
                 not diagnostics.get("active_data_fingerprint") or
                 distribution.get("data_fingerprint") != diagnostics.get("active_data_fingerprint")):
                 raise ValueError("Active model and distribution provenance do not match")
+            if use_wall_clock:
+                now = datetime.now(timezone.utc)
+                board["generated_at"] = stamp(now)
+                board["date"] = now.astimezone(TZ).date().isoformat()
+            approved = {str(row.event_id): row for _, row in games.iterrows() if schedule_is_upcoming(row, now)}
+            scan_events = [{**event, "commence_time": approved[str(event["id"])].canonical_kickoff}
+                           for event in events if str(event["id"]) in approved]
+            market_scan = clean_json(scan_market_opportunities(scan_events, now, settings.allowed_books))
             forecasts = score_games(games, projections, distribution, now, diagnostics)
             if board["candidates"]:
                 board["historical_evidence_status"] = "replacement_development_only"
                 board["prior_historical_evidence_quarantined"] = True
-        current_picks = [r for r in forecasts if r["eligible"] and r["candidate"] == PRIMARY]
-        current_picks.sort(key=lambda r: r["robust_ev"], reverse=True)
-        for row in current_picks:
-            day = datetime.fromisoformat(row["kickoff"].replace("Z", "+00:00")).astimezone(TZ).date().isoformat()
-            board["today_picks" if day == board["date"] else "upcoming_picks"].append(row)
         snapshot = {"as_of": stamp(now), "model_version": VERSION, "events": events, "forecasts": forecasts,
                     "market_opportunities": market_scan,
                     "features": diagnostics.pop("feature_snapshot", {}),
@@ -615,6 +691,29 @@ def daily(settings=None, now: datetime | None = None) -> dict:
             raise RuntimeError("Snapshot collision")
         atomic_write_bytes(snapshot_path, compressed)
         diagnostics["snapshot_sha256"] = hashlib.sha256(encoded).hexdigest()
+        diagnostics["snapshot_as_of"] = snapshot["as_of"]
+        # Archiving/hashing can be slow too. Validate the original offers at the
+        # actual lock time, and make the ledgers durable before later publishing.
+        if use_wall_clock:
+            now = datetime.now(timezone.utc)
+            board["generated_at"] = stamp(now)
+            board["date"] = now.astimezone(TZ).date().isoformat()
+        forecasts = forecasts_at_lock(forecasts, games, now)
+        diagnostics["decision_locked_at"] = stamp(now)
+        locked_positions = record_positions(positions, forecasts, now)
+        write_json(positions_path, locked_positions)
+        positions = locked_positions
+        locked_forecasts = record_forecasts(forecast_entries, forecasts, now)
+        write_json(forecasts_path, locked_forecasts)
+        forecast_entries = locked_forecasts
+        current_quotes = [quote_at_time(q, now) for qs in games.get("quotes", []) for q in qs]
+        diagnostics["fresh_total_quotes"] = sum(q["fresh"] for q in current_quotes)
+        diagnostics["fresh_sportsbooks"] = sorted({q["book"] for q in current_quotes if q["fresh"]})
+        current_picks = sorted([r for r in forecasts if r["eligible"] and r["candidate"] == PRIMARY],
+                               key=lambda r: r["robust_ev"], reverse=True)
+        for row in current_picks:
+            day = datetime.fromisoformat(row["kickoff"].replace("Z", "+00:00")).astimezone(TZ).date().isoformat()
+            board["today_picks" if day == board["date"] else "upcoming_picks"].append(row)
         # The full comparison remains in the immutable compressed snapshot;
         # the page needs all positive-floor pairs and a small inspection sample.
         board["market_opportunities"] = {**market_scan,
@@ -625,13 +724,12 @@ def daily(settings=None, now: datetime | None = None) -> dict:
             "dominance_available": len(market_scan.get("dominance", [])),
             "quote_observation_count": len(market_scan.get("quote_observations", [])),
             "full_archive": f"https://github.com/drhyphy/ncaa-football-totals/blob/main/model/data/runtime/{snapshot_path.name}"}
-        positions = record_positions(positions, forecasts, now)
-        forecast_entries = record_forecasts(forecast_entries, forecasts, now)
         board.update(status="ok", forecasts=forecasts,
-                     message=f"{len(board['today_picks'])} qualifying experimental pick(s) for today. No high-confidence profitable model is established.")
+                     message=f"{len(board['today_picks'])} qualifying ridge pick(s) for today. Selections and outcomes are tracked prospectively as paper bets.")
         board["message"] += f" {len(diagnostics['fresh_sportsbooks'])} sportsbooks are currently observed. Scoring-model selections require positive modeled and stressed EV; the weather strategy has separate published rules."
         board["comparison_picks"] = sorted([r for r in forecasts if r["eligible"] and r["candidate"] != PRIMARY], key=lambda r:r["robust_ev"], reverse=True)
-        board["weather_strategy"] = publish_weather(settings, schedule, games, weather_state, now)
+        board["weather_strategy"] = publish_weather(settings, schedule, games, weather_state,
+                                                     datetime.now(timezone.utc) if use_wall_clock else now)
     except Exception as exc:
         board.update(status="unavailable", today_picks=[], upcoming_picks=[], forecasts=[])
         diagnostics.pop("feature_snapshot", None)
@@ -645,6 +743,8 @@ def daily(settings=None, now: datetime | None = None) -> dict:
     board["candidate_performance"] = {name: performance(positions, name) for name in sorted({p["candidate"] for p in positions})}
     board["results"] = positions
     board["forecast_performance"] = forecast_performance(forecast_entries)
+    from .board_metadata import attach_tracking
+    attach_tracking(board, settings, positions, board["forecast_performance"])
     closing_path = settings.ledger_dir / "closing_summary.json"
     if closing_path.exists():
         board["closing_summary"] = json.loads(closing_path.read_text())

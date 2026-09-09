@@ -96,7 +96,7 @@ def publish_weather(settings, schedule, games, state, now):
     from .runtime import grade_positions, performance, record_positions, write_json, stamp
     path = settings.ledger_dir / "weather_positions.json"
     positions = json.loads(path.read_text()) if path.exists() else []
-    positions = grade_positions(positions, schedule)
+    positions = grade_positions(positions, schedule, now=now)
     forecasts_path = settings.ledger_dir / "weather_forecasts.json"
     forecasts = json.loads(forecasts_path.read_text()) if forecasts_path.exists() else []
     rows = select_paper_weather(games, state.get("features", []), now) if state.get("status") == "ok" and not games.empty else []

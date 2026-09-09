@@ -7,6 +7,13 @@
   "use strict";
   const ZONE = "America/New_York";
   const MAX_AGE = 26 * 60 * 60 * 1000;
+  const PRIMARY = "opponent_adjusted_ridge";
+  const ACTIVE_CANDIDATES = [
+    {candidate: PRIMARY, label: "Market-anchored opponent-adjusted ridge", role: "primary"},
+    {candidate: "opponent_adjusted_structural", label: "Structural blend", role: "comparison"},
+    {candidate: "market_price_reference", label: "Market-price reference", role: "comparison"},
+    {candidate: "published_weather_under", label: "Weather Under", role: "comparison"}
+  ];
   const finite = value => typeof value === "number" && Number.isFinite(value);
   const number = (value, digits = 1) => finite(value) ? value.toLocaleString("en-US", {minimumFractionDigits: digits, maximumFractionDigits: digits}) : "—";
   const percent = (value, signed = false, digits = 1) => finite(value) ? `${signed && value > 0 ? "+" : ""}${number(value * 100, digits)}%` : "—";
@@ -40,6 +47,40 @@
       return kickoff > now.getTime() && Number.isFinite(quoteAge) && quoteAge >= -5 * 60 * 1000 && quoteAge <= MAX_AGE &&
         (today ? dateKey(pick.kickoff) === dateKey(now) : dateKey(pick.kickoff) > dateKey(now));
     }).sort((a, b) => (finite(b.robust_ev) ? b.robust_ev : -Infinity) - (finite(a.robust_ev) ? a.robust_ev : -Infinity));
+  }
+  function primaryModel(board) {
+    const metadata = board.primary_model?.candidate === PRIMARY ? board.primary_model : {};
+    return {candidate: PRIMARY, label: metadata.label || ACTIVE_CANDIDATES[0].label,
+      model_version: metadata.model_version || metadata.version || board.model_version || null,
+      description: metadata.description || "Starts from the market total, then adjusts for each team and opponent. Forecasts and paper selections are recorded before kickoff.",
+      protocol_url: metadata.protocol_url};
+  }
+  function primaryPicks(board, list, now = new Date(), today = true) {
+    const version = primaryModel(board).model_version;
+    return currentPicks(board, list, now, today).filter(row => row.candidate === PRIMARY && (!version || !row.model_version || row.model_version === version));
+  }
+  function candidateTracking(board) {
+    const primary = primaryModel(board), published = items(board.candidate_tracking);
+    return ACTIVE_CANDIDATES.map(definition => {
+      const row = published.find(row => row.candidate === definition.candidate) || {};
+      const weather = definition.candidate === "published_weather_under";
+      const version = definition.candidate === PRIMARY ? primary.model_version || row.model_version : row.model_version || (weather ? board.weather_strategy?.version : primary.model_version);
+      const compatible = metric => metric && (!metric.candidate || metric.candidate === definition.candidate) && (!version || !metric.model_version || metric.model_version === version);
+      const legacy = weather ? board.weather_strategy?.performance : board.candidate_performance?.[definition.candidate];
+      const fallback = definition.candidate === PRIMARY && compatible(board.performance) ? board.performance : legacy;
+      const performance = compatible(row.performance) ? row.performance : compatible(fallback) ? fallback : null;
+      const forecast = compatible(row.forecast_performance) ? row.forecast_performance : items(board.forecast_performance).find(m => m.candidate === definition.candidate && compatible(m)) || null;
+      return {...definition, label: row.label || definition.label, model_version: version, performance,
+        forecast_performance: weather ? null : forecast, status: row.status || "active_paper",
+        protocol_url: row.protocol_url || (definition.candidate === PRIMARY ? primary.protocol_url : null)};
+    });
+  }
+  function candidateResults(board, candidate, version) {
+    const rows = candidate === "published_weather_under" ? board.weather_strategy?.results : board.results;
+    return dedupeResults(rows).filter(row => row.candidate === candidate && (!version || row.model_version === version));
+  }
+  function primaryResults(board) {
+    return candidateResults(board, PRIMARY, primaryModel(board).model_version);
   }
   function weatherHealth(board, now = new Date()) {
     const parent = health(board, now);
@@ -200,17 +241,18 @@
       $("status-banner").className = `status-banner ${state.kind}`;
       $("status-title").textContent = state.title; $("status-message").textContent = state.message;
       $("updated-at").textContent = Number.isFinite(epoch(board.generated_at)) ? `Published ${dateLabel(board.generated_at)}` : "Publication time unavailable";
-      const today = currentPicks(board, board.today_picks, now), upcoming = currentPicks(board, board.upcoming_picks, now, false);
+      const today = primaryPicks(board, board.today_picks, now), upcoming = primaryPicks(board, board.upcoming_picks, now, false);
       $("pick-count").textContent = String(today.length);
       if (today.length) $("today-picks").replaceChildren(...today.map(pickCard));
       else empty($("today-picks"), state.usable ? "No qualifying picks today" : "Selections paused", state.usable ? "No current pregame selection passes the publication rules. The model will continue to track future matchups and record its results." : state.message);
       $("upcoming-count").textContent = upcoming.length ? `${upcoming.length} future selections` : "";
       if (!upcoming.length) empty($("upcoming-picks"), "", state.usable ? "No future selections currently pass the publication rules." : "Watchlist paused until a current publication is available.", true);
-      else table($("upcoming-picks"), "Upcoming experimental selections", ["Matchup", "Selection", "Projection", "Win probability", "Stressed EV", "Quote"], upcoming.map(p => [
+      else table($("upcoming-picks"), "Primary ridge model upcoming experimental selections", ["Matchup", "Selection", "Projection", "Win probability", "Stressed EV", "Quote"], upcoming.map(p => [
         cell(`${p.away_team} at ${p.home_team}`, dateLabel(p.kickoff)), cell(`${titleCase(p.side)} ${number(p.line)} (${odds(p.american_odds)})`, titleCase(p.sportsbook)), cell(number(p.projected_total), titleCase(p.candidate)), cell(percent(p.win_probability), `Push ${percent(p.push_probability)}`), cell(percent(p.robust_ev, true), "Model estimate", finite(p.robust_ev) && p.robust_ev > 0 ? "positive" : ""), cell(dateLabel(p.quote_time), quoteLabel(p))
       ]));
       renderMarketChecks(now);
       renderWeather(now);
+      renderOtherPicks(now);
     }
     function weatherCard(pick, index) {
       const card = element("article", null, "pick-card weather-card");
@@ -434,16 +476,66 @@
       $("archived-replay-times").replaceChildren(...snapshots.map(row => element("li", `${dateLabel(row.observed_at, {second:"2-digit"})} · ${number(row.games, 0)} games in snapshot`)));
     }
     function renderPerformance() {
-      const p = board.performance || {}, settled = Number(p.wins || 0) + Number(p.losses || 0) + Number(p.pushes || 0);
+      const tracking = candidateTracking(board)[0], p = tracking.performance || {}, settled = Number(p.wins || 0) + Number(p.losses || 0) + Number(p.pushes || 0);
       const stats = $("performance-stats"); stats.replaceChildren();
       [["Settled paper bets", number(settled, 0), `${number(p.wins, 0)} W · ${number(p.losses, 0)} L · ${number(p.pushes, 0)} P`], ["Profit / loss", settled ? `${finite(p.profit_units) && p.profit_units > 0 ? "+" : ""}${number(p.profit_units, 2)} u` : "—", "One unit per paper selection"], ["Realized ROI", settled ? percent(p.roi, true) : "—", "Return on flat one-unit stakes"], ["95% ROI interval", settled && finite(p.roi_95_low) && finite(p.roi_95_high) ? `${percent(p.roi_95_low)} / ${percent(p.roi_95_high)}` : "—", "Uncertainty in forward returns"]].forEach(([label, value, detail]) => {
         const node = element("div", null, "stat"); node.append(element("span", label, "stat-label"), element("span", value, "stat-value"), element("span", detail, "stat-detail")); stats.append(node);
       });
-      $("performance-note").textContent = `Primary candidate: ${titleCase(p.candidate || "opponent_adjusted_ridge")} · ${p.model_version || board.model_version || "Version unavailable"}. ${settled ? "Paper results use one recorded selection per version, candidate and game. Returns may differ from executable betting results." : "No settled forward record yet. A profitable live edge has not been demonstrated."}`;
-      const rows = dedupeResults(board.results);
+      $("performance-note").textContent = `Primary model: ${tracking.label} · ${tracking.model_version || "Version unavailable"} · ${number(p.pending, 0)} pending paper selections. ${settled ? "Paper results use one recorded selection per version, candidate and game. Returns may differ from executable betting results." : "The prospective record is building. No settled return is available yet."}`;
+      const forecast = tracking.forecast_performance;
+      $("primary-forecast-summary").textContent = forecast ? `Forecast record: ${number(forecast.forecast_entries, 0)} recorded games · ${number(forecast.games, 0)} settled · ${number(forecast.pending, 0)} pending · ${number(forecast.abstentions, 0)} abstentions. Forecast accuracy includes games with no paper selection.` : "The primary model's forecast record will appear when its first observations are published.";
+      if (forecast) table($("primary-forecast-table"), "Primary ridge forecast accuracy including abstentions", ["Recorded forecasts", "Settled", "MAE", "RMSE", "Brier", "Log loss"], [[cell(number(forecast.forecast_entries, 0)), cell(number(forecast.games, 0)), cell(number(forecast.mae, 2)), cell(number(forecast.rmse, 2)), cell(number(forecast.brier, 3), `${number(forecast.probability_scoring_games, 0)} scored`), cell(number(forecast.log_loss, 3))]]);
+      else empty($("primary-forecast-table"), "", "Forecast accuracy is not available yet.", true);
+      const rows = primaryResults(board);
       if (!rows.length) { empty($("results-table"), "", "No forward ledger rows have been published yet.", true); return; }
-      table($("results-table"), "Deduplicated forward paper selections", ["Matchup", "Candidate", "Recorded selection", "Result", "Profit"], rows.map(row => [
+      table($("results-table"), "Primary ridge prospective paper selections, deduplicated by game and version", ["Matchup", "Candidate", "Recorded selection", "Result", "Profit"], rows.map(row => [
         cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(titleCase(row.candidate), `${row.model_version || "Legacy version"}${row.recorded_at ? ` · Recorded ${dateLabel(row.recorded_at)}` : ""}`), cell(`${titleCase(row.side)} ${number(row.line)} (${odds(row.american_odds)})`), cell(titleCase(row.result || "pending")), cell(finite(row.profit_units) ? `${row.profit_units > 0 ? "+" : ""}${number(row.profit_units, 2)} u` : "—", null, row.profit_units > 0 ? "positive" : row.profit_units < 0 ? "negative" : "")
+      ]));
+    }
+    function renderPrimary() {
+      const model = primaryModel(board);
+      $("primary-model-name").textContent = model.label;
+      $("primary-model-description").textContent = model.description;
+      $("primary-model-version").textContent = `${model.model_version || "Version pending"} · Prospective paper tracking`;
+      const evaluation = board.registered_evaluation || {};
+      const dates = [evaluation.cohort_start, evaluation.cohort_end, evaluation.formal_evaluation_at];
+      $("registered-evaluation-note").textContent = dates.every(value => Number.isFinite(epoch(value))) ? `Registered cohort: ${dateLabel(dates[0], {hour:undefined, minute:undefined, timeZoneName:undefined, year:"numeric"})}–${dateLabel(dates[1], {hour:undefined, minute:undefined, timeZoneName:undefined, year:"numeric"})}. Formal evaluation: ${dateLabel(dates[2])}. Interim results describe the accumulating sample; profitability has not been established.` : "Selections are recorded before kickoff and evaluated prospectively under the fixed protocol. Small samples and modeled EV do not establish profitability.";
+      $("registered-evaluation-link").href = safeUrl(evaluation.protocol_url || model.protocol_url) || "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md";
+      const reportUrl = safeUrl(evaluation.report_url);
+      $("prospective-evaluation-link").hidden = !reportUrl;
+      if (reportUrl) {
+        $("prospective-evaluation-link").href = reportUrl;
+        $("prospective-evaluation-link").textContent = epoch(evaluation.formal_evaluation_at) > Date.now() ? "Interim prospective report · descriptive only ↗" : "Prospective evaluation report ↗";
+      }
+    }
+    function renderTracking() {
+      const rows = candidateTracking(board).filter(row => row.candidate !== PRIMARY);
+      table($("candidate-tracking-table"), "Other active candidates with separate prospective paper records", ["Candidate", "Status", "Forecast record", "Pending paper", "Paper W–L–P", "Paper ROI", "95% ROI interval"], rows.map(row => {
+        const p = row.performance || {}, f = row.forecast_performance;
+        const settled = Number(p.wins || 0)+Number(p.losses || 0)+Number(p.pushes || 0);
+        const label = cell(row.label, row.model_version || "Version pending");
+        if (safeUrl(row.protocol_url)) label.append(link("Protocol ↗", row.protocol_url));
+        return [label, cell(row.status === "active_paper" ? "Active · paper tracking" : titleCase(row.status)),
+          row.candidate === "published_weather_under" ? cell("Fixed weather rule", "No individual probability forecasts") : f ? cell(`${number(f.games, 0)} settled / ${number(f.pending, 0)} pending`, `${number(f.abstentions, 0)} abstentions`) : cell("Awaiting forecast record"),
+          cell(number(p.pending, 0), null, "numeric"), cell(`${number(p.wins, 0)}–${number(p.losses, 0)}–${number(p.pushes, 0)}`, row.performance ? "Separate paper ledger" : "Awaiting published record"),
+          cell(settled ? percent(p.roi, true) : "—", settled ? null : "No settled return", "numeric"),
+          cell(settled && finite(p.roi_95_low) && finite(p.roi_95_high) ? `${percent(p.roi_95_low)} to ${percent(p.roi_95_high)}` : "Not estimated")];
+      }));
+      const records = rows.flatMap(row => candidateResults(board, row.candidate, row.model_version));
+      if (!records.length) empty($("other-candidate-records"), "", "No paper ledger entries for the other active candidates yet. Their trackers remain visible above.", true);
+      else table($("other-candidate-records"), "Other candidates' separate prospective paper selections", ["Candidate", "Matchup", "Archived selection", "Result", "Profit"], records.map(row => [
+        cell(rows.find(candidate => candidate.candidate === row.candidate)?.label || titleCase(row.candidate), row.model_version),
+        cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(`${titleCase(row.side)} ${number(row.line)} (${odds(row.american_odds)})`, row.recorded_at ? `Recorded ${dateLabel(row.recorded_at)}` : "Recorded price"),
+        cell(titleCase(row.result || "pending")), cell(finite(row.profit_units) ? `${row.profit_units > 0 ? "+" : ""}${number(row.profit_units, 2)} u` : "—", null, "numeric")
+      ]));
+    }
+    function renderOtherPicks(now) {
+      const trackers = candidateTracking(board).filter(row => row.candidate !== PRIMARY && row.candidate !== "published_weather_under");
+      const source = [...items(board.comparison_picks), ...items(board.today_picks), ...items(board.upcoming_picks)].filter(row => trackers.some(t => t.candidate === row.candidate && (!t.model_version || !row.model_version || row.model_version === t.model_version)));
+      const rows = dedupeResults([...currentPicks(board, source, now), ...currentPicks(board, source, now, false)]);
+      if (!rows.length) empty($("other-current-picks"), "", "No current comparison selections. The fixed weather rule has its own selections below.", true);
+      else table($("other-current-picks"), "Other candidates' current experimental comparison snapshots", ["Candidate", "Matchup", "Selection", "Quote observed", "Modeled EV"], rows.map(row => [
+        cell(trackers.find(t => t.candidate === row.candidate).label), cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(`${titleCase(row.side)} ${number(row.line)} (${odds(row.american_odds)})`, titleCase(row.sportsbook)), cell(dateLabel(row.quote_time), "Acceptance unconfirmed"), cell(percent(row.expected_value, true), "Model estimate")
       ]));
     }
     function renderTransparency() {
@@ -507,7 +599,7 @@
     function render(data) {
       board = data;
       $("edition-date").textContent = new Intl.DateTimeFormat("en-US", {timeZone: ZONE, weekday: "long", month: "long", day: "numeric", year: "numeric"}).format(new Date());
-      renderPicks(new Date()); renderCandidates(); renderCalibrationStudy(); renderOrdinaryStudy(); renderDirectProbabilityStudy(); renderPbpStudy(); renderScoreShapeStudy(); renderArchivedReplay(); renderPerformance(); renderTransparency();
+      renderPrimary(); renderPicks(new Date()); renderPerformance(); renderTracking(); renderCandidates(); renderCalibrationStudy(); renderOrdinaryStudy(); renderDirectProbabilityStudy(); renderPbpStudy(); renderScoreShapeStudy(); renderArchivedReplay(); renderTransparency();
     }
     $("candidate-filter").addEventListener("change", renderForecasts);
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
@@ -517,5 +609,5 @@
     fetch(`data/weather-revision-study.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherStudy = data; renderWeatherStudy(new Date());}).catch(() => {});
     setInterval(() => { if (board) renderPicks(new Date()); if (weatherRevisions) renderWeatherRevisions(new Date()); if (weatherSeason) renderWeatherSeason(new Date()); if (weatherStudy) renderWeatherStudy(new Date()); }, 60000);
   }
-  return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, weatherRevisionHealth, weatherSeasonHealth, weatherStudyHealth, weatherStudyReportUrl, upcomingStudyPositions, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
+  return {dateKey, health, currentPicks, primaryPicks, primaryModel, primaryResults, candidateTracking, candidateResults, currentWeatherPicks, weatherHealth, weatherMeasurements, weatherRevisionHealth, weatherSeasonHealth, weatherStudyHealth, weatherStudyReportUrl, upcomingStudyPositions, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
 });

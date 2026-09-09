@@ -8,33 +8,57 @@
   <title>College Football Totals · Daily model board</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101e31'/%3E%3Cpath d='M7 23V15M16 23V7M25 23V11' stroke='%237bedb0' stroke-width='4'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
-  <script defer src="app.js?v=ccbbd4faa0ec"></script>
+  <script defer src="app.js?v=33aaa5b5db8f"></script>
 </head>
 <body>
   <a class="skip-link" href="#today">Skip to today's board</a>
   <header class="masthead">
     <div class="masthead-inner">
       <a class="wordmark" href="./" aria-label="College Football Totals home"><span class="brand-mark" aria-hidden="true">∑</span><span>COLLEGE FOOTBALL <strong>TOTALS</strong></span></a>
-      <nav aria-label="Main navigation"><a href="#today">Daily board</a><a href="#evidence">Evidence</a><a href="#results">Results</a></nav>
+      <nav aria-label="Main navigation"><a href="#today">Picks</a><a href="#results">Record</a><a href="#other-candidates">Candidates</a></nav>
     </div>
   </header>
   <main>
     <section class="page-intro" aria-labelledby="page-title">
-      <div><p class="eyebrow">PUBLIC DATA · PROSPECTIVE TRACKING</p><h1 id="page-title">The daily totals board.</h1><p class="intro-copy">Model projections, available prices, and the evidence behind them.</p></div>
+      <div class="primary-intro"><p class="eyebrow primary-eyebrow">PRIMARY MODEL</p><h1 id="page-title"><span id="primary-model-name">Market-anchored opponent-adjusted ridge</span></h1><p id="primary-model-description" class="intro-copy">Starts from the market total, then adjusts for each team and opponent. Forecasts and paper selections are recorded before kickoff.</p><p id="primary-model-version" class="small-meta primary-version">Prospective paper tracking</p></div>
       <div class="edition"><p id="edition-date">Daily edition</p><span>Scheduled at 6:30 AM Eastern</span><a id="raw-data-link" href="data/board.json">Download board JSON <span aria-hidden="true">↗</span></a></div>
     </section>
 
     <div class="status-banner loading" id="status-banner" role="status" aria-live="polite"><span class="status-dot" aria-hidden="true"></span><div><strong id="status-title">Loading the latest board</strong><p id="status-message">Checking the publication time and data status.</p></div><span id="updated-at" class="update-time"></span></div>
-    <div class="status-banner warning historical-alert" id="historical-alert" role="status" hidden><span class="status-dot" aria-hidden="true"></span><div><strong id="historical-alert-title">Historical evidence quarantined</strong><p id="historical-alert-copy">The previous market archive includes in-play odds. Historical model comparisons and betting returns are withdrawn pending clean pregame data. Current projections remain experimental.</p></div></div>
+
 
     <section id="today" class="section-block" aria-labelledby="today-title">
-      <div class="section-heading"><div><p class="eyebrow">01 / DAILY SELECTIONS</p><h2 id="today-title">Today's top picks <span id="pick-count" class="count">—</span></h2></div><span class="badge research-badge">Experimental · Paper tracking</span></div>
-      <p class="section-description">Ranked by stressed modeled expected value. An empty board is a valid decision. A modeled advantage has not yet established a profitable betting edge.</p>
+      <div class="section-heading"><div><p class="eyebrow">01 / PRIMARY MODEL PICKS</p><h2 id="today-title">Today's ridge picks <span id="pick-count" class="count">—</span></h2></div><span class="badge research-badge">Experimental · Paper tracking</span></div>
+      <p class="section-description">Primary ridge selections, ranked by stressed modeled expected value. An empty board is a valid decision. A modeled advantage has not yet established a profitable betting edge.</p>
       <div id="today-picks" class="pick-grid"><div class="empty-state"><span class="empty-symbol" aria-hidden="true">—</span><h3>Checking today's slate</h3><p>Only current, pregame selections will appear here.</p></div></div>
     </section>
 
-    <section id="weather" class="section-block weather-section" aria-labelledby="weather-title">
-      <div class="section-heading"><div><p class="eyebrow">02 / WEATHER PAPER STRATEGY</p><h2 id="weather-title">A fixed rule. A separate record.</h2></div><span class="badge research-badge">Forward paper experiment</span></div>
+    <section id="upcoming" class="section-block" aria-labelledby="upcoming-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / PRIMARY MODEL WATCHLIST</p><h2 id="upcoming-title">Upcoming ridge watchlist</h2></div><span id="upcoming-count" class="small-meta"></span></div>
+      <p class="section-description">Early prices can change before game day. Probabilities are raw model estimates; comparable over forecasts were too optimistic in 2025. Stressed EV is a sensitivity estimate, not a confidence bound.</p>
+      <div id="upcoming-picks" class="table-container"></div>
+    </section>
+
+    <section id="results" class="section-block" aria-labelledby="results-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / PRIMARY MODEL RESULTS</p><h2 id="results-title">Prospective paper record</h2></div><a href="data/board.json" class="text-link">View published data <span aria-hidden="true">↗</span></a></div>
+      <p class="section-description">The primary ridge model has one paper record per game and version. Repeated daily publications do not create additional bets. These are archived prices, not currently available offers.</p>
+      <div class="resource-links weather-report-links"><a id="registered-evaluation-link" href="https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md" target="_blank" rel="noopener noreferrer">Fixed prospective evaluation protocol ↗</a><a id="prospective-evaluation-link" href="data/prospective-evaluation.json" hidden>Prospective evaluation report ↗</a></div>
+      <p id="registered-evaluation-note" class="small-meta">Selections are recorded before kickoff and evaluated prospectively under the fixed protocol.</p>
+      <div id="performance-stats" class="stat-grid"></div>
+      <p id="performance-note" class="small-meta performance-note"></p>
+      <div id="results-table" class="table-container"></div>
+      <p id="primary-forecast-summary" class="small-meta primary-forecast-summary"></p>
+      <details class="forecast-details"><summary>Primary model forecast accuracy, including abstentions</summary><div id="primary-forecast-table" class="table-container"></div></details>
+    </section>
+
+    <section id="other-candidates" class="section-block" aria-labelledby="other-candidates-title">
+      <div class="section-heading"><div><p class="eyebrow">04 / SEPARATE PROSPECTIVE TRACKING</p><h2 id="other-candidates-title">Other candidates</h2></div><span class="badge research-badge">Three comparison policies</span></div>
+      <p class="section-description">Structural blend, market-price reference, and Weather Under keep their own forecasts and paper records. They do not contribute to the primary model's results. Empty trackers remain visible while evidence accumulates.</p>
+      <div id="candidate-tracking-table" class="table-container"></div>
+      <details id="other-record-details" class="forecast-details"><summary>Inspect comparison selections and separate paper ledgers</summary><p class="small-meta forward-description">Prices are timestamped snapshots. Modeled EV does not establish profitability or confirm that a sportsbook will accept the quoted price.</p><div id="other-current-picks" class="table-container"></div><h3 class="weather-record-title">Other candidates' paper records</h3><div id="other-candidate-records" class="table-container"></div></details>
+      <details id="weather-details" class="candidate-detail"><summary>Weather Under: selections, paper record and research</summary>
+    <section id="weather" class="weather-section candidate-content" aria-labelledby="weather-title">
+      <div class="section-heading"><div><p class="eyebrow">SEPARATE CANDIDATE / WEATHER UNDER</p><h2 id="weather-title">A fixed rule. A separate record.</h2></div><span class="badge research-badge">Forward paper experiment</span></div>
       <p class="section-description">Under only when forecast wind exceeds 7.78 mph, temperature is below 64.81°F, and relative humidity exceeds 56.8%. Wind uses a fixed four-hour average. Today's selections also require a verified future game, two observed books, and a qualifying price.</p>
       <div class="evidence-note weather-evidence"><span class="note-label">DEVELOPMENT RESULT</span><p id="weather-evidence">Historical weather evidence has not been published.</p></div>
       <p id="weather-robustness-note" class="section-description weather-robustness-note">The full earlier research search count is unknown; the positive historical interval does not establish a future edge.</p>
@@ -50,20 +74,23 @@
       <div id="weather-performance-stats" class="stat-grid"></div>
       <p id="weather-performance-note" class="small-meta performance-note"></p>
       <div id="weather-results-table" class="table-container"></div>
-      <details id="weather-revision-study" class="forecast-details" hidden><summary>Prospective forecast-revision study <span id="weather-study-label"></span></summary><p id="weather-study-message" class="small-meta" role="status" aria-live="polite"></p><p id="weather-study-counts" class="small-meta"></p><div id="weather-study-models" class="table-container"></div><p id="weather-study-paper" class="small-meta"></p><p class="small-meta">Two separate experimental candidates test exact-total probabilities and later line movement. Each requires 60 eligible games and two completed weeks to fit; that is an operational minimum, not evidence of an edge. The four existing paper policies and their ledgers remain separate.</p><p class="small-meta">Upcoming study positions use experimental probabilities and archived observed prices. They are paper records, not currently available offers. A quote more than two minutes old cannot support a new study entry; modeled EV does not establish a betting edge.</p><div id="weather-study-positions" class="table-container"></div><div id="weather-study-links" class="resource-links"></div></details>
+      <details id="weather-revision-study" class="forecast-details" hidden><summary>Separate forecast-revision research and training status <span id="weather-study-label"></span></summary><p id="weather-study-message" class="small-meta" role="status" aria-live="polite"></p><p id="weather-study-counts" class="small-meta"></p><div id="weather-study-models" class="table-container"></div><p id="weather-study-paper" class="small-meta"></p><p class="small-meta">Two separate experimental candidates test exact-total probabilities and later line movement. Each requires 60 eligible games and two completed weeks to fit; that is an operational minimum, not evidence of an edge. The four existing paper policies and their ledgers remain separate.</p><p class="small-meta">Upcoming study positions use experimental probabilities and archived observed prices. They are paper records, not currently available offers. A quote more than two minutes old cannot support a new study entry; modeled EV does not establish a betting edge.</p><div id="weather-study-positions" class="table-container"></div><div id="weather-study-links" class="resource-links"></div></details>
       <details id="weather-revision-pilot" class="forecast-details" hidden><summary>Forecast-revision collection pilot <span id="weather-revision-label"></span></summary><p id="weather-revision-message" class="small-meta"></p><p id="weather-revision-counts" class="small-meta"></p><p class="small-meta">Collection only: no new picks, model changes or performance evaluation. The pilot runs September 9–16, 2026, from 03:00 UTC to 03:00 UTC, with scheduled attempts at 01:17, 07:17, 13:17 and 19:17 UTC. Actual receipt times can differ.</p><div id="weather-revision-links" class="resource-links"></div></details>
       <details id="weather-revision-season" class="forecast-details" hidden><summary>Forecast-revision season collection <span id="weather-season-label"></span></summary><p id="weather-season-message" class="small-meta"></p><p id="weather-season-counts" class="small-meta"></p><p class="small-meta">Season collection: September 16, 2026–February 1, 2027, from 03:00 UTC to 03:00 UTC. Two candidates test whether forecast changes improve exact-total probabilities or predict later price movement. The existing morning board remains separate.</p><div id="weather-season-links" class="resource-links"></div></details>
     </section>
 
-    <section class="section-block" aria-labelledby="upcoming-title">
-      <div class="section-heading"><div><p class="eyebrow">03 / LOOKING AHEAD</p><h2 id="upcoming-title">Upcoming watchlist</h2></div><span id="upcoming-count" class="small-meta"></span></div>
-      <p class="section-description">Early prices can change before game day. Probabilities are raw model estimates; comparable over forecasts were too optimistic in 2025. Stressed EV is a sensitivity estimate, not a confidence bound.</p>
-      <div id="upcoming-picks" class="table-container"></div>
+      </details>
+      <details id="market-details" class="candidate-detail"><summary>Cross-book price comparisons</summary>
       <div class="market-checks"><h3>Cross-book price checks</h3><p class="section-description">Quoted hedge calculations are conditional on both prices being accepted and both books using the same settlement rules. These are unconfirmed comparisons, with no bets placed.</p><p id="market-checks-summary" class="small-meta"></p><div id="market-checks-table" class="table-container"></div><details id="market-checks-details" class="forecast-details"><summary>Inspect other quoted combinations</summary><p class="section-description forward-description">These combinations can lose money. Price dominance or a possible middle does not establish positive expected value.</p><div id="market-hedges-table" class="table-container"></div></details></div>
+      </details>
+      <p class="small-meta research-draft-note">Availability is an inactive research draft. Forecast-revision model fitting and any experimental positions are shown in the separate status panel within the weather details. These projects do not supply the primary model's picks.</p>
     </section>
 
     <section id="evidence" class="section-block" aria-labelledby="evidence-title">
-      <div class="section-heading"><div><p class="eyebrow">04 / MODEL EVIDENCE</p><h2 id="evidence-title">Competing forecasts. One honest record.</h2></div><span id="model-version" class="small-meta"></span></div>
+      <div class="section-heading"><div><p class="eyebrow">05 / HISTORICAL DEVELOPMENT</p><h2 id="evidence-title">Research archive</h2></div><span id="model-version" class="small-meta"></span></div>
+      <p class="section-description">Historical experiments and prior model versions are retained for review. Research-only variants are not additional active betting policies; retrospective results remain separate from the prospective records above.</p>
+      <details id="research-details" class="research-details"><summary>Open historical studies, source audits and all forecast versions</summary>
+    <div class="status-banner warning historical-alert" id="historical-alert" role="status" hidden><span class="status-dot" aria-hidden="true"></span><div><strong id="historical-alert-title">Historical evidence quarantined</strong><p id="historical-alert-copy">The previous market archive includes in-play odds. Historical model comparisons and betting returns are withdrawn pending clean pregame data. Current projections remain experimental.</p></div></div>
       <div class="evidence-note"><span class="note-label">RESEARCH STATUS</span><p id="evidence-message">Positive expected value is a model estimate. Profitability needs a credible, time-ordered evaluation and an independent forward record.</p></div>
       <div id="candidate-table" class="table-container"></div>
       <div class="definition-grid"><p><strong>MAE / RMSE</strong>Prediction error in total points; lower is better. Compare candidates on the same games.</p><p><strong>ROI / 95% interval</strong>Estimated return per unit staked and its uncertainty. An interval spanning zero does not establish profitability.</p><p><strong>Brier score</strong>Probability error for the stated evaluation sample; lower is better. Calibration matters more than confidence.</p></div>
@@ -83,15 +110,7 @@
       </div>
       <details class="forecast-details"><summary>Forward forecast evaluation <span id="forward-forecast-count"></span></summary><p class="section-description forward-description">First archived forecast per candidate and game, including abstentions. Prediction accuracy is measured even when no bet qualifies; this table does not infer betting returns.</p><div id="forward-forecast-table" class="table-container"></div></details>
       <details class="forecast-details"><summary>Inspect all model forecasts <span id="forecast-count"></span></summary><div class="forecast-controls"><label for="candidate-filter">Candidate</label><select id="candidate-filter"><option value="all">All candidates</option></select></div><div id="forecast-table" class="table-container"></div></details>
-    </section>
-
-    <section id="results" class="section-block" aria-labelledby="results-title">
-      <div class="section-heading"><div><p class="eyebrow">05 / FORWARD RECORD</p><h2 id="results-title">The record starts before kickoff.</h2></div><a href="data/board.json" class="text-link">View published data <span aria-hidden="true">↗</span></a></div>
-      <p class="section-description">Forward paper results are separate from historical tests. Repeated daily publications do not create additional bets.</p>
-      <div class="resource-links weather-report-links"><a href="https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md" target="_blank" rel="noopener noreferrer">Fixed prospective evaluation protocol ↗</a></div>
-      <div id="performance-stats" class="stat-grid"></div>
-      <p id="performance-note" class="small-meta performance-note"></p>
-      <div id="results-table" class="table-container"></div>
+      </details>
     </section>
 
     <section class="section-block transparency" aria-labelledby="transparency-title">

@@ -8,6 +8,8 @@ on:
       timezone: America/New_York
     - cron: '0 7 * * *'
       timezone: America/New_York
+    # Fixed prospective audit: UTC; daily runs also recover a delayed audit.
+    - cron: '0 12 8 2 *'
   workflow_dispatch:
   push:
     branches: [main]
@@ -78,6 +80,8 @@ jobs:
         env:
           RUNTIME_OUTCOME: ${{ steps.runtime.outcome }}
         run: python scripts/schedule_state.py prepare --outcome "$RUNTIME_OUTCOME"
+      - name: Publish prospective evaluation and freeze the report when due
+        run: python scripts/publish_prospective_evaluation.py --root .
       - name: Commit only public snapshots and forward ledger
         env:
           RUN_DATE: ${{ github.run_id }}

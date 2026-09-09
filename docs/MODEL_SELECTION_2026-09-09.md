@@ -1,0 +1,13 @@
+# Main model and prospective evaluation
+
+On September 9, 2026 the project owner selected **market-anchored opponent-adjusted ridge** as the dashboard's main model and accepted a completed deployment with automatic prospective tracking as the current project's success criterion. The earlier objective of demonstrating high-confidence profitability is an empirical research question, not a prerequisite for delivering this selected model and evaluation system.
+
+The selection is based on ridge's comparative development evidence. Its repaired historical paper return was +4.62% across 490 selections at assumed −110, with a descriptive 95% week interval of −4.72% to +13.15%; its reused 2025 test lost 4.55%. Several subsequent candidate-development comparisons retained ridge. These results support choosing a model to evaluate; they do not establish profitable execution at available prices.
+
+The main picks, upcoming selections and headline performance belong to `opponent_adjusted_ridge`, version `totals-v4-20260908`. The opponent-adjusted structural model and market-price reference keep their own forecasts, abstentions and first qualifying paper positions. Published weather Under keeps its separate fixed-rule ledger and version. Unfitted availability and weather-revision hypotheses remain research work and are not silently activated or pooled with these four policies.
+
+This display selection does not refit coefficients, change prices or eligibility thresholds, rewrite prior decisions, or restart the cohort. The [frozen prospective protocol](../model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md) retains its original dates, four-policy family and uncertainty calculation. Its original goal language is historical context; this note records the owner's revised delivery acceptance criteria without changing the statistical protocol.
+
+Daily GitHub publication targets 6:30 AM America/New_York and reports actual data times. The automated report includes settled returns, pending and void counts, separate policy versions, week-cluster uncertainty, unresolved-risk sensitivity and leave-one-week-out results. Before the fixed February 8, 2027 audit, all evaluations are interim descriptions. The formal report is frozen once, uses outcomes received by 12:00 UTC that day, and cannot automatically promote a model or place a wager.
+
+Implementation timing fixes enforce the already registered pregame and quote-age requirements at the actual decision lock. Outcome receipt histories preserve the first observed final and subsequent corrections so the formal cutoff can be applied without backdating.
