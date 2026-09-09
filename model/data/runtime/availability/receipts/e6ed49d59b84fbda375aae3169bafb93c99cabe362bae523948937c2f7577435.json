@@ -1,0 +1,31 @@
+{
+  "archive_writer_version": "revision-archive-v2-portable-gzip",
+  "body_path": "data/runtime/availability/bodies/d94e1a11402dc07fef156fc9309f44973025222521317c87266cbbf0950ab10e.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "d94e1a11402dc07fef156fc9309f44973025222521317c87266cbbf0950ab10e",
+  "body_size_bytes": 95199,
+  "body_withheld": false,
+  "purpose": "provider_inventory",
+  "receipt_path": "data/runtime/availability/receipts/e6ed49d59b84fbda375aae3169bafb93c99cabe362bae523948937c2f7577435.json",
+  "received_at": "2026-09-09T23:19:01.914204Z",
+  "request": {
+    "params": {
+      "from": "2026-09-09T23:19:00.689066Z",
+      "league": "usa-college",
+      "limit": 500,
+      "sport": "american-football",
+      "status": "pending",
+      "to": "2026-09-16T23:19:00.689066Z"
+    },
+    "url": "https://api.odds-api.io/v3/events"
+  },
+  "requested_at": "2026-09-09T23:19:01.820131Z",
+  "response_headers": {
+    "content_encoding": "gzip",
+    "content_type": "application/json; charset=utf-8",
+    "date": "Wed, 09 Sep 2026 23:19:01 GMT"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}
