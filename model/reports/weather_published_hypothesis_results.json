@@ -1,0 +1,141 @@
+{
+  "version": "weather-published-hypothesis-2024-25-v1",
+  "plan_sha256": "d08836ca73abab7ab47cc63a18005acd1608e772d3ac5f721f15f7640794318f",
+  "evaluated_at": "2026-09-09T00:48:25.259949+00:00",
+  "partial": false,
+  "missing_game_ids": [],
+  "repaired_market_games": 1863,
+  "venue_eligible_games": 1160,
+  "weather_covered_games": 1160,
+  "weather_missing_reasons": {},
+  "thresholds": {
+    "wind_mph_above": 7.78,
+    "temperature_f_below": 64.81,
+    "relative_humidity_percent_above": 56.8
+  },
+  "pooled": {
+    "games": 1160,
+    "calendar_week_blocks": 34,
+    "weather_rule": {
+      "bets": 85,
+      "wins": 55,
+      "losses": 30,
+      "pushes": 0,
+      "win_rate_excluding_pushes": 0.6470588235294118,
+      "roi": 0.23529411764705888,
+      "profit_units": 20.000000000000004
+    },
+    "all_under_same_weather_coverage": {
+      "bets": 1160,
+      "wins": 580,
+      "losses": 580,
+      "pushes": 0,
+      "win_rate_excluding_pushes": 0.5,
+      "roi": -0.04545454545454546,
+      "profit_units": -52.727272727272734
+    },
+    "rule_coverage_rate": 0.07327586206896551,
+    "weather_rule_roi_95_week_bootstrap": [
+      0.014186132154882158,
+      0.43917287630402374
+    ],
+    "all_under_roi_95_week_bootstrap": [
+      -0.10230464210228406,
+      0.008919710843963436
+    ],
+    "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+      0.05754268286300274,
+      0.4877103764169962
+    ],
+    "bootstrap_draws": 5000,
+    "bootstrap_draws_with_no_rule_bets": 0,
+    "price_assumption": "Every bet risks one unit at -110; pushes refund; actual historical prices unavailable"
+  },
+  "by_season": {
+    "2024": {
+      "games": 566,
+      "calendar_week_blocks": 17,
+      "weather_rule": {
+        "bets": 40,
+        "wins": 24,
+        "losses": 16,
+        "pushes": 0,
+        "win_rate_excluding_pushes": 0.6,
+        "roi": 0.14545454545454542,
+        "profit_units": 5.818181818181817
+      },
+      "all_under_same_weather_coverage": {
+        "bets": 566,
+        "wins": 283,
+        "losses": 283,
+        "pushes": 0,
+        "win_rate_excluding_pushes": 0.5,
+        "roi": -0.045454545454545456,
+        "profit_units": -25.727272727272727
+      },
+      "rule_coverage_rate": 0.0706713780918728,
+      "weather_rule_roi_95_week_bootstrap": [
+        -0.20454545454545456,
+        0.49147727272727265
+      ],
+      "all_under_roi_95_week_bootstrap": [
+        -0.12485339763588611,
+        0.029752066115702466
+      ],
+      "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+        -0.16430616507947512,
+        0.5465413226694186
+      ],
+      "bootstrap_draws": 5000,
+      "bootstrap_draws_with_no_rule_bets": 0,
+      "price_assumption": "Every bet risks one unit at -110; pushes refund; actual historical prices unavailable"
+    },
+    "2025": {
+      "games": 594,
+      "calendar_week_blocks": 17,
+      "weather_rule": {
+        "bets": 45,
+        "wins": 31,
+        "losses": 14,
+        "pushes": 0,
+        "win_rate_excluding_pushes": 0.6888888888888889,
+        "roi": 0.31515151515151507,
+        "profit_units": 14.181818181818178
+      },
+      "all_under_same_weather_coverage": {
+        "bets": 594,
+        "wins": 297,
+        "losses": 297,
+        "pushes": 0,
+        "win_rate_excluding_pushes": 0.5,
+        "roi": -0.04545454545454545,
+        "profit_units": -26.999999999999996
+      },
+      "rule_coverage_rate": 0.07575757575757576,
+      "weather_rule_roi_95_week_bootstrap": [
+        0.022727272727272724,
+        0.5818181818181818
+      ],
+      "all_under_roi_95_week_bootstrap": [
+        -0.1331007976939938,
+        0.037417657318679826
+      ],
+      "rule_minus_all_under_roi_95_paired_week_bootstrap": [
+        0.07261050640072661,
+        0.6355765111566282
+      ],
+      "bootstrap_draws": 5000,
+      "bootstrap_draws_with_no_rule_bets": 0,
+      "price_assumption": "Every bet risks one unit at -110; pushes refund; actual historical prices unavailable"
+    }
+  },
+  "limitations": [
+    "Current ESPN actual-venue indoor=false; outdoor roof configuration assumed unchanged in 2024\u201325, not historically proved",
+    "Forecast fixed-lead provenance is not original public dissemination-time proof.",
+    "Verified non-live bookmaker role; archived line not proven to be exact close or game-day06:30 price. Prices assumed-110.",
+    "One externally published criterion, fixed before this weather download. No weather thresholds or score windows selected on these outcomes.",
+    "2024\u201325 outcomes are reused overall development data. This is an independent-hypothesis adaptation, not a new untouched project holdout.",
+    "Selected-vs-all under contrast reflects selection, not a causal weather effect; geographic/season/market differences may confound it.",
+    "Week bootstrap measures sampling uncertainty conditional on these data/assumptions, not familywise evidence for promoting a profitable strategy."
+  ]
+}

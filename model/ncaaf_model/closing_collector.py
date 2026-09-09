@@ -161,8 +161,12 @@ def collect(root: Path, now: datetime | None = None, session=None) -> dict:
     load_dotenv(root.parents[1] / ".env")
     ledger = root / "ledger"
     positions_path = ledger / "positions.json"
+    weather_path = ledger / "weather_positions.json"
     observations_path = ledger / "closing_observations.json"
     positions = json.loads(positions_path.read_text()) if positions_path.exists() else []
+    weather_positions = json.loads(weather_path.read_text()) if weather_path.exists() else []
+    core_count = len(positions)
+    positions = positions + weather_positions
     existing = json.loads(observations_path.read_text()) if observations_path.exists() else []
     board_path = root.parent / "site/data/board.json"
     board = json.loads(board_path.read_text()) if board_path.exists() else {}
@@ -183,7 +187,9 @@ def collect(root: Path, now: datetime | None = None, session=None) -> dict:
     positions, summary = attach_clv(positions, observations, received)
     summary.update(provider_metadata=metadata, observation_count=len(observations), snapshot=relative)
     _write(observations_path, observations)
-    _write(positions_path, positions)
+    _write(positions_path, positions[:core_count])
+    if weather_path.exists() or weather_positions:
+        _write(weather_path, positions[core_count:])
     _write(ledger / "closing_summary.json", summary)
     _write(root.parent / "site/data/closing-summary.json", summary)
     return summary

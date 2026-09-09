@@ -4,6 +4,8 @@ Public-data NCAA totals forecasts, exact sportsbook-price comparisons, and an im
 
 **The goal has not yet been achieved: high-confidence profitability is not established.** The project now separates a workable experimental betting strategy from the evidence needed to trust it.
 
+The strongest new lead is a separately published weather under criterion, replicated with forecast data on 2024–2025 games: **55–30, +23.53% at assumed −110**; descriptive week-bootstrap interval **+1.42% to +43.92%**. A second line archive gives **52–27–1, +25.34%** on the 80 shared selections. It now has its own daily paper strategy and immutable ledger. Its fixed weather and price rules can qualify a selection without inventing individual-game win probabilities. See [weather replication](model/reports/weather_published_hypothesis_results.md), [source sensitivity](model/reports/weather_source_sensitivity.md), and [independent audit](model/reports/weather_independent_audit.md). Reused development data and unverified historical quote times remain material limits.
+
 ## Version 4
 
 - Two opponent-adjusted candidates estimate scoring, efficiency and tempo from prior completed games. Offense and opposing defense are fitted separately, with recency decay and partial pooling. A residual model combines those predictions with the current market; a fixed structural blend provides a competing candidate.

@@ -1,0 +1,32 @@
+{
+  "audit_date": "2026-09-09",
+  "status": "no_disqualifying_implementation_bug_found",
+  "scope": "Read-only replay of all archived weather rows, source joins, selected provider sample, and reviewed evaluation code",
+  "audited_plan_sha256": "d08836ca73abab7ab47cc63a18005acd1608e772d3ac5f721f15f7640794318f",
+  "feature_rows_replayed": 1160,
+  "feature_or_flag_mismatches": 0,
+  "duplicate_game_ids": 0,
+  "spatial_or_location_index_mismatches": 0,
+  "market_outcome_provider_join_mismatches": 0,
+  "selected_bets": 85,
+  "selected_wins": 55,
+  "selected_losses": 30,
+  "selected_pushes": 0,
+  "selected_roi_at_assumed_minus_110": 0.23529411764705874,
+  "by_season": {
+    "2024": {"covered": 566, "covered_under_wins": 283, "covered_under_losses": 283, "selected_wins": 24, "selected_losses": 16, "source_under_wins": 439, "source_under_losses": 481},
+    "2025": {"covered": 594, "covered_under_wins": 297, "covered_under_losses": 297, "selected_wins": 31, "selected_losses": 14, "source_under_wins": 477, "source_under_losses": 466}
+  },
+  "balance_assessment": "Reproduced directly; no balancing code found; source universe unbalanced; appears coincidental",
+  "half_point_lines": 1160,
+  "provider_counts": {"58": 1156, "100": 4},
+  "selected_games_checked_against_primary_provider_objects": [401628470, 401635541, 401628377, 401628496, 401628410, 401636926, 401677179, 401760385, 401756936, 401762856, 401752766, 401752789],
+  "opening_total_fallback_used": false,
+  "original_quote_timestamp_verified": false,
+  "all_individual_probability_and_ev_null": true,
+  "all_research_rows_bet_eligible_false": true,
+  "minimum_nominal_reference_plus_buffer_margin_before_decision_hours": 22.5,
+  "original_forecast_publication_timestamp_verified": false,
+  "forecast_lead_primary_documentation": "https://open-meteo.com/en/docs/previous-runs-api",
+  "limitations": ["Archived non-live bookmaker line is not verified as available at 06:30 or exact close", "Historical prices assumed -110", "Current roof metadata applied to historical years", "2024-25 outcomes reused in overall development", "85 selected games and 34 calendar-week clusters", "The group win rate is not an individual matchup probability", "No future profitable edge established"]
+}

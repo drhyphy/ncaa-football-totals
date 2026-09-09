@@ -557,6 +557,8 @@ def daily(settings=None, now: datetime | None = None) -> dict:
     diagnostics = {}
     try:
         schedule, diagnostics = refresh_inputs(settings, now)
+        from .weather_publishing import collect_inputs, publish_weather
+        weather_state = collect_inputs(settings, schedule, datetime.now(timezone.utc) if use_wall_clock else now)
         positions = grade_positions(positions, schedule)
         forecast_entries = grade_positions(forecast_entries, schedule)
         events, odds_diagnostics = fetch_odds(settings, now)
@@ -574,6 +576,7 @@ def daily(settings=None, now: datetime | None = None) -> dict:
         from .market_opportunities import scan_market_opportunities
         market_scan = clean_json(scan_market_opportunities([], now, settings.allowed_books))
         forecasts = []
+        games = pd.DataFrame()
         if not odds.empty:
             matched = attach_totals_schedule(odds, schedule)
             diagnostics["schedule_matches"] = int(matched.schedule_match.sum())
@@ -625,6 +628,7 @@ def daily(settings=None, now: datetime | None = None) -> dict:
                      message=f"{len(board['today_picks'])} qualifying experimental pick(s) for today. No high-confidence profitable model is established.")
         board["message"] += f" {len(diagnostics['fresh_sportsbooks'])} sportsbooks are currently observed; selections require two distinct books and positive modeled and stressed EV."
         board["comparison_picks"] = sorted([r for r in forecasts if r["eligible"] and r["candidate"] != PRIMARY], key=lambda r:r["robust_ev"], reverse=True)
+        board["weather_strategy"] = publish_weather(settings, schedule, games, weather_state, now)
     except Exception as exc:
         board.update(status="unavailable", today_picks=[], upcoming_picks=[], forecasts=[])
         diagnostics.pop("feature_snapshot", None)

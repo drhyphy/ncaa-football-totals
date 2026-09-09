@@ -170,6 +170,16 @@ def build_outputs(root):
             "weather_covered_games", "weather_missing_reasons", "thresholds", "pooled", "by_season", "limitations")}
         weather["historical_hypothesis_results"]["missing_games"] = len(result.get("missing_game_ids", []))
         weather["interpretation"] = "Fixed weather hypothesis on reused development data, with covered-game all-under control. This is not a calibrated win probability, current EV estimate, or prospective profitability record."
+    weather_sensitivity_path = reports / "weather_source_sensitivity.json"
+    if weather_sensitivity_path.exists():
+        sensitivity_weather = read(weather_sensitivity_path.name)
+        expected_plan = weather.get("historical_hypothesis_results", {}).get("plan_sha256")
+        if expected_plan != sensitivity_weather.get("plan_sha256"):
+            raise ValueError("Weather source sensitivity is stale or lacks its matching hypothesis report")
+        weather["market_source_sensitivity"] = {key: sensitivity_weather.get(key) for key in (
+            "version", "status", "plan_sha256", "weather_flags_changed", "only_repriced_field", "price_assumption",
+            "primary_games", "common_games", "unshared_primary_games", "unshared_primary_weather_rule_bets",
+            "source_counts", "line_discrepancies", "pooled", "by_season", "paired_quote_impact", "limitations")}
     ridge = pooled["opponent_adjusted_ridge"]
     last_ridge = by_season["2025"]["opponent_adjusted_ridge"]
     conclusion = (f"No high-confidence profitable edge established. Pooled ridge ROI is {ridge['roi_display']} "

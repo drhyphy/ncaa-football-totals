@@ -114,6 +114,14 @@ Small offline checks cover malformed SDQL rows, bracketed lists, immutable sourc
 python -m pytest -q scripts/tests/test_alternative_data.py
 ```
 
+The fixed weather hypothesis has a separate line-source check. It preserves the frozen flags in `model/data/raw/weather_research/game_results.parquet`, changes only `market_total`, compares identical primary/secondary cohorts, and refunds integer-line pushes. With the weather evaluation and CFBD supplement present:
+
+```bash
+python scripts/weather_source_sensitivity.py --root .
+```
+
+This produces `model/reports/weather_source_sensitivity.json` and `.md`; it performs no download, new threshold search, or probability fitting. The publisher includes this report only with its matching weather-plan hash.
+
 After regenerating research result JSON, rebuild the site evidence bundle and readable annual report:
 
 ```bash

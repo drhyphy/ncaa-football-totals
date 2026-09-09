@@ -41,6 +41,29 @@
         (today ? dateKey(pick.kickoff) === dateKey(now) : dateKey(pick.kickoff) > dateKey(now));
     }).sort((a, b) => (finite(b.robust_ev) ? b.robust_ev : -Infinity) - (finite(a.robust_ev) ? a.robust_ev : -Infinity));
   }
+  function weatherHealth(board, now = new Date()) {
+    const parent = health(board, now);
+    if (!parent.usable) return {usable: false, message: parent.message};
+    const strategy = board.weather_strategy || {};
+    const age = now.getTime() - epoch(strategy.as_of);
+    if (strategy.status !== "ok") return {usable: false, message: strategy.message || "The weather strategy has no successful current publication."};
+    if (!Number.isFinite(age) || age < -300000 || age > MAX_AGE || dateKey(strategy.as_of) !== dateKey(now)) return {usable: false, message: "Weather selections are paused until a current weather publication is available."};
+    return {usable: true, message: strategy.message || "The fixed weather rule was checked. Prices remain unconfirmed until accepted by the sportsbook."};
+  }
+  function currentWeatherPicks(board, now = new Date()) {
+    if (!weatherHealth(board, now).usable) return [];
+    const seen = new Set();
+    return items(board.weather_strategy.today_picks).filter(pick => {
+      const age = now.getTime() - epoch(pick.quote_time);
+      if (!pick.game_id || seen.has(String(pick.game_id)) || epoch(pick.kickoff) <= now.getTime() || dateKey(pick.kickoff) !== dateKey(now) || !Number.isFinite(age) || age < -300000 || age > 3600000 || pick.side !== "under") return false;
+      if (!finite(pick.line) || pick.line <= 0 || !finite(pick.decimal_odds) || pick.decimal_odds < 1 + 100 / 110 - 1e-12) return false;
+      seen.add(String(pick.game_id)); return true;
+    }).sort((a, b) => epoch(a.kickoff) - epoch(b.kickoff));
+  }
+  function weatherMeasurements(pick) {
+    const feature = pick.weather || {}, values = feature.weather || feature;
+    return {wind_mph: values.wind_mph, temperature_f: values.temperature_f, relative_humidity_pct: values.relative_humidity_pct ?? values.relative_humidity_percent};
+  }
   function dedupeResults(rows) {
     const seen = new Set();
     return items(rows).slice().sort((a, b) => (epoch(a.recorded_at) || Infinity) - (epoch(b.recorded_at) || Infinity)).filter(row => {
@@ -138,6 +161,42 @@
         cell(`${p.away_team} at ${p.home_team}`, dateLabel(p.kickoff)), cell(`${titleCase(p.side)} ${number(p.line)} (${odds(p.american_odds)})`, titleCase(p.sportsbook)), cell(number(p.projected_total), titleCase(p.candidate)), cell(percent(p.win_probability), `Push ${percent(p.push_probability)}`), cell(percent(p.robust_ev, true), "Model estimate", finite(p.robust_ev) && p.robust_ev > 0 ? "positive" : ""), cell(dateLabel(p.quote_time), quoteLabel(p))
       ]));
       renderMarketChecks(now);
+      renderWeather(now);
+    }
+    function weatherCard(pick, index) {
+      const card = element("article", null, "pick-card weather-card");
+      const top = element("div", null, "pick-top");
+      top.append(element("span", `WEATHER ${String(index + 1).padStart(2, "0")}`, "pick-rank"), element("span", "Fixed under rule", "candidate-name"));
+      const game = element("div", null, "pick-game"), heading = element("h3");
+      heading.append(doc.createTextNode(String(pick.away_team || "Away")), element("span", " at ", "versus"), doc.createTextNode(String(pick.home_team || "Home")));
+      game.append(heading, element("div", dateLabel(pick.kickoff), "kickoff"));
+      const price = element("div", null, "pick-price"), selection = element("div", `Under ${number(pick.line)}`, "pick-selection");
+      selection.append(element("small", odds(pick.american_odds)));
+      const stake = element("div", null, "pick-book"); stake.append(element("div", "1 paper unit", "weather-stake"), element("div", titleCase(pick.sportsbook))); price.append(selection, stake);
+      card.append(top, game, price);
+      const weather = weatherMeasurements(pick), metrics = element("div", null, "pick-metrics");
+      [["Forecast wind", finite(weather.wind_mph) ? `${number(weather.wind_mph)} mph` : null], ["Temperature", finite(weather.temperature_f) ? `${number(weather.temperature_f)}°F` : null], ["Relative humidity", finite(weather.relative_humidity_pct) ? `${number(weather.relative_humidity_pct)}%` : null]].forEach(([label, value]) => { if (value !== null) {const dl = element("dl"); dl.append(element("dt", label), element("dd", value)); metrics.append(dl);} });
+      if (metrics.children.length) card.append(metrics);
+      const bottom = element("div", null, "pick-bottom weather-card-bottom");
+      bottom.append(element("p", `Quote observed ${dateLabel(pick.quote_time)} · ${number(pick.decimal_odds, 3)} decimal`), element("p", "Fixed rule selection · Individual win probability and EV are not estimated."), element("p", "Paper only · Price acceptance unconfirmed · Display expires after one hour."));
+      card.append(bottom); return card;
+    }
+    function renderWeather(now) {
+      const strategy = board.weather_strategy || {}, evidence = strategy.evidence || {}, state = weatherHealth(board, now), picks = currentWeatherPicks(board, now);
+      const interval = finite(evidence.roi_95_low) && finite(evidence.roi_95_high) ? `${percent(evidence.roi_95_low, true)} to ${percent(evidence.roi_95_high, true)}` : "not estimated";
+      $("weather-evidence").textContent = finite(evidence.bets) && evidence.bets > 0 ? `2024–25 development replication: ${number(evidence.bets, 0)} hypothetical bets · ${number(evidence.wins, 0)} wins / ${number(evidence.losses, 0)} losses · ${percent(evidence.roi, true)} ROI · 95% week bootstrap interval ${interval}. All prices assumed ${odds(evidence.price_assumption)}; exact historical quote times are unverified.` : "Historical weather evidence has not been published. No profitable edge is asserted.";
+      $("weather-pick-count").textContent = String(picks.length);
+      $("weather-as-of").textContent = Number.isFinite(epoch(strategy.as_of)) ? `Checked ${dateLabel(strategy.as_of)}` : "";
+      $("weather-status").textContent = `${state.message}${state.usable ? ` ${number(strategy.forecast_count, 0)} games inspected · ${number(strategy.qualifying_count, 0)} qualifying selections at publication.` : ""}`;
+      if (picks.length) $("weather-picks").replaceChildren(...picks.map(weatherCard));
+      else empty($("weather-picks"), state.usable ? "No current weather selections" : "Weather selections paused", state.usable ? "No same-day pregame selection has a qualifying price observation from the past hour. The separate forward record remains below." : state.message);
+      const p = strategy.performance || {}, settled = Number(p.wins || 0) + Number(p.losses || 0) + Number(p.pushes || 0), stats = $("weather-performance-stats");
+      stats.replaceChildren();
+      [["Settled paper bets", number(settled, 0), `${number(p.wins, 0)} W · ${number(p.losses, 0)} L · ${number(p.pushes, 0)} P`], ["Pending selections", number(p.pending, 0), "First qualifying entry per game"], ["Profit / loss", settled ? `${finite(p.profit_units) && p.profit_units > 0 ? "+" : ""}${number(p.profit_units, 2)} u` : "—", settled ? `Realized ROI ${percent(p.roi, true)}` : "No settled forward return"], ["95% ROI interval", settled && finite(p.roi_95_low) && finite(p.roi_95_high) ? `${percent(p.roi_95_low)} / ${percent(p.roi_95_high)}` : "—", "Forward record uncertainty"]].forEach(([label, value, detail]) => {const node = element("div", null, "stat"); node.append(element("span", label, "stat-label"), element("span", value, "stat-value"), element("span", detail, "stat-detail")); stats.append(node);});
+      $("weather-performance-note").textContent = `${strategy.version || "Weather strategy"} · Separate ledger, one unit risked per paper selection. ${settled ? "Historical results above are excluded from this record." : "No settled forward evidence yet."} No actual bets are placed.`;
+      const rows = dedupeResults(items(strategy.results).map(row => ({...row, candidate: row.candidate || strategy.version || "weather_under", model_version: row.model_version || strategy.version})));
+      if (!rows.length) empty($("weather-results-table"), "", "No weather paper selections have been recorded yet.", true);
+      else table($("weather-results-table"), "Separate weather strategy forward paper ledger", ["Matchup", "Recorded selection", "Recorded at", "Result", "Profit"], rows.map(row => [cell(`${row.away_team} at ${row.home_team}`, dateLabel(row.kickoff)), cell(`Under ${number(row.line)} (${odds(row.american_odds)})`, titleCase(row.sportsbook)), cell(dateLabel(row.recorded_at)), cell(titleCase(row.result || "pending")), cell(finite(row.profit_units) ? `${row.profit_units > 0 ? "+" : ""}${number(row.profit_units, 2)} u` : "—", null, row.profit_units > 0 ? "positive" : row.profit_units < 0 ? "negative" : "")]));
     }
     function renderMarketChecks(now) {
       const scan = board.market_opportunities || {}, rows = currentHedges(board, now);
@@ -220,5 +279,5 @@
     fetch(`data/board.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(render).catch(() => render({schema_version: 1, generated_at: new Date().toISOString(), date: dateKey(), status: "unavailable", message: "The published data file could not be loaded. No selections are being shown. Try refreshing the page."}));
     setInterval(() => { if (board) renderPicks(new Date()); }, 60000);
   }
-  return {dateKey, health, currentPicks, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
+  return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
 });
