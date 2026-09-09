@@ -1,6 +1,6 @@
 {
   "schema_version": "weather-revision-status-v1",
-  "generated_at": "2026-09-09T12:23:59.307343Z",
+  "generated_at": "2026-09-09T17:13:38.827679Z",
   "phase": "active",
   "status": "attention",
   "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
@@ -15,36 +15,36 @@
   "collection_only": true,
   "performance_evaluated": false,
   "active_policy_changed": false,
-  "archived_runs": 3,
+  "archived_runs": 4,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 3,
+  "partial_or_failed_runs": 4,
   "latest": {
-    "capture_started_at": "2026-09-09T12:22:42.601240Z",
-    "capture_completed_at": "2026-09-09T12:23:57.707367Z",
+    "capture_started_at": "2026-09-09T17:11:21.464145Z",
+    "capture_completed_at": "2026-09-09T17:13:37.333374Z",
     "requested_run": "2026-09-09T06:00:00Z",
     "status": "partial",
     "counts": {
       "cohort_games": 86,
-      "weather_available_games": 55,
+      "weather_available_games": 48,
       "two_book_games": 51,
-      "paired_games": 50,
-      "failed_requests": 7,
-      "paired_two_book_games": 31,
-      "total_requests": 300
+      "paired_games": 44,
+      "failed_requests": 14,
+      "paired_two_book_games": 26,
+      "total_requests": 293
     },
-    "manifest_sha256": "097e63ed4273b047bfd80a8ebfa1172ab251ed87a0d4bfc0063e0d5197d702b0"
+    "manifest_sha256": "fde3d8781ea84da99b91132210c0e4da57a5614122ba0f4b1205bca6937dd183"
   },
   "game_observation_totals": {
-    "cohort_games": 258,
-    "weather_available_games": 163,
-    "two_book_games": 153,
-    "paired_games": 151,
-    "failed_requests": 23,
-    "total_requests": 898,
-    "paired_two_book_games": 95
+    "cohort_games": 344,
+    "weather_available_games": 211,
+    "two_book_games": 204,
+    "paired_games": 195,
+    "failed_requests": 37,
+    "total_requests": 1191,
+    "paired_two_book_games": 121
   },
   "last_workflow_attempt": {
-    "started_at": "2026-09-09T12:22:12.897832Z",
+    "started_at": "2026-09-09T17:10:56.498417Z",
     "outcome": "failure",
     "matching_manifest": true
   },
