@@ -1,0 +1,1437 @@
+{
+  "schema": "pbp-state-parser-fixed-sample-audit-summary-v1",
+  "audited_at": "2026-09-09T06:16:24.976738+00:00",
+  "frozen_commit": "2277702093ea19a9688d1fffd8e980c69451cb73",
+  "plan_sha256": "7a2124bf2de2380423a29d765961dc4b9e79384c82cb2e6ab9551853495c8c69",
+  "selection_rule": "Two numerically smallest valid canonical STATUS_FINAL schedule game IDs in each season 2019\u20132025, selected before PBP value inspection. Missing raw games retained without substitution.",
+  "allowed_fields_only": true,
+  "no_model_fits_or_matchup_metrics": true,
+  "independent_reconstruction": "Standalone Python arithmetic and rule implementation, no calls to parser helpers, dataset loader, ratings or study runner; parser.prepare_rows was used only for comparison.",
+  "source_verification": {
+    "ncaaf_model/pbp_state_rows.py": {
+      "recorded_commit_sha256": "59f0bf17122fe81b447461349a1751dfbd53518b7ff600b3c2cc981e4bb88b13",
+      "current_sha256": "59f0bf17122fe81b447461349a1751dfbd53518b7ff600b3c2cc981e4bb88b13",
+      "expected": "59f0bf17122fe81b447461349a1751dfbd53518b7ff600b3c2cc981e4bb88b13"
+    },
+    "reports/PBP_STATE_RESEARCH_PLAN.md": {
+      "recorded_commit_sha256": "958fde20afa93d8448e05969186162467af5a42634fcd2708400e5045ad7c1aa",
+      "current_sha256": "958fde20afa93d8448e05969186162467af5a42634fcd2708400e5045ad7c1aa",
+      "expected": "958fde20afa93d8448e05969186162467af5a42634fcd2708400e5045ad7c1aa"
+    },
+    "reports/PBP_RESEARCH_SOURCE_INVENTORY.json": {
+      "recorded_commit_sha256": "2898f79ea2509805a9da51bbfb0f45d4ebff6303e6428b9ac9c9bf4a9a88ccea",
+      "current_sha256": "2898f79ea2509805a9da51bbfb0f45d4ebff6303e6428b9ac9c9bf4a9a88ccea",
+      "expected": "2898f79ea2509805a9da51bbfb0f45d4ebff6303e6428b9ac9c9bf4a9a88ccea"
+    }
+  },
+  "raw_source_hashes": {
+    "model/data/raw/pbp_research/espn/play_by_play_2019.parquet": "ae58ee5fb3b4dcf2e7402d9151ce9875af16ba92882257871e59bdeb117e647b",
+    "model/data/raw/pbp_research/espn/play_by_play_2020.parquet": "51455bdc8756ad499c7bf4271269d3b196e3f61121d31608b2e9cf84658feaaf",
+    "model/data/raw/pbp_research/espn/play_by_play_2021.parquet": "302f6e182b4653ae6c7d31f975c2c090e1804ed736ad35931cdbaa5d7dd26f7e",
+    "model/data/raw/pbp_research/espn/play_by_play_2022.parquet": "1e0271f3182271ee7f680e8fbeb05c7122952abda0f933be1be3987c51024a88",
+    "model/data/raw/pbp_research/espn/play_by_play_2023.parquet": "fd0b04553ba3944e8acddc1088aba60692b7a555fb945de8381055c37a98799c",
+    "model/data/raw/pbp_research/espn/play_by_play_2024.parquet": "25ae95cf175a59bbb362d5f8af3cb3e748b56635d084ebda69461c31b3c5e312",
+    "model/data/raw/pbp_research/espn/partials/2025/0001.parquet": "aa037920e980acf17317747f2010a031b3b7e1013a44a7b15db18b1dd9df0e63"
+  },
+  "totals": {
+    "sampled_games": 14,
+    "games_with_rows": 13,
+    "raw_rows": 2290,
+    "output_rows": 1709,
+    "clock_available": 1177,
+    "conversion_available": 1708,
+    "pass_unknown": 2,
+    "state_gap_exclusions": 23,
+    "unknown_helper_flag_cells": 0
+  },
+  "mismatch_count": 0,
+  "mismatches": [],
+  "games": [
+    {
+      "schedule": {
+        "game_id": 401110720,
+        "season": 2019,
+        "week": 1,
+        "game_date": "2019-08-31T19:30Z",
+        "neutral_site": true,
+        "home_id": 333,
+        "away_id": 150,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2019.parquet",
+      "source_sha256": "ae58ee5fb3b4dcf2e7402d9151ce9875af16ba92882257871e59bdeb117e647b",
+      "raw_allowed_sha256": "d66cddca667449755d41426ac78fcee4243a349b666ccdf3f028cabc87650256",
+      "raw_rows": 169,
+      "raw_missing": false,
+      "output_rows": 128,
+      "clock_available": 92,
+      "conversion_available": 128,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 18,
+        "penalty_or_nullified": 15,
+        "unsupported_play_type": 5,
+        "kneel": 2,
+        "unavailable_pre_score_after_archived_play_number_gap": 1
+      },
+      "clock_missing": {
+        "next_row_not_legal": 31,
+        "missing_or_changed_drive": 4,
+        "archived_play_number_gap": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 116,
+        "explicit_turnover": 4,
+        "possession_lost": 2,
+        "attributed_offensive_td": 6
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "4f6bffab58a20b0fc1406ae2fdb09110c36096eb341774629ae7b51bf6cf248f",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 0,
+        "game_id": 401110720
+      },
+      "independent_rows_trace": {
+        "records": 128,
+        "sha256": "4f6bffab58a20b0fc1406ae2fdb09110c36096eb341774629ae7b51bf6cf248f",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 169,
+        "sha256": "04694bebdc82a8324f54f2a244aef5bbfef98655561028301447be506b965016",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 10,
+        "sha256": "ac6379f18250465e3eababed8c041a3d061b841a96c2f995f3749253cd5c91a9",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401110721,
+        "season": 2019,
+        "week": 1,
+        "game_date": "2019-08-31T20:00Z",
+        "neutral_site": false,
+        "home_id": 8,
+        "away_id": 2502,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2019.parquet",
+      "source_sha256": "ae58ee5fb3b4dcf2e7402d9151ce9875af16ba92882257871e59bdeb117e647b",
+      "raw_allowed_sha256": "19b4f031e5557d473eac3835a863dd24663bb59495fd9fe874faeee4ee2c31ab",
+      "raw_rows": 182,
+      "raw_missing": false,
+      "output_rows": 129,
+      "clock_available": 88,
+      "conversion_available": 129,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 23,
+        "penalty_or_nullified": 18,
+        "unsupported_play_type": 9,
+        "unavailable_pre_score_after_archived_play_number_gap": 2,
+        "kneel": 1
+      },
+      "clock_missing": {
+        "next_row_not_legal": 34,
+        "archived_play_number_gap": 2,
+        "missing_or_changed_drive": 3,
+        "clock_decrement_outside_0_60": 2
+      },
+      "conversion_attribution": {
+        "retained_yardage": 122,
+        "attributed_offensive_td": 3,
+        "explicit_turnover": 4
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "12fa0ef5396e4f2c10a456b04055ddc46389c0d81adf1771bd4da68a88f2ff9e",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 1,
+        "game_id": 401110721
+      },
+      "independent_rows_trace": {
+        "records": 129,
+        "sha256": "12fa0ef5396e4f2c10a456b04055ddc46389c0d81adf1771bd4da68a88f2ff9e",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 182,
+        "sha256": "4b737bc064f4aa0c0cbad9db32ee1e2ed4eea82c26e1bedef380ea0ef31e894b",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 8,
+        "sha256": "f4617b2d553a7f34fcf2ec4120be876906efcc026bc5275f011d7d5380f2435a",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401207098,
+        "season": 2020,
+        "week": 1,
+        "game_date": "2020-09-05T23:30Z",
+        "neutral_site": false,
+        "home_id": 249,
+        "away_id": 2277,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2020.parquet",
+      "source_sha256": "51455bdc8756ad499c7bf4271269d3b196e3f61121d31608b2e9cf84658feaaf",
+      "raw_allowed_sha256": "5131a86eca0af32f2556560b4ede62dd4b40fdb73de62b6aab993c670290f525",
+      "raw_rows": 213,
+      "raw_missing": false,
+      "output_rows": 169,
+      "clock_available": 122,
+      "conversion_available": 168,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 25,
+        "penalty_or_nullified": 15,
+        "unavailable_pre_score_after_archived_play_number_gap": 2,
+        "unsupported_play_type": 2
+      },
+      "clock_missing": {
+        "clock_decrement_outside_0_60": 6,
+        "next_row_not_legal": 34,
+        "missing_or_changed_drive": 4,
+        "archived_play_number_gap": 2,
+        "no_next_archived_row": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 155,
+        "attributed_offensive_td": 11,
+        "possession_lost": 1,
+        "explicit_turnover": 1,
+        "ambiguous_scoring_attribution": 1
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "51be91ea3c5f61524d789cc616a44d7e85d0bd19848874f667fa0e343304be5c",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 2,
+        "game_id": 401207098
+      },
+      "independent_rows_trace": {
+        "records": 169,
+        "sha256": "51be91ea3c5f61524d789cc616a44d7e85d0bd19848874f667fa0e343304be5c",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 213,
+        "sha256": "d8c46b99b1ab9cf7777d5d094aa925d7b06a3dbf2aa03a882d155c2174c2179e",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 16,
+        "sha256": "7a8e5e0f3ef87bc2a2ba94870733888384c8c2ed10b24a160ebb78fa9fce3767",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401207101,
+        "season": 2020,
+        "week": 1,
+        "game_date": "2020-09-04T01:00Z",
+        "neutral_site": false,
+        "home_id": 2572,
+        "away_id": 6,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2020.parquet",
+      "source_sha256": "51455bdc8756ad499c7bf4271269d3b196e3f61121d31608b2e9cf84658feaaf",
+      "raw_allowed_sha256": "18191b98023935ee6b0a3df9f1ef4fd9b333c908128b1474ae5db03562cb544f",
+      "raw_rows": 179,
+      "raw_missing": false,
+      "output_rows": 133,
+      "clock_available": 96,
+      "conversion_available": 133,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 22,
+        "penalty_or_nullified": 11,
+        "unsupported_play_type": 10,
+        "kneel": 2,
+        "unavailable_pre_score_after_archived_play_number_gap": 1
+      },
+      "clock_missing": {
+        "next_row_not_legal": 35,
+        "missing_or_changed_drive": 1,
+        "archived_play_number_gap": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 124,
+        "attributed_offensive_td": 6,
+        "explicit_turnover": 2,
+        "possession_lost": 1
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "628f7eb9bb881f6010aec166ab9f953db361e4c77c3eceab34eebea5c927f637",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 3,
+        "game_id": 401207101
+      },
+      "independent_rows_trace": {
+        "records": 133,
+        "sha256": "628f7eb9bb881f6010aec166ab9f953db361e4c77c3eceab34eebea5c927f637",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 179,
+        "sha256": "4a70714b754bf4b79e9fb86f2d97642e184302dc6be9996cb7fe76a63f6a0edf",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 9,
+        "sha256": "b277763099c08e25c566c071165f13fb944f19ace902ed2e3c14fdd94c31fd0f",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401281942,
+        "season": 2021,
+        "week": 1,
+        "game_date": "2021-09-04T19:30Z",
+        "neutral_site": true,
+        "home_id": 2390,
+        "away_id": 333,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2021.parquet",
+      "source_sha256": "302f6e182b4653ae6c7d31f975c2c090e1804ed736ad35931cdbaa5d7dd26f7e",
+      "raw_allowed_sha256": "4c33a542bcf621183124ba6d9c64b321e12f46bb39fc9c0321b6cdae3d96129b",
+      "raw_rows": 176,
+      "raw_missing": false,
+      "output_rows": 134,
+      "clock_available": 99,
+      "conversion_available": 134,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 21,
+        "penalty_or_nullified": 15,
+        "unavailable_pre_score_after_archived_play_number_gap": 2,
+        "unsupported_play_type": 4
+      },
+      "clock_missing": {
+        "next_row_not_legal": 28,
+        "archived_play_number_gap": 2,
+        "missing_or_changed_drive": 4,
+        "no_next_archived_row": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 124,
+        "attributed_offensive_td": 6,
+        "explicit_turnover": 2,
+        "possession_lost": 2
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "5e68f60e1434a9834b544684dc03205283db7197f77008d6f5af3be91dfb0d22",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 4,
+        "game_id": 401281942
+      },
+      "independent_rows_trace": {
+        "records": 134,
+        "sha256": "5e68f60e1434a9834b544684dc03205283db7197f77008d6f5af3be91dfb0d22",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 176,
+        "sha256": "da7cbd3f74a15bec35d5c61f11d4c47c8fe89795cefacf52bb37bf8e824853b0",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 9,
+        "sha256": "97c191633b36f2c946ece6dda4da9be416b2b3676cc679c718793ab0d81d36ee",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401281943,
+        "season": 2021,
+        "week": 1,
+        "game_date": "2021-09-04T18:00Z",
+        "neutral_site": false,
+        "home_id": 8,
+        "away_id": 242,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2021.parquet",
+      "source_sha256": "302f6e182b4653ae6c7d31f975c2c090e1804ed736ad35931cdbaa5d7dd26f7e",
+      "raw_allowed_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "raw_rows": 0,
+      "raw_missing": true,
+      "output_rows": 0,
+      "clock_available": 0,
+      "conversion_available": 0,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {},
+      "clock_missing": {},
+      "conversion_attribution": {},
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 5,
+        "game_id": 401281943
+      },
+      "independent_rows_trace": {
+        "records": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401403853,
+        "season": 2022,
+        "week": 1,
+        "game_date": "2022-08-28T02:30Z",
+        "neutral_site": false,
+        "home_id": 62,
+        "away_id": 238,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2022.parquet",
+      "source_sha256": "1e0271f3182271ee7f680e8fbeb05c7122952abda0f933be1be3987c51024a88",
+      "raw_allowed_sha256": "8958c6153cdd2e31f3394e6a4e38ec914de5739505c2ab1f7d08c6b52fc6b86a",
+      "raw_rows": 179,
+      "raw_missing": false,
+      "output_rows": 144,
+      "clock_available": 96,
+      "conversion_available": 144,
+      "pass_unknown": 2,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 19,
+        "penalty_or_nullified": 9,
+        "unsupported_play_type": 5,
+        "unavailable_pre_score_after_archived_play_number_gap": 2
+      },
+      "clock_missing": {
+        "next_row_not_legal": 27,
+        "clock_decrement_outside_0_60": 11,
+        "archived_play_number_gap": 2,
+        "missing_or_changed_drive": 7,
+        "no_next_archived_row": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 126,
+        "attributed_offensive_td": 8,
+        "possession_lost": 8,
+        "explicit_turnover": 2
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "3302004730e87318507d22198ff0e80d4a24a8b9b36c5ff429a01a06b3cbd40f",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 6,
+        "game_id": 401403853
+      },
+      "independent_rows_trace": {
+        "records": 144,
+        "sha256": "3302004730e87318507d22198ff0e80d4a24a8b9b36c5ff429a01a06b3cbd40f",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 179,
+        "sha256": "305e60b1dcef3211fff7ff6f703ef2b6e99c4fe8750e0b0056c14b161386304a",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 11,
+        "sha256": "f75be4860b6361b4636222d0f5ef543dcab39afd6142747260a4041878940da9",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401403854,
+        "season": 2022,
+        "week": 1,
+        "game_date": "2022-09-03T23:30Z",
+        "neutral_site": false,
+        "home_id": 333,
+        "away_id": 328,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2022.parquet",
+      "source_sha256": "1e0271f3182271ee7f680e8fbeb05c7122952abda0f933be1be3987c51024a88",
+      "raw_allowed_sha256": "c1428a392a2a47a3a7edfac4e27ec8b44aa1ca5510f315770ed10af28c209a45",
+      "raw_rows": 170,
+      "raw_missing": false,
+      "output_rows": 124,
+      "clock_available": 84,
+      "conversion_available": 124,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 24,
+        "penalty_or_nullified": 16,
+        "unavailable_pre_score_after_archived_play_number_gap": 2,
+        "unsupported_play_type": 4
+      },
+      "clock_missing": {
+        "next_row_not_legal": 36,
+        "archived_play_number_gap": 2,
+        "missing_or_changed_drive": 1,
+        "no_next_archived_row": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 115,
+        "attributed_offensive_td": 7,
+        "possession_lost": 2
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "116cb041bcd338ad6c7b000f19f912ffa027a9e124af3a7c9c2ced5b4961fd6a",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 7,
+        "game_id": 401403854
+      },
+      "independent_rows_trace": {
+        "records": 124,
+        "sha256": "116cb041bcd338ad6c7b000f19f912ffa027a9e124af3a7c9c2ced5b4961fd6a",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 170,
+        "sha256": "14bfe077919f9bd9942a1b40bd14ab5de991917ea06b9f8d0a611751790a606c",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 9,
+        "sha256": "8d55efb2fb6f96093c16a17607cdfc57fd8f744a4d78b5e5685ee5a4f133aed5",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401520145,
+        "season": 2023,
+        "week": 1,
+        "game_date": "2023-08-26T21:30Z",
+        "neutral_site": false,
+        "home_id": 55,
+        "away_id": 2638,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2023.parquet",
+      "source_sha256": "fd0b04553ba3944e8acddc1088aba60692b7a555fb945de8381055c37a98799c",
+      "raw_allowed_sha256": "4ada3760fd6eddddb0ac756e3df58fa7a43a2fdd67ee631b3a53cb8a288659ff",
+      "raw_rows": 165,
+      "raw_missing": false,
+      "output_rows": 130,
+      "clock_available": 87,
+      "conversion_available": 130,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 18,
+        "penalty_or_nullified": 8,
+        "unavailable_pre_score_after_archived_play_number_gap": 2,
+        "unsupported_play_type": 5,
+        "kneel": 2
+      },
+      "clock_missing": {
+        "next_row_not_legal": 28,
+        "clock_decrement_outside_0_60": 9,
+        "missing_or_changed_drive": 4,
+        "archived_play_number_gap": 2
+      },
+      "conversion_attribution": {
+        "retained_yardage": 121,
+        "possession_lost": 3,
+        "attributed_offensive_td": 4,
+        "explicit_turnover": 2
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "efc9f81faf93057bf9af352b5aa0413f0b2bed58b641183283c62ffa09d00558",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 8,
+        "game_id": 401520145
+      },
+      "independent_rows_trace": {
+        "records": 130,
+        "sha256": "efc9f81faf93057bf9af352b5aa0413f0b2bed58b641183283c62ffa09d00558",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 165,
+        "sha256": "b16740778423f345023ed707a867c8791e6ee5d767430d5acfbf0bc602ee3d21",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 6,
+        "sha256": "030f8eefeb98f5b3b8e10c325201543ab37c6d4d28ad530986c4df3f493ded43",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401520146,
+        "season": 2023,
+        "week": 1,
+        "game_date": "2023-08-27T01:00Z",
+        "neutral_site": false,
+        "home_id": 2348,
+        "away_id": 2229,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2023.parquet",
+      "source_sha256": "fd0b04553ba3944e8acddc1088aba60692b7a555fb945de8381055c37a98799c",
+      "raw_allowed_sha256": "3aa612b5db5b34d71e1abdd785fee0d467fb2d6d90d02ed00edb86e55688d1f8",
+      "raw_rows": 167,
+      "raw_missing": false,
+      "output_rows": 120,
+      "clock_available": 78,
+      "conversion_available": 120,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 26,
+        "penalty_or_nullified": 8,
+        "unavailable_pre_score_after_archived_play_number_gap": 2,
+        "unsupported_play_type": 9,
+        "kneel": 2
+      },
+      "clock_missing": {
+        "next_row_not_legal": 35,
+        "archived_play_number_gap": 2,
+        "clock_decrement_outside_0_60": 4,
+        "missing_or_changed_drive": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 113,
+        "attributed_offensive_td": 4,
+        "explicit_turnover": 3
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "3b971433b217fbeef1aea3b35cbc3a3f9717c11bac44b6be2597bddc96718717",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 9,
+        "game_id": 401520146
+      },
+      "independent_rows_trace": {
+        "records": 120,
+        "sha256": "3b971433b217fbeef1aea3b35cbc3a3f9717c11bac44b6be2597bddc96718717",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 167,
+        "sha256": "6963b56cbf53d55a297a3baa957bb1ce0bd2c9ede0b1444557766034b1e6b218",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 8,
+        "sha256": "8ca57d19c4826796011b7c08abd10f2eb776c29ee47e78d195fb43d6832c707a",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401628319,
+        "season": 2024,
+        "week": 1,
+        "game_date": "2024-08-31T23:00Z",
+        "neutral_site": false,
+        "home_id": 333,
+        "away_id": 98,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2024.parquet",
+      "source_sha256": "25ae95cf175a59bbb362d5f8af3cb3e748b56635d084ebda69461c31b3c5e312",
+      "raw_allowed_sha256": "1951cd9879d3ac94888122424ae61aada81198a7576ba134467d6911b0e6474c",
+      "raw_rows": 168,
+      "raw_missing": false,
+      "output_rows": 128,
+      "clock_available": 88,
+      "conversion_available": 128,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 23,
+        "penalty_or_nullified": 11,
+        "unsupported_play_type": 5,
+        "unavailable_pre_score_after_archived_play_number_gap": 1
+      },
+      "clock_missing": {
+        "next_row_not_legal": 33,
+        "missing_or_changed_drive": 5,
+        "archived_play_number_gap": 1,
+        "no_next_archived_row": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 115,
+        "explicit_turnover": 3,
+        "attributed_offensive_td": 9,
+        "possession_lost": 1
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "5277e0384729b086a58e798fde4e7ede7d7238dcf26597b1f43296aa0176e4d5",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 10,
+        "game_id": 401628319
+      },
+      "independent_rows_trace": {
+        "records": 128,
+        "sha256": "5277e0384729b086a58e798fde4e7ede7d7238dcf26597b1f43296aa0176e4d5",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 168,
+        "sha256": "ebb63ed7b245dacaceca7485aed509cc8ab3b363fa1802ff1f8b3ec11512691f",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 13,
+        "sha256": "a722166c8207862cfcb09b470278a698c4e466d809a31c7838d196ed9ad45498",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401628320,
+        "season": 2024,
+        "week": 1,
+        "game_date": "2024-08-29T23:30Z",
+        "neutral_site": true,
+        "home_id": 8,
+        "away_id": 2029,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/play_by_play_2024.parquet",
+      "source_sha256": "25ae95cf175a59bbb362d5f8af3cb3e748b56635d084ebda69461c31b3c5e312",
+      "raw_allowed_sha256": "7d024c65991cbaa72cb42003c37af838473beb1529cbc1b4c3f869ae361ad0d5",
+      "raw_rows": 164,
+      "raw_missing": false,
+      "output_rows": 112,
+      "clock_available": 68,
+      "conversion_available": 112,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 20,
+        "unsupported_play_type": 19,
+        "penalty_or_nullified": 10,
+        "unavailable_pre_score_after_archived_play_number_gap": 3
+      },
+      "clock_missing": {
+        "clock_decrement_outside_0_60": 10,
+        "next_row_not_legal": 32,
+        "archived_play_number_gap": 1,
+        "no_next_archived_row": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 102,
+        "attributed_offensive_td": 10
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "63608fdaadca93e40320d952517cb8f21779dbc4942d73e1cb22688f488db43f",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 11,
+        "game_id": 401628320
+      },
+      "independent_rows_trace": {
+        "records": 112,
+        "sha256": "63608fdaadca93e40320d952517cb8f21779dbc4942d73e1cb22688f488db43f",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 164,
+        "sha256": "993fdd8c58847fc5bf0040cf07e03e8ed413cd5b899a77ae4fffa0f11ba6aee5",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 12,
+        "sha256": "82518d856bc21a2ee53f29885172a2d61c7442cdc9f85c339b9c52814d8f730c",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401752665,
+        "season": 2025,
+        "week": 1,
+        "game_date": "2025-08-30T19:30Z",
+        "neutral_site": false,
+        "home_id": 52,
+        "away_id": 333,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/partials/2025/0001.parquet",
+      "source_sha256": "aa037920e980acf17317747f2010a031b3b7e1013a44a7b15db18b1dd9df0e63",
+      "raw_allowed_sha256": "f2c955b87ed0d1405599928b185e633e7a44fd7c36f3fa2feb8959fbe054e468",
+      "raw_rows": 172,
+      "raw_missing": false,
+      "output_rows": 131,
+      "clock_available": 95,
+      "conversion_available": 131,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 19,
+        "penalty_or_nullified": 12,
+        "unsupported_play_type": 7,
+        "unavailable_pre_score_after_archived_play_number_gap": 2,
+        "kneel": 1
+      },
+      "clock_missing": {
+        "next_row_not_legal": 31,
+        "archived_play_number_gap": 2,
+        "missing_or_changed_drive": 3
+      },
+      "conversion_attribution": {
+        "retained_yardage": 122,
+        "attributed_offensive_td": 6,
+        "possession_lost": 3
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "a1945646269d663b99d8f740e3f8d542e2220eb7ac451ad8c52afd875732ecc9",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 12,
+        "game_id": 401752665
+      },
+      "independent_rows_trace": {
+        "records": 131,
+        "sha256": "a1945646269d663b99d8f740e3f8d542e2220eb7ac451ad8c52afd875732ecc9",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 172,
+        "sha256": "516507c1ee3edbdc5d2cfe5e99f520ff6d0e1d517fafd7e06c55454d9486bb91",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 7,
+        "sha256": "170e2ff475433de9a9f7a30b9daecb939be832d032701ff1ed0dfd52e739c1cb",
+        "field": "attribution_cases"
+      }
+    },
+    {
+      "schedule": {
+        "game_id": 401752666,
+        "season": 2025,
+        "week": 1,
+        "game_date": "2025-08-30T20:15Z",
+        "neutral_site": false,
+        "home_id": 8,
+        "away_id": 2010,
+        "status": "STATUS_FINAL"
+      },
+      "source_path": "model/data/raw/pbp_research/espn/partials/2025/0001.parquet",
+      "source_sha256": "aa037920e980acf17317747f2010a031b3b7e1013a44a7b15db18b1dd9df0e63",
+      "raw_allowed_sha256": "4ad2a7505b414d8172964338558f447fee2e11cf3f7fef75b92f8e72fab5c89d",
+      "raw_rows": 186,
+      "raw_missing": false,
+      "output_rows": 127,
+      "clock_available": 84,
+      "conversion_available": 127,
+      "pass_unknown": 0,
+      "unknown_helper_flags": {
+        "scoringPlay": 0,
+        "isPenalty": 0,
+        "isTurnover": 0,
+        "penalty_flag": 0,
+        "penalty_no_play": 0,
+        "penalty_offset": 0,
+        "kneel_down": 0,
+        "kickoff_play": 0,
+        "punt_play": 0
+      },
+      "exclusions": {
+        "special_team_provenance": 25,
+        "unsupported_play_type": 20,
+        "penalty_or_nullified": 12,
+        "unavailable_pre_score_after_archived_play_number_gap": 1,
+        "kneel": 1
+      },
+      "clock_missing": {
+        "next_row_not_legal": 41,
+        "clock_decrement_outside_0_60": 1,
+        "no_next_archived_row": 1
+      },
+      "conversion_attribution": {
+        "retained_yardage": 118,
+        "attributed_offensive_td": 8,
+        "explicit_turnover": 1
+      },
+      "mismatch_count": 0,
+      "mismatches": [],
+      "parser_output_sha256": "10811bd992c08967c5f77086dda5ebec9bb2a084a66e93bd169fa0fcdf87466f",
+      "detailed_trace": {
+        "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+        "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+        "bytes": 1902338,
+        "publication": "Local ignored research archive; full trace and play descriptions are not republished",
+        "game_index": 13,
+        "game_id": 401752666
+      },
+      "independent_rows_trace": {
+        "records": 127,
+        "sha256": "10811bd992c08967c5f77086dda5ebec9bb2a084a66e93bd169fa0fcdf87466f",
+        "field": "independent_rows"
+      },
+      "row_decisions_trace": {
+        "records": 186,
+        "sha256": "a007799ded5506aade6a976f81dc71dea9f312e24f69f3151d6b21d6cb54d3ae",
+        "field": "row_decisions"
+      },
+      "attribution_cases_trace": {
+        "records": 9,
+        "sha256": "4ad1fd5f77a9ab4374339f72036fd811c1911a14809a72181b6518522e66b4d6",
+        "field": "attribution_cases"
+      }
+    }
+  ],
+  "limitations": [
+    "This fixed ID sample is not random or representative; lowest IDs cluster in certain schools/conferences and early-season schedules.",
+    "One selected game has no archived rows and remains missing.",
+    "Agreement verifies implementation of the frozen state definitions; it does not certify every upstream field or original publication time.",
+    "Clock depletion is adjacent recorded game-clock change, not direct snap-to-snap timing; processed archives may omit records.",
+    "Historical play archive is a later publisher snapshot; kickoff+6h is an availability proxy, not a verified historical receipt.",
+    "No target matchup prediction, betting return, profitability or 2026 data was evaluated.",
+    "Frozen prepare_rows docstring retains an outdated short phrase about gaps being retained for efficiency; executable code and formal plan withhold the first state after a gap."
+  ],
+  "score_semantics": {
+    "totals": {
+      "raw_offensive_td_labels": 89,
+      "offensive_td_attributed_success": 88,
+      "score_change_rows": 128,
+      "score_change_on_scoring_true": 117,
+      "score_change_on_scoring_false": 11,
+      "offensive_td_missing_conversion": 1,
+      "score_correction_decrease": 5,
+      "offensive_td_excluded_state": 0,
+      "offensive_td_attributed_failure": 0
+    },
+    "by_game": [
+      {
+        "season": 2019,
+        "game_id": 401110720,
+        "counts": {
+          "raw_offensive_td_labels": 6,
+          "offensive_td_attributed_success": 6,
+          "score_change_rows": 7,
+          "score_change_on_scoring_true": 7
+        }
+      },
+      {
+        "season": 2019,
+        "game_id": 401110721,
+        "counts": {
+          "score_change_rows": 7,
+          "score_change_on_scoring_true": 7,
+          "raw_offensive_td_labels": 3,
+          "offensive_td_attributed_success": 3
+        }
+      },
+      {
+        "season": 2020,
+        "game_id": 401207098,
+        "counts": {
+          "raw_offensive_td_labels": 12,
+          "offensive_td_attributed_success": 11,
+          "score_change_rows": 14,
+          "score_change_on_scoring_true": 13,
+          "score_change_on_scoring_false": 1,
+          "offensive_td_missing_conversion": 1
+        }
+      },
+      {
+        "season": 2020,
+        "game_id": 401207101,
+        "counts": {
+          "raw_offensive_td_labels": 6,
+          "offensive_td_attributed_success": 6,
+          "score_change_rows": 10,
+          "score_change_on_scoring_true": 10
+        }
+      },
+      {
+        "season": 2021,
+        "game_id": 401281942,
+        "counts": {
+          "raw_offensive_td_labels": 6,
+          "offensive_td_attributed_success": 6,
+          "score_change_rows": 13,
+          "score_change_on_scoring_true": 11,
+          "score_change_on_scoring_false": 2,
+          "score_correction_decrease": 1
+        }
+      },
+      {
+        "season": 2021,
+        "game_id": 401281943,
+        "counts": {}
+      },
+      {
+        "season": 2022,
+        "game_id": 401403853,
+        "counts": {
+          "raw_offensive_td_labels": 8,
+          "offensive_td_attributed_success": 8,
+          "score_change_rows": 15,
+          "score_change_on_scoring_true": 11,
+          "score_change_on_scoring_false": 4,
+          "score_correction_decrease": 2
+        }
+      },
+      {
+        "season": 2022,
+        "game_id": 401403854,
+        "counts": {
+          "score_change_rows": 9,
+          "score_change_on_scoring_true": 9,
+          "raw_offensive_td_labels": 7,
+          "offensive_td_attributed_success": 7
+        }
+      },
+      {
+        "season": 2023,
+        "game_id": 401520145,
+        "counts": {
+          "score_change_rows": 5,
+          "score_change_on_scoring_true": 5,
+          "raw_offensive_td_labels": 4,
+          "offensive_td_attributed_success": 4
+        }
+      },
+      {
+        "season": 2023,
+        "game_id": 401520146,
+        "counts": {
+          "raw_offensive_td_labels": 4,
+          "offensive_td_attributed_success": 4,
+          "score_change_rows": 8,
+          "score_change_on_scoring_true": 8
+        }
+      },
+      {
+        "season": 2024,
+        "game_id": 401628319,
+        "counts": {
+          "raw_offensive_td_labels": 9,
+          "offensive_td_attributed_success": 9,
+          "score_change_rows": 9,
+          "score_change_on_scoring_true": 9
+        }
+      },
+      {
+        "season": 2024,
+        "game_id": 401628320,
+        "counts": {
+          "raw_offensive_td_labels": 10,
+          "offensive_td_attributed_success": 10,
+          "score_change_rows": 10,
+          "score_change_on_scoring_true": 10
+        }
+      },
+      {
+        "season": 2025,
+        "game_id": 401752665,
+        "counts": {
+          "raw_offensive_td_labels": 6,
+          "offensive_td_attributed_success": 6,
+          "score_change_rows": 8,
+          "score_change_on_scoring_true": 8
+        }
+      },
+      {
+        "season": 2025,
+        "game_id": 401752666,
+        "counts": {
+          "raw_offensive_td_labels": 8,
+          "offensive_td_attributed_success": 8,
+          "score_change_rows": 13,
+          "score_change_on_scoring_true": 9,
+          "score_change_on_scoring_false": 4,
+          "score_correction_decrease": 2
+        }
+      }
+    ],
+    "non_scoring_score_changes": [
+      {
+        "season": 2020,
+        "game_id": 401207098,
+        "play_number": 149,
+        "type": "Pass Reception",
+        "delta": [
+          7,
+          0
+        ],
+        "current_score": [
+          43,
+          10
+        ]
+      },
+      {
+        "season": 2021,
+        "game_id": 401281942,
+        "play_number": 112,
+        "type": "Penalty",
+        "delta": [
+          0,
+          -7
+        ],
+        "current_score": [
+          3,
+          27
+        ]
+      },
+      {
+        "season": 2021,
+        "game_id": 401281942,
+        "play_number": 114,
+        "type": "Pass Incompletion",
+        "delta": [
+          0,
+          7
+        ],
+        "current_score": [
+          3,
+          34
+        ]
+      },
+      {
+        "season": 2022,
+        "game_id": 401403853,
+        "play_number": 69,
+        "type": "Kickoff Return (Offense)",
+        "delta": [
+          0,
+          -7
+        ],
+        "current_score": [
+          10,
+          14
+        ]
+      },
+      {
+        "season": 2022,
+        "game_id": 401403853,
+        "play_number": 71,
+        "type": "Rush",
+        "delta": [
+          0,
+          7
+        ],
+        "current_score": [
+          10,
+          21
+        ]
+      },
+      {
+        "season": 2022,
+        "game_id": 401403853,
+        "play_number": 133,
+        "type": "Kickoff Return (Offense)",
+        "delta": [
+          0,
+          -7
+        ],
+        "current_score": [
+          10,
+          49
+        ]
+      },
+      {
+        "season": 2022,
+        "game_id": 401403853,
+        "play_number": 135,
+        "type": "Rush",
+        "delta": [
+          0,
+          7
+        ],
+        "current_score": [
+          10,
+          56
+        ]
+      },
+      {
+        "season": 2025,
+        "game_id": 401752666,
+        "play_number": 135,
+        "type": "Timeout",
+        "delta": [
+          -7,
+          0
+        ],
+        "current_score": [
+          38,
+          7
+        ]
+      },
+      {
+        "season": 2025,
+        "game_id": 401752666,
+        "play_number": 137,
+        "type": "Pass Reception",
+        "delta": [
+          7,
+          0
+        ],
+        "current_score": [
+          45,
+          7
+        ]
+      },
+      {
+        "season": 2025,
+        "game_id": 401752666,
+        "play_number": 151,
+        "type": "Timeout",
+        "delta": [
+          -7,
+          0
+        ],
+        "current_score": [
+          45,
+          7
+        ]
+      },
+      {
+        "season": 2025,
+        "game_id": 401752666,
+        "play_number": 153,
+        "type": "Pass Incompletion",
+        "delta": [
+          7,
+          0
+        ],
+        "current_score": [
+          52,
+          7
+        ]
+      }
+    ],
+    "interpretation": "88 of 89 raw offensive TD labels have the expected contemporaneous offensive 6\u20138 point increase and are conversion successes. One has an earlier premature score increase, so its conversion is unavailable. Five score rollback/restoration episodes around administrative/special-team records can temporarily corrupt lagged score margins. This does not support a systematic pre/post-score inversion; it does establish source noise in the state nuisance variable. No correction or resampling was applied."
+  },
+  "audit_limits_addendum": "Source score changes are not independently confirmed against official contemporaneous records; the audit identifies internal inconsistency without inventing historical corrections.",
+  "retained_full_trace": {
+    "path": "model/data/normalized/pbp_state_v1/parser_audit_full.json",
+    "sha256": "f0a058def5968b65f9692576abf67c0e23fb6de7c2f69b1ef0380ee21c1cd298",
+    "bytes": 1902338,
+    "publication": "Local ignored research archive; full trace and play descriptions are not republished"
+  },
+  "replay_script": {
+    "path": "scripts/research/audit_pbp_state_parser.py",
+    "sha256": "f1307e823ce54d58fb3e39b7c16e997edefa5dfce2922fea0cd7a867e3748d00",
+    "command": "PYTHONPATH=model python scripts/research/audit_pbp_state_parser.py --output /tmp/pbp-parser-audit-replay.json",
+    "validation": "Packaged replay matched every original game/row decision, score-semantic count and source check exactly; 0 mismatches. Output uses exclusive creation."
+  },
+  "original_temporary_replay_script_sha256": "b6f502173b379777a7ecf613cb3f64187298936b1448ac944b33e6ad8c3f61ac"
+}
