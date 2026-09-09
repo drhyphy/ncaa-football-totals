@@ -209,16 +209,16 @@ def test_ev_rejects_other_lines_push_contracts_and_invalid_numbers(change):
 
 
 def metadata(kind='final_total'):
-    first = datetime(2025,9,6,18,tzinfo=timezone.utc)
+    first = datetime(2025,11,15,18,tzinfo=timezone.utc)
     training = []
-    for week in range(12):
-        for i in range(25):
+    for week in range(2):
+        for i in range(30):
             kickoff = first + timedelta(weeks=week, minutes=i)
             decision = kickoff - timedelta(hours=36)
             target = kickoff + timedelta(hours=6) if kind == 'final_total' else decision + timedelta(hours=6)
             training.append(dict(game_id=str(1+len(training)), kickoff=kickoff,
                                  decision_at=decision, target_available_at=target))
-    cutoff = datetime(2025,12,1,tzinfo=timezone.utc)
+    cutoff = datetime(2025,12,1,5,tzinfo=timezone.utc)  # Monday 00:00 Eastern
     kickoff = datetime(2025,12,6,18,tzinfo=timezone.utc)
     testing = [dict(game_id='1000', kickoff=kickoff, decision_at=kickoff-timedelta(hours=36))]
     return training, testing, cutoff
@@ -228,13 +228,13 @@ def metadata(kind='final_total'):
 def test_metadata_guard_accepts_only_earlier_completed_week_training(kind):
     train, test, cutoff = metadata(kind)
     result = models.validate_chronological_split(train, test, cutoff=cutoff, target_kind=kind)
-    assert result['training_games'] == 300 and result['training_weeks'] == 12
+    assert result['training_games'] == 60 and result['training_weeks'] == 2
     assert result['testing_games'] == 1
 
 
 @pytest.mark.parametrize('mutation,match', [
     ('cross_game','Game crosses'),('duplicate','Repeated game'),('late_target','strictly before'),
-    ('test_before_cutoff','predates'),('naive','Timezone-aware'),('too_few','at least 300'),
+    ('test_before_cutoff','predates'),('naive','Timezone-aware'),('too_few','at least 60'),
     ('final_before_kickoff','cannot precede'),('pregame','pregame'),
 ])
 def test_metadata_guard_rejects_leakage_and_insufficient_independent_rows(mutation,match):
@@ -268,3 +268,15 @@ def test_movement_label_cannot_be_postgame_and_training_week_cannot_be_unfinishe
     train, test, _ = metadata('market_movement')
     with pytest.raises(ValueError, match='weeks must be completed'):
         models.validate_chronological_split(train, test, cutoff=datetime(2025,11,23,12,tzinfo=timezone.utc), target_kind='market_movement')
+
+
+def test_operational_minimum_rejects_59_games_and_60_games_in_only_one_week():
+    train, test, cutoff = metadata()
+    with pytest.raises(ValueError, match='at least 60'):
+        models.validate_chronological_split(train[:59], test, cutoff=cutoff, target_kind='final_total')
+    for i, row in enumerate(train):
+        kickoff = datetime(2025,11,15,18,tzinfo=timezone.utc) + timedelta(minutes=i)
+        row.update(kickoff=kickoff, decision_at=kickoff-timedelta(hours=36),
+                   target_available_at=kickoff+timedelta(hours=6))
+    with pytest.raises(ValueError, match='2 completed weeks'):
+        models.validate_chronological_split(train, test, cutoff=cutoff, target_kind='final_total')

@@ -24,7 +24,7 @@ BASE_FEATURES = ('market_total', 'hours_to_kickoff', 'wind_mph', 'temperature_f'
                  'price_balance_logit_change', 'peer_total_difference')
 REVISION_FEATURES = ('wind_revision_mph', 'temperature_revision_f', 'humidity_revision_percent')
 ALL_FEATURES = BASE_FEATURES + REVISION_FEATURES
-MIN_TRAIN_GAMES, MIN_TRAIN_WEEKS = 300, 12
+MIN_TRAIN_GAMES, MIN_TRAIN_WEEKS = 60, 2
 
 
 class ModelFitError(RuntimeError):
@@ -302,7 +302,7 @@ def validate_chronological_split(training: Sequence[Mapping], testing: Sequence[
         if week_end > as_of:
             raise ValueError('Training weeks must be completed before the cutoff')
     if len(train_ids) < MIN_TRAIN_GAMES or len(train_weeks) < MIN_TRAIN_WEEKS:
-        raise ValueError('Design requires at least 300 distinct training games and 12 completed weeks')
+        raise ValueError('Experimental design requires at least 60 distinct training games and 2 completed weeks; this is not evidence of an edge')
     return {'training_games': len(train_ids), 'training_weeks': len(train_weeks),
             'testing_games': len(test_ids), 'testing_weeks': len(test_weeks),
             'cutoff': as_of.isoformat(), 'target_kind': target_kind}

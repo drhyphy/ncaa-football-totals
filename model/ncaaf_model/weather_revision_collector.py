@@ -17,9 +17,20 @@ from .teams import normalize_team
 from .weather_revision_weather import (select_run, single_run_request, previous_day2_request,
     parse_single_run, parse_previous_day2, maturity_time)
 
-VERSION = "weather-revision-collector-v1"
+VERSION = "weather-revision-collector-v2"
 START = datetime(2026, 9, 9, 3, tzinfo=timezone.utc)
 END = datetime(2026, 9, 16, 3, tzinfo=timezone.utc)
+SEASON_START = END
+SEASON_END = datetime(2027, 2, 1, 3, tzinfo=timezone.utc)
+SCHEDULED_UTC_SLOTS = ("01:17", "07:17", "13:17", "19:17")
+COLLECTION_PROFILES = {
+    "pilot": {"start": START, "end": END,
+              "protocol_id": "weather-revision-capture-pilot-v1",
+              "protocol_file": "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md"},
+    "season": {"start": SEASON_START, "end": SEASON_END,
+               "protocol_id": "weather-revision-season-collection-v1",
+               "protocol_file": "reports/WEATHER_REVISION_SEASON_COLLECTION_PROTOCOL.md"},
+}
 SCOREBOARD = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
 SUMMARY = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
 VENUES = "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/venues/"
@@ -328,7 +339,16 @@ def collect_quotes(client, rows, key, start):
     return quotes, failures
 
 
-def collect(root, now=None, client=None):
+def collect(root, now=None, client=None, profile="pilot"):
+    """Collect one actual observation under an explicit, bounded profile.
+
+    Profiles change admission dates and provenance only. The shared archive,
+    context-matched mature comparator cache, and source/measurement rules are
+    identical; an existing pilot manifest is never relabeled or rewritten.
+    """
+    if not isinstance(profile, str) or profile not in COLLECTION_PROFILES:
+        raise ValueError("Unknown collection profile")
+    selected = COLLECTION_PROFILES[profile]
     root = root.resolve()
     start = _time(now or timestamp())
     archive = root / "data/runtime/weather_revisions"
@@ -337,6 +357,11 @@ def collect(root, now=None, client=None):
     if not all(c.isalnum() or c in "-_" for c in run_id + attempt):
         raise ValueError("Invalid invocation identity")
     manifest = {"schema_version": "weather-revision-capture-v1", "collector_version": VERSION,
+        "collection_profile": profile, "collection_protocol_id": selected["protocol_id"],
+        "collection_protocol_file": selected["protocol_file"],
+        "collection_window": {"start_inclusive": _stamp(selected["start"]),
+                              "end_exclusive": _stamp(selected["end"])},
+        "scheduled_utc_slots": list(SCHEDULED_UTC_SLOTS),
         "run_id": run_id, "run_attempt": attempt, "trigger": os.environ.get("GITHUB_EVENT_NAME", "manual_local"),
         "capture_started_at": _stamp(start), "capture_completed_at": None,
         "requested_run": _stamp(select_run(start)), "status": "failed", "rows": [], "failures": [],
@@ -347,11 +372,14 @@ def collect(root, now=None, client=None):
     if path.exists():
         raise ValueError("Invocation already archived; use a new run attempt")
     try:
-        if not START <= start < END:
-            manifest["status"] = "outside_pilot"
+        if not selected["start"] <= start < selected["end"]:
+            manifest["status"] = "outside_" + profile
             return manifest
         pinned = ["ncaaf_model/weather_revision_collector.py", "ncaaf_model/weather_revision_weather.py",
-                  "ncaaf_model/revision_archive.py", "ncaaf_model/teams.py", "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md", "data/models/weather_venues_v1.json"]
+                  "ncaaf_model/revision_archive.py", "ncaaf_model/teams.py", "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md"]
+        if profile == "season":
+            pinned.append(selected["protocol_file"])
+        pinned.append("data/models/weather_venues_v1.json")
         manifest["provenance"] = {p: hashlib.sha256((root / p).read_bytes()).hexdigest() for p in pinned}
         manifest["git_commit"] = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True).stdout.strip() or None
         manifest["workflow_commit"] = os.environ.get("GITHUB_SHA")
@@ -478,10 +506,11 @@ def collect(root, now=None, client=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path("."))
+    parser.add_argument("--profile", choices=tuple(COLLECTION_PROFILES), default="pilot")
     args = parser.parse_args()
-    result = collect(args.root)
+    result = collect(args.root) if args.profile == "pilot" else collect(args.root, profile=args.profile)
     print(json.dumps({k: result[k] for k in ("run_id", "status", "counts")}, sort_keys=True))
-    return 0 if result["status"] in {"ok", "no_games", "outside_pilot"} else 2
+    return 0 if result["status"] in {"ok", "no_games", "outside_pilot", "outside_season"} else 2
 
 
 if __name__ == "__main__":
