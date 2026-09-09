@@ -1,0 +1,176 @@
+{
+  "access_date": "2026-09-09",
+  "collector_design_implications": [
+    "Compute evening deadlines from verified actual game-venue timezone/local date; do not apply ET universally.",
+    "Keep scheduled deadline, provider displayed issue fields and actual receipt independently.",
+    "The PDF defines report phases but not provider API phase strings or version IDs.",
+    "A pending or absent report supplies no affirmative all-available information.",
+    "Post-lock status revisions require original bytes and receipts; policy timing is not historical version proof."
+  ],
+  "document_time_evidence": {
+    "first_public_release_time_certified": false,
+    "interpretation": "Printed revision date, embedded metadata, object modification time and actual retrieval are separate observations. None certifies the original public release instant or a player-report issue time.",
+    "object_last_modified": "2026-08-24T17:31:57Z",
+    "pdf_creation_date_raw": "D:20260824130841-04'00'",
+    "pdf_modification_date_raw": "D:20260824130841-04'00'",
+    "printed_last_updated": "2026-08-20",
+    "printed_page": 4,
+    "retrieved_at": "2026-09-09T07:54:52.742906+00:00"
+  },
+  "football_policy": {
+    "absent_player_presumption": "Available under a completed applicable report; not a basis to treat pending/missing report as a complete empty report.",
+    "available_does_not_establish": "starter, snap share, backup quality or actual participation",
+    "game_day_exceptions": {
+      "consecutive_day_noon_local_or_two_hour_rule_applies_to": "Basketball and Baseball heading, page3; not part of the football schedule on page2",
+      "game_time_decision_only_on_game_day": true,
+      "playing_after_game_day_Out": "automatic policy violation, page4; not a parser guarantee about eventual events."
+    },
+    "game_day_statuses": [
+      "Available",
+      "Game Time Decision",
+      "Out"
+    ],
+    "partial_game_status": {
+      "literal": "Out (1st half)",
+      "page": 2,
+      "reason_scope": "first-half suspension under NCAA targeting or other NCAA/ACC rules-based suspension"
+    },
+    "phases": [
+      {
+        "days_before_local_game_date": 3,
+        "deadline_local_time": "20:00:00",
+        "page": 2,
+        "phase": "Initial Report",
+        "timezone_basis": "local time where game is played"
+      },
+      {
+        "days_before_local_game_date": 2,
+        "deadline_local_time": "20:00:00",
+        "page": 2,
+        "phase": "Update Report",
+        "timezone_basis": "local time where game is played"
+      },
+      {
+        "days_before_local_game_date": 1,
+        "deadline_local_time": "20:00:00",
+        "page": 2,
+        "phase": "Update Report",
+        "timezone_basis": "local time where game is played"
+      },
+      {
+        "deadline_minutes_before_scheduled_kickoff": 120,
+        "page": 2,
+        "phase": "Game Day Report"
+      }
+    ],
+    "pregame_statuses": [
+      "Available",
+      "Probable",
+      "Questionable",
+      "Doubtful",
+      "Out"
+    ],
+    "publication": {
+      "both_teams_published_together": true,
+      "maximum_publication_lag_defined": false,
+      "page": 3,
+      "relative_to_submission_deadline": "after the applicable submission deadline"
+    },
+    "reason_in_report": false,
+    "report_player_fields": [
+      "name",
+      "availability status"
+    ],
+    "required_coverage": {
+      "conference_championship": true,
+      "conference_games": true,
+      "nonconference_reporting": "optional",
+      "pages": [
+        1,
+        3
+      ],
+      "regular_season": true
+    },
+    "returning_player_rule": "Explicitly mark Available if previously listed for the same game and now expected to participate."
+  },
+  "official_viewer_url": "https://theacc.com/documents/2026/8/24//ACC_Availability_Reporting_Policy_2026_27.pdf?id=2940",
+  "public_source_body_redistributed": false,
+  "receipts": [
+    {
+      "actual_format": "html_document_viewer",
+      "body_path": "model/data/raw/availability_preflight/acc_policy/ACC_Availability_Reporting_Policy_2026_27.pdf",
+      "body_sha256": "30465fda0a8fe6efcf7da4cf8345fbadcad11e9beea7dbc3b527f6200d24852c",
+      "body_size_bytes": 500832,
+      "max_body_bytes": 8388608,
+      "raw_headers_path": "model/data/raw/availability_preflight/acc_policy/response.headers",
+      "raw_headers_sha256": "2b2e720be25fb0e44fb41f75a7c0f5fb1f384c970c8c1c9109bf20544353e251",
+      "receipt_path": "model/data/raw/availability_preflight/acc_policy/receipt.json",
+      "receipt_sha256": "e3a17f6216c9c5054d474e7d7dcc0a1c94cf07db9e6017e4cb453b7f2761758f",
+      "received_at": "2026-09-09T07:54:07.505256+00:00",
+      "redirect_limit": 3,
+      "request_url": "https://theacc.com/documents/2026/8/24//ACC_Availability_Reporting_Policy_2026_27.pdf?id=2940",
+      "requested_at": "2026-09-09T07:54:06.433871+00:00",
+      "response_chain": [
+        {
+          "headers": {
+            "cache-control": "public, max-age=60",
+            "content-type": "text/html; charset=utf-8",
+            "date": "Wed, 09 Sep 2026 07:54:06 GMT",
+            "last-modified": "Wed, 09 Sep 2026 07:54:06 GMT"
+          },
+          "status_line": "HTTP/2 200 "
+        }
+      ],
+      "schema_version": "availability-policy-http-v1",
+      "time_evidence": "Host UTC observations immediately before and after the HTTP command; brackets include command dispatch/return."
+    },
+    {
+      "actual_format": "pdf",
+      "body_path": "model/data/raw/availability_preflight/acc_policy/policy_original.pdf",
+      "body_sha256": "f12f1e5b006683d313dd7fb009d361e77d53fac8df9271be6650691043d9d5a0",
+      "body_size_bytes": 216495,
+      "max_body_bytes": 8388608,
+      "raw_headers_path": "model/data/raw/availability_preflight/acc_policy/pdf_response.headers",
+      "raw_headers_sha256": "70e6492b85e62aa4989c0c9fd6a85d4fbbb19e25da28f2e96eb0c8dcec638165",
+      "receipt_path": "model/data/raw/availability_preflight/acc_policy/pdf_receipt.json",
+      "receipt_sha256": "5728c295bde1d8cbacb955c2fd8b520e2427c7e7deddf7bab9e22ddf47aea818",
+      "received_at": "2026-09-09T07:54:52.742906+00:00",
+      "redirect_limit": 3,
+      "request_url": "https://s3.amazonaws.com/sidearm.sites/acc.sidearmsports.com/documents/2026/8/24/ACC_Availability_Reporting_Policy_2026_27.pdf",
+      "requested_at": "2026-09-09T07:54:52.210465+00:00",
+      "response_chain": [
+        {
+          "headers": {
+            "content-length": "216495",
+            "content-type": "application/pdf",
+            "date": "Wed, 09 Sep 2026 07:54:53 GMT",
+            "etag": "\"de2183dd3103ff5f07d91aa08163946b\"",
+            "last-modified": "Mon, 24 Aug 2026 17:31:57 GMT"
+          },
+          "status_line": "HTTP/1.1 200 OK"
+        }
+      ],
+      "schema_version": "availability-policy-http-v1",
+      "time_evidence": "Host UTC observations immediately before and after the HTTP command; brackets include command dispatch/return."
+    }
+  ],
+  "schema_version": "acc-football-availability-policy-2026-v1",
+  "scope": "Official policy extraction only. One HTML viewer retrieval and one original PDF retrieval, both HTTP200 without redirects; no outcomes, fits, roster joins or model/collector edits.",
+  "source_ambiguity": {
+    "collector_consequence": "Preserve reported status exactly, including Doubtful; do not silently recode or treat policy percentages as empirically calibrated probabilities.",
+    "description": "Page1 includes Doubtful with a25% policy label; page2 additional guidance requires at least Questionable before game day when any chance to play exists. These statements are retained without harmonizing them.",
+    "pages": [
+      1,
+      2
+    ]
+  },
+  "source_pdf_pages": 4,
+  "source_pdf_sha256": "f12f1e5b006683d313dd7fb009d361e77d53fac8df9271be6650691043d9d5a0",
+  "source_pdf_size_bytes": 216495,
+  "source_pdf_url": "https://s3.amazonaws.com/sidearm.sites/acc.sidearmsports.com/documents/2026/8/24/ACC_Availability_Reporting_Policy_2026_27.pdf",
+  "unchanged_preflight_reports": [
+    "ACC_CURRENT_AVAILABILITY_PREFLIGHT.md",
+    "ACC_AVAILABILITY_PREFLIGHT.md"
+  ],
+  "verification": "Extracted using pypdf; rendered all four pages with Poppler and visually inspected."
+}

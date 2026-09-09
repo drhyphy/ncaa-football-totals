@@ -37,6 +37,81 @@ class PublicationTests(unittest.TestCase):
                      'PBP_IDENTITY_DIAGNOSTIC.md', 'PBP_STATE_RESULTS_AUDIT_V2.md'):
             (self.reports/name).write_bytes((fixture/name).read_bytes())
 
+    def copy_shape_reports(self):
+        fixture = SCRIPTS.parent/'model/reports'
+        for name in (*PUBLISH.SHAPE_REPORT_SHA256, 'score_shape_results.md', 'SCORE_SHAPE_RESEARCH_PLAN.md',
+                     'SCORE_SHAPE_NUMERICAL_AUDIT.md', 'SCORE_SHAPE_SOURCE_CORRECTION.md',
+                     'SCORE_SHAPE_SOURCE_CORRECTION.json', 'score_shape_research_plan.json'):
+            (self.reports/name).write_bytes((fixture/name).read_bytes())
+
+    def test_shape_preserves_all_distributions_periods_denominators_and_pinned_evidence(self):
+        def bundle():
+            return json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])
+        self.assertIsNone(bundle()['score_shape_research'])
+        self.copy_shape_reports()
+        publication = bundle()
+        study = publication['score_shape_research']
+        original = json.loads((self.reports/'score_shape_results.json').read_text())
+        self.assertEqual(study['candidate_order'], list(PUBLISH.SHAPE_CONFIGURATIONS))
+        self.assertEqual(study['selected_on_2022_2024'], 'ridge_normal')
+        for period,count,conditional,integer,pushes in [('selection_2022_2024',2327,2315,349,12),('reused_2025',852,852,0,0)]:
+            self.assertEqual(study[period]['games'],count)
+            self.assertEqual(study[period]['configurations'],original[period]['pooled']['configurations'])
+            self.assertEqual(study[period]['comparisons'],original[period]['pooled']['comparisons'])
+            for candidate in PUBLISH.SHAPE_CONFIGURATIONS:
+                row=study[period]['configurations'][candidate]
+                self.assertEqual(row['metric_games']['conditional_brier'],conditional)
+                self.assertEqual((row['posted_integer_lines'],row['observed_pushes']),(integer,pushes))
+            for grouping in ('by_source','by_season'):
+                self.assertEqual(study[period][grouping],original[period][grouping])
+        self.assertEqual(study['audit']['status'],'passed')
+        self.assertEqual(study['audit']['numeric_comparisons'],1042299)
+        for key in ('roi_evaluated','live_policy_changes','probability_artifact_promoted','credible_executable_edge_established','actual_integer_line_validation_in_2025'):
+            self.assertIs(study[key],False)
+        for name,digest in PUBLISH.SHAPE_REPORT_SHA256.items():
+            self.assertEqual(publication['source_report_sha256']['model/reports/'+name],digest)
+        self.assertEqual(len(study['links']),10)
+        for link in study['links']:
+            filename=link['url'].rsplit('/',1)[1]
+            self.assertEqual(link['sha256'],hashlib.sha256((self.reports/filename).read_bytes()).hexdigest())
+        self.assertNotIn('market_score_shape',publication['reports'][PUBLISH.PRIMARY]['pooled'])
+
+    def test_shape_rejects_changed_frozen_artifacts_sources_and_missing_audit(self):
+        self.copy_shape_reports()
+        for name in (*PUBLISH.SHAPE_REPORT_SHA256,'SCORE_SHAPE_RESEARCH_PLAN.md','SCORE_SHAPE_SOURCE_CORRECTION.md',
+                     'SCORE_SHAPE_SOURCE_CORRECTION.json','score_shape_research_plan.json'):
+            with self.subTest(name=name):
+                path=self.reports/name
+                original=path.read_bytes()
+                path.write_bytes(original+b'\n')
+                with self.assertRaisesRegex(ValueError,'hash changed'):
+                    PUBLISH.build_outputs(self.root)
+                path.write_bytes(original)
+        (self.reports/'score_shape_numerical_audit.json').unlink()
+        with self.assertRaises(FileNotFoundError): PUBLISH.build_outputs(self.root)
+
+    def test_shape_semantic_checks_reject_scores_pushes_reliability_and_pair_faults(self):
+        original=json.loads((SCRIPTS.parent/'model/reports/score_shape_results.json').read_text())['selection_2022_2024']['pooled']
+        for fault in ('model','count','nonfinite','denominator','push','predicted_push','pair','difference','interval','seed','one_week','bins','reliability_count'):
+            with self.subTest(fault=fault):
+                row=json.loads(json.dumps(original))
+                shape=row['configurations']['market_score_shape']
+                comparison=row['comparisons'][0]
+                if fault=='model': del row['configurations']['market_normal']
+                if fault=='count': shape['games']=2326
+                if fault=='nonfinite': shape['metrics']['exact_score_nll']=float('nan')
+                if fault=='denominator': shape['metric_games']['conditional_brier']=2327
+                if fault=='push': shape['observed_pushes']=11
+                if fault=='predicted_push': shape['predicted_pushes']=350
+                if fault=='pair': row['comparisons'].pop()
+                if fault=='difference': comparison['metrics']['three_outcome_nll']['difference']=0
+                if fault=='interval': comparison['metrics']['three_outcome_nll']['interval_99']=[1,-1]
+                if fault=='seed': comparison['seed']=0
+                if fault=='one_week': comparison['metrics']['three_outcome_nll']['week_blocks']=1
+                if fault=='bins': shape['reliability'][0]['upper']=.41
+                if fault=='reliability_count': shape['reliability'][0]['games']+=1
+                with self.assertRaises(ValueError): PUBLISH.shape_summary(row,2327)
+
     def test_pbp_absent_until_complete_and_preserves_every_model_period_and_audit(self):
         def bundle():
             return json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])

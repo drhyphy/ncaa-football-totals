@@ -5503,6 +5503,4767 @@
       }
     ]
   },
+  "score_shape_research": {
+    "version": "repaired-moment-preserving-score-shape-v1",
+    "execution_plan_revision": 2,
+    "status": "reused_development_score_distribution_study",
+    "evaluated_at": "2026-09-09T07:43:35.920019+00:00",
+    "configuration_count": 3,
+    "candidate_order": [
+      "market_normal",
+      "ridge_normal",
+      "market_score_shape"
+    ],
+    "primary_metric": "three_outcome_nll",
+    "selected_on_2022_2024": "ridge_normal",
+    "selection_2022_2024": {
+      "games": 2327,
+      "configurations": {
+        "market_normal": {
+          "games": 2327,
+          "metrics": {
+            "three_outcome_nll": 0.7122818341198336,
+            "conditional_log_loss": 0.6931350571693561,
+            "conditional_brier": 0.24999391262933168,
+            "exact_score_nll": 4.181317212544515,
+            "discrete_crps": 8.89647623312648,
+            "absolute_mean_error": 12.534926087441402
+          },
+          "metric_games": {
+            "three_outcome_nll": 2327,
+            "conditional_log_loss": 2315,
+            "conditional_brier": 2315,
+            "exact_score_nll": 2327,
+            "discrete_crps": 2327,
+            "absolute_mean_error": 2327
+          },
+          "posted_integer_lines": 349,
+          "observed_pushes": 12,
+          "predicted_pushes": 8.501012413249207,
+          "reliability": [
+            {
+              "lower": 0.0,
+              "upper": 0.4,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.45,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.45,
+              "upper": 0.5,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.55,
+              "upper_inclusive": false,
+              "games": 2315,
+              "predicted_over": 0.5006866423736065,
+              "observed_over": 0.5131749460043197
+            },
+            {
+              "lower": 0.55,
+              "upper": 0.6,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.6,
+              "upper": 1.0,
+              "upper_inclusive": true,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            }
+          ]
+        },
+        "ridge_normal": {
+          "games": 2327,
+          "metrics": {
+            "three_outcome_nll": 0.7104651219899735,
+            "conditional_log_loss": 0.6912997776249213,
+            "conditional_brier": 0.24907760891755618,
+            "exact_score_nll": 4.177972862140131,
+            "discrete_crps": 8.872539992498037,
+            "absolute_mean_error": 12.508870538428964
+          },
+          "metric_games": {
+            "three_outcome_nll": 2327,
+            "conditional_log_loss": 2315,
+            "conditional_brier": 2315,
+            "exact_score_nll": 2327,
+            "discrete_crps": 2327,
+            "absolute_mean_error": 2327
+          },
+          "posted_integer_lines": 349,
+          "observed_pushes": 12,
+          "predicted_pushes": 8.469703049454077,
+          "reliability": [
+            {
+              "lower": 0.0,
+              "upper": 0.4,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.45,
+              "upper_inclusive": false,
+              "games": 60,
+              "predicted_over": 0.44104814196538883,
+              "observed_over": 0.48333333333333334
+            },
+            {
+              "lower": 0.45,
+              "upper": 0.5,
+              "upper_inclusive": false,
+              "games": 746,
+              "predicted_over": 0.48187908813098307,
+              "observed_over": 0.4839142091152815
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.55,
+              "upper_inclusive": false,
+              "games": 1193,
+              "predicted_over": 0.5229843420604011,
+              "observed_over": 0.5213746856663872
+            },
+            {
+              "lower": 0.55,
+              "upper": 0.6,
+              "upper_inclusive": false,
+              "games": 308,
+              "predicted_over": 0.5630870604910159,
+              "observed_over": 0.5584415584415584
+            },
+            {
+              "lower": 0.6,
+              "upper": 1.0,
+              "upper_inclusive": true,
+              "games": 8,
+              "predicted_over": 0.6068971788752302,
+              "observed_over": 0.5
+            }
+          ]
+        },
+        "market_score_shape": {
+          "games": 2327,
+          "metrics": {
+            "three_outcome_nll": 0.7124113150694644,
+            "conditional_log_loss": 0.6937519759403283,
+            "conditional_brier": 0.2503023047083969,
+            "exact_score_nll": 4.148800549099171,
+            "discrete_crps": 8.89862001091419,
+            "absolute_mean_error": 12.534926087441404
+          },
+          "metric_games": {
+            "three_outcome_nll": 2327,
+            "conditional_log_loss": 2315,
+            "conditional_brier": 2315,
+            "exact_score_nll": 2327,
+            "discrete_crps": 2327,
+            "absolute_mean_error": 2327
+          },
+          "posted_integer_lines": 349,
+          "observed_pushes": 12,
+          "predicted_pushes": 8.782161684286239,
+          "reliability": [
+            {
+              "lower": 0.0,
+              "upper": 0.4,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.45,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.45,
+              "upper": 0.5,
+              "upper_inclusive": false,
+              "games": 1869,
+              "predicted_over": 0.49261507155995177,
+              "observed_over": 0.516318887105404
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.55,
+              "upper_inclusive": false,
+              "games": 446,
+              "predicted_over": 0.5029855451563142,
+              "observed_over": 0.5
+            },
+            {
+              "lower": 0.55,
+              "upper": 0.6,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.6,
+              "upper": 1.0,
+              "upper_inclusive": true,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            }
+          ]
+        }
+      },
+      "comparisons": [
+        {
+          "candidate": "market_score_shape",
+          "reference": "market_normal",
+          "games": 2327,
+          "draws": 10000,
+          "seed": 20260909,
+          "difference_direction": "candidate_minus_reference",
+          "metrics": {
+            "three_outcome_nll": {
+              "games": 2327,
+              "week_blocks": 59,
+              "difference": 0.00012948094963097036,
+              "interval_95": [
+                -0.0008646268471994646,
+                0.001146088875153965
+              ],
+              "interval_99": [
+                -0.0011750264104183996,
+                0.0014974855704480768
+              ]
+            },
+            "conditional_log_loss": {
+              "games": 2315,
+              "week_blocks": 59,
+              "difference": 0.0006169187709723174,
+              "interval_95": [
+                -0.00017196224639277563,
+                0.0014344386755578027
+              ]
+            },
+            "conditional_brier": {
+              "games": 2315,
+              "week_blocks": 59,
+              "difference": 0.00030839207906523927,
+              "interval_95": [
+                -8.592415428589051e-05,
+                0.0007170073491332031
+              ]
+            },
+            "exact_score_nll": {
+              "games": 2327,
+              "week_blocks": 59,
+              "difference": -0.03251666344534461,
+              "interval_95": [
+                -0.04229115962798592,
+                -0.022783871958781936
+              ]
+            },
+            "discrete_crps": {
+              "games": 2327,
+              "week_blocks": 59,
+              "difference": 0.0021437777877096544,
+              "interval_95": [
+                -0.0020593193785306894,
+                0.006492058090722572
+              ]
+            },
+            "absolute_mean_error": {
+              "games": 2327,
+              "week_blocks": 59,
+              "difference": 3.084005857832837e-15,
+              "interval_95": [
+                4.006242346969317e-17,
+                6.898999303679358e-15
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "market_score_shape",
+          "reference": "ridge_normal",
+          "games": 2327,
+          "draws": 10000,
+          "seed": 20260909,
+          "difference_direction": "candidate_minus_reference",
+          "metrics": {
+            "three_outcome_nll": {
+              "games": 2327,
+              "week_blocks": 59,
+              "difference": 0.0019461930794909556,
+              "interval_95": [
+                -0.001327043542844551,
+                0.005314811026484108
+              ],
+              "interval_99": [
+                -0.002269496409915542,
+                0.006369405112912584
+              ]
+            },
+            "conditional_log_loss": {
+              "games": 2315,
+              "week_blocks": 59,
+              "difference": 0.0024521983154070027,
+              "interval_95": [
+                -0.0007931106685220565,
+                0.005714393298297304
+              ]
+            },
+            "conditional_brier": {
+              "games": 2315,
+              "week_blocks": 59,
+              "difference": 0.0012246957908407553,
+              "interval_95": [
+                -0.00039076840963215317,
+                0.002847495553622453
+              ]
+            },
+            "exact_score_nll": {
+              "games": 2327,
+              "week_blocks": 59,
+              "difference": -0.029172313040960227,
+              "interval_95": [
+                -0.04039460760731237,
+                -0.01791886794727018
+              ]
+            },
+            "discrete_crps": {
+              "games": 2327,
+              "week_blocks": 59,
+              "difference": 0.026080018416151405,
+              "interval_95": [
+                -0.007397240752784865,
+                0.05857529371886853
+              ]
+            },
+            "absolute_mean_error": {
+              "games": 2327,
+              "week_blocks": 59,
+              "difference": 0.02605554901244002,
+              "interval_95": [
+                -0.030408419240387723,
+                0.08014687613031132
+              ]
+            }
+          }
+        }
+      ],
+      "by_season": {
+        "2022": {
+          "games": 734,
+          "configurations": {
+            "market_normal": {
+              "games": 734,
+              "metrics": {
+                "three_outcome_nll": 0.7492147631032496,
+                "conditional_log_loss": 0.6931862942638438,
+                "conditional_brier": 0.2500195564328507,
+                "exact_score_nll": 4.156162641063279,
+                "discrete_crps": 8.619820639849975,
+                "absolute_mean_error": 12.051704628712212
+              },
+              "metric_games": {
+                "three_outcome_nll": 734,
+                "conditional_log_loss": 723,
+                "conditional_brier": 723,
+                "exact_score_nll": 734,
+                "discrete_crps": 734,
+                "absolute_mean_error": 734
+              },
+              "posted_integer_lines": 331,
+              "observed_pushes": 11,
+              "predicted_pushes": 8.052898242115148,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 723,
+                  "predicted_over": 0.5006568586354759,
+                  "observed_over": 0.49654218533886585
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 734,
+              "metrics": {
+                "three_outcome_nll": 0.7498372707750985,
+                "conditional_log_loss": 0.6937878105306392,
+                "conditional_brier": 0.25032183010149917,
+                "exact_score_nll": 4.159465906736324,
+                "discrete_crps": 8.646524043729759,
+                "absolute_mean_error": 12.085668916885327
+              },
+              "metric_games": {
+                "three_outcome_nll": 734,
+                "conditional_log_loss": 723,
+                "conditional_brier": 723,
+                "exact_score_nll": 734,
+                "discrete_crps": 734,
+                "absolute_mean_error": 734
+              },
+              "posted_integer_lines": 331,
+              "observed_pushes": 11,
+              "predicted_pushes": 8.022414581987071,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 52,
+                  "predicted_over": 0.44047338694870664,
+                  "observed_over": 0.5
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 324,
+                  "predicted_over": 0.4777859585133109,
+                  "observed_over": 0.49382716049382713
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 285,
+                  "predicted_over": 0.5217792539671047,
+                  "observed_over": 0.4807017543859649
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 60,
+                  "predicted_over": 0.5616374705301885,
+                  "observed_over": 0.5833333333333334
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 2,
+                  "predicted_over": 0.6052291402027081,
+                  "observed_over": 0.5
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 734,
+              "metrics": {
+                "three_outcome_nll": 0.7486419263544221,
+                "conditional_log_loss": 0.6937441234453648,
+                "conditional_brier": 0.2502984317472467,
+                "exact_score_nll": 4.117357153740221,
+                "discrete_crps": 8.618031802750028,
+                "absolute_mean_error": 12.051704628712212
+              },
+              "metric_games": {
+                "three_outcome_nll": 734,
+                "conditional_log_loss": 723,
+                "conditional_brier": 723,
+                "exact_score_nll": 734,
+                "discrete_crps": 734,
+                "absolute_mean_error": 734
+              },
+              "posted_integer_lines": 331,
+              "observed_pushes": 11,
+              "predicted_pushes": 8.316435116980417,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 652,
+                  "predicted_over": 0.4907691086134175,
+                  "observed_over": 0.5015337423312883
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 71,
+                  "predicted_over": 0.5044534835701928,
+                  "observed_over": 0.4507042253521127
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 734,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 734,
+                  "week_blocks": 16,
+                  "difference": -0.0005728367488274987,
+                  "interval_95": [
+                    -0.0028912238463107563,
+                    0.0018674030610650754
+                  ],
+                  "interval_99": [
+                    -0.003547495206319993,
+                    0.0028171067716529835
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 723,
+                  "week_blocks": 16,
+                  "difference": 0.0005578291815210622,
+                  "interval_95": [
+                    -0.001137092339642906,
+                    0.0023996726322945473
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 723,
+                  "week_blocks": 16,
+                  "difference": 0.0002788753143960067,
+                  "interval_95": [
+                    -0.0005683275931774143,
+                    0.0011995189646848484
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 734,
+                  "week_blocks": 16,
+                  "difference": -0.03880548732305828,
+                  "interval_95": [
+                    -0.05004679907131805,
+                    -0.027563084634385143
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 734,
+                  "week_blocks": 16,
+                  "difference": -0.0017888370999465948,
+                  "interval_95": [
+                    -0.00920120960972922,
+                    0.005439103588119244
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 734,
+                  "week_blocks": 16,
+                  "difference": 5.905055433428626e-16,
+                  "interval_95": [
+                    -2.4839305010864173e-15,
+                    3.3286798630885773e-15
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 734,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 734,
+                  "week_blocks": 16,
+                  "difference": -0.001195344420676606,
+                  "interval_95": [
+                    -0.007561681218498238,
+                    0.006057769231712308
+                  ],
+                  "interval_99": [
+                    -0.009426035365687462,
+                    0.00854484894333908
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 723,
+                  "week_blocks": 16,
+                  "difference": -4.3687085274310464e-05,
+                  "interval_95": [
+                    -0.006319743721469157,
+                    0.006910943171939087
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 723,
+                  "week_blocks": 16,
+                  "difference": -2.3398354252483934e-05,
+                  "interval_95": [
+                    -0.0031492377894270117,
+                    0.0034416871009268738
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 734,
+                  "week_blocks": 16,
+                  "difference": -0.04210875299610299,
+                  "interval_95": [
+                    -0.05579916701289503,
+                    -0.02882659280904893
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 734,
+                  "week_blocks": 16,
+                  "difference": -0.0284922409797289,
+                  "interval_95": [
+                    -0.08806794918756361,
+                    0.028113652512306946
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 734,
+                  "week_blocks": 16,
+                  "difference": -0.03396428817311548,
+                  "interval_95": [
+                    -0.15238108586899432,
+                    0.08057140742596822
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "2023": {
+          "games": 795,
+          "configurations": {
+            "market_normal": {
+              "games": 795,
+              "metrics": {
+                "three_outcome_nll": 0.697666928453278,
+                "conditional_log_loss": 0.69335388266447,
+                "conditional_brier": 0.2501032728320004,
+                "exact_score_nll": 4.1775899098129,
+                "discrete_crps": 8.943220184247226,
+                "absolute_mean_error": 12.728133703445758
+              },
+              "metric_games": {
+                "three_outcome_nll": 795,
+                "conditional_log_loss": 794,
+                "conditional_brier": 794,
+                "exact_score_nll": 795,
+                "discrete_crps": 795,
+                "absolute_mean_error": 795
+              },
+              "posted_integer_lines": 18,
+              "observed_pushes": 1,
+              "predicted_pushes": 0.44811417113405916,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 794,
+                  "predicted_over": 0.5008313866449043,
+                  "observed_over": 0.5151133501259446
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 795,
+              "metrics": {
+                "three_outcome_nll": 0.6962902351855015,
+                "conditional_log_loss": 0.6919765151621771,
+                "conditional_brier": 0.2494062269779879,
+                "exact_score_nll": 4.174050672980132,
+                "discrete_crps": 8.912238594998016,
+                "absolute_mean_error": 12.691399559173234
+              },
+              "metric_games": {
+                "three_outcome_nll": 795,
+                "conditional_log_loss": 794,
+                "conditional_brier": 794,
+                "exact_score_nll": 795,
+                "discrete_crps": 795,
+                "absolute_mean_error": 795
+              },
+              "posted_integer_lines": 18,
+              "observed_pushes": 1,
+              "predicted_pushes": 0.4472884674670078,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 8,
+                  "predicted_over": 0.44478404957382356,
+                  "observed_over": 0.375
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 362,
+                  "predicted_over": 0.4839835436671875,
+                  "observed_over": 0.47790055248618785
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 406,
+                  "predicted_over": 0.5176519642498278,
+                  "observed_over": 0.5665024630541872
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 17,
+                  "predicted_over": 0.5641498213017007,
+                  "observed_over": 0.17647058823529413
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 1,
+                  "predicted_over": 0.6088822471583613,
+                  "observed_over": 0.0
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 795,
+              "metrics": {
+                "three_outcome_nll": 0.6976122340464457,
+                "conditional_log_loss": 0.6936808474751737,
+                "conditional_brier": 0.2502666658619396,
+                "exact_score_nll": 4.154450708327094,
+                "discrete_crps": 8.94856826927746,
+                "absolute_mean_error": 12.728133703445769
+              },
+              "metric_games": {
+                "three_outcome_nll": 795,
+                "conditional_log_loss": 794,
+                "conditional_brier": 794,
+                "exact_score_nll": 795,
+                "discrete_crps": 795,
+                "absolute_mean_error": 795
+              },
+              "posted_integer_lines": 18,
+              "observed_pushes": 1,
+              "predicted_pushes": 0.46572656730582257,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 682,
+                  "predicted_over": 0.4938108213901202,
+                  "observed_over": 0.5205278592375366
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 112,
+                  "predicted_over": 0.5026755611071083,
+                  "observed_over": 0.48214285714285715
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 795,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 795,
+                  "week_blocks": 21,
+                  "difference": -5.469440683238259e-05,
+                  "interval_95": [
+                    -0.0015887812013818897,
+                    0.0013089857830767312
+                  ],
+                  "interval_99": [
+                    -0.0021192603128319396,
+                    0.001699817757094477
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 794,
+                  "week_blocks": 21,
+                  "difference": 0.00032696481070370773,
+                  "interval_95": [
+                    -0.0008771221909130086,
+                    0.0014343595501518098
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 794,
+                  "week_blocks": 21,
+                  "difference": 0.00016339302993916414,
+                  "interval_95": [
+                    -0.0004385731973606268,
+                    0.0007170225399633628
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 795,
+                  "week_blocks": 21,
+                  "difference": -0.023139201485805845,
+                  "interval_95": [
+                    -0.04277375382640888,
+                    -0.0027842737122668864
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 795,
+                  "week_blocks": 21,
+                  "difference": 0.005348085030235198,
+                  "interval_95": [
+                    -0.003106330315869999,
+                    0.013666991045650228
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 795,
+                  "week_blocks": 21,
+                  "difference": 7.373556691850096e-15,
+                  "interval_95": [
+                    -1.095974259014519e-15,
+                    1.7556513071432746e-14
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 795,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 795,
+                  "week_blocks": 21,
+                  "difference": 0.0013219988609443724,
+                  "interval_95": [
+                    -0.0014188436318345703,
+                    0.0036954610079306953
+                  ],
+                  "interval_99": [
+                    -0.002440016747371138,
+                    0.004358727541823885
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 794,
+                  "week_blocks": 21,
+                  "difference": 0.0017043323129964734,
+                  "interval_95": [
+                    -0.0009073891299557895,
+                    0.0038934327443335376
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 794,
+                  "week_blocks": 21,
+                  "difference": 0.0008604388839516643,
+                  "interval_95": [
+                    -0.000439273063790709,
+                    0.0019523553841677833
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 795,
+                  "week_blocks": 21,
+                  "difference": -0.019599964653038194,
+                  "interval_95": [
+                    -0.040515862881497604,
+                    0.001973116973531586
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 795,
+                  "week_blocks": 21,
+                  "difference": 0.03632967427944435,
+                  "interval_95": [
+                    0.002171738041387678,
+                    0.07009077006078802
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 795,
+                  "week_blocks": 21,
+                  "difference": 0.03673414427253386,
+                  "interval_95": [
+                    -0.009757332590310837,
+                    0.07258617675419
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "2024": {
+          "games": 798,
+          "configurations": {
+            "market_normal": {
+              "games": 798,
+              "metrics": {
+                "three_outcome_nll": 0.6928709069658034,
+                "conditional_log_loss": 0.6928709069658034,
+                "conditional_brier": 0.24986186692649565,
+                "exact_score_nll": 4.20816766509948,
+                "discrete_crps": 9.104375687166534,
+                "absolute_mean_error": 12.786911671380949
+              },
+              "metric_games": {
+                "three_outcome_nll": 798,
+                "conditional_log_loss": 798,
+                "conditional_brier": 798,
+                "exact_score_nll": 798,
+                "discrete_crps": 798,
+                "absolute_mean_error": 798
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 798,
+                  "predicted_over": 0.5005696081521253,
+                  "observed_over": 0.5263157894736842
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 798,
+              "metrics": {
+                "three_outcome_nll": 0.6883722370291633,
+                "conditional_log_loss": 0.6883722370291633,
+                "conditional_brier": 0.24762335496270207,
+                "exact_score_nll": 4.198902994531853,
+                "discrete_crps": 9.040879989250463,
+                "absolute_mean_error": 12.716288356375497
+              },
+              "metric_games": {
+                "three_outcome_nll": 798,
+                "conditional_log_loss": 798,
+                "conditional_brier": 798,
+                "exact_score_nll": 798,
+                "discrete_crps": 798,
+                "absolute_mean_error": 798
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 60,
+                  "predicted_over": 0.4912851063313122,
+                  "observed_over": 0.4666666666666667
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 502,
+                  "predicted_over": 0.5279811458406447,
+                  "observed_over": 0.5079681274900398
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 231,
+                  "predicted_over": 0.5633853655294057,
+                  "observed_over": 0.5800865800865801
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 5,
+                  "predicted_over": 0.6071673806876128,
+                  "observed_over": 0.6
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 798,
+              "metrics": {
+                "three_outcome_nll": 0.6938298623503429,
+                "conditional_log_loss": 0.6938298623503429,
+                "conditional_brier": 0.2503412738750621,
+                "exact_score_nll": 4.1720932503614145,
+                "discrete_crps": 9.106944421181977,
+                "absolute_mean_error": 12.786911671380949
+              },
+              "metric_games": {
+                "three_outcome_nll": 798,
+                "conditional_log_loss": 798,
+                "conditional_brier": 798,
+                "exact_score_nll": 798,
+                "discrete_crps": 798,
+                "absolute_mean_error": 798
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 535,
+                  "predicted_over": 0.4933404294234386,
+                  "observed_over": 0.5289719626168224
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 263,
+                  "predicted_over": 0.5027212660161078,
+                  "observed_over": 0.5209125475285171
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 798,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.0009589553845393436,
+                  "interval_95": [
+                    -0.0002323070363510427,
+                    0.0020921355743575573
+                  ],
+                  "interval_99": [
+                    -0.0005719837670375011,
+                    0.002422331278899624
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.000958955384539402,
+                  "interval_95": [
+                    -0.00023230703635097958,
+                    0.0020921355743576233
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.00047940694856644076,
+                  "interval_95": [
+                    -0.00011609834332065058,
+                    0.001045896294761287
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": -0.03607441473806574,
+                  "interval_95": [
+                    -0.05297534255834322,
+                    -0.020421291579542956
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.00256873401544384,
+                  "interval_95": [
+                    -0.0031580057140338145,
+                    0.007724374469515141
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 1.1041014941635641e-15,
+                  "interval_95": [
+                    2.1863716733441738e-17,
+                    2.161373485690547e-15
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 798,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.005457625321179584,
+                  "interval_95": [
+                    -0.0012322833617001542,
+                    0.012002509363644281
+                  ],
+                  "interval_99": [
+                    -0.0032069688941746537,
+                    0.014046252914457396
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.00545762532117962,
+                  "interval_95": [
+                    -0.0012322833617001156,
+                    0.012002509363644318
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.002717918912359991,
+                  "interval_95": [
+                    -0.0006129399705538418,
+                    0.005974536636662426
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": -0.02680974417043794,
+                  "interval_95": [
+                    -0.047651949468529256,
+                    -0.007379024037142495
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.06606443193151264,
+                  "interval_95": [
+                    0.0018672803034683874,
+                    0.12923616954321457
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 798,
+                  "week_blocks": 22,
+                  "difference": 0.07062331500545146,
+                  "interval_95": [
+                    -0.036608948636505746,
+                    0.17343872363203397
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "by_source": {
+        "cfbd_Bovada": {
+          "games": 13,
+          "configurations": {
+            "market_normal": {
+              "games": 13,
+              "metrics": {
+                "three_outcome_nll": 0.7095661015625093,
+                "conditional_log_loss": 0.6924659737065164,
+                "conditional_brier": 0.24965939789662692,
+                "exact_score_nll": 4.072611708962682,
+                "discrete_crps": 8.019418378566217,
+                "absolute_mean_error": 11.120555562858508
+              },
+              "metric_games": {
+                "three_outcome_nll": 13,
+                "conditional_log_loss": 13,
+                "conditional_brier": 13,
+                "exact_score_nll": 13,
+                "discrete_crps": 13,
+                "absolute_mean_error": 13
+              },
+              "posted_integer_lines": 9,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.21957852661561075,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 13,
+                  "predicted_over": 0.5008284212293396,
+                  "observed_over": 0.6153846153846154
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 13,
+              "metrics": {
+                "three_outcome_nll": 0.693860415589519,
+                "conditional_log_loss": 0.6768249852205741,
+                "conditional_brier": 0.24187012437895203,
+                "exact_score_nll": 4.07069314203863,
+                "discrete_crps": 7.967063008602665,
+                "absolute_mean_error": 10.789355864955612
+              },
+              "metric_games": {
+                "three_outcome_nll": 13,
+                "conditional_log_loss": 13,
+                "conditional_brier": 13,
+                "exact_score_nll": 13,
+                "discrete_crps": 13,
+                "absolute_mean_error": 13
+              },
+              "posted_integer_lines": 9,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.2187578808992838,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 5,
+                  "predicted_over": 0.4765144704949482,
+                  "observed_over": 0.6
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 7,
+                  "predicted_over": 0.5251193315187611,
+                  "observed_over": 0.5714285714285714
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 1,
+                  "predicted_over": 0.5516688270532616,
+                  "observed_over": 1.0
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 13,
+              "metrics": {
+                "three_outcome_nll": 0.7118240878266104,
+                "conditional_log_loss": 0.6936056237259625,
+                "conditional_brier": 0.25022918576014047,
+                "exact_score_nll": 4.004519383174326,
+                "discrete_crps": 8.020328019399363,
+                "absolute_mean_error": 11.120555562858508
+              },
+              "metric_games": {
+                "three_outcome_nll": 13,
+                "conditional_log_loss": 13,
+                "conditional_brier": 13,
+                "exact_score_nll": 13,
+                "discrete_crps": 13,
+                "absolute_mean_error": 13
+              },
+              "posted_integer_lines": 9,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.2336619065092287,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 11,
+                  "predicted_over": 0.4936600606777646,
+                  "observed_over": 0.5454545454545454
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 2,
+                  "predicted_over": 0.5006868682556371,
+                  "observed_over": 1.0
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 13,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.002257986264101085,
+                  "interval_95": [
+                    -0.007301049751393018,
+                    0.00888960256038272
+                  ],
+                  "interval_99": [
+                    -0.010729463461855437,
+                    0.01085996285081041
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.0011396500194459968,
+                  "interval_95": [
+                    -0.008016915139369267,
+                    0.007773148189838168
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.000569787863513578,
+                  "interval_95": [
+                    -0.004008019250473811,
+                    0.0038861288759970236
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": -0.06809232578835483,
+                  "interval_95": [
+                    -0.1496611147117562,
+                    -0.006010583279785607
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.0009096408331456743,
+                  "interval_95": [
+                    -0.07770314965366647,
+                    0.045540254453953675
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 5.465713352000771e-16,
+                  "interval_95": [
+                    -3.0364397864766275e-14,
+                    2.2500519965736505e-14
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 13,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.017963672237091253,
+                  "interval_95": [
+                    -0.0064008073924612646,
+                    0.053539550159197466
+                  ],
+                  "interval_99": [
+                    -0.010563713692529656,
+                    0.06400035745132719
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.01678063850538821,
+                  "interval_95": [
+                    -0.008231014783772273,
+                    0.05308022046529515
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.008359061381188441,
+                  "interval_95": [
+                    -0.004119216300986573,
+                    0.026455634667387196
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": -0.06617375886430388,
+                  "interval_95": [
+                    -0.12330666542740029,
+                    -0.011989582682155353
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.05326501079669897,
+                  "interval_95": [
+                    -0.14200393258259403,
+                    0.3119773296441605
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 13,
+                  "week_blocks": 8,
+                  "difference": 0.3311996979028983,
+                  "interval_95": [
+                    -0.19039331781206217,
+                    1.0950044411860735
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "cfbd_consensus": {
+          "games": 752,
+          "configurations": {
+            "market_normal": {
+              "games": 752,
+              "metrics": {
+                "three_outcome_nll": 0.7519830970015295,
+                "conditional_log_loss": 0.693199340808132,
+                "conditional_brier": 0.25002607967302853,
+                "exact_score_nll": 4.162742250302131,
+                "discrete_crps": 8.693695394051847,
+                "absolute_mean_error": 12.178797505184981
+              },
+              "metric_games": {
+                "three_outcome_nll": 752,
+                "conditional_log_loss": 740,
+                "conditional_brier": 740,
+                "exact_score_nll": 752,
+                "discrete_crps": 752,
+                "absolute_mean_error": 752
+              },
+              "posted_integer_lines": 335,
+              "observed_pushes": 12,
+              "predicted_pushes": 8.156918291300235,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 740,
+                  "predicted_over": 0.5006455414972348,
+                  "observed_over": 0.49594594594594593
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 752,
+              "metrics": {
+                "three_outcome_nll": 0.7528559293250277,
+                "conditional_log_loss": 0.6940561794469922,
+                "conditional_brier": 0.25045569900393855,
+                "exact_score_nll": 4.165872749444582,
+                "discrete_crps": 8.72014831710221,
+                "absolute_mean_error": 12.217079184609208
+              },
+              "metric_games": {
+                "three_outcome_nll": 752,
+                "conditional_log_loss": 740,
+                "conditional_brier": 740,
+                "exact_score_nll": 752,
+                "discrete_crps": 752,
+                "absolute_mean_error": 752
+              },
+              "posted_integer_lines": 335,
+              "observed_pushes": 12,
+              "predicted_pushes": 8.12670770698908,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 53,
+                  "predicted_over": 0.44052976960192575,
+                  "observed_over": 0.49056603773584906
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 340,
+                  "predicted_over": 0.47816821379801694,
+                  "observed_over": 0.4970588235294118
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 286,
+                  "predicted_over": 0.5213542079220105,
+                  "observed_over": 0.479020979020979
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 59,
+                  "predicted_over": 0.5618064305891195,
+                  "observed_over": 0.576271186440678
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 2,
+                  "predicted_over": 0.6052291402027081,
+                  "observed_over": 0.5
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 752,
+              "metrics": {
+                "three_outcome_nll": 0.7510553652620096,
+                "conditional_log_loss": 0.6937986454624593,
+                "conditional_brier": 0.250325690508123,
+                "exact_score_nll": 4.124242665322483,
+                "discrete_crps": 8.692127547837332,
+                "absolute_mean_error": 12.178797505184981
+              },
+              "metric_games": {
+                "three_outcome_nll": 752,
+                "conditional_log_loss": 740,
+                "conditional_brier": 740,
+                "exact_score_nll": 752,
+                "discrete_crps": 752,
+                "absolute_mean_error": 752
+              },
+              "posted_integer_lines": 335,
+              "observed_pushes": 12,
+              "predicted_pushes": 8.42428579240698,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 668,
+                  "predicted_over": 0.4908914805867881,
+                  "observed_over": 0.5029940119760479
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 72,
+                  "predicted_over": 0.5044175508335592,
+                  "observed_over": 0.4305555555555556
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 752,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 752,
+                  "week_blocks": 19,
+                  "difference": -0.0009277317395201832,
+                  "interval_95": [
+                    -0.0033506422024120286,
+                    0.0016554676706332413
+                  ],
+                  "interval_99": [
+                    -0.004080435846432967,
+                    0.0025589262973169497
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 740,
+                  "week_blocks": 19,
+                  "difference": 0.0005993046543271908,
+                  "interval_95": [
+                    -0.00104615224804661,
+                    0.002420783259185848
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 740,
+                  "week_blocks": 19,
+                  "difference": 0.00029961083509438553,
+                  "interval_95": [
+                    -0.000522874614962461,
+                    0.0012101392800165315
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 752,
+                  "week_blocks": 19,
+                  "difference": -0.03849958497964679,
+                  "interval_95": [
+                    -0.04950361395584056,
+                    -0.026803884359489227
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 752,
+                  "week_blocks": 19,
+                  "difference": -0.0015678462145152742,
+                  "interval_95": [
+                    -0.009293810712740781,
+                    0.005842117609816674
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 752,
+                  "week_blocks": 19,
+                  "difference": 5.574736889607169e-16,
+                  "interval_95": [
+                    -2.40508924026462e-15,
+                    3.2218694863558047e-15
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 752,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 752,
+                  "week_blocks": 19,
+                  "difference": -0.0018005640630182097,
+                  "interval_95": [
+                    -0.007880508474593375,
+                    0.005412950262878298
+                  ],
+                  "interval_99": [
+                    -0.009662138867939575,
+                    0.007586141328608658
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 740,
+                  "week_blocks": 19,
+                  "difference": -0.00025753398453291,
+                  "interval_95": [
+                    -0.006075407757754176,
+                    0.006490036198191074
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 740,
+                  "week_blocks": 19,
+                  "difference": -0.00013000849581558616,
+                  "interval_95": [
+                    -0.003030421078738503,
+                    0.003226120316440182
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 752,
+                  "week_blocks": 19,
+                  "difference": -0.041630084122098863,
+                  "interval_95": [
+                    -0.05477977033884183,
+                    -0.027840680127188145
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 752,
+                  "week_blocks": 19,
+                  "difference": -0.028020769264877364,
+                  "interval_95": [
+                    -0.08565926944086351,
+                    0.0255692305607134
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 752,
+                  "week_blocks": 19,
+                  "difference": -0.038281679424230525,
+                  "interval_95": [
+                    -0.14926967157620036,
+                    0.06865912480170674
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "espn_nonlive_provider_40": {
+          "games": 13,
+          "configurations": {
+            "market_normal": {
+              "games": 13,
+              "metrics": {
+                "three_outcome_nll": 0.7011465968427237,
+                "conditional_log_loss": 0.6933893043802756,
+                "conditional_brier": 0.2501210615600112,
+                "exact_score_nll": 4.2873167683386075,
+                "discrete_crps": 9.224310344685778,
+                "absolute_mean_error": 11.973093391527929
+              },
+              "metric_games": {
+                "three_outcome_nll": 13,
+                "conditional_log_loss": 13,
+                "conditional_brier": 13,
+                "exact_score_nll": 13,
+                "discrete_crps": 13,
+                "absolute_mean_error": 13
+              },
+              "posted_integer_lines": 4,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.09958420797424554,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 13,
+                  "predicted_over": 0.5005777329846361,
+                  "observed_over": 0.46153846153846156
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 13,
+              "metrics": {
+                "three_outcome_nll": 0.7072269380270602,
+                "conditional_log_loss": 0.6994820639971222,
+                "conditional_brier": 0.2531578852966256,
+                "exact_score_nll": 4.2775156624269774,
+                "discrete_crps": 9.146405662227792,
+                "absolute_mean_error": 12.062090592274853
+              },
+              "metric_games": {
+                "three_outcome_nll": 13,
+                "conditional_log_loss": 13,
+                "conditional_brier": 13,
+                "exact_score_nll": 13,
+                "discrete_crps": 13,
+                "absolute_mean_error": 13
+              },
+              "posted_integer_lines": 4,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.09942678383934929,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 3,
+                  "predicted_over": 0.4973112129006588,
+                  "observed_over": 0.6666666666666666
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 9,
+                  "predicted_over": 0.5223003732886813,
+                  "observed_over": 0.4444444444444444
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 1,
+                  "predicted_over": 0.5517861799102018,
+                  "observed_over": 0.0
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 13,
+              "metrics": {
+                "three_outcome_nll": 0.7003260508980177,
+                "conditional_log_loss": 0.6927550507731485,
+                "conditional_brier": 0.24980386825980552,
+                "exact_score_nll": 4.322294617428297,
+                "discrete_crps": 9.225711365398796,
+                "absolute_mean_error": 11.973093391527929
+              },
+              "metric_games": {
+                "three_outcome_nll": 13,
+                "conditional_log_loss": 13,
+                "conditional_brier": 13,
+                "exact_score_nll": 13,
+                "discrete_crps": 13,
+                "absolute_mean_error": 13
+              },
+              "posted_integer_lines": 4,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.09718032186050392,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 13,
+                  "predicted_over": 0.4936200295017415,
+                  "observed_over": 0.46153846153846156
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 13,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": -0.0008205459447060842,
+                  "interval_95": [
+                    -0.0028301378388280916,
+                    0.0009019613931127792
+                  ],
+                  "interval_99": [
+                    -0.0028301378388280916,
+                    0.0009019613931127792
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": -0.0006342536071270486,
+                  "interval_95": [
+                    -0.0035918927024230127,
+                    0.001900865617412349
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": -0.0003171933002057062,
+                  "interval_95": [
+                    -0.0017958886140659648,
+                    0.0009502598259602297
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": 0.034977849089689365,
+                  "interval_95": [
+                    0.005503309233544955,
+                    0.060241740394956
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": 0.0014010207130183971,
+                  "interval_95": [
+                    -0.014557308621318136,
+                    0.015079588713878283
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": 2.1862853408003084e-15,
+                  "interval_95": [
+                    2.0301221021717147e-15,
+                    2.3684757858670005e-15
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 13,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": -0.0069008871290425254,
+                  "interval_95": [
+                    -0.00845086554029219,
+                    -0.0050925789825845835
+                  ],
+                  "interval_99": [
+                    -0.00845086554029219,
+                    -0.0050925789825845835
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": -0.006727013223973741,
+                  "interval_95": [
+                    -0.0074749012437426475,
+                    -0.005854477200910017
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": -0.003354017036820066,
+                  "interval_95": [
+                    -0.003719455742287337,
+                    -0.0029276718804415827
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": 0.04477895500131866,
+                  "interval_95": [
+                    0.006884447101646041,
+                    0.07725996177246662
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": 0.0793057031710039,
+                  "interval_95": [
+                    0.015446640268154862,
+                    0.13404204280201734
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 13,
+                  "week_blocks": 2,
+                  "difference": -0.0889972007469245,
+                  "interval_95": [
+                    -0.13061626328637338,
+                    -0.04044162778423418
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "espn_nonlive_provider_52": {
+          "games": 1,
+          "configurations": {
+            "market_normal": {
+              "games": 1,
+              "metrics": {
+                "three_outcome_nll": 0.7160601849071715,
+                "conditional_log_loss": 0.6908127463862619,
+                "conditional_brier": 0.24883278503715667,
+                "exact_score_nll": 4.548871192408015,
+                "discrete_crps": 13.344907135438563,
+                "absolute_mean_error": 20.88549319878402
+              },
+              "metric_games": {
+                "three_outcome_nll": 1,
+                "conditional_log_loss": 1,
+                "conditional_brier": 1,
+                "exact_score_nll": 1,
+                "discrete_crps": 1,
+                "absolute_mean_error": 1
+              },
+              "posted_integer_lines": 1,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.024931387359115223,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 1,
+                  "predicted_over": 0.5011685805433296,
+                  "observed_over": 1.0
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 1,
+              "metrics": {
+                "three_outcome_nll": 0.6437376489069664,
+                "conditional_log_loss": 0.6186139987637291,
+                "conditional_brier": 0.21280641217955476,
+                "exact_score_nll": 4.432668101564427,
+                "discrete_crps": 12.178502561484104,
+                "absolute_mean_error": 19.429576944777935
+              },
+              "metric_games": {
+                "three_outcome_nll": 1,
+                "conditional_log_loss": 1,
+                "conditional_brier": 1,
+                "exact_score_nll": 1,
+                "discrete_crps": 1,
+                "absolute_mean_error": 1
+              },
+              "posted_integer_lines": 1,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.024810677726366383,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 1,
+                  "predicted_over": 0.5386905461845002,
+                  "observed_over": 1.0
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 1,
+              "metrics": {
+                "three_outcome_nll": 0.7386497114500176,
+                "conditional_log_loss": 0.7112439164094049,
+                "conditional_brier": 0.2590473934630239,
+                "exact_score_nll": 4.50123750337184,
+                "discrete_crps": 13.45591369278811,
+                "absolute_mean_error": 20.885493198783998
+              },
+              "metric_games": {
+                "three_outcome_nll": 1,
+                "conditional_log_loss": 1,
+                "conditional_brier": 1,
+                "exact_score_nll": 1,
+                "discrete_crps": 1,
+                "absolute_mean_error": 1
+              },
+              "posted_integer_lines": 1,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.027033663509527264,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 1,
+                  "predicted_over": 0.49103301338591326,
+                  "observed_over": 1.0
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 1,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 0.022589526542846072,
+                  "interval_95": null,
+                  "interval_99": null
+                },
+                "conditional_log_loss": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 0.020431170023142986,
+                  "interval_95": null
+                },
+                "conditional_brier": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 0.010214608425867244,
+                  "interval_95": null
+                },
+                "exact_score_nll": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": -0.04763368903617504,
+                  "interval_95": null
+                },
+                "discrete_crps": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 0.11100655734954756,
+                  "interval_95": null
+                },
+                "absolute_mean_error": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": -2.1316282072803006e-14,
+                  "interval_95": null
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 1,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 0.09491206254305118,
+                  "interval_95": null,
+                  "interval_99": null
+                },
+                "conditional_log_loss": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 0.09262991764567574,
+                  "interval_95": null
+                },
+                "conditional_brier": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 0.04624098128346915,
+                  "interval_95": null
+                },
+                "exact_score_nll": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 0.06856940180741322,
+                  "interval_95": null
+                },
+                "discrete_crps": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 1.2774111313040066,
+                  "interval_95": null
+                },
+                "absolute_mean_error": {
+                  "games": 1,
+                  "week_blocks": 1,
+                  "difference": 1.4559162540060626,
+                  "interval_95": null
+                }
+              }
+            }
+          ]
+        },
+        "espn_nonlive_provider_58": {
+          "games": 1548,
+          "configurations": {
+            "market_normal": {
+              "games": 1548,
+              "metrics": {
+                "three_outcome_nll": 0.6931093112322525,
+                "conditional_log_loss": 0.6931093112322525,
+                "conditional_brier": 0.24998102714527667,
+                "exact_score_nll": 4.19012599481044,
+                "discrete_crps": 8.996723435155436,
+                "absolute_mean_error": 12.719130718327666
+              },
+              "metric_games": {
+                "three_outcome_nll": 1548,
+                "conditional_log_loss": 1548,
+                "conditional_brier": 1548,
+                "exact_score_nll": 1548,
+                "discrete_crps": 1548,
+                "absolute_mean_error": 1548
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 1548,
+                  "predicted_over": 0.5007057027142251,
+                  "observed_over": 0.520671834625323
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 1548,
+              "metrics": {
+                "three_outcome_nll": 0.6900819165195899,
+                "conditional_log_loss": 0.6900819165195898,
+                "conditional_brier": 0.24846852509254908,
+                "exact_score_nll": 4.1837513953863965,
+                "discrete_crps": 8.949738651679453,
+                "absolute_mean_error": 12.664340965897479
+              },
+              "metric_games": {
+                "three_outcome_nll": 1548,
+                "conditional_log_loss": 1548,
+                "conditional_brier": 1548,
+                "exact_score_nll": 1548,
+                "discrete_crps": 1548,
+                "absolute_mean_error": 1548
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 7,
+                  "predicted_over": 0.44497296128875247,
+                  "observed_over": 0.42857142857142855
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 398,
+                  "predicted_over": 0.48500025392766544,
+                  "observed_over": 0.46984924623115576
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 890,
+                  "predicted_over": 0.523480659984213,
+                  "observed_over": 0.5348314606741573
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 247,
+                  "predicted_over": 0.5634849401599652,
+                  "observed_over": 0.5546558704453441
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 6,
+                  "predicted_over": 0.6074531917660707,
+                  "observed_over": 0.5
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 1548,
+              "metrics": {
+                "three_outcome_nll": 0.6937279676839422,
+                "conditional_log_loss": 0.6937279676839422,
+                "conditional_brier": 0.2502902760518124,
+                "exact_score_nll": 4.160257476692543,
+                "discrete_crps": 9.000616552796176,
+                "absolute_mean_error": 12.719130718327671
+              },
+              "metric_games": {
+                "three_outcome_nll": 1548,
+                "conditional_log_loss": 1548,
+                "conditional_brier": 1548,
+                "exact_score_nll": 1548,
+                "discrete_crps": 1548,
+                "absolute_mean_error": 1548
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 1176,
+                  "predicted_over": 0.4935745796336831,
+                  "observed_over": 0.5238095238095238
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 372,
+                  "predicted_over": 0.5027207412451308,
+                  "observed_over": 0.510752688172043
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 1548,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.0006186564516895767,
+                  "interval_95": [
+                    -0.0002519177050194191,
+                    0.001435996914435078
+                  ],
+                  "interval_99": [
+                    -0.0005579410138410844,
+                    0.0017115185694770228
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.0006186564516896022,
+                  "interval_95": [
+                    -0.00025191770501938423,
+                    0.001435996914435109
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.0003092489065357326,
+                  "interval_95": [
+                    -0.00012601939744141517,
+                    0.0007178128450216992
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": -0.029868518117896432,
+                  "interval_95": [
+                    -0.04286266410345851,
+                    -0.017357468755847486
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.0038931176407404205,
+                  "interval_95": [
+                    -0.0010294077738494047,
+                    0.009013014056362527
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 4.355975815480201e-15,
+                  "interval_95": [
+                    -1.697258876974371e-17,
+                    9.960697282853566e-15
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 1548,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.0036460511643523668,
+                  "interval_95": [
+                    -3.0444908787842453e-05,
+                    0.007323988722317012
+                  ],
+                  "interval_99": [
+                    -0.001062988766997469,
+                    0.008686613703054858
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.0036460511643523893,
+                  "interval_95": [
+                    -3.0444908787813454e-05,
+                    0.007323988722317038
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.001821750959263323,
+                  "interval_95": [
+                    -9.041516693699769e-06,
+                    0.003653036486964489
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": -0.023493918693853172,
+                  "interval_95": [
+                    -0.03808924048461074,
+                    -0.009512164909845215
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.05087790111672348,
+                  "interval_95": [
+                    0.013710777036840434,
+                    0.08826742761828828
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 1548,
+                  "week_blocks": 43,
+                  "difference": 0.05478975243019093,
+                  "interval_95": [
+                    -0.005945513873125296,
+                    0.11217066181539134
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "reused_2025": {
+      "games": 852,
+      "configurations": {
+        "market_normal": {
+          "games": 852,
+          "metrics": {
+            "three_outcome_nll": 0.693157959359175,
+            "conditional_log_loss": 0.693157959359175,
+            "conditional_brier": 0.25000538921112364,
+            "exact_score_nll": 4.159109410543945,
+            "discrete_crps": 8.772465834892047,
+            "absolute_mean_error": 12.475749331602898
+          },
+          "metric_games": {
+            "three_outcome_nll": 852,
+            "conditional_log_loss": 852,
+            "conditional_brier": 852,
+            "exact_score_nll": 852,
+            "discrete_crps": 852,
+            "absolute_mean_error": 852
+          },
+          "posted_integer_lines": 0,
+          "observed_pushes": 0,
+          "predicted_pushes": 0.0,
+          "reliability": [
+            {
+              "lower": 0.0,
+              "upper": 0.4,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.45,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.45,
+              "upper": 0.5,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.55,
+              "upper_inclusive": false,
+              "games": 852,
+              "predicted_over": 0.500490354577442,
+              "observed_over": 0.4847417840375587
+            },
+            {
+              "lower": 0.55,
+              "upper": 0.6,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.6,
+              "upper": 1.0,
+              "upper_inclusive": true,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            }
+          ]
+        },
+        "ridge_normal": {
+          "games": 852,
+          "metrics": {
+            "three_outcome_nll": 0.697509388839389,
+            "conditional_log_loss": 0.697509388839389,
+            "conditional_brier": 0.252162974582449,
+            "exact_score_nll": 4.1616537901545225,
+            "discrete_crps": 8.815412601082155,
+            "absolute_mean_error": 12.566289492254652
+          },
+          "metric_games": {
+            "three_outcome_nll": 852,
+            "conditional_log_loss": 852,
+            "conditional_brier": 852,
+            "exact_score_nll": 852,
+            "discrete_crps": 852,
+            "absolute_mean_error": 852
+          },
+          "posted_integer_lines": 0,
+          "observed_pushes": 0,
+          "predicted_pushes": 0.0,
+          "reliability": [
+            {
+              "lower": 0.0,
+              "upper": 0.4,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.45,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.45,
+              "upper": 0.5,
+              "upper_inclusive": false,
+              "games": 53,
+              "predicted_over": 0.48829027154242677,
+              "observed_over": 0.3584905660377358
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.55,
+              "upper_inclusive": false,
+              "games": 524,
+              "predicted_over": 0.5278704373449632,
+              "observed_over": 0.4732824427480916
+            },
+            {
+              "lower": 0.55,
+              "upper": 0.6,
+              "upper_inclusive": false,
+              "games": 264,
+              "predicted_over": 0.5662747379681901,
+              "observed_over": 0.5340909090909091
+            },
+            {
+              "lower": 0.6,
+              "upper": 1.0,
+              "upper_inclusive": true,
+              "games": 11,
+              "predicted_over": 0.6069765222500569,
+              "observed_over": 0.45454545454545453
+            }
+          ]
+        },
+        "market_score_shape": {
+          "games": 852,
+          "metrics": {
+            "three_outcome_nll": 0.6931057087473194,
+            "conditional_log_loss": 0.6931057087473194,
+            "conditional_brier": 0.24997925217426645,
+            "exact_score_nll": 4.095692276961756,
+            "discrete_crps": 8.767970732112827,
+            "absolute_mean_error": 12.475749331603142
+          },
+          "metric_games": {
+            "three_outcome_nll": 852,
+            "conditional_log_loss": 852,
+            "conditional_brier": 852,
+            "exact_score_nll": 852,
+            "discrete_crps": 852,
+            "absolute_mean_error": 852
+          },
+          "posted_integer_lines": 0,
+          "observed_pushes": 0,
+          "predicted_pushes": 0.0,
+          "reliability": [
+            {
+              "lower": 0.0,
+              "upper": 0.4,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.45,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.45,
+              "upper": 0.5,
+              "upper_inclusive": false,
+              "games": 745,
+              "predicted_over": 0.4932321536953089,
+              "observed_over": 0.4899328859060403
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.55,
+              "upper_inclusive": false,
+              "games": 107,
+              "predicted_over": 0.5006956764307376,
+              "observed_over": 0.4485981308411215
+            },
+            {
+              "lower": 0.55,
+              "upper": 0.6,
+              "upper_inclusive": false,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            },
+            {
+              "lower": 0.6,
+              "upper": 1.0,
+              "upper_inclusive": true,
+              "games": 0,
+              "predicted_over": null,
+              "observed_over": null
+            }
+          ]
+        }
+      },
+      "comparisons": [
+        {
+          "candidate": "market_score_shape",
+          "reference": "market_normal",
+          "games": 852,
+          "draws": 10000,
+          "seed": 20260909,
+          "difference_direction": "candidate_minus_reference",
+          "metrics": {
+            "three_outcome_nll": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -5.225061185574607e-05,
+              "interval_95": [
+                -0.0008769346491815576,
+                0.0007459994157035368
+              ],
+              "interval_99": [
+                -0.0011075187962161731,
+                0.0009818650138581477
+              ]
+            },
+            "conditional_log_loss": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -5.225061185574086e-05,
+              "interval_95": [
+                -0.00087693464918155,
+                0.000745999415703545
+              ]
+            },
+            "conditional_brier": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -2.6137036857120533e-05,
+              "interval_95": [
+                -0.000438377425175495,
+                0.0003729210139373164
+              ]
+            },
+            "exact_score_nll": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -0.06341713358218933,
+              "interval_95": [
+                -0.07565590223865669,
+                -0.050710015413329826
+              ]
+            },
+            "discrete_crps": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -0.004495102779220067,
+              "interval_95": [
+                -0.01038010971275334,
+                0.0007596308332946629
+              ]
+            },
+            "absolute_mean_error": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": 2.44228216158856e-13,
+              "interval_95": [
+                -2.4340624965792363e-13,
+                7.424469286270713e-13
+              ]
+            }
+          }
+        },
+        {
+          "candidate": "market_score_shape",
+          "reference": "ridge_normal",
+          "games": 852,
+          "draws": 10000,
+          "seed": 20260909,
+          "difference_direction": "candidate_minus_reference",
+          "metrics": {
+            "three_outcome_nll": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -0.004403680092069504,
+              "interval_95": [
+                -0.010844221212067772,
+                0.0014490832081186912
+              ],
+              "interval_99": [
+                -0.013028726218653464,
+                0.003494498346424616
+              ]
+            },
+            "conditional_log_loss": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -0.004403680092069494,
+              "interval_95": [
+                -0.01084422121206777,
+                0.0014490832081187073
+              ]
+            },
+            "conditional_brier": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -0.002183722408182564,
+              "interval_95": [
+                -0.005385604801854494,
+                0.0007320845109667662
+              ]
+            },
+            "exact_score_nll": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -0.06596151319276658,
+              "interval_95": [
+                -0.08394401676221,
+                -0.049261488400626885
+              ]
+            },
+            "discrete_crps": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -0.047441868969326034,
+              "interval_95": [
+                -0.1340601388388432,
+                0.02741636957204468
+              ]
+            },
+            "absolute_mean_error": {
+              "games": 852,
+              "week_blocks": 22,
+              "difference": -0.09054016065151052,
+              "interval_95": [
+                -0.21342780855429674,
+                0.02457701017982135
+              ]
+            }
+          }
+        }
+      ],
+      "by_season": {
+        "2025": {
+          "games": 852,
+          "configurations": {
+            "market_normal": {
+              "games": 852,
+              "metrics": {
+                "three_outcome_nll": 0.693157959359175,
+                "conditional_log_loss": 0.693157959359175,
+                "conditional_brier": 0.25000538921112364,
+                "exact_score_nll": 4.159109410543945,
+                "discrete_crps": 8.772465834892047,
+                "absolute_mean_error": 12.475749331602898
+              },
+              "metric_games": {
+                "three_outcome_nll": 852,
+                "conditional_log_loss": 852,
+                "conditional_brier": 852,
+                "exact_score_nll": 852,
+                "discrete_crps": 852,
+                "absolute_mean_error": 852
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 852,
+                  "predicted_over": 0.500490354577442,
+                  "observed_over": 0.4847417840375587
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 852,
+              "metrics": {
+                "three_outcome_nll": 0.697509388839389,
+                "conditional_log_loss": 0.697509388839389,
+                "conditional_brier": 0.252162974582449,
+                "exact_score_nll": 4.1616537901545225,
+                "discrete_crps": 8.815412601082155,
+                "absolute_mean_error": 12.566289492254652
+              },
+              "metric_games": {
+                "three_outcome_nll": 852,
+                "conditional_log_loss": 852,
+                "conditional_brier": 852,
+                "exact_score_nll": 852,
+                "discrete_crps": 852,
+                "absolute_mean_error": 852
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 53,
+                  "predicted_over": 0.48829027154242677,
+                  "observed_over": 0.3584905660377358
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 524,
+                  "predicted_over": 0.5278704373449632,
+                  "observed_over": 0.4732824427480916
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 264,
+                  "predicted_over": 0.5662747379681901,
+                  "observed_over": 0.5340909090909091
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 11,
+                  "predicted_over": 0.6069765222500569,
+                  "observed_over": 0.45454545454545453
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 852,
+              "metrics": {
+                "three_outcome_nll": 0.6931057087473194,
+                "conditional_log_loss": 0.6931057087473194,
+                "conditional_brier": 0.24997925217426645,
+                "exact_score_nll": 4.095692276961756,
+                "discrete_crps": 8.767970732112827,
+                "absolute_mean_error": 12.475749331603142
+              },
+              "metric_games": {
+                "three_outcome_nll": 852,
+                "conditional_log_loss": 852,
+                "conditional_brier": 852,
+                "exact_score_nll": 852,
+                "discrete_crps": 852,
+                "absolute_mean_error": 852
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 745,
+                  "predicted_over": 0.4932321536953089,
+                  "observed_over": 0.4899328859060403
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 107,
+                  "predicted_over": 0.5006956764307376,
+                  "observed_over": 0.4485981308411215
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 852,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -5.225061185574607e-05,
+                  "interval_95": [
+                    -0.0008769346491815576,
+                    0.0007459994157035368
+                  ],
+                  "interval_99": [
+                    -0.0011075187962161731,
+                    0.0009818650138581477
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -5.225061185574086e-05,
+                  "interval_95": [
+                    -0.00087693464918155,
+                    0.000745999415703545
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -2.6137036857120533e-05,
+                  "interval_95": [
+                    -0.000438377425175495,
+                    0.0003729210139373164
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -0.06341713358218933,
+                  "interval_95": [
+                    -0.07565590223865669,
+                    -0.050710015413329826
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -0.004495102779220067,
+                  "interval_95": [
+                    -0.01038010971275334,
+                    0.0007596308332946629
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": 2.44228216158856e-13,
+                  "interval_95": [
+                    -2.4340624965792363e-13,
+                    7.424469286270713e-13
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 852,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -0.004403680092069504,
+                  "interval_95": [
+                    -0.010844221212067772,
+                    0.0014490832081186912
+                  ],
+                  "interval_99": [
+                    -0.013028726218653464,
+                    0.003494498346424616
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -0.004403680092069494,
+                  "interval_95": [
+                    -0.01084422121206777,
+                    0.0014490832081187073
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -0.002183722408182564,
+                  "interval_95": [
+                    -0.005385604801854494,
+                    0.0007320845109667662
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -0.06596151319276658,
+                  "interval_95": [
+                    -0.08394401676221,
+                    -0.049261488400626885
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -0.047441868969326034,
+                  "interval_95": [
+                    -0.1340601388388432,
+                    0.02741636957204468
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 852,
+                  "week_blocks": 22,
+                  "difference": -0.09054016065151052,
+                  "interval_95": [
+                    -0.21342780855429674,
+                    0.02457701017982135
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "by_source": {
+        "espn_nonlive_provider_100": {
+          "games": 47,
+          "configurations": {
+            "market_normal": {
+              "games": 47,
+              "metrics": {
+                "three_outcome_nll": 0.6934892115212872,
+                "conditional_log_loss": 0.6934892115212872,
+                "conditional_brier": 0.250171011924166,
+                "exact_score_nll": 4.357333780649592,
+                "discrete_crps": 10.637669380403041,
+                "absolute_mean_error": 15.153321741798617
+              },
+              "metric_games": {
+                "three_outcome_nll": 47,
+                "conditional_log_loss": 47,
+                "conditional_brier": 47,
+                "exact_score_nll": 47,
+                "discrete_crps": 47,
+                "absolute_mean_error": 47
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 47,
+                  "predicted_over": 0.500679274826027,
+                  "observed_over": 0.425531914893617
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 47,
+              "metrics": {
+                "three_outcome_nll": 0.704894612964997,
+                "conditional_log_loss": 0.704894612964997,
+                "conditional_brier": 0.25579560839527693,
+                "exact_score_nll": 4.357090134939456,
+                "discrete_crps": 10.66795207838047,
+                "absolute_mean_error": 15.335266013606173
+              },
+              "metric_games": {
+                "three_outcome_nll": 47,
+                "conditional_log_loss": 47,
+                "conditional_brier": 47,
+                "exact_score_nll": 47,
+                "discrete_crps": 47,
+                "absolute_mean_error": 47
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 3,
+                  "predicted_over": 0.4941316946803434,
+                  "observed_over": 0.0
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 35,
+                  "predicted_over": 0.5260986296777806,
+                  "observed_over": 0.4857142857142857
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 8,
+                  "predicted_over": 0.566662727294573,
+                  "observed_over": 0.375
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 1,
+                  "predicted_over": 0.6139260005696467,
+                  "observed_over": 0.0
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 47,
+              "metrics": {
+                "three_outcome_nll": 0.6921251148352611,
+                "conditional_log_loss": 0.692125114835261,
+                "conditional_brier": 0.2494888769588121,
+                "exact_score_nll": 4.29706043418328,
+                "discrete_crps": 10.624718415154883,
+                "absolute_mean_error": 15.153321741800042
+              },
+              "metric_games": {
+                "three_outcome_nll": 47,
+                "conditional_log_loss": 47,
+                "conditional_brier": 47,
+                "exact_score_nll": 47,
+                "discrete_crps": 47,
+                "absolute_mean_error": 47
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 41,
+                  "predicted_over": 0.4932715492049898,
+                  "observed_over": 0.3902439024390244
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 6,
+                  "predicted_over": 0.5008686281837976,
+                  "observed_over": 0.6666666666666666
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 47,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.0013640966860261133,
+                  "interval_95": [
+                    -0.0033325482711059353,
+                    0.000786297109549694
+                  ],
+                  "interval_99": [
+                    -0.004841794346369148,
+                    0.003673286711297935
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.0013640966860260684,
+                  "interval_95": [
+                    -0.003332548271105885,
+                    0.0007862971095497116
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.0006821349653539537,
+                  "interval_95": [
+                    -0.0016663438608692186,
+                    0.000393055221882184
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.060273346466314145,
+                  "interval_95": [
+                    -0.12373533182924983,
+                    -0.00018391081373553275
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.012950965248161549,
+                  "interval_95": [
+                    -0.030966166807461247,
+                    0.006495429482895405
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": 1.423957878324337e-12,
+                  "interval_95": [
+                    -1.3245245356348535e-13,
+                    3.712039223011323e-12
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 47,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.012769498129736002,
+                  "interval_95": [
+                    -0.03966110917807008,
+                    0.004557950084896657
+                  ],
+                  "interval_99": [
+                    -0.06583308697338539,
+                    0.015232903452224944
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.012769498129735959,
+                  "interval_95": [
+                    -0.039661109178070045,
+                    0.004557950084896695
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.00630673143646478,
+                  "interval_95": [
+                    -0.019567475455512597,
+                    0.0022880321468918734
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.06002970075617783,
+                  "interval_95": [
+                    -0.1276331346865422,
+                    -0.0015739390515128893
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.04323366322558976,
+                  "interval_95": [
+                    -0.23919315128993782,
+                    0.13192588335071656
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 47,
+                  "week_blocks": 6,
+                  "difference": -0.1819442718061268,
+                  "interval_95": [
+                    -0.6959824461181608,
+                    0.04203624816314637
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "espn_nonlive_provider_58": {
+          "games": 805,
+          "configurations": {
+            "market_normal": {
+              "games": 805,
+              "metrics": {
+                "three_outcome_nll": 0.6931386191708283,
+                "conditional_log_loss": 0.6931386191708283,
+                "conditional_brier": 0.24999571931359196,
+                "exact_score_nll": 4.147536062227217,
+                "discrete_crps": 8.66356575211066,
+                "absolute_mean_error": 12.319419016970352
+              },
+              "metric_games": {
+                "three_outcome_nll": 805,
+                "conditional_log_loss": 805,
+                "conditional_brier": 805,
+                "exact_score_nll": 805,
+                "discrete_crps": 805,
+                "absolute_mean_error": 805
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 805,
+                  "predicted_over": 0.5004793244511271,
+                  "observed_over": 0.48819875776397514
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            },
+            "ridge_normal": {
+              "games": 805,
+              "metrics": {
+                "three_outcome_nll": 0.6970782018407511,
+                "conditional_log_loss": 0.697078201840751,
+                "conditional_brier": 0.25195088291884293,
+                "exact_score_nll": 4.1502432209558995,
+                "discrete_crps": 8.707251911103247,
+                "absolute_mean_error": 12.404622540076367
+              },
+              "metric_games": {
+                "three_outcome_nll": 805,
+                "conditional_log_loss": 805,
+                "conditional_brier": 805,
+                "exact_score_nll": 805,
+                "discrete_crps": 805,
+                "absolute_mean_error": 805
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 50,
+                  "predicted_over": 0.4879397861541518,
+                  "observed_over": 0.38
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 489,
+                  "predicted_over": 0.5279972538446593,
+                  "observed_over": 0.4723926380368098
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 256,
+                  "predicted_over": 0.5662626133017405,
+                  "observed_over": 0.5390625
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 10,
+                  "predicted_over": 0.6062815744180979,
+                  "observed_over": 0.5
+                }
+              ]
+            },
+            "market_score_shape": {
+              "games": 805,
+              "metrics": {
+                "three_outcome_nll": 0.6931629608142347,
+                "conditional_log_loss": 0.6931629608142347,
+                "conditional_brier": 0.2500078827769079,
+                "exact_score_nll": 4.083935378341368,
+                "discrete_crps": 8.659564345649503,
+                "absolute_mean_error": 12.319419016970528
+              },
+              "metric_games": {
+                "three_outcome_nll": 805,
+                "conditional_log_loss": 805,
+                "conditional_brier": 805,
+                "exact_score_nll": 805,
+                "discrete_crps": 805,
+                "absolute_mean_error": 805
+              },
+              "posted_integer_lines": 0,
+              "observed_pushes": 0,
+              "predicted_pushes": 0.0,
+              "reliability": [
+                {
+                  "lower": 0.0,
+                  "upper": 0.4,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.4,
+                  "upper": 0.45,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.45,
+                  "upper": 0.5,
+                  "upper_inclusive": false,
+                  "games": 704,
+                  "predicted_over": 0.4932298593545463,
+                  "observed_over": 0.49573863636363635
+                },
+                {
+                  "lower": 0.5,
+                  "upper": 0.55,
+                  "upper_inclusive": false,
+                  "games": 101,
+                  "predicted_over": 0.5006854020691698,
+                  "observed_over": 0.43564356435643564
+                },
+                {
+                  "lower": 0.55,
+                  "upper": 0.6,
+                  "upper_inclusive": false,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                },
+                {
+                  "lower": 0.6,
+                  "upper": 1.0,
+                  "upper_inclusive": true,
+                  "games": 0,
+                  "predicted_over": null,
+                  "observed_over": null
+                }
+              ]
+            }
+          },
+          "comparisons": [
+            {
+              "candidate": "market_score_shape",
+              "reference": "market_normal",
+              "games": 805,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": 2.4341643406374744e-05,
+                  "interval_95": [
+                    -0.0008457950102077955,
+                    0.0008473869748578418
+                  ],
+                  "interval_99": [
+                    -0.0011088315993436123,
+                    0.0010875526449478851
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": 2.4341643406377638e-05,
+                  "interval_95": [
+                    -0.0008457950102077821,
+                    0.0008473869748578457
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": 1.2163463315986498e-05,
+                  "interval_95": [
+                    -0.0004228414920804029,
+                    0.00042360770636755006
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": -0.06360068388584914,
+                  "interval_95": [
+                    -0.07641275287225693,
+                    -0.05075128460239345
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": -0.004001406461157645,
+                  "interval_95": [
+                    -0.01015146274683771,
+                    0.0013222374061804387
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": 1.75349589920623e-13,
+                  "interval_95": [
+                    -3.4111920344533166e-13,
+                    6.894330578644282e-13
+                  ]
+                }
+              }
+            },
+            {
+              "candidate": "market_score_shape",
+              "reference": "ridge_normal",
+              "games": 805,
+              "draws": 10000,
+              "seed": 20260909,
+              "difference_direction": "candidate_minus_reference",
+              "metrics": {
+                "three_outcome_nll": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": -0.003915241026516304,
+                  "interval_95": [
+                    -0.01065177986649936,
+                    0.0022626675947612688
+                  ],
+                  "interval_99": [
+                    -0.012981703170513899,
+                    0.004180923867197698
+                  ]
+                },
+                "conditional_log_loss": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": -0.003915241026516296,
+                  "interval_95": [
+                    -0.010651779866499355,
+                    0.002262667594761282
+                  ]
+                },
+                "conditional_brier": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": -0.0019430001419350309,
+                  "interval_95": [
+                    -0.005293514634996257,
+                    0.0011313317081686335
+                  ]
+                },
+                "exact_score_nll": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": -0.06630784261453014,
+                  "interval_95": [
+                    -0.08520374455741753,
+                    -0.049352714797154834
+                  ]
+                },
+                "discrete_crps": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": -0.04768756545374295,
+                  "interval_95": [
+                    -0.13847646081082138,
+                    0.02973758461895462
+                  ]
+                },
+                "absolute_mean_error": {
+                  "games": 805,
+                  "week_blocks": 16,
+                  "difference": -0.08520352310583726,
+                  "interval_95": [
+                    -0.2147727080329631,
+                    0.03613181093235713
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "historical_data_reused": true,
+    "no_2026_outcomes": true,
+    "live_policy_changes": false,
+    "probability_artifact_promoted": false,
+    "roi_evaluated": false,
+    "credible_executable_edge_established": false,
+    "actual_integer_line_validation_in_2025": false,
+    "audit": {
+      "status": "passed",
+      "numeric_comparisons": 1042299,
+      "maximum_absolute_difference": 1.9966819309047423e-09,
+      "git_stage_evidence": {
+        "source_commit": "051c0c43bcd8fbf30784be761f382cf1932955e4",
+        "selection_execution_commit": "2ae9cacc9c35fd6e75a57c7a9eecd45991d71c79",
+        "later_execution_commit": "a7fa4fdf573dd862f3764f857b9517ed2fddc150",
+        "ancestry_verified": true,
+        "original_source_commit": "e51db9143dc487256e51a7d140815296f3abcd02",
+        "original_plan_sha256": "3f24fe02312089db59560d41fca5ba97b5d75f77b64f0c872bd756717eaad3ad",
+        "source_bookkeeping_correction_before_fits_preserved": true,
+        "choice_committed_before_later_stage": true,
+        "attempts": [
+          {
+            "stage": "freeze",
+            "status": "succeeded",
+            "receipt_sha256": "4797f9557179b8edc32dfb79b360f2017b979d3461d1fe906dddc198dc5e7ef9"
+          },
+          {
+            "stage": "select",
+            "status": "failed",
+            "receipt_sha256": "f1a67f128a7d041a4952cf1d9b62e2ae775061fa170afa768b33b977247bff14"
+          },
+          {
+            "stage": "freeze",
+            "status": "succeeded",
+            "receipt_sha256": "484dce249f98193938e6dbeb3cd35fae73c25bd291dfccb14bd9f2efcf1b25ac"
+          },
+          {
+            "stage": "select",
+            "status": "succeeded",
+            "receipt_sha256": "b9cc401a8dc158dd149e52154ffc7dff4e8d414c25c1f0df5d5d73ce5def4bd3"
+          },
+          {
+            "stage": "check",
+            "status": "succeeded",
+            "receipt_sha256": "7f177b640765e58e04014e1cfc8da93d978a4a453c46684b1165561cde262400"
+          }
+        ]
+      }
+    },
+    "source_report_sha256": {
+      "score_shape_research_plan_v2.json": "ffd16bc66a7334b4706cfd80062173edc6097cc5197863f54f4a0e434ab347f9",
+      "score_shape_selection.json": "fc96d91ff3c4933268a0b5e570d4623223342538d55da3f9e1011d39635d4673",
+      "score_shape_results.json": "c0cb494526c03f3c118f276063e1d2cd25639faed116c92909ce04fb1b9e6b33",
+      "score_shape_numerical_audit.json": "368870facdaf4a2166cb55ff51d5968fed8d54ebd021e2efe748ec6ace84215f"
+    },
+    "limitations": [
+      "All historical years are reused development data.",
+      "Week intervals condition on fitted forecasts; they omit training-estimation uncertainty and the full search history.",
+      "There are no actual integer market lines in the 2024 or 2025 evaluation cohorts.",
+      "Historical quote receipt times and paired offered prices are unavailable.",
+      "Shape isolation does not identify a causal scoring mechanism or establish executable profitability."
+    ],
+    "links": [
+      {
+        "name": "All score-shape results and interpretation",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/score_shape_results.md",
+        "sha256": "8ac0904356f06978dd7a03c7fce8d46055ca00ea735c5fe4fd1f9dc93c7ea3a3"
+      },
+      {
+        "name": "Full scores, reliability and paired intervals",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/score_shape_results.json",
+        "sha256": "c0cb494526c03f3c118f276063e1d2cd25639faed116c92909ce04fb1b9e6b33"
+      },
+      {
+        "name": "Frozen scientific specification",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/SCORE_SHAPE_RESEARCH_PLAN.md",
+        "sha256": "73448c707044668d3e3ad347133c66b53e3eb3c03b76b4822e1bb353ea3e9f59"
+      },
+      {
+        "name": "Corrected execution plan",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/score_shape_research_plan_v2.json",
+        "sha256": "ffd16bc66a7334b4706cfd80062173edc6097cc5197863f54f4a0e434ab347f9"
+      },
+      {
+        "name": "Selection before the 2025 check",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/score_shape_selection.json",
+        "sha256": "fc96d91ff3c4933268a0b5e570d4623223342538d55da3f9e1011d39635d4673"
+      },
+      {
+        "name": "Independent numerical audit",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/SCORE_SHAPE_NUMERICAL_AUDIT.md",
+        "sha256": "fa7566c4422280c549a0ba0f235df44c0b4fd80b50e48a9a05d2efd59dc6b3b9"
+      },
+      {
+        "name": "Independent audit receipt",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/score_shape_numerical_audit.json",
+        "sha256": "368870facdaf4a2166cb55ff51d5968fed8d54ebd021e2efe748ec6ace84215f"
+      },
+      {
+        "name": "Preserved source-bookkeeping correction",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/SCORE_SHAPE_SOURCE_CORRECTION.md",
+        "sha256": "4d8a2d6f2f71c36e6b9fa7ace7d17671310059e65eba7074e45b49463b7180d7"
+      },
+      {
+        "name": "Original attempt receipts",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/SCORE_SHAPE_SOURCE_CORRECTION.json",
+        "sha256": "d46045fd948bee7bf47a2518dfefe877f079d2db4c87d1c2590c9de4ed93da09"
+      },
+      {
+        "name": "Preserved original plan",
+        "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/score_shape_research_plan.json",
+        "sha256": "3f24fe02312089db59560d41fca5ba97b5d75f77b64f0c872bd756717eaad3ad"
+      }
+    ]
+  },
   "prospective_evaluation_protocol": {
     "report": "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
     "url": "https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md",
@@ -5569,6 +10330,16 @@
     "model/reports/PBP_STATE_RESEARCH_PLAN_V2.md": "912dacb4b039c20e795a33d6e66141aba52bd1d0ce88c7cfa6d1133eb7d54024",
     "model/reports/PBP_IDENTITY_DIAGNOSTIC.md": "000c5915e5d84b1cb2f64289f8eb705daf3f78c2dd2a379ee44d04682524a3fd",
     "model/reports/PBP_STATE_RESULTS_AUDIT_V2.md": "378a0c8950560b7afe7ad9e1d1f61ce0a14c3baf7656b490a3f57f1d4948ce3f",
+    "model/reports/score_shape_research_plan_v2.json": "ffd16bc66a7334b4706cfd80062173edc6097cc5197863f54f4a0e434ab347f9",
+    "model/reports/score_shape_selection.json": "fc96d91ff3c4933268a0b5e570d4623223342538d55da3f9e1011d39635d4673",
+    "model/reports/score_shape_results.json": "c0cb494526c03f3c118f276063e1d2cd25639faed116c92909ce04fb1b9e6b33",
+    "model/reports/score_shape_numerical_audit.json": "368870facdaf4a2166cb55ff51d5968fed8d54ebd021e2efe748ec6ace84215f",
+    "model/reports/score_shape_results.md": "8ac0904356f06978dd7a03c7fce8d46055ca00ea735c5fe4fd1f9dc93c7ea3a3",
+    "model/reports/SCORE_SHAPE_RESEARCH_PLAN.md": "73448c707044668d3e3ad347133c66b53e3eb3c03b76b4822e1bb353ea3e9f59",
+    "model/reports/SCORE_SHAPE_NUMERICAL_AUDIT.md": "fa7566c4422280c549a0ba0f235df44c0b4fd80b50e48a9a05d2efd59dc6b3b9",
+    "model/reports/SCORE_SHAPE_SOURCE_CORRECTION.md": "4d8a2d6f2f71c36e6b9fa7ace7d17671310059e65eba7074e45b49463b7180d7",
+    "model/reports/SCORE_SHAPE_SOURCE_CORRECTION.json": "d46045fd948bee7bf47a2518dfefe877f079d2db4c87d1c2590c9de4ed93da09",
+    "model/reports/score_shape_research_plan.json": "3f24fe02312089db59560d41fca5ba97b5d75f77b64f0c872bd756717eaad3ad",
     "model/reports/PROSPECTIVE_EVALUATION_PROTOCOL.md": "f22f08b214e45c33de01d078abb987ee3cc5d59f7995023ad9ea73a0f67953fb"
   },
   "generator": "scripts/publish_research.py"

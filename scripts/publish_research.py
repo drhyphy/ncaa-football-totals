@@ -53,6 +53,15 @@ PBP_REPORT_SHA256 = {
     'pbp_state_results_v2.json': '42a8142ecb581a4231b22b4ee56de84a639fb3e664eb892149c049740ee55c8e',
     'PBP_STATE_RESULTS_AUDIT_V2.json': 'b1f6f5ff3c82a42d8d21036bdbab7ddc89725077166b3d9ca29dedb6aeb988d5',
 }
+SHAPE_CONFIGURATIONS = ('market_normal', 'ridge_normal', 'market_score_shape')
+SHAPE_METRICS = ('three_outcome_nll', 'conditional_log_loss', 'conditional_brier', 'exact_score_nll', 'discrete_crps', 'absolute_mean_error')
+SHAPE_YEAR_COUNTS = {'2022': 734, '2023': 795, '2024': 798, '2025': 852}
+SHAPE_REPORT_SHA256 = {
+    'score_shape_research_plan_v2.json': 'ffd16bc66a7334b4706cfd80062173edc6097cc5197863f54f4a0e434ab347f9',
+    'score_shape_selection.json': 'fc96d91ff3c4933268a0b5e570d4623223342538d55da3f9e1011d39635d4673',
+    'score_shape_results.json': 'c0cb494526c03f3c118f276063e1d2cd25639faed116c92909ce04fb1b9e6b33',
+    'score_shape_numerical_audit.json': '368870facdaf4a2166cb55ff51d5968fed8d54ebd021e2efe748ec6ace84215f',
+}
 
 
 def percent(value):
@@ -355,6 +364,141 @@ def pbp_publication(read, read_bytes, inputs):
         'probabilities_evaluated': False, 'roi_evaluated': False, 'credible_executable_edge_established': False,
         'audit': {key: audit[key] for key in ('passed', 'fit_count', 'numeric_comparisons', 'max_absolute_numeric_difference', 'stage_commits')},
         'source_report_sha256': dict(PBP_REPORT_SHA256), 'limitations': result['limitations'], 'links': links}
+
+
+def shape_summary(summary, expected_games):
+    configurations, comparisons = summary['configurations'], summary['comparisons']
+    if summary.get('games') != expected_games or set(configurations) != set(SHAPE_CONFIGURATIONS):
+        raise ValueError('Score-shape must retain all three configurations and exact common counts')
+    reference = configurations['market_normal']
+    for row in configurations.values():
+        if row.get('games') != expected_games or set(row.get('metrics', {})) != set(SHAPE_METRICS) or set(row.get('metric_games', {})) != set(SHAPE_METRICS):
+            raise ValueError('Score-shape common cohort/metric set changed')
+        integer, pushes = row.get('posted_integer_lines'), row.get('observed_pushes')
+        if (type(integer) is not int or type(pushes) is not int or not 0 <= pushes <= integer <= expected_games
+                or any(row.get(key) != reference.get(key) for key in ('posted_integer_lines', 'observed_pushes'))):
+            raise ValueError('Score-shape integer-line/push counts disagree')
+        predicted = row.get('predicted_pushes')
+        if type(predicted) not in (int, float) or not math.isfinite(predicted) or not 0 <= predicted <= integer:
+            raise ValueError('Score-shape expected pushes are invalid')
+        for metric in SHAPE_METRICS:
+            count = expected_games - pushes if metric.startswith('conditional_') else expected_games
+            value = row['metrics'][metric]
+            if row['metric_games'][metric] != count or (count == 0 and value is not None) or (count > 0 and (type(value) not in (int, float) or not math.isfinite(value) or value < 0)):
+                raise ValueError('Score-shape loss or metric denominator is invalid')
+        edges = (0., .4, .45, .5, .55, .6, 1.)
+        reliability = row.get('reliability', [])
+        if len(reliability) != 6 or sum(b.get('games', 0) for b in reliability) != expected_games - pushes:
+            raise ValueError('Score-shape reliability must conserve the nonpush cohort')
+        for i, bucket in enumerate(reliability):
+            count = bucket.get('games')
+            if (type(count) is not int or count < 0 or bucket.get('lower') != edges[i] or bucket.get('upper') != edges[i+1]
+                    or bucket.get('upper_inclusive') is not (i == 5)):
+                raise ValueError('Score-shape fixed reliability bins changed')
+            for key in ('predicted_over', 'observed_over'):
+                value = bucket.get(key)
+                if (not count and value is not None) or (count and (type(value) not in (int, float) or not math.isfinite(value) or not 0 <= value <= 1)):
+                    raise ValueError('Score-shape reliability rates are invalid')
+    if [(row.get('candidate'), row.get('reference')) for row in comparisons] != [('market_score_shape', name) for name in SHAPE_CONFIGURATIONS[:2]]:
+        raise ValueError('Score-shape must retain both paired references')
+    for comparison in comparisons:
+        if (comparison.get('games') != expected_games or comparison.get('draws') != 10000 or comparison.get('seed') != 20260909
+                or comparison.get('difference_direction') != 'candidate_minus_reference' or set(comparison.get('metrics', {})) != set(SHAPE_METRICS)):
+            raise ValueError('Score-shape paired bootstrap contract changed')
+        for metric in SHAPE_METRICS:
+            row = comparison['metrics'][metric]
+            count = configurations['market_score_shape']['metric_games'][metric]
+            if row.get('games') != count or type(row.get('week_blocks')) is not int or not 0 <= row['week_blocks'] <= count:
+                raise ValueError('Score-shape paired metric denominator changed')
+            expected = (configurations['market_score_shape']['metrics'][metric]-configurations[comparison['reference']]['metrics'][metric]) if count else None
+            if (count and not math.isclose(row.get('difference'), expected, abs_tol=1e-10)) or (not count and row.get('difference') is not None):
+                raise ValueError('Score-shape paired difference disagrees with scores')
+            keys = ('interval_95', 'interval_99') if metric == 'three_outcome_nll' else ('interval_95',)
+            for key in keys:
+                ci = row.get(key)
+                if row['week_blocks'] < 2:
+                    if ci is not None:
+                        raise ValueError('Score-shape intervals require two contributing weeks')
+                elif not isinstance(ci, list) or len(ci) != 2 or any(type(v) not in (int, float) or not math.isfinite(v) for v in ci) or ci[0] > ci[1]:
+                    raise ValueError('Score-shape interval is invalid')
+    return {'games': expected_games, 'configurations': {name: configurations[name] for name in SHAPE_CONFIGURATIONS}, 'comparisons': comparisons}
+
+
+def shape_publication(read, read_bytes, inputs):
+    records = {name: read(name) for name in SHAPE_REPORT_SHA256}
+    for name, expected in SHAPE_REPORT_SHA256.items():
+        if inputs['model/reports/'+name] != expected:
+            raise ValueError('Score-shape immutable report hash changed: '+name)
+    plan, selection, result, audit = records.values()
+    version = 'repaired-moment-preserving-score-shape-v1'
+    if (any(record.get('version') != version for record in (plan, selection, result)) or plan.get('execution_plan_revision') != 2
+            or plan.get('candidate_order') != list(SHAPE_CONFIGURATIONS) or plan.get('selection_years') != [2022, 2023, 2024]
+            or plan.get('later_check_year') != 2025 or plan.get('warmup_year') != 2021 or plan.get('primary_metric') != 'three_outcome_nll'
+            or plan.get('new_shape_fits_or_scores_computed') is not False or plan.get('all_historical_years_reused') is not True):
+        raise ValueError('Score-shape frozen configuration/selection contract changed')
+    if any(record.get('plan_sha256') != SHAPE_REPORT_SHA256['score_shape_research_plan_v2.json'] for record in (selection, result, audit)):
+        raise ValueError('Score-shape stage does not bind the corrected frozen plan')
+    if (selection.get('report') != result.get('selection_2022_2024') or selection.get('new_2025_shape_forecasts_computed') is not False
+            or result.get('selection_sha256') != SHAPE_REPORT_SHA256['score_shape_selection.json']
+            or audit.get('selection_sha256') != SHAPE_REPORT_SHA256['score_shape_selection.json']
+            or audit.get('results_sha256') != SHAPE_REPORT_SHA256['score_shape_results.json']):
+        raise ValueError('Score-shape earlier selection and independent audit are not bound')
+    if (audit.get('status') != 'passed' or audit.get('numeric_comparisons') != 1042299 or audit.get('imports_original_model_or_scoring_code') is not False
+            or audit.get('git_stage_evidence', {}).get('choice_committed_before_later_stage') is not True
+            or audit.get('git_stage_evidence', {}).get('source_bookkeeping_correction_before_fits_preserved') is not True
+            or any(record.get('no_2026_outcomes') is not True or record.get('live_policy_changes') is not False for record in (plan, selection, result))
+            or any(result.get(key) is not False for key in ('credible_executable_edge_established', 'probability_artifact_promoted', 'roi_evaluated'))):
+        raise ValueError('Score-shape audited research scope changed')
+    if [(row['year'], row['training_games'], row['evaluation_games']) for row in audit['annual_reconstructions']] != [(2022,734,734),(2023,1468,795),(2024,2263,798),(2025,3061,852)]:
+        raise ValueError('Score-shape audited chronology/counts changed')
+    for name, digest in audit['source_files_sha256'].items():
+        if plan['source_files_sha256'].get(name) != digest:
+            raise ValueError('Score-shape audited source pin differs from plan')
+    periods = {}
+    for key, years, weeks in (('selection_2022_2024', tuple(SHAPE_YEAR_COUNTS)[:3], 59), ('reused_2025', ('2025',), 22)):
+        original = result[key]
+        count = sum(SHAPE_YEAR_COUNTS[year] for year in years)
+        pooled = shape_summary(original['pooled'], count)
+        if set(original['by_season']) != set(years) or any(row['metrics']['three_outcome_nll']['week_blocks'] != weeks for row in pooled['comparisons']):
+            raise ValueError('Score-shape annual/week coverage changed')
+        annual = {year: shape_summary(original['by_season'][year], SHAPE_YEAR_COUNTS[year]) for year in years}
+        sources = {name: shape_summary(group, group['games']) for name, group in original['by_source'].items()}
+        for groups in (annual, sources):
+            if sum(group['games'] for group in groups.values()) != count:
+                raise ValueError('Score-shape annual/source coverage does not conserve games')
+            for candidate in SHAPE_CONFIGURATIONS:
+                whole = pooled['configurations'][candidate]
+                for metric in SHAPE_METRICS:
+                    total = sum(group['configurations'][candidate]['metric_games'][metric] for group in groups.values())
+                    weighted = sum((group['configurations'][candidate]['metrics'][metric] or 0)*group['configurations'][candidate]['metric_games'][metric] for group in groups.values()) / total
+                    if total != whole['metric_games'][metric] or not math.isclose(weighted, whole['metrics'][metric], abs_tol=1e-10):
+                        raise ValueError('Score-shape annual/source losses do not conserve metric denominators')
+                if any(not math.isclose(sum(group['configurations'][candidate][field] for group in groups.values()), whole[field], abs_tol=1e-10) for field in ('posted_integer_lines', 'observed_pushes', 'predicted_pushes')):
+                    raise ValueError('Score-shape annual/source push counts disagree')
+        periods[key] = {**pooled, 'by_season': annual, 'by_source': sources}
+    selected = min(SHAPE_CONFIGURATIONS, key=lambda name: periods['selection_2022_2024']['configurations'][name]['metrics']['three_outcome_nll'])
+    if selected != 'ridge_normal' or selection.get('choice') != selected or result.get('selected_on_2022_2024') != selected or audit.get('reproduced_choice') != selected:
+        raise ValueError('Score-shape cannot replace the earlier ridge selection')
+    if any(periods['reused_2025']['configurations'][name][key] != 0 for name in SHAPE_CONFIGURATIONS for key in ('posted_integer_lines', 'observed_pushes', 'predicted_pushes')):
+        raise ValueError('Score-shape 2025 has no actual integer-line push validation')
+    links = []
+    for name, label in (('score_shape_results.md', 'All score-shape results and interpretation'), ('score_shape_results.json', 'Full scores, reliability and paired intervals'),
+                        ('SCORE_SHAPE_RESEARCH_PLAN.md', 'Frozen scientific specification'), ('score_shape_research_plan_v2.json', 'Corrected execution plan'),
+                        ('score_shape_selection.json', 'Selection before the 2025 check'), ('SCORE_SHAPE_NUMERICAL_AUDIT.md', 'Independent numerical audit'),
+                        ('score_shape_numerical_audit.json', 'Independent audit receipt'), ('SCORE_SHAPE_SOURCE_CORRECTION.md', 'Preserved source-bookkeeping correction'),
+                        ('SCORE_SHAPE_SOURCE_CORRECTION.json', 'Original attempt receipts'), ('score_shape_research_plan.json', 'Preserved original plan')):
+        read_bytes(name)
+        digest = inputs['model/reports/'+name]
+        pinned = plan['source_files_sha256'].get('reports/'+name)
+        if pinned is not None and pinned != digest:
+            raise ValueError('Score-shape linked frozen source hash changed: '+name)
+        links.append({'name': label, 'url': 'https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/'+name, 'sha256': digest})
+    return {'version': version, 'execution_plan_revision': 2, 'status': 'reused_development_score_distribution_study', 'evaluated_at': result['checked_at'],
+        'configuration_count': 3, 'candidate_order': list(SHAPE_CONFIGURATIONS), 'primary_metric': 'three_outcome_nll', 'selected_on_2022_2024': selected,
+        **periods, 'historical_data_reused': True, 'no_2026_outcomes': True, 'live_policy_changes': False, 'probability_artifact_promoted': False,
+        'roi_evaluated': False, 'credible_executable_edge_established': False, 'actual_integer_line_validation_in_2025': False,
+        'audit': {key: audit[key] for key in ('status', 'numeric_comparisons', 'maximum_absolute_difference', 'git_stage_evidence')},
+        'source_report_sha256': dict(SHAPE_REPORT_SHA256), 'limitations': result['limitations'], 'links': links}
 
 
 def render_opponent_report(primary):
@@ -748,6 +892,9 @@ def build_outputs(root):
     pbp = None
     if (reports/'pbp_state_results_v2.json').exists():
         pbp = pbp_publication(read, read_bytes, inputs)
+    shape = None
+    if (reports/'score_shape_results.json').exists():
+        shape = shape_publication(read, read_bytes, inputs)
     protocol = None
     protocol_path = reports / "PROSPECTIVE_EVALUATION_PROTOCOL.md"
     if protocol_path.exists():
@@ -779,6 +926,7 @@ def build_outputs(root):
         "ordinary_model_research": ordinary,
         "direct_probability_research": direct,
         "pbp_state_research": pbp,
+        "score_shape_research": shape,
         "prospective_evaluation_protocol": protocol,
         "limitations": [
             "All 2019–2025 periods have been reused in development; no untouched historical test is claimed.",
