@@ -1,0 +1,138 @@
+name: Prospective weather revision study maintenance
+
+on:
+  schedule:
+    - cron: '15 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-totals-pages
+  cancel-in-progress: false
+
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    outputs:
+      run: ${{ steps.window.outputs.run }}
+      study_failed: ${{ steps.study.outcome != 'success' }}
+      archive_uploaded: ${{ steps.upload.outcome == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Check the fixed study maintenance dates
+        id: window
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime, timezone
+          import os
+          def admitted(now):
+              return datetime(2026, 9, 9, tzinfo=timezone.utc) <= now < datetime(2027, 2, 9, tzinfo=timezone.utc)
+          active = admitted(datetime.now(timezone.utc))
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as handle:
+              handle.write('run=' + ('true' if active else 'false') + '\n')
+          PY
+      - uses: actions/setup-python@v5
+        if: steps.window.outputs.run == 'true'
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: model/requirements-lock.txt
+      - name: Install pinned study dependencies
+        if: steps.window.outputs.run == 'true'
+        run: python -m pip install -r model/requirements-lock.txt
+      - name: Test prospective study, labels and evaluation
+        if: steps.window.outputs.run == 'true'
+        env:
+          PYTHONPATH: model
+        run: python -m pytest -q model/tests/test_weather_revision_models.py model/tests/test_weather_revision_dataset.py model/tests/test_weather_revision_study.py model/tests/test_weather_revision_evaluation.py scripts/tests/test_weather_revision_study*.py
+      - name: Update labels, weekly fits and grading without new predictions
+        id: study
+        if: steps.window.outputs.run == 'true'
+        continue-on-error: true
+        env:
+          PYTHONPATH: model
+        run: python scripts/weather_revision_study.py --labels-only --root . --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT"
+      - name: Retain an explicit attention status if maintenance did not complete
+        id: attention
+        if: always() && steps.window.outputs.run == 'true' && steps.study.outcome != 'success'
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime, timezone
+          import json
+          from pathlib import Path
+          path = Path('site/data/weather-revision-study.json')
+          try:
+              value = json.loads(path.read_text())
+          except (OSError, ValueError):
+              value = {}
+          if not isinstance(value, dict):
+              value = {}
+          # Counts are unavailable when no prior status exists; never invent a
+          # successful empty run after a failed dependency or test step.
+          value = {'schema_version': 'weather-revision-study-status-v1',
+                   'protocol_id': 'weather-revision-prospective-v1-20260909',
+                   'generated_at': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+                   'status': 'attention',
+                   'observations': value.get('observations', {}), 'models': value.get('models', {}),
+                   'forecasts': value.get('forecasts', {}), 'paper': value.get('paper', {}),
+                   'experimental_picks': value.get('experimental_picks', []),
+                   'evidence': {'edge_established': False, 'prospective': True},
+                   'errors': ['Study maintenance did not complete. Last published counts are retained when available; inspect the workflow log.']}
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(value, indent=2, allow_nan=False) + '\n')
+          PY
+      - name: Preserve only the separate study namespace and status
+        id: archive
+        if: always() && steps.window.outputs.run == 'true' && (steps.study.outcome == 'success' || steps.attention.outcome == 'success')
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          paths = [Path('model/data/runtime/weather_revision_study'), Path('site/data/weather-revision-study.json')]
+          public = [str(path) for path in paths if path.exists()]
+          if public:
+              subprocess.run(['git', 'add', '--', *public], check=True)
+          PY
+          if ! git diff --cached --quiet; then
+            git commit -m "Update prospective weather revision study (run $RUN_ID)"
+            git push origin HEAD:main
+          fi
+      - name: Upload existing board with the study status
+        id: upload
+        if: always() && steps.window.outputs.run == 'true' && steps.archive.outcome == 'success'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: maintain
+    if: always() && needs.maintain.outputs.run == 'true' && needs.maintain.outputs.archive_uploaded == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy the prospective study status
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Report maintenance failure after publication
+        if: needs.maintain.outputs.study_failed == 'true'
+        run: |
+          echo 'Available study archives and attention status were published. No new maintenance-time prediction or existing-policy change was authorized.'
+          exit 1

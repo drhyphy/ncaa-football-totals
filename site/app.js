@@ -87,6 +87,30 @@
     if (!Number.isFinite(age) || age < -300000 || age > 8 * 3600000 || (data.latest && (!Number.isFinite(receiptAge) || receiptAge < -300000 || receiptAge > 8 * 3600000))) return {visible: true, label: "Active · receipts stale", message: "No recent validated season receipt is available. Scheduled jobs can be delayed or missed."};
     return {visible: true, label: data.latest ? "Active · receipts current" : "Active · awaiting capture", message: "Original forecasts and subsequent prices are being collected for the revision-model study. Fitting readiness and evidence of profitability are separate."};
   }
+  function weatherStudyHealth(data, now = new Date()) {
+    if (data?.schema_version !== "weather-revision-study-status-v1" || data.evidence?.edge_established !== false || data.evidence?.prospective !== true || typeof data.protocol_id !== "string" || !data.protocol_id) return {visible: false};
+    if (!["collecting", "fitted", "attention", "evaluation_complete"].includes(data.status)) return {visible: false};
+    const age = now.getTime() - epoch(data.generated_at);
+    if (!Number.isFinite(age) || age < -300000) return {visible: true, label: "Status unavailable", message: "The study publication has an invalid timestamp. No current model or profitability claim can be inferred."};
+    if (data.status === "attention" || items(data.errors).length) return {visible: true, label: "Needs attention", message: "The study could not complete all required checks. Available observations are retained; missing inputs are not replaced retrospectively."};
+    if (data.status === "evaluation_complete") return {visible: true, label: "Evaluation complete", message: "The registered evaluation has completed. Read the full report and its uncertainty; this status does not establish a profitable edge."};
+    if (age > 8 * 3600000) return {visible: true, label: "Refresh overdue", message: "No study update has been received in the past eight hours. The counts below describe the last publication."};
+    if (data.status === "fitted") return {visible: true, label: "Experimental models fitted", message: "Experimental fits are available for prospective evaluation. Fitting readiness does not establish an accurate betting probability or a profitable edge."};
+    return {visible: true, label: "Collecting model inputs", message: "Each candidate needs at least 60 eligible games and two completed weeks before experimental fitting. The current study has not established a betting edge."};
+  }
+  function weatherStudyReportUrl(path) {
+    return ["model/data/runtime/weather_revision_study/interim_evaluation.json", "model/data/runtime/weather_revision_study/final_evaluation.json"].includes(path) ? `https://github.com/drhyphy/ncaa-football-totals/blob/main/${path}` : null;
+  }
+  function upcomingStudyPositions(data, now = new Date()) {
+    if (!weatherStudyHealth(data, now).visible) return [];
+    const seen = new Set();
+    return items(data.experimental_picks).slice().sort((a,b)=>epoch(a.recorded_at)-epoch(b.recorded_at)).filter(row=>{
+      if (!row.game_id || row.policy_id !== "weather-revision-probability-v1-20260909" || !["under","over"].includes(row.side) || !finite(row.line) || row.line <= 0 || !finite(row.decimal_odds) || row.decimal_odds <= 1) return false;
+      const kickoff=epoch(row.kickoff), recorded=epoch(row.recorded_at), observed=epoch(row.quote_observed_at), key=`${row.policy_id}:${row.game_id}`;
+      if (!Number.isFinite(recorded) || !Number.isFinite(observed) || observed > recorded || recorded > now.getTime() || kickoff <= now.getTime() || !Number.isFinite(kickoff) || seen.has(key)) return false;
+      seen.add(key); return true;
+    }).sort((a,b)=>epoch(a.kickoff)-epoch(b.kickoff));
+  }
   function dedupeResults(rows) {
     const seen = new Set();
     return items(rows).slice().sort((a, b) => (epoch(a.recorded_at) || Infinity) - (epoch(b.recorded_at) || Infinity)).filter(row => {
@@ -391,6 +415,32 @@
       $("weather-season-links").replaceChildren(link("Public season status", "data/weather-revision-season.json"));
       items(weatherSeason.links).filter(item => safeUrl(item.url)).forEach(item => $("weather-season-links").append(link(`${item.name} ↗`, item.url)));
     }
+    let weatherStudy = null;
+    function renderWeatherStudy(now) {
+      const state = weatherStudyHealth(weatherStudy, now);
+      $("weather-revision-study").hidden = !state.visible;
+      if (!state.visible) return;
+      $("weather-study-label").textContent = state.label;
+      $("weather-study-message").textContent = state.message;
+      const observations = weatherStudy.observations || {}, forecasts = weatherStudy.forecasts || {}, paper = weatherStudy.paper || {};
+      $("weather-study-counts").textContent = `${number(observations.total, 0)} recorded observations · ${number(observations.probability, 0)} probability inputs · ${number(observations.movement, 0)} movement inputs. Locked forecasts: ${number(forecasts.probability, 0)} probability · ${number(forecasts.movement, 0)} movement. Updated ${dateLabel(weatherStudy.generated_at)}.`;
+      table($("weather-study-models"), "Separate prospective revision candidates, not the existing four paper policies", ["Candidate", "Fit status", {label:"Training games",numeric:true}, {label:"Completed weeks",numeric:true}, "Training cutoff"], [["probability", "Exact-total probability"], ["movement", "Six-hour line movement"]].map(([key, label]) => {
+        const model = weatherStudy.models?.[key] || {};
+        return [cell(label), cell(titleCase(model.status || "Not fitted")), cell(number(model.games, 0), null, "numeric"), cell(number(model.completed_weeks, 0), null, "numeric"), cell(model.cutoff ? dateLabel(model.cutoff) : "No fitted cutoff")];
+      }));
+      $("weather-study-paper").textContent = `Separate study paper record: ${number(paper.locked, 0)} locked · ${number(paper.settled, 0)} settled · ${number(paper.unresolved, 0)} unresolved. ${paper.settled > 0 && finite(paper.profit_units) ? `Realized profit / loss: ${number(paper.profit_units, 2)} units.` : "Realized profit / loss is not available."} No edge is established by these counts or a fitted model.`;
+      const positions = upcomingStudyPositions(weatherStudy, now);
+      if (!positions.length) empty($("weather-study-positions"), "", "No upcoming paper positions are locked for this study.", true);
+      else table($("weather-study-positions"), "Experimental archived-price paper positions, not currently available offers", ["Future matchup", "Archived paper entry", "Recorded / quote observed", {label:"Modeled EV",numeric:true}, {label:"Modeled win probability",numeric:true}], positions.map(row=>[
+        cell(`${row.away_team} at ${row.home_team}`,dateLabel(row.kickoff)),
+        cell(`${titleCase(row.side)} ${number(row.line)} at ${number(row.decimal_odds,2)}`,titleCase(row.sportsbook)),
+        cell(dateLabel(row.recorded_at),`Quote observed ${dateLabel(row.quote_observed_at)}`),
+        cell(percent(row.modeled_ev,true),null,"numeric"),cell(percent(row.modeled_win_probability),null,"numeric")
+      ]));
+      $("weather-study-links").replaceChildren(link("Study status JSON", "data/weather-revision-study.json"));
+      const reportUrl = weatherStudyReportUrl(weatherStudy.report_path);
+      if (reportUrl) $("weather-study-links").append(link("Study evaluation report ↗", reportUrl));
+    }
     function render(data) {
       board = data;
       $("edition-date").textContent = new Intl.DateTimeFormat("en-US", {timeZone: ZONE, weekday: "long", month: "long", day: "numeric", year: "numeric"}).format(new Date());
@@ -401,7 +451,8 @@
     fetch(`data/research.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {research = data; if (board) {renderWeather(new Date()); renderCalibrationStudy(); renderOrdinaryStudy(); renderArchivedReplay();}}).catch(() => {});
     fetch(`data/weather-revisions.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherRevisions = data; renderWeatherRevisions(new Date());}).catch(() => {});
     fetch(`data/weather-revision-season.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherSeason = data; renderWeatherSeason(new Date());}).catch(() => {});
-    setInterval(() => { if (board) renderPicks(new Date()); if (weatherRevisions) renderWeatherRevisions(new Date()); if (weatherSeason) renderWeatherSeason(new Date()); }, 60000);
+    fetch(`data/weather-revision-study.json?refresh=${Date.now()}`, {cache: "no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(data => {weatherStudy = data; renderWeatherStudy(new Date());}).catch(() => {});
+    setInterval(() => { if (board) renderPicks(new Date()); if (weatherRevisions) renderWeatherRevisions(new Date()); if (weatherSeason) renderWeatherSeason(new Date()); if (weatherStudy) renderWeatherStudy(new Date()); }, 60000);
   }
-  return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, weatherRevisionHealth, weatherSeasonHealth, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
+  return {dateKey, health, currentPicks, currentWeatherPicks, weatherHealth, weatherMeasurements, weatherRevisionHealth, weatherSeasonHealth, weatherStudyHealth, weatherStudyReportUrl, upcomingStudyPositions, currentHedges, quoteLabel, evidenceState, dedupeResults, safeUrl, percent, number, start};
 });

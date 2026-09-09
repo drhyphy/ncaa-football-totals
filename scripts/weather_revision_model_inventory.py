@@ -290,7 +290,7 @@ def pair_metadata(old, new, game_id, receipt):
             "weather_receipts": [a["weather_receipt"], b["weather_receipt"]]}
 
 
-def inventory(runs, receipt, *, complete_enumeration=True):
+def inventory(runs, receipt, *, complete_enumeration=True, validate_run_identities=None, include_diagnostics=True):
     """Select from cohorts first. Missing data never advances a designated game."""
     runs = sorted(runs, key=lambda x: (stamp(x["manifest"]["capture_started_at"]), x["manifest"]["run_id"], str(x["manifest"]["run_attempt"])))
     scheduled = []
@@ -315,6 +315,11 @@ def inventory(runs, receipt, *, complete_enumeration=True):
                     "metadata_input_eligible": False, "source_receipt_verified_input_eligible": False,
                     "independently_audited_input_eligible": False,
                     "probability_input_eligible": False, "movement_input_eligible": False, "exclusions": []}
+            if (validate_run_identities is not None and
+                    (str(item['run_id']), str(item['run_attempt'])) not in validate_run_identities):
+                item['exclusions'].append('validation_deferred_until_after_live_inference')
+                decisions.append(item)
+                continue
             try:
                 details = pair_metadata(prior, run, gid, receipt)
                 require(run["rows"][gid]["kickoff"] == game["kickoff"], "decision_cohort_kickoff_changed")
@@ -336,7 +341,7 @@ def inventory(runs, receipt, *, complete_enumeration=True):
                 item["exclusions"].append(str(error))
             decisions.append(item)
     diagnostics = Counter()
-    for old, new in zip(runs, runs[1:]):
+    for old, new in (zip(runs, runs[1:]) if include_diagnostics else []):
         for gid in old["rows"].keys() & new["rows"].keys():
             try:
                 a = metadata_row(old["manifest"], old["rows"][gid], receipt)
@@ -367,7 +372,13 @@ def inventory(runs, receipt, *, complete_enumeration=True):
             "exclusion_counts": dict(sorted(Counter(e for d in decisions for e in d["exclusions"]).items()))}
 
 
-def execute(root):
+def load_runs(root, *, verify=True):
+    """Load archive order and integrity evidence without selecting observations.
+
+    The shared Integrity instance retains verified receipt metadata for downstream
+    callers. Known failed/empty runs remain ordering barriers; unreadable files
+    are returned separately so callers can preserve fail-closed enumeration.
+    """
     root = root.resolve()
     integrity = Integrity(root)
     runs, failures = [], []
@@ -388,10 +399,17 @@ def execute(root):
             require(len({str(g["game_id"]) for g in cohort["games"]}) == len(cohort["games"]), "duplicate cohort game")
             require(len({str(r["game_id"]) for r in m["rows"]}) == len(m["rows"]), "duplicate manifest game")
             runs.append({"manifest": m, "cohort": cohort, "rows": {str(r["game_id"]): r for r in m["rows"]},
-                         "integrity": integrity.verify(path, m, cohort), "path": str(path.relative_to(root)),
+                         "integrity": integrity.verify(path, m, cohort) if verify else {'verified': False, 'deferred': True},
+                         "path": str(path.relative_to(root)),
                          "sha256": sha(path.read_bytes()), "cohort_sha256": sha(cpath.read_bytes())})
         except (KeyError, TypeError, ValueError, OSError, EOFError) as error:
             failures.append({"path": str(path.relative_to(root)), "reason": str(error)})
+    return runs, integrity, failures
+
+
+def execute(root):
+    root = root.resolve()
+    runs, integrity, failures = load_runs(root)
     result = inventory(runs, integrity.receipt, complete_enumeration=not failures)
     result.update(schema_version="weather-revision-model-inventory-v1", no_network=True,
                   numeric_weather_fields_accessed=False, labels_extracted=False, models_fitted=False,

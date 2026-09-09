@@ -46,6 +46,12 @@ jobs:
       - name: Install pinned collector dependencies
         if: steps.decision.outputs.collect == 'true'
         run: python -m pip install -r model/requirements-lock.txt
+      - name: Test the separate prospective study before collection
+        id: study_checks
+        if: steps.decision.outputs.collect == 'true'
+        env:
+          PYTHONPATH: model
+        run: python -m pytest -q model/tests/test_weather_revision_models.py model/tests/test_weather_revision_dataset.py model/tests/test_weather_revision_study.py model/tests/test_weather_revision_evaluation.py scripts/tests/test_weather_revision_study*.py
       - name: Collect immutable forecasts followed by fresh prices
         id: collector
         if: steps.decision.outputs.collect == 'true'
@@ -55,6 +61,13 @@ jobs:
         env:
           ODDS_API_IO_KEY: ${{ secrets.ODDS_API_IO_KEY }}
         run: python -m ncaaf_model.weather_revision_collector --root . --profile season
+      - name: Update the separate prospective revision study before inventory
+        id: study
+        if: always() && steps.decision.outputs.collect == 'true' && steps.study_checks.outcome == 'success' && (steps.collector.outcome == 'success' || steps.collector.outcome == 'failure')
+        continue-on-error: true
+        env:
+          PYTHONPATH: model
+        run: python scripts/weather_revision_study.py --root . --run-id "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT"
       - name: Inventory archived model prerequisites without weather values or labels
         id: inventory
         if: always() && steps.decision.outputs.collect == 'true' && (steps.collector.outcome == 'success' || steps.collector.outcome == 'failure')
@@ -65,10 +78,11 @@ jobs:
         if: always() && steps.decision.outputs.publish == 'true'
         env:
           COLLECTOR_OUTCOME: ${{ steps.collector.outcome }}
+          STUDY_OUTCOME: ${{ steps.study.outcome }}
           INVENTORY_OUTCOME: ${{ steps.inventory.outcome }}
           ATTEMPT_STARTED_AT: ${{ steps.decision.outputs.attempt_started_at }}
         run: |
-          if [ "$INVENTORY_OUTCOME" = 'failure' ]; then
+          if [ "$INVENTORY_OUTCOME" = 'failure' ] || [ "$STUDY_OUTCOME" = 'failure' ]; then
             COLLECTOR_OUTCOME='failure'
           fi
           python3 scripts/weather_revision_season_status.py publish --root . --collector-outcome "$COLLECTOR_OUTCOME" --attempt-started-at "$ATTEMPT_STARTED_AT"
@@ -84,6 +98,7 @@ jobs:
           from pathlib import Path
           import subprocess
           paths = [Path('model/data/runtime/weather_revisions'), Path('site/data/weather-revision-season.json'),
+                   Path('model/data/runtime/weather_revision_study'), Path('site/data/weather-revision-study.json'),
                    Path('model/reports/weather_revision_model_inventory.json'), Path('model/reports/WEATHER_REVISION_MODEL_INVENTORY.md')]
           public = [str(path) for path in paths if path.exists()]
           if public:

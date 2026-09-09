@@ -184,6 +184,115 @@ class SelectionTests(unittest.TestCase):
         self.assertEqual(data["counts"]["source_receipt_verified_input_eligible"], 0)
 
 
+class SelectiveLiveInventoryTests(unittest.TestCase):
+    def test_only_current_and_immediate_previous_receipts_are_touched(self):
+        historical, old, current = capture(13, day=9), capture(7, day=10), capture(13, day=10)
+        historical[0]['manifest']['run_id'] = 'historical'
+        historical[0]['cohort']['games'][0]['game_id'] = '99'
+        historical[0]['rows'] = {'99': historical[0]['rows']['1']}
+        hrow = historical[0]['rows']['99']
+        hrow['single_run']['receipt_path'] = 'forbidden-historical-receipt'
+        hrow['single_run']['measurement']['receipt_path'] = 'forbidden-historical-receipt'
+        receipts = {**old[1], **current[1]}
+        accessed = []
+
+        def receipt(path):
+            self.assertNotEqual(path, 'forbidden-historical-receipt')
+            self.assertIn(path, receipts)
+            accessed.append(path)
+            return receipts[path]
+
+        result = module.inventory([historical[0], old[0], current[0]], receipt,
+                                  validate_run_identities={('13', '1')}, include_diagnostics=False)
+        decisions = {d['game_id']: d for d in result['decisions']}
+        self.assertEqual(result['counts']['designated_games'], 2)
+        self.assertEqual(decisions['99']['run_id'], 'historical')
+        self.assertEqual(decisions['99']['exclusions'], ['validation_deferred_until_after_live_inference'])
+        self.assertTrue(decisions['1']['source_receipt_verified_input_eligible'])
+        self.assertTrue(accessed)
+        self.assertEqual({p.split('-')[0] for p in accessed}, {'7', '13'})
+        self.assertFalse(result['diagnostics'])
+
+    def test_old_invalid_first_designation_never_becomes_later_live_success(self):
+        old, first, later = capture(7), capture(13), capture(19)
+        first[0]['rows']['1']['single_run'] = None
+
+        def forbidden_receipt(path):
+            self.fail('Deferred history accessed a receipt before live inference: ' + path)
+
+        selective = module.inventory([old[0], first[0], later[0]], forbidden_receipt,
+                                     validate_run_identities={('19', '1')}, include_diagnostics=False)
+        receipts = {**old[1], **first[1], **later[1]}
+        full = module.inventory([old[0], first[0], later[0]], receipts.__getitem__, include_diagnostics=False)
+        self.assertEqual(len(selective['decisions']), 1)
+        self.assertEqual(selective['decisions'][0]['run_id'], '13')
+        self.assertFalse(selective['decisions'][0]['source_receipt_verified_input_eligible'])
+        self.assertIn('single_run_unavailable', full['decisions'][0]['exclusions'])
+        identity = ('game_id', 'kickoff', 'capture_started_at', 'run_id', 'run_attempt', 'preceding_run_id')
+        self.assertEqual({k: selective['decisions'][0][k] for k in identity},
+                         {k: full['decisions'][0][k] for k in identity})
+
+    def test_failed_immediate_run_still_blocks_selective_live_pair(self):
+        old, failed, current = capture(7), capture(13), capture(19)
+        failed[0]['manifest']['status'] = 'failed'
+        failed[0]['cohort']['games'] = []
+        failed[0]['rows'] = {}
+        failed[0]['integrity']['verified'] = False
+
+        def forbidden_receipt(path):
+            self.fail('Missing immediate predecessor was replaced by an older receipt: ' + path)
+
+        result = module.inventory([old[0], failed[0], current[0]], forbidden_receipt,
+                                  validate_run_identities={('19', '1')}, include_diagnostics=False)
+        self.assertEqual(result['counts']['scheduled_runs'], 3)
+        self.assertEqual(result['decisions'][0]['preceding_run_id'], '13')
+        self.assertIn('game_missing_from_immediate_capture', result['decisions'][0]['exclusions'])
+        self.assertFalse(result['decisions'][0]['source_receipt_verified_input_eligible'])
+
+    def test_selective_valid_pair_does_not_override_unreadable_archive_order(self):
+        old, current = capture(7), capture(13)
+        receipts = {**old[1], **current[1]}
+        result = module.inventory([old[0], current[0]], receipts.__getitem__, complete_enumeration=False,
+                                  validate_run_identities={('13', '1')}, include_diagnostics=False)
+        self.assertTrue(result['decisions'][0]['metadata_input_eligible'])
+        self.assertFalse(result['decisions'][0]['source_receipt_verified_input_eligible'])
+        self.assertIn('unreadable_archive_prevents_safe_run_order', result['decisions'][0]['exclusions'])
+
+    def test_metadata_only_load_preserves_failed_and_unreadable_entries_without_raw_reads(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = root / 'model' / module.BASE
+            (base / 'runs').mkdir(parents=True)
+            (base / 'cohorts').mkdir()
+            cohort_relative = str(module.BASE / 'cohorts/7.json')
+            cohort = {'games': [{'game_id': '1', 'kickoff': '2026-09-11T08:17:00Z'}]}
+            (root / 'model' / cohort_relative).write_text(json.dumps(cohort))
+            current = {'run_id': '7', 'run_attempt': '1', 'trigger': 'schedule',
+                       'capture_started_at': '2026-09-09T07:17:00Z', 'cohort_path': cohort_relative,
+                       'rows': [{'game_id': '1'}], 'receipts': ['must-not-read-missing-receipt']}
+            failed = {'run_id': '13', 'run_attempt': '1', 'trigger': 'schedule', 'status': 'failed',
+                      'capture_started_at': '2026-09-09T13:17:00Z', 'cohort_path': None}
+            (base / 'runs/7.json').write_text(json.dumps(current))
+            (base / 'runs/13.json').write_text(json.dumps(failed))
+            (base / 'runs/unreadable.json').write_text('{invalid JSON')
+            with patch.object(module.Integrity, 'verify', side_effect=AssertionError('Full integrity called')) as verify, \
+                 patch.object(module.Integrity, 'receipt', side_effect=AssertionError('Raw receipt called')) as receipt:
+                runs, integrity, failures = module.load_runs(root, verify=False)
+            self.assertEqual(len(runs), 2)
+            self.assertEqual(len(failures), 1)
+            self.assertTrue(failures[0]['path'].endswith('unreadable.json'))
+            indexed = {r['manifest']['run_id']: r for r in runs}
+            self.assertTrue(indexed['7']['integrity']['deferred'])
+            self.assertFalse(indexed['7']['integrity']['verified'])
+            self.assertEqual(indexed['13']['integrity']['errors'], ['preweather_cohort_unavailable'])
+            self.assertEqual(indexed['13']['cohort']['games'], [])
+            self.assertEqual(len(indexed['7']['sha256']), 64)
+            self.assertEqual(len(indexed['7']['cohort_sha256']), 64)
+            self.assertFalse(integrity.receipts)
+            verify.assert_not_called()
+            receipt.assert_not_called()
+
+
 class IntegrityTests(unittest.TestCase):
     def test_season_profile_requires_its_own_protocol_and_exact_window(self):
         m = {"collection_profile": "season", "collection_protocol_id": "weather-revision-season-collection-v1",
@@ -257,6 +366,43 @@ class IntegrityTests(unittest.TestCase):
             checker.audits = [(Path("audit"), {"run_id": "new", "run_attempt": "1", "manifest_sha256": "old-original"})]
             value = checker.verify(path, {"run_id": "new", "run_attempt": "1"}, {})
             self.assertIn("known_independent_audit_failed_or_original_manifest_changed", value["errors"])
+
+
+class LoaderTests(unittest.TestCase):
+    def test_loader_preserves_failed_run_barriers_and_separates_unreadable_files(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "model/reports").mkdir(parents=True)
+            paths = root / "model" / module.BASE / "runs"
+            paths.mkdir(parents=True)
+            known_failed = {"run_id": "failed", "run_attempt": "1", "trigger": "schedule",
+                            "capture_started_at": "2026-09-09T07:17:00Z", "cohort_path": None}
+            (paths / "a-failed.json").write_text(json.dumps(known_failed))
+            (paths / "b-corrupt.json").write_text("{broken")
+            runs, checker, failures = module.load_runs(root)
+            self.assertIsInstance(checker, module.Integrity)
+            self.assertEqual(len(runs), 1)
+            self.assertEqual(runs[0]["manifest"], known_failed)
+            self.assertEqual(runs[0]["cohort"], {"games": []})
+            self.assertFalse(runs[0]["integrity"]["verified"])
+            self.assertEqual(len(failures), 1)
+            self.assertTrue(failures[0]["path"].endswith("b-corrupt.json"))
+            self.assertEqual(checker.receipts, {})
+
+    def test_execute_uses_shared_loader_and_propagates_enumeration_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / module.DESIGN).parent.mkdir(parents=True)
+            (root / module.DESIGN).write_text("fixed test design")
+            checker = module.Integrity(root)
+            failure = [{"path": "unreadable.json", "reason": "invalid JSON"}]
+            with patch.object(module, "load_runs", return_value=([], checker, failure)) as loader:
+                result = module.execute(root)
+            loader.assert_called_once_with(root.resolve())
+            self.assertFalse(result["archived_run_enumeration_complete"])
+            self.assertEqual(result["unreadable_archives"], failure)
+            self.assertEqual(result["counts"]["designated_games"], 0)
+            self.assertEqual(result["original_receipt_envelopes_and_opaque_bodies_verified"], 0)
 
 
 if __name__ == "__main__":
