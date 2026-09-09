@@ -82,6 +82,12 @@ These raw observations can support a better conditional distribution: separate r
 
 A bounded next experiment would fix two distributions in advance: a market-centered discrete residual model whose variance depends on prior pace and absolute spread, and a regulation possession/scoring mixture with a separate overtime component. Fit only earlier seasons, score probability calibration and log loss alongside priced EV, and compare against the identical discrete market-centered baseline. Avoid using realized game weather, season-end roster summaries, or closing movement as morning-available predictors.
 
+## 6. Official availability reports: prospective source lead
+
+The [official-report feasibility review](../model/reports/OFFICIAL_AVAILABILITY_FEASIBILITY.md) verifies conference reporting programs but does not establish a timestamped historical quarterback-status panel. The [Big Ten's August 28, 2026 announcement](https://bigten.org/fb/article/60284/) adds three evening reports and a game-day report for conference matchups, first covering September 19 games. This supplies a concrete prospective source to investigate beyond prior-game team statistics.
+
+A viable comparison needs the actually received report version, independently matched player identity and prior role, and contemporaneous total prices. Scheduled deadlines and dated PDF URLs cannot substitute for original receipt times. Conference policies also differ: disappearance from a report does not universally mean the player has returned. No report collector, availability model, historical return, or betting edge is established by this source review.
+
 ## Reproduction and evaluation boundaries
 
 Reproducible scripts are committed under `scripts/`; raw datasets are not committed. Install the model dependencies, then run from the repository root:
