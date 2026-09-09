@@ -44,6 +44,15 @@ DIRECT_REPORT_SHA256 = {
     'direct_probability_research_audit.json': 'bcf606dd375297b33436e2dfc8a10ce6bab18a584e029f9dd64393e961c5c36d',
 }
 DIRECT_YEAR_COUNTS = {'2021': 428, '2022': 403, '2023': 777, '2024': 798, '2025': 852}
+PBP_CONFIGURATIONS = ('market_only', 'opponent_adjusted_ridge', 'pbp_state_ridge')
+PBP_YEAR_COUNTS = {'2021': 734, '2022': 734, '2023': 795, '2024': 798, '2025': 852}
+PBP_REPORT_SHA256 = {
+    'pbp_state_research_plan_v2.json': 'f3e1ac7380fc787013a9f39229a08f4566f9f3e7ed31916889d0bfb996791d7b',
+    'pbp_state_feature_audit_v2.json': '6fd2fcef73f699ccf6e64799764b839eccb00ab67d6917b19800246627a4ce3a',
+    'pbp_state_selection_v2.json': 'fc9af310b72710ce5785708559fded656e24ef9533531437f43835b6fc211f97',
+    'pbp_state_results_v2.json': '42a8142ecb581a4231b22b4ee56de84a639fb3e664eb892149c049740ee55c8e',
+    'PBP_STATE_RESULTS_AUDIT_V2.json': 'b1f6f5ff3c82a42d8d21036bdbab7ddc89725077166b3d9ca29dedb6aeb988d5',
+}
 
 
 def percent(value):
@@ -237,6 +246,115 @@ def direct_publication(read, read_bytes, inputs):
             for name in DIRECT_CONFIGURATIONS[2:] for metric in ('log_loss', 'brier')),
         'all_local_2025_comparison_intervals_include_zero': all(row['interval_98_75'][0] <= 0 <= row['interval_98_75'][1] for row in later['comparisons']),
         'limitations': result['limits'], 'links': links}
+
+
+def pbp_summary(summary, expected_games):
+    scores, comparisons = summary['metrics'], summary['comparisons']
+    if summary.get('games') != expected_games or set(scores) != set(PBP_CONFIGURATIONS):
+        raise ValueError('PBP study must retain all three configurations and exact common counts')
+    for row in scores.values():
+        if row.get('games') != expected_games or any(type(row.get(key)) not in (int, float) or not math.isfinite(row[key]) for key in ('mse', 'rmse', 'mae', 'mean_error')):
+            raise ValueError('PBP configurations require finite common-cohort metrics')
+        if min(row['mse'], row['rmse'], row['mae']) < 0 or not math.isclose(row['rmse']**2, row['mse'], abs_tol=1e-8):
+            raise ValueError('PBP MSE/RMSE metrics disagree')
+    if [(row.get('candidate'), row.get('reference')) for row in comparisons] != [('pbp_state_ridge', name) for name in PBP_CONFIGURATIONS[:2]]:
+        raise ValueError('PBP study must retain both fixed paired comparisons')
+    for row in comparisons:
+        if row.get('games') != expected_games or type(row.get('week_blocks')) is not int or row['week_blocks'] < 1 or row.get('draws') != 10000 or row.get('seed') != 20260909:
+            raise ValueError('PBP comparison count/bootstrap contract changed')
+        if any(not math.isclose(row[key+'_difference'], scores['pbp_state_ridge'][key]-scores[row['reference']][key], abs_tol=1e-8) for key in ('mse', 'mae')):
+            raise ValueError('PBP paired differences disagree with metrics')
+        for key in ('mse_interval_95', 'mse_interval_99', 'mae_interval_95'):
+            ci = row.get(key)
+            if row['week_blocks'] < 2:
+                if ci is not None:
+                    raise ValueError('PBP one-week groups cannot have an interval')
+            elif not isinstance(ci, list) or len(ci) != 2 or any(type(v) not in (int, float) or not math.isfinite(v) for v in ci) or ci[0] > ci[1]:
+                raise ValueError('PBP paired interval is invalid')
+    return {'games': expected_games, 'configurations': {name: scores[name] for name in PBP_CONFIGURATIONS}, 'comparisons': comparisons}
+
+
+def pbp_publication(read, read_bytes, inputs):
+    records = {name: read(name) for name in PBP_REPORT_SHA256}
+    for name, expected in PBP_REPORT_SHA256.items():
+        if inputs['model/reports/'+name] != expected:
+            raise ValueError('PBP immutable report hash changed: '+name)
+    plan, feature, selection, result, audit = records.values()
+    version = 'pbp-state-residual-comparison-v2-local-order'
+    if any(record.get('version') != version for record in (plan, feature, selection, result)) or audit.get('study_version') != version:
+        raise ValueError('PBP v2 artifact versions differ')
+    if (plan.get('candidate_order') != list(PBP_CONFIGURATIONS) or plan.get('selection_years') != [2021, 2022, 2023, 2024]
+            or plan.get('later_check_year') != 2025 or plan.get('primary_metric') != 'mse'
+            or plan.get('matchup_model_fits_or_scores_computed') is not False):
+        raise ValueError('PBP frozen selection/model contract changed')
+    for record in (feature, selection, result):
+        if record.get('plan_sha256') != PBP_REPORT_SHA256['pbp_state_research_plan_v2.json'] or record.get('no_2026_outcomes') is not True:
+            raise ValueError('PBP stage does not bind its frozen plan/no-2026 scope')
+    if (selection.get('feature_audit_sha256') != PBP_REPORT_SHA256['pbp_state_feature_audit_v2.json']
+            or result.get('selection_sha256') != PBP_REPORT_SHA256['pbp_state_selection_v2.json']
+            or selection.get('report') != result.get('selection_2021_2024')
+            or selection.get('new_2025_matchup_forecasts_computed') is not False
+            or feature.get('matchup_prediction_scores_computed') is not False):
+        raise ValueError('PBP feature/selection/check chronology changed')
+    if (feature.get('games') != 5008 or feature.get('retained_play_rows') != 762297
+            or feature.get('target_game_pbp_coverage_gate') is not False or len(feature.get('feature_columns', [])) != 13
+            or feature['feature_columns'][-2:] != plan.get('new_predictors')):
+        raise ValueError('PBP fixed feature coverage/predictors changed')
+    for name in tuple(PBP_REPORT_SHA256)[:4]:
+        if audit.get('file_sha256', {}).get('reports/'+name) != PBP_REPORT_SHA256[name]:
+            raise ValueError('PBP independent audit does not bind the published reports')
+    if (audit.get('passed') is not True or audit.get('fit_count') != 10 or audit.get('numeric_comparisons') != 1143
+            or audit.get('mismatches') != [] or audit.get('base_games') != 5008
+            or audit.get('no_active_policy_changes') is not True or audit.get('no_2026_data') is not True or audit.get('no_edge_claim') is not True
+            or any(record.get('live_policy_changes') is not False for record in (plan, selection, result))
+            or result.get('credible_executable_edge_established') is not False):
+        raise ValueError('PBP audit or research-only scope changed')
+    periods = {}
+    for key, years, weeks in (('selection_2021_2024', tuple(PBP_YEAR_COUNTS)[:4], 74), ('reused_2025', ('2025',), 22)):
+        original = result[key]
+        count = sum(PBP_YEAR_COUNTS[year] for year in years)
+        pooled = pbp_summary(original['pooled'], count)
+        if set(original['by_season']) != set(years) or any(row['week_blocks'] != weeks for row in pooled['comparisons']):
+            raise ValueError('PBP year/week coverage changed')
+        annual = {year: pbp_summary(original['by_season'][year], PBP_YEAR_COUNTS[year]) for year in years}
+        sources = {name: pbp_summary(group, group['games']) for name, group in original['by_source'].items()}
+        for groups in (annual, sources):
+            if sum(group['games'] for group in groups.values()) != count:
+                raise ValueError('PBP annual/source counts do not conserve coverage')
+            for name in PBP_CONFIGURATIONS:
+                for metric in ('mse', 'mae', 'mean_error'):
+                    average = sum(group['games']*group['configurations'][name][metric] for group in groups.values())/count
+                    if not math.isclose(average, pooled['configurations'][name][metric], abs_tol=1e-8):
+                        raise ValueError('PBP annual/source metrics do not conserve pooled results')
+        periods[key] = {**pooled, 'by_season': annual, 'by_source': sources}
+    selected = min(PBP_CONFIGURATIONS, key=lambda name: periods['selection_2021_2024']['configurations'][name]['mse'])
+    if selected != 'opponent_adjusted_ridge' or selection.get('choice') != selected or any(record.get('selected_on_2021_2024') != selected for record in (result, audit)):
+        raise ValueError('PBP selection must remain the earlier existing ridge')
+    links = []
+    for name, label in (('PBP_STATE_RESULTS_V2.md', 'PBP results and interpretation'),
+                        ('pbp_state_results_v2.json', 'All scores and annual/source intervals'),
+                        ('PBP_STATE_RESEARCH_PLAN_V2.md', 'Frozen PBP v2 plan'),
+                        ('pbp_state_research_plan_v2.json', 'Pinned machine plan'),
+                        ('pbp_state_feature_audit_v2.json', 'Feature coverage and hashes'),
+                        ('pbp_state_selection_v2.json', 'Selection committed before the 2025 check'),
+                        ('PBP_IDENTITY_DIAGNOSTIC.md', 'Source-order correction'),
+                        ('PBP_STATE_RESULTS_AUDIT_V2.md', 'Independent PBP results audit'),
+                        ('PBP_STATE_RESULTS_AUDIT_V2.json', 'Independent audit receipt')):
+        read_bytes(name)
+        digest = inputs['model/reports/'+name]
+        pinned = plan['source_files_sha256'].get('reports/'+name)
+        if pinned is not None and pinned != digest:
+            raise ValueError('PBP linked frozen source hash changed: '+name)
+        if name == 'PBP_STATE_RESULTS_AUDIT_V2.md' and digest != '378a0c8950560b7afe7ad9e1d1f61ce0a14c3baf7656b490a3f57f1d4948ce3f':
+            raise ValueError('PBP human audit hash changed')
+        links.append({'name': label, 'url': 'https://github.com/drhyphy/ncaa-football-totals/blob/main/model/reports/'+name, 'sha256': digest})
+    return {'version': version, 'status': 'reused_development_point_forecast_study', 'evaluated_at': result['checked_at'],
+        'candidate_order': list(PBP_CONFIGURATIONS), 'configuration_count': 3, 'selected_on_2021_2024': selected,
+        **periods, 'feature_rows': feature['games'], 'retained_play_rows': feature['retained_play_rows'],
+        'historical_data_reused': True, 'no_2026_outcomes': True, 'live_policy_changes': False,
+        'probabilities_evaluated': False, 'roi_evaluated': False, 'credible_executable_edge_established': False,
+        'audit': {key: audit[key] for key in ('passed', 'fit_count', 'numeric_comparisons', 'max_absolute_numeric_difference', 'stage_commits')},
+        'source_report_sha256': dict(PBP_REPORT_SHA256), 'limitations': result['limitations'], 'links': links}
 
 
 def render_opponent_report(primary):
@@ -627,6 +745,9 @@ def build_outputs(root):
     direct = None
     if (reports/'direct_probability_results.json').exists():
         direct = direct_publication(read, read_bytes, inputs)
+    pbp = None
+    if (reports/'pbp_state_results_v2.json').exists():
+        pbp = pbp_publication(read, read_bytes, inputs)
     protocol = None
     protocol_path = reports / "PROSPECTIVE_EVALUATION_PROTOCOL.md"
     if protocol_path.exists():
@@ -657,6 +778,7 @@ def build_outputs(root):
         "calibration_research": calibration,
         "ordinary_model_research": ordinary,
         "direct_probability_research": direct,
+        "pbp_state_research": pbp,
         "prospective_evaluation_protocol": protocol,
         "limitations": [
             "All 2019–2025 periods have been reused in development; no untouched historical test is claimed.",

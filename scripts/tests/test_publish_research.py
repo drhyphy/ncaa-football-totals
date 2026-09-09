@@ -31,6 +31,71 @@ class PublicationTests(unittest.TestCase):
                      'direct_probability_results.md', 'DIRECT_PROBABILITY_RESEARCH_AUDIT.md'):
             (self.reports/name).write_bytes((fixture/name).read_bytes())
 
+    def copy_pbp_reports(self):
+        fixture = SCRIPTS.parent/'model/reports'
+        for name in (*PUBLISH.PBP_REPORT_SHA256, 'PBP_STATE_RESEARCH_PLAN_V2.md', 'PBP_STATE_RESULTS_V2.md',
+                     'PBP_IDENTITY_DIAGNOSTIC.md', 'PBP_STATE_RESULTS_AUDIT_V2.md'):
+            (self.reports/name).write_bytes((fixture/name).read_bytes())
+
+    def test_pbp_absent_until_complete_and_preserves_every_model_period_and_audit(self):
+        def bundle():
+            return json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])
+        self.assertIsNone(bundle()['pbp_state_research'])
+        self.copy_pbp_reports()
+        publication = bundle()
+        study = publication['pbp_state_research']
+        original = json.loads((self.reports/'pbp_state_results_v2.json').read_text())
+        self.assertEqual(study['candidate_order'], list(PUBLISH.PBP_CONFIGURATIONS))
+        self.assertEqual(study['selected_on_2021_2024'], 'opponent_adjusted_ridge')
+        self.assertEqual((study['feature_rows'],study['retained_play_rows']),(5008,762297))
+        for period,count in [('selection_2021_2024',3061),('reused_2025',852)]:
+            self.assertEqual(study[period]['games'], count)
+            self.assertEqual(study[period]['configurations'], original[period]['pooled']['metrics'])
+            self.assertEqual(study[period]['comparisons'], original[period]['pooled']['comparisons'])
+            self.assertEqual(set(study[period]['by_source']),set(original[period]['by_source']))
+            self.assertEqual(set(study[period]['by_season']),set(original[period]['by_season']))
+        self.assertTrue(study['audit']['passed'])
+        self.assertEqual((study['audit']['fit_count'],study['audit']['numeric_comparisons']),(10,1143))
+        self.assertEqual(study['audit']['stage_commits']['selection_committed'][:7],'96557bc')
+        for key in ('probabilities_evaluated','roi_evaluated','live_policy_changes','credible_executable_edge_established'):
+            self.assertIs(study[key],False)
+        for name,digest in PUBLISH.PBP_REPORT_SHA256.items():
+            self.assertEqual(publication['source_report_sha256']['model/reports/'+name],digest)
+        for link in study['links']:
+            filename=link['url'].rsplit('/',1)[1]
+            self.assertEqual(link['sha256'],hashlib.sha256((self.reports/filename).read_bytes()).hexdigest())
+        self.assertNotIn('pbp_state_ridge',publication['reports'][PUBLISH.PRIMARY]['pooled'])
+
+    def test_pbp_rejects_changed_artifact_bytes_missing_audit_and_changed_frozen_links(self):
+        self.copy_pbp_reports()
+        for name in (*PUBLISH.PBP_REPORT_SHA256,'PBP_STATE_RESEARCH_PLAN_V2.md','PBP_IDENTITY_DIAGNOSTIC.md','PBP_STATE_RESULTS_AUDIT_V2.md'):
+            with self.subTest(name=name):
+                path=self.reports/name
+                original=path.read_bytes()
+                path.write_bytes(original+b'\n')
+                with self.assertRaisesRegex(ValueError,'hash changed'):
+                    PUBLISH.build_outputs(self.root)
+                path.write_bytes(original)
+        (self.reports/'PBP_STATE_RESULTS_AUDIT_V2.json').unlink()
+        with self.assertRaises(FileNotFoundError):
+            PUBLISH.build_outputs(self.root)
+
+    def test_pbp_semantic_checks_reject_omissions_invalid_scores_counts_and_intervals(self):
+        original=json.loads((SCRIPTS.parent/'model/reports/pbp_state_results_v2.json').read_text())['reused_2025']['pooled']
+        for fault in ('model','count','nonfinite','rmse','pair','difference','interval','seed','one_week'):
+            with self.subTest(fault=fault):
+                row=json.loads(json.dumps(original))
+                if fault=='model': del row['metrics']['market_only']
+                if fault=='count': row['metrics']['pbp_state_ridge']['games']=851
+                if fault=='nonfinite': row['metrics']['pbp_state_ridge']['mse']=float('nan')
+                if fault=='rmse': row['metrics']['pbp_state_ridge']['rmse']=1
+                if fault=='pair': row['comparisons'].pop()
+                if fault=='difference': row['comparisons'][0]['mse_difference']=0
+                if fault=='interval': row['comparisons'][0]['mse_interval_95']=[1,-1]
+                if fault=='seed': row['comparisons'][0]['seed']=0
+                if fault=='one_week': row['comparisons'][0]['week_blocks']=1
+                with self.assertRaises(ValueError): PUBLISH.pbp_summary(row,852)
+
     def test_direct_study_is_absent_until_completed_results_exist(self):
         bundle = json.loads(PUBLISH.build_outputs(self.root)[self.root/'site/data/research.json'])
         self.assertIsNone(bundle['direct_probability_research'])
