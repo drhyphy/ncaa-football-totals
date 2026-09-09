@@ -1,0 +1,53 @@
+{
+  "event_name": "manual_local",
+  "labels_only": true,
+  "run_attempt": "1",
+  "run_id": "local-initialization-20260909",
+  "started_at": "2026-09-09T05:05:49.477746Z",
+  "status": {
+    "errors": [
+      {
+        "reason": "Study implementation must be committed before real execution: scripts/weather_revision_study_labels.py",
+        "stage": "runner"
+      }
+    ],
+    "evidence": {
+      "edge_established": false,
+      "prospective": true
+    },
+    "experimental_picks": [],
+    "forecasts": {
+      "movement": 0,
+      "probability": 0
+    },
+    "generated_at": "2026-09-09T05:05:49.526128Z",
+    "models": {
+      "movement": {
+        "completed_weeks": 0,
+        "cutoff": null,
+        "games": 0,
+        "status": "unavailable"
+      },
+      "probability": {
+        "completed_weeks": 0,
+        "cutoff": null,
+        "games": 0,
+        "status": "unavailable"
+      }
+    },
+    "observations": {
+      "movement": 0,
+      "probability": 0,
+      "total": 0
+    },
+    "paper": {
+      "locked": 0,
+      "profit_units": null,
+      "settled": 0,
+      "unresolved": 0
+    },
+    "protocol_id": "weather-revision-prospective-v1-20260909",
+    "schema_version": "weather-revision-study-status-v1",
+    "status": "attention"
+  }
+}

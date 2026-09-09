@@ -1,0 +1,356 @@
+{
+  "automatic_promotion": false,
+  "bootstrap": {
+    "draws": 10000,
+    "paired_model_coverage": 0.975,
+    "quantile_method": "linear",
+    "reset_per_metric": true,
+    "rng": "PCG64",
+    "roi_descriptive_coverages": [
+      0.95,
+      0.99
+    ],
+    "seed": 20260909
+  },
+  "calendar_weeks_since_first_forecast_kickoff": 0,
+  "effective_report_cutoff": "2026-09-09T05:06:30.134077Z",
+  "excluded_later_paper_records": 0,
+  "excluded_later_prediction_records": 0,
+  "fixed_final_report_cutoff": "2027-02-08T12:00:00Z",
+  "forecast_record_count": 0,
+  "high_confidence_edge_claim": false,
+  "limitations": [
+    "Observed-price paper results are not accepted wagers or cash profitability.",
+    "Weekly percentile intervals are approximate; recurring teams and expanding training induce additional dependence.",
+    "97.5% model-score intervals cover a local two-comparison sensitivity, not profitability, diagnostics or all prior research searches.",
+    "Unresolved labels remain missing; no cancellation or administrative zero-profit settlement is invented.",
+    "Caller must retain target history and supply its latest valid cutoff-specific version; hashes do not certify original source contents."
+  ],
+  "movement": {
+    "context_changed_labels": 0,
+    "locked_forecasts": 0,
+    "mean_scores": {
+      "reference": {
+        "squared_error": null
+      },
+      "revision": {
+        "squared_error": null
+      },
+      "zero_movement": {
+        "squared_error": null
+      }
+    },
+    "missing_reasons": {},
+    "paired_revision_minus_reference": {
+      "contributing_weeks": 0,
+      "estimate": null,
+      "interval_status": "fewer_than_two_weeks",
+      "intervals": {
+        "0.975": null
+      },
+      "records": 0,
+      "weekly": []
+    },
+    "scored_forecasts": 0,
+    "unresolved_forecasts": 0
+  },
+  "paper": {
+    "active_locked_position_weeks": 0,
+    "by_side": {},
+    "by_sportsbook": {},
+    "full_cohort_roi": null,
+    "full_cohort_status": "no_positions",
+    "full_cohort_uncertainty": {
+      "contributing_weeks": 0,
+      "estimate": null,
+      "interval_status": "fewer_than_two_weeks",
+      "intervals": {
+        "0.95": null,
+        "0.99": null
+      },
+      "records": 0,
+      "weekly": []
+    },
+    "leave_one_week_out": [],
+    "locked_positions": 0,
+    "losses": 0,
+    "quote_age_seconds": null,
+    "settled_only_descriptive": {
+      "is_partial_cohort": false,
+      "positions": 0,
+      "profit_units": 0,
+      "roi": null
+    },
+    "settled_positions": 0,
+    "total_units_risked": 0,
+    "unresolved_as_full_loss": {
+      "contributing_weeks": 0,
+      "estimate": null,
+      "interval_status": "fewer_than_two_weeks",
+      "intervals": {
+        "0.95": null,
+        "0.99": null
+      },
+      "records": 0,
+      "weekly": []
+    },
+    "unresolved_positions": 0,
+    "wins": 0
+  },
+  "probability": {
+    "context_changed_labels": 0,
+    "locked_forecasts": 0,
+    "mean_scores": {
+      "price_reference": {
+        "brier": null,
+        "log_loss": null
+      },
+      "reference": {
+        "brier": null,
+        "log_loss": null
+      },
+      "revision": {
+        "brier": null,
+        "log_loss": null
+      }
+    },
+    "missing_reasons": {},
+    "paired_revision_minus_reference": {
+      "contributing_weeks": 0,
+      "estimate": null,
+      "interval_status": "fewer_than_two_weeks",
+      "intervals": {
+        "0.975": null
+      },
+      "records": 0,
+      "weekly": []
+    },
+    "reliability": {
+      "price_reference": [
+        {
+          "count": 0,
+          "lower": 0.0,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.1
+        },
+        {
+          "count": 0,
+          "lower": 0.1,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.2
+        },
+        {
+          "count": 0,
+          "lower": 0.2,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.3
+        },
+        {
+          "count": 0,
+          "lower": 0.3,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.4
+        },
+        {
+          "count": 0,
+          "lower": 0.4,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.5
+        },
+        {
+          "count": 0,
+          "lower": 0.5,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.6
+        },
+        {
+          "count": 0,
+          "lower": 0.6,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.7
+        },
+        {
+          "count": 0,
+          "lower": 0.7,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.8
+        },
+        {
+          "count": 0,
+          "lower": 0.8,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.9
+        },
+        {
+          "count": 0,
+          "lower": 0.9,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 1.0
+        }
+      ],
+      "reference": [
+        {
+          "count": 0,
+          "lower": 0.0,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.1
+        },
+        {
+          "count": 0,
+          "lower": 0.1,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.2
+        },
+        {
+          "count": 0,
+          "lower": 0.2,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.3
+        },
+        {
+          "count": 0,
+          "lower": 0.3,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.4
+        },
+        {
+          "count": 0,
+          "lower": 0.4,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.5
+        },
+        {
+          "count": 0,
+          "lower": 0.5,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.6
+        },
+        {
+          "count": 0,
+          "lower": 0.6,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.7
+        },
+        {
+          "count": 0,
+          "lower": 0.7,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.8
+        },
+        {
+          "count": 0,
+          "lower": 0.8,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.9
+        },
+        {
+          "count": 0,
+          "lower": 0.9,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 1.0
+        }
+      ],
+      "revision": [
+        {
+          "count": 0,
+          "lower": 0.0,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.1
+        },
+        {
+          "count": 0,
+          "lower": 0.1,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.2
+        },
+        {
+          "count": 0,
+          "lower": 0.2,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.3
+        },
+        {
+          "count": 0,
+          "lower": 0.3,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.4
+        },
+        {
+          "count": 0,
+          "lower": 0.4,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.5
+        },
+        {
+          "count": 0,
+          "lower": 0.5,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.6
+        },
+        {
+          "count": 0,
+          "lower": 0.6,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.7
+        },
+        {
+          "count": 0,
+          "lower": 0.7,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.8
+        },
+        {
+          "count": 0,
+          "lower": 0.8,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 0.9
+        },
+        {
+          "count": 0,
+          "lower": 0.9,
+          "mean_probability": null,
+          "observed_under_rate": null,
+          "upper": 1.0
+        }
+      ]
+    },
+    "scored_forecasts": 0,
+    "unresolved_forecasts": 0
+  },
+  "protocol_sha256": null,
+  "real_data_fit_performed": false,
+  "record_hash_references_checked": true,
+  "requested_report_cutoff": "2026-09-09T05:06:30.134077Z",
+  "schema_version": "weather-revision-evaluation-v1-20260909",
+  "study_version": "weather-revision-study-v1-20260909",
+  "zero_forecast_weeks_through_report": 0
+}
