@@ -1,6 +1,6 @@
 # NOAA request and forecast-source audit
 
-Status: frozen request-plan checks passed; downloader and extraction review in progress. No forecast values, weather classifications, game outcomes, or returns were inspected for this audit.
+Status: frozen request-plan, complete inventory, and implementation review passed. Complete downloaded-field and result audits remain pending. No forecast values, weather classifications, game outcomes, or returns were inspected for this audit.
 
 ## Request-plan reconstruction
 
@@ -30,13 +30,25 @@ AWS documents Last-Modified as system-controlled metadata. However, when an obje
 
 The implementation decision, made before classification, preserves the frozen Last-Modified-before-decision gate and initialization-plus-six-hours buffer. It records multipart ETag status and labels timing as a historical S3 availability proxy. It does not invent a publication-completion time or discard multipart objects after observing their weather. This provides evidence against later replacement but is weaker than an actual archived client receipt before the decision. It remains a limitation even when the nominal initialization is more than a day before that decision.
 
+## Complete inventory verification
+
+An independent header-and-index audit verified inventory SHA-256 `f486e78a6a2a4699f3b7c54ae4f9186beab87ed04dcbd8aa234959767a734649` and its parent request-plan linkage. All 1,275 requested objects are available, with zero source exclusions. Every recorded object has a 32-hex-character ETag and none has the multipart suffix pattern. Thus the specific multipart-upload caveat is not indicated by the actual archived headers; the study still labels these timestamps as a historical availability proxy rather than client receipts.
+
+Last-Modified occurs **3.704–4.050 hours after initialization** and **30.571–43.796 hours before the earliest affected decision**. Every inventory's original bytes match its hash. Every selected field has one exact selector, the correct initialization and lead, and a byte range extending to the next complete-message offset (or object end for the final message).
+
+The verified inventory contains 511 temperature, 511 humidity, 1,275 U-wind, and 1,275 V-wind fields: 3,572 ranges totaling **3,151,825,716 bytes**. Individual fields span 422,299–1,014,378 bytes. No field body was needed for these checks, and this inventory audit does not certify their yet-unfinished download or decoding.
+
 ## Downloader and extractor requirements
 
 The reviewed downloader freezes complete-message offsets from exact inventory selectors, requires HTTP 206 and exact Content-Range/Length, checks the object's ETag and Last-Modified again, and archives byte hashes. Unexpected whole-object responses are rejected before reading their body. Missing or invalid fields cannot trigger a replacement cycle or product. The full inventory must be complete before field retrieval, and the complete field archive must precede classification.
 
 The extractor's reviewed pure functions validate the exact quarter-degree grid, all four scan-order flags, forecast units and valid times, and earth-relative wind components. Those checks matter because reshaping an unexpected scan order can silently assign values to the wrong stadium. U/V components are interpolated separately before their scalar speed; four hourly speeds are then averaged. Temperature and humidity use only the kickoff-floor hour. The published strict three-condition intersection remains unchanged.
 
-Archive integration, independent complete-field extraction, and outcome joining remain to be checked when their implementation is ready. This report does not certify future or unfinished stages.
+The archive-integration code review checks the complete inventory and fetch manifests, exact object/field coverage, game/hour/field linkage conservation, immutable receipt hashes, and original HTTP/GRIB identity. Decode errors and required missing bitmap points become explicit unavailable weather; archive identity errors stop extraction. The separate classification artifact pins code, protocol, metadata, and source bytes before any outcome join.
+
+The outcome-join code preserves repaired-source precedence, canonicalizes game IDs, and requires matching season/team/source identity plus final score agreement with the independent schedule. Its common-week bootstrap uses identical draws for the selected and all-Under ratios, includes zero-selection covered weeks, and reports draws with no selected stakes. Push settlement and active-week ratio-score t calculations match the frozen protocol. A schema-only check confirmed that the actual source Parquet files contain the required columns; no score values were read.
+
+No material implementation defect was found in this review. Executing independent complete-field extraction and independently recomputing the eventual result remain pending. This report does not certify future or unfinished stages.
 
 ## Interpretation boundaries
 
