@@ -1,0 +1,157 @@
+{
+  "capture_completed_at": "2026-09-09T08:16:31.872356Z",
+  "capture_started_at": "2026-09-09T08:16:30.214455+00:00",
+  "cohort_path": "data/runtime/availability/cohorts/local-20260909T081630214455Z-1.json",
+  "cohort_sha256": "3c147ad190889eb84ef2484b709550065b6e9c6e02f8c1fa96e4b7e825765de6",
+  "counts": {
+    "context_verified_games": 1,
+    "matched_games": 1,
+    "nonpending_unverified_reports": 0,
+    "paired_games": 0,
+    "paired_two_book_games": 0,
+    "pending_reports": 1,
+    "source_reports": 1,
+    "total_requests": 6
+  },
+  "current_receipt": "data/runtime/availability/receipts/bf2c5ccff9f6639d1e2f383ec4008aff17aeeb16813b9aa96e3ccf7f9d2a0bc7.json",
+  "failures": [
+    {
+      "reason": "quota_reserve_or_metadata_unavailable",
+      "remaining": null,
+      "required": 1
+    }
+  ],
+  "git_commit": "65f7fb377b1b938338eaf6b19aa8ebea960e698e",
+  "inventory_exclusions": [],
+  "models_fitted": 0,
+  "official_games": 86,
+  "protocol": "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md",
+  "quote_diagnostics": [
+    {
+      "reason": "quota_reserve_or_metadata_unavailable",
+      "remaining": null,
+      "required": 1
+    }
+  ],
+  "receipts": [
+    "data/runtime/availability/receipts/be38ca53650fb71cd31368e2f38da831ac9ade3fc33f70b73774f6548e89694f.json",
+    "data/runtime/availability/receipts/e69eb098377d88c2aca26cb7d81e18bc3aac9efdd3673de57bc70fb776f17104.json",
+    "data/runtime/availability/receipts/67e508fdc6802fd6fdce9a6796007202e556d94adf739fb1e767c57a5b5aa762.json",
+    "data/runtime/availability/receipts/c6da7749535d6e63b58132b6c77cdb2a6ef0d55ed7739f04775a87cd5318cf82.json",
+    "data/runtime/availability/receipts/3e47a02d14ebb340ae823438d6d31088689602a53d3e372e309ed6ad830479d4.json",
+    "data/runtime/availability/receipts/bf2c5ccff9f6639d1e2f383ec4008aff17aeeb16813b9aa96e3ccf7f9d2a0bc7.json"
+  ],
+  "reports": [
+    {
+      "clock_interpretation": "Literal ET interpreted as America/New_York for matchup reconciliation only",
+      "completion_verified": false,
+      "context_id": "da8db884386ba6995b657da1cf1b675db623972d60caab28ddcd0bc1a2e3c8f2",
+      "failure": null,
+      "game_id": "401858216",
+      "matching_names": {
+        "away": {
+          "abbreviation": "CAL",
+          "displayName": "California Golden Bears",
+          "location": "California",
+          "shortDisplayName": "California"
+        },
+        "home": {
+          "abbreviation": "SYR",
+          "displayName": "Syracuse Orange",
+          "location": "Syracuse",
+          "shortDisplayName": "Syracuse"
+        }
+      },
+      "report_type": "Report Pending",
+      "source_date": "2026-09-12",
+      "source_key": "1182",
+      "source_posted_time": "20:00:00",
+      "source_publish_date": "2026-09-09",
+      "source_row_items": [
+        0,
+        0
+      ],
+      "source_teams": [
+        "California",
+        "Syracuse"
+      ],
+      "source_time": "15:30:00",
+      "source_timezone": "ET",
+      "state": "pending"
+    }
+  ],
+  "rows": [
+    {
+      "away_id": "25",
+      "away_source_names": {
+        "abbreviation": "CAL",
+        "displayName": "California Golden Bears",
+        "location": "California",
+        "shortDisplayName": "California"
+      },
+      "away_team": "California Golden Bears",
+      "context_receipt": {
+        "archive_writer_version": "revision-archive-v2-portable-gzip",
+        "body_path": "data/runtime/availability/bodies/e35db60fa6836de3b0adf4fdf3411b6490ba619ee140ca75cbf4ada76b406428.body.gz",
+        "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+        "body_sha256": "e35db60fa6836de3b0adf4fdf3411b6490ba619ee140ca75cbf4ada76b406428",
+        "body_size_bytes": 96318,
+        "body_withheld": false,
+        "purpose": "official_context_after_availability",
+        "receipt_path": "data/runtime/availability/receipts/e69eb098377d88c2aca26cb7d81e18bc3aac9efdd3673de57bc70fb776f17104.json",
+        "received_at": "2026-09-09T08:16:31.323592Z",
+        "request": {
+          "params": {
+            "event": "401858216"
+          },
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+        },
+        "requested_at": "2026-09-09T08:16:31.255962Z",
+        "response_headers": {
+          "content_encoding": "gzip",
+          "content_length": "14280",
+          "content_type": "application/json;charset=UTF-8",
+          "date": "Wed, 09 Sep 2026 08:16:31 GMT"
+        },
+        "schema_version": "raw-http-receipt-v1",
+        "status_code": 200,
+        "transport_error": null
+      },
+      "context_verified": true,
+      "game_id": "401858216",
+      "home_id": "183",
+      "home_source_names": {
+        "abbreviation": "SYR",
+        "displayName": "Syracuse Orange",
+        "location": "Syracuse",
+        "shortDisplayName": "Syracuse"
+      },
+      "home_team": "Syracuse Orange",
+      "inventory_neutral_site": false,
+      "inventory_venue_id": "1964",
+      "kickoff": "2026-09-12T19:30:00Z",
+      "missingness": [
+        "no_verified_subsequent_price_pair"
+      ],
+      "pairs": [],
+      "quotes": []
+    }
+  ],
+  "run_attempt": "1",
+  "run_id": "local-20260909T081630214455Z",
+  "schema_version": "acc-availability-collector-v1",
+  "source_hashes": {
+    "ncaaf_model/availability_archive.py": "d213bc367c691f5b632be68ace61521d213fb2d71cf0d4e7408b6132dbd37f1f",
+    "ncaaf_model/availability_collector.py": "aa528a696677d3f7f9e614187a69ab0faae8db331243c59895e9d07c167dc509",
+    "ncaaf_model/revision_archive.py": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0",
+    "ncaaf_model/teams.py": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+    "ncaaf_model/weather_revision_collector.py": "233343a74cf4eadf4e9e6b4d532b1fb3537f762747dc08aeddf1cf5713f3a0e8",
+    "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md": "0b7c409daedc78bfabacebb738db8f74f3e8643d27125ff9276d982e06c9b989"
+  },
+  "source_status": "captured",
+  "status": "partial",
+  "trigger": "manual_local",
+  "verified_completed_reports": 0,
+  "workflow_commit": null,
+  "workflow_sha256": "32f41f32f46f4bdb516ceab00db4610e5d1425fd0a94913339244fe8ea86f4ee"
+}

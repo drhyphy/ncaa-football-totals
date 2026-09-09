@@ -1,0 +1,85 @@
+{
+  "status": "passed",
+  "audit_kind": "independent_original_bytes_no_project_imports",
+  "manifest": "model/data/runtime/availability/runs/local-20260909T081630214455Z-1.json",
+  "manifest_sha256": "07e69ca80cd720c072ab878e6bfd369c944b877eee94ad431fb270252ed3b334",
+  "recorded_git_commit": "65f7fb377b1b938338eaf6b19aa8ebea960e698e",
+  "recorded_git_sources_verified": true,
+  "cohort_sha256": "3c147ad190889eb84ef2484b709550065b6e9c6e02f8c1fa96e4b7e825765de6",
+  "capture_started_at": "2026-09-09T08:16:30.214455+00:00",
+  "capture_completed_at": "2026-09-09T08:16:31.872356Z",
+  "capture_status": "partial",
+  "counts": {
+    "source_reports": 1,
+    "pending_reports": 1,
+    "nonpending_unverified_reports": 0,
+    "matched_games": 1,
+    "context_verified_games": 1,
+    "paired_games": 0,
+    "paired_two_book_games": 0,
+    "total_requests": 6
+  },
+  "failed_requests": [],
+  "receipt_body_hashes_verified": 6,
+  "current_body_sha256": "7f16dceda02779e726ddb15f2392d2a65543e90ac2b02789127e09106cc4b6fc",
+  "current_received_at": "2026-09-09T08:16:31.175451Z",
+  "current_cache_headers": {
+    "cache_control": "public, max-age=60, s-maxage=60, stale-while-revalidate=60, stale-if-error=300",
+    "content_length": "1117075",
+    "content_type": "application/json",
+    "date": "Wed, 09 Sep 2026 08:16:31 GMT"
+  },
+  "capture_failures": [
+    {
+      "reason": "quota_reserve_or_metadata_unavailable",
+      "remaining": null,
+      "required": 1
+    }
+  ],
+  "quote_diagnostics": [
+    {
+      "reason": "quota_reserve_or_metadata_unavailable",
+      "remaining": null,
+      "required": 1
+    }
+  ],
+  "quota_receipts": [
+    {
+      "url": "https://api.odds-api.io/v3/bookmakers/selected",
+      "status_code": 200,
+      "requested_at": "2026-09-09T08:16:31.330202Z",
+      "received_at": "2026-09-09T08:16:31.675926Z",
+      "quota_headers": {}
+    },
+    {
+      "url": "https://api.odds-api.io/v3/events",
+      "status_code": 200,
+      "requested_at": "2026-09-09T08:16:31.679518Z",
+      "received_at": "2026-09-09T08:16:31.857523Z",
+      "quota_headers": {}
+    }
+  ],
+  "reports": [
+    {
+      "source_key": "1182",
+      "game_id": "401858216",
+      "teams": [
+        "California",
+        "Syracuse"
+      ],
+      "state": "pending",
+      "raw_row_lengths": [
+        0,
+        0
+      ],
+      "source_game_date": "2026-09-12",
+      "source_game_time": "15:30:00",
+      "source_timezone": "ET",
+      "source_publish_date": "2026-09-09",
+      "source_posted_time": "20:00:00"
+    }
+  ],
+  "quotes": [],
+  "outcomes_or_models_evaluated": false,
+  "edge_established": false
+}
