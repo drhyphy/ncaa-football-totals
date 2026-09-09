@@ -1,0 +1,668 @@
+{
+  "audit_version": "independent-direct-probability-audit-v1",
+  "audited_at": "2026-09-09T05:37:00.559059+00:00",
+  "status": "passed_no_material_discrepancy",
+  "new_candidate_promoted": false,
+  "method": "Independent source reconstruction, NumPy/SciPy penalized logistic refits, sklearn classifier refits, original ridge closed-form replay and independent weekly score reconstruction; no imports from direct_probability_models or direct_probability_research or study execution functions",
+  "source_hash_checks": {
+    "source_files_sha256": 23,
+    "implementation_sha256": 7,
+    "validation_sha256": 3
+  },
+  "input_report_sha256": {
+    "reports/direct_probability_research_plan.json": "ef36cdea636dd87661141560af6f3934bf883730aab6d354370c218f26b5778b",
+    "reports/direct_probability_selection.json": "f444d8c04790a66beb73a069858304834c34763be16aea140ee0990bd40d77be",
+    "reports/direct_probability_results.json": "ba150975d6565a87539fd5dce80ca88212eda1ed91a24f8fd9f54ce181cc37cf"
+  },
+  "stage_provenance": {
+    "freeze_commit": "586423cb0739e6eeea1208c940649331dbdd5518",
+    "selection_commit": "33e1c5db738800c5a2c443f8014395a83565f940",
+    "freeze_commit_time": "2026-09-09T01:30:53-04:00",
+    "selection_created_at": "2026-09-09T05:30:56.791751Z",
+    "selection_commit_time": "2026-09-09T01:31:36-04:00",
+    "check_created_at": "2026-09-09T05:31:39.224998Z",
+    "commit_ancestry_verified": true,
+    "recorded_git_blobs_verified": true,
+    "selection_absent_at_freeze": true,
+    "check_absent_at_selection": true
+  },
+  "identity_cutoff_checks": {
+    "full_games": 5008,
+    "same_repaired_market_rows": true,
+    "all_exact_monday_cutoffs": true,
+    "all_cutoffs_before_kickoff": true,
+    "same_source_identity_and_final_total": true,
+    "same_saved_ridge_identities_and_timing": true,
+    "no_2026_rows": true,
+    "no_2025_selection_rows": true,
+    "unique_test_games": 3258
+  },
+  "coverage": {
+    "total": {
+      "base_games": 5008,
+      "history_eligible": 4418,
+      "excluded_history": 590,
+      "excluded_nonhalfpoint_after_history": 837,
+      "eligible_halfpoint_games": 3581
+    },
+    "by_year": {
+      "2020": {
+        "base_games": 538,
+        "history_eligible": 505,
+        "excluded_history": 33,
+        "excluded_nonhalfpoint_after_history": 182,
+        "eligible_halfpoint_games": 323
+      },
+      "2021": {
+        "base_games": 848,
+        "history_eligible": 734,
+        "excluded_history": 114,
+        "excluded_nonhalfpoint_after_history": 306,
+        "eligible_halfpoint_games": 428
+      },
+      "2022": {
+        "base_games": 849,
+        "history_eligible": 734,
+        "excluded_history": 115,
+        "excluded_nonhalfpoint_after_history": 331,
+        "eligible_halfpoint_games": 403
+      },
+      "2023": {
+        "base_games": 910,
+        "history_eligible": 795,
+        "excluded_history": 115,
+        "excluded_nonhalfpoint_after_history": 18,
+        "eligible_halfpoint_games": 777
+      },
+      "2024": {
+        "base_games": 920,
+        "history_eligible": 798,
+        "excluded_history": 122,
+        "excluded_nonhalfpoint_after_history": 0,
+        "eligible_halfpoint_games": 798
+      },
+      "2025": {
+        "base_games": 943,
+        "history_eligible": 852,
+        "excluded_history": 91,
+        "excluded_nonhalfpoint_after_history": 0,
+        "eligible_halfpoint_games": 852
+      }
+    },
+    "by_source": {
+      "cfbd_Bovada": {
+        "base_games": 24,
+        "history_eligible": 15,
+        "excluded_history": 9,
+        "excluded_nonhalfpoint_after_history": 10,
+        "eligible_halfpoint_games": 5
+      },
+      "cfbd_William Hill (New Jersey)": {
+        "base_games": 7,
+        "history_eligible": 0,
+        "excluded_history": 7,
+        "excluded_nonhalfpoint_after_history": 0,
+        "eligible_halfpoint_games": 0
+      },
+      "cfbd_consensus": {
+        "base_games": 2235,
+        "history_eligible": 1989,
+        "excluded_history": 246,
+        "excluded_nonhalfpoint_after_history": 822,
+        "eligible_halfpoint_games": 1167
+      },
+      "espn_nonlive_provider_100": {
+        "base_games": 47,
+        "history_eligible": 47,
+        "excluded_history": 0,
+        "excluded_nonhalfpoint_after_history": 0,
+        "eligible_halfpoint_games": 47
+      },
+      "espn_nonlive_provider_40": {
+        "base_games": 14,
+        "history_eligible": 13,
+        "excluded_history": 1,
+        "excluded_nonhalfpoint_after_history": 4,
+        "eligible_halfpoint_games": 9
+      },
+      "espn_nonlive_provider_52": {
+        "base_games": 1,
+        "history_eligible": 1,
+        "excluded_history": 0,
+        "excluded_nonhalfpoint_after_history": 1,
+        "eligible_halfpoint_games": 0
+      },
+      "espn_nonlive_provider_58": {
+        "base_games": 2680,
+        "history_eligible": 2353,
+        "excluded_history": 327,
+        "excluded_nonhalfpoint_after_history": 0,
+        "eligible_halfpoint_games": 2353
+      }
+    },
+    "by_year_source": {
+      "2020": {
+        "cfbd_consensus": {
+          "base_games": 538,
+          "history_eligible": 505,
+          "excluded_history": 33,
+          "excluded_nonhalfpoint_after_history": 182,
+          "eligible_halfpoint_games": 323
+        }
+      },
+      "2021": {
+        "cfbd_Bovada": {
+          "base_games": 11,
+          "history_eligible": 2,
+          "excluded_history": 9,
+          "excluded_nonhalfpoint_after_history": 1,
+          "eligible_halfpoint_games": 1
+        },
+        "cfbd_William Hill (New Jersey)": {
+          "base_games": 6,
+          "history_eligible": 0,
+          "excluded_history": 6,
+          "excluded_nonhalfpoint_after_history": 0,
+          "eligible_halfpoint_games": 0
+        },
+        "cfbd_consensus": {
+          "base_games": 831,
+          "history_eligible": 732,
+          "excluded_history": 99,
+          "excluded_nonhalfpoint_after_history": 305,
+          "eligible_halfpoint_games": 427
+        }
+      },
+      "2022": {
+        "cfbd_Bovada": {
+          "base_games": 10,
+          "history_eligible": 10,
+          "excluded_history": 0,
+          "excluded_nonhalfpoint_after_history": 8,
+          "eligible_halfpoint_games": 2
+        },
+        "cfbd_William Hill (New Jersey)": {
+          "base_games": 1,
+          "history_eligible": 0,
+          "excluded_history": 1,
+          "excluded_nonhalfpoint_after_history": 0,
+          "eligible_halfpoint_games": 0
+        },
+        "cfbd_consensus": {
+          "base_games": 838,
+          "history_eligible": 724,
+          "excluded_history": 114,
+          "excluded_nonhalfpoint_after_history": 323,
+          "eligible_halfpoint_games": 401
+        }
+      },
+      "2023": {
+        "cfbd_Bovada": {
+          "base_games": 3,
+          "history_eligible": 3,
+          "excluded_history": 0,
+          "excluded_nonhalfpoint_after_history": 1,
+          "eligible_halfpoint_games": 2
+        },
+        "cfbd_consensus": {
+          "base_games": 28,
+          "history_eligible": 28,
+          "excluded_history": 0,
+          "excluded_nonhalfpoint_after_history": 12,
+          "eligible_halfpoint_games": 16
+        },
+        "espn_nonlive_provider_40": {
+          "base_games": 14,
+          "history_eligible": 13,
+          "excluded_history": 1,
+          "excluded_nonhalfpoint_after_history": 4,
+          "eligible_halfpoint_games": 9
+        },
+        "espn_nonlive_provider_52": {
+          "base_games": 1,
+          "history_eligible": 1,
+          "excluded_history": 0,
+          "excluded_nonhalfpoint_after_history": 1,
+          "eligible_halfpoint_games": 0
+        },
+        "espn_nonlive_provider_58": {
+          "base_games": 864,
+          "history_eligible": 750,
+          "excluded_history": 114,
+          "excluded_nonhalfpoint_after_history": 0,
+          "eligible_halfpoint_games": 750
+        }
+      },
+      "2024": {
+        "espn_nonlive_provider_58": {
+          "base_games": 920,
+          "history_eligible": 798,
+          "excluded_history": 122,
+          "excluded_nonhalfpoint_after_history": 0,
+          "eligible_halfpoint_games": 798
+        }
+      },
+      "2025": {
+        "espn_nonlive_provider_100": {
+          "base_games": 47,
+          "history_eligible": 47,
+          "excluded_history": 0,
+          "excluded_nonhalfpoint_after_history": 0,
+          "eligible_halfpoint_games": 47
+        },
+        "espn_nonlive_provider_58": {
+          "base_games": 896,
+          "history_eligible": 805,
+          "excluded_history": 91,
+          "excluded_nonhalfpoint_after_history": 0,
+          "eligible_halfpoint_games": 805
+        }
+      }
+    }
+  },
+  "new_model_refits": [
+    {
+      "season": 2021,
+      "candidate": "context_logit",
+      "training_games": 323,
+      "test_games": 428,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 4.585778639633331e-09,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 5.551115123125783e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2021,
+      "candidate": "opponent_logit",
+      "training_games": 323,
+      "test_games": 428,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 1.0228795807500773e-07,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 1.1102230246251565e-16,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2021,
+      "candidate": "context_hgb",
+      "training_games": 323,
+      "test_games": 428,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2021,
+      "candidate": "opponent_hgb",
+      "training_games": 323,
+      "test_games": 428,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2022,
+      "candidate": "context_logit",
+      "training_games": 751,
+      "test_games": 403,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 9.599496371415217e-11,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 5.551115123125783e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2022,
+      "candidate": "opponent_logit",
+      "training_games": 751,
+      "test_games": 403,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 1.3134955482931206e-07,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 5.551115123125783e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2022,
+      "candidate": "context_hgb",
+      "training_games": 751,
+      "test_games": 403,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2022,
+      "candidate": "opponent_hgb",
+      "training_games": 751,
+      "test_games": 403,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2023,
+      "candidate": "context_logit",
+      "training_games": 1154,
+      "test_games": 777,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 1.7729880202876913e-09,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 5.551115123125783e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2023,
+      "candidate": "opponent_logit",
+      "training_games": 1154,
+      "test_games": 777,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 7.714049682448071e-08,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 5.551115123125783e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2023,
+      "candidate": "context_hgb",
+      "training_games": 1154,
+      "test_games": 777,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2023,
+      "candidate": "opponent_hgb",
+      "training_games": 1154,
+      "test_games": 777,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2024,
+      "candidate": "context_logit",
+      "training_games": 1931,
+      "test_games": 798,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 9.724717462723798e-09,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 2.7755575615628914e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2024,
+      "candidate": "opponent_logit",
+      "training_games": 1931,
+      "test_games": 798,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 1.5801662980180486e-07,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 5.551115123125783e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2024,
+      "candidate": "context_hgb",
+      "training_games": 1931,
+      "test_games": 798,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2024,
+      "candidate": "opponent_hgb",
+      "training_games": 1931,
+      "test_games": 798,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2025,
+      "candidate": "context_logit",
+      "training_games": 2729,
+      "test_games": 852,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 2.794517185364387e-09,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 5.551115123125783e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2025,
+      "candidate": "opponent_logit",
+      "training_games": 2729,
+      "test_games": 852,
+      "coefficient_max_abs_difference": 0.0,
+      "refit_gradient_norm": 7.749157941803336e-08,
+      "recorded_parameters_replayed": true,
+      "logit_max_abs_difference": 5.551115123125783e-17,
+      "probability_max_abs_difference": 1.1102230246251565e-16
+    },
+    {
+      "season": 2025,
+      "candidate": "context_hgb",
+      "training_games": 2729,
+      "test_games": 852,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    },
+    {
+      "season": 2025,
+      "candidate": "opponent_hgb",
+      "training_games": 2729,
+      "test_games": 852,
+      "logit_max_abs_difference": 0.0,
+      "probability_max_abs_difference": 0.0
+    }
+  ],
+  "existing_ridge_reconstructions": [
+    {
+      "year": 2021,
+      "original_ridge_training_games": 505,
+      "original_sigma_training_games": 538,
+      "new_halfpoint_training_games": 323,
+      "maximum_mean_difference": 7.105427357601002e-15,
+      "maximum_under_logit_difference": 8.881784197001252e-16
+    },
+    {
+      "year": 2022,
+      "original_ridge_training_games": 1239,
+      "original_sigma_training_games": 1386,
+      "new_halfpoint_training_games": 751,
+      "maximum_mean_difference": 7.105427357601002e-15,
+      "maximum_under_logit_difference": 8.881784197001252e-16
+    },
+    {
+      "year": 2023,
+      "original_ridge_training_games": 1973,
+      "original_sigma_training_games": 2235,
+      "new_halfpoint_training_games": 1154,
+      "maximum_mean_difference": 7.105427357601002e-15,
+      "maximum_under_logit_difference": 8.881784197001252e-16
+    },
+    {
+      "year": 2024,
+      "original_ridge_training_games": 2768,
+      "original_sigma_training_games": 3145,
+      "new_halfpoint_training_games": 1931,
+      "maximum_mean_difference": 7.105427357601002e-15,
+      "maximum_under_logit_difference": 6.661338147750939e-16
+    },
+    {
+      "year": 2025,
+      "original_ridge_training_games": 3566,
+      "original_sigma_training_games": 4065,
+      "new_halfpoint_training_games": 2729,
+      "maximum_mean_difference": 7.105427357601002e-15,
+      "maximum_under_logit_difference": 6.661338147750939e-16
+    }
+  ],
+  "model_refit_count": 20,
+  "ridge_refit_count": 5,
+  "maximum_new_logit_refit_difference": 1.1102230246251565e-16,
+  "maximum_new_probability_refit_difference": 1.1102230246251565e-16,
+  "proper_score_and_reliability_scalar_checks": 3250,
+  "maximum_summary_absolute_difference": 1.1102230246251565e-16,
+  "maximum_interval_absolute_difference": 5.204170427930421e-18,
+  "paired_comparisons": [
+    {
+      "period": "selection",
+      "candidate": "opponent_logit",
+      "reference": "context_logit",
+      "games": 2406,
+      "weeks": 73,
+      "difference": 0.0021817927272174214,
+      "interval_95": [
+        0.00016184032930999606,
+        0.004301063973819726
+      ],
+      "interval_98_75": [
+        -0.00039068650603598786,
+        0.004931521384410335
+      ]
+    },
+    {
+      "period": "selection",
+      "candidate": "opponent_hgb",
+      "reference": "context_hgb",
+      "games": 2406,
+      "weeks": 73,
+      "difference": 0.00989641494443026,
+      "interval_95": [
+        0.002476666260588964,
+        0.0175950497203853
+      ],
+      "interval_98_75": [
+        0.00029653984453364854,
+        0.01998097570997029
+      ]
+    },
+    {
+      "period": "selection",
+      "candidate": "opponent_logit",
+      "reference": "rawridge",
+      "games": 2406,
+      "weeks": 73,
+      "difference": 0.002745394773722622,
+      "interval_95": [
+        0.0005906728203475942,
+        0.005144770200072701
+      ],
+      "interval_98_75": [
+        3.975824127032163e-05,
+        0.0057416145301874486
+      ]
+    },
+    {
+      "period": "selection",
+      "candidate": "opponent_hgb",
+      "reference": "rawridge",
+      "games": 2406,
+      "weeks": 73,
+      "difference": 0.0212644435022654,
+      "interval_95": [
+        0.013486029136502334,
+        0.029156470319203043
+      ],
+      "interval_98_75": [
+        0.011066843218568104,
+        0.03159393899795819
+      ]
+    },
+    {
+      "period": "2025",
+      "candidate": "opponent_logit",
+      "reference": "context_logit",
+      "games": 852,
+      "weeks": 22,
+      "difference": -0.0007968067884385633,
+      "interval_95": [
+        -0.0017998521504650404,
+        0.00018118723540944796
+      ],
+      "interval_98_75": [
+        -0.0021111408962860324,
+        0.0003990624585594537
+      ]
+    },
+    {
+      "period": "2025",
+      "candidate": "opponent_hgb",
+      "reference": "context_hgb",
+      "games": 852,
+      "weeks": 22,
+      "difference": -0.00194440267386785,
+      "interval_95": [
+        -0.008948832418748113,
+        0.0044791940297434765
+      ],
+      "interval_98_75": [
+        -0.010758718119779034,
+        0.006081819478556598
+      ]
+    },
+    {
+      "period": "2025",
+      "candidate": "opponent_logit",
+      "reference": "rawridge",
+      "games": 852,
+      "weeks": 22,
+      "difference": -0.003130656992273546,
+      "interval_95": [
+        -0.005642687479411192,
+        -0.0006546358270325755
+      ],
+      "interval_98_75": [
+        -0.006304873663273346,
+        3.415630135000799e-05
+      ]
+    },
+    {
+      "period": "2025",
+      "candidate": "opponent_hgb",
+      "reference": "rawridge",
+      "games": 852,
+      "weeks": 22,
+      "difference": -0.0012367858627758599,
+      "interval_95": [
+        -0.007484558103468007,
+        0.004736904794738604
+      ],
+      "interval_98_75": [
+        -0.009157667370886205,
+        0.006512218117852657
+      ]
+    }
+  ],
+  "selected_configuration": "rawridge",
+  "selection_log_losses": {
+    "raw50": 0.6931471805599453,
+    "rawridge": 0.6918993795784186,
+    "context_logit": 0.6924629816249238,
+    "opponent_logit": 0.6946447743521412,
+    "context_hgb": 0.7032674081362538,
+    "opponent_hgb": 0.713163823080684
+  },
+  "reused_2025_log_losses": {
+    "raw50": 0.6931471805599453,
+    "rawridge": 0.697509388839389,
+    "context_logit": 0.6951755386355539,
+    "opponent_logit": 0.6943787318471154,
+    "context_hgb": 0.698217005650481,
+    "opponent_hgb": 0.696272602976613
+  },
+  "all_four_new_models_worse_than_raw50_on_2025_log_loss": true,
+  "libraries": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.6.1"
+  },
+  "limitations": [
+    "Every historical year is reused development, not an untouched holdout.",
+    "This audit verifies arithmetic, recorded chronology and frozen source consistency, not original historical dissemination.",
+    "The raw ridge trained on more prior-year games including integer lines, while all new classifiers used the same halfpoint-only cohort.",
+    "Halfpoint restrictions disproportionately exclude early CFBD-era observations; source and era remain confounded.",
+    "Source receipts do not provide actual paired historical prices or historical executable morning quotes, so this does not establish EV, ROI or accepted betting profit.",
+    "All four new configurations had worse 2025 log loss and Brier than raw50; nominal improvement over the weaker rawridge reference is not market edge.",
+    "Local four-comparison intervals omit the wider historical search and do not eliminate shared-team or cross-week dependence.",
+    "No fitted artifact, live policy, threshold or frozen study output was changed."
+  ]
+}
