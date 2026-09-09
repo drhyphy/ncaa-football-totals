@@ -1,0 +1,243 @@
+{
+  "schema_version": "weather-revision-prospective-protocol-v1",
+  "protocol_id": "weather-revision-prospective-v1-20260909",
+  "recorded_date_utc": "2026-09-09",
+  "status": "pre-fit protocol; unvalidated experimental models",
+  "new_revision_features_inspected_for_protocol": false,
+  "new_target_labels_inspected_for_protocol": false,
+  "real_models_fitted_for_protocol": false,
+  "existing_policies_changed": false,
+  "policy_ids": {
+    "probability": "weather-revision-probability-v1-20260909",
+    "movement": "weather-revision-movement-v1-20260909"
+  },
+  "source_sha256": {
+    "reports/WEATHER_REVISION_PROSPECTIVE_PROTOCOL.md": "b88a1299895a17138314ed9abaa5c80004692ff0a90a1fe4471aa598c34ec09c",
+    "reports/WEATHER_REVISION_MODEL_DESIGN.md": "7dca4108bdb7ee3ec0272c94b6f3c17418bb90cbdfcd380a6469faa4801b9928",
+    "ncaaf_model/weather_revision_models.py": "259f19ad69446e11364dbfdc224b36db81b75762ca028e498dc5284f1011eb4c",
+    "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496",
+    "reports/WEATHER_REVISION_SEASON_COLLECTION_PROTOCOL.md": "81b86f9335ca0b228c54210a4394ce35df12e6e3c1b824ddbe94bc47b14ba07d"
+  },
+  "designation": {
+    "one_per_canonical_game": true,
+    "primary_trigger": "schedule",
+    "first_archived_capture_start_lead_hours_inclusive": [
+      24,
+      48
+    ],
+    "before_input_or_artifact_validity_filter": true,
+    "sort_order": [
+      "capture_started_at_utc",
+      "run_id",
+      "run_attempt"
+    ],
+    "predecessor": "immediately preceding archived scheduled capture",
+    "capture_separation_hours_inclusive": [
+      4,
+      8
+    ],
+    "initialization_separation_hours_exact": 6,
+    "manual_capture_inputs_or_targets": false,
+    "later_successful_capture_substitution": false,
+    "unarchived_nominal_slots_reconstructed": false,
+    "individual_manual_audit_report_required": false,
+    "same_context_request_options_and_valid_hours_required": true,
+    "t0_required_book": "draftkings",
+    "t1_required_books": [
+      "draftkings",
+      "fanduel"
+    ],
+    "quote_contract": "unique main paired full-game total",
+    "decision_clock": "maximum current required book HTTP received_at",
+    "decision_receipt_lead_hours_inclusive": [
+      24,
+      48
+    ]
+  },
+  "features": {
+    "base_order": [
+      "market_total",
+      "hours_to_kickoff",
+      "wind_mph",
+      "temperature_f",
+      "relative_humidity_percent",
+      "market_total_change",
+      "price_balance_logit_change",
+      "peer_total_difference"
+    ],
+    "revision_order": [
+      "wind_revision_mph",
+      "temperature_revision_f",
+      "humidity_revision_percent"
+    ],
+    "wind_definition": "arithmetic mean of four fixed hourly scalar mph speeds",
+    "temperature_and_humidity_definition": "kickoff UTC floor hour",
+    "revision_direction": "current minus immediately previous six-hour initialization",
+    "proportional_under_probability": "(1 / under_decimal) / (1 / under_decimal + 1 / over_decimal)",
+    "imputation": false,
+    "training_population_standard_deviation_ddof": 0,
+    "constant_predictor_scale": 1,
+    "standardized_clip": [
+      -5,
+      5
+    ]
+  },
+  "training": {
+    "utility_version": "weather-revision-models-v1-unvalidated",
+    "targets_independently_available": true,
+    "within_target_reference_and_revision_use_identical_games": true,
+    "minimum_distinct_games": 60,
+    "minimum_completed_eastern_weeks": 2,
+    "minimum_is_confidence_claim": false,
+    "cutoff_weekday": "Monday",
+    "cutoff_local_time": "00:00:00",
+    "cutoff_timezone": "America/New_York",
+    "training_weeks": "all earlier completed Eastern kickoff weeks",
+    "target_receipt_must_be_strictly_before_cutoff": true,
+    "target_correction": "latest valid actual receipt strictly before cutoff",
+    "refit_cadence": "once per fixed weekly cutoff; operational retries retain exactly the same cutoff and inputs",
+    "probability_offset_logit_coefficient": 1,
+    "probability_objective": "mean binary log loss + 0.1 / 2 * sum(all fitted coefficients squared)",
+    "probability_intercept_penalized": true,
+    "movement_objective": "mean training-standardized-target squared error + 0.1 / 2 * sum(slopes squared)",
+    "movement_intercept_penalized": false,
+    "movement_target_population_standard_deviation_ddof": 0,
+    "constant_movement_target_prediction": "training mean",
+    "penalty": 0.1,
+    "hyperparameter_or_roi_search": false,
+    "failed_fit": "target unavailable for new week; no stale artifact substitution",
+    "artifact_available_at": "actual timestamp after successful atomic artifact write"
+  },
+  "prospective_prediction": {
+    "same_scheduled_live_invocation_and_attempt_required": true,
+    "artifact_available_before_each_current_book_receipt": true,
+    "maximum_current_quote_age_at_inference_seconds_inclusive": 120,
+    "retrospective_predictions_or_paper_positions": false,
+    "locked_records_immutable": true
+  },
+  "paper_selection": {
+    "source_candidate": "probability revision model only",
+    "maximum_positions_per_game": 1,
+    "positive_half_point_reference_line_required": true,
+    "offered_line_equals_reference_line_exactly": true,
+    "books": [
+      "draftkings",
+      "fanduel"
+    ],
+    "under_ev": "under_decimal * p_under - 1",
+    "over_ev": "over_decimal * (1 - p_under) - 1",
+    "estimated_ev_strictly_greater_than": 0,
+    "sort_order": [
+      "descending unrounded EV",
+      "Under before Over",
+      "DraftKings before FanDuel"
+    ],
+    "flat_units_per_position": 1,
+    "final_offer_check_kind": "current_capture_receipt",
+    "final_offer_check": "revalidate exact chosen quote, immutable raw receipt/body, context and age after inference before atomic lock",
+    "maximum_chosen_quote_age_at_lock_seconds_inclusive": 120,
+    "additional_provider_poll_required": false,
+    "sportsbook_acceptance_claimed": false,
+    "later_quote_or_favorable_price_substitution": false,
+    "failed_offer_check": "abstain permanently for designation"
+  },
+  "targets": {
+    "final_total": {
+      "source": "official public ESPN final response",
+      "requirements": [
+        "exact canonical event and competition IDs",
+        "exact home and away team IDs",
+        "one competition",
+        "status.type.completed is true",
+        "status.type.state is post",
+        "finite nonnegative integer final scores"
+      ],
+      "value": "home final score + away final score; overtime included",
+      "under_label": "final total < locked reference half-point line",
+      "available_at": "actual successful final response received_at",
+      "corrections": "append-only actual receipt versions; future fits only after their cutoff availability"
+    },
+    "movement": {
+      "source": "immediately next archived scheduled capture",
+      "book": "draftkings",
+      "value": "next unique main full-game total minus designated reference total",
+      "target_quote_after_decision_hours_inclusive": [
+        4,
+        8
+      ],
+      "target_quote_before_kickoff": true,
+      "same_official_context_required": true,
+      "new_weather_or_fanduel_required": false,
+      "missing_target": "retain missing; no later capture, manual run, close or retrospective tick replacement",
+      "available_at": "original next-capture quote received_at"
+    }
+  },
+  "study": {
+    "first_evaluation_game": "first eligible future game with a prospectively available weekly artifact",
+    "last_kickoff_inclusive": "2027-01-31T23:59:59-05:00",
+    "final_report_target_receipt_cutoff_inclusive": "2027-02-08T12:00:00Z",
+    "collection_season_end_exclusive": "2027-02-01T03:00:00Z",
+    "postgame_label_collection_separate": true,
+    "interim_promotion": false,
+    "pool_with_existing_four_policies": false,
+    "extend_endpoint_based_on_outcomes": false
+  },
+  "evaluation": {
+    "primary_economic_estimand": "total locked-position profit / all locked one-unit risk",
+    "unresolved_policy": "full-cohort ROI incomplete; settled-only descriptive and unresolved-as-full-loss sensitivity",
+    "no_positions_roi": null,
+    "primary_model_comparisons": [
+      "binary log loss: probability revision minus probability reference",
+      "movement MSE: revision minus reference"
+    ],
+    "other_benchmarks_descriptive_only": [
+      "proportional no-vig probability q",
+      "zero movement"
+    ],
+    "bootstrap_draws": 10000,
+    "bootstrap_rng": "NumPy PCG64",
+    "bootstrap_seed": 20260909,
+    "rng_reset_separately_per_metric": true,
+    "bootstrap_week": "Monday-Sunday by kickoff in America/New_York",
+    "bootstrap_unit": "active paired-forecast weeks for model scores; active locked-position weeks for ROI",
+    "bootstrap_weights": "resample G full week blocks; ratio of summed game-level differences or profit to summed counts or units",
+    "primary_model_two_sided_coverage": 0.975,
+    "primary_model_percentile_quantiles": [
+      0.0125,
+      0.9875
+    ],
+    "paper_roi_descriptive_two_sided_coverages": [
+      0.95,
+      0.99
+    ],
+    "paper_roi_percentile_quantiles": [
+      [
+        0.025,
+        0.975
+      ],
+      [
+        0.005,
+        0.995
+      ]
+    ],
+    "quantile_interpolation": "linear",
+    "minimum_contributing_weeks_for_interval": 2,
+    "probability_log_loss": "stable computation from immutable logits",
+    "reliability_edges": [
+      0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1
+    ],
+    "multiplicity_scope": "97.5% intervals are a local two-model-comparison sensitivity only; not all research, diagnostics, profitability or existing-policy searches",
+    "intervals_approximate_due_to_dependence": true,
+    "automatic_edge_or_promotion_claim": false
+  }
+}
