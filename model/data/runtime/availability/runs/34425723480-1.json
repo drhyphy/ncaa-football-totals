@@ -1,0 +1,201 @@
+{
+  "amendment": "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md",
+  "capture_completed_at": "2026-09-10T01:30:39.279460Z",
+  "capture_started_at": "2026-09-10T01:30:37.953384+00:00",
+  "cohort_path": "data/runtime/availability/cohorts/34425723480-1.json",
+  "cohort_sha256": "9ba5e0c349fb6b57dbdfa69cf3e51bde335738a4e03c357aa92a27e01c280d4b",
+  "collector_version": "acc-availability-collector-v2",
+  "counts": {
+    "context_verified_games": 1,
+    "matched_games": 1,
+    "nonpending_unverified_reports": 1,
+    "paired_games": 1,
+    "paired_two_book_games": 1,
+    "pending_reports": 0,
+    "source_reports": 1,
+    "total_requests": 7
+  },
+  "current_receipt": "data/runtime/availability/receipts/c132a33a735e4f02182cbcd3134a29699ec4831f291d2bb53d5559c75c55951e.json",
+  "execution_revision": 2,
+  "failures": [],
+  "git_commit": "8489b3e39d5c34467923dfea5df81e47320c05ff",
+  "inventory_exclusions": [],
+  "models_fitted": 0,
+  "official_games": 86,
+  "protocol": "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md",
+  "quota_policy": "bounded_calls_when_headers_missing",
+  "quote_diagnostics": [],
+  "receipts": [
+    "data/runtime/availability/receipts/80d8cf50000d2209a3954c18db0af49c1a2651023c49a317e7459207b036bbab.json",
+    "data/runtime/availability/receipts/954bdc99229e0afba00748fde8bf4b466716fde033c9f44144ed55156b71f3bc.json",
+    "data/runtime/availability/receipts/68d39608cd529508772d0a3a0a213d55121d58e1cb7bc503fc0271fbe3f548ac.json",
+    "data/runtime/availability/receipts/a39a849ae00e6bf338dde14003b203b5bd33e6d3f742377c6f0f05e5a1d5b146.json",
+    "data/runtime/availability/receipts/445313b37ea026d9f0ac5949fdfad67890b0bcf465f58f526082996535e6034d.json",
+    "data/runtime/availability/receipts/9c63ba6b70ccb7d4b3c790e64183a0e49cc5b8a0ef7caf93b28c632d09bf4a3c.json",
+    "data/runtime/availability/receipts/c132a33a735e4f02182cbcd3134a29699ec4831f291d2bb53d5559c75c55951e.json"
+  ],
+  "reports": [
+    {
+      "clock_interpretation": "Literal ET interpreted as America/New_York for matchup reconciliation only",
+      "completion_verified": false,
+      "context_id": "da8db884386ba6995b657da1cf1b675db623972d60caab28ddcd0bc1a2e3c8f2",
+      "failure": null,
+      "game_id": "401858216",
+      "matching_names": {
+        "away": {
+          "abbreviation": "CAL",
+          "displayName": "California Golden Bears",
+          "location": "California",
+          "shortDisplayName": "California"
+        },
+        "home": {
+          "abbreviation": "SYR",
+          "displayName": "Syracuse Orange",
+          "location": "Syracuse",
+          "shortDisplayName": "Syracuse"
+        }
+      },
+      "report_type": "Initial",
+      "source_date": "2026-09-12",
+      "source_key": "1182",
+      "source_posted_time": "20:00:00",
+      "source_publish_date": "2026-09-09",
+      "source_row_items": [
+        113,
+        111
+      ],
+      "source_teams": [
+        "California",
+        "Syracuse"
+      ],
+      "source_time": "15:30:00",
+      "source_timezone": "ET",
+      "state": "nonpending_completion_unverified"
+    }
+  ],
+  "rows": [
+    {
+      "away_id": "25",
+      "away_source_names": {
+        "abbreviation": "CAL",
+        "displayName": "California Golden Bears",
+        "location": "California",
+        "shortDisplayName": "California"
+      },
+      "away_team": "California Golden Bears",
+      "context_receipt": {
+        "archive_writer_version": "revision-archive-v2-portable-gzip",
+        "body_path": "data/runtime/availability/bodies/3ebf80cd69fa6c112b96b8b280ead1a9e234cc445ec937d7426c2433ff73b5f0.body.gz",
+        "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+        "body_sha256": "3ebf80cd69fa6c112b96b8b280ead1a9e234cc445ec937d7426c2433ff73b5f0",
+        "body_size_bytes": 91363,
+        "body_withheld": false,
+        "purpose": "official_context_after_availability",
+        "receipt_path": "data/runtime/availability/receipts/954bdc99229e0afba00748fde8bf4b466716fde033c9f44144ed55156b71f3bc.json",
+        "received_at": "2026-09-10T01:30:38.862215Z",
+        "request": {
+          "params": {
+            "event": "401858216"
+          },
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+        },
+        "requested_at": "2026-09-10T01:30:38.753094Z",
+        "response_headers": {
+          "content_encoding": "gzip",
+          "content_length": "13669",
+          "content_type": "application/json;charset=UTF-8",
+          "date": "Thu, 10 Sep 2026 01:30:38 GMT"
+        },
+        "schema_version": "raw-http-receipt-v1",
+        "status_code": 200,
+        "transport_error": null
+      },
+      "context_verified": true,
+      "game_id": "401858216",
+      "home_id": "183",
+      "home_source_names": {
+        "abbreviation": "SYR",
+        "displayName": "Syracuse Orange",
+        "location": "Syracuse",
+        "shortDisplayName": "Syracuse"
+      },
+      "home_team": "Syracuse Orange",
+      "inventory_neutral_site": false,
+      "inventory_venue_id": "1964",
+      "kickoff": "2026-09-12T19:30:00Z",
+      "missingness": [],
+      "pairs": [
+        {
+          "quote_id": "93ba3a5793b83fa0e41b38e33ce460acb6703610496f8a3ea40ddf19e2aee91e",
+          "quote_receipt": "data/runtime/availability/receipts/445313b37ea026d9f0ac5949fdfad67890b0bcf465f58f526082996535e6034d.json",
+          "report_receipt": "data/runtime/availability/receipts/c132a33a735e4f02182cbcd3134a29699ec4831f291d2bb53d5559c75c55951e.json",
+          "report_to_quote_seconds": 0.569753,
+          "sportsbook": "draftkings"
+        },
+        {
+          "quote_id": "50c4e7e2b44acb31e816d931d536d5a9b31edbfe6e1f8aaa86d082cc03f31476",
+          "quote_receipt": "data/runtime/availability/receipts/445313b37ea026d9f0ac5949fdfad67890b0bcf465f58f526082996535e6034d.json",
+          "report_receipt": "data/runtime/availability/receipts/c132a33a735e4f02182cbcd3134a29699ec4831f291d2bb53d5559c75c55951e.json",
+          "report_to_quote_seconds": 0.569753,
+          "sportsbook": "fanduel"
+        }
+      ],
+      "quotes": [
+        {
+          "body_sha256": "1c01b162f8fce848fd48440f71ea8e644ee09e05ae05a9e949fded97569c3cbc",
+          "game_id": "401858216",
+          "line": 56.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-09T19:44:03.367000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-10T01:30:39.276989Z",
+          "over_decimal_odds": 1.89,
+          "period": "full_game",
+          "provider_event_id": "70900790",
+          "quote_id": "93ba3a5793b83fa0e41b38e33ce460acb6703610496f8a3ea40ddf19e2aee91e",
+          "receipt_path": "data/runtime/availability/receipts/445313b37ea026d9f0ac5949fdfad67890b0bcf465f58f526082996535e6034d.json",
+          "requested_at": "2026-09-10T01:30:39.168947Z",
+          "source": "odds_api_io",
+          "sportsbook": "draftkings",
+          "under_decimal_odds": 1.92
+        },
+        {
+          "body_sha256": "1c01b162f8fce848fd48440f71ea8e644ee09e05ae05a9e949fded97569c3cbc",
+          "game_id": "401858216",
+          "line": 56.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-09T13:38:53.868000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-10T01:30:39.276989Z",
+          "over_decimal_odds": 1.877,
+          "period": "full_game",
+          "provider_event_id": "70900790",
+          "quote_id": "50c4e7e2b44acb31e816d931d536d5a9b31edbfe6e1f8aaa86d082cc03f31476",
+          "receipt_path": "data/runtime/availability/receipts/445313b37ea026d9f0ac5949fdfad67890b0bcf465f58f526082996535e6034d.json",
+          "requested_at": "2026-09-10T01:30:39.168947Z",
+          "source": "odds_api_io",
+          "sportsbook": "fanduel",
+          "under_decimal_odds": 1.943
+        }
+      ]
+    }
+  ],
+  "run_attempt": "1",
+  "run_id": "34425723480",
+  "schema_version": "acc-availability-collector-v1",
+  "source_hashes": {
+    "ncaaf_model/availability_archive.py": "d213bc367c691f5b632be68ace61521d213fb2d71cf0d4e7408b6132dbd37f1f",
+    "ncaaf_model/availability_collector.py": "0b5e1f172e379e80ff7fa3daf357d6d3f56a97b99df7e2d1a2fbbf97ff2a98e5",
+    "ncaaf_model/revision_archive.py": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0",
+    "ncaaf_model/teams.py": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+    "ncaaf_model/weather_revision_collector.py": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360",
+    "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md": "0b7c409daedc78bfabacebb738db8f74f3e8643d27125ff9276d982e06c9b989",
+    "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+  },
+  "source_status": "captured",
+  "status": "captured",
+  "trigger": "schedule",
+  "verified_completed_reports": 0,
+  "workflow_commit": "8489b3e39d5c34467923dfea5df81e47320c05ff",
+  "workflow_sha256": "32f41f32f46f4bdb516ceab00db4610e5d1425fd0a94913339244fe8ea86f4ee"
+}
