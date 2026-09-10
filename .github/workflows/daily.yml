@@ -2,12 +2,11 @@ name: Daily totals and Pages
 
 on:
   schedule:
-    - cron: '30 6 * * *'
-      timezone: America/New_York
-    - cron: '45 6 * * *'
-      timezone: America/New_York
-    - cron: '0 7 * * *'
-      timezone: America/New_York
+    # UTC wakeups cover 6:30 AM in both EDT and EST. The preflight enforces
+    # Eastern time and stops work once today's board is actually public.
+    - cron: '30 10,11 * * *'
+    # Continue recovery beyond the old 30-minute window if GitHub delays a run.
+    - cron: '17,47 10-18 * * *'
     # Fixed prospective audit: UTC; daily runs also recover a delayed audit.
     - cron: '0 12 8 2 *'
   workflow_dispatch:
@@ -31,7 +30,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      run: ${{ steps.preflight.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          sparse-checkout: |
+            /scripts/schedule_state.py
+            /site/data/board.json
+            /model/ledger/prospective_evaluation_final.json
+          sparse-checkout-cone-mode: false
+      - name: Check Eastern refresh time and the actual public board
+        id: preflight
+        run: python3 scripts/schedule_state.py preflight
+
   publish:
+    needs: check
+    if: needs.check.outputs.run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     permissions:

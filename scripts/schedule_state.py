@@ -11,8 +11,37 @@ import json
 import os
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from urllib.request import Request, build_opener, ProxyHandler
 
 ZONE = ZoneInfo("America/New_York")
+FORMAL_AT = datetime(2027, 2, 8, 12, tzinfo=timezone.utc)
+PUBLIC_BOARD = "https://drhyphy.github.io/ncaa-football-totals/data/board.json"
+
+
+def read_public_board() -> dict:
+    try:
+        url = f"{PUBLIC_BOARD}?refresh_check={datetime.now(timezone.utc).timestamp()}"
+        request = Request(url, headers={"Cache-Control": "no-cache", "User-Agent": "totals-publication-check"})
+        with build_opener(ProxyHandler({})).open(request, timeout=20) as response:
+            value = json.loads(response.read(5_000_001))
+        return value if isinstance(value, dict) else {}
+    except (OSError, ValueError):
+        return {}  # An unavailable public board cannot suppress recovery.
+
+
+def preflight_decision(board: dict, public_board: dict, now: datetime,
+                       event: str, final_exists: bool) -> tuple[bool, str]:
+    if event != "schedule":
+        return True, "explicit_refresh_or_code_publication"
+    if now.astimezone(ZONE).time() < time(6, 30):
+        return False, "before_0630_eastern"
+    if now >= FORMAL_AT and not final_exists:
+        return True, "fixed_evaluation_report_due"
+    if not already_succeeded(board, now):
+        return True, "today_requires_refresh"
+    if board != public_board:
+        return True, "public_board_requires_deployment"
+    return False, "today_already_refreshed_and_public"
 
 
 def read_board(path: Path) -> dict:
@@ -87,13 +116,20 @@ def emit(name: str, value: str) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=["decision", "prepare"])
+    parser.add_argument("command", choices=["preflight", "decision", "prepare"])
     parser.add_argument("--board", type=Path, default=Path("site/data/board.json"))
     parser.add_argument("--event", default=os.getenv("GITHUB_EVENT_NAME", "workflow_dispatch"))
     parser.add_argument("--outcome", default="success", choices=["success", "failure", "skipped"])
     args = parser.parse_args()
     now = datetime.now(timezone.utc)
     board = read_board(args.board)
+    if args.command == "preflight":
+        public = read_public_board() if args.event == "schedule" and already_succeeded(board, now) else {}
+        run, reason = preflight_decision(board, public, now, args.event,
+                                        Path("model/ledger/prospective_evaluation_final.json").exists())
+        emit("run", str(run).lower())
+        emit("reason", reason)
+        return
     if args.command == "decision":
         skip = args.event == "schedule" and already_succeeded(board, now)
         emit("refresh", "false" if skip else "true")

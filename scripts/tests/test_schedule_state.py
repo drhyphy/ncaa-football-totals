@@ -9,6 +9,38 @@ spec.loader.exec_module(state)
 
 
 class PublicationTests(unittest.TestCase):
+    def test_recovery_stops_only_when_the_current_board_is_public(self):
+        now = datetime.fromisoformat("2026-09-12T13:47:00+00:00")
+        board = self.board("2026-09-12T10:31:00Z")
+        self.assertFalse(state.preflight_decision(board, board.copy(), now, "schedule", False)[0])
+        for public in ({}, self.board("2026-09-11T10:31:00Z", "2026-09-11"), {**board, "status": "unavailable"}):
+            self.assertTrue(state.preflight_decision(board, public, now, "schedule", False)[0])
+
+    def test_missing_or_previous_day_refresh_remains_due_after_old_retry_window(self):
+        now = datetime.fromisoformat("2026-09-12T17:47:00+00:00")
+        for board in ({}, self.board("2026-09-11T10:31:00Z", "2026-09-11")):
+            self.assertEqual(state.preflight_decision(board, board, now, "schedule", False),
+                             (True, "today_requires_refresh"))
+
+    def test_utc_wakeups_respect_summer_and_winter_eastern_due_time(self):
+        for early, due in (("2026-09-12T10:29:00+00:00", "2026-09-12T10:30:00+00:00"),
+                           ("2026-12-12T11:29:00+00:00", "2026-12-12T11:30:00+00:00")):
+            self.assertFalse(state.preflight_decision({}, {}, datetime.fromisoformat(early), "schedule", False)[0])
+            self.assertTrue(state.preflight_decision({}, {}, datetime.fromisoformat(due), "schedule", False)[0])
+
+    def test_manual_and_push_always_run_even_before_due_or_after_success(self):
+        now = datetime.fromisoformat("2026-09-12T09:00:00+00:00")
+        for event in ("workflow_dispatch", "push"):
+            self.assertTrue(state.preflight_decision({}, {}, now, event, False)[0])
+
+    def test_fixed_audit_and_delayed_recovery_are_not_skipped_by_current_board(self):
+        for instant in ("2027-02-08T12:00:00+00:00", "2027-02-09T12:00:00+00:00"):
+            now = datetime.fromisoformat(instant)
+            board = self.board(instant, instant[:10])
+            self.assertEqual(state.preflight_decision(board, board, now, "schedule", False),
+                             (True, "fixed_evaluation_report_due"))
+            self.assertFalse(state.preflight_decision(board, board, now, "schedule", True)[0])
+
     def board(self, generated, date="2026-09-12"):
         return {"schema_version": 1, "status": "ok", "date": date, "generated_at": generated, "today_picks": [{"game_id": "1"}]}
 
