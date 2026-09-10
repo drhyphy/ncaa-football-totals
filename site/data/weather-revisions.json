@@ -1,6 +1,6 @@
 {
   "schema_version": "weather-revision-status-v1",
-  "generated_at": "2026-09-10T12:37:43.260347Z",
+  "generated_at": "2026-09-10T17:04:33.791719Z",
   "phase": "active",
   "status": "attention",
   "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
@@ -15,36 +15,36 @@
   "collection_only": true,
   "performance_evaluated": false,
   "active_policy_changed": false,
-  "archived_runs": 9,
+  "archived_runs": 10,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 9,
+  "partial_or_failed_runs": 10,
   "latest": {
-    "capture_started_at": "2026-09-10T12:35:17.069174Z",
-    "capture_completed_at": "2026-09-10T12:37:40.863412Z",
+    "capture_started_at": "2026-09-10T17:02:13.265223Z",
+    "capture_completed_at": "2026-09-10T17:04:30.538246Z",
     "requested_run": "2026-09-10T06:00:00Z",
     "status": "partial",
     "counts": {
       "cohort_games": 86,
       "weather_available_games": 46,
       "two_book_games": 71,
-      "paired_games": 43,
+      "paired_games": 44,
       "failed_requests": 16,
-      "paired_two_book_games": 40,
+      "paired_two_book_games": 42,
       "total_requests": 291
     },
-    "manifest_sha256": "1b637df77dc0cbb1aef85d650d8be5352774c5f3e9fcf0dc6118c4b20cb09905"
+    "manifest_sha256": "eeca2f542d654b70df0cde5009794206ad5ec2dc353f9c95e81385af9c933956"
   },
   "game_observation_totals": {
-    "cohort_games": 774,
-    "weather_available_games": 470,
-    "two_book_games": 559,
-    "paired_games": 438,
-    "failed_requests": 88,
-    "total_requests": 2678,
-    "paired_two_book_games": 345
+    "cohort_games": 860,
+    "weather_available_games": 516,
+    "two_book_games": 630,
+    "paired_games": 482,
+    "failed_requests": 104,
+    "total_requests": 2969,
+    "paired_two_book_games": 387
   },
   "last_workflow_attempt": {
-    "started_at": "2026-09-10T12:34:46.011979Z",
+    "started_at": "2026-09-10T17:01:43.350207Z",
     "outcome": "failure",
     "matching_manifest": true
   },
