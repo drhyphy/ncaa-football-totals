@@ -1,0 +1,39 @@
+{
+  "version": "weather-under-v1-20260908",
+  "as_of": "2026-09-10T12:59:34Z",
+  "state": {
+    "status": "ok",
+    "features": [
+      {
+        "candidate": "weather_published_rule_paper_v1",
+        "candidate_model_namespace": "weather-under-v1-20260908",
+        "game_id": "401858213",
+        "home_team": "Miami Hurricanes",
+        "away_team": "Florida A&M Rattlers",
+        "kickoff": "2026-09-11T00:00:00+00:00",
+        "evaluated_at": "2026-09-10T12:59:16.018309+00:00",
+        "feature_status": "unavailable",
+        "weather_rule_match": null,
+        "flags": [
+          "actual_current_venue_not_in_frozen_coordinates"
+        ],
+        "win_probability": null,
+        "expected_value": null,
+        "bet_eligible": false,
+        "thresholds": {
+          "wind_mph_above": 7.78,
+          "temperature_f_below": 64.81,
+          "relative_humidity_percent_above": 56.8
+        },
+        "forecast_policy": "gfs_global previous_day2; fixed four-hour wind mean; kickoff temperature/humidity",
+        "interpretation": "Frozen weather criterion for paper tracking. Historical group evidence is not an individual-game probability.",
+        "current_event_observed_at": "2026-09-10T12:59:16.010265+00:00",
+        "source_archives": [
+          "data/runtime/weather/espn-51691111428a779d2b9374926aa276ed16a65a10b76081596756c64f05927e3e.json.gz"
+        ]
+      }
+    ],
+    "message": "1 game-day weather records inspected."
+  },
+  "forecasts": []
+}
