@@ -1,0 +1,25 @@
+{
+  "archive_writer_version": "revision-archive-v2-portable-gzip",
+  "body_path": "data/runtime/weather_revisions/bodies/efe711aeb96aed9e877d0125a53d1696c6899ab105e1e85a2f64419a896568a5.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "efe711aeb96aed9e877d0125a53d1696c6899ab105e1e85a2f64419a896568a5",
+  "body_size_bytes": 49,
+  "body_withheld": false,
+  "purpose": "selected_books",
+  "receipt_path": "data/runtime/weather_revisions/receipts/136518671ef7b6837bab469ede5ea989bd909af1fcdea56b0950feba95a20d05.json",
+  "received_at": "2026-09-10T12:33:44.054875Z",
+  "request": {
+    "params": {},
+    "url": "https://api.odds-api.io/v3/bookmakers/selected"
+  },
+  "requested_at": "2026-09-10T12:33:43.813398Z",
+  "response_headers": {
+    "content_encoding": "gzip",
+    "content_length": "77",
+    "content_type": "application/json; charset=utf-8",
+    "date": "Thu, 10 Sep 2026 12:33:44 GMT"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}

@@ -1,0 +1,30 @@
+{
+  "archive_writer_version": "revision-archive-v2-portable-gzip",
+  "body_path": "data/runtime/weather_revisions/bodies/69dbd75466ca9438198a91d3983897af84df189bcfdf431f420dad569ce1e841.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "69dbd75466ca9438198a91d3983897af84df189bcfdf431f420dad569ce1e841",
+  "body_size_bytes": 15616,
+  "body_withheld": false,
+  "purpose": "fresh_totals_after_weather",
+  "receipt_path": "data/runtime/weather_revisions/receipts/6e7526c69ff1bf17efc9ddcca8975538b4fc4e4fc0d1e35bb225446f04bf8042.json",
+  "received_at": "2026-09-10T12:33:44.569078Z",
+  "request": {
+    "params": {
+      "bookmakers": "DraftKings,FanDuel",
+      "eventIds": "70898536,70918764,70918774,70971300,70898526,70900788,70898522,70973530,70900806,70920456"
+    },
+    "url": "https://api.odds-api.io/v3/odds/multi"
+  },
+  "requested_at": "2026-09-10T12:33:44.391714Z",
+  "response_headers": {
+    "content_encoding": "gzip",
+    "content_type": "application/json; charset=utf-8",
+    "date": "Thu, 10 Sep 2026 12:33:44 GMT",
+    "x_ratelimit_limit": "100",
+    "x_ratelimit_remaining": "86",
+    "x_ratelimit_reset": "2026-09-10T12:52:18Z"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}
