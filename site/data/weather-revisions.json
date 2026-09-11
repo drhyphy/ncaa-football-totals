@@ -1,6 +1,6 @@
 {
   "schema_version": "weather-revision-status-v1",
-  "generated_at": "2026-09-11T17:06:07.062965Z",
+  "generated_at": "2026-09-11T21:48:29.252656Z",
   "phase": "active",
   "status": "attention",
   "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
@@ -15,36 +15,36 @@
   "collection_only": true,
   "performance_evaluated": false,
   "active_policy_changed": false,
-  "archived_runs": 14,
+  "archived_runs": 15,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 14,
+  "partial_or_failed_runs": 15,
   "latest": {
-    "capture_started_at": "2026-09-11T17:03:12.619315Z",
-    "capture_completed_at": "2026-09-11T17:06:02.809131Z",
-    "requested_run": "2026-09-11T06:00:00Z",
+    "capture_started_at": "2026-09-11T21:46:03.973972Z",
+    "capture_completed_at": "2026-09-11T21:48:24.669044Z",
+    "requested_run": "2026-09-11T12:00:00Z",
     "status": "partial",
     "counts": {
       "cohort_games": 86,
-      "weather_available_games": 51,
-      "two_book_games": 71,
-      "paired_games": 48,
-      "failed_requests": 13,
-      "paired_two_book_games": 45,
-      "total_requests": 304
+      "weather_available_games": 46,
+      "two_book_games": 72,
+      "paired_games": 45,
+      "failed_requests": 16,
+      "paired_two_book_games": 42,
+      "total_requests": 294
     },
-    "manifest_sha256": "2115582720df8aecb8696e4a7c0341076a1615c41a9f39057a0f753c846aa827"
+    "manifest_sha256": "c5f815b99bd666a5c924771e3b0b59f641452fdc75cd08cdb9a69e3cc3fcca0f"
   },
   "game_observation_totals": {
-    "cohort_games": 1204,
-    "weather_available_games": 739,
-    "two_book_games": 914,
-    "paired_games": 695,
-    "failed_requests": 146,
-    "total_requests": 4244,
-    "paired_two_book_games": 582
+    "cohort_games": 1290,
+    "weather_available_games": 785,
+    "two_book_games": 986,
+    "paired_games": 740,
+    "failed_requests": 162,
+    "total_requests": 4538,
+    "paired_two_book_games": 624
   },
   "last_workflow_attempt": {
-    "started_at": "2026-09-11T17:02:43.141614Z",
+    "started_at": "2026-09-11T21:45:31.521027Z",
     "outcome": "failure",
     "matching_manifest": true
   },
