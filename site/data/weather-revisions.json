@@ -1,6 +1,6 @@
 {
   "schema_version": "weather-revision-status-v1",
-  "generated_at": "2026-09-10T21:42:22.678275Z",
+  "generated_at": "2026-09-11T06:09:55.013951Z",
   "phase": "active",
   "status": "attention",
   "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
@@ -15,36 +15,36 @@
   "collection_only": true,
   "performance_evaluated": false,
   "active_policy_changed": false,
-  "archived_runs": 11,
+  "archived_runs": 12,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 11,
+  "partial_or_failed_runs": 12,
   "latest": {
-    "capture_started_at": "2026-09-10T21:41:06.485426Z",
-    "capture_completed_at": "2026-09-10T21:42:19.977583Z",
-    "requested_run": "2026-09-10T12:00:00Z",
+    "capture_started_at": "2026-09-11T06:05:28.821791Z",
+    "capture_completed_at": "2026-09-11T06:09:52.047387Z",
+    "requested_run": "2026-09-11T00:00:00Z",
     "status": "partial",
     "counts": {
       "cohort_games": 86,
-      "weather_available_games": 54,
+      "weather_available_games": 56,
       "two_book_games": 71,
-      "paired_games": 52,
-      "failed_requests": 8,
-      "paired_two_book_games": 48,
-      "total_requests": 299
+      "paired_games": 54,
+      "failed_requests": 12,
+      "paired_two_book_games": 49,
+      "total_requests": 332
     },
-    "manifest_sha256": "9615bcec8cdceb34de94d4242719305c594902e5cc45bf2fb7ef91808c5c3145"
+    "manifest_sha256": "66493f6a043943d73476e654b9021444257989aaacaed14893cadc2135be7ae9"
   },
   "game_observation_totals": {
-    "cohort_games": 946,
-    "weather_available_games": 570,
-    "two_book_games": 701,
-    "paired_games": 534,
-    "failed_requests": 112,
-    "total_requests": 3268,
-    "paired_two_book_games": 435
+    "cohort_games": 1032,
+    "weather_available_games": 626,
+    "two_book_games": 772,
+    "paired_games": 588,
+    "failed_requests": 124,
+    "total_requests": 3600,
+    "paired_two_book_games": 484
   },
   "last_workflow_attempt": {
-    "started_at": "2026-09-10T21:40:43.539583Z",
+    "started_at": "2026-09-11T06:04:58.726325Z",
     "outcome": "failure",
     "matching_manifest": true
   },

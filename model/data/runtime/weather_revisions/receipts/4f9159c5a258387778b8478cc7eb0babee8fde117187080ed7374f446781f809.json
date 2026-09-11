@@ -1,0 +1,28 @@
+{
+  "archive_writer_version": "revision-archive-v2-portable-gzip",
+  "body_path": null,
+  "body_sha256": null,
+  "body_withheld": false,
+  "purpose": "weather_previous_day2",
+  "receipt_path": "data/runtime/weather_revisions/receipts/4f9159c5a258387778b8478cc7eb0babee8fde117187080ed7374f446781f809.json",
+  "received_at": "2026-09-11T06:09:46.257012Z",
+  "request": {
+    "params": {
+      "end_date": "2026-09-12",
+      "hourly": "temperature_2m_previous_day2,relative_humidity_2m_previous_day2,wind_speed_10m_previous_day2",
+      "latitude": 41.65739077895321,
+      "longitude": -83.61401719150295,
+      "models": "gfs_global",
+      "start_date": "2026-09-12",
+      "temperature_unit": "fahrenheit",
+      "timezone": "GMT",
+      "wind_speed_unit": "mph"
+    },
+    "url": "https://previous-runs-api.open-meteo.com/v1/forecast"
+  },
+  "requested_at": "2026-09-11T06:09:16.127767Z",
+  "response_headers": {},
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": null,
+  "transport_error": "ReadTimeout"
+}
