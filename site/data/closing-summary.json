@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-09-12T19:14:25.452918+00:00",
-  "positions_with_clv": 7,
+  "as_of": "2026-09-12T21:36:45.053254+00:00",
+  "positions_with_clv": 9,
   "positions": [
     {
       "position_id": "c1ca7fad77ca45d472d666b1",
@@ -103,6 +103,46 @@
       }
     },
     {
+      "position_id": "4229f78821fc6f5d42dad313",
+      "game_id": "401860881",
+      "candidate": "opponent_adjusted_ridge",
+      "sportsbook": "draftkings",
+      "clv": {
+        "observed_at": "2026-09-12T21:36:44.234377Z",
+        "lead_minutes": 23.262760383333333,
+        "line": 54.5,
+        "decimal_odds": 1.98,
+        "points": 2.0,
+        "closing_fair_ev_at_entry": 0.004565233703364813,
+        "market_updated_at": "2026-09-12T20:07:00.722000Z",
+        "observation_id": "1b7d7a45ad90894a317e5d7a",
+        "snapshot": "data/runtime/closing/quotes-20260912T213645053254Z.json.gz",
+        "status": "last_observed_pregame_proxy_not_exact_close",
+        "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+        "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+      }
+    },
+    {
+      "position_id": "3117101bcf3431af28c876a6",
+      "game_id": "401860881",
+      "candidate": "opponent_adjusted_structural",
+      "sportsbook": "draftkings",
+      "clv": {
+        "observed_at": "2026-09-12T21:36:44.234377Z",
+        "lead_minutes": 23.262760383333333,
+        "line": 54.5,
+        "decimal_odds": 1.98,
+        "points": 2.0,
+        "closing_fair_ev_at_entry": 0.004565233703364813,
+        "market_updated_at": "2026-09-12T20:07:00.722000Z",
+        "observation_id": "1b7d7a45ad90894a317e5d7a",
+        "snapshot": "data/runtime/closing/quotes-20260912T213645053254Z.json.gz",
+        "status": "last_observed_pregame_proxy_not_exact_close",
+        "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+        "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+      }
+    },
+    {
       "position_id": "769c924434b5fd1a418b563f",
       "game_id": "401856677",
       "candidate": "opponent_adjusted_ridge",
@@ -152,15 +192,15 @@
       "DraftKings",
       "FanDuel"
     ],
-    "available_events": 57,
-    "requested_events": 57,
+    "available_events": 35,
+    "requested_events": 35,
     "truncated": false,
-    "event_count": 57,
-    "total_markets": 112,
-    "timestamped_total_markets": 112,
+    "event_count": 35,
+    "total_markets": 69,
+    "timestamped_total_markets": 69,
     "errors": [],
     "american_rounding": "none; exact decimal_price and equivalent float American odds retained"
   },
-  "observation_count": 22479,
-  "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz"
+  "observation_count": 24561,
+  "snapshot": "data/runtime/closing/quotes-20260912T213645053254Z.json.gz"
 }
