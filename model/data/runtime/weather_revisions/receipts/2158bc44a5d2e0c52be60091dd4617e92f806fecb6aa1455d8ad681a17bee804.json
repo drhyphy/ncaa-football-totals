@@ -1,0 +1,27 @@
+{
+  "archive_writer_version": "revision-archive-v2-portable-gzip",
+  "body_path": "data/runtime/weather_revisions/bodies/229bc896b58803a53dfd2334bc194eb156e586686244b9990c858750abd06d9b.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "229bc896b58803a53dfd2334bc194eb156e586686244b9990c858750abd06d9b",
+  "body_size_bytes": 99150,
+  "body_withheld": false,
+  "purpose": "official_game_context",
+  "receipt_path": "data/runtime/weather_revisions/receipts/2158bc44a5d2e0c52be60091dd4617e92f806fecb6aa1455d8ad681a17bee804.json",
+  "received_at": "2026-09-12T16:22:20.334825Z",
+  "request": {
+    "params": {
+      "event": "401871045"
+    },
+    "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+  },
+  "requested_at": "2026-09-12T16:22:20.316812Z",
+  "response_headers": {
+    "content_encoding": "gzip",
+    "content_length": "14001",
+    "content_type": "application/json;charset=UTF-8",
+    "date": "Sat, 12 Sep 2026 16:22:20 GMT"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}
