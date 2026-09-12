@@ -1,0 +1,28 @@
+{
+  "archive_writer_version": "revision-archive-v2-portable-gzip",
+  "body_path": "data/runtime/weather_revisions/bodies/532acf81aa937ef5f247bd590913604b1aacbe71923a7214ca0e235e303236ec.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "532acf81aa937ef5f247bd590913604b1aacbe71923a7214ca0e235e303236ec",
+  "body_size_bytes": 599,
+  "body_withheld": false,
+  "purpose": "official_roof_context",
+  "receipt_path": "data/runtime/weather_revisions/receipts/6ebbf83f92cb440190ebcd9ef9dfcdc1e0522a5c4571ae976b31091595598110.json",
+  "received_at": "2026-09-12T11:39:00.607969Z",
+  "request": {
+    "params": {
+      "lang": "en",
+      "region": "us"
+    },
+    "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/venues/1964"
+  },
+  "requested_at": "2026-09-12T11:39:00.468157Z",
+  "response_headers": {
+    "content_encoding": "gzip",
+    "content_length": "344",
+    "content_type": "application/json;charset=utf-8",
+    "date": "Sat, 12 Sep 2026 11:39:00 GMT"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}
