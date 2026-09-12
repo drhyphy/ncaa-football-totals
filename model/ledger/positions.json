@@ -236,7 +236,20 @@
     "recorded_at": "2026-09-10T12:59:33Z",
     "result": "pending",
     "profit_units": null,
-    "clv": null,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 51.5,
+      "decimal_odds": 1.9,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.025000000000023448,
+      "market_updated_at": "2026-09-12T18:02:39.821000Z",
+      "observation_id": "240526ceaa9b8759c2aecafc",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
     "position_id": "c1ca7fad77ca45d472d666b1"
   },
   {
@@ -276,7 +289,20 @@
     "recorded_at": "2026-09-10T12:59:33Z",
     "result": "pending",
     "profit_units": null,
-    "clv": null,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 52.5,
+      "decimal_odds": 1.89,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.017322834645669305,
+      "market_updated_at": "2026-09-12T15:14:09.797000Z",
+      "observation_id": "eeda26484ccace6f31bfb95a",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
     "position_id": "616fbf38675f36648d39e97e"
   },
   {
@@ -696,7 +722,20 @@
     "recorded_at": "2026-09-11T14:30:33Z",
     "result": "pending",
     "profit_units": null,
-    "clv": null,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 56.5,
+      "decimal_odds": 1.943,
+      "points": -17.0,
+      "closing_fair_ev_at_entry": -0.08226995949280858,
+      "market_updated_at": "2026-09-12T17:30:22.260000Z",
+      "observation_id": "fffb3ffc6ddc701677149de0",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
     "position_id": "8559f37cc72cae3112704645"
   },
   {
@@ -736,7 +775,20 @@
     "recorded_at": "2026-09-11T14:30:33Z",
     "result": "pending",
     "profit_units": null,
-    "clv": null,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 56.5,
+      "decimal_odds": 1.92,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.047559055118110316,
+      "market_updated_at": "2026-09-12T19:03:04.707000Z",
+      "observation_id": "b78d2e6c87c8b2fe4a120029",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
     "position_id": "dcc99149a016845b0486beb7"
   },
   {
@@ -776,7 +828,20 @@
     "recorded_at": "2026-09-11T14:30:33Z",
     "result": "pending",
     "profit_units": null,
-    "clv": null,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 52.5,
+      "decimal_odds": 1.952,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.0449398220826811,
+      "market_updated_at": "2026-09-12T19:01:20.733000Z",
+      "observation_id": "7e17198dd7fe6eec4979efac",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
     "position_id": "166b036eae1d8f9e9e3b5a77"
   },
   {
@@ -1896,7 +1961,20 @@
     "recorded_at": "2026-09-12T13:39:54Z",
     "result": "pending",
     "profit_units": null,
-    "clv": null,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 53.5,
+      "decimal_odds": 1.909,
+      "points": -14.0,
+      "closing_fair_ev_at_entry": 0.0674373075400927,
+      "market_updated_at": "2026-09-12T19:14:05.479000Z",
+      "observation_id": "dd7481531d9493edcdaf9881",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
     "position_id": "769c924434b5fd1a418b563f"
   },
   {
@@ -1936,7 +2014,20 @@
     "recorded_at": "2026-09-12T13:39:54Z",
     "result": "pending",
     "profit_units": null,
-    "clv": null,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 53.5,
+      "decimal_odds": 1.92,
+      "points": 1.0,
+      "closing_fair_ev_at_entry": 0.0003118989911174985,
+      "market_updated_at": "2026-09-12T19:12:42.705000Z",
+      "observation_id": "c3b5a1ee7b7b833d93a89927",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
     "position_id": "99bc9bd71157b9cdaa149357"
   },
   {
