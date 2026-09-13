@@ -34,10 +34,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-09T00:32:43Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "fa0a2cd7997d0f679d7c1f6d"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 42.5,
+      "decimal_odds": 1.86,
+      "points": 2.0,
+      "closing_fair_ev_at_entry": 0.07831214939446052,
+      "market_updated_at": "2026-09-12T23:16:32.524000Z",
+      "observation_id": "466258300472cd8143c55553",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "fa0a2cd7997d0f679d7c1f6d",
+    "actual_total": 29.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 29.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856788",
@@ -74,10 +97,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-09T00:32:43Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "435ecfa5e3ffbf1e213c5aca"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 42.5,
+      "decimal_odds": 1.86,
+      "points": 2.0,
+      "closing_fair_ev_at_entry": 0.07831214939446052,
+      "market_updated_at": "2026-09-12T23:16:32.524000Z",
+      "observation_id": "466258300472cd8143c55553",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "435ecfa5e3ffbf1e213c5aca",
+    "actual_total": 29.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 29.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856670",
@@ -114,10 +160,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-09T00:32:43Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "cc677bb4c3a768a783654c46"
+    "position_id": "cc677bb4c3a768a783654c46",
+    "actual_total": 53.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 53.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401860883",
@@ -154,10 +210,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-09T00:32:43Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 0.952,
     "clv": null,
-    "position_id": "ddd5c39b9bd6a8d0dd4c8c62"
+    "position_id": "ddd5c39b9bd6a8d0dd4c8c62",
+    "actual_total": 52.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 52.0,
+        "result": "win",
+        "profit_units": 0.952
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401862702",
@@ -194,10 +260,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-09T02:53:43Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 0.9199999999999999,
     "clv": null,
-    "position_id": "df7edba5fc945e9a46e79db5"
+    "position_id": "df7edba5fc945e9a46e79db5",
+    "actual_total": 52.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 52.0,
+        "result": "win",
+        "profit_units": 0.9199999999999999
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858217",
@@ -234,10 +310,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-10T12:59:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "c1ca7fad77ca45d472d666b1"
+    "result": "win",
+    "profit_units": 0.95,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 51.5,
+      "decimal_odds": 1.9,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.025000000000023448,
+      "market_updated_at": "2026-09-12T18:02:39.821000Z",
+      "observation_id": "240526ceaa9b8759c2aecafc",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "c1ca7fad77ca45d472d666b1",
+    "actual_total": 58.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 58.0,
+        "result": "win",
+        "profit_units": 0.95
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858444",
@@ -274,10 +373,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-10T12:59:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "616fbf38675f36648d39e97e"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 52.5,
+      "decimal_odds": 1.89,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.017322834645669305,
+      "market_updated_at": "2026-09-12T15:14:09.797000Z",
+      "observation_id": "eeda26484ccace6f31bfb95a",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "616fbf38675f36648d39e97e",
+    "actual_total": 52.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 52.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856672",
@@ -314,10 +436,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-10T12:59:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 0.877,
     "clv": null,
-    "position_id": "f4724615cd24e9015187ce2f"
+    "position_id": "f4724615cd24e9015187ce2f",
+    "actual_total": 55.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 55.0,
+        "result": "win",
+        "profit_units": 0.877
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856678",
@@ -454,10 +586,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 5.6,
     "clv": null,
-    "position_id": "90426197fed13cec2a22fee1"
+    "position_id": "90426197fed13cec2a22fee1",
+    "actual_total": 27.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 27.0,
+        "result": "win",
+        "profit_units": 5.6
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856679",
@@ -494,10 +636,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 5.6,
     "clv": null,
-    "position_id": "d626d312ebfbaf388b3f5dd3"
+    "position_id": "d626d312ebfbaf388b3f5dd3",
+    "actual_total": 27.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 27.0,
+        "result": "win",
+        "profit_units": 5.6
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858442",
@@ -534,10 +686,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "d2461abe4e3907a0da5296df"
+    "position_id": "d2461abe4e3907a0da5296df",
+    "actual_total": 36.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 36.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858442",
@@ -574,10 +736,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 0.95,
     "clv": null,
-    "position_id": "49541fce3268e6b5598508f5"
+    "position_id": "49541fce3268e6b5598508f5",
+    "actual_total": 36.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 36.0,
+        "result": "win",
+        "profit_units": 0.95
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858221",
@@ -614,10 +786,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "f5c0c7496aaea85bb52ad0c3"
+    "position_id": "f5c0c7496aaea85bb52ad0c3",
+    "actual_total": 65.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 65.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858221",
@@ -654,10 +836,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "c879cbacf2783580c3f7a093"
+    "position_id": "c879cbacf2783580c3f7a093",
+    "actual_total": 65.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 65.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858216",
@@ -694,10 +886,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "8559f37cc72cae3112704645"
+    "result": "win",
+    "profit_units": 5.6,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 56.5,
+      "decimal_odds": 1.943,
+      "points": -17.0,
+      "closing_fair_ev_at_entry": -0.08226995949280858,
+      "market_updated_at": "2026-09-12T17:30:22.260000Z",
+      "observation_id": "fffb3ffc6ddc701677149de0",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "8559f37cc72cae3112704645",
+    "actual_total": 39.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 39.0,
+        "result": "win",
+        "profit_units": 5.6
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858216",
@@ -734,10 +949,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "dcc99149a016845b0486beb7"
+    "result": "win",
+    "profit_units": 0.9199999999999999,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 56.5,
+      "decimal_odds": 1.92,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.047559055118110316,
+      "market_updated_at": "2026-09-12T19:03:04.707000Z",
+      "observation_id": "b78d2e6c87c8b2fe4a120029",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "dcc99149a016845b0486beb7",
+    "actual_total": 39.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 39.0,
+        "result": "win",
+        "profit_units": 0.9199999999999999
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858444",
@@ -774,10 +1012,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "166b036eae1d8f9e9e3b5a77"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 52.5,
+      "decimal_odds": 1.952,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.0449398220826811,
+      "market_updated_at": "2026-09-12T19:01:20.733000Z",
+      "observation_id": "7e17198dd7fe6eec4979efac",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "166b036eae1d8f9e9e3b5a77",
+    "actual_total": 52.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 52.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401862705",
@@ -814,10 +1075,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "4abe4f134096262e89f2d44d"
+    "position_id": "4abe4f134096262e89f2d44d",
+    "actual_total": 50.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 50.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401862705",
@@ -854,10 +1125,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 0.9199999999999999,
     "clv": null,
-    "position_id": "caa27b43c19c79e733d5cd24"
+    "position_id": "caa27b43c19c79e733d5cd24",
+    "actual_total": 50.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 50.0,
+        "result": "win",
+        "profit_units": 0.9199999999999999
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401860881",
@@ -894,10 +1175,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "4229f78821fc6f5d42dad313"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T21:36:44.234377Z",
+      "lead_minutes": 23.262760383333333,
+      "line": 54.5,
+      "decimal_odds": 1.98,
+      "points": 2.0,
+      "closing_fair_ev_at_entry": 0.004565233703364813,
+      "market_updated_at": "2026-09-12T20:07:00.722000Z",
+      "observation_id": "1b7d7a45ad90894a317e5d7a",
+      "snapshot": "data/runtime/closing/quotes-20260912T213645053254Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "4229f78821fc6f5d42dad313",
+    "actual_total": 58.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 58.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401860881",
@@ -934,10 +1238,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "3117101bcf3431af28c876a6"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T21:36:44.234377Z",
+      "lead_minutes": 23.262760383333333,
+      "line": 54.5,
+      "decimal_odds": 1.98,
+      "points": 2.0,
+      "closing_fair_ev_at_entry": 0.004565233703364813,
+      "market_updated_at": "2026-09-12T20:07:00.722000Z",
+      "observation_id": "1b7d7a45ad90894a317e5d7a",
+      "snapshot": "data/runtime/closing/quotes-20260912T213645053254Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "3117101bcf3431af28c876a6",
+    "actual_total": 58.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 58.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858441",
@@ -974,10 +1301,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "a127df0e3fd9a3fb057b0b62"
+    "position_id": "a127df0e3fd9a3fb057b0b62",
+    "actual_total": 63.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 63.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858441",
@@ -1014,10 +1351,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "a9a8ea0c14f194ca1dc0fc62"
+    "position_id": "a9a8ea0c14f194ca1dc0fc62",
+    "actual_total": 63.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 63.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856680",
@@ -1054,10 +1401,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "f081f0b20da733d0baa72b76"
+    "position_id": "f081f0b20da733d0baa72b76",
+    "actual_total": 54.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 54.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401869955",
@@ -1094,10 +1451,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 0.9199999999999999,
     "clv": null,
-    "position_id": "7058b21cacd5cd3f7553e0b2"
+    "position_id": "7058b21cacd5cd3f7553e0b2",
+    "actual_total": 48.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 48.0,
+        "result": "win",
+        "profit_units": 0.9199999999999999
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401869955",
@@ -1134,10 +1501,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 0.9199999999999999,
     "clv": null,
-    "position_id": "ccb15b6acaf851cee4b00cfc"
+    "position_id": "ccb15b6acaf851cee4b00cfc",
+    "actual_total": 48.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 48.0,
+        "result": "win",
+        "profit_units": 0.9199999999999999
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858447",
@@ -1174,10 +1551,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "399048a4f18791724292e419"
+    "position_id": "399048a4f18791724292e419",
+    "actual_total": 45.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 45.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856682",
@@ -1214,10 +1601,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "dc8e376f380977f565e93eca"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 50.5,
+      "decimal_odds": 1.952,
+      "points": -17.0,
+      "closing_fair_ev_at_entry": -0.09177298315196192,
+      "market_updated_at": "2026-09-12T23:11:15.300000Z",
+      "observation_id": "8514e0b231d02c116f013f39",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "dc8e376f380977f565e93eca",
+    "actual_total": 47.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 47.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856682",
@@ -1254,10 +1664,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "fced95146bf1f13310fd863c"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 50.5,
+      "decimal_odds": 1.952,
+      "points": -17.0,
+      "closing_fair_ev_at_entry": -0.09177298315196192,
+      "market_updated_at": "2026-09-12T23:11:15.300000Z",
+      "observation_id": "8514e0b231d02c116f013f39",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "fced95146bf1f13310fd863c",
+    "actual_total": 47.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 47.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856788",
@@ -1294,10 +1727,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "55d073ad17c36fa53999f659"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 42.5,
+      "decimal_odds": 1.86,
+      "points": 1.0,
+      "closing_fair_ev_at_entry": 0.06283291536705105,
+      "market_updated_at": "2026-09-12T23:16:32.524000Z",
+      "observation_id": "466258300472cd8143c55553",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "55d073ad17c36fa53999f659",
+    "actual_total": 29.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 29.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856676",
@@ -1334,10 +1790,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "211ced184788965c9f42ccdf"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 24.074023066666665,
+      "line": 59.5,
+      "decimal_odds": 1.87,
+      "points": -12.0,
+      "closing_fair_ev_at_entry": 0.22079761128936015,
+      "market_updated_at": "2026-09-12T23:20:27.630000Z",
+      "observation_id": "138b2d0968744d06bc195a6b",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "211ced184788965c9f42ccdf",
+    "actual_total": 50.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 50.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856676",
@@ -1374,10 +1853,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "075f1b52aff5c28649b1bc9c"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 24.074023066666665,
+      "line": 59.5,
+      "decimal_odds": 1.87,
+      "points": -12.0,
+      "closing_fair_ev_at_entry": 0.22079761128936015,
+      "market_updated_at": "2026-09-12T23:20:27.630000Z",
+      "observation_id": "138b2d0968744d06bc195a6b",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "075f1b52aff5c28649b1bc9c",
+    "actual_total": 50.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 50.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856671",
@@ -1414,10 +1916,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "465238a328283b6cfd3960de"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 24.074023066666665,
+      "line": 56.5,
+      "decimal_odds": 1.909,
+      "points": -15.0,
+      "closing_fair_ev_at_entry": 0.114612045565478,
+      "market_updated_at": "2026-09-12T23:10:00.800000Z",
+      "observation_id": "87d65855c60cb786627d91b0",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "465238a328283b6cfd3960de",
+    "actual_total": 51.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 51.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856671",
@@ -1454,10 +1979,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "568f83bdfab4f0f062f55bdf"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 24.074023066666665,
+      "line": 56.5,
+      "decimal_odds": 1.909,
+      "points": -15.0,
+      "closing_fair_ev_at_entry": 0.114612045565478,
+      "market_updated_at": "2026-09-12T23:10:00.800000Z",
+      "observation_id": "87d65855c60cb786627d91b0",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "568f83bdfab4f0f062f55bdf",
+    "actual_total": 51.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 51.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858445",
@@ -1494,10 +2042,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "fab213037ae51b04a1537d7f"
+    "position_id": "fab213037ae51b04a1537d7f",
+    "actual_total": 79.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 79.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858445",
@@ -1534,10 +2092,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-11T14:30:33Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "bfe011402e3e6574d1df3432"
+    "position_id": "bfe011402e3e6574d1df3432",
+    "actual_total": 79.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 79.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856781",
@@ -1574,10 +2142,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 0.8600000000000001,
     "clv": null,
-    "position_id": "6ba2d3fe7dd20c421f43d72b"
+    "position_id": "6ba2d3fe7dd20c421f43d72b",
+    "actual_total": 41.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 41.0,
+        "result": "win",
+        "profit_units": 0.8600000000000001
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856781",
@@ -1614,10 +2192,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "f25661ce4f134e9a2632ecc6"
+    "position_id": "f25661ce4f134e9a2632ecc6",
+    "actual_total": 41.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 41.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856782",
@@ -1654,10 +2242,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "5cfe620cae6a9ac20fb56ae9"
+    "position_id": "5cfe620cae6a9ac20fb56ae9",
+    "actual_total": 70.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 70.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856782",
@@ -1694,10 +2292,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "ae78911ed08efbcb250f9b85"
+    "position_id": "ae78911ed08efbcb250f9b85",
+    "actual_total": 70.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 70.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401867929",
@@ -1734,10 +2342,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "8a861296a2eb7457c75ff387"
+    "position_id": "8a861296a2eb7457c75ff387",
+    "actual_total": 90.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 90.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401867929",
@@ -1774,10 +2392,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "32f229babdc30bce10ec1951"
+    "position_id": "32f229babdc30bce10ec1951",
+    "actual_total": 90.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 90.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856791",
@@ -1814,10 +2442,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "43f952712beedad8e27072b8"
+    "position_id": "43f952712beedad8e27072b8",
+    "actual_total": 59.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 59.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856791",
@@ -1854,10 +2492,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "38e6af569409c9ad516f3504"
+    "position_id": "38e6af569409c9ad516f3504",
+    "actual_total": 59.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 59.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856677",
@@ -1894,10 +2542,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "769c924434b5fd1a418b563f"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 53.5,
+      "decimal_odds": 1.909,
+      "points": -14.0,
+      "closing_fair_ev_at_entry": 0.0674373075400927,
+      "market_updated_at": "2026-09-12T19:14:05.479000Z",
+      "observation_id": "dd7481531d9493edcdaf9881",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "769c924434b5fd1a418b563f",
+    "actual_total": 51.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 51.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856677",
@@ -1934,10 +2605,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "99bc9bd71157b9cdaa149357"
+    "result": "win",
+    "profit_units": 0.9199999999999999,
+    "clv": {
+      "observed_at": "2026-09-12T19:14:24.069610Z",
+      "lead_minutes": 15.598839833333333,
+      "line": 53.5,
+      "decimal_odds": 1.92,
+      "points": 1.0,
+      "closing_fair_ev_at_entry": 0.0003118989911174985,
+      "market_updated_at": "2026-09-12T19:12:42.705000Z",
+      "observation_id": "c3b5a1ee7b7b833d93a89927",
+      "snapshot": "data/runtime/closing/quotes-20260912T191425452918Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "99bc9bd71157b9cdaa149357",
+    "actual_total": 51.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 51.0,
+        "result": "win",
+        "profit_units": 0.9199999999999999
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858223",
@@ -1974,10 +2668,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "cb6c7223e2fd2aca0e2212ac"
+    "position_id": "cb6c7223e2fd2aca0e2212ac",
+    "actual_total": 66.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 66.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858223",
@@ -2014,10 +2718,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "b6fda502120605f98c4e3efe"
+    "position_id": "b6fda502120605f98c4e3efe",
+    "actual_total": 66.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 66.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856672",
@@ -2054,10 +2768,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "06d0c0829a699e70c71a7fd7"
+    "position_id": "06d0c0829a699e70c71a7fd7",
+    "actual_total": 55.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 55.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858443",
@@ -2094,10 +2818,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 5.2,
     "clv": null,
-    "position_id": "7b350c66ee0a37ff5c38eade"
+    "position_id": "7b350c66ee0a37ff5c38eade",
+    "actual_total": 38.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 38.0,
+        "result": "win",
+        "profit_units": 5.2
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858443",
@@ -2134,10 +2868,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "win",
+    "profit_units": 5.2,
     "clv": null,
-    "position_id": "a3ecb1c7fa0cb2bc777416ec"
+    "position_id": "a3ecb1c7fa0cb2bc777416ec",
+    "actual_total": 38.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 38.0,
+        "result": "win",
+        "profit_units": 5.2
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858219",
@@ -2174,10 +2918,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "ff01dbd1528d8c62eb6e1751"
+    "result": "win",
+    "profit_units": 5.2,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 54.5,
+      "decimal_odds": 1.893,
+      "points": -16.0,
+      "closing_fair_ev_at_entry": -0.001016541091055423,
+      "market_updated_at": "2026-09-12T23:04:17.980000Z",
+      "observation_id": "f122a7f98e440dfaa7aae01b",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "ff01dbd1528d8c62eb6e1751",
+    "actual_total": 29.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 29.0,
+        "result": "win",
+        "profit_units": 5.2
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401858219",
@@ -2214,10 +2981,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "e8d3905a47a3a877bbfebff9"
+    "result": "win",
+    "profit_units": 0.8400000000000001,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 54.5,
+      "decimal_odds": 1.89,
+      "points": 1.0,
+      "closing_fair_ev_at_entry": -0.02691049954499458,
+      "market_updated_at": "2026-09-12T23:02:13.215000Z",
+      "observation_id": "2fbe1d8d08342dcca24ea01d",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "e8d3905a47a3a877bbfebff9",
+    "actual_total": 29.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 29.0,
+        "result": "win",
+        "profit_units": 0.8400000000000001
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401862703",
@@ -2254,10 +3044,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "8e4920cca3754ddc786b6bf0"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 59.5,
+      "decimal_odds": 1.909,
+      "points": -18.0,
+      "closing_fair_ev_at_entry": -0.1925053518154185,
+      "market_updated_at": "2026-09-12T23:04:17.980000Z",
+      "observation_id": "9bd7a2e31e4f3ddffc88dc71",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "8e4920cca3754ddc786b6bf0",
+    "actual_total": 68.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 68.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401862703",
@@ -2294,10 +3107,33 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
-    "result": "pending",
-    "profit_units": null,
-    "clv": null,
-    "position_id": "b2db953ba88a74852e93e5e8"
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": {
+      "observed_at": "2026-09-12T23:20:55.558616Z",
+      "lead_minutes": 9.074023066666665,
+      "line": 59.5,
+      "decimal_odds": 1.9,
+      "points": -1.0,
+      "closing_fair_ev_at_entry": -0.07359392103415041,
+      "market_updated_at": "2026-09-12T14:38:07.075000Z",
+      "observation_id": "4c23fb81b74dc81f374093cf",
+      "snapshot": "data/runtime/closing/quotes-20260912T232055795570Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
+    "position_id": "b2db953ba88a74852e93e5e8",
+    "actual_total": 68.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 68.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
   },
   {
     "game_id": "401856670",
@@ -2334,9 +3170,219 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-12T13:39:54Z",
+    "result": "loss",
+    "profit_units": -1.0,
+    "clv": null,
+    "position_id": "d1f1c471a26e09c48eb6e989",
+    "actual_total": 53.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-13T14:27:52Z",
+        "actual_total": 53.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-13T14:27:52Z"
+  },
+  {
+    "game_id": "401856812",
+    "event_id": "actionnetwork-289057",
+    "away_team": "Arizona State Sun Devils",
+    "home_team": "Kansas Jayhawks",
+    "kickoff": "2026-09-19T16:00:00+00:00",
+    "candidate": "opponent_adjusted_structural",
+    "side": "under",
+    "line": 56.5,
+    "american_odds": -109,
+    "decimal_odds": 1.92,
+    "sportsbook": "draftkings",
+    "projected_total": 54.066935949189755,
+    "consensus_total": 54.4945396553714,
+    "win_probability": 0.560633999400343,
+    "push_probability": 0.0,
+    "expected_value": 0.07641727884865845,
+    "robust_ev": 0.018850354164730132,
+    "quote_time": "2026-09-13T14:27:53.600111Z",
+    "confidence": "experimental",
+    "market_updated_at": "2026-09-12T20:33:03.506000Z",
+    "observed_at": "2026-09-13T14:27:53.600111Z",
+    "freshness_basis": "provider_full_state_receipt",
+    "execution_confirmed": false,
+    "probability_basis": "opponent-adjusted statistical forecast",
+    "reference_book_count_is_not_confidence": true,
+    "paper_stake_fraction": 0.0,
+    "eligible": true,
+    "flags": [],
+    "reference_books": [
+      "fanduel"
+    ],
+    "peer_dispersion": 0.0,
+    "model_version": "totals-v4-20260908",
+    "recorded_at": "2026-09-13T14:27:57Z",
     "result": "pending",
     "profit_units": null,
     "clv": null,
-    "position_id": "d1f1c471a26e09c48eb6e989"
+    "position_id": "c93fb8b2ac23556b0f5d3d19"
+  },
+  {
+    "game_id": "401856694",
+    "event_id": "actionnetwork-289093",
+    "away_team": "Kentucky Wildcats",
+    "home_team": "Texas A&M Aggies",
+    "kickoff": "2026-09-19T19:30:00+00:00",
+    "candidate": "opponent_adjusted_structural",
+    "side": "over",
+    "line": 48.5,
+    "american_odds": -102,
+    "decimal_odds": 1.98,
+    "sportsbook": "draftkings",
+    "projected_total": 49.94232716790258,
+    "consensus_total": 48.90852932100507,
+    "win_probability": 0.5365223826272132,
+    "push_probability": 0.0,
+    "expected_value": 0.06231431760188211,
+    "robust_ev": 0.012581868436129351,
+    "quote_time": "2026-09-13T14:27:53.782464Z",
+    "confidence": "experimental",
+    "market_updated_at": "2026-09-13T03:51:54.444000Z",
+    "observed_at": "2026-09-13T14:27:53.782464Z",
+    "freshness_basis": "provider_full_state_receipt",
+    "execution_confirmed": false,
+    "probability_basis": "opponent-adjusted statistical forecast",
+    "reference_book_count_is_not_confidence": true,
+    "paper_stake_fraction": 0.0,
+    "eligible": true,
+    "flags": [],
+    "reference_books": [
+      "fanduel"
+    ],
+    "peer_dispersion": 0.0,
+    "model_version": "totals-v4-20260908",
+    "recorded_at": "2026-09-13T14:27:57Z",
+    "result": "pending",
+    "profit_units": null,
+    "clv": null,
+    "position_id": "fbb907490393cd88aacd692f"
+  },
+  {
+    "game_id": "401858232",
+    "event_id": "actionnetwork-289107",
+    "away_team": "Virginia Tech Hokies",
+    "home_team": "Maryland Terrapins",
+    "kickoff": "2026-09-19T23:30:00+00:00",
+    "candidate": "market_price_reference",
+    "side": "over",
+    "line": 52.5,
+    "american_odds": -106,
+    "decimal_odds": 1.943,
+    "sportsbook": "fanduel",
+    "projected_total": 54.4945396553714,
+    "consensus_total": 54.4945396553714,
+    "win_probability": 0.5500286794721059,
+    "push_probability": 0.0,
+    "expected_value": 0.06870572421430182,
+    "robust_ev": 0.015218808207842549,
+    "quote_time": "2026-09-13T14:27:54.178005Z",
+    "confidence": "experimental",
+    "market_updated_at": "2026-09-13T12:33:19.927000Z",
+    "observed_at": "2026-09-13T14:27:54.178005Z",
+    "freshness_basis": "provider_full_state_receipt",
+    "execution_confirmed": false,
+    "probability_basis": "peer-price assumption",
+    "reference_book_count_is_not_confidence": true,
+    "paper_stake_fraction": 0.0,
+    "eligible": true,
+    "flags": [],
+    "reference_books": [
+      "draftkings"
+    ],
+    "peer_dispersion": 0.0,
+    "model_version": "totals-v4-20260908",
+    "recorded_at": "2026-09-13T14:27:57Z",
+    "result": "pending",
+    "profit_units": null,
+    "clv": null,
+    "position_id": "b20e143f2653b882eb2eee4b"
+  },
+  {
+    "game_id": "401858232",
+    "event_id": "actionnetwork-289107",
+    "away_team": "Virginia Tech Hokies",
+    "home_team": "Maryland Terrapins",
+    "kickoff": "2026-09-19T23:30:00+00:00",
+    "candidate": "opponent_adjusted_ridge",
+    "side": "over",
+    "line": 52.5,
+    "american_odds": -106,
+    "decimal_odds": 1.943,
+    "sportsbook": "fanduel",
+    "projected_total": 55.38503928654802,
+    "consensus_total": 54.4945396553714,
+    "win_probability": 0.5720687371941289,
+    "push_probability": 0.0,
+    "expected_value": 0.11152955636819245,
+    "robust_ev": 0.05263659759896022,
+    "quote_time": "2026-09-13T14:27:54.178005Z",
+    "confidence": "experimental",
+    "market_updated_at": "2026-09-13T12:33:19.927000Z",
+    "observed_at": "2026-09-13T14:27:54.178005Z",
+    "freshness_basis": "provider_full_state_receipt",
+    "execution_confirmed": false,
+    "probability_basis": "opponent-adjusted statistical forecast",
+    "reference_book_count_is_not_confidence": true,
+    "paper_stake_fraction": 0.0025,
+    "eligible": true,
+    "flags": [],
+    "reference_books": [
+      "draftkings"
+    ],
+    "peer_dispersion": 0.0,
+    "model_version": "totals-v4-20260908",
+    "recorded_at": "2026-09-13T14:27:57Z",
+    "result": "pending",
+    "profit_units": null,
+    "clv": null,
+    "position_id": "010b5a6e883fbf35d907e359"
+  },
+  {
+    "game_id": "401856802",
+    "event_id": "actionnetwork-289122",
+    "away_team": "West Virginia Mountaineers",
+    "home_team": "Virginia Cavaliers",
+    "kickoff": "2026-09-19T23:30:00+00:00",
+    "candidate": "opponent_adjusted_structural",
+    "side": "under",
+    "line": 55.5,
+    "american_odds": -120,
+    "decimal_odds": 1.833,
+    "sportsbook": "fanduel",
+    "projected_total": 51.60129509150762,
+    "consensus_total": 53.65033337753683,
+    "win_probability": 0.5965686054255739,
+    "push_probability": 0.0,
+    "expected_value": 0.09351025374507693,
+    "robust_ev": 0.0303729013712723,
+    "quote_time": "2026-09-13T14:27:53.958591Z",
+    "confidence": "experimental",
+    "market_updated_at": "2026-09-13T12:14:40.356000Z",
+    "observed_at": "2026-09-13T14:27:53.958591Z",
+    "freshness_basis": "provider_full_state_receipt",
+    "execution_confirmed": false,
+    "probability_basis": "opponent-adjusted statistical forecast",
+    "reference_book_count_is_not_confidence": true,
+    "paper_stake_fraction": 0.0,
+    "eligible": true,
+    "flags": [],
+    "reference_books": [
+      "draftkings"
+    ],
+    "peer_dispersion": 0.0,
+    "model_version": "totals-v4-20260908",
+    "recorded_at": "2026-09-13T14:27:57Z",
+    "result": "pending",
+    "profit_units": null,
+    "clv": null,
+    "position_id": "7cbdfb3e055c8ea8d435b4da"
   }
 ]
