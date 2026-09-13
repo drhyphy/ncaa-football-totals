@@ -1,0 +1,29 @@
+{
+  "archive_writer_version": "revision-archive-v2-portable-gzip",
+  "body_path": "data/runtime/availability/bodies/ace508ba01a9e34c1ebed2a094fb2cebac38596482c3cae964a09b5de2d6b0bd.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "ace508ba01a9e34c1ebed2a094fb2cebac38596482c3cae964a09b5de2d6b0bd",
+  "body_size_bytes": 1238895,
+  "body_withheld": false,
+  "purpose": "official_availability_inventory",
+  "receipt_path": "data/runtime/availability/receipts/fbd53a5121ecceb83f0ec14e34ad9a03fc675e1106e0435c7dee64aab801b433.json",
+  "received_at": "2026-09-13T17:26:22.202930Z",
+  "request": {
+    "params": {
+      "dates": "20260913-20260920",
+      "groups": 80,
+      "limit": 1000
+    },
+    "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
+  },
+  "requested_at": "2026-09-13T17:26:22.096260Z",
+  "response_headers": {
+    "content_encoding": "gzip",
+    "content_length": "91791",
+    "content_type": "application/json;charset=UTF-8",
+    "date": "Sun, 13 Sep 2026 17:26:22 GMT"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}
