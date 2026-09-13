@@ -1,0 +1,75 @@
+{
+  "amendment": "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md",
+  "capture_completed_at": "2026-09-13T06:48:21.597766Z",
+  "capture_started_at": "2026-09-13T06:48:20.695827+00:00",
+  "cohort_path": "data/runtime/availability/cohorts/34743627772-1.json",
+  "cohort_sha256": "82b119b277795528e44d7bd56392f1fe2eaee6810d2af7a94a7c7cc25f9a87ec",
+  "collector_version": "acc-availability-collector-v2",
+  "counts": {
+    "context_verified_games": 0,
+    "matched_games": 0,
+    "nonpending_unverified_reports": 1,
+    "paired_games": 0,
+    "paired_two_book_games": 0,
+    "pending_reports": 0,
+    "source_reports": 1,
+    "total_requests": 3
+  },
+  "current_receipt": "data/runtime/availability/receipts/0c8929e1364cfbfda931373c9e9d420c27632777ac432aaf405c185302fe4c22.json",
+  "execution_revision": 2,
+  "failures": [],
+  "git_commit": "90be64231342b154cf0032db0bebade9cd87dd86",
+  "inventory_exclusions": [],
+  "models_fitted": 0,
+  "official_games": 75,
+  "protocol": "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md",
+  "quota_policy": "bounded_calls_when_headers_missing",
+  "quote_diagnostics": [],
+  "receipts": [
+    "data/runtime/availability/receipts/4775990e84de246087df6448f2283fa8d7a4143500f8771b984508d7ff5fc952.json",
+    "data/runtime/availability/receipts/7bf36aa0d03329009139db7b8b0cf9f99c42738d81e71b2cb4b142bdee258939.json",
+    "data/runtime/availability/receipts/0c8929e1364cfbfda931373c9e9d420c27632777ac432aaf405c185302fe4c22.json"
+  ],
+  "reports": [
+    {
+      "completion_verified": false,
+      "failure": "missing_or_ambiguous_official_pair",
+      "game_id": null,
+      "report_type": "Game Day",
+      "source_date": "2026-09-12",
+      "source_key": "1185",
+      "source_posted_time": "13:30:00",
+      "source_publish_date": "2026-09-12",
+      "source_row_items": [
+        113,
+        111
+      ],
+      "source_teams": [
+        "California",
+        "Syracuse"
+      ],
+      "source_time": "15:30:00",
+      "source_timezone": "ET",
+      "state": "nonpending_completion_unverified"
+    }
+  ],
+  "rows": [],
+  "run_attempt": "1",
+  "run_id": "34743627772",
+  "schema_version": "acc-availability-collector-v1",
+  "source_hashes": {
+    "ncaaf_model/availability_archive.py": "d213bc367c691f5b632be68ace61521d213fb2d71cf0d4e7408b6132dbd37f1f",
+    "ncaaf_model/availability_collector.py": "0b5e1f172e379e80ff7fa3daf357d6d3f56a97b99df7e2d1a2fbbf97ff2a98e5",
+    "ncaaf_model/revision_archive.py": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0",
+    "ncaaf_model/teams.py": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+    "ncaaf_model/weather_revision_collector.py": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360",
+    "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md": "0b7c409daedc78bfabacebb738db8f74f3e8643d27125ff9276d982e06c9b989",
+    "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+  },
+  "source_status": "captured",
+  "status": "partial",
+  "trigger": "schedule",
+  "verified_completed_reports": 0,
+  "workflow_commit": "90be64231342b154cf0032db0bebade9cd87dd86",
+  "workflow_sha256": "32f41f32f46f4bdb516ceab00db4610e5d1425fd0a94913339244fe8ea86f4ee"
+}
