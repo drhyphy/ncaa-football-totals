@@ -1,24 +1,24 @@
 {
-  "as_of": "2026-09-13T14:27:59.190642Z",
+  "as_of": "2026-09-14T16:25:08.410349Z",
   "automatic_promotion": false,
   "candidates": [
     {
       "all_unsettled_including_void_as_loss": {
         "active_weeks": 2,
-        "charged_pending_positions": 1,
+        "charged_pending_positions": 5,
         "charged_void_positions": 0,
         "coverage": 0.9875,
         "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
         "degrees_of_freedom": 1,
         "interval": [
-          -3.9512055711591083,
-          4.189205571159108
+          -15.602130702093461,
+          15.560380702093461
         ],
         "interval_status": "approximate_week_cluster_t",
-        "profit_units": 3.332,
-        "roi": 0.119,
-        "standard_error": 0.07992857142857142,
-        "units_risked": 28.0,
+        "profit_units": -0.6680000000000001,
+        "roi": -0.020875000000000005,
+        "standard_error": 0.3059765625,
+        "units_risked": 32.0,
         "zero_risk_active_weeks": []
       },
       "automatic_promotion": false,
@@ -26,25 +26,25 @@
         "2026-09": {
           "all_unsettled_including_void_as_loss": {
             "active_weeks": 2,
-            "charged_pending_positions": 1,
+            "charged_pending_positions": 5,
             "charged_void_positions": 0,
             "coverage": 0.9875,
             "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
             "degrees_of_freedom": 1,
             "interval": [
-              -3.9512055711591083,
-              4.189205571159108
+              -15.602130702093461,
+              15.560380702093461
             ],
             "interval_status": "approximate_week_cluster_t",
-            "profit_units": 3.332,
-            "roi": 0.119,
-            "standard_error": 0.07992857142857142,
-            "units_risked": 28.0,
+            "profit_units": -0.6680000000000001,
+            "roi": -0.020875000000000005,
+            "standard_error": 0.3059765625,
+            "units_risked": 32.0,
             "zero_risk_active_weeks": []
           },
-          "locked_positions": 28,
+          "locked_positions": 32,
           "losses": 20,
-          "pending": 1,
+          "pending": 5,
           "pushes": 0,
           "settled": {
             "active_weeks": 2,
@@ -64,7 +64,7 @@
             ]
           },
           "settled_positions": 27,
-          "total_original_units_risked": 28,
+          "total_original_units_risked": 32,
           "void": 0,
           "weekly": [
             {
@@ -75,10 +75,10 @@
               "week": "2026-09-07"
             },
             {
-              "locked_positions": 1,
+              "locked_positions": 5,
               "profit_units": 0,
               "units_risked": 0,
-              "unsettled_as_loss_profit_units": -1,
+              "unsettled_as_loss_profit_units": -5,
               "week": "2026-09-14"
             }
           ],
@@ -88,38 +88,46 @@
       "by_sportsbook": {
         "draftkings": {
           "all_unsettled_including_void_as_loss": {
-            "active_weeks": 1,
-            "charged_pending_positions": 0,
+            "active_weeks": 2,
+            "charged_pending_positions": 3,
             "charged_void_positions": 0,
             "coverage": 0.9875,
             "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
-            "degrees_of_freedom": 0,
-            "interval": null,
-            "interval_status": "fewer_than_two_active_weeks",
-            "profit_units": -1.22,
-            "roi": -0.244,
-            "standard_error": null,
-            "units_risked": 5.0,
+            "degrees_of_freedom": 1,
+            "interval": [
+              -18.573351108054627,
+              17.518351108054627
+            ],
+            "interval_status": "approximate_week_cluster_t",
+            "profit_units": -4.22,
+            "roi": -0.5275,
+            "standard_error": 0.354375,
+            "units_risked": 8.0,
             "zero_risk_active_weeks": []
           },
-          "locked_positions": 5,
+          "locked_positions": 8,
           "losses": 3,
-          "pending": 0,
+          "pending": 3,
           "pushes": 0,
           "settled": {
-            "active_weeks": 1,
+            "active_weeks": 2,
             "coverage": 0.9875,
-            "degrees_of_freedom": 0,
-            "interval": null,
-            "interval_status": "fewer_than_two_active_weeks",
+            "degrees_of_freedom": 1,
+            "interval": [
+              -0.244,
+              -0.244
+            ],
+            "interval_status": "approximate_week_cluster_t",
             "profit_units": -1.22,
             "roi": -0.244,
-            "standard_error": null,
+            "standard_error": 0.0,
             "units_risked": 5.0,
-            "zero_risk_active_weeks": []
+            "zero_risk_active_weeks": [
+              "2026-09-14"
+            ]
           },
           "settled_positions": 5,
-          "total_original_units_risked": 5,
+          "total_original_units_risked": 8,
           "void": 0,
           "weekly": [
             {
@@ -128,6 +136,13 @@
               "units_risked": 5,
               "unsettled_as_loss_profit_units": -1.22,
               "week": "2026-09-07"
+            },
+            {
+              "locked_positions": 3,
+              "profit_units": 0,
+              "units_risked": 0,
+              "unsettled_as_loss_profit_units": -3,
+              "week": "2026-09-14"
             }
           ],
           "wins": 2
@@ -135,25 +150,25 @@
         "fanduel": {
           "all_unsettled_including_void_as_loss": {
             "active_weeks": 2,
-            "charged_pending_positions": 1,
+            "charged_pending_positions": 2,
             "charged_void_positions": 0,
             "coverage": 0.9875,
             "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
             "degrees_of_freedom": 1,
             "interval": [
-              -5.106553895684138,
-              5.50237998264066
+              -9.595274343114268,
+              9.891274343114267
             ],
             "interval_status": "approximate_week_cluster_t",
-            "profit_units": 4.552,
-            "roi": 0.19791304347826086,
-            "standard_error": 0.10416635160680529,
-            "units_risked": 23.0,
+            "profit_units": 3.5519999999999996,
+            "roi": 0.148,
+            "standard_error": 0.19133333333333333,
+            "units_risked": 24.0,
             "zero_risk_active_weeks": []
           },
-          "locked_positions": 23,
+          "locked_positions": 24,
           "losses": 17,
-          "pending": 1,
+          "pending": 2,
           "pushes": 0,
           "settled": {
             "active_weeks": 2,
@@ -173,7 +188,7 @@
             ]
           },
           "settled_positions": 22,
-          "total_original_units_risked": 23,
+          "total_original_units_risked": 24,
           "void": 0,
           "weekly": [
             {
@@ -184,10 +199,10 @@
               "week": "2026-09-07"
             },
             {
-              "locked_positions": 1,
+              "locked_positions": 2,
               "profit_units": 0,
               "units_risked": 0,
-              "unsettled_as_loss_profit_units": -1,
+              "unsettled_as_loss_profit_units": -2,
               "week": "2026-09-14"
             }
           ],
@@ -201,9 +216,9 @@
         "definition": "Attached same-book observed proxy within30minutes before kickoff, strictly after entry and no later than evaluation cutoff; not exact closing price, known fair probability or accepted execution.",
         "mean_assumed_closing_fair_ev_at_entry": 0.010083667729584245,
         "mean_points": -10.5,
-        "missing_positions": 18,
+        "missing_positions": 22,
         "missing_reason_counts": {
-          "not_observed": 18
+          "not_observed": 22
         },
         "positive_points": 2,
         "source_scope": "Timestamp/line arithmetic checked here; caller must verify original same-book snapshot and observation identity."
@@ -214,17 +229,17 @@
         {
           "all_unsettled_including_void_as_loss": {
             "active_weeks": 1,
-            "charged_pending_positions": 1,
+            "charged_pending_positions": 5,
             "charged_void_positions": 0,
             "coverage": 0.9875,
             "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
             "degrees_of_freedom": 0,
             "interval": null,
             "interval_status": "fewer_than_two_active_weeks",
-            "profit_units": -1.0,
+            "profit_units": -5.0,
             "roi": -1.0,
             "standard_error": null,
-            "units_risked": 1.0,
+            "units_risked": 5.0,
             "zero_risk_active_weeks": []
           },
           "removed_week": "2026-09-07",
@@ -274,13 +289,13 @@
           }
         }
       ],
-      "locked_positions": 28,
+      "locked_positions": 32,
       "losses": 20,
       "model_version": "totals-v4-20260908",
-      "pending": 1,
+      "pending": 5,
       "profit_disappears_without_one_week": false,
       "provenance_flag_counts": {
-        "original_receipt_path_not_in_ledger": 28,
+        "original_receipt_path_not_in_ledger": 32,
         "quote_time_after_recorded_entry": 2
       },
       "pushes": 0,
@@ -305,13 +320,13 @@
       },
       "settled_positions": 27,
       "source_counts": {
-        "provider_full_state_receipt": 28
+        "provider_full_state_receipt": 32
       },
       "sportsbook_counts": {
-        "draftkings": 5,
-        "fanduel": 23
+        "draftkings": 8,
+        "fanduel": 24
       },
-      "total_original_units_risked": 28,
+      "total_original_units_risked": 32,
       "unaudited_outcome_positions": 0,
       "unsettled_loss_sensitivity_positive_lower_bound": false,
       "void": 0,
@@ -324,10 +339,10 @@
           "week": "2026-09-07"
         },
         {
-          "locked_positions": 1,
+          "locked_positions": 5,
           "profit_units": 0,
           "units_risked": 0,
-          "unsettled_as_loss_profit_units": -1,
+          "unsettled_as_loss_profit_units": -5,
           "week": "2026-09-14"
         }
       ],
@@ -336,20 +351,20 @@
     {
       "all_unsettled_including_void_as_loss": {
         "active_weeks": 2,
-        "charged_pending_positions": 3,
+        "charged_pending_positions": 8,
         "charged_void_positions": 0,
         "coverage": 0.9875,
         "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
         "degrees_of_freedom": 1,
         "interval": [
-          -9.575248433199118,
-          9.511829078360407
+          -19.037265934782614,
+          18.704877045893728
         ],
         "interval_status": "approximate_week_cluster_t",
-        "profit_units": -0.9830000000000005,
-        "roi": -0.031709677419354855,
-        "standard_error": 0.18741103017689906,
-        "units_risked": 31.0,
+        "profit_units": -5.9830000000000005,
+        "roi": -0.16619444444444445,
+        "standard_error": 0.3705802469135802,
+        "units_risked": 36.0,
         "zero_risk_active_weeks": []
       },
       "automatic_promotion": false,
@@ -357,25 +372,25 @@
         "2026-09": {
           "all_unsettled_including_void_as_loss": {
             "active_weeks": 2,
-            "charged_pending_positions": 3,
+            "charged_pending_positions": 8,
             "charged_void_positions": 0,
             "coverage": 0.9875,
             "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
             "degrees_of_freedom": 1,
             "interval": [
-              -9.575248433199118,
-              9.511829078360407
+              -19.037265934782614,
+              18.704877045893728
             ],
             "interval_status": "approximate_week_cluster_t",
-            "profit_units": -0.9830000000000005,
-            "roi": -0.031709677419354855,
-            "standard_error": 0.18741103017689906,
-            "units_risked": 31.0,
+            "profit_units": -5.9830000000000005,
+            "roi": -0.16619444444444445,
+            "standard_error": 0.3705802469135802,
+            "units_risked": 36.0,
             "zero_risk_active_weeks": []
           },
-          "locked_positions": 31,
+          "locked_positions": 36,
           "losses": 17,
-          "pending": 3,
+          "pending": 8,
           "pushes": 0,
           "settled": {
             "active_weeks": 2,
@@ -395,7 +410,7 @@
             ]
           },
           "settled_positions": 28,
-          "total_original_units_risked": 31,
+          "total_original_units_risked": 36,
           "void": 0,
           "weekly": [
             {
@@ -406,10 +421,10 @@
               "week": "2026-09-07"
             },
             {
-              "locked_positions": 3,
+              "locked_positions": 8,
               "profit_units": 0,
               "units_risked": 0,
-              "unsettled_as_loss_profit_units": -3,
+              "unsettled_as_loss_profit_units": -8,
               "week": "2026-09-14"
             }
           ],
@@ -420,25 +435,25 @@
         "draftkings": {
           "all_unsettled_including_void_as_loss": {
             "active_weeks": 2,
-            "charged_pending_positions": 2,
+            "charged_pending_positions": 6,
             "charged_void_positions": 0,
             "coverage": 0.9875,
             "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
             "degrees_of_freedom": 1,
             "interval": [
-              -15.846313918442672,
-              16.037742489871242
+              -29.079606740877445,
+              28.784051185321886
             ],
             "interval_status": "approximate_week_cluster_t",
-            "profit_units": 1.3399999999999999,
-            "roi": 0.09571428571428571,
-            "standard_error": 0.3130612244897959,
-            "units_risked": 14.0,
+            "profit_units": -2.66,
+            "roi": -0.14777777777777779,
+            "standard_error": 0.5681481481481482,
+            "units_risked": 18.0,
             "zero_risk_active_weeks": []
           },
-          "locked_positions": 14,
+          "locked_positions": 18,
           "losses": 4,
-          "pending": 2,
+          "pending": 6,
           "pushes": 0,
           "settled": {
             "active_weeks": 2,
@@ -458,7 +473,7 @@
             ]
           },
           "settled_positions": 12,
-          "total_original_units_risked": 14,
+          "total_original_units_risked": 18,
           "void": 0,
           "weekly": [
             {
@@ -469,10 +484,10 @@
               "week": "2026-09-07"
             },
             {
-              "locked_positions": 2,
+              "locked_positions": 6,
               "profit_units": 0,
               "units_risked": 0,
-              "unsettled_as_loss_profit_units": -2,
+              "unsettled_as_loss_profit_units": -6,
               "week": "2026-09-14"
             }
           ],
@@ -481,25 +496,25 @@
         "fanduel": {
           "all_unsettled_including_void_as_loss": {
             "active_weeks": 2,
-            "charged_pending_positions": 1,
+            "charged_pending_positions": 2,
             "charged_void_positions": 0,
             "coverage": 0.9875,
             "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
             "degrees_of_freedom": 1,
             "interval": [
-              -5.308947465146719,
-              5.035653347499661
+              -9.411739613749395,
+              9.042517391527172
             ],
             "interval_status": "approximate_week_cluster_t",
-            "profit_units": -2.3230000000000004,
-            "roi": -0.13664705882352943,
-            "standard_error": 0.10157093425605537,
-            "units_risked": 17.0,
+            "profit_units": -3.3230000000000004,
+            "roi": -0.18461111111111114,
+            "standard_error": 0.18119753086419754,
+            "units_risked": 18.0,
             "zero_risk_active_weeks": []
           },
-          "locked_positions": 17,
+          "locked_positions": 18,
           "losses": 13,
-          "pending": 1,
+          "pending": 2,
           "pushes": 0,
           "settled": {
             "active_weeks": 2,
@@ -519,7 +534,7 @@
             ]
           },
           "settled_positions": 16,
-          "total_original_units_risked": 17,
+          "total_original_units_risked": 18,
           "void": 0,
           "weekly": [
             {
@@ -530,10 +545,10 @@
               "week": "2026-09-07"
             },
             {
-              "locked_positions": 1,
+              "locked_positions": 2,
               "profit_units": 0,
               "units_risked": 0,
-              "unsettled_as_loss_profit_units": -1,
+              "unsettled_as_loss_profit_units": -2,
               "week": "2026-09-14"
             }
           ],
@@ -547,9 +562,9 @@
         "definition": "Attached same-book observed proxy within30minutes before kickoff, strictly after entry and no later than evaluation cutoff; not exact closing price, known fair probability or accepted execution.",
         "mean_assumed_closing_fair_ev_at_entry": 0.009892968910169019,
         "mean_points": -3.5454545454545454,
-        "missing_positions": 20,
+        "missing_positions": 25,
         "missing_reason_counts": {
-          "not_observed": 20
+          "not_observed": 25
         },
         "positive_points": 4,
         "source_scope": "Timestamp/line arithmetic checked here; caller must verify original same-book snapshot and observation identity."
@@ -560,17 +575,17 @@
         {
           "all_unsettled_including_void_as_loss": {
             "active_weeks": 1,
-            "charged_pending_positions": 3,
+            "charged_pending_positions": 8,
             "charged_void_positions": 0,
             "coverage": 0.9875,
             "definition": "Every non-win/loss/push original position is charged one full-unit loss; no refund rule assumed.",
             "degrees_of_freedom": 0,
             "interval": null,
             "interval_status": "fewer_than_two_active_weeks",
-            "profit_units": -3.0,
+            "profit_units": -8.0,
             "roi": -1.0,
             "standard_error": null,
-            "units_risked": 3.0,
+            "units_risked": 8.0,
             "zero_risk_active_weeks": []
           },
           "removed_week": "2026-09-07",
@@ -620,13 +635,13 @@
           }
         }
       ],
-      "locked_positions": 31,
+      "locked_positions": 36,
       "losses": 17,
       "model_version": "totals-v4-20260908",
-      "pending": 3,
+      "pending": 8,
       "profit_disappears_without_one_week": false,
       "provenance_flag_counts": {
-        "original_receipt_path_not_in_ledger": 31,
+        "original_receipt_path_not_in_ledger": 36,
         "quote_time_after_recorded_entry": 2
       },
       "pushes": 0,
@@ -651,13 +666,13 @@
       },
       "settled_positions": 28,
       "source_counts": {
-        "provider_full_state_receipt": 31
+        "provider_full_state_receipt": 36
       },
       "sportsbook_counts": {
-        "draftkings": 14,
-        "fanduel": 17
+        "draftkings": 18,
+        "fanduel": 18
       },
-      "total_original_units_risked": 31,
+      "total_original_units_risked": 36,
       "unaudited_outcome_positions": 0,
       "unsettled_loss_sensitivity_positive_lower_bound": false,
       "void": 0,
@@ -670,10 +685,10 @@
           "week": "2026-09-07"
         },
         {
-          "locked_positions": 3,
+          "locked_positions": 8,
           "profit_units": 0,
           "units_risked": 0,
-          "unsettled_as_loss_profit_units": -3,
+          "unsettled_as_loss_profit_units": -8,
           "week": "2026-09-14"
         }
       ],
@@ -1087,8 +1102,8 @@
   },
   "counts": {
     "excluded_positions": 0,
-    "in_cohort_positions": 63,
-    "input_positions": 63
+    "in_cohort_positions": 72,
+    "input_positions": 72
   },
   "edge_established": false,
   "evaluated_positions": [
@@ -1995,6 +2010,106 @@
       "candidate": "opponent_adjusted_ridge",
       "closing_proxy": null,
       "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.98,
+      "game_id": "401858229",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-19T16:00:00Z",
+      "line": 44.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "b34cea3cf3fb7368bac02cd1",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "draftkings",
+      "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_ridge",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.98,
+      "game_id": "401858456",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-19T16:00:00Z",
+      "line": 48.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "5be8ca07c0fb5050a5c5ee31",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "draftkings",
+      "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_ridge",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.909,
+      "game_id": "401858460",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-19T16:30:00Z",
+      "line": 45.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "3d94f1d9e6839bfd2a8e67c0",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "fanduel",
+      "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_ridge",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.9,
+      "game_id": "401864508",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-19T17:00:00Z",
+      "line": 39.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "a9c30ee0ca836ffbf997639f",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "draftkings",
+      "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_ridge",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
       "decimal_odds": 1.943,
       "game_id": "401858232",
       "grade_availability": "not_yet_graded",
@@ -2843,6 +2958,31 @@
       "candidate": "opponent_adjusted_structural",
       "closing_proxy": null,
       "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.98,
+      "game_id": "401858225",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-17T23:30:00Z",
+      "line": 51.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "f5f309d98f9ae5ace42d967b",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "draftkings",
+      "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_structural",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
       "decimal_odds": 1.92,
       "game_id": "401856812",
       "grade_availability": "not_yet_graded",
@@ -2859,6 +2999,31 @@
       "recorded_at": "2026-09-13T14:27:57Z",
       "result": "pending",
       "side": "under",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "draftkings",
+      "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_structural",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.95,
+      "game_id": "401860889",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-19T16:00:00Z",
+      "line": 63.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "7dc27c83b8e95a54ebc2e07c",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
       "source": "provider_full_state_receipt",
       "sportsbook": "draftkings",
       "week": "2026-09-14"
@@ -2893,6 +3058,31 @@
       "candidate": "opponent_adjusted_structural",
       "closing_proxy": null,
       "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.962,
+      "game_id": "401858231",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-19T20:00:00Z",
+      "line": 51.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "d2fd0700312e5910d44a86f4",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "fanduel",
+      "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_structural",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
       "decimal_odds": 1.833,
       "game_id": "401856802",
       "grade_availability": "not_yet_graded",
@@ -2912,9 +3102,59 @@
       "source": "provider_full_state_receipt",
       "sportsbook": "fanduel",
       "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_structural",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.95,
+      "game_id": "401858453",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-19T23:30:00Z",
+      "line": 52.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "9473d8a424ee48900c8baa08",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "draftkings",
+      "week": "2026-09-14"
+    },
+    {
+      "actual_total": null,
+      "candidate": "opponent_adjusted_structural",
+      "closing_proxy": null,
+      "closing_proxy_missing_reason": "not_observed",
+      "decimal_odds": 1.98,
+      "game_id": "401864507",
+      "grade_availability": "not_yet_graded",
+      "kickoff": "2026-09-20T02:30:00Z",
+      "line": 52.5,
+      "model_version": "totals-v4-20260908",
+      "outcome_received_at": null,
+      "outcome_timing_audited": true,
+      "position_id": "d145f1b92eb5948290db259b",
+      "profit_units": null,
+      "provenance_flags": [
+        "original_receipt_path_not_in_ledger"
+      ],
+      "recorded_at": "2026-09-14T16:25:06Z",
+      "result": "pending",
+      "side": "over",
+      "source": "provider_full_state_receipt",
+      "sportsbook": "draftkings",
+      "week": "2026-09-14"
     }
   ],
-  "evaluation_cutoff": "2026-09-13T14:27:59.190642Z",
+  "evaluation_cutoff": "2026-09-14T16:25:08.410349Z",
   "excluded_positions": [],
   "exclusion_reason_counts": {},
   "formal_at": "2027-02-08T12:00:00Z",
@@ -2938,8 +3178,8 @@
   "publication": {
     "final_archive_url": null,
     "frozen": false,
-    "input_sha256": "e647d97b5fde2a9071565a440f4d3f3338ceaec3e5107299f1ed09c251c985b4",
-    "published_at": "2026-09-13T14:27:59.190642+00:00"
+    "input_sha256": "dd98c545fa30ad0948ac25aa43c789bc7eb8196230d175ee041f4ba7656066fb",
+    "published_at": "2026-09-14T16:25:08.410349+00:00"
   },
   "schema_version": "four-policy-prospective-evaluation-v1",
   "stage": "interim_descriptive"

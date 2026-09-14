@@ -461,7 +461,7 @@
     "model_version": "totals-v4-20260908",
     "candidate": "market_price_reference",
     "games": 86,
-    "pending": 46,
+    "pending": 73,
     "voids": 0,
     "mae": 11.180150843592015,
     "rmse": 14.060629281280896,
@@ -469,8 +469,8 @@
     "log_loss": 0.69334914815455,
     "probability_scoring_games": 86,
     "pushes": 0,
-    "forecast_entries": 132,
-    "abstentions": 131,
+    "forecast_entries": 159,
+    "abstentions": 158,
     "calibration_bins": [
       {
         "lower": 0.4,
@@ -493,7 +493,7 @@
     "model_version": "totals-v4-20260908",
     "candidate": "opponent_adjusted_ridge",
     "games": 86,
-    "pending": 46,
+    "pending": 73,
     "voids": 0,
     "mae": 11.147806204681432,
     "rmse": 13.96251164289491,
@@ -501,8 +501,8 @@
     "log_loss": 0.6894938333396953,
     "probability_scoring_games": 86,
     "pushes": 0,
-    "forecast_entries": 132,
-    "abstentions": 129,
+    "forecast_entries": 159,
+    "abstentions": 155,
     "calibration_bins": [
       {
         "lower": 0.4,
@@ -525,7 +525,7 @@
     "model_version": "totals-v4-20260908",
     "candidate": "opponent_adjusted_structural",
     "games": 86,
-    "pending": 46,
+    "pending": 73,
     "voids": 0,
     "mae": 11.204673152593802,
     "rmse": 14.114729107626918,
@@ -533,8 +533,8 @@
     "log_loss": 0.6965194541493893,
     "probability_scoring_games": 86,
     "pushes": 0,
-    "forecast_entries": 132,
-    "abstentions": 127,
+    "forecast_entries": 159,
+    "abstentions": 153,
     "calibration_bins": [
       {
         "lower": 0.4,
