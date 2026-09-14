@@ -1,6 +1,6 @@
 {
   "schema_version": "weather-revision-status-v1",
-  "generated_at": "2026-09-14T06:26:10.934478Z",
+  "generated_at": "2026-09-14T14:12:07.533532Z",
   "phase": "active",
   "status": "attention",
   "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
@@ -15,36 +15,36 @@
   "collection_only": true,
   "performance_evaluated": false,
   "active_policy_changed": false,
-  "archived_runs": 24,
+  "archived_runs": 25,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 24,
+  "partial_or_failed_runs": 25,
   "latest": {
-    "capture_started_at": "2026-09-14T06:24:50.113312Z",
-    "capture_completed_at": "2026-09-14T06:26:04.534288Z",
-    "requested_run": "2026-09-14T00:00:00Z",
+    "capture_started_at": "2026-09-14T14:11:21.385227Z",
+    "capture_completed_at": "2026-09-14T14:12:01.141448Z",
+    "requested_run": "2026-09-14T06:00:00Z",
     "status": "partial",
     "counts": {
       "cohort_games": 75,
-      "weather_available_games": 40,
+      "weather_available_games": 0,
       "two_book_games": 51,
-      "paired_games": 33,
-      "failed_requests": 5,
-      "paired_two_book_games": 27,
-      "total_requests": 245
+      "paired_games": 0,
+      "failed_requests": 45,
+      "paired_two_book_games": 0,
+      "total_requests": 205
     },
-    "manifest_sha256": "c47d6c8dd5cf309dad0d5d897fa6075760c1138adcd74c88954488a76b85454a"
+    "manifest_sha256": "bfae77684cf4425940d835b27425b353bc1eb790c60f9a159070bfe06c5f0f70"
   },
   "game_observation_totals": {
-    "cohort_games": 1991,
+    "cohort_games": 2066,
     "weather_available_games": 1198,
-    "two_book_games": 1375,
+    "two_book_games": 1426,
     "paired_games": 1023,
-    "failed_requests": 205,
-    "total_requests": 6894,
+    "failed_requests": 250,
+    "total_requests": 7099,
     "paired_two_book_games": 856
   },
   "last_workflow_attempt": {
-    "started_at": "2026-09-14T06:24:18.244727Z",
+    "started_at": "2026-09-14T14:10:52.934881Z",
     "outcome": "failure",
     "matching_manifest": true
   },
