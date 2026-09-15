@@ -1,0 +1,31 @@
+{
+  "archive_writer_version": "revision-archive-v2-portable-gzip",
+  "body_path": "data/runtime/availability/bodies/ed4488412d133bc62839f3f89ccd0474997470691eea108b733c3577b78e2b78.body.gz",
+  "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+  "body_sha256": "ed4488412d133bc62839f3f89ccd0474997470691eea108b733c3577b78e2b78",
+  "body_size_bytes": 5437,
+  "body_withheld": false,
+  "purpose": "fresh_totals_after_acc_availability",
+  "receipt_path": "data/runtime/availability/receipts/8209170294dac4cc995f77d319cd1e11cebffc95ef3cec259700e0fb7f3a5210.json",
+  "received_at": "2026-09-15T06:12:08.323376Z",
+  "request": {
+    "params": {
+      "bookmakers": "DraftKings,FanDuel",
+      "eventIds": "70898592,70918792,70900818,70900816"
+    },
+    "url": "https://api.odds-api.io/v3/odds/multi"
+  },
+  "requested_at": "2026-09-15T06:12:08.187420Z",
+  "response_headers": {
+    "content_encoding": "gzip",
+    "content_length": "1252",
+    "content_type": "application/json; charset=utf-8",
+    "date": "Tue, 15 Sep 2026 06:12:08 GMT",
+    "x_ratelimit_limit": "100",
+    "x_ratelimit_remaining": "98",
+    "x_ratelimit_reset": "2026-09-15T07:12:08Z"
+  },
+  "schema_version": "raw-http-receipt-v1",
+  "status_code": 200,
+  "transport_error": null
+}

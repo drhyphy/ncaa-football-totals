@@ -1,0 +1,51 @@
+{
+  "archive_writer_version": "acc-availability-archive-v1",
+  "body_complete": true,
+  "body_hash_scope": "complete_response",
+  "body_path": "data/runtime/availability/bodies/fdad4a5ccb818b5afe85799ff730430b4bf82f6e52437429ff03dbeb1626d034.body.gz",
+  "body_representation": "requests.iter_content bytes after HTTP transfer/content decoding; original unparsed representation",
+  "body_sha256": "fdad4a5ccb818b5afe85799ff730430b4bf82f6e52437429ff03dbeb1626d034",
+  "body_size_bytes": 5467255,
+  "capture_error": null,
+  "cookies_sent": false,
+  "credentials_sent": false,
+  "elapsed_seconds": 0.5293247449999967,
+  "environment_settings_used": false,
+  "http_error": null,
+  "max_body_bytes": 67108864,
+  "observed_decoded_bytes": 5467255,
+  "parse_error": null,
+  "receipt_path": "data/runtime/availability/receipts/ea8c8c1a5921d2438b40156f340d38c72fe28414e74cc304c220e06c095cf5d6.json",
+  "received_at": "2026-09-15T06:12:07.619621Z",
+  "redirects_allowed": false,
+  "request": {
+    "body_sha256": "fe17ca4c1f96e9c2dcf35c4f3b8cfbb84bddf15a9d1ca9ac3776654607c602ee",
+    "body_utf8": "{\"conference\":\"ACC\",\"organization\":\"ACC\",\"sport\":\"Football\"}",
+    "headers": {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "User-Agent": "NCAAF-public-availability-research/1.0"
+    },
+    "json": {
+      "conference": "ACC",
+      "organization": "ACC",
+      "sport": "Football"
+    },
+    "method": "POST",
+    "url": "https://app.hdintelligence.com/api/get-publish-public"
+  },
+  "request_id": "91bcea87713446688dd9155c4a411553",
+  "requested_at": "2026-09-15T06:12:07.090295Z",
+  "response_headers": {
+    "cache_control": "public, max-age=60, s-maxage=60, stale-while-revalidate=60, stale-if-error=300",
+    "content_length": "5467255",
+    "content_type": "application/json",
+    "date": "Tue, 15 Sep 2026 06:12:07 GMT"
+  },
+  "retries": 0,
+  "schema_version": "availability-http-receipt-v1",
+  "status_code": 200,
+  "timeout_seconds": 30.0,
+  "timeout_semantics": "Connect/read inactivity timeout plus elapsed budget checked after headers and between decoded chunks; not a strict total wall-clock guarantee.",
+  "transport_error": null
+}
