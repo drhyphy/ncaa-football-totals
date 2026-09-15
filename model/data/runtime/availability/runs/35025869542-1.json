@@ -1,0 +1,651 @@
+{
+  "amendment": "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md",
+  "capture_completed_at": "2026-09-15T21:29:52.126059Z",
+  "capture_started_at": "2026-09-15T21:29:49.680418+00:00",
+  "cohort_path": "data/runtime/availability/cohorts/35025869542-1.json",
+  "cohort_sha256": "bc3bc1639f72facab025da67e6872caa1caa3d3ddfbe1cc19403cf2039db16bd",
+  "collector_version": "acc-availability-collector-v2",
+  "counts": {
+    "context_verified_games": 4,
+    "matched_games": 4,
+    "nonpending_unverified_reports": 1,
+    "paired_games": 4,
+    "paired_two_book_games": 4,
+    "pending_reports": 4,
+    "source_reports": 5,
+    "total_requests": 10
+  },
+  "current_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+  "execution_revision": 2,
+  "failures": [],
+  "git_commit": "b9f25980a208d07be88c9018c7a3af9f354cc261",
+  "inventory_exclusions": [],
+  "models_fitted": 0,
+  "official_games": 75,
+  "protocol": "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md",
+  "quota_policy": "bounded_calls_when_headers_missing",
+  "quote_diagnostics": [],
+  "receipts": [
+    "data/runtime/availability/receipts/300cef9b8fef370029c0594dd004c8d06a1472391c3e9be28a0556f6c338a2d8.json",
+    "data/runtime/availability/receipts/d075d6c4971eecfa0d463a0d23f56534ddb65a2981518923883218c5f5e69b34.json",
+    "data/runtime/availability/receipts/443a0d068612317edd7fcde2e8ab0633ce8c2b1c67debbfb00e6e64e63c464f9.json",
+    "data/runtime/availability/receipts/770b05790193c5438098680bd6dbd4db2aea49c838d8eabba365453203c071e9.json",
+    "data/runtime/availability/receipts/de845b4bf92dc43b63a3bb39c429156f074e950545f5c5a3c9be056d4028cd9a.json",
+    "data/runtime/availability/receipts/9ca678ab0f2a617ca85e530b0c469c0a1dc8a9dc98abd7b1f04c0386967711f4.json",
+    "data/runtime/availability/receipts/6761a50702eeb52c79db3adc7faa721fc87f251ab18c75465d389f33f669557a.json",
+    "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+    "data/runtime/availability/receipts/8db53b1966f9803b1ba764b6d4802e9db097ca0e891231e75e05eef3729232fd.json",
+    "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json"
+  ],
+  "reports": [
+    {
+      "clock_interpretation": "Literal ET interpreted as America/New_York for matchup reconciliation only",
+      "completion_verified": false,
+      "context_id": "917f554114f3c48ca8ef54b3d046aa8f6003bd951ab8ed1d60ae10821941d6f6",
+      "failure": null,
+      "game_id": "401858225",
+      "matching_names": {
+        "away": {
+          "abbreviation": "SYR",
+          "displayName": "Syracuse Orange",
+          "location": "Syracuse",
+          "shortDisplayName": "Syracuse"
+        },
+        "home": {
+          "abbreviation": "PITT",
+          "displayName": "Pittsburgh Panthers",
+          "location": "Pittsburgh",
+          "shortDisplayName": "Pitt"
+        }
+      },
+      "report_type": "Initial",
+      "source_date": "2026-09-17",
+      "source_key": "2647",
+      "source_posted_time": "20:00:00",
+      "source_publish_date": "2026-09-14",
+      "source_row_items": [
+        111,
+        113
+      ],
+      "source_teams": [
+        "Syracuse",
+        "Pittsburgh"
+      ],
+      "source_time": "19:30:00",
+      "source_timezone": "ET",
+      "state": "nonpending_completion_unverified"
+    },
+    {
+      "completion_verified": false,
+      "failure": "missing_or_ambiguous_official_pair",
+      "game_id": null,
+      "report_type": "Report Pending",
+      "source_date": "2026-09-18",
+      "source_key": "2651",
+      "source_posted_time": "20:00:00",
+      "source_publish_date": "2026-09-15",
+      "source_row_items": [
+        0,
+        0
+      ],
+      "source_teams": [
+        "Miami (FL)",
+        "Wake Forest"
+      ],
+      "source_time": "19:30:00",
+      "source_timezone": "ET",
+      "state": "pending"
+    },
+    {
+      "clock_interpretation": "Literal ET interpreted as America/New_York for matchup reconciliation only",
+      "completion_verified": false,
+      "context_id": "708ed2746dce14e14e4ed66ed7d0ec584101874456572b638be6164df8d2734d",
+      "failure": null,
+      "game_id": "401858229",
+      "matching_names": {
+        "away": {
+          "abbreviation": "UNC",
+          "displayName": "North Carolina Tar Heels",
+          "location": "North Carolina",
+          "shortDisplayName": "North Carolina"
+        },
+        "home": {
+          "abbreviation": "CLEM",
+          "displayName": "Clemson Tigers",
+          "location": "Clemson",
+          "shortDisplayName": "Clemson"
+        }
+      },
+      "report_type": "Report Pending",
+      "source_date": "2026-09-19",
+      "source_key": "2686",
+      "source_posted_time": "20:00:00",
+      "source_publish_date": "2026-09-16",
+      "source_row_items": [
+        0,
+        0
+      ],
+      "source_teams": [
+        "North Carolina",
+        "Clemson"
+      ],
+      "source_time": "12:00:00",
+      "source_timezone": "ET",
+      "state": "pending"
+    },
+    {
+      "clock_interpretation": "Literal ET interpreted as America/New_York for matchup reconciliation only",
+      "completion_verified": false,
+      "context_id": "7fcb5b43ae44cc748a48e1c1daad1f6b9be976620c408e4bd00d181b6fd6d17d",
+      "failure": null,
+      "game_id": "401858230",
+      "matching_names": {
+        "away": {
+          "abbreviation": "SMU",
+          "displayName": "SMU Mustangs",
+          "location": "SMU",
+          "shortDisplayName": "SMU"
+        },
+        "home": {
+          "abbreviation": "LOU",
+          "displayName": "Louisville Cardinals",
+          "location": "Louisville",
+          "shortDisplayName": "Louisville"
+        }
+      },
+      "report_type": "Report Pending",
+      "source_date": "2026-09-19",
+      "source_key": "2712",
+      "source_posted_time": "20:00:00",
+      "source_publish_date": "2026-09-16",
+      "source_row_items": [
+        0,
+        0
+      ],
+      "source_teams": [
+        "SMU",
+        "Louisville"
+      ],
+      "source_time": "15:30:00",
+      "source_timezone": "ET",
+      "state": "pending"
+    },
+    {
+      "clock_interpretation": "Literal ET interpreted as America/New_York for matchup reconciliation only",
+      "completion_verified": false,
+      "context_id": "b3a7a1f84b828b874e877c77f37982612b477e67e3faa12e879bbf88a351a34d",
+      "failure": null,
+      "game_id": "401858231",
+      "matching_names": {
+        "away": {
+          "abbreviation": "STAN",
+          "displayName": "Stanford Cardinal",
+          "location": "Stanford",
+          "shortDisplayName": "Stanford"
+        },
+        "home": {
+          "abbreviation": "DUKE",
+          "displayName": "Duke Blue Devils",
+          "location": "Duke",
+          "shortDisplayName": "Duke"
+        }
+      },
+      "report_type": "Report Pending",
+      "source_date": "2026-09-19",
+      "source_key": "2730",
+      "source_posted_time": "20:00:00",
+      "source_publish_date": "2026-09-16",
+      "source_row_items": [
+        0,
+        0
+      ],
+      "source_teams": [
+        "Stanford",
+        "Duke"
+      ],
+      "source_time": "16:00:00",
+      "source_timezone": "ET",
+      "state": "pending"
+    }
+  ],
+  "rows": [
+    {
+      "away_id": "183",
+      "away_source_names": {
+        "abbreviation": "SYR",
+        "displayName": "Syracuse Orange",
+        "location": "Syracuse",
+        "shortDisplayName": "Syracuse"
+      },
+      "away_team": "Syracuse Orange",
+      "context_receipt": {
+        "archive_writer_version": "revision-archive-v2-portable-gzip",
+        "body_path": "data/runtime/availability/bodies/08d22ed2aa5c3044402ac10ec8b0be6161d25e6a782a5ed57d26357578dc6b86.body.gz",
+        "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+        "body_sha256": "08d22ed2aa5c3044402ac10ec8b0be6161d25e6a782a5ed57d26357578dc6b86",
+        "body_size_bytes": 95580,
+        "body_withheld": false,
+        "purpose": "official_context_after_availability",
+        "receipt_path": "data/runtime/availability/receipts/de845b4bf92dc43b63a3bb39c429156f074e950545f5c5a3c9be056d4028cd9a.json",
+        "received_at": "2026-09-15T21:29:51.501524Z",
+        "request": {
+          "params": {
+            "event": "401858225"
+          },
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+        },
+        "requested_at": "2026-09-15T21:29:51.362057Z",
+        "response_headers": {
+          "content_encoding": "gzip",
+          "content_length": "14329",
+          "content_type": "application/json;charset=UTF-8",
+          "date": "Tue, 15 Sep 2026 21:29:51 GMT"
+        },
+        "schema_version": "raw-http-receipt-v1",
+        "status_code": 200,
+        "transport_error": null
+      },
+      "context_verified": true,
+      "game_id": "401858225",
+      "home_id": "221",
+      "home_source_names": {
+        "abbreviation": "PITT",
+        "displayName": "Pittsburgh Panthers",
+        "location": "Pittsburgh",
+        "shortDisplayName": "Pitt"
+      },
+      "home_team": "Pittsburgh Panthers",
+      "inventory_neutral_site": false,
+      "inventory_venue_id": "3752",
+      "kickoff": "2026-09-17T23:30:00Z",
+      "missingness": [],
+      "pairs": [
+        {
+          "quote_id": "b46d1dd161b81221c701e3b225a0162bdddf05b9206d00668aae97ce58835b1f",
+          "quote_receipt": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "report_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+          "report_to_quote_seconds": 0.96679,
+          "sportsbook": "draftkings"
+        },
+        {
+          "quote_id": "90f8642fd16b512cd4c2f286c7755375ba632857b3882ace4369f3e4138379bd",
+          "quote_receipt": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "report_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+          "report_to_quote_seconds": 0.96679,
+          "sportsbook": "fanduel"
+        }
+      ],
+      "quotes": [
+        {
+          "body_sha256": "f55b50ded85a539bda05e6ca42ea8823061dd76a8078b5c86e5af7b6c2089aa5",
+          "game_id": "401858225",
+          "line": 51.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-15T17:31:07.378000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-15T21:29:52.123118Z",
+          "over_decimal_odds": 1.9,
+          "period": "full_game",
+          "provider_event_id": "70898592",
+          "quote_id": "b46d1dd161b81221c701e3b225a0162bdddf05b9206d00668aae97ce58835b1f",
+          "receipt_path": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "requested_at": "2026-09-15T21:29:51.926492Z",
+          "source": "odds_api_io",
+          "sportsbook": "draftkings",
+          "under_decimal_odds": 1.9
+        },
+        {
+          "body_sha256": "f55b50ded85a539bda05e6ca42ea8823061dd76a8078b5c86e5af7b6c2089aa5",
+          "game_id": "401858225",
+          "line": 51.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-15T15:51:55.957000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-15T21:29:52.123118Z",
+          "over_decimal_odds": 1.909,
+          "period": "full_game",
+          "provider_event_id": "70898592",
+          "quote_id": "90f8642fd16b512cd4c2f286c7755375ba632857b3882ace4369f3e4138379bd",
+          "receipt_path": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "requested_at": "2026-09-15T21:29:51.926492Z",
+          "source": "odds_api_io",
+          "sportsbook": "fanduel",
+          "under_decimal_odds": 1.909
+        }
+      ]
+    },
+    {
+      "away_id": "153",
+      "away_source_names": {
+        "abbreviation": "UNC",
+        "displayName": "North Carolina Tar Heels",
+        "location": "North Carolina",
+        "shortDisplayName": "North Carolina"
+      },
+      "away_team": "North Carolina Tar Heels",
+      "context_receipt": {
+        "archive_writer_version": "revision-archive-v2-portable-gzip",
+        "body_path": "data/runtime/availability/bodies/d5d44d46a8787c9a14e5acadfdaad94f1aec1d03a131bf91ce87e5742cd64b56.body.gz",
+        "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+        "body_sha256": "d5d44d46a8787c9a14e5acadfdaad94f1aec1d03a131bf91ce87e5742cd64b56",
+        "body_size_bytes": 96752,
+        "body_withheld": false,
+        "purpose": "official_context_after_availability",
+        "receipt_path": "data/runtime/availability/receipts/443a0d068612317edd7fcde2e8ab0633ce8c2b1c67debbfb00e6e64e63c464f9.json",
+        "received_at": "2026-09-15T21:29:51.417356Z",
+        "request": {
+          "params": {
+            "event": "401858229"
+          },
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+        },
+        "requested_at": "2026-09-15T21:29:51.362911Z",
+        "response_headers": {
+          "content_encoding": "gzip",
+          "content_length": "14701",
+          "content_type": "application/json;charset=UTF-8",
+          "date": "Tue, 15 Sep 2026 21:29:51 GMT"
+        },
+        "schema_version": "raw-http-receipt-v1",
+        "status_code": 200,
+        "transport_error": null
+      },
+      "context_verified": true,
+      "game_id": "401858229",
+      "home_id": "228",
+      "home_source_names": {
+        "abbreviation": "CLEM",
+        "displayName": "Clemson Tigers",
+        "location": "Clemson",
+        "shortDisplayName": "Clemson"
+      },
+      "home_team": "Clemson Tigers",
+      "inventory_neutral_site": false,
+      "inventory_venue_id": "3836",
+      "kickoff": "2026-09-19T16:00:00Z",
+      "missingness": [],
+      "pairs": [
+        {
+          "quote_id": "8b80aebd9b49afabb27d4f4038a387022ba4acddde093e23dce8de620dd53210",
+          "quote_receipt": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "report_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+          "report_to_quote_seconds": 0.96679,
+          "sportsbook": "draftkings"
+        },
+        {
+          "quote_id": "a8776399f336393badb7ef4f32485eeb76bc3dbb40df1accbc30a21eb2808614",
+          "quote_receipt": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "report_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+          "report_to_quote_seconds": 0.96679,
+          "sportsbook": "fanduel"
+        }
+      ],
+      "quotes": [
+        {
+          "body_sha256": "f55b50ded85a539bda05e6ca42ea8823061dd76a8078b5c86e5af7b6c2089aa5",
+          "game_id": "401858229",
+          "line": 43.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-15T20:23:43.848000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-15T21:29:52.123118Z",
+          "over_decimal_odds": 1.9,
+          "period": "full_game",
+          "provider_event_id": "70918792",
+          "quote_id": "8b80aebd9b49afabb27d4f4038a387022ba4acddde093e23dce8de620dd53210",
+          "receipt_path": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "requested_at": "2026-09-15T21:29:51.926492Z",
+          "source": "odds_api_io",
+          "sportsbook": "draftkings",
+          "under_decimal_odds": 1.9
+        },
+        {
+          "body_sha256": "f55b50ded85a539bda05e6ca42ea8823061dd76a8078b5c86e5af7b6c2089aa5",
+          "game_id": "401858229",
+          "line": 43.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-15T19:13:15.256000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-15T21:29:52.123118Z",
+          "over_decimal_odds": 1.893,
+          "period": "full_game",
+          "provider_event_id": "70918792",
+          "quote_id": "a8776399f336393badb7ef4f32485eeb76bc3dbb40df1accbc30a21eb2808614",
+          "receipt_path": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "requested_at": "2026-09-15T21:29:51.926492Z",
+          "source": "odds_api_io",
+          "sportsbook": "fanduel",
+          "under_decimal_odds": 1.926
+        }
+      ]
+    },
+    {
+      "away_id": "2567",
+      "away_source_names": {
+        "abbreviation": "SMU",
+        "displayName": "SMU Mustangs",
+        "location": "SMU",
+        "shortDisplayName": "SMU"
+      },
+      "away_team": "SMU Mustangs",
+      "context_receipt": {
+        "archive_writer_version": "revision-archive-v2-portable-gzip",
+        "body_path": "data/runtime/availability/bodies/b80f0f177d66a228332e2ce54011b490f584bcfb4b836f68a86314d3a83c5298.body.gz",
+        "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+        "body_sha256": "b80f0f177d66a228332e2ce54011b490f584bcfb4b836f68a86314d3a83c5298",
+        "body_size_bytes": 97041,
+        "body_withheld": false,
+        "purpose": "official_context_after_availability",
+        "receipt_path": "data/runtime/availability/receipts/770b05790193c5438098680bd6dbd4db2aea49c838d8eabba365453203c071e9.json",
+        "received_at": "2026-09-15T21:29:51.431388Z",
+        "request": {
+          "params": {
+            "event": "401858230"
+          },
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+        },
+        "requested_at": "2026-09-15T21:29:51.363451Z",
+        "response_headers": {
+          "content_encoding": "gzip",
+          "content_length": "14563",
+          "content_type": "application/json;charset=UTF-8",
+          "date": "Tue, 15 Sep 2026 21:29:51 GMT"
+        },
+        "schema_version": "raw-http-receipt-v1",
+        "status_code": 200,
+        "transport_error": null
+      },
+      "context_verified": true,
+      "game_id": "401858230",
+      "home_id": "97",
+      "home_source_names": {
+        "abbreviation": "LOU",
+        "displayName": "Louisville Cardinals",
+        "location": "Louisville",
+        "shortDisplayName": "Louisville"
+      },
+      "home_team": "Louisville Cardinals",
+      "inventory_neutral_site": false,
+      "inventory_venue_id": "3873",
+      "kickoff": "2026-09-19T19:30:00Z",
+      "missingness": [],
+      "pairs": [
+        {
+          "quote_id": "17c5f54505bdcd030ea321c9075374b12557432c8941b9d40314fdcfdea3efa2",
+          "quote_receipt": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "report_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+          "report_to_quote_seconds": 0.96679,
+          "sportsbook": "draftkings"
+        },
+        {
+          "quote_id": "b43e076f2d3b9b923589efe09bfe4f498010014c4f5cf71effd4a84f04b0c705",
+          "quote_receipt": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "report_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+          "report_to_quote_seconds": 0.96679,
+          "sportsbook": "fanduel"
+        }
+      ],
+      "quotes": [
+        {
+          "body_sha256": "f55b50ded85a539bda05e6ca42ea8823061dd76a8078b5c86e5af7b6c2089aa5",
+          "game_id": "401858230",
+          "line": 59.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-15T18:46:16.492000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-15T21:29:52.123118Z",
+          "over_decimal_odds": 1.98,
+          "period": "full_game",
+          "provider_event_id": "70900818",
+          "quote_id": "17c5f54505bdcd030ea321c9075374b12557432c8941b9d40314fdcfdea3efa2",
+          "receipt_path": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "requested_at": "2026-09-15T21:29:51.926492Z",
+          "source": "odds_api_io",
+          "sportsbook": "draftkings",
+          "under_decimal_odds": 1.84
+        },
+        {
+          "body_sha256": "f55b50ded85a539bda05e6ca42ea8823061dd76a8078b5c86e5af7b6c2089aa5",
+          "game_id": "401858230",
+          "line": 59.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-15T20:22:41.543000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-15T21:29:52.123118Z",
+          "over_decimal_odds": 1.952,
+          "period": "full_game",
+          "provider_event_id": "70900818",
+          "quote_id": "b43e076f2d3b9b923589efe09bfe4f498010014c4f5cf71effd4a84f04b0c705",
+          "receipt_path": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "requested_at": "2026-09-15T21:29:51.926492Z",
+          "source": "odds_api_io",
+          "sportsbook": "fanduel",
+          "under_decimal_odds": 1.87
+        }
+      ]
+    },
+    {
+      "away_id": "24",
+      "away_source_names": {
+        "abbreviation": "STAN",
+        "displayName": "Stanford Cardinal",
+        "location": "Stanford",
+        "shortDisplayName": "Stanford"
+      },
+      "away_team": "Stanford Cardinal",
+      "context_receipt": {
+        "archive_writer_version": "revision-archive-v2-portable-gzip",
+        "body_path": "data/runtime/availability/bodies/b9d4487a1d13ab648bfe3b494511568593b5a6137978f8ba2634417b5eabf68c.body.gz",
+        "body_representation": "requests.content after HTTP transfer/content decoding; original unparsed representation bytes",
+        "body_sha256": "b9d4487a1d13ab648bfe3b494511568593b5a6137978f8ba2634417b5eabf68c",
+        "body_size_bytes": 95631,
+        "body_withheld": false,
+        "purpose": "official_context_after_availability",
+        "receipt_path": "data/runtime/availability/receipts/d075d6c4971eecfa0d463a0d23f56534ddb65a2981518923883218c5f5e69b34.json",
+        "received_at": "2026-09-15T21:29:51.413800Z",
+        "request": {
+          "params": {
+            "event": "401858231"
+          },
+          "url": "https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary"
+        },
+        "requested_at": "2026-09-15T21:29:51.364099Z",
+        "response_headers": {
+          "content_encoding": "gzip",
+          "content_length": "14345",
+          "content_type": "application/json;charset=UTF-8",
+          "date": "Tue, 15 Sep 2026 21:29:51 GMT"
+        },
+        "schema_version": "raw-http-receipt-v1",
+        "status_code": 200,
+        "transport_error": null
+      },
+      "context_verified": true,
+      "game_id": "401858231",
+      "home_id": "150",
+      "home_source_names": {
+        "abbreviation": "DUKE",
+        "displayName": "Duke Blue Devils",
+        "location": "Duke",
+        "shortDisplayName": "Duke"
+      },
+      "home_team": "Duke Blue Devils",
+      "inventory_neutral_site": false,
+      "inventory_venue_id": "3982",
+      "kickoff": "2026-09-19T20:00:00Z",
+      "missingness": [],
+      "pairs": [
+        {
+          "quote_id": "69a5082ec0fd7717c4c4d021a06fe076506b5c98566a94230173b5629d6f72a2",
+          "quote_receipt": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "report_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+          "report_to_quote_seconds": 0.96679,
+          "sportsbook": "draftkings"
+        },
+        {
+          "quote_id": "cabb048fc64f24d2f202975c68709d44d621e234f0daf51f7ce86872d8287cfc",
+          "quote_receipt": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "report_receipt": "data/runtime/availability/receipts/1ea3380c62469dfce6be39a7071f9c881c316a0c8a249341639c11a5f7560628.json",
+          "report_to_quote_seconds": 0.96679,
+          "sportsbook": "fanduel"
+        }
+      ],
+      "quotes": [
+        {
+          "body_sha256": "f55b50ded85a539bda05e6ca42ea8823061dd76a8078b5c86e5af7b6c2089aa5",
+          "game_id": "401858231",
+          "line": 50.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-15T14:23:49.921000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-15T21:29:52.123118Z",
+          "over_decimal_odds": 1.86,
+          "period": "full_game",
+          "provider_event_id": "70900816",
+          "quote_id": "69a5082ec0fd7717c4c4d021a06fe076506b5c98566a94230173b5629d6f72a2",
+          "receipt_path": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "requested_at": "2026-09-15T21:29:51.926492Z",
+          "source": "odds_api_io",
+          "sportsbook": "draftkings",
+          "under_decimal_odds": 1.95
+        },
+        {
+          "body_sha256": "f55b50ded85a539bda05e6ca42ea8823061dd76a8078b5c86e5af7b6c2089aa5",
+          "game_id": "401858231",
+          "line": 51.5,
+          "market": "Totals",
+          "market_updated_at": "2026-09-13T21:39:06.783000Z",
+          "observation_kind": "provider_full_state",
+          "observed_at": "2026-09-15T21:29:52.123118Z",
+          "over_decimal_odds": 1.962,
+          "period": "full_game",
+          "provider_event_id": "70900816",
+          "quote_id": "cabb048fc64f24d2f202975c68709d44d621e234f0daf51f7ce86872d8287cfc",
+          "receipt_path": "data/runtime/availability/receipts/0056634dc3bdaf437a2e8e47e56929dca49f28934c0fa65aa4b21db1e6de4ac5.json",
+          "requested_at": "2026-09-15T21:29:51.926492Z",
+          "source": "odds_api_io",
+          "sportsbook": "fanduel",
+          "under_decimal_odds": 1.847
+        }
+      ]
+    }
+  ],
+  "run_attempt": "1",
+  "run_id": "35025869542",
+  "schema_version": "acc-availability-collector-v1",
+  "source_hashes": {
+    "ncaaf_model/availability_archive.py": "d213bc367c691f5b632be68ace61521d213fb2d71cf0d4e7408b6132dbd37f1f",
+    "ncaaf_model/availability_collector.py": "0b5e1f172e379e80ff7fa3daf357d6d3f56a97b99df7e2d1a2fbbf97ff2a98e5",
+    "ncaaf_model/revision_archive.py": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0",
+    "ncaaf_model/teams.py": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+    "ncaaf_model/weather_revision_collector.py": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360",
+    "reports/ACC_AVAILABILITY_CAPTURE_PROTOCOL.md": "0b7c409daedc78bfabacebb738db8f74f3e8643d27125ff9276d982e06c9b989",
+    "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+  },
+  "source_status": "captured",
+  "status": "partial",
+  "trigger": "schedule",
+  "verified_completed_reports": 0,
+  "workflow_commit": "b9f25980a208d07be88c9018c7a3af9f354cc261",
+  "workflow_sha256": "32f41f32f46f4bdb516ceab00db4610e5d1425fd0a94913339244fe8ea86f4ee"
+}
