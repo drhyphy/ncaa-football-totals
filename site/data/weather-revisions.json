@@ -1,6 +1,6 @@
 {
   "schema_version": "weather-revision-status-v1",
-  "generated_at": "2026-09-15T12:45:00.024063Z",
+  "generated_at": "2026-09-15T17:42:36.778166Z",
   "phase": "active",
   "status": "attention",
   "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
@@ -15,36 +15,36 @@
   "collection_only": true,
   "performance_evaluated": false,
   "active_policy_changed": false,
-  "archived_runs": 28,
+  "archived_runs": 29,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 28,
+  "partial_or_failed_runs": 29,
   "latest": {
-    "capture_started_at": "2026-09-15T12:44:06.238642Z",
-    "capture_completed_at": "2026-09-15T12:44:55.800355Z",
+    "capture_started_at": "2026-09-15T17:42:17.298723Z",
+    "capture_completed_at": "2026-09-15T17:42:31.186329Z",
     "requested_run": "2026-09-15T06:00:00Z",
     "status": "partial",
     "counts": {
       "cohort_games": 75,
-      "weather_available_games": 44,
-      "two_book_games": 51,
-      "paired_games": 41,
-      "failed_requests": 1,
-      "paired_two_book_games": 29,
-      "total_requests": 249
+      "weather_available_games": 45,
+      "two_book_games": 66,
+      "paired_games": 42,
+      "failed_requests": 0,
+      "paired_two_book_games": 41,
+      "total_requests": 250
     },
-    "manifest_sha256": "b06df177a3427b8c4582dab3a1d2eb6ed73f4abd48d6b35ccc327e298e84ad62"
+    "manifest_sha256": "a02d2ecb7e4d8cce2d18555ce7bf6364d8160f8eb055615567b3c56317917343"
   },
   "game_observation_totals": {
-    "cohort_games": 2291,
-    "weather_available_games": 1284,
-    "two_book_games": 1579,
-    "paired_games": 1103,
+    "cohort_games": 2366,
+    "weather_available_games": 1329,
+    "two_book_games": 1645,
+    "paired_games": 1145,
     "failed_requests": 299,
-    "total_requests": 7800,
-    "paired_two_book_games": 913
+    "total_requests": 8050,
+    "paired_two_book_games": 954
   },
   "last_workflow_attempt": {
-    "started_at": "2026-09-15T12:43:32.454920Z",
+    "started_at": "2026-09-15T17:41:44.919103Z",
     "outcome": "failure",
     "matching_manifest": true
   },
