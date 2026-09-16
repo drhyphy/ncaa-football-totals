@@ -1,9 +1,9 @@
 {
   "schema_version": "weather-revision-status-v1",
-  "generated_at": "2026-09-15T22:18:35.456459Z",
-  "phase": "active",
-  "status": "attention",
-  "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
+  "generated_at": "2026-09-16T06:07:08.486687Z",
+  "phase": "ended",
+  "status": "ended",
+  "message": "The seven-day pilot window has ended. Automatic collection is stopped; archived inputs remain available for a separately specified future study.",
   "pilot_start": "2026-09-09T03:00:00Z",
   "pilot_end": "2026-09-16T03:00:00Z",
   "schedule_utc": [
@@ -43,11 +43,7 @@
     "total_requests": 8051,
     "paired_two_book_games": 954
   },
-  "last_workflow_attempt": {
-    "started_at": "2026-09-15T22:18:00.980463Z",
-    "outcome": "failure",
-    "matching_manifest": true
-  },
+  "last_workflow_attempt": null,
   "counting_note": "Totals count repeated game observations across collection runs, not distinct games or bets.",
   "pairing_note": "Paired games have weather and at least one same-book Over/Under quote pair. The two-book count independently counts games with both books; paired_two_book_games is their weather intersection when supplied.",
   "timing_note": "Actual response receipt times are retained. Requested initialization and source contracts do not independently certify original model vintage or pre-receipt availability.",
