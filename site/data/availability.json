@@ -1,6 +1,6 @@
 {
   "schema_version": "acc-availability-status-v1",
-  "generated_at": "2026-09-15T23:45:01.596991Z",
+  "generated_at": "2026-09-16T01:46:14.424002Z",
   "phase": "active",
   "status": "attention",
   "message": "Collection needs attention. Available original receipts and failures are retained.",
@@ -34,22 +34,22 @@
     ],
     "additional": "06:17"
   },
-  "nominal_slots_elapsed": 230,
+  "nominal_slots_elapsed": 234,
   "first_slot": "2026-09-09T10:17:00Z",
   "last_slot": "2026-09-16T06:47:00Z",
-  "archived_runs": 48,
-  "archived_scheduled_attempts": 45,
+  "archived_runs": 49,
+  "archived_scheduled_attempts": 46,
   "archived_manual_attempts": 3,
   "outside_window_attempts": 0,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 20,
+  "partial_or_failed_runs": 21,
   "latest": {
-    "run_id": "35037003415",
+    "run_id": "35045345697",
     "run_attempt": "1",
     "trigger": "schedule",
     "status": "failed",
-    "capture_started_at": "2026-09-15T23:45:01.269746Z",
-    "capture_completed_at": "2026-09-15T23:45:01.477235Z",
+    "capture_started_at": "2026-09-16T01:46:14.156458Z",
+    "capture_completed_at": "2026-09-16T01:46:14.296732Z",
     "counts": {
       "source_reports": 0,
       "pending_reports": 0,
@@ -65,7 +65,7 @@
     "execution_revision": 2,
     "quota_policy": "bounded_calls_when_headers_missing",
     "amendment": "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md",
-    "manifest_sha256": "794e8023b0a8e27b7ff10bcb88f1bfcd662e289da9cc173c0fda9fe3d7f20ac6",
+    "manifest_sha256": "48e9fe1730e44b3f0391eceade634495b1cfa17fd780dafe170ec67aaea3349c",
     "references_hash_verified": true
   },
   "observation_totals": {
@@ -76,8 +76,8 @@
     "context_verified_games": 63,
     "paired_games": 62,
     "paired_two_book_games": 62,
-    "total_requests": 312,
-    "failed_requests": 1
+    "total_requests": 313,
+    "failed_requests": 2
   },
   "verified_completed_reports": 0,
   "models_fitted": 0,
@@ -86,7 +86,7 @@
   "active_policy_changed": false,
   "edge_established": false,
   "last_workflow_attempt": {
-    "started_at": "2026-09-15T23:44:36.063240Z",
+    "started_at": "2026-09-16T01:45:49.448263Z",
     "outcome": "failure",
     "matching_manifest": true
   },
