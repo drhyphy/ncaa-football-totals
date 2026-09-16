@@ -2,13 +2,14 @@
   "active_policy_changed": false,
   "archived_run_enumeration_complete": true,
   "collection_profiles": {
-    "pilot": 2
+    "pilot": 30,
+    "season": 1
   },
   "counts": {
-    "adjacent_six_hour_initialization_game_pairs": 0,
-    "archived_runs": 2,
-    "designated_games": 0,
-    "distinct_requested_initializations": 1,
+    "adjacent_six_hour_initialization_game_pairs": 512,
+    "archived_runs": 31,
+    "designated_games": 86,
+    "distinct_requested_initializations": 23,
     "independently_audited_input_eligible": 0,
     "independently_audited_runs": 2,
     "manual_runs": 2,
@@ -17,19 +18,1405 @@
     "movement_targets_inspected": 0,
     "outcomes_inspected": 0,
     "probability_input_eligible": 0,
-    "scheduled_runs": 0,
+    "scheduled_runs": 29,
     "source_receipt_verified_input_eligible": 0,
     "unknown_trigger_runs": 0,
-    "verified_runs": 2
+    "verified_runs": 29
   },
-  "decisions": [],
+  "decisions": [
+    {
+      "capture_started_at": "2026-09-09T12:22:42.601240Z",
+      "exclusions": [
+        "preceding_scheduled_capture_unavailable"
+      ],
+      "game_id": "401858213",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-11T00:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": null,
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34350599903",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T06:03:34.549105Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858215",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-11T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34408537286",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34443494834",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T06:03:34.549105Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858220",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-11T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34408537286",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34443494834",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T06:03:34.549105Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858222",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-11T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34408537286",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34443494834",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T06:03:34.549105Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858214",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-11T23:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34408537286",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34443494834",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T06:03:34.549105Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856678",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T00:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34408537286",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34443494834",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401856679",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401856683",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401856781",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401856782",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401858218",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401858221",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401858224",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401858439",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401858442",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401862702",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401864571",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401866416",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401856673",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T16:45:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401856791",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T17:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401866415",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T17:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "exclusions": [
+        "initializations_not_exactly_six_hours_apart"
+      ],
+      "game_id": "401866417",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T17:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34475742807",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401866413",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T18:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401856674",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401856677",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401856785",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401856790",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401856810",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unconfirmed_outdoor_pregame_context"
+      ],
+      "game_id": "401858216",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401858217",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401858440",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401858444",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401858446",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401859184",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401860884",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401862708",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401866412",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401866419",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401866420",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401867929",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401862705",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T19:45:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401858223",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T20:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401864506",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T20:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401865252",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T20:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401868326",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T20:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "single_run_unavailable"
+      ],
+      "game_id": "401856684",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T20:15:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "exclusions": [
+        "unique_fanduel_main_pair_unavailable"
+      ],
+      "game_id": "401856672",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T21:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34505653794",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401860881",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T22:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401866414",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T22:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401866418",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T22:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401868187",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T22:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401866421",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T22:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856680",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856681",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856786",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856787",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858441",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401860882",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401862707",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401864503",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401864575",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401868241",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401869955",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401871045",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401871046",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858443",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:15:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858447",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:15:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856682",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856783",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856788",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858219",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401862703",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401867796",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401868008",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856671",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:45:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856676",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-12T23:45:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856789",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T00:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856784",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T00:08:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401864504",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T01:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401864505",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T01:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401864502",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T02:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401856670",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T02:15:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401860883",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T02:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401864500",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T02:30:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401858445",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T03:00:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    },
+    {
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "exclusions": [
+        "capture_gap_outside_4_8_hours"
+      ],
+      "game_id": "401864578",
+      "independently_audited_input_eligible": false,
+      "kickoff": "2026-09-13T03:59:00Z",
+      "metadata_input_eligible": false,
+      "movement_input_eligible": false,
+      "preceding_run_id": "34533475362",
+      "probability_input_eligible": false,
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "source_receipt_verified_input_eligible": false
+    }
+  ],
   "design_sha256": "7dca4108bdb7ee3ec0272c94b6f3c17418bb90cbdfcd380a6469faa4801b9928",
   "diagnostics": {
-    "adjacent_game_pair_metadata_unavailable": 40,
-    "adjacent_same_initialization_game_pairs": 46,
-    "same_initialization_changed_body_game_pairs": 46
+    "adjacent_changed_context_or_options": 1,
+    "adjacent_game_pair_metadata_unavailable": 1115,
+    "adjacent_same_initialization_game_pairs": 365,
+    "adjacent_six_hour_initialization_game_pairs": 512,
+    "same_initialization_changed_body_game_pairs": 365
   },
-  "exclusion_counts": {},
+  "exclusion_counts": {
+    "capture_gap_outside_4_8_hours": 44,
+    "initializations_not_exactly_six_hours_apart": 15,
+    "preceding_scheduled_capture_unavailable": 1,
+    "single_run_unavailable": 9,
+    "unconfirmed_outdoor_pregame_context": 1,
+    "unique_fanduel_main_pair_unavailable": 16
+  },
   "intended_scheduler_invocation_enumeration_available": false,
   "labels_extracted": false,
   "limitations": [
@@ -46,7 +1433,7 @@
   "movement_target_availability_evaluated": false,
   "no_network": true,
   "numeric_weather_fields_accessed": false,
-  "original_receipt_envelopes_and_opaque_bodies_verified": 598,
+  "original_receipt_envelopes_and_opaque_bodies_verified": 8050,
   "runs": [
     {
       "capture_completed_at": "2026-09-09T03:25:02.654702Z",
@@ -169,6 +1556,1686 @@
       "run_id": "34307520971",
       "status": "partial",
       "trigger": "workflow_dispatch"
+    },
+    {
+      "capture_completed_at": "2026-09-09T12:23:57.707367Z",
+      "capture_started_at": "2026-09-09T12:22:42.601240Z",
+      "cohort_sha256": "dc46a27b147997e0801ca2a8a3e130d1a6e5857390a861cd125557e2629dcf9a",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 7,
+        "mature_comparator_games": 0,
+        "paired_games": 50,
+        "paired_two_book_games": 31,
+        "total_requests": 300,
+        "two_book_games": 51,
+        "weather_available_games": 55
+      },
+      "git_commit": "91a74de151158f31064e4d9d3ca3d7a0e992e0f4",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "097e63ed4273b047bfd80a8ebfa1172ab251ed87a0d4bfc0063e0d5197d702b0",
+      "path": "model/data/runtime/weather_revisions/runs/34350599903-1.json",
+      "requested_run": "2026-09-09T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34350599903",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-09T17:13:37.333374Z",
+      "capture_started_at": "2026-09-09T17:11:21.464145Z",
+      "cohort_sha256": "c4f60f669481988ced2e6f78985764e7346a531b20dca6b14e05096e06ccb295",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 14,
+        "mature_comparator_games": 0,
+        "paired_games": 44,
+        "paired_two_book_games": 26,
+        "total_requests": 293,
+        "two_book_games": 51,
+        "weather_available_games": 48
+      },
+      "git_commit": "eec7f9572effc303e8a10ac4939e8266163afbb4",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "fde3d8781ea84da99b91132210c0e4da57a5614122ba0f4b1205bca6937dd183",
+      "path": "model/data/runtime/weather_revisions/runs/34381318228-1.json",
+      "requested_run": "2026-09-09T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34381318228",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-09T21:45:25.558151Z",
+      "capture_started_at": "2026-09-09T21:44:43.787417Z",
+      "cohort_sha256": "b1b0549291963e189de2871bec2ec87e55b19af69dc25f60582b168288d800f3",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 2,
+        "mature_comparator_games": 0,
+        "paired_games": 56,
+        "paired_two_book_games": 50,
+        "total_requests": 305,
+        "two_book_games": 71,
+        "weather_available_games": 60
+      },
+      "git_commit": "11757cf9ebe40ea346de0ff330c21259297ccee5",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "10cf6df3d88b06d5d51ca21e11b55699836d400e6cf44ba57b46a62f2a99f03d",
+      "path": "model/data/runtime/weather_revisions/runs/34408537286-1.json",
+      "requested_run": "2026-09-09T12:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34408537286",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-10T06:06:00.972546Z",
+      "capture_started_at": "2026-09-10T06:03:34.549105Z",
+      "cohort_sha256": "340543e381887c158fda0977354c862bb029c51aa2939e89843e61916d064fbc",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 14,
+        "mature_comparator_games": 0,
+        "paired_games": 45,
+        "paired_two_book_games": 42,
+        "total_requests": 293,
+        "two_book_games": 71,
+        "weather_available_games": 48
+      },
+      "git_commit": "2586cc3e648f7c6cbc21bd787d1ac19b69282222",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "86e5efe5a7eb46a4ab2dca6a59526ea55be9862c38f8a811463aec88ef911a91",
+      "path": "model/data/runtime/weather_revisions/runs/34443494834-1.json",
+      "requested_run": "2026-09-10T00:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34443494834",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-10T12:18:52.096324Z",
+      "capture_started_at": "2026-09-10T12:16:27.138728Z",
+      "cohort_sha256": "9e841223fe454061a976b35a8afdff3a68e15b2db40ecbc8520dbecac2b22a58",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 16,
+        "mature_comparator_games": 3,
+        "paired_games": 44,
+        "paired_two_book_games": 42,
+        "total_requests": 294,
+        "two_book_games": 71,
+        "weather_available_games": 46
+      },
+      "git_commit": "e86f6496f824160ae405a789dc6f47317fd4190d",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "e5742b8aa009fd1f7dca7faf547b97a1e06fae12f343daa1bb060d5de823dee6",
+      "path": "model/data/runtime/weather_revisions/runs/34475742807-1.json",
+      "requested_run": "2026-09-10T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34475742807",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-10T12:33:45.572248Z",
+      "capture_started_at": "2026-09-10T12:33:03.648263Z",
+      "cohort_sha256": "efd40dd500e12d9742a6fdcc5d92dee6fab6508152bf9870b6bba6dc9d36ea09",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 3,
+        "mature_comparator_games": 3,
+        "paired_games": 55,
+        "paired_two_book_games": 50,
+        "total_requests": 304,
+        "two_book_games": 71,
+        "weather_available_games": 59
+      },
+      "git_commit": "352b7db774d7ee44b3af6ab4387c97eac13c7140",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "e6d9eb2c98afabcbabab17bb8b033e47ed99068c3ea18958cac2d4f740a04611",
+      "path": "model/data/runtime/weather_revisions/runs/34408537286-2.json",
+      "requested_run": "2026-09-10T06:00:00Z",
+      "run_attempt": "2",
+      "run_id": "34408537286",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-10T12:37:40.863412Z",
+      "capture_started_at": "2026-09-10T12:35:17.069174Z",
+      "cohort_sha256": "fd9925d88e2991020bea671c5858e2c29b4ccd17b49a81fedd6c372b2954e092",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 16,
+        "mature_comparator_games": 3,
+        "paired_games": 43,
+        "paired_two_book_games": 40,
+        "total_requests": 291,
+        "two_book_games": 71,
+        "weather_available_games": 46
+      },
+      "git_commit": "e3cd644aca7aa43790d52cf20a6f2ec523082d50",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "1b637df77dc0cbb1aef85d650d8be5352774c5f3e9fcf0dc6118c4b20cb09905",
+      "path": "model/data/runtime/weather_revisions/runs/34475742807-2.json",
+      "requested_run": "2026-09-10T06:00:00Z",
+      "run_attempt": "2",
+      "run_id": "34475742807",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-10T17:04:30.538246Z",
+      "capture_started_at": "2026-09-10T17:02:13.265223Z",
+      "cohort_sha256": "741ecc8898c5cc91243b4a99e3cbc00d4f2cf89c91d20604afaae2afc738c835",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 16,
+        "mature_comparator_games": 3,
+        "paired_games": 44,
+        "paired_two_book_games": 42,
+        "total_requests": 291,
+        "two_book_games": 71,
+        "weather_available_games": 46
+      },
+      "git_commit": "f1bf2a145cf649e5546236dc77411b71d3ae0001",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "eeca2f542d654b70df0cde5009794206ad5ec2dc353f9c95e81385af9c933956",
+      "path": "model/data/runtime/weather_revisions/runs/34505653794-1.json",
+      "requested_run": "2026-09-10T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34505653794",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-10T21:42:19.977583Z",
+      "capture_started_at": "2026-09-10T21:41:06.485426Z",
+      "cohort_sha256": "548590e78334a14fe4fe207eba4fe079e8a60e109532ccf7cbfaa61ae7fbc135",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 8,
+        "mature_comparator_games": 3,
+        "paired_games": 52,
+        "paired_two_book_games": 48,
+        "total_requests": 299,
+        "two_book_games": 71,
+        "weather_available_games": 54
+      },
+      "git_commit": "841354f8d3dc4840940a7bc3a65c3e47cf95f630",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "9615bcec8cdceb34de94d4242719305c594902e5cc45bf2fb7ef91808c5c3145",
+      "path": "model/data/runtime/weather_revisions/runs/34533475362-1.json",
+      "requested_run": "2026-09-10T12:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34533475362",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-11T06:09:52.047387Z",
+      "capture_started_at": "2026-09-11T06:05:28.821791Z",
+      "cohort_sha256": "f41fbc6c08582c0f3d035a86b36d587bb1435ef110186e10f109f43150dafc56",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 12,
+        "mature_comparator_games": 28,
+        "paired_games": 54,
+        "paired_two_book_games": 49,
+        "total_requests": 332,
+        "two_book_games": 71,
+        "weather_available_games": 56
+      },
+      "git_commit": "97de48fe0ddd149a678496abbbf92abe687af747",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "66493f6a043943d73476e654b9021444257989aaacaed14893cadc2135be7ae9",
+      "path": "model/data/runtime/weather_revisions/runs/34568441983-1.json",
+      "requested_run": "2026-09-11T00:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34568441983",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-11T12:19:36.003000Z",
+      "capture_started_at": "2026-09-11T12:15:11.393698Z",
+      "cohort_sha256": "8997dabb749f5528c31e5c04950f0c54331025d4754cd8543c4abdde0cce8da2",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 9,
+        "mature_comparator_games": 54,
+        "paired_games": 59,
+        "paired_two_book_games": 53,
+        "total_requests": 340,
+        "two_book_games": 71,
+        "weather_available_games": 62
+      },
+      "git_commit": "3585df1a6e8fbbdc4d099cff20c0bc3376e61fc5",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "1ee2489f41d20820fed5844b4a14d2f1bc877a9785b63d9b88a090ac8fad3508",
+      "path": "model/data/runtime/weather_revisions/runs/34597910272-1.json",
+      "requested_run": "2026-09-11T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34597910272",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-11T17:06:02.809131Z",
+      "capture_started_at": "2026-09-11T17:03:12.619315Z",
+      "cohort_sha256": "6b7a99d816cce08a58a4735b5fb014e6fa08c54b3363c97d94ab00d03ee58133",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 13,
+        "mature_comparator_games": 60,
+        "paired_games": 48,
+        "paired_two_book_games": 45,
+        "total_requests": 304,
+        "two_book_games": 71,
+        "weather_available_games": 51
+      },
+      "git_commit": "9ac036ccdb83045ba664a7599c3379326c8d003d",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "2115582720df8aecb8696e4a7c0341076a1615c41a9f39057a0f753c846aa827",
+      "path": "model/data/runtime/weather_revisions/runs/34625435346-1.json",
+      "requested_run": "2026-09-11T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34625435346",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-11T21:48:24.669044Z",
+      "capture_started_at": "2026-09-11T21:46:03.973972Z",
+      "cohort_sha256": "842804c73f6b71a401d75b1a9f827731f46b8029aeca6b839b960c3fd61e6201",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 86,
+        "failed_requests": 16,
+        "mature_comparator_games": 62,
+        "paired_games": 45,
+        "paired_two_book_games": 42,
+        "total_requests": 294,
+        "two_book_games": 72,
+        "weather_available_games": 46
+      },
+      "git_commit": "d9b94ed7545a5ad570cb74e57c863a850a429a14",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "c5f815b99bd666a5c924771e3b0b59f641452fdc75cd08cdb9a69e3cc3fcca0f",
+      "path": "model/data/runtime/weather_revisions/runs/34650888581-1.json",
+      "requested_run": "2026-09-11T12:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34650888581",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-12T05:56:14.940855Z",
+      "capture_started_at": "2026-09-12T05:53:54.576872Z",
+      "cohort_sha256": "f46f398e856521394529ede4b9bde9b15aab525a589c3f8c6d725b97e63f37c8",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 84,
+        "failed_requests": 13,
+        "mature_comparator_games": 59,
+        "paired_games": 45,
+        "paired_two_book_games": 43,
+        "total_requests": 286,
+        "two_book_games": 72,
+        "weather_available_games": 47
+      },
+      "git_commit": "e20f48862e71dc208d73454e87ad036a0708abcb",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "20c86a845e3ce63eb1e17cf618f7cf8e66bc6177fef7fd7b1853387378f4b7f9",
+      "path": "model/data/runtime/weather_revisions/runs/34676721790-1.json",
+      "requested_run": "2026-09-11T18:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34676721790",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-12T11:41:16.443842Z",
+      "capture_started_at": "2026-09-12T11:38:58.124535Z",
+      "cohort_sha256": "2fa0c5eec190dc8a73abb337f6a589232b2aef53631ecb0ab20b103def8fcce1",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 84,
+        "failed_requests": 15,
+        "mature_comparator_games": 59,
+        "paired_games": 43,
+        "paired_two_book_games": 41,
+        "total_requests": 284,
+        "two_book_games": 72,
+        "weather_available_games": 45
+      },
+      "git_commit": "1f83308b85d9fb14d3ab448e93678e860681c29c",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "3e83e5897a6c3b19d2824885fa8e6702b94f7b8a09b361c36a9c7fe6b370fb49",
+      "path": "model/data/runtime/weather_revisions/runs/34691571868-1.json",
+      "requested_run": "2026-09-12T00:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34691571868",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-12T16:24:03.658031Z",
+      "capture_started_at": "2026-09-12T16:22:18.664609Z",
+      "cohort_sha256": "536ae230bb10c5ce02698f4dcc820a20c7dfa321392e87011eb3f47fbf7412ad",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 81,
+        "failed_requests": 10,
+        "mature_comparator_games": 47,
+        "paired_games": 41,
+        "paired_two_book_games": 40,
+        "total_requests": 273,
+        "two_book_games": 59,
+        "weather_available_games": 46
+      },
+      "git_commit": "dbda4eb34a260feebdbab65e7a334f16167fe52c",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "2ba5adf4a762e194875221b8b8cad893c3d921738fe56de93475fe8780fd8d23",
+      "path": "model/data/runtime/weather_revisions/runs/34704985819-1.json",
+      "requested_run": "2026-09-12T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34704985819",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-12T21:29:29.301603Z",
+      "capture_started_at": "2026-09-12T21:29:16.139777Z",
+      "cohort_sha256": "a469b14c7e539a18f01cfaa7bff665bfa35bf3ce8f93444aefef9316a7373cc9",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 77,
+        "failed_requests": 0,
+        "mature_comparator_games": 29,
+        "paired_games": 29,
+        "paired_two_book_games": 26,
+        "total_requests": 268,
+        "two_book_games": 35,
+        "weather_available_games": 55
+      },
+      "git_commit": "d9224645e33ba2e5a562bf2fd7f4c5776a94d2c5",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "d422c63f7042df4456a499da856b8f150cc338b8ac6ae26dfa28d28f2a092e7e",
+      "path": "model/data/runtime/weather_revisions/runs/34720064910-1.json",
+      "requested_run": "2026-09-12T12:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34720064910",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-13T06:16:59.154188Z",
+      "capture_started_at": "2026-09-13T06:16:48.475772Z",
+      "cohort_sha256": "cd41c0e72a006b523488786af64e0363a7e31f5cdee8f59c326fb87b0f352ca2",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 0,
+        "mature_comparator_games": 0,
+        "paired_games": 9,
+        "paired_two_book_games": 6,
+        "total_requests": 250,
+        "two_book_games": 13,
+        "weather_available_games": 45
+      },
+      "git_commit": "83ec84e797d8a9ab3dd8a93ad80d0f551b10d433",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "a5cc6f7828d91fbfa10e78c6ebeb87a6ee5b069cf64098a6ec7a23b6cd888cba",
+      "path": "model/data/runtime/weather_revisions/runs/34742329055-1.json",
+      "requested_run": "2026-09-13T00:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34742329055",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-13T12:46:16.288849Z",
+      "capture_started_at": "2026-09-13T12:46:02.146176Z",
+      "cohort_sha256": "4a435549586e772775f2e9393976433f728e0335700234c47153440154420344",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 0,
+        "mature_comparator_games": 0,
+        "paired_games": 26,
+        "paired_two_book_games": 7,
+        "total_requests": 250,
+        "two_book_games": 14,
+        "weather_available_games": 45
+      },
+      "git_commit": "850d48b26beaa7bcf55d0b6aa2f5e2894d8cf241",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "ba1d8513c5af3ff3f0cef65eff683ca44c3caeddab06ecf3bad498c1a0321c25",
+      "path": "model/data/runtime/weather_revisions/runs/34757959058-1.json",
+      "requested_run": "2026-09-13T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34757959058",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-13T16:59:39.614914Z",
+      "capture_started_at": "2026-09-13T16:59:19.704809Z",
+      "cohort_sha256": "2ba97bcc350c3871fd3374ca3ba651da606682538fa0763aeb581b3cddbdaaae",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 0,
+        "mature_comparator_games": 0,
+        "paired_games": 28,
+        "paired_two_book_games": 14,
+        "total_requests": 250,
+        "two_book_games": 23,
+        "weather_available_games": 45
+      },
+      "git_commit": "56e2b2c49ec916591258b42d029e5610329cb03c",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "9390f22b7ed5ca3e43cee8b5b0471ad74b210061b845d84a195b83f50c291ca1",
+      "path": "model/data/runtime/weather_revisions/runs/34770177218-1.json",
+      "requested_run": "2026-09-13T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34770177218",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-13T21:28:35.038235Z",
+      "capture_started_at": "2026-09-13T21:28:22.856826Z",
+      "cohort_sha256": "9b81d0cb2229e54c4823d098defae1b57e5ef0bfb6ca0e62dba4e3aa437690f1",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 0,
+        "mature_comparator_games": 0,
+        "paired_games": 29,
+        "paired_two_book_games": 28,
+        "total_requests": 250,
+        "two_book_games": 50,
+        "weather_available_games": 45
+      },
+      "git_commit": "0738f90b0466bd492ea1b3b369c21c656edb2d1d",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "b48096cfec62da3d2201c91a8ccc6d1d8ac718e5cb2f019e61c074e9713ae9cd",
+      "path": "model/data/runtime/weather_revisions/runs/34783895419-1.json",
+      "requested_run": "2026-09-13T12:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34783895419",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-14T06:26:04.534288Z",
+      "capture_started_at": "2026-09-14T06:24:50.113312Z",
+      "cohort_sha256": "23747a82a5a8c9dd9547026a447ce267a418c414a4fbe7703c3a818c1ae1daa9",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 5,
+        "mature_comparator_games": 0,
+        "paired_games": 33,
+        "paired_two_book_games": 27,
+        "total_requests": 245,
+        "two_book_games": 51,
+        "weather_available_games": 40
+      },
+      "git_commit": "e07457ba1249e48911623a900c8319c202b72b77",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "c47d6c8dd5cf309dad0d5d897fa6075760c1138adcd74c88954488a76b85454a",
+      "path": "model/data/runtime/weather_revisions/runs/34813312238-1.json",
+      "requested_run": "2026-09-14T00:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34813312238",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-14T14:12:01.141448Z",
+      "capture_started_at": "2026-09-14T14:11:21.385227Z",
+      "cohort_sha256": "e5625342bc771f2531386cc7b6db803fac08a34312eda9a8582789bd2c9bb044",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 45,
+        "mature_comparator_games": 0,
+        "paired_games": 0,
+        "paired_two_book_games": 0,
+        "total_requests": 205,
+        "two_book_games": 51,
+        "weather_available_games": 0
+      },
+      "git_commit": "a3c9172ea2d15e1a491f5ce198fab9fdbb5f14d1",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "bfae77684cf4425940d835b27425b353bc1eb790c60f9a159070bfe06c5f0f70",
+      "path": "model/data/runtime/weather_revisions/runs/34853904266-1.json",
+      "requested_run": "2026-09-14T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34853904266",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-14T22:34:02.346032Z",
+      "capture_started_at": "2026-09-14T22:33:48.422647Z",
+      "cohort_sha256": "cf155297c6e3dcf31457935a2242984040709154d9cfdcd8308f2381e17f4678",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 45,
+        "mature_comparator_games": 0,
+        "paired_games": 0,
+        "paired_two_book_games": 0,
+        "total_requests": 205,
+        "two_book_games": 51,
+        "weather_available_games": 0
+      },
+      "git_commit": "122429966c69f773415eb4c5fbdb1dde41f207e2",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "3ba2ce44722087c44a9fe06c524a124c362f138f589dd2febd3b1836b9cb6430",
+      "path": "model/data/runtime/weather_revisions/runs/34904664100-1.json",
+      "requested_run": "2026-09-14T12:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34904664100",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-15T06:13:46.644060Z",
+      "capture_started_at": "2026-09-15T06:13:02.849187Z",
+      "cohort_sha256": "7eae9bf3db3546ea76e42a8445aab557f2bf100ff8f5425219ac821fd5ba83c6",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 3,
+        "mature_comparator_games": 0,
+        "paired_games": 39,
+        "paired_two_book_games": 28,
+        "total_requests": 247,
+        "two_book_games": 51,
+        "weather_available_games": 42
+      },
+      "git_commit": "70e68642367217d5b9d918321741f62c338ac486",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "cb98b34fd7197c145debbcd3c27ad45eadfe9c499cff03a9514232748cdafdb8",
+      "path": "model/data/runtime/weather_revisions/runs/34935901861-1.json",
+      "requested_run": "2026-09-15T00:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34935901861",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-15T12:44:55.800355Z",
+      "capture_started_at": "2026-09-15T12:44:06.238642Z",
+      "cohort_sha256": "b34d107465c9504a84d84df0a92913a9f89e28118ebf42b77399288894d451b7",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 1,
+        "mature_comparator_games": 0,
+        "paired_games": 41,
+        "paired_two_book_games": 29,
+        "total_requests": 249,
+        "two_book_games": 51,
+        "weather_available_games": 44
+      },
+      "git_commit": "c6c8267db8ece417aff606627e92fbc503dd1bd0",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "b06df177a3427b8c4582dab3a1d2eb6ed73f4abd48d6b35ccc327e298e84ad62",
+      "path": "model/data/runtime/weather_revisions/runs/34970528342-1.json",
+      "requested_run": "2026-09-15T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "34970528342",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-15T17:42:31.186329Z",
+      "capture_started_at": "2026-09-15T17:42:17.298723Z",
+      "cohort_sha256": "baa12175809c032c54e68cf5b9051adde53f73e3b42005708ae58692daf9e962",
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 75,
+        "failed_requests": 0,
+        "mature_comparator_games": 0,
+        "paired_games": 42,
+        "paired_two_book_games": 41,
+        "total_requests": 250,
+        "two_book_games": 66,
+        "weather_available_games": 45
+      },
+      "git_commit": "0c381bedcab3265cef5c42ea51cd969df3f3b2c1",
+      "integrity": {
+        "errors": [],
+        "independent_audits": [],
+        "independently_audited": false,
+        "source_references": {
+          "data/models/weather_venues_v1.json": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7"
+          },
+          "ncaaf_model/revision_archive.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0"
+          },
+          "ncaaf_model/teams.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f"
+          },
+          "ncaaf_model/weather_revision_collector.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360"
+          },
+          "ncaaf_model/weather_revision_weather.py": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0"
+          },
+          "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc"
+          },
+          "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": {
+            "recorded_git_blob_verified": true,
+            "recorded_sha256": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496"
+          }
+        },
+        "verified": true
+      },
+      "manifest_sha256": "a02d2ecb7e4d8cce2d18555ce7bf6364d8160f8eb055615567b3c56317917343",
+      "path": "model/data/runtime/weather_revisions/runs/35002847435-1.json",
+      "requested_run": "2026-09-15T06:00:00Z",
+      "run_attempt": "1",
+      "run_id": "35002847435",
+      "status": "partial",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-15T22:18:28.520598Z",
+      "capture_started_at": "2026-09-15T22:18:28.385876Z",
+      "cohort_sha256": null,
+      "collection_profile": "pilot",
+      "counts": {
+        "cohort_games": 0,
+        "failed_requests": 1,
+        "mature_comparator_games": 0,
+        "paired_games": 0,
+        "paired_two_book_games": 0,
+        "total_requests": 1,
+        "two_book_games": 0,
+        "weather_available_games": 0
+      },
+      "git_commit": "662bbbbb1dde35cb85411fb00ec3143b95cd3a5b",
+      "integrity": {
+        "errors": [
+          "preweather_cohort_unavailable"
+        ],
+        "verified": false
+      },
+      "manifest_sha256": "51343e59375a4bce23a33fece87469acec01b890e552033c9e61ccebf4701f83",
+      "path": "model/data/runtime/weather_revisions/runs/35030238748-1.json",
+      "requested_run": "2026-09-15T12:00:00Z",
+      "run_attempt": "1",
+      "run_id": "35030238748",
+      "status": "failed",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-09-16T06:00:22.236728Z",
+      "capture_started_at": "2026-09-16T06:00:22.188851Z",
+      "cohort_sha256": null,
+      "collection_profile": "season",
+      "counts": {
+        "cohort_games": 0,
+        "failed_requests": 1,
+        "mature_comparator_games": 0,
+        "paired_games": 0,
+        "paired_two_book_games": 0,
+        "total_requests": 1,
+        "two_book_games": 0,
+        "weather_available_games": 0
+      },
+      "git_commit": "d0dab371940e892b7e0200302d97993e2b6df2ee",
+      "integrity": {
+        "errors": [
+          "preweather_cohort_unavailable"
+        ],
+        "verified": false
+      },
+      "manifest_sha256": "9dbc3c5c93e5532a6af4b095b32f2361c0f29dae482d12f48faa7456a7149a88",
+      "path": "model/data/runtime/weather_revisions/runs/35061754642-1.json",
+      "requested_run": "2026-09-16T00:00:00Z",
+      "run_attempt": "1",
+      "run_id": "35061754642",
+      "status": "failed",
+      "trigger": "schedule"
     }
   ],
   "schema_version": "weather-revision-model-inventory-v1",
