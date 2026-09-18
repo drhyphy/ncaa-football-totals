@@ -3420,10 +3420,20 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-14T16:25:06Z",
-    "result": "pending",
-    "profit_units": null,
+    "result": "loss",
+    "profit_units": -1.0,
     "clv": null,
-    "position_id": "f5f309d98f9ae5ace42d967b"
+    "position_id": "f5f309d98f9ae5ace42d967b",
+    "actual_total": 40.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-18T14:33:54Z",
+        "actual_total": 40.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-18T14:33:54Z"
   },
   {
     "game_id": "401858229",

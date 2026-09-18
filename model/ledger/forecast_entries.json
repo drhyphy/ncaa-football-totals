@@ -62649,8 +62649,18 @@
     "peer_dispersion": 0.1572170984191814,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-13T14:27:57Z",
-    "result": "pending",
-    "profit_units": null
+    "result": "win",
+    "profit_units": 0.8771929824561404,
+    "actual_total": 40.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-18T14:33:54Z",
+        "actual_total": 40.0,
+        "result": "win",
+        "profit_units": 0.8771929824561404
+      }
+    ],
+    "outcome_received_at": "2026-09-18T14:33:54Z"
   },
   {
     "game_id": "401858225",
@@ -62690,8 +62700,18 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-13T14:27:57Z",
-    "result": "pending",
-    "profit_units": null
+    "result": "loss",
+    "profit_units": -1.0,
+    "actual_total": 40.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-18T14:33:54Z",
+        "actual_total": 40.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-18T14:33:54Z"
   },
   {
     "game_id": "401858225",
@@ -62731,8 +62751,18 @@
     "peer_dispersion": 0.0,
     "model_version": "totals-v4-20260908",
     "recorded_at": "2026-09-13T14:27:57Z",
-    "result": "pending",
-    "profit_units": null
+    "result": "loss",
+    "profit_units": -1.0,
+    "actual_total": 40.0,
+    "grade_history": [
+      {
+        "outcome_received_at": "2026-09-18T14:33:54Z",
+        "actual_total": 40.0,
+        "result": "loss",
+        "profit_units": -1.0
+      }
+    ],
+    "outcome_received_at": "2026-09-18T14:33:54Z"
   },
   {
     "game_id": "401858226",
