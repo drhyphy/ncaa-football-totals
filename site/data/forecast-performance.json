@@ -460,14 +460,14 @@
   {
     "model_version": "totals-v4-20260908",
     "candidate": "market_price_reference",
-    "games": 87,
-    "pending": 72,
+    "games": 90,
+    "pending": 69,
     "voids": 0,
-    "mae": 11.207640199738398,
-    "rmse": 14.055106305031321,
-    "brier": 0.2499752484622125,
-    "log_loss": 0.6931003568135807,
-    "probability_scoring_games": 87,
+    "mae": 11.095283542085358,
+    "rmse": 13.960781328235873,
+    "brier": 0.25054821632346397,
+    "log_loss": 0.6942471793944077,
+    "probability_scoring_games": 90,
     "pushes": 0,
     "forecast_entries": 159,
     "abstentions": 158,
@@ -482,9 +482,9 @@
       {
         "lower": 0.5,
         "upper": 0.6,
-        "games": 76,
-        "predicted_win_rate": 0.5137037856494704,
-        "observed_win_rate": 0.5789473684210527
+        "games": 79,
+        "predicted_win_rate": 0.5138194346515728,
+        "observed_win_rate": 0.569620253164557
       }
     ],
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
@@ -492,14 +492,14 @@
   {
     "model_version": "totals-v4-20260908",
     "candidate": "opponent_adjusted_ridge",
-    "games": 87,
-    "pending": 72,
+    "games": 90,
+    "pending": 69,
     "voids": 0,
-    "mae": 11.181029211480245,
-    "rmse": 13.96338404486197,
-    "brier": 0.24835585125467913,
-    "log_loss": 0.6898539389818066,
-    "probability_scoring_games": 87,
+    "mae": 11.058059543939708,
+    "rmse": 13.866597180118411,
+    "brier": 0.2484174867651553,
+    "log_loss": 0.6899777317767437,
+    "probability_scoring_games": 90,
     "pushes": 0,
     "forecast_entries": 159,
     "abstentions": 155,
@@ -514,9 +514,9 @@
       {
         "lower": 0.5,
         "upper": 0.6,
-        "games": 86,
-        "predicted_win_rate": 0.5219797187241695,
-        "observed_win_rate": 0.5697674418604651
+        "games": 89,
+        "predicted_win_rate": 0.5218836833817994,
+        "observed_win_rate": 0.5730337078651685
       }
     ],
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
@@ -524,14 +524,14 @@
   {
     "model_version": "totals-v4-20260908",
     "candidate": "opponent_adjusted_structural",
-    "games": 87,
-    "pending": 72,
+    "games": 90,
+    "pending": 69,
     "voids": 0,
-    "mae": 11.24756949733645,
-    "rmse": 14.1244482574174,
-    "brier": 0.25210909790080005,
-    "log_loss": 0.6973421721404641,
-    "probability_scoring_games": 87,
+    "mae": 11.136366576237693,
+    "rmse": 14.04373512796342,
+    "brier": 0.2524089126070038,
+    "log_loss": 0.6979435411521606,
+    "probability_scoring_games": 90,
     "pushes": 0,
     "forecast_entries": 159,
     "abstentions": 153,
@@ -546,9 +546,9 @@
       {
         "lower": 0.5,
         "upper": 0.6,
-        "games": 86,
-        "predicted_win_rate": 0.5278186712021063,
-        "observed_win_rate": 0.3953488372093023
+        "games": 89,
+        "predicted_win_rate": 0.5278557698429649,
+        "observed_win_rate": 0.39325842696629215
       }
     ],
     "definition": "First archived pregame forecast per model/game, including abstentions; conditional win probabilities exclude pushes. No bet ROI inferred."
