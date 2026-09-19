@@ -3672,7 +3672,20 @@
     "recorded_at": "2026-09-14T16:25:06Z",
     "result": "pending",
     "profit_units": null,
-    "clv": null,
+    "clv": {
+      "observed_at": "2026-09-19T19:34:31.571675Z",
+      "lead_minutes": 25.473805416666668,
+      "line": 51.5,
+      "decimal_odds": 1.962,
+      "points": 0.0,
+      "closing_fair_ev_at_entry": -0.04861800997635579,
+      "market_updated_at": "2026-09-19T17:45:08.042000Z",
+      "observation_id": "2c1b006f1ab505803e027f38",
+      "snapshot": "data/runtime/closing/quotes-20260919T193431905838Z.json.gz",
+      "status": "last_observed_pregame_proxy_not_exact_close",
+      "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+      "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+    },
     "position_id": "d2fd0700312e5910d44a86f4"
   },
   {

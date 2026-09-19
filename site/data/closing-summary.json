@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-09-19T17:13:35.425155+00:00",
-  "positions_with_clv": 22,
+  "as_of": "2026-09-19T19:34:31.905838+00:00",
+  "positions_with_clv": 23,
   "positions": [
     {
       "position_id": "fa0a2cd7997d0f679d7c1f6d",
@@ -441,6 +441,26 @@
         "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
         "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
       }
+    },
+    {
+      "position_id": "d2fd0700312e5910d44a86f4",
+      "game_id": "401858231",
+      "candidate": "opponent_adjusted_structural",
+      "sportsbook": "fanduel",
+      "clv": {
+        "observed_at": "2026-09-19T19:34:31.571675Z",
+        "lead_minutes": 25.473805416666668,
+        "line": 51.5,
+        "decimal_odds": 1.962,
+        "points": 0.0,
+        "closing_fair_ev_at_entry": -0.04861800997635579,
+        "market_updated_at": "2026-09-19T17:45:08.042000Z",
+        "observation_id": "2c1b006f1ab505803e027f38",
+        "snapshot": "data/runtime/closing/quotes-20260919T193431905838Z.json.gz",
+        "status": "last_observed_pregame_proxy_not_exact_close",
+        "price_model_assumption": "Proportional no-vig paired closing prices; normal integer-score distribution; fixed sigma=16; not a verified fair probability",
+        "line_selection": "Least paired-price imbalance in the latest observed same-book snapshot"
+      }
     }
   ],
   "status": "near_kickoff_observation_proxy",
@@ -452,15 +472,15 @@
       "DraftKings",
       "FanDuel"
     ],
-    "available_events": 51,
-    "requested_events": 51,
+    "available_events": 39,
+    "requested_events": 39,
     "truncated": false,
-    "event_count": 51,
-    "total_markets": 101,
-    "timestamped_total_markets": 101,
+    "event_count": 39,
+    "total_markets": 78,
+    "timestamped_total_markets": 78,
     "errors": [],
     "american_rounding": "none; exact decimal_price and equivalent float American odds retained"
   },
-  "observation_count": 42215,
-  "snapshot": "data/runtime/closing/quotes-20260919T171335425155Z.json.gz"
+  "observation_count": 44602,
+  "snapshot": "data/runtime/closing/quotes-20260919T193431905838Z.json.gz"
 }
