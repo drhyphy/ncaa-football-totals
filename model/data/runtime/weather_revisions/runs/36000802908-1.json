@@ -1,0 +1,70 @@
+{
+  "capture_completed_at": "2026-09-24T12:43:39.569664Z",
+  "capture_started_at": "2026-09-24T12:43:39.429642Z",
+  "collection_profile": "season",
+  "collection_protocol_file": "reports/WEATHER_REVISION_SEASON_COLLECTION_PROTOCOL.md",
+  "collection_protocol_id": "weather-revision-season-collection-v1",
+  "collection_window": {
+    "end_exclusive": "2027-02-01T03:00:00Z",
+    "start_inclusive": "2026-09-16T03:00:00Z"
+  },
+  "collector_version": "weather-revision-collector-v3",
+  "counts": {
+    "cohort_games": 0,
+    "failed_requests": 1,
+    "mature_comparator_games": 0,
+    "paired_games": 0,
+    "paired_two_book_games": 0,
+    "total_requests": 1,
+    "two_book_games": 0,
+    "weather_available_games": 0
+  },
+  "failures": [
+    {
+      "exception_class": "ValueError",
+      "reason": "collector_failed"
+    }
+  ],
+  "git_commit": "2a221390f9d56097fb9380943b12a35212304fe6",
+  "inventory_receipt": "data/runtime/weather_revisions/receipts/517915592eb8ca27c8adfca260bd75e7d4aba676e86bc76d83c58b30d53bdef0.json",
+  "provenance": {
+    "data/models/weather_venues_v1.json": "eec79812c7faef8d70b21d9ad4018b3d2a71074b27b72508358d71ae56519ce7",
+    "ncaaf_model/revision_archive.py": "2cc9efa850c8e4878056a320764340d5e5dc094249018f66a3290e4dc4a323a0",
+    "ncaaf_model/teams.py": "203be85d981fa66ee52f7165a0ac998ff9c80b222082c1e089eede5312c4cf4f",
+    "ncaaf_model/weather_revision_collector.py": "63b4386a658a626b61f96b81e38738d3898fb5792c4d9227087a71389d322360",
+    "ncaaf_model/weather_revision_weather.py": "2aab90976554d923da799ce9c95893d401d327adf61b00f5807e1bc8d02d4da0",
+    "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md": "9fcff0f925d606a1c8ee7e4975c562fa44a50b0bde4eef9424d906d9f2b240fc",
+    "reports/WEATHER_REVISION_CAPTURE_PROTOCOL.md": "6cb894fec21c42b43c0458e7fdd0cd7d1e72f531b88dd6cc3617012bc4075496",
+    "reports/WEATHER_REVISION_SEASON_COLLECTION_PROTOCOL.md": "81b86f9335ca0b228c54210a4394ce35df12e6e3c1b824ddbe94bc47b14ba07d"
+  },
+  "quota_policy": {
+    "amendment_file": "reports/COLLECTION_QUOTA_METADATA_AMENDMENT.md",
+    "maximum_provider_calls": 17,
+    "missing_metadata": "continue_fixed_bounded_calls",
+    "require_quota_metadata": false,
+    "reserve_if_reported": 20,
+    "stop_http_statuses": [
+      401,
+      403,
+      429
+    ]
+  },
+  "receipts": [
+    "data/runtime/weather_revisions/receipts/517915592eb8ca27c8adfca260bd75e7d4aba676e86bc76d83c58b30d53bdef0.json"
+  ],
+  "requested_run": "2026-09-24T06:00:00Z",
+  "rows": [],
+  "run_attempt": "1",
+  "run_id": "36000802908",
+  "scheduled_utc_slots": [
+    "01:17",
+    "07:17",
+    "13:17",
+    "19:17"
+  ],
+  "schema_version": "weather-revision-capture-v1",
+  "status": "failed",
+  "stored_response_bytes": 55,
+  "trigger": "schedule",
+  "workflow_commit": "2a221390f9d56097fb9380943b12a35212304fe6"
+}
