@@ -1,6 +1,6 @@
 # Label-free weather-revision model inventory
 
-93 archived captures: 91 scheduled and 2 manual. They contain 75 distinct requested GFS initialization(s). There are **86 designated primary games**, 0 source/receipt-verified probability-input pairs and 0 source/receipt-verified movement-input pairs. No model is fitted and no edge is estimated.
+94 archived captures: 92 scheduled and 2 manual. They contain 76 distinct requested GFS initialization(s). There are **86 designated primary games**, 0 source/receipt-verified probability-input pairs and 0 source/receipt-verified movement-input pairs. No model is fitted and no edge is estimated.
 
 The observable selection rule is the first archived scheduled capture starting 24–48 hours before the pre-weather cohort kickoff. It is selected before weather, quotes or audit availability are checked. The immediately preceding archived scheduled capture must be 4–8 hours older, with a requested initialization exactly six hours earlier and unchanged context, coordinates, request options and valid hours. Missing data excludes that designated game; a later successful capture or an older successful predecessor cannot replace it.
 
@@ -99,6 +99,7 @@ The observable selection rule is the first archived scheduled capture starting 2
 | 2026-10-02T13:51:26.462955Z | season / schedule | 2026-10-02T06:00:00Z | 0 | 0 | 0 | 0 | unverified |
 | 2026-10-02T22:57:45.493417Z | season / schedule | 2026-10-02T12:00:00Z | 0 | 0 | 0 | 0 | unverified |
 | 2026-10-03T06:31:49.958900Z | season / schedule | 2026-10-03T00:00:00Z | 0 | 0 | 0 | 0 | unverified |
+| 2026-10-03T12:33:08.269195Z | season / schedule | 2026-10-03T06:00:00Z | 0 | 0 | 0 | 0 | unverified |
 
 Across adjacent archived captures, 365 games have comparable same-initialization weather metadata: 365 changed response-body hashes and 0 unchanged hashes. There are 512 comparable six-hour initialization pairs. These overlapping response observations are not independent training samples; body hashes do not measure the size or direction of a weather revision.
 
