@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-04T00:00:51.672193+00:00",
+  "as_of": "2026-10-04T05:43:24.376644+00:00",
   "positions_with_clv": 23,
   "positions": [
     {
@@ -467,20 +467,9 @@
   "max_lead_minutes": 30.0,
   "interpretation": "Same-book last observed pregame quotes within 30 minutes; not exact closes or proof of positive EV.",
   "provider_metadata": {
-    "odds_source": "odds_api_io",
-    "selected_bookmakers": [
-      "DraftKings",
-      "FanDuel"
-    ],
-    "available_events": 4,
-    "requested_events": 4,
-    "truncated": false,
-    "event_count": 4,
-    "total_markets": 8,
-    "timestamped_total_markets": 8,
-    "errors": [],
-    "american_rounding": "none; exact decimal_price and equivalent float American odds retained"
+    "status": "no_targets_next_24_hours",
+    "event_count": 0
   },
   "observation_count": 77011,
-  "snapshot": "data/runtime/closing/quotes-20261004T000051672193Z.json.gz"
+  "snapshot": "data/runtime/closing/quotes-20261004T054324376644Z.json.gz"
 }
