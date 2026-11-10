@@ -3,13 +3,13 @@
   "archived_run_enumeration_complete": true,
   "collection_profiles": {
     "pilot": 30,
-    "season": 183
+    "season": 184
   },
   "counts": {
     "adjacent_six_hour_initialization_game_pairs": 512,
-    "archived_runs": 213,
+    "archived_runs": 214,
     "designated_games": 86,
-    "distinct_requested_initializations": 178,
+    "distinct_requested_initializations": 179,
     "independently_audited_input_eligible": 0,
     "independently_audited_runs": 2,
     "manual_runs": 2,
@@ -18,7 +18,7 @@
     "movement_targets_inspected": 0,
     "outcomes_inspected": 0,
     "probability_input_eligible": 0,
-    "scheduled_runs": 211,
+    "scheduled_runs": 212,
     "source_receipt_verified_input_eligible": 0,
     "unknown_trigger_runs": 0,
     "verified_runs": 29
@@ -8694,6 +8694,36 @@
       "requested_run": "2026-11-10T00:00:00Z",
       "run_attempt": "1",
       "run_id": "42782360188",
+      "status": "failed",
+      "trigger": "schedule"
+    },
+    {
+      "capture_completed_at": "2026-11-10T20:28:06.247349Z",
+      "capture_started_at": "2026-11-10T20:28:06.141398Z",
+      "cohort_sha256": null,
+      "collection_profile": "season",
+      "counts": {
+        "cohort_games": 0,
+        "failed_requests": 1,
+        "mature_comparator_games": 0,
+        "paired_games": 0,
+        "paired_two_book_games": 0,
+        "total_requests": 1,
+        "two_book_games": 0,
+        "weather_available_games": 0
+      },
+      "git_commit": "3e0539f3c7fdea72840b2c97162b87879ddaba3e",
+      "integrity": {
+        "errors": [
+          "preweather_cohort_unavailable"
+        ],
+        "verified": false
+      },
+      "manifest_sha256": "519143d393216fbfbb772453e1f4068cbb6e718d7dd465e0b49ce6fa3a6b4182",
+      "path": "model/data/runtime/weather_revisions/runs/42895419631-1.json",
+      "requested_run": "2026-11-10T12:00:00Z",
+      "run_attempt": "1",
+      "run_id": "42895419631",
       "status": "failed",
       "trigger": "schedule"
     }
