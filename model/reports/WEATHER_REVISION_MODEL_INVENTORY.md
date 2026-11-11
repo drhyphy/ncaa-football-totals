@@ -1,6 +1,6 @@
 # Label-free weather-revision model inventory
 
-215 archived captures: 213 scheduled and 2 manual. They contain 180 distinct requested GFS initialization(s). There are **86 designated primary games**, 0 source/receipt-verified probability-input pairs and 0 source/receipt-verified movement-input pairs. No model is fitted and no edge is estimated.
+216 archived captures: 214 scheduled and 2 manual. They contain 181 distinct requested GFS initialization(s). There are **86 designated primary games**, 0 source/receipt-verified probability-input pairs and 0 source/receipt-verified movement-input pairs. No model is fitted and no edge is estimated.
 
 The observable selection rule is the first archived scheduled capture starting 24–48 hours before the pre-weather cohort kickoff. It is selected before weather, quotes or audit availability are checked. The immediately preceding archived scheduled capture must be 4–8 hours older, with a requested initialization exactly six hours earlier and unchanged context, coordinates, request options and valid hours. Missing data excludes that designated game; a later successful capture or an older successful predecessor cannot replace it.
 
@@ -221,6 +221,7 @@ The observable selection rule is the first archived scheduled capture starting 2
 | 2026-11-10T08:24:49.603982Z | season / schedule | 2026-11-10T00:00:00Z | 0 | 0 | 0 | 0 | unverified |
 | 2026-11-10T20:28:06.141398Z | season / schedule | 2026-11-10T12:00:00Z | 0 | 0 | 0 | 0 | unverified |
 | 2026-11-11T07:44:45.191598Z | season / schedule | 2026-11-11T00:00:00Z | 0 | 0 | 0 | 0 | unverified |
+| 2026-11-11T20:11:43.386481Z | season / schedule | 2026-11-11T12:00:00Z | 0 | 0 | 0 | 0 | unverified |
 
 Across adjacent archived captures, 365 games have comparable same-initialization weather metadata: 365 changed response-body hashes and 0 unchanged hashes. There are 512 comparable six-hour initialization pairs. These overlapping response observations are not independent training samples; body hashes do not measure the size or direction of a weather revision.
 
