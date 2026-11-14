@@ -1,6 +1,6 @@
 {
   "schema_version": "weather-revision-season-status-v1",
-  "generated_at": "2026-11-14T07:36:45.751366Z",
+  "generated_at": "2026-11-14T18:44:38.899515Z",
   "phase": "active",
   "status": "attention",
   "message": "The latest collection needs attention. Available archives and failure counts are retained; missing receipts are not filled retrospectively.",
@@ -13,13 +13,13 @@
   "collection_only": true,
   "performance_evaluated": false,
   "active_policy_changed": false,
-  "archived_runs": 191,
+  "archived_runs": 192,
   "invalid_manifests": 0,
-  "partial_or_failed_runs": 191,
+  "partial_or_failed_runs": 192,
   "latest": {
-    "capture_started_at": "2026-11-14T07:36:32.808919Z",
-    "capture_completed_at": "2026-11-14T07:36:33.134424Z",
-    "requested_run": "2026-11-14T00:00:00Z",
+    "capture_started_at": "2026-11-14T18:44:28.905849Z",
+    "capture_completed_at": "2026-11-14T18:44:29.042081Z",
+    "requested_run": "2026-11-14T12:00:00Z",
     "status": "failed",
     "counts": {
       "cohort_games": 0,
@@ -30,19 +30,19 @@
       "paired_two_book_games": 0,
       "total_requests": 1
     },
-    "manifest_sha256": "feb1089847c3753378f7e08023c6ec5a45ede00608e55f767dfa01cefceac693"
+    "manifest_sha256": "f44e24af560ffc08e2c1347a75b790a3195bd1803645696a69716a3fdfc1f0a6"
   },
   "game_observation_totals": {
     "cohort_games": 0,
     "weather_available_games": 0,
     "two_book_games": 0,
     "paired_games": 0,
-    "failed_requests": 191,
-    "total_requests": 191,
+    "failed_requests": 192,
+    "total_requests": 192,
     "paired_two_book_games": 0
   },
   "last_workflow_attempt": {
-    "started_at": "2026-11-14T07:36:03.117970Z",
+    "started_at": "2026-11-14T18:44:00.973957Z",
     "outcome": "failure",
     "matching_manifest": true
   },
