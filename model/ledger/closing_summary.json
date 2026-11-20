@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-19T22:38:47.168848+00:00",
+  "as_of": "2026-11-20T03:57:11.100465+00:00",
   "positions_with_clv": 23,
   "positions": [
     {
@@ -472,15 +472,15 @@
       "DraftKings",
       "FanDuel"
     ],
-    "available_events": 1,
-    "requested_events": 1,
+    "available_events": 6,
+    "requested_events": 6,
     "truncated": false,
-    "event_count": 1,
-    "total_markets": 2,
-    "timestamped_total_markets": 2,
+    "event_count": 6,
+    "total_markets": 12,
+    "timestamped_total_markets": 12,
     "errors": [],
     "american_rounding": "none; exact decimal_price and equivalent float American odds retained"
   },
-  "observation_count": 157477,
-  "snapshot": "data/runtime/closing/quotes-20261119T223847168848Z.json.gz"
+  "observation_count": 157837,
+  "snapshot": "data/runtime/closing/quotes-20261120T035711100465Z.json.gz"
 }
